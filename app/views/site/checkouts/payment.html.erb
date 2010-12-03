@@ -1,0 +1,29 @@
+<% @title = "Payment Information"; %>
+<% months = Date::MONTHNAMES.compact %>
+<%- @breadcrumbs = "#{link_to "Home", root_url} &raquo; Checkout &raquo; Payment Information" -%>
+<% @class = "no-padding" %>
+
+<%= javascript_tag "document.observe('dom:loaded', function(e){ RemotePaymentMethodForm.setup() });" %>
+
+<div id="header">Payment Information</div>
+<div style="text-align:center;margin-top:40px;"><%= image_tag("cart_step_3.png") %></div>
+<%= render :partial => 'site/shared/box_cart_form' %>
+<div style="margin: 10px 20px;">
+  <h2 style="font-weight:normal;">Billing Information</h2>
+  <% form_tag orders_path, :id => "check_payment" do %>
+    <div id="form">
+      <%= show_messages(flash[:notice]) %>
+      <%= hidden_field_tag :payment_method, 2 %>
+      <%= render :partial => 'site/orders/cc_form' %>
+    </div>
+    <p style="text-align:right;">
+  		<%= image_submit_tag "buttons/checkout.png" %>
+  	</p>
+  <%- end -%>
+</div>
+	
+<% content_for :right do %>
+	<%= render :partial => '/site/shared/box_subscriptions' %>
+	<br />
+	<%= render :partial => '/site/shared/box_grape_guide' %>
+<% end %>

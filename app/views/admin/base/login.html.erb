@@ -1,0 +1,24 @@
+<html>
+<head>
+	<title>Italyabroad Admin Login</title>
+</head>
+<body>
+  <div style="width:300px;margin:0 auto">
+    <h1>Admin Login</h1>
+    <%= flash[:notice] %>
+    <% form_tag :action => :login do %>
+      <p>
+  			<span style="float:left;width:100px;">Username: </span>
+  			<%= text_field_tag :login, nil, :size => 18 %>
+  		</p>
+  		<p>
+  		  <span style="float:left;width:100px;">Password: </span>
+  		  <%= password_field_tag :password, nil, :size => 18 %>
+  		</p>
+  		<p>
+  		  <%= submit_tag "Login" %>
+  		</p>
+  	<% end %>
+	</div>
+</body>
+</html>

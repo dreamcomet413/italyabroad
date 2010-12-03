@@ -1,0 +1,38 @@
+<% @title = "Privacy Policy"; @class = "help no-padding"; @breadcrumbs = "#{link_to("Home", root_url)} &raquo; Help &raquo; Privacy Policy"%>
+
+<div id="header"><strong>italyabroad.com</strong> Help</div>
+<!--<div class="help-container">
+  <h2>Privacy Policy</h2>
+  <p>
+  	Italyabroad is committed to protecting the privacy of the users of its websites and the overall integrity of the internet. To that end, we are disclosing here any issues related to privacy in the collection by Italyabroad of personally identifiable information from users of its website. We have adopted a set of information management guidelines that serve as the basis for our customer and advertiser relationships. These have been developed to comply with the Data Protection Act 1998.
+	</p>
+	<p>
+	  Questions regarding this statement should be directed to <%= mail_to "contactus@italyabroad.com" %>
+	</p>
+	<p>
+  	For information on the Data Protection Act 1998 please follow this link. <%= link_to "www.dataprotection.gov.uk", "http://www.dataprotection.gov.uk", :target => "_blank" %>
+	</p>
+	<p>
+  	A summary of the measures taken by Italyabroad to protect its users' privacy is as follows: Italyabroad does not provide or sell your details to third parties unless you have specifically requested that we do so, in order that these advertisers and/or third parties can offer you information, goods and services that may be of interest to you.
+	</p>
+	<p>
+  	Italyabroad reserve the right to disclose information about member usage and demographics to advertisers and partners, but in anonymous aggregate form only. Italyabroad will not reveal your personal identity in connection with the disclosure of such information.
+	</p>
+	<p>
+  	Italyabroad may contact users by email with updates about the website and its services. Please direct all general questions to  <%= mail_to "contactus@italyabroad.com" %>
+	</p>
+</div> -->
+
+<% @about = AboutU.find(:first, :conditions => {:link_type => "privacy_policy"} ) %>
+<div class="help-container">
+  <% if @about %>
+  <h2><%= @about.title  %></h2>
+  <%= @about.description  %>
+  <% else %>
+        <p style="padding:30px 0 30px 0;text-align:center;font: bold 16px Arial">Coming soon...</p>
+      <% end %>
+</div>
+
+<% content_for :right do %>
+  <%= render :partial => '/site/shared/box_help' %>
+<% end %>

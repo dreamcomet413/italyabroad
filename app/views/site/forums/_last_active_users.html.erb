@@ -1,0 +1,14 @@
+<div class="border">
+  <p>
+    <strong>Last <%= @active_users.size%> Users active in forums</strong>
+  </p>
+  <ul type="none" style="padding:0;text-align:center;">
+    <% @active_users.each do |user| %>
+    <li style="float:left;margin-left:10px;">
+      <%= link_to(avatar_for_user(user, "small"), customer_path(user)) %><br />
+      <%= link_to(truncate(user.name, 10), customer_path(user), :style => "color:#003702;") %>
+    </li>
+    <% end %>
+    <div style="clear:both"></div>
+  </ul>
+</div>

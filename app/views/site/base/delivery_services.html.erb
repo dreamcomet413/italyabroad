@@ -1,0 +1,16 @@
+<% @title = "Delivery services"; @class = "help no-padding"; @breadcrumbs = "#{link_to("Home", root_url)} &raquo; Help &raquo; Delivery services" %>
+
+<div id="header"><strong>italyabroad.com</strong> Help</div>
+<% @about = AboutU.find(:first, :conditions => {:link_type => "delivery_service"} ) %>
+<div class="help-container">
+  <% if @about %>
+  <h2><%= @about.title  %></h2>
+  <%= @about.description  %>
+  <% else %>
+        <p style="padding:30px 0 30px 0;text-align:center;font: bold 16px Arial">Coming soon...</p>
+      <% end %>
+</div>
+
+<% content_for :right do %>
+  <%= render :partial => '/site/shared/box_help' %>
+<% end %>

@@ -1,0 +1,12 @@
+<div id="sales" class="sub_menu">
+  <ul>
+    <li <%= "class='active'" if @current_controller == "cupons" %>><%= link_to "Coupons", admin_cupons_path, :class => ('active' if @current_controller == "cupons") %></li>
+    <li <%= "class='active'" if @current_controller == "orders" %>><%= link_to "Orders", admin_orders_path, :class => ('active' if @current_controller == "orders") %></li>
+  </ul>
+  <%- if @current_controller == "cupons" -%>
+  <ul>
+    <li <%= "class='active'" if @current_action == "index" %>><%= link_to "List", admin_cupons_path, :class => ('active' if @current_action == "index") %></li>
+    <li <%= "class='active'" if @current_action == "new" %>><%= link_to "New", new_admin_cupon_path, :class => ('active' if @current_action == "new") %></li>
+  </ul>
+  <%- end -%>
+</div>

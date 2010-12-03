@@ -1,0 +1,31 @@
+<% @title = "Edit #{@product.name}"; @page_id = "Catalog" %>
+<%- @breadcrumbs = "Catalog &raquo; #{link_to "Products", admin_products_path} &raquo; #{@title}" -%>
+
+<div class="inner_content products" id="admin_products_edit_correlation">
+  <h2><%= @title %></h2>
+  <br />
+  <%= render :partial => 'product_links', :locals => {:active => 'included_products'} %>
+  <% form_for :product, :url => admin_product_path(@product), :html => {:method => :put} do %>
+    <fieldset id="correlation_information">
+      <table class="list">
+        <tr>
+          <th>&nbsp;</th>
+          <th>Category</th>
+          <th>Name</th>
+          <th>Price</th>
+        </tr>
+        <%- for product in @products -%>
+          <tr class="<%= cycle("even", "odd") %>">
+            <td><%= check_box_tag "included_product_ids[]", product.id, @product.included_product_ids.include?(product.id) %></td>
+            <td><%= product.root_category_id.titleize unless product.root_category_id.blank? %></td>
+            <td><%= product.name %></td>
+            <td><%= number_to_currency product.price, :unit => "&pound;" %></td>
+          </tr>
+        <%- end -%>
+      </table>
+    </fieldset>
+    <p>
+      <%= submit_tag "Save" %> or <%= link_to "Cancel", admin_products_path %>
+    </p>
+  <% end %>
+</div>

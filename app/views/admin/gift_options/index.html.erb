@@ -1,0 +1,46 @@
+<%- @title = "Administration - Gift Options"; @page_id = "Catalog" -%>
+<%- @breadcrumbs = "Catalog &raquo; #{link_to "Gift Options", admin_gift_options_path}" -%>
+
+<div class="inner_content gift_options" id="admin_gift_options_index">
+  <h2>Gift Options</h2>
+  <br />
+  <table>
+    <tr>
+      <td></td>
+    </tr>
+    <tr>
+      <td align="right"><%= link_to "New Gift Option", new_admin_gift_option_path %></td>
+    </tr>
+  </table>
+  <table id="gift_option-list" class="list sortable">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Default</th>
+        <th class="nosort"></th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+        <td colspan="5"><%= will_paginate_(@gift_options) %></td>
+        <td align="right"><%= page_entries_info_ @gift_options %></td>
+      </tr>
+    </tfoot>
+    <tbody>
+      <%- @gift_options.each do |gift| -%>
+      <tr>
+        <td><%= gift.id %></td>
+        <td><%= gift.name %></td>
+        <td><%= gift.description %></td>
+        <td><%= number_to_currency gift.price, :unit => "&pound;" %></td>
+        <td><%= gift.is_default %></td>
+        <td><%= link_to "Edit", edit_admin_gift_option_path(gift) %> | <%= link_to "Delete", admin_gift_option_path(gift), :method => :delete, :confirm => "Are you sure want to delete this gift?" %></td>
+      </tr>
+      <%- end -%>
+    </tbody>
+  </table>
+  <%= will_paginate(@gift_options) %>
+</div>

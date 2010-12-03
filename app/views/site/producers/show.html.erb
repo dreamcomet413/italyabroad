@@ -1,0 +1,32 @@
+<%- @title = @producer.name; @class = "no-padding"; @breadcrumbs = "#{link_to("Home", root_url)} &raquo; Producer &raquo; #{@title}" -%>
+
+<div id="header"><%= @title %></div
+<div style="text-align:center;margin-top:15px;"><%= image_tag("region-home-image.jpg") %></div>
+<br />
+<div style="margin:0 40px;">
+  <h3 style="text-align:center;border:none;color:#666666;">Producer Information</h3>
+  <%= @producer.description || "No Description" %>
+  <br />
+  <h3 style="font-size:16px;color:#013300;border:none;">Grapes grown by this producer</h3>
+  <ul>
+  <%- @producer.grapes.each do |grape| -%>
+    <li><%= link_to grape.name, grape_path(grape) %></li>
+  <%- end -%>
+  </ul>
+  <h3 style="font-size:16px;color:#013300;border:none;">Wines made from this producer</h3>
+  <ul style="list-style:none;margin:0;padding:0;text-align:center;float:left;">
+    <%- @producer.products.each do |product| -%>
+    <li style="float:left;width:100px;margin-left:10px;margin-bottom:10px;">
+      <%= link_to show_image_tag(product.layout_image, product.image_1, :jpg), nested_products_uri(product) %><br />
+      <%= link_to product.name, nested_products_uri(product) %>
+    </li>
+    <%- end -%>
+  </ul>
+  <div style="clear:both;"></div>
+  <br /><br />
+  <br />
+</div>
+
+<%- content_for :right do -%>
+  <%= render :partial => 'site/shared/box_subscriptions' %>
+<%- end -%>

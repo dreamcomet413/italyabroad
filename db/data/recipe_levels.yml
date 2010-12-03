@@ -1,0 +1,10 @@
+--- 
+recipe_levels_1: 
+  name: Simple
+  id: "1"
+recipe_levels_2: 
+  name: Medium
+  id: "2"
+recipe_levels_3: 
+  name: Difficult
+  id: "3"

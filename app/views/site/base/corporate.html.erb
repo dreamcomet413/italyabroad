@@ -1,0 +1,48 @@
+<% @title = "Corporate services"; @description = "Corporate services, corporate gifts in the UK"; @keys = "corporate services, corporate gifts, corporate hampers" %>
+<% @class = "about-us no-padding" %>
+<% @breadcrumbs = "#{link_to("Home", root_url)} &raquo; About us &raquo; Corporate services" %>
+
+<div id="header"><strong>italyabroad.com</strong> About us</div>
+
+<!--<div style="margin:20px;">
+  <h2>Corporate services</h2>
+  <p>
+    Italyabroad.com specialise in designing <b>corporate gifts</b>. All our corporate gifts are designed thinking about your brand and the message you want to send across. Often, the difference between an appreciated and unappreciated gift is in the detail, the attention and the care put in realising it. At Italyabroad.com, we don’t leave anything unthought.
+  </p>
+  <p>
+    All our corporate gifts came with a gift card and a message, hand written as to give the personal touch that is often forgotten in the corporate gifts world. 
+  </p>
+  <h1>Corporate wine tasting events</h1>
+  <p>
+    Entertainment and educational! Our corporate <b>wine tasting events</b> are different, unique and come in a range of flexible and fun formats. From a team building exercise or entertain clients, Italyabroad.com will always rise to the occasion. 
+  </p>
+  <ol>
+  	<li>Professional gift wrapping</li>
+  	<li>Customised gift card (including your company logo) </li>
+  	<li>Handwritten personal message</li>
+   	<li>Fine Italian products</li>
+  </ol>
+  <p>
+    If you would like to know more about our corporate gifts and what we can do for your company, please get in touch at <%= mail_to "corporate@italyabroad.com" %> or call us on 0845 0526886
+  </p>
+  <h1>Corporate Testimonials</h1>
+  <p>
+    "Just a quick note to let you know I gave the wine to my introducer tonight. Both he and his wife were bowled over, just the response I was looking for. Thank you very much for a prompt personal and professional service"
+  </p>
+  <p>
+    Mark ( St.James's Place )
+  </p>
+</div>-->
+  <% @about = AboutU.find(:first, :conditions => {:link_type => "corporate services"} ) %>
+    <div style="margin:20px;">
+      <% if @about %>
+        <h2><%= @about.title if @about %></h2>
+        <%= @about.description if @about %>
+      <% else %>
+        <p style="padding:30px 0 30px 0;text-align:center;font: bold 16px Arial">Coming soon...</p>
+      <% end %>
+    </div>
+	
+<% content_for :right do %>
+  <%= render :partial => 'site/shared/box_about_us' %>
+<% end %>

@@ -1,0 +1,45 @@
+<div class="block" id="box_search_recipes_new">
+	<h3>Recipe Search</h3>
+	<% form_tag search_index_path, :method => :get do %>
+	  <%= hidden_field_tag :category, "recipe" %>
+		<table border="0" cellspacing="2" cellpadding="0">
+			<tr>
+			  <td>Search for recipe:</td>
+			  <td><%= text_field_tag :text, params[:text], :id => "search_text" %></td>
+      </tr>
+      <tr>
+        <td>Chef:</td>
+        <td><%= select_tag :chef, options_for_select(Recipe.users(@search), params[:chef]), :id => "search_recipe_type" %></td>
+      </tr>
+			<tr>
+			  <td>Course:</td>
+			  <td><%= select_tag :recipe_type, options_for_select(Recipe.recipe_types(@search), params[:recipe_type]), :id => "search_recipe_type" %></td>
+      </tr>
+      <tr>
+        <td>Difficulty:</td>
+        <td><%= select_tag :difficulty, options_for_select(Recipe.difficulties(@search), params[:difficulty]), :id => "search_recipe_type" %></td>
+      </tr>
+			<tr>
+			  <td>Preparation time:</td>
+			  <td>
+			    <%= select_tag :preparation_time, options_for_select([["Any",""],["Up to 15 minutes","<= 15"],["Up to 30 minutes","<= 30"],["Up to 45 minutes","<= 45"],["Up to 60 minutes","<= 60"],["More than 60 minutes","> 60"]], params[:preparation_time]), :id => "search_recipe_type" %>
+			  </td>
+      </tr>
+      <tr>
+        <td>Vegetarian:</td>
+        <td><%= check_box_tag :vegetarian, params[:vegetarian] %></td>
+      </tr>
+      <tr>
+        <td>Sort by:</td>
+        <td><%= select_tag :sort_by, options_for_select([["Any", ""], ["Difficulty", "recipe_level_id"], ["Preparation Time", "preparation_time"]], params[:sort_by]), :id => "search_recipe_type" %></td>
+      </tr>
+			<tr>
+			  <td colspan="2"></td>
+      </tr>
+			<tr>
+			  <td></td>
+			  <td><%= image_submit_tag "btn_search.png", :style => "border:none" %></td>
+      </tr>
+		</table>
+	<% end %>
+</div>

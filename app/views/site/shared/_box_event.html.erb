@@ -1,0 +1,19 @@
+<% products = Product.find(:all, :limit => 3, :order => "RAND()", :include => {:categorizations => :category}, :conditions => "categories.name LIKE 'Events'") %>
+<% unless products.blank? %>
+<div class="block" id="box_event">
+  <%= link_to((image_tag "upcomingEvents1.png"), '/events')%><br />
+  <ul>
+  <%- products.each do |product| -%>
+    <li style="margin-bottom:10px;">
+      <%= product.date.strftime("%d %B %Y at %H:%M") if product.date %>
+  	  <div><%= link_to product.name, "/wine-events/#{product.friendly_identifier}", :style => "font-size:14px;color:#721041" %></div>
+	  </li>
+  <%- end -%>
+  </ul>
+</div>	
+<% else %> 
+<div class="block" id="box_event">
+  <div><%= image_tag "upcomingEvents1.png" %></div>
+  <div>Sorry there are currently no upcoming events planned please come back later.</div>
+</div>
+<% end %>

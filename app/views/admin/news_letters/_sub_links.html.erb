@@ -1,0 +1,13 @@
+<%- active ||= 'general' -%>
+<ul id="product_links">
+  <li class="<%= 'active' if active == "general" %>">
+    <%= @news_letter.new_record? ? link_to("General Information", new_admin_news_letter_path, :class => "#{'active' if active == "general"}") : link_to("General", edit_admin_news_letter_path(@news_letter), :class => "#{'active' if active == "general"}") %>
+  </li>
+  <li class="<%= 'active' if active == "correlation" %>">
+    <%= @news_letter.new_record? ? link_to("Correlation") : link_to("Correlation", news_letter_correlation_path(@news_letter), :class => "#{'active' if active == "correlation"}") %>
+  </li>
+  <li class="<%= 'active' if active == "images" %>">
+    <%= @news_letter.new_record? ? link_to("Images") : link_to("Images", news_letter_images_path(@news_letter), :class => "#{'active' if active == "images"}") %>
+  </li>
+</ul>
+<div style="clear:both;"></div>

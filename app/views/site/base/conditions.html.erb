@@ -1,0 +1,71 @@
+<% @title = "Terms and Condition"; @class = "help no-padding"; @breadcrumbs = "#{link_to("Home", root_url)} &raquo; Help &raquo; Terms and Condition" %>
+
+<div id="header"><strong>italyabroad.com</strong> Help</div>
+<% @about = AboutU.find(:first, :conditions => {:link_type => "terms_conditions"} ) %>
+<div class="help-container">
+  <% if @about %>
+  <h2><%= @about.title %></h2>
+	<!--<p>
+  	The following are the terms “Terms” that govern use of the Italyabroad.com ("Site"). By using or visiting the Site, you expressly agree to be bound by these Terms and to follow these Terms and all applicable laws and regulations governing the Site. Italyabroad.com “Italyabroad” reserve the right to change these Terms at any time, effective immediately upon posting on the Site. If you violate these Terms of Use, Italyabroad may terminate your use of the Site and/or take appropriate legal action against you.
+	</p>
+	<b>Permitted Use</b>
+	<p>
+	  You agree that you are only authorized to visit, view and to retain a copy of pages of this Site for your own personal use, and that you shall not duplicate, download, publish, modify or otherwise distribute the material on this Site for any purpose other than to review event and promotional information, for personal use unless otherwise specifically authorized by Italyabroad to do so. The content of this Site is the property of Italyabroad and/or its suppliers and is protected by international copyright laws.
+	</p>
+	<b>Disclaimers</b>
+	<p>
+  	Italyabroad does not promise that the Site will be error-free, uninterrupted, nor that it will provide specific results from use of the Site or any Content, search or link on it. The Site and its Content are delivered on an "as-is" and "as-available" basis. Italyabroad cannot ensure that files you download from the Site will be free of viruses or contamination or destructive features. Italyabroad will not be liable for any damages of any kind arising from the use of this Site without limitation.
+	</p>
+	<p>
+  	Italyabroad disclaims any and all liability for the acts, omissions and conduct of any third party users, Italyabroad users, advertisers and/or sponsors on the Site, in connection with the Italyabroad service or otherwise related to your use of the Site and/or the Italyabroad service. Italyabroad is not responsible for the products or services provided by third party in connection with or referenced on the Site. Without limiting the foregoing, you may report the misconduct of users and/or third party advertisers, service and/or product providers referenced on or included in the Site to Italyabroad at contactus@italyabroad.com. Italyabroad may investigate the claim and take appropriate action, in its sole discretion.
+	</p>
+	<b>Trademarks</b>
+	<p>
+  	Italyabroad logos as well as Italyabroad and design found on this site are copyrighted of Italyabroad.com. Italyabroad 's trademarks may be used publicly only with the written permission of Italyabroad.com.
+	</p>
+	<b>Ownership of Materials</b>
+	<p>
+  	All materials on Italyabroad 's website are copyrighted and are protected under treaty provisions and world-wide copyright laws. Italyabroad 's materials may not be reproduced, copied, edited, published, transmitted or uploaded in any way without Italyabroad 's written permission.
+	</p>
+	<b>Copyright Policy</b>
+	<p>
+  	We will terminate the privileges of any user who uses this Site to unlawfully transmit copyrighted material without a license express consent, valid defence or fair use exemption to do so. In particular, users who submit Content to this Site, whether articles, images, stories, software or other copyrightable material must ensure that the Content they upload does not infringe the copyrights or other rights of third parties (such as privacy or publicity rights).
+	</p>
+	<b>Links and Search Results</b>
+	<p>
+  	The Site may automatically produce search results that reference or link to third party sites throughout the World Wide Web. Italyabroad has no control over these sites or the content within them. Italyabroad cannot guarantee, represent or warrant that the content contained in the sites is accurate, legal and/or inoffensive. Italyabroad does not endorse the content of any third party site, nor do we warrant that they will not contain viruses or otherwise impact your computer. By using the Site to search for or link to another site, you agree and understand that you may not make any claim against Italyabroad for any damages or losses, whatsoever, resulting from your use of the Site to obtain search results or to link to another site. If you have a problem with a link from the Site, please notify us at contactus@italyabroad.com
+  	and we will investigate your claim and take any actions we deem appropriate in our sole discretion.
+	</p>
+	<b>Prohibited Content</b>
+	<p>
+  	The following is a partial list of the kind of Content which is illegal or prohibited on the Site. It includes Content that:
+  	is patently offensive to the online community, such as Content that promotes racism, bigotry, hatred or physical harm of any kind against any group or individual; could be harmful to minors; harasses or advocates harassment of another person;
+  	involves the transmission of "junk mail", "chain letters", or unsolicited mass mailing or "spamming"; promotes information that you know is false, misleading or promotes illegal activities or conduct that is abusive, threatening, obscene, defamatory or libelous; promotes an illegal or unauthorized copy of another person's copyrighted work, such as providing pirated computer programs or links to them, providing information to circumvent manufacture-installed copy-protect devices, or providing pirated music or links to pirated music files; contains restricted or password only access pages, or hidden pages or images (those not linked to or from another accessible page); displays pornographic or sexually explicit material of any kind; provides material that exploits people under the age of 18 in a sexual or violent manner, or solicits personal information from anyone under 18; provides instructional information about illegal activities such as making or buying illegal weapons, violating someone's privacy, or providing or creating computer viruses;
+  	solicits passwords or personal identifying information for commercial or unlawful purposes from other users; and engages in commercial activities and/or sales without our prior written consent such as contests, sweepstakes, barter, advertising, and pyramid schemes.
+  </p>
+	<b>Violation of the Terms</b>
+	<p>
+  	You understand and agree that in Italyabroad's sole discretion, and without prior notice, Italyabroad may terminate your access to the Site, cancel your ticket order or exercise any other remedy available and remove any unauthorized User Content, if Italyabroad believes that the User Content you provided has violated or is inconsistent with these Terms of Use violated the rights of Italyabroad, another User or the law. You agree that monetary damages may not provide a sufficient remedy to Italyabroad for violations of these terms and conditions and you consent to injunctive or other equitable relief for such violations. Italyabroad may release user information about you if required by law or subpoena, or if the information is necessary or appropriate to release to address an unlawful or harmful activity. Italyabroad is not required to provide any refund to you if you are terminated as a User because you have violated these Terms of Use. For more information about how we handle copyright infringements on the Site, please see our Copyright Policy.
+	</p>
+	<b>Limitation on Liability</b>
+	<p>
+  	Except in jurisdictions where such provisions are restricted, in no event will Italyabroad be liable to you for any indirect, consequential, exemplary, incidental, special or punitive damages, including also lost profits, even if Italyabroad has been advised of the possibility of such damages.
+	</p>
+	<b>Disputes</b>
+	<p>
+	  This site is controlled and operated by Italyabroad.com from its offices in the United Kingdom. If there is any dispute about or involving the Site, by using the Site, you agree that the dispute will be governed and construed by English law. In the event of a dispute arising out of or relating to these terms and conditions, or your use of or access to this site, litigation must be brought in court in Newcastle, England without regard to its conflict of law provisions.
+	</p>
+	<b>Indemnity</b>
+	<p>
+	  You agree to indemnify and hold Italyabroad, its subsidiaries, affiliates, officers, agents and other partners and employees, harmless from any loss, liability, claim or demand, including reasonable attorneys' fees, made by any third party due to or arising out of your use of the Site, including also your use of the Site to provide a link to another site or to upload content or other information to the Site.
+	</p>-->
+
+
+  
+  <%= @about.description %>
+  <% end %>
+</div>
+
+<% content_for :right do %>
+  <%= render :partial => '/site/shared/box_help' %>
+<% end %>

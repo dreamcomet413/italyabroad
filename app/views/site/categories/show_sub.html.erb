@@ -1,0 +1,8 @@
+<%#= params[:category] %>
+<% if params[:category] != "offer" %>
+<%#= @category.layout %>
+<% @title = @category.title_formatted; @description = @category.meta_description; @keys = @category.meta_key %>
+<%= render :partial => "site/templates/#{@category.layout}", :locals =>{:page => (params[:page] ? params[:page]:1)} %>
+<% else %>
+<%= render :partial => "site/templates/special_offer", :locals => {:category => "#{params[:parent]}"} %>
+<% end %>

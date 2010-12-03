@@ -1,0 +1,25 @@
+
+<% @title = "New #{params[:type]}"; @page_id = "About us" %>
+<%- @breadcrumbs = "#{params[:page_type]} &raquo; #{link_to params[:type]} &raquo; #{@title}" -%>
+<br/>
+  <h2><%#= @title %></h2>
+  <h2><%= params[:type] %></h2>
+  <br />
+<% form_tag(:action => "create") do %>
+  <%= error_messages_for %>
+  <fieldset>
+  <%= hidden_field(:about_u, :link_type, :value => params[:type]) %>
+    <p>
+      <span style="font:normal 15px Arial;padding-right:60px">Title</span>
+    <%= text_field :about_u, 'title',:size => 70 %>
+  </p>
+    <p>
+    <div style="float:left;height:300px;font:normal 15px Arial;padding:110px 14px 0 0;">Description</div>
+    <div><%= text_area :about_u, 'description', :cols => 80, :rows => 25 %>
+    </div></p>
+  <p>
+    <%= submit_tag 'Create' %> or <%= link_to "Cancel", siteadmin_path %>
+  </p>
+  </fieldset>
+<% end %>
+

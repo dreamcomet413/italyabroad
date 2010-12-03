@@ -1,0 +1,11 @@
+<%- @title = "New Customer"; @page_id = "Administration" -%>
+<%- @breadcrumbs = "Administration &raquo; #{link_to "Customers", admin_customers_path} &raquo; New Customer" -%>
+
+<div class="inner_content">
+  <h2><%= @title %></h2>
+  <br />
+  <% form_for :user, :url => admin_customers_path do %>
+  	<%= render :partial => "form" %>
+  	<p><%= submit_tag "Save" %></p>
+  <% end %>
+</div>

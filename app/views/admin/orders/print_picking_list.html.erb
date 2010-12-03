@@ -1,0 +1,83 @@
+<div style="width:790px;font: normal 12px Arial;text-align:left">
+  <%= image_tag('pdf_header.jpg') %><br/><br/><br/><br/>
+
+	<div style="padding:10px 5px 10px 5px">
+		<div style="float:left;width:300px">
+			<b style="font-size:13px;padding-bottom:5px">SOLD TO:</b>
+			<%= "<br />" + @order.user.name + " " + @order.user.surname %>
+			<%= "<br />" + @order.user.address unless @order.user.address.blank? %>
+			<%= "<br />" + @order.user.address_2 unless @order.user.address_2.blank?  %>
+			<%= "<br />" + @order.user.city unless @order.user.city.blank? %>
+			<%= "<br />" + @order.user.cap unless @order.user.cap.blank? %>
+			<%= "<br />" + @order.user.country unless @order.user.country .blank?%>
+			<%= "<br />Tel. " + @order.user.telephone.to_s unless @order.user.telephone.blank? %>
+			<%= "<br />" + mail_to(@order.user.email) unless @order.user.email.blank? %>
+		</div>
+		<% if @order.different_shipping_address %>
+		<div style="float:left;">
+			<b style="font-size:13px;padding-bottom:5px">SHIP TO:</b>
+			<%= "<br />" + @order.ship_name unless @order.ship_name.blank? %>
+			<%= "<br />" + @order.ship_address unless @order.ship_address.blank? %>
+			<%= "<br />" + @order.ship_address_2 unless @order.ship_address_2.blank?  %>
+			<%= "<br />" + @order.ship_city unless @order.ship_city.blank? %>
+			<%= "<br />" + @order.ship_cap unless @order.ship_cap.blank? %>
+			<%= "<br />" + @order.ship_country unless @order.ship_country .blank?%>
+			<%= "<br />Tel. " + @order.ship_telephone unless @order.ship_telephone.blank? %>
+		</div>
+		<% else %>
+		<div style="float:left;">
+			<b style="font-size:13px;padding-bottom:5px">SHIP TO:</b>
+			<%= "<br />" + @order.user.name + " " + @order.user.surname %>
+			<%= "<br />" + @order.user.address unless @order.user.address.blank? %>
+			<%= "<br />" + @order.user.address_2 unless @order.user.address_2.blank?  %>
+			<%= "<br />" + @order.user.city unless @order.user.city.blank? %>
+			<%= "<br />" + @order.user.cap unless @order.user.cap.blank? %>
+			<%= "<br />" + @order.user.country unless @order.user.country .blank?%>
+			<%= "<br />Tel. " + @order.user.telephone unless @order.user.telephone.blank? %>
+		</div>
+		<% end %>
+                <div style="padding:40px 5px 10px 40px">
+		Order Number: <%= @order.id %><br />
+		Order Date: <%= @order.created_at.strftime("%d/%m/%Y") %>
+	</div>
+		<br style="clear:both" />
+	</div>
+	
+	<div style="padding:40px 5px 10px 5px">
+		<table id="table" border="0" cellspacing="0" cellpadding="5" class="formatTable" style="border-top:3px solid black;width:780px">
+			<tr><th style="border-bottom: 3px solid black;text-align:left;width:100px">Code</th>
+                           <th style="border-bottom: 3px solid black;text-align:left">Product</th>
+                           <th style="border-bottom: 3px solid black;width:100px;text-align:center">Quantity</th></tr>
+			<% for order_item in @order.order_items %>
+				<% fields_for "order_item", order_item do |f| %>
+					<tr>
+						<td style="text-align:left"><%= order_item.product_code %></td>
+						<td style="text-align:left"><%= order_item.name %></td>
+						<td style="text-align:center"><%= order_item.quantity %></td>
+					</tr>
+				<% end %>
+			<% end %>
+		</table>
+		<br style="clear:both"/>
+		<% if @order.gift_option %>
+		<div style="padding:10px 5px 10px 5px;">
+			<b>Gift Card Message:</b><br />
+			<%= @order.gift_note.gsub("\n","<br />") if @order.gift_note %>
+		</div>
+		<% end %>
+		<% if !@order.note.blank? %>
+		<div style="padding:10px 5px 10px 5px;">
+			<b>Customer Comment:</b><br />
+			<%= @order.note.gsub("\n","<br />") %>
+		</div>
+		<% end %>
+		<div style="padding:50px 5px 10px 5px;">
+			<table border="1" cellspacing="0" cellpadding="5" style="width:350px">
+				<tr><td style="width:150px;height:20px">Picked</td><td style="width:200px;">&nbsp;</td></tr>
+				<tr><td style="width:150px;height:20px">Checked</td><td style="width:200px;">&nbsp;</td></tr>
+				<tr><td style="width:150px;height:20px">Delivery Method</td><td style="width:200px;">&nbsp;</td></tr>
+				<tr><td style="width:150px;height:20px">Date</td><td style="width:200px;">&nbsp;</td></tr>
+			</table>
+		</div>
+	</div>
+</div>

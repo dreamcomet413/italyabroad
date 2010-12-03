@@ -1,0 +1,141 @@
+<%- set_title "Community" -%>
+<% @breadcrumbs = "#{link_to("Home", root_url)} &raquo; Community" %>
+
+<div id="wineBanner">
+  <span class="community_home_title">
+    Share your <strong style="font-size:24px;">passion,</strong> meet <strong style="font-size:24px;">people</strong> like you, compare<br />
+    <strong style="font-size:24px;">tasting notes</strong> and get <strong style="font-size:24px;">recommendations</strong>
+  </span>
+  <%= image_tag("forum_home.jpg") %>
+</div>
+<div style="margin:10px;" id="forum-container-new">
+  <table width="100%" cellspacing="0" cellpadding="0">
+    <tr>
+      <td valign="top" width="475px">
+        <div id="box_newest_members">
+          <% users = User.find(:all, :order => "created_at DESC", :limit => 10) %>
+          <h1 style="color:#233f2d;font-size:16px;">Our Newest Members</h1>
+          <ul>
+            <%- for user in users -%>
+            <li>
+              <%= link_to avatar_for_user(user, 'small'), customer_path(user) %>
+              <%= link_to user.name, customer_path(user) %>
+            </li>
+            <%- end -%>
+          </ul>
+        </div>
+        <table width="100%" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="45%" valign="top">
+              <div id="box_producer">
+                <h1 style="color:#233f2d;font-size:16px;">Get to know our producers</h1>
+                <% producers = Producer.find(:all, :limit => 1, :order => "RAND()") %>
+                <%- for producer in producers -%>
+                <table>
+                  <tr>
+                    <td style="width:50px;height:50px;"><%= avatar_for_user(nil, "small") %></td>
+                    <td><%= link_to producer.name, producer_path(producer) %></td>
+                  </tr>
+                  <tr>
+                    <td colspan="2"><%= producer.description rescue "No Info" %></td>
+                  </tr>
+                </table>
+                <%- end -%>
+                <%= link_to "more", grape_guide_path %>
+              </div>
+              <br /><br />
+              <div id="box_latest_blog" style="background-color:#f8f7ef;padding:5px 10px;margin-right:10px;">
+                <% blog = Post.last %>
+                <h1 style="color:#233f2d;font-size:16px;text-align:center;">Blog</h1>
+                <%= link_to "Latest Entry", blog_index_path %><br /><br />
+                <%= link_to blog.name.upcase, blog_path(blog.id) %> - <%= blog.created_at.strftime("%d/%m/%Y") %><br /><br />
+                <%= blog.description_short %><br /><br />
+                <div style="text-align:right;"><%= link_to("View all", blog_index_path) %></div>
+              </div>
+            </td>
+            <td valign="top" style="padding-left:15px;">
+              <div id="box_forum">
+                <h1 style="color:#233f2d;font-size:16px;text-align:center;">Forum</h1>
+                <ul style="list-style:none;padding:0;margin:0;">
+                  <li>
+                    <h1 style="color:#7f2d54;">General Discussion</h1>
+                  <li>
+                  <li>
+                    <h1 style="color:#7f2d54;">Ask our experts</h1>
+                  </li>
+                  <li>
+                    <table style="list-style:none;margin:0;padding:0;" cellspacing="0" border="0" width="100%">
+                      <tr>
+                        <td valign="top">
+                          <div style="color:#666666;padding:5px 0 10px 0">Latest Entries</div>
+                        </td>
+                        <td valign="top" align="right">
+                          <div style="color:#666666;padding:5px 0 10px 0">Posted by</div>
+                        </td>
+                      </tr>
+                      <%- ForumPost.find(:all, :order => "created_at DESC", :limit => 14).each do |post| -%>
+                      <tr>
+                        <td>
+                          <div style="padding:5px 0">
+                            <strong><%= post.body %></strong> in <strong><%= link_to h(post.forum_name), forum_path(post.forum_id) %></strong>
+                          </div>
+                        </td>
+                        <td align="right">
+                          <div style="padding:5px 0"><%= post.user.name %></div>
+                        </td>
+                      </tr>
+                      <%- end -%>
+                    </table>
+                  </li>
+                </ul>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </td>
+      <td valign="top">
+        <div id="box_latest_review">
+          <% latest_review = Review.last %>
+          <h1 style="color:#233f2d;font-size:16px;">Latest Review</h1>
+          <table>
+            <tr>
+              <td style="width:50px;text-align:center;">
+                <%= avatar_for_user(latest_review.user, 'small') %><br />
+                <%= latest_review.user.name %>
+              </td>
+              <td>"<%= latest_review.description %>"</td>
+            </tr>
+          </table>
+        </div>
+        <div id="box_grape_guide_forum">
+          <h1 style="color:#233f2d;font-size:16px;">Grape Guide</h1>
+          <%- grapes = Grape.find(:all, :limit => 1, :order => "RAND()") -%>
+          <%- for grape in grapes -%>
+          <div style="padding-bottom:10px;color:#7f2d54;"><%= link_to grape.name, grape_path(grape) %></div>
+          <%= image_tag("grape_guide_small.png") %>
+          <%= grape.description %>
+          <%- end -%>
+          <%= link_to "more", grape_guide_path %>
+        </div>
+        <div id="box_get_to_know_italy">
+          <h1 style="color:#233f2d;font-size:16px;">Get to know italy</h1>
+          <%- regions = Region.find(:all, :limit => 1, :order => "RAND()") -%>
+          <%- for region in regions -%>
+          <div style="padding-bottom:10px;color:#7f2d54;"><%= link_to region.name, region_path(grape) %></div>
+          <%= image_tag("get_to_know_italy.png") %>
+          <%= region.description %>
+          <%- end -%>
+          <%= link_to "more", grape_guide_path %>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<% content_for :right do %>
+  <%= render :partial => '/site/shared/box_wine_tours' %>
+  <br />
+  <%= render :partial => '/site/shared/box_grape_guide' %>
+  <br />
+  <%= render :partial => '/site/shared/box_subscriptions' %>
+<% end %>

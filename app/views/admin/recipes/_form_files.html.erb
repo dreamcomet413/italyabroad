@@ -1,0 +1,20 @@
+<fieldset id="files_information">
+  <legend>Edit <em>Files</em> for <em>"<%= @recipe.name %>"</em></legend>
+	<div>Resource 1: <%= file_field :resource_1, :uploaded_data %></div>
+	<div>Resource 2: <%= file_field :resource_2, :uploaded_data %></div>
+	<div>Resource 3: <%= file_field :resource_3, :uploaded_data %></div>
+	<table border="0" cellspacing="5" cellpadding="5">
+		<tr>
+			<td><% if @recipe && @recipe.resource_1 %><%= link_to @recipe.resource_1.filename, @recipe.resource_1.public_filename %><% end %></td>
+			<td><% if @recipe && @recipe.resource_1 %><%= link_to "Destroy", {:action => :destroy_resource, :id => @recipe, :rsc => 1 }, :confirm => "Are you sure?", :method => :delete %><% end %></td>
+		</tr>
+		<tr>
+			<td><% if @recipe && @recipe.resource_2 %><%= link_to @recipe.resource_2.filename, @recipe.resource_2.public_filename %><% end %></td>
+			<td><% if @recipe && @recipe.resource_2 %><%= link_to "Destroy", {:action => :destroy_resource, :id => @recipe, :rsc => 2 }, :confirm => "Are you sure?", :method => :delete %><% end %></td>
+		</tr>
+		<tr>
+			<td><% if @recipe && @recipe.resource_3 %><%= link_to @recipe.resource_3.filename, @recipe.resource_3.public_filename %><% end %></td>
+			<td><% if @recipe && @recipe.resource_3 %><%= link_to "Destroy", {:action => :destroy_resource, :id => @recipe, :rsc => 3 }, :confirm => "Are you sure?", :method => :delete %><% end %></td>
+		</tr>
+	</table>
+</fieldset>

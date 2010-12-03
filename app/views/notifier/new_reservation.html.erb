@@ -1,0 +1,11 @@
+Dear <%= @reservation.user.name %> <%= @reservation.user.surname %>,
+
+	Thank you for booking a table with us, you will soon receive a confirmation that your table is available.
+	
+	Your Reservation:
+	________________
+	Restaurant: <%= @reservation.restaurant.name %>
+	Time: <%= @reservation.date.strftime("%d %B %Y at %H:%M") %> 
+	
+---------------------------------------------------
+The Italyabroad.com Team

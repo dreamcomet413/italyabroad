@@ -1,0 +1,66 @@
+<table>
+  <tr>
+    <td>Name</td>
+    <td><%= text_field :category, :name, :style => "width:99%" %></td>
+  </tr>
+	<tr>
+	  <td>Page Title</td>
+	  <td><%= text_field :category, :title, :style => "width:99%" %></td>
+  </tr>
+	<tr>
+	  <td>Description</td>
+	  <td><%= text_area :category, :description, :rows => 5, :style => "width:99%" %></td>
+  </tr>
+	<tr>
+		<td>Var</td>
+		<td>
+			Key 1 <%= text_field :category, :key_1, :size => 7 %>
+			Key 2 <%= text_field :category, :key_2, :size => 7 %>
+			Key 3 <%= text_field :category, :key_3, :size => 7 %>
+		</td>
+	</tr>
+	<tr>
+	  <td>Meta Key</td>
+	  <td><%= text_field :category, :meta_key, :style => "width:99%" %></td>
+  </tr>
+	<tr>
+	  <td>Meta Description</td>
+	  <td><%= text_area :category, :meta_description, :rows => 5, :style => "width:99%" %></td>
+  </tr>
+  <tr>
+    <td>Parent category</td>
+    <td><%= select :category, :parent_id, Category.all.inject([]) {|categories, category| categories << [category.name, category.id] }, { :include_blank => true } %> <em style="font-size:85%">blank is root</em></td>
+  </tr>
+	<tr>
+	  <td>Layout</td>
+	  <td><%= select :category, :layout, [["Wine", "wine_category"], ["Wine Sub Category", "wine_sub_category"], ["Food","food_category"], ["Food Sub Category", "food_sub_category"], ["Hamper","hamper_category"], ["Hamper Sub Category", "hamper_sub_category"], ["Event","event_category"], ["Wine Tour", "wine_tour_category"], ["Wine Club", "wine_club_category"]] %></td>
+  </tr>
+  <tr>
+    <td>Layout Search</td>
+    <td><%= select :category, :layout_search, [["Wine", "wine_category"], ["Wine Sub Category", "wine_sub_category"], ["Food","food_category"], ["Food Sub Category", "food_sub_category"], ["Hamper","hamper_category"], ["Hamper Sub Category", "hamper_sub_category"], ["Event","event_category"], ["Wine Tour", "wine_tour_category"], ["Wine Club", "wine_club_category"]] %></td>
+  </tr>
+  <tr>
+    <td>Product Layout</td>
+    <td><%= select :category, :layout_card, [["Wine", "wine_card"], ["Food","food_card"], ["Hamper","hamper_card"], ["Event","event_card"], ["Wine Tour", "wine_tour_card"], ["Wine Club", "wine_club_card"]] %></td>
+  </tr>
+  <tr>
+    <td>Product Image Layout</td>
+    <td><%= select :category, :layout_image, [["Wine", "wine_category"], ["Wine Sub Category", "wine_sub_category"], ["Food","food_category"], ["Food Sub Category", "food_sub_category"], ["Hamper","hamper_category"], ["Hamper Sub Category", "hamper_sub_category"], ["Event","event_category"], ["Wine Tour", "wine_tour_category"], ["Wine Club", "wine_club_category"]] %></td>
+  </tr>
+	<tr>
+	  <td>View on menu?</td>
+	  <td><%= check_box :category, :show_in_menu %></td>
+  </tr>
+	<tr>
+	  <td>View in Browse?</td>
+	  <td><%= check_box :category, :show_in_boxes %></td>
+  </tr>
+  <tr>
+    <td>Home Image</td>
+    <td valign="top"><%= file_field :category, :home_image %>&nbsp;URL&nbsp;<%= text_field :category, :image_url %></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><%= image_tag image_url(:home_image_thumb, @category.image, :jpg) rescue "No image" %></td>
+  </tr>
+</table>

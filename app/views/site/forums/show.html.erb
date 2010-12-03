@@ -1,0 +1,52 @@
+<%- set_title "Community-#{@forum.name}" -%>
+
+<div id="wineBanner"><%= image_tag("forum-topics.jpg") %></div>
+<br /><br />
+<div style="margin:10px;" id="forum-container">
+  <h1 style="text-align:center;font-size:20px;color:#666666;">Forum</h1>
+  <%= render :partial => "site/forums/welcome_user" %>
+  <table cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+      <td colspan="4" class="last">
+        <p><strong>Italyabroad General Discussions</strong></p>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="4" class="last">
+        <p><strong style="color:#003702;"><%= @forum.name %></strong></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="45%"><strong>Topic title</strong></td>
+      <td width="15%"><strong>Replies</strong></td>
+      <td width="20%"><strong>Topic Starter</strong></td>
+      <td class="last"><strong>Last Action</strong></td>
+    </tr>
+    <% @topics.each_with_index do |topic, i|%>
+    <tr <%= 'class="last"' if (i+1) == (@topics.size) %>>
+      <td>
+        <%= render :partial => "site/topics/topic_status", :locals => { :topic => topic} %>
+        <%= topic_title_link(topic, :class => "entry-title", :rel => "bookmark" ) %>
+      </td>
+      <td><%= topic.posts_count %></td>
+      <td><%=h topic.user.name %></td>
+      <td class="last"><%= time_ago_in_words(topic.replied_at) %></td>
+    </tr>
+    <% end %>
+  </table>
+  <% if logged_in? %>
+    <p><%= link_to 'Add New topic', new_forum_topic_path(@forum), :class => "utility" %></p>
+  <% end%>
+  <%= will_paginate @topics %>
+  <%= render :partial => "site/forums/last_active_users" %>
+</div>
+
+
+<% content_for :right do %>
+  <%#= render :partial => '/site/shared/box_products_on_offer' %>
+  <%= render :partial => '/site/shared/box_wine_tours' %>
+  <br />
+  <%= render :partial => '/site/shared/box_grape_guide' %>
+  <br />
+  <%= render :partial => '/site/shared/box_subscriptions' %>
+<% end %>

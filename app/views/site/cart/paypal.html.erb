@@ -1,0 +1,41 @@
+<% @title = "Paypal"; %>
+
+	<div style="text-align:center;font-size:16px;padding-top:50px" class="green">
+		You will now be transferred to the Paypal website to complete the transaction
+		<div style="color:#333;padding-top:20px">
+			If this page appears for more than 5 seconds,<br />
+			please click<br />
+			<br />
+			<% form_tag("https://www.paypal.com/cgi-bin/webscr", :id => "paypal") do %>
+				<%= hidden_field_tag :cmd, "_xclick" %>
+				<%= hidden_field_tag :business, "andrea.dercole@italyabroad.com" %>
+				<%= hidden_field_tag :receiver_email, "mercatino@italyabroad.com" %>
+				<%= hidden_field_tag :currency_code, "GBP" %>
+				<%= hidden_field_tag :no_shipping, 1 %>
+				<%= hidden_field_tag :no_note, 1 %>
+
+				<%= hidden_field_tag :return, "http://www.italyabroad.com" + url_for(:controller => :cart, :action => :order_complete) %>
+				<%= hidden_field_tag :cancel_return, "http://www.italyabroad.com" + url_for(:controller => :cart, :action => :order_incomplete) %>
+
+				<%= hidden_field_tag :first_name, @order.user.name %>
+				<%= hidden_field_tag :last_name, @order.user.surname %>
+				<%= hidden_field_tag :email, @order.user.email %>
+				<%= hidden_field_tag :address1, @order.user.address %>
+				<%= hidden_field_tag :address2, @order.user.address_2 %>
+				<%= hidden_field_tag :city, @order.user.city %>
+				<%= hidden_field_tag :zip, @order.user.cap %>
+
+				<%= hidden_field_tag :item_name, "Italyabroad.com order number #{@order.id}" %>
+				<%= hidden_field_tag :quantity, 1 %>
+				<%= hidden_field_tag :amount, @order.total %>
+				<%= submit_tag "CONTINUE" %>
+			<% end %>
+			<% @paypal_redirect = "onLoad='go_to_paypal()'" %>
+		</div>
+	</div>
+
+<% content_for :right do %>
+	<%= render :partial => '/site/shared/box_subscriptions' %>
+	<br />
+	<%= render :partial => '/site/shared/box_grape_guide' %>
+<% end %>

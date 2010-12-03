@@ -1,0 +1,11 @@
+<div class="block" id="box_help">
+  <%- active_uri = request.request_uri -%>
+  <h3>Help</h3>
+  <ul>
+    <li><%= link_to("Term & conditions", terms_and_conditions_path, :class => ('active' if active_uri == terms_and_conditions_path)) %></li>
+    <li><%= link_to("Privacy policy", privacy_policy_path, :class => ('active' if active_uri == privacy_policy_path)) %></li>
+    <li><%= link_to("Delivery services", delivery_services_path, :class => ('active' if active_uri == delivery_services_path)) %></li>
+    <li><%= link_to("Managing account", managing_account_path, :class => ('active' if active_uri == managing_account_path)) %></li>
+    <li><%= link_to("Contact details", contact_details_path, :class => ('active' if active_uri == contact_details_path)) %></li>
+  </ul>
+</div>

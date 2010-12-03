@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <%= javascript_include_tag "prototype", :juggernaut %>
+    <%#= javascript_include_tag  'json', 'juggernaut/juggernaut', 'juggernaut/jquerynaut', 'juggernaut/swfobject'  %>
+    <%= juggernaut  :debug => false %>
+    <%#= juggernaut(:channels => ['one', 'two', 'three'],:debug => false) %>
+    <style>
+      #chat_data {
+        height: 385px;
+        margin-left: 2px;       
+        overflow: auto;
+        color: black;
+        border-style:inset;
+        background-color: white;
+        font:normal 13.5px Arial;
+        padding-left:5px;
+      }
+
+    </style>
+  </head>
+  <body>    
+    <div>
+      <h3>Welcome to the Italyabroad.com live chat.</h3>
+      <% if logged_in? or !session[:chat_user_name].blank? %>
+      <div id="chat_data" style="list-style:none"></div>
+      
+      <p>
+
+        <%= form_remote_tag(
+          :url => { :action => :send_data },
+          :complete => "$('chat_input').value = ''" ) %>
+        <%= text_field_tag( 'chat_input', '', { :size => 48 , :id => 'chat_input'} ) %>
+        <%= submit_tag "send" %>
+      </p>
+    </form>    
+  </div>
+    <% else %>
+    <div>
+      As you are not logged in!!,<br/> Please enter a "user name" to continue chat session
+      <% form_tag :action => :create_chat_user do %>
+      <%= text_field_tag "chat_user"  %>
+      <%= submit_tag "Submit" %>
+      <% end %>
+    </div>
+    <% end %>
+</body>
+</html>

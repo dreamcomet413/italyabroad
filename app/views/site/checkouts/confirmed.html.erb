@@ -1,0 +1,19 @@
+<% @title = "Complete Order" %>
+<%- @breadcrumbs = "#{link_to "Home", root_url} &raquo; Checkout &raquo; Complete Order" -%>
+<% @class = "no-padding" %>
+
+<div id="header">Payment Information</div>
+<div style="text-align:center;margin-top:40px;"><%= image_tag("cart_step_4.png") %></div>
+<%= render :partial => 'site/shared/box_cart_form' %>
+<div style="margin: 10px 20px;">
+  <p style="font-weight:bold;">
+    Thank you for your business, please come back soon
+  </p>
+  <p style="text-align:right;">
+    <%= link_to image_tag("buttons/return_home.png"), root_url %>
+  </p>
+</div>
+
+<%- content_for :right do -%>
+  <%= render :partial => 'site/shared/box_subscriptions' %>
+<%- end -%>

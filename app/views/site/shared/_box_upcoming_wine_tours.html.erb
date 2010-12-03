@@ -1,0 +1,14 @@
+<% products = Product.find(:all, :limit => 2, :order => "RAND()", :include => {:categorizations => :category}, :conditions => "categories.name LIKE 'Wine Tours'") %>
+<% unless products.blank? %>
+<div class="block" id="box_upcoming_wine_tours">
+  <h1>Upcoming Tours</h1>
+  <ul>
+    <%- products.each do |product| -%>
+    <li style="margin-bottom:10px;">
+      <%= product.date.strftime("%d %B %Y at %H:%M") if product.date %><br />
+  	  <%= link_to product.name, nested_products_uri(product), :style => "font-size:14px;color:#721041" %>
+    </li>
+    <%- end -%>
+  </ul>
+</div>
+<% end %>

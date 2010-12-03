@@ -1,0 +1,13 @@
+--- 
+status_orders_4: 
+  name: Cancelled
+  id: "4"
+status_orders_1: 
+  name: Pending
+  id: "1"
+status_orders_2: 
+  name: Processing
+  id: "2"
+status_orders_3: 
+  name: Complete
+  id: "3"

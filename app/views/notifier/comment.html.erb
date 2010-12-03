@@ -1,0 +1,7 @@
+Hello <%= @comment.user.name if @comment.user %>,
+
+      <%= @user.name %> has posted comments on <%= @comment.post.name if @comment.post %>
+      
+Details are below:
+	<%= @comment.description %>
+

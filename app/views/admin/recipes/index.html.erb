@@ -1,0 +1,40 @@
+<%- @title = "Administration - Recipes"; @page_id = "Other Stuff" -%>
+<%- @breadcrumbs = "Other Stuff &raquo; #{link_to "Recipes", admin_recipes_path}" -%>
+
+<div class="inner_content recipes" id="admin_recipes_index">
+  <h2>Recipes</h2>
+  <br />
+  <table>
+    <tr>
+      <td></td>
+      <td align="right"><%= link_to "New Recipe", new_admin_recipe_path %></td>
+      <td align="right"><%= link_to "XML", :controller => 'admin/recipes', :action => 'xml' %></td>
+    </tr>
+  </table>
+  <table id="recipes-list" class="list sortable">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>User</th>
+        <th class="nosort"></th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+        <td colspan="2"><%= will_paginate_(@recipes) %></td>
+        <td colspan="2" align="right"><%= page_entries_info_ @recipes %></td>
+      </tr>
+    </tfoot>
+    <tbody>
+      <%- for recipe in @recipes -%>
+      <tr>
+        <td><%= recipe.id %></td>
+        <td><%= recipe.name %></td>
+        <td><%= recipe.user.name rescue "Admin" %></td>
+        <td><%= link_to "Edit", edit_admin_recipe_path(recipe) %> | <%= link_to "Delete", admin_recipe_path(recipe), :method => :delete, :confirm => "Are you sure want to delete this recipe?" %></td>
+      </tr>
+      <%- end -%>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,42 @@
+<% @title = "My Wishlist"; %>
+<%- @breadcrumbs = "#{link_to "Home", root_url} &raquo; My Wishlist" -%>
+<% @class = "no-padding" %>
+
+<div id="header"><%= render :partial => 'site/shared/box_login' %></div>
+<h4 class="account-title">My Wishlist</h4>
+<table border="0" cellspacing="0" cellpadding="10" width="100%">
+	<% if @wish_lists.size == 0 %>
+		<tr>
+		  <td>You don't have any products in your wish list.</td>
+    </tr>
+	<% else %>
+  <% for wish_list in @wish_lists  %>
+  <% product = wish_list.product %>
+	<tr>
+	  <td>
+	   <%= show_image_tag(product.layout_image, product.image_1) %>
+	  </td>
+		<td valign="top">
+		  <h2 style="font-weight:normal;"><%= product.name %></h2>
+		  <%= product.description_short %>
+		</td>
+		<td style="text-align:center;">
+		  <div class="box_price">
+		    <ul class="inner-container">
+  		    <li class="price"><%= number_to_currency product.price %></li>
+  	      <li class="add_to_cart_button"><%= link_to image_tag("buttons/add_to_cart_button.png"), product_cart_index_path(product), :method => 'post' %></li>
+  			  <li class="wish_list_button"><%= link_to image_tag("remove_wish.png"), product_wish_list_path(product, wish_list), :method => :delete, :confirm => "Are you sure want to delete this product from your wish list?" %></li>
+  			</ul>
+			</div>
+		</td>
+	</tr>
+	<% end %>
+	
+	<% end %>
+</table>
+
+<% content_for :right do %>
+	<%= render :partial => '/site/shared/box_blog' %>
+	<br />
+	<%= render :partial => '/site/shared/box_subscriptions' %>
+<% end %>

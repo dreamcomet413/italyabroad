@@ -1,0 +1,12 @@
+Dear <%= @reservation.user.name %> <%= @reservation.user.surname %>,
+
+	<% if @reservation.status_reservation_id == 3 %>
+		Following your booking, we are pleased to confirm that your table has been reserved  at <%= @reservation.restaurant.name %> <%= @reservation.date.strftime("%d/%m/%y at %H:%M") %>
+	<% elsif @reservation.status_reservation_id == 4 %>
+		Following your booking, we are sorry to inform that the restaurant does not have any availability at the time requested.
+	<% else %>
+		the current status of your request is <%= @reservation.status_reservation.name %>. 
+	<% end %>
+	
+---------------------------------------------------
+The Italyabroad.com Team

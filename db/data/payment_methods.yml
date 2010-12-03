@@ -1,0 +1,13 @@
+--- 
+payment_methods_1: 
+  name: PayPal
+  external: "1"
+  id: "1"
+  vendor: info@italyabroad.com
+  password: 
+payment_methods_2: 
+  name: Credit Card
+  external: "0"
+  id: "2"
+  vendor: italyabroad
+  password: 

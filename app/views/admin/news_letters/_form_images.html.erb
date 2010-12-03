@@ -1,0 +1,36 @@
+<% descriptions = ["Banner", "Product of the week", "Banner 2", "Product1", "Product2", "Product3", "Banner 3", "Other"] %>
+<fieldset id="images_information">
+  <table>
+    <tr>
+      <td></td>
+	    <td>Header:</td>
+	    <td><%= file_field_tag "header", :id => "header_image" %></td>
+	  </tr>
+	  <% for i in 1..8 %>
+	  <tr>
+	    <td><%= i %>)</td>
+      <td><%= descriptions[i-1] %>:</td>
+      <td><%= file_field_tag "image_#{i}" %> Link: <%= text_field :news_letter, "link_#{i}".to_sym %></td>
+		</tr>
+	  <% end %>
+	</table>
+	<% if @news_letter && @news_letter.header %>
+		<div style="padding:5px;text-align:center">
+			<%= show_image_tag :news_letters_thumb, @news_letter.header %>
+			<div style="text-align:center">
+				<%= link_to "Destroy", admin_news_letter_image_path(@news_letter, @news_letter.header), :confirm => "Are you sure want to delete this header image?", :method => :delete %>
+			</div>
+		</div>
+	<% end %>
+  <div style="clear:both;"></div>
+	<% for i in 1..8 %>
+		<% if @news_letter && @news_letter.send("image_#{i}") %>
+		<div style="padding:5px;text-align:center">
+			<%= show_image_tag :news_letters_thumb, @news_letter.send("image_#{i}") %>
+			<div style="text-align:center">
+				<%= link_to "Destroy #{i}", admin_news_letter_image_path(@news_letter, @news_letter.send("image_#{i}")), :confirm => "Are you sure want to delete this image?", :method => :delete %>
+			</div>
+		</div>
+		<% end %>
+	<% end %>
+</fieldset>

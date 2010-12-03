@@ -1,0 +1,20 @@
+<fieldset id="general_information">
+  <table cellspacing="5" cellpadding="5">
+    <tr>
+      <td>Object:</td>
+      <td><%= text_field  :news_letter, :name, :style => "width:99%" %></td>
+    </tr>
+  	<tr>
+  	  <td>Body:</td>
+  	  <td><%= text_area :news_letter, :description, :rows => 30, :style => "width:99%" %></td>
+  	</tr>
+  	<tr>
+  	  <td>Send to customers:</td>
+  	  <td><%= check_box :news_letter, :customers %></td>
+  	</tr>
+  	<tr>
+  	  <td>Send to subscribers:</td>
+  	  <td><%= check_box :news_letter, :subscribers %></td>
+    </tr>
+  </table>
+</fieldset>

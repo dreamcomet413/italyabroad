@@ -1,0 +1,13 @@
+--- 
+cupons_products_1: 
+  product_id: "100"
+  id: "100"
+  cupon_id: "25"
+cupons_products_2: 
+  product_id: "102"
+  id: "102"
+  cupon_id: "25"
+cupons_products_3: 
+  product_id: "275"
+  id: "275"
+  cupon_id: "7"

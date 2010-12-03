@@ -1,0 +1,32 @@
+# $Id: application.yml 154 2009-07-02 17:03:32Z feby $
+common: &default_settings
+  email_from: webmaster@italyabroad.com
+  email_from_name: "Do not reply - Italyabroad"
+  smtp_user_name: test@c-aio.com
+  smtp_password: test123
+  application_name: vuconnector.com
+  subject: Italyabroad.com
+
+  avatar_1: default
+  avatar_2: default_a
+  avatar_3: default_b
+  avatar_4: default_c
+  avatar_5: default_d
+  avatar_6: default_e
+  
+development:
+  <<: *default_settings
+  site_url: localhost:3000
+  
+test:
+  <<: *default_settings
+  site_url: localhost:3000
+
+production:
+  <<: *default_settings
+  site_url: italyabroad.com
+
+production:
+  <<: *default_settings
+  site_url: italyabroad.ejubel.com
+  

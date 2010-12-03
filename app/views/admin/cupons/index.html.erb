@@ -1,0 +1,51 @@
+<%- @title = "Administration - Coupons"; @page_id = "Sales" -%>
+<%- @breadcrumbs = "Sales &raquo; #{link_to "Cupons", admin_cupons_path}" -%>
+
+<div class="inner_content cupons" id="admin_cupons_index">
+  <h2>Coupons</h2>
+  <br />
+  <table>
+    <tr>
+      <td></td>
+      <td align="right"><%= link_to "New Cupon", new_admin_cupon_path %></td>
+    </tr>
+  </table>
+  <table id="cupons-list" class="list sortable">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Cupon Code</th>
+        <th>Price</th>
+        <th>Min Order</th>
+        <th>Limit to product</th>
+        <th>Active</th>
+        <th>Public</th>
+        <th class="nosort"></th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+        <td colspan="7"><%= will_paginate_(@cupons) %></td>
+        <td align="right"><%= page_entries_info_ @cupons %></td>
+      </tr>
+    </tfoot>
+    <tbody>
+      <%- @cupons.each do |cupon| -%>
+      <tr>
+        <td><%= cupon.id %></td>
+        <td><%= cupon.code %></td>
+        <td><%= cupon.cupon_type == "percentage" ?(number_to_percentage cupon.price, :precision => 0):(number_to_currency cupon.price, :unit => "&pound;") %></td>
+        <td><%= cupon.min_order %></td>
+        <td><% (cupon.product_ids).each do |p| %>
+        <%= Product.find(p).name %><br/><% end %></td>
+        <td><%= cupon.active %></td>
+        <td><%= cupon.public %></td>
+        <td>
+          <%= link_to "Edit", edit_admin_cupon_path(cupon.id) %> |
+          <%= link_to "Delete", admin_cupon_path(cupon.id), :method => :delete, :confirm => "Are you sure want to delete this cupon?" %>
+        </td>
+      </tr>
+      <%- end -%>
+    </tbody>
+  </table>
+</div>

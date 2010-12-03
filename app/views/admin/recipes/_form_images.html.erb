@@ -1,0 +1,30 @@
+<fieldset id="images_information">
+  <legend>Edit <em>Images</em> for <em>"<%= @recipe.name %>"</em></legend>
+	<div>Image 1: <%= file_field_tag :image_1 %></div>
+	<div>Image 2: <%= file_field_tag :image_2 %></div>
+	<div>Image 3: <%= file_field_tag :image_3 %></div>
+	<table border="0" cellspacing="5" cellpadding="5">
+		<tr>
+			<td>
+		    <%= image_tag(image_url(:recipe_thumb, @recipe.image_1, :jpg)) if @recipe && @recipe.image_1 %>
+      </td>
+			<td>
+		    <%= image_tag(image_url(:recipe_thumb, @recipe.image_2)) if @recipe && @recipe.image_2 %>
+      </td>
+			<td>
+		    <%= image_tag(image_url(:recipe_thumb, @recipe.image_3)) if @recipe && @recipe.image_3 %>
+      </td>
+		</tr>
+		<tr>
+			<td style="text-align:center">
+		    <%= link_to("Destroy", admin_recipe_image_path(@recipe, @recipe.image_1), :confirm => "Are you sure?", :method => :delete) if @recipe && @recipe.image_1 %>
+      </td>
+			<td style="text-align:center">
+		    <%= link_to("Destroy", admin_recipe_image_path(@recipe, @recipe.image_2), :confirm => "Are you sure?", :method => :delete) if @recipe && @recipe.image_2 %>
+      </td>
+			<td style="text-align:center">
+		    <%= link_to("Destroy", admin_recipe_image_path(@recipe, @recipe.image_3), :confirm => "Are you sure?", :method => :delete) if @recipe && @recipe.image_3 %>
+      </td>
+		</tr>
+	</table>
+</fieldset>

@@ -1,0 +1,70 @@
+<%- @class = "wine_club"; @breadcrumbs = "#{link_to("Home", root_url)} &raquo; #{link_to("Wine club", "/wine-club")} &raquo; #{@product.name}" -%>
+
+<div id="wineBanner" style="padding-top:5px;"><%= image_tag(image_url("product_wine_club", @product.image_1, :jpg)) if @product.image_1 %></div>
+<div id="wine_tours_content">
+  <h2 style="font-size:18px;color:#666666;"><%= @product.name.upcase %></h2>
+  <table>
+    <tr>
+      <%- if @product.image_1 or @product.image_2 or @product.image_3 -%>
+      <td valign="top">
+        <ul class="image">
+          <%#= content_tag(:li, image_tag(image_url("product_wine_club", @product.image_1, :jpg))) if @product.image_1 %>
+          <%= content_tag(:li, image_tag(image_url("product_wine_club", @product.image_2, :jpg))) if @product.image_2 %>
+          <%= content_tag(:li, image_tag(image_url("product_wine_club", @product.image_3, :jpg))) if @product.image_3 %>
+        </ul>
+      </td>
+      <%- end -%>
+      <td valign="top">
+        <div style="padding-left:10px;">
+          <%= @product.description.gsub("\n","<br />") rescue "Product has no description" %>
+          <br />
+          <table align="right">
+            <tr>
+              <td><strong>Price:&nbsp;<%= number_to_currency @product.price, :unit => "&pound;" %></strong></td>
+              <td><%= link_to_remote image_tag("buy_ico.png"), :url => product_cart_index_path(@product), :html => {:method => 'post'} %></td>
+            </tr>
+          </table>
+        </div>
+      </td>
+    </tr>
+  </table>
+  <div class="invite" style="text-align:center;margin:10px 20px;padding-top:10px;border-top:2px solid #b6cb31;padding-left:20px;padding-right:20px;">
+    <h2 style="font-size:16px;color:#666666;">Invite a Friend</h2>
+    <%- form_for :friend do -%>
+    <table align="center">
+      <tr>
+        <td>
+          <div style="text-align:left;">Your name</div>
+          <%= text_field :friend, :your_name, :size => 20 %>
+        </td>
+        <td>
+          <div style="text-align:left;">Your friends name</div>
+          <%= text_field :friend, :your_friend_name, :size => 20 %>
+        </td>
+        <td>
+          <div style="text-align:left;">Your friends email</div>
+          <%= text_field :friend, :your_friend_email, :size => 20 %>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3">
+          <div style="text-align:left;">Your message</div>
+          <%= text_field :friend, :your_message, :size => 68, :value => "I thought you might be interested in this..." %>
+        </td>
+      </tr>
+    </table>
+    <br />
+    <%= image_submit_tag("send_ico.png") %>
+    <%- end -%>
+  </div>
+</div>
+
+<% content_for :right do %>
+  <%= render :partial => 'site/shared/box_product_reviews' %>
+  <br />
+	<%= render :partial => '/site/shared/box_subscriptions' %>
+	<br />
+	<%= render :partial => 'site/shared/box_products_on_offer' %>
+	<br />
+	<%= render :partial => '/site/shared/box_grape_guide' %>
+<% end %>

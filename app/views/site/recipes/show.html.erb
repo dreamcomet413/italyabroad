@@ -1,0 +1,78 @@
+<% @title = @recipe.page_title_formatted; @description = @recipe.meta_description_formatted; @keys = @recipe.meta_keys_formatted %>
+<% @class = "no-padding"; @breadcrumbs = "#{link_to("Home", root_url)} &raquo; #{link_to("Recipes", recipes_path)} &raquo; #{@recipe.name}" %>
+
+<div id="header"><%= @recipe.name %></div>
+<div id="recipes_show_container">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td valign="top">
+        <h3 style="border:none;">Ingredients:</h3>
+        <%= @recipe.ingredients.gsub("\n","<br />") %>
+      </td>
+      <td valign="top" style="padding-left:80px;">
+        <% if !@recipe.image_1.blank? %>
+              <%= image_tag image_url(:original, @recipe.image_1) %>
+              <% else %>
+              <%= image_tag("no_images/PastaRecipe.jpg",:size => "150x150") %>
+              <% end %>
+        <div>
+          <% if @recipe.correlations.size > 0 %>
+                          Suggested wine:
+            <%- @recipe.correlations.all.paginate(:page => params[:page], :per_page => 4).each do |product| -%>
+              <%= link_to product.name, nested_products_uri(product) %>
+            <%- end -%>
+          <% end %>
+        </div>
+      </td>
+    </tr>
+  </table>
+  <br /><br />
+  <h3 style="border:none;">Preparation</h3>
+  <div id="recipe_preparation">
+    <%= @recipe.preparation_cleared %>
+  </div>
+  <br /><br />
+  <div id="recipe_share_this_with" align="right"><%= render :partial => '/site/shared/social_bookmarks'%></div>
+
+
+  <div style="border-bottom:1px solid #CCCCCC;margin-top:20px;"></div>
+  <h2><%= @recipe.reviews.size %>  Comments</h2>
+  <%- if logged_in? -%>
+  <div id="recipe_comments_add" style="border-bottom:1px solid #CCCCCC;background-color:#F3F8DA;padding:5px 0 5px 8px">
+      <h2>Leave your review</h2>
+      <%= render(:partial => 'site/reviews/new', :locals => {:create_url => recipe_reviews_path(@recipe, :return_to => recipe_path(@recipe))}) %>    
+  </div>
+  <%- else -%>
+  <%# if !logged_in? %>
+  <div style="border-bottom:1px solid #CCCCCC;background-color:#F3F8DA;color:#161616;font-size:1.3em;margin-top:8px;padding:1px 0 0 8px;">
+    <h1>Add a comment</h1>
+    <p>Comment with your account</p>
+    <p style = "font:bold 16px Arial;"><%= link_to("Login", login_path) %> ||
+      <%= link_to "Register", "/signup" %> </p>
+  </div>
+  <% end %>
+
+  <div style="padding-bottom:16px; border-bottom:1px solid #CCCCCC;margin-top:8px;font:normal 14px Arial;">
+    Showing <%= @reviews.blank? ? "0" : (@reviews.offset) +1 %>--<%= (@reviews.offset)+(@reviews.length) %> of <%= @recipe.reviews.size %> comments.</div>
+  <div id="recipe_comments">
+    <!--<h3 style="border:none;">Your Comments <%= link_to("(Add comment)", login_path, :style => "font-size:12px;") unless logged_in? %></h3>-->
+    <%= render :partial => 'site/shared/review_view_short', :locals => {:reviewer => @recipe} %>
+  </div>
+
+  <h1 style="text-align:right"><%= will_paginate @reviews %></h1>
+
+  
+</div>
+
+<% content_for :right do %>
+  <%= render :partial => '/site/shared/box_most_read_recipes' %>
+  <br />
+  <%= render :partial => '/site/shared/box_event' %>
+  <br />
+  <%= render :partial => '/site/shared/box_subscriptions' %>
+  <br/>
+  <%= render :partial => '/site/shared/box_popular' %>
+  <br/>
+  <%= render :partial => '/site/shared/box_grape_guide' %>
+  <br />
+<% end %>

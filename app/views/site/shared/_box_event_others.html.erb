@@ -1,0 +1,12 @@
+<% products = Product.other_events(@product) %>
+<div id="box_other_events" class="block">
+  <h1>Other Events</h1>
+  <ul>
+    <%- for event in products -%>
+    <li style="padding-bottom:10px;">
+      <span style="color:grey;"><%= event.date.strftime("%d %B %Y at %H:%M") if event.date %></span>
+      <div style="font-size:14px;"><%= link_to event.name, "/wine-events/#{event.friendly_identifier}" %></div>
+    </li>
+    <%- end -%>
+  </ul>
+</div>

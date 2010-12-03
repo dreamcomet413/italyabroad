@@ -1,0 +1,2 @@
+module Admin::AttributeSetsHelper
+end

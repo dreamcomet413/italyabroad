@@ -1,0 +1,13 @@
+<%- @title = "New Recipe"; @page_id = "Other Stuff" -%>
+<%- @breadcrumbs = "Other Stuff &raquo; #{link_to "Recipes", admin_recipes_path} &raquo; #{@title}" -%>
+
+<div class="inner_content recipes" id="admin_recipes_new">
+  <h2><%= @title %></h2>
+  <br />
+  <%= render :partial => 'recipe_links', :locals => {:active => 'general'} %>
+  <% form_tag admin_recipes_path  do %>
+    <%= show_messages(flash[:notice]) %>
+  	<%= render :partial => "form" %>
+  	<p><%= submit_tag "Save" %> or <%= link_to "Cancel", admin_recipes_path %></p>
+  <% end %>
+</div>

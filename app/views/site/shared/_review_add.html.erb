@@ -1,0 +1,10 @@
+<h2>Leave your comment</h2>
+<% form_for :review, :url => product_reviews_path(reviewer) do %>
+  <p>
+	  Title: <%= text_field :review, :name %>
+	</p>
+	<p>
+	  Body Review:<br /><%= text_area :review, :description, :rows => 5, :style => "width:100%" %>
+	</p>
+	<div style="text-align:right"><%= submit_tag 'Send Review' %></div>
+<% end %>

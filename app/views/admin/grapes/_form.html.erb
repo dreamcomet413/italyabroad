@@ -1,0 +1,18 @@
+<table>
+  <tr>
+    <td>Name</td>
+    <td><%= text_field :grape, :name %></td>
+  </tr>
+  <tr>
+    <td valign="top">Description</td>
+    <td><%= text_area :grape, :description %></td>
+  </tr>
+  <tr>
+    <td>Image</td>
+    <td><%= file_field_tag :image %></td>
+  </tr>
+  <tr>
+    <td valign="top">Producers</td>
+    <td valign="top"><%= select :grape, :producer_ids, Producer.all.collect {|p| [p.name, p.id]}, {}, {:multiple => true} %></td>
+  </tr>
+</table>

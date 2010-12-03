@@ -1,0 +1,43 @@
+<%#= reviewer.reviews.size %>
+<% if reviewer.reviews.size > 0 %>
+  <ul>
+	  <% for review in @reviews  %>
+	  <li style="border-bottom:1px solid #CCCCCC;margin-top:15px;padding-bottom:10px ">
+            <div>
+              <div style="margin: 0 5px 5px 0;float:left"><%= avatar_for_user(review.user, "small") %></div>
+              <div style="text-align:left;margin: 0 0 5px 15px;float:left">
+                <span style="font:bold 13px Arial"><%= (review.user.name).capitalize %></span><br/>
+                   <%= review.created_at.strftime("%m/%d/%Y %H:%M %p") %><br/>
+                   <span ><%= show_ratings(review.reviewer, review.score) %></span>
+              </div>
+              <div style="clear:both"></div>
+              <div class="description"><%= review.description.gsub("\n","<br />") rescue "No description" %></div>
+            </div>
+
+	    <!--<table>
+	      <tr>
+	        <td><%= avatar_for_user(review.user, "small") %></td>
+          <td>
+            <table>
+              <tr>
+                <td style="font:bold 12px Arial"><%= review.user.name %> </td></tr>
+                <tr><td><%= review.created_at.strftime("%m/%d/%Y %H:%M %p") %></td></tr>
+                <tr><td><%= show_ratings(review.reviewer, review.score) %></td>
+              </tr>
+              
+            </table>
+          </td>
+        </tr>
+
+        <tr>
+          <td colspan="2"><div class="description">"<%= review.description.gsub("\n","<br />") rescue "No description" %>"</div></td>
+       </tr>
+      </table>-->
+    </li>
+	  <% end %>
+	</ul>
+<% else %>
+  <ul>
+	  <li>No reviews have been written yet for this product, be the first to write one and <span> you will receive a £10.00 voucher</span></li>
+	</ul>
+<% end %>

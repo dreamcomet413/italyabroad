@@ -1,0 +1,35 @@
+<%- @title = "Administration - Reviews"; @page_id = "Other Stuff" -%>
+<%- @breadcrumbs = "Other Stuff &raquo; #{link_to "Reviews", admin_reviews_path}" -%>
+
+<div class="inner_content reviews" id="admin_reviews_index">
+  <h2>Reviews</h2>
+  <br />
+  <table>
+    <tr>
+      <td></td>
+      <td align="right"></td>
+    </tr>
+  </table>
+  <table id="reviews-list" class="list sortable">
+    <thead>
+      <tr>
+        <th>User</th>
+        <th>Object</th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+        <td><%= will_paginate_(@reviews) %></td>
+        <td align="right"><%= page_entries_info_ @reviews %></td>
+      </tr>
+    </tfoot>
+    <tbody>
+      <%- for review in @reviews -%>
+      <tr>
+        <td><%= review.user.name rescue "Anonymous" %></td>
+        <td><%= review.reviewer_type %></td>
+      </tr>
+      <%- end -%>
+    </tbody>
+  </table>
+</div>

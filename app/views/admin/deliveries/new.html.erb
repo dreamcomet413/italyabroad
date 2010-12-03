@@ -1,0 +1,11 @@
+<% @title = "New Delivery"; @page_id = "Catalog" %>
+<%- @breadcrumbs = "Catalog &raquo; #{link_to "Deliveries", admin_deliveries_path} &raquo; New Delivery" -%>
+
+<div class="inner_content deliveries" id="admin_deliveries_new">
+  <h2>New Delivery</h2>
+  <br />
+  <%- form_for :delivery, :url => admin_deliveries_path do -%>
+    <%= render :partial => 'form' %>
+    <p><%= submit_tag "Save" %> or <%= link_to "Cancel", admin_deliveries_path %></p>
+  <%- end -%>
+</div>

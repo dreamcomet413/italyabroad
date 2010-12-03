@@ -1,0 +1,36 @@
+<fieldset id="extra_information">
+	<table border="0" cellspacing="5" cellpadding="5">
+		<tr>
+		  <td style="text-align:right;width:150px;">Region:</td>
+		  <td><%= select :product, :region_id, Region.all.inject([["No region", ""]]) { |rs, r| rs << [r.name, r.id] } %></td>
+    </tr>
+		<tr>
+		  <td style="text-align:right" valign="top">Grapes:</td>
+		  <td><%= select :product, :grape_ids, Grape.all.inject([]) { |gs, g| gs << [g.name, g.id] }, {}, {:multiple => true} %></td>
+    </tr>
+		<tr>
+		  <td style="text-align:right">Color:</td>
+		  <td><%= text_field :product, :color %></td>
+    </tr>
+		<tr>
+		  <td style="text-align:right">Vintage:</td>
+		  <td><%= text_field :product, :vintage %></td>
+    </tr>
+		<tr>
+		  <td style="text-align:right">Size:</td>
+		  <td><%= text_field :product, :size, :size => 20 %><em>(ex: 50 cl. or 130x150)</em></td>
+    </tr>
+		<tr>
+		  <td style="text-align:right">Vol.:</td>
+		  <td><%= text_field :product, :volume, :size => 20 %></td>
+    </tr>
+		<tr>
+		  <td style="text-align:right">Vegetarian:</td>
+		  <td><%= check_box :product, :vegetarian %></td>
+    </tr>
+		<tr>
+		  <td style="text-align:right">Organic:</td>
+		  <td><%= check_box :product, :organic %></td>
+    </tr>
+	</table>
+</fieldset>

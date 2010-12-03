@@ -1,0 +1,23 @@
+<fieldset id="correlation_information">
+  <legend>Edit <em>Correlation</em> for <em>"<%= @recipe.name %>"</em></legend>
+  <table class="list">
+    <tr>
+      <td class="header">ID</td>
+      <td class="header">&nbsp;</td>
+      <td class="header">Category</td>
+      <td class="header">Sub Categories</td>
+      <td class="header">Name</td>
+      <td class="header">Price</td>
+    </tr>
+    <%- for product_wine in @products -%>
+    <tr>
+      <td><%= product_wine[:product].id %></td>
+      <td><%= check_box_tag "correlation_ids[]", product_wine[:product].id, product_wine[:checked] %></td>
+      <td><%= product_wine[:product].root_category_id.titleize unless product_wine[:product].root_category_id.blank? %></td>
+      <td><%= product_wine[:product].sub_categories.join(" >> ") unless product_wine[:product].sub_categories.blank? %></td>
+      <td><%= product_wine[:product].name %></td>
+      <td><%= number_to_currency product_wine[:product].price, :unit => "&pound;" %></td>
+    </tr>
+    <%- end -%>
+  </table>
+</fieldset>

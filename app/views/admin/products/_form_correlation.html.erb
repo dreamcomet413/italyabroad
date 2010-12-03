@@ -1,0 +1,18 @@
+<fieldset id="correlation_information">
+  <table class="list">
+    <tr>
+      <th>&nbsp;</th>
+      <th>Category</th>
+      <th>Name</th>
+      <th>Price</th>
+    </tr>
+    <%- for product in @products -%>
+    <tr class="<%= cycle("even", "odd") %>">
+      <td><%= check_box_tag "correlation_ids[]", product.id, @product.correlation_ids.include?(product.id) %></td>
+      <td><%= product.root_category_id.titleize unless product.root_category_id.blank? %></td>
+      <td><%= product.name %></td>
+      <td><%= number_to_currency product.price, :unit => "&pound;" %></td>
+    </tr>
+    <%- end -%>
+  </table>
+</fieldset>

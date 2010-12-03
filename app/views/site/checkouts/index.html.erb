@@ -1,0 +1,55 @@
+<% @title = "Choose a delivery address"; %>
+<%- @breadcrumbs = "#{link_to "Home", root_url} &raquo; Checkout &raquo; Delivery Details" -%>
+<% @class = "no-padding" %>
+
+<% unless @cart.items.blank? %>
+  <div id="header">Checkout</div>
+  <div style="text-align:center;margin-top:40px;"><%= image_tag("cart_step_2.png") %></div>
+  <%= render :partial => 'site/shared/box_cart_form' %>
+  <div style="margin:10px 20px;">
+    <h2 style="font-weight:normal;">Delivery and Billing Address (if different from account)</h2>
+    <p>Your order will be delivered to the address below.</p>
+  </div>
+  <div style="margin:0 55px;">
+    <table cellpadding="5" cellspacing="0" border="0">
+      <tr>
+        <td>To use a different address please select here:</td>
+        <td><%= select :ship_address, :id, options_for_shipping_addresses(current_user) %></td>
+        <td>
+          <%= observe_field :ship_address_id, 
+                            :update => :ship_address,
+                            :method => :get,
+                            :loading => "$('loader').show()",
+                            :complete => "$('loader').hide()",
+                            :url => new_ship_address_path, :with => "ship_address_id" %>
+          <span id="loader" style="display:none;"><%= image_tag("loading.gif", :size => "15x15") %></span>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <% form_tag ship_addresses_path, :id => "ship_address_form" do %>
+  <div style="margin:10px 55px;">
+    <div style="width:560px;">
+      <p>
+        <fieldset>
+          <legend style="font-weight:bold;">Shipping Address</legend>
+          <div id="ship_address">
+            <%= show_messages flash[:notice] %>
+            <%= render :partial => 'site/ship_addresses/ship_address' %>
+          </div>
+        </fieldset>
+      </p>
+    </div>
+  </div>
+  <p style="text-align:right;margin:10px;">
+  	<%= image_submit_tag("buttons/continue_button.png", :id => "ship_address_form_continue") %>
+  	<%= javascript_tag "document.observe('dom:loaded', function(e){ RemoteAddressFrom.setup('#{confirm_address_checkouts_path}') });" %>
+  </p>
+  <% end %>
+<% end %>
+
+<% content_for :right do %>
+	<%= render :partial => '/site/shared/box_subscriptions' %>
+	<br />
+	<%= render :partial => '/site/shared/box_grape_guide' %>
+<% end %>

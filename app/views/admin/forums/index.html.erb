@@ -1,0 +1,45 @@
+<%- @title = "Administration - Forum"; @page_id = "Forum" -%>
+<%- @breadcrumbs = "Community &raquo; #{link_to "Forums", admin_forums_path}" -%>
+
+<div id="admin_forums_index" class="inner_content forums">
+  <h2>Forum Managements</h2>
+  <br />
+  <table>
+    <tr>
+      <td></td>
+      <td align="right"><%= link_to "Add New Forum ", new_forum_path %></td>
+    </tr>
+  </table>
+  <table id="admin_list" class="list sortable">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Descriptions</th>
+        <th>Topics Count</th>
+        <th>Posts Count</th>
+        <th class="nosort"></th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+        <td colspan="3"><%= will_paginate_(@forums) %></td>
+        <td colspan="2" align="right"><%= page_entries_info_ @forums %></td>
+      </tr>
+    </tfoot>
+    <tbody>
+      <% @forums.each_with_index do |forum, i| %>
+      <tr>
+        <td><%=h forum.name %></td>
+        <td><%= forum.description_html %></td>
+        <td><%=h forum.topics_count %></td>
+        <td><%=h forum.posts_count %></td>
+        <td>
+          <%=link_to "Show", forum_path(:id => forum.id), :popup => true %> | 
+          <%=link_to "Edit", edit_forum_path(:id => forum.id) %> | 
+          <%=link_to "Delete", "/forums/#{forum.id}", :confirm => "It'll delete forum forever !Are you sure ? ", :method => 'delete'%>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

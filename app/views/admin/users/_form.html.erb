@@ -1,0 +1,33 @@
+<table>
+  <tr>
+    <td>Name</td>
+    <td><%= text_field :user, :name %></td>
+  </tr>
+  <tr>
+    <td>Surname</td>
+    <td><%= text_field :user, :surname %></td>
+  </tr>
+	<tr>
+	  <td>User Name</td>
+	  <td><%= text_field :user, :login %></td>
+  </tr>
+  <tr>
+    <td>E-Mail</td>
+    <td><%= text_field :user, :email %></td>
+  </tr>
+  <tr>
+    <td>Password</td>
+    <td><%= password_field :user, :password %></td>
+  </tr>
+  <tr>
+    <td>Password Confirm</td>
+    <td><%= password_field :user, :password_confirmation %></td>
+  </tr>
+  <tr>
+    <td>User Active?</td>
+    <td><%= check_box :user, :active %><%= hidden_field :user, :type_id %></td>
+  </tr>
+  <tr>
+    <td colspan="2"><%= submit_tag "Save" %></td>
+  </tr>
+</table>

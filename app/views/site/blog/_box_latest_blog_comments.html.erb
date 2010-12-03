@@ -1,0 +1,19 @@
+<%- comments = Comment.latest -%>
+<div class="block" id="box_latest_blog_comments">
+  <h1 style="text-align:center;">Latest blog comments</h1>
+  <ul>
+    <%- comments.each do |comment| -%>
+    <li>
+      <table>
+        <tr>
+          <td style="width:55px;text-align:center;" valign="top">
+            <%= avatar_for_user(comment.user, 'small') %>
+            <div style="width:50px;"><%= comment.name %></div>
+          </td>
+          <td valign="top"><%= comment.description %></td>
+        </tr>
+      </table>
+    </li>
+    <%- end -%>
+  </ul>
+</div>

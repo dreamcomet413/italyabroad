@@ -1,0 +1,45 @@
+<%- @title = "Your Invoice" -%>
+<%- @order_title = "Order no. #{@order.id} of #{@order.created_at.strftime("%d/%m/%y")}" -%>
+<%- @breadcrumbs = "#{link_to "Home", root_url} &raquo; #{link_to("My Orders and Tracking", orders_path)} &raquo; #{@order_title}" -%>
+<% @class = "no-padding" %>
+
+<div id="header"><%= render :partial => 'site/shared/box_login' %></div>
+<h4 class="account-title">Your Invoice</h4>
+<div style="margin:0 20px 60px 20px;">
+  <h4><%= @order_title %></h4>
+  <table width="99%" cellspacing="0" cellpadding="0" border="0" align="center">
+    <tr>
+      <td colspan="2"><h4>Product</h4></td>
+      <td><h4>Qty</h4></td>
+      <td><h4>Price</h4></td>
+      <td>&nbsp;</td>
+    </tr>
+    <%- for order_item in @order.order_items -%>
+    <tr>
+      <td style="width:20px;padding-left:5px;"><%= show_image_tag(:product_thumb_cart, order_item.product.image_1) %></td>
+      <td><%= order_item.product.name %></td>
+      <td>X<%= order_item.quantity %></td>
+      <td><%= number_to_currency order_item.product.price %></td>
+      <td align="right">
+        <%= link_to(image_tag("buttons/add_to_cart_button.png"), product_cart_index_path(order_item.product), :method => 'post') %>
+      </td>
+    </tr>
+    <%- end -%>
+  </table>
+  <p style="text-align:right;width:99%;">
+    <%= link_to(image_tag("buttons/back_to_list.png"), orders_path) %>&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to(image_tag("buttons/print_invoice.png"), print_invoice_path(@order.id)) %>
+    &nbsp;&nbsp;&nbsp;&nbsp;<%= link_to(image_tag("buttons/download.png"), :action => 'download_pdf',:id => @order.id) %>
+  </p>
+</div>
+
+<%- content_for :right do -%>
+  <%= render :partial => '/site/shared/box_event' %>
+  <br />
+  <%= render :partial => '/site/shared/box_subscriptions' %>
+  <br />
+  <%= render :partial => '/site/shared/box_latest_community_comments' %>
+  <br />
+  <%= render :partial => '/site/shared/box_blog' %>
+  <br />
+  <%= render :partial => '/site/shared/box_popular' %>
+<%- end -%>

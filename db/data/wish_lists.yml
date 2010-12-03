@@ -1,0 +1,190 @@
+--- 
+wish_lists_20: 
+  updated_at: 2010-03-06 09:00:58
+  quantity: "1"
+  product_id: "521"
+  id: "25"
+  user_id: "358"
+  created_at: 2010-03-06 09:00:58
+wish_lists_8: 
+  updated_at: 2008-09-08 17:37:16
+  quantity: "1"
+  product_id: "229"
+  id: "10"
+  user_id: "133"
+  created_at: 2008-09-08 17:37:16
+wish_lists_21: 
+  updated_at: 2010-03-06 09:01:26
+  quantity: "1"
+  product_id: "376"
+  id: "26"
+  user_id: "358"
+  created_at: 2010-03-06 09:01:26
+wish_lists_10: 
+  updated_at: 2008-09-08 17:43:16
+  quantity: "1"
+  product_id: "196"
+  id: "12"
+  user_id: "133"
+  created_at: 2008-09-08 17:43:16
+wish_lists_9: 
+  updated_at: 2008-09-08 17:38:44
+  quantity: "1"
+  product_id: "250"
+  id: "11"
+  user_id: "133"
+  created_at: 2008-09-08 17:38:44
+wish_lists_22: 
+  updated_at: 2010-03-21 03:47:55
+  quantity: "1"
+  product_id: "384"
+  id: "27"
+  user_id: "368"
+  created_at: 2010-03-21 03:47:55
+wish_lists_11: 
+  updated_at: 2008-09-08 17:45:48
+  quantity: "1"
+  product_id: "280"
+  id: "13"
+  user_id: "133"
+  created_at: 2008-09-08 17:45:48
+wish_lists_23: 
+  updated_at: 2010-03-21 03:49:05
+  quantity: "1"
+  product_id: "197"
+  id: "28"
+  user_id: "368"
+  created_at: 2010-03-21 03:49:05
+wish_lists_12: 
+  updated_at: 2008-09-08 17:58:34
+  quantity: "1"
+  product_id: "179"
+  id: "14"
+  user_id: "133"
+  created_at: 2008-09-08 17:58:34
+wish_lists_24: 
+  updated_at: 2010-03-21 03:49:44
+  quantity: "1"
+  product_id: "273"
+  id: "29"
+  user_id: "368"
+  created_at: 2010-03-21 03:49:44
+wish_lists_13: 
+  updated_at: 2008-10-25 11:46:48
+  quantity: "1"
+  product_id: "90"
+  id: "16"
+  user_id: "102"
+  created_at: 2008-10-25 11:46:48
+wish_lists_1: 
+  updated_at: 2008-09-15 18:09:28
+  quantity: "1"
+  product_id: "403"
+  id: "15"
+  user_id: "102"
+  created_at: 2008-09-15 18:09:28
+wish_lists_25: 
+  updated_at: 2010-03-21 03:52:31
+  quantity: "1"
+  product_id: "536"
+  id: "30"
+  user_id: "368"
+  created_at: 2010-03-21 03:52:31
+wish_lists_14: 
+  updated_at: 2009-05-05 15:26:53
+  quantity: "1"
+  product_id: "90"
+  id: "19"
+  user_id: "230"
+  created_at: 2009-05-05 15:26:53
+wish_lists_2: 
+  updated_at: 2008-03-13 20:00:53
+  quantity: "1"
+  product_id: "209"
+  id: "3"
+  user_id: "109"
+  created_at: 2008-03-13 20:00:53
+wish_lists_26: 
+  updated_at: 2010-04-18 12:24:25
+  quantity: "1"
+  product_id: "116"
+  id: "31"
+  user_id: "383"
+  created_at: 2010-04-18 12:24:25
+wish_lists_15: 
+  updated_at: 2009-05-19 15:33:26
+  quantity: "1"
+  product_id: "64"
+  id: "20"
+  user_id: "242"
+  created_at: 2009-05-19 15:33:26
+wish_lists_3: 
+  updated_at: 2008-03-14 13:18:28
+  quantity: "1"
+  product_id: "375"
+  id: "4"
+  user_id: "109"
+  created_at: 2008-03-14 13:18:28
+wish_lists_27: 
+  updated_at: 2010-04-18 23:23:28
+  quantity: "1"
+  product_id: "119"
+  id: "32"
+  user_id: "383"
+  created_at: 2010-04-18 23:23:28
+wish_lists_16: 
+  updated_at: 2009-08-18 08:24:42
+  quantity: "1"
+  product_id: "96"
+  id: "21"
+  user_id: "1"
+  created_at: 2009-08-18 08:24:42
+wish_lists_4: 
+  updated_at: 2008-09-08 17:24:19
+  quantity: "1"
+  product_id: "313"
+  id: "5"
+  user_id: "133"
+  created_at: 2008-09-08 17:24:19
+wish_lists_17: 
+  updated_at: 2009-08-18 08:26:43
+  quantity: "1"
+  product_id: "416"
+  id: "22"
+  user_id: "1"
+  created_at: 2009-08-18 08:26:43
+wish_lists_5: 
+  updated_at: 2008-09-08 17:27:26
+  quantity: "1"
+  product_id: "421"
+  id: "6"
+  user_id: "133"
+  created_at: 2008-09-08 17:27:26
+wish_lists_18: 
+  updated_at: 2009-08-18 08:57:40
+  quantity: "1"
+  product_id: "416"
+  id: "23"
+  user_id: "1"
+  created_at: 2009-08-18 08:57:40
+wish_lists_6: 
+  updated_at: 2008-09-08 17:28:16
+  quantity: "1"
+  product_id: "46"
+  id: "7"
+  user_id: "133"
+  created_at: 2008-09-08 17:28:16
+wish_lists_19: 
+  updated_at: 2010-03-06 09:00:27
+  quantity: "1"
+  product_id: "519"
+  id: "24"
+  user_id: "358"
+  created_at: 2010-03-06 09:00:27
+wish_lists_7: 
+  updated_at: 2008-09-08 17:36:01
+  quantity: "1"
+  product_id: "265"
+  id: "8"
+  user_id: "133"
+  created_at: 2008-09-08 17:36:01

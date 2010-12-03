@@ -1,0 +1,14 @@
+<fieldset id="categories_information">
+  <ul>
+    <%- @categories.each do |category| -%>
+    <li>
+      <%= check_box_tag "category_ids[]", category[:id], category[:checked] %> <%= category[:text] %>
+      <ul>
+        <%- category[:children].each do |children| -%>
+        <li><%= check_box_tag "category_ids[]", children[:id], children[:checked] %> <%= children[:text] %></li>
+        <%- end -%>
+      </ul>
+    </li>
+    <%- end -%>
+  </ul>
+</fieldset>

@@ -1,0 +1,10 @@
+<% if setting = Setting.find(:first) %>
+	<% if setting.wine_pdf %>
+	<div>
+		<div>
+			<%= link_to image_tag("pdf.png"), setting.wine_pdf.public_filename %>
+			<%= link_to "Download our wine list", setting.wine_pdf.public_filename %> 
+		</div>
+	</div>
+	<% end %>
+<% end %>

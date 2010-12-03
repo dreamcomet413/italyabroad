@@ -1,0 +1,59 @@
+<%- @title = "Administration - Customers"; @page_id = "Administration" -%>
+<%- @breadcrumbs = "Administration &raquo; #{link_to "Customers", admin_customers_path}" -%>
+
+<div class="inner_content customers" id="admin_customers_index">
+  <h2>Customers</h2>
+  <br />
+  <table>
+    <tr>
+      <td>
+        <%- form_tag admin_customers_path, :method => :get do -%>
+        <strong>Search:</strong> 
+        <%= text_field_tag :q %> 
+        in 
+        <%= select_tag :f, options_for_select([["All", ""], ["Login", "login"], ["Name", "name"], ["Surname", "surname"]]) %> 
+        <%= submit_tag "Search", :name => nil %>
+        <%= set_focus_to 'q' %>
+        <%- end -%>
+      </td>
+      <td align="right"><%= link_to "New Customer", new_admin_customer_path %></td>
+    </tr>
+  </table>
+  <table id="user-list" class="list sortable">
+    <thead>
+      <tr>
+        <th class="sortfirstdec">ID</th>
+        <th>Login</th>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Know Through</th>
+        <th>Active</th>
+        <th>Created at</th>
+        <th class="nosort"></th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+        <td colspan="4"><%= will_paginate_(@users) %></td>
+        <td colspan="4" align="right"><%= page_entries_info_ @users %></td>
+      </tr>
+    </tfoot>
+    <tbody>
+      <%- @users.each do |user| -%>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= user.login %></td>
+        <td><%= user.name %></td>
+        <td><%= user.surname %></td>
+        <td><%= user.know_through %></td>
+        <td><%= user.active %></td>
+        <td><%= user.created_at.strftime("%d/%m/%y") unless user.created_at.nil? %></td>
+        <td>
+          <%= link_to "Edit", edit_admin_customer_path(user) %> | 
+          <%= link_to "Delete", admin_customer_path(user), :method => "delete", :confirm => "Are you sure want to delete this account?" %>
+        </td>
+      </tr>
+      <%- end -%>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,168 @@
+<% @title = "Your cart"; %>
+<% cart_total = 0 %>
+<%- @class = "no-padding"; @breadcrumbs = "#{link_to "Home", root_url} &raquo; Checkout &raquo; Review Order" -%>
+
+<div id="header">Your Cart</div>
+<% if @cart.items.size > 0 %>
+  <%= show_messages(flash[:notice]) %>
+  <div style="text-align:center;margin-top:40px;"><%= image_tag("cart_step_1.png") %></div>
+  <% form_tag(cart_path(@cart.object_id), :id => "form_cart", :method => :put) do %>
+    <table border="0" cellpadding="5" cellspacing="10" width="100%">
+      <tr>
+        <td style="font-size:14px;font-weight:bold;" colspan="2">Product</td>
+        <td style="font-size:14px;font-weight:bold;width:30px;">Price</td>
+        <td style="font-size:14px;font-weight:bold;width:30px;">Qty</td>
+        <td style="font-size:14px;font-weight:bold;">Total</td>
+        <td>&nbsp;</td>
+      </tr>
+      <% for cart_item in @cart.items %>
+        <% product = Product.find(cart_item.product.id) %>
+        <% cart_total += cart_item.total %>
+        <tr>
+          <td style="width:30px;">
+            <%= show_image_tag(:product_thumb_cart, product.image_1) %>
+          </td>
+          <td>
+            <%= hidden_field_tag "cart[][id]", nil, :value => cart_item.product.id %>
+            <%= cart_item.product.name %>
+            <% if product.from_quantity > 0 && product.from_quantity_price > 0 && cart_item.quantity < product.from_quantity %>
+              <div style="color:red">
+                <% if product.categories.root.name == "Wine" %>
+                        (Buy a case of <%= product.from_quantity %> and save <%= number_to_currency product.from_quantity_price, :unit => "&pound;" %>)
+                <% elsif product.categories.root.name == "Food" %>
+                        (Buy <%= product.from_quantity %> and save <%= number_to_currency product.from_quantity_price, :unit => "&pound;" %>)
+                <% end %>
+              </div>
+            <% end %>
+          </td>
+          <td>
+            <%= number_to_currency cart_item.price, :unit => "&pound;" %>
+          </td>
+          <td>
+            <%= text_field_tag "cart[][quantity]", nil, :value => cart_item.quantity, :size => 2, :maxlength => 2, :style => "text-align:center" %>
+          </td>
+          <td>
+            <%= number_to_currency cart_item.total, :unit => "&pound;" %>
+          </td>
+          <td>
+            <%= link_to image_tag("icon-cancel.png", :alt => "Delete Item", :style => "vertical-align:bottom"), product_cart_path(cart_item.product.id, @cart.object_id), :confirm => "Are you sure want to delete this product?", :method => :delete  %>
+          </td>
+        </tr>
+      <% end %>
+      <tr>
+        <td colspan="6" align="right"><%= image_submit_tag "buttons/update_button.png" %></td>
+      </tr>
+      <tr>
+        <td colspan="6">&nbsp;</td>
+      </tr>
+      <% if @buy_together_discount > 0 %>
+        <tr>
+          <td colspan="6" align="right">
+              Buy together and save discount: - <%= number_to_currency(@buy_together_discount, :unit => "&pound;") %>
+          </td>
+        </tr>
+      <% end %>
+      <% if @cupon.nil? || !@cupon.active || !@cart.valid? %>
+        <tr>
+          <td colspan="5" align="right">
+              If you have a promotional code please enter it here: <%= text_field :cupon, :code, :style => "width:70px" %>
+          </td>
+          <td align="right">
+            <%= image_submit_tag "buttons/add_button.png", :style => "padding-left:2px;padding-right:2px;" %>
+          </td>
+        </tr>
+      <% else %>
+        <tr>
+          <td colspan="6" align="right">
+            <% if @cupon.cupon_type != "percentage" %>
+              Promotional Code: - <%= number_to_currency @cupon.price, :unit => "&pound;" %> <%= link_to_function image_tag("icon-cancel.png", :alt => "Delete Cupon", :style => "vertical-align:bottom"), "$('cupon_code').value = '';$('form_cart').submit()" %>
+            <% else %>
+              Promotional Code: - <%= number_to_currency (cart_total-@cart.sub_total), :unit => "&pound;" %> <%= link_to_function image_tag("icon-cancel.png", :alt => "Delete Cupon", :style => "vertical-align:bottom"), "$('cupon_code').value = '';$('form_cart').submit()" %>
+            <% end %>
+            <%= hidden_field :cupon, :code %>
+          </td>
+        </tr>
+      <% end %>
+      <tr>
+        <td colspan="6" align="right">
+          <span style="font-size:14px;"><strong>Sub Total:</strong> <%= number_to_currency(@cart.sub_total, :unit => "&pound;") %></span>
+        </td>
+      </tr>
+      <% if @cart.sub_total < Setting.order_delivery_amount %>
+        <tr>
+          <td colspan="6" align="right">
+            <em style="color:red">Spend over <%= number_to_currency Setting.order_delivery_amount, :unit => "&pound;" %> and get FREE DELIVERY UK mainland only, for all other destinations we will contact you with a quote.</em>
+          </td>
+        </tr>
+      <% end %>
+      <tr>
+        <td colspan="6">&nbsp;</td>
+      </tr>
+      <% if @cart.sub_total < Setting.order_delivery_amount %>
+        <tr>
+          <td colspan="6" align="right">
+              Select delivery method: <%= collection_select :delivery, :id, Delivery.find(:all), :id, :name_with_price %>
+          </td>
+        </tr>
+      <% else %>
+        <tr>
+          <td colspan="6">
+            <em>Your order qualifies for free delivery *</em><%= hidden_field :delivery, :id, :value => Delivery.find(:first).id %>
+          </td>
+        </tr>
+      <% end %>
+      <tr>
+        <td colspan="6" align="right">
+          <span style="font-size:14px;"><strong>Total:</strong> <%= number_to_currency(@cart.total, :unit => "&pound;") %></span>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="6">&nbsp;</td>
+      </tr>
+      <tr>
+        <td colspan="3"></td>
+        <td align="right">
+          <%= link_to image_tag("buttons/continue_shopping_button.png"), continue_shopping_cart_path %>
+        </td>
+        <td align="right">
+          <%= link_to image_tag("buttons/continue_button.png"), checkouts_url %>
+        </td>
+        <td align="right">
+             or <%= link_to "Empty", empty_cart_path, :confirm => "Are you sure want to empty this cart?" %>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="6">
+            * Please note that the delivery fees refer to deliveries to UK addresses only, for all other destinations please <%= mail_to "info@italyabroad.com", "contact us" %>
+        </td>
+      </tr>
+    </table>
+  <% end %>
+  <%= observe_field "delivery_id", :on => :change, :function => "$('form_cart').submit()" %>
+<% else %>
+  <table border="0" cellpadding="5" cellspacing="10" width="100%">
+    <tr>
+      <td>Your cart is empty</td>
+    </tr>
+  </table>
+<% end %>
+
+<div style="border:1px solid #ccc;margin:10px 20px;background-color:#f3f3f3;padding:5px;float:left;text-align:center;width:690px;">
+  <div style="font-size:14px;font-weight:bold;color:#003400;text-align:left;">Other products you may be interested in</div>
+<%#- products = Product.find(:all, :include => :categories, :conditions => ["categories.friendly_identifier = ? or categories.friendly_identifier = ? or categories.friendly_identifier = ?", "wine", "food", "hampers"], :limit => 5) -%>
+  <%- products = Product.find(:all, :limit => 5, :order => "RAND()") -%>
+  <ul style="list-style:none;margin:0;padding:0;float:left:margin-left:10px;">
+    <%- for product in products -%>
+      <li style="float:left;">
+        <%= link_to show_image_tag(:product_thumb, product.image_1, :jpg), nested_products_uri(product) %><br />
+        <%= link_to product.name, nested_products_uri(product), :style => "width:130px;display:block;text-align:center;" %>
+      </li>
+    <%- end -%>
+  </ul>
+</div>
+
+<% content_for :right do %>
+  <%= render :partial => '/site/shared/box_subscriptions' %>
+  <br />
+  <%= render :partial => '/site/shared/box_popular' %>
+<% end %>

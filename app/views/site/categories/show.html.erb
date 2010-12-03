@@ -1,0 +1,3 @@
+<%#= @category.layout %>
+<% @title = @category.title_formatted; @description = @category.meta_description; @keys = @category.meta_key %>
+<%= render :partial => "site/templates/#{@category.layout}" %>

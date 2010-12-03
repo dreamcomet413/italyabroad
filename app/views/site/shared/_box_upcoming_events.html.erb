@@ -1,0 +1,14 @@
+<% products = Product.find(:all, :limit => 2, :order => "RAND()", :include => {:categorizations => :category}, :conditions => "categories.name LIKE 'Events'") %>
+<% unless products.blank? %>
+<div id="box_upcoming_events" class="block">
+  <h1><%= link_to"Upcoming Events","/wine-events" %></h1>
+  <ul>
+    <%- products.each do |product| -%>
+    <li style="margin-bottom:10px;">
+      <%= product.date.strftime("%d %B %Y at %H:%M") if product.date %><br />
+  	  <%= link_to product.name, "/wine-events/#{product.friendly_identifier}", :style => "font-size:14px;color:#721041" %>
+    </li>
+    <%- end -%>
+  </ul>
+</div>
+<% end %>

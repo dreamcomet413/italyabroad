@@ -1,0 +1,188 @@
+<%- @title = "Administration - Setting"; @page_id = "Administration" -%>
+<%- @breadcrumbs = "Administration &raquo; #{link_to "Settings", admin_settings_path}" -%>
+
+<div class="inner_content settings" id="admin_settings_edit">
+  <h2>Settings</h2>
+  <br />
+  <% form_for :setting, @setting, :url => admin_setting_path(@setting), :html => {:multipart => true, :method => :put} do %>
+  <table>
+    <tr>
+      <td width="290px">Promotion:</td>
+      <td style="padding-left:40px;"><%= text_field :setting, :promotion %></td>
+    </tr>
+    <tr>
+      <td>Minimum total order value:</td>
+      <td style="padding-left:40px;"><%= text_field :setting, :order_amount %></td>
+    </tr>
+    <tr>
+      <td>Minimum total order value to qualify for free delivery:</td>
+      <td style="padding-left:40px;"><%= text_field :setting, :order_delivery_amount %></td>
+    </tr>
+    <tr>
+      <td valign="top">Wine PDF:</td>
+      <td style="padding-left:40px;">
+        <%= file_field :wine_pdf, :uploaded_data %> <em>(2mb limit)</em>
+        <% if @setting && @setting.wine_pdf %>
+        <p>
+          <%= link_to truncate(@setting.wine_pdf.filename, :length => 50), @setting.wine_pdf.public_filename %> 
+          (<%= link_to "Destroy", admin_setting_resource_path(@setting, @setting.wine_pdf), :confirm => "Are you sure?", :method => :delete %>)
+        </p>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">Home Page Image 1:</td>
+      <td valign="top">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <tr>
+            <td valign="top" style="padding:0;">Image&nbsp;&nbsp;</td>
+            <td valign="top" style="padding:0;">
+              <%= file_field_tag :home_image_1 %> <em>(must 723x284px)</em>
+            </td>
+          </tr>
+          <% if @setting && @setting.home_image_1 %>
+          <tr>
+            <td>&nbsp;</td>
+            <td valign="top" style="padding:0;">
+              <%= image_tag image_url('home_image_thumb', @setting.home_image_1, :jpg) %>
+              <%= link_to "Destroy", admin_setting_image_url(@setting, @setting.home_image_1), :confirm => "Are you sure?", :method => :delete %>
+            </td>
+          </tr>
+          <% end %>
+          <tr>
+            <td style="padding:0;">Title</td>
+            <td style="padding:0;"><%= text_field :setting, :home_image_1_title %></td>
+          </tr>
+          <tr>
+            <td style="padding:0;">URL</td>
+            <td style="padding:0;"><%= text_field :setting, :home_image_1_url %></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">Home Page Image 2</td>
+      <td valign="top">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <tr>
+            <td valign="top" style="padding:0;">Image&nbsp;&nbsp;</td>
+            <td valign="top" style="padding:0;">
+              <%= file_field_tag :home_image_2 %> <em>(must 723x284px)</em>
+            </td>
+          </tr>
+          <% if @setting && @setting.home_image_2 %>
+          <tr>
+            <td>&nbsp;</td>
+            <td valign="top" style="padding:0;">
+              <%= image_tag image_url('home_image_thumb', @setting.home_image_2, :jpg) %>
+              <%= link_to "Destroy", admin_setting_image_url(@setting, @setting.home_image_2), :confirm => "Are you sure?", :method => :delete %>
+            </td>
+          </tr>
+          <% end %>
+          <tr>
+            <td style="padding:0;">Title</td>
+            <td style="padding:0;"><%= text_field :setting, :home_image_2_title %></td>
+          </tr>
+          <tr>
+            <td style="padding:0;">URL</td>
+            <td style="padding:0;"><%= text_field :setting, :home_image_2_url %></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">Home Page Image 3</td>
+      <td valign="top">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <tr>
+            <td valign="top" style="padding:0;">Image&nbsp;&nbsp;</td>
+            <td valign="top" style="padding:0;">
+              <%= file_field_tag :home_image_3 %> <em>(must 723x284px)</em>
+            </td>
+          </tr>
+          <% if @setting && @setting.home_image_3 %>
+          <tr>
+            <td>&nbsp;</td>
+            <td valign="top" style="padding:0;">
+              <%= image_tag image_url('home_image_thumb', @setting.home_image_3, :jpg) %>
+              <%= link_to "Destroy", admin_setting_image_url(@setting, @setting.home_image_3), :confirm => "Are you sure?", :method => :delete %>
+            </td>
+          </tr>
+          <% end %>
+          <tr>
+            <td style="padding:0;">Title</td>
+            <td style="padding:0;"><%= text_field :setting, :home_image_3_title %></td>
+          </tr>
+          <tr>
+            <td style="padding:0;">URL</td>
+            <td style="padding:0;"><%= text_field :setting, :home_image_3_url %></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">Home Page Image 4</td>
+      <td valign="top">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <tr>
+            <td valign="top" style="padding:0;">Image&nbsp;&nbsp;</td>
+            <td valign="top" style="padding:0;">
+              <%= file_field_tag :home_image_4 %> <em>(must 723x284px)</em>
+            </td>
+          </tr>
+          <% if @setting && @setting.home_image_4 %>
+          <tr>
+            <td>&nbsp;</td>
+            <td valign="top" style="padding:0;">
+              <%= image_tag image_url('home_image_thumb', @setting.home_image_4, :jpg) %>
+              <%= link_to "Destroy", admin_setting_image_url(@setting, @setting.home_image_4), :confirm => "Are you sure?", :method => :delete %>
+            </td>
+          </tr>
+          <% end %>
+          <tr>
+            <td style="padding:0;">Title</td>
+            <td style="padding:0;"><%= text_field :setting, :home_image_4_title %></td>
+          </tr>
+          <tr>
+            <td style="padding:0;">URL</td>
+            <td style="padding:0;"><%= text_field :setting, :home_image_4_url %></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">Home Page Image 5</td>
+      <td valign="top">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <tr>
+            <td valign="top" style="padding:0;">Image&nbsp;&nbsp;</td>
+            <td valign="top" style="padding:0;">
+              <%= file_field_tag :home_image_5 %> <em>(must 723x284px)</em>
+            </td>
+          </tr>
+          <% if @setting && @setting.home_image_5 %>
+          <tr>
+            <td>&nbsp;</td>
+            <td valign="top" style="padding:0;">
+              <%= image_tag image_url('home_image_thumb', @setting.home_image_5, :jpg) %>
+              <%= link_to "Destroy", admin_setting_image_url(@setting, @setting.home_image_5), :confirm => "Are you sure?", :method => :delete %>
+            </td>
+          </tr>
+          <% end %>
+          <tr>
+            <td style="padding:0;">Title</td>
+            <td style="padding:0;"><%= text_field :setting, :home_image_5_title %></td>
+          </tr>
+          <tr>
+            <td style="padding:0;">URL</td>
+            <td style="padding:0;"><%= text_field :setting, :home_image_5_url %></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2"><%= submit_tag "Save" %></td>
+    </tr>
+  </table>
+  <% end %>
+</div>

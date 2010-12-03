@@ -1,0 +1,61 @@
+<table border="0" cellpadding="5" cellspacing="10" width="100%" id="cart_form">
+	<tr>
+	  <td style="font-size:14px;font-weight:bold;" colspan="2">Product</td>
+	  <td style="font-size:14px;font-weight:bold;width:30px;">Price</td>
+	  <td style="font-size:14px;font-weight:bold;width:30px;">Qty</td>
+	  <td style="font-size:14px;font-weight:bold;" align="right">Total</td>
+  </tr>
+  <% for cart_item in @cart.items %>
+	<% product = Product.find(cart_item.product.id) %>
+	<tr>
+	  <td style="width:30px;">
+	    <%= show_image_tag(:product_thumb_cart, product.image_1) %>
+	  </td>
+		<td>
+			<%= hidden_field_tag "cart[][id]", nil, :value => cart_item.product.id %>
+			<%= cart_item.product.name %>&nbsp;&nbsp;&nbsp;&nbsp;<%#= link_to image_tag("icon-cancel.png", :alt => "Delete Item", :style => "vertical-align:bottom"), product_cart_path(cart_item.product.id, @cart.object_id), :confirm => "Are you sure want to delete this product?", :method => :delete  %>
+			<% if product.from_quantity > 0 && product.from_quantity_price > 0 && cart_item.quantity < product.from_quantity %>
+				<div style="color:red">
+					<% if product.categories.root.name == "Wine" %>
+						(Buy a case of <%= product.from_quantity %> and save <%= number_to_currency product.from_quantity_price, :unit => "&pound;" %>)
+					<% elsif product.categories.root.name == "Food" %>
+						(Buy <%= product.from_quantity %> and save <%= number_to_currency product.from_quantity_price, :unit => "&pound;" %>)
+					<% end %>
+				</div>
+			<% end %>
+		</td>
+		<td>
+		  <%= number_to_currency cart_item.price, :unit => "&pound;" %>
+    </td>
+		<td>
+		  <%= text_field_tag "cart[][quantity]", nil, :value => cart_item.quantity, :size => 2, :maxlength => 2, :style => "text-align:center" %>
+    </td>
+		<td align="right">
+		  <%= number_to_currency cart_item.total, :unit => "&pound;" %>
+    </td>
+	</tr>
+	<% end %>
+	<%- unless @cart.items.blank? -%>
+	<tr>
+	  <td>&nbsp;</td>
+	  <td><%= @cart.delivery.name %></td>
+	  <td colspan="3"><%= number_to_currency @cart.delivery.price, :unit => "&pound;" %></td>
+	</tr>
+	<%- end -%>
+	<tr>
+    <td colspan="5" align="right">
+      <%= link_to image_tag("buttons/back_to_cart_button.png"), cart_index_path %>&nbsp;&nbsp;&nbsp;<%= link_to image_tag("buttons/continue_shopping_button.png"), continue_shopping_cart_path %>
+    </td>
+	</tr>
+	<%- unless @cart.items.blank? -%>
+	<tr>
+    <td colspan="5" align="right">
+      <span style="font-size:14px;"><strong>Total:</strong> <%= number_to_currency(@cart.total, :unit => "&pound;") %></span>
+    </td>
+	</tr>
+	<%- end -%>
+  <tr>
+    <td colspan="5" style="border-bottom:1px solid #cccccc;"></td>
+  </tr>
+</table>
+

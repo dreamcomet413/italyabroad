@@ -1,0 +1,33 @@
+<%- @title = "#{@region.name}"; @breadcrumbs = "#{link_to("Home", root_url)} &raquo; Region &raquo; #{@region.name}" -%>
+<%- @class = "no-padding" -%>
+
+<div id="header"><%= @region.name %></div>
+<div style="text-align:center;margin-top:15px;"><%= image_tag("region-home-image.jpg") %></div>
+<br />
+<div style="margin:0 40px;">
+  <h3 style="text-align:center;border:none;color:#666666;">Region Information</h3>
+  <%= @region.description || "No Description" %>
+  <br />
+  <h3 style="font-size:16px;color:#013300;border:none;">Our producers from <%= @region.name %></h3>
+  <ul>
+  <%- @region.producers.each do |p| -%>
+    <li><%= p.name %></li>
+  <%- end -%>
+  </ul>
+  <h3 style="font-size:16px;color:#013300;border:none;">Wine and Food from <%= @region.name %></h3>
+  <ul style="list-style:none;margin:0;padding:0;text-align:center;float:left;">
+    <%- @region.products.each do |product| -%>
+    <li style="float:left;width:100px;margin-left:10px;margin-bottom:10px;">
+      <%= link_to show_image_tag(product.layout_image, product.image_1, :jpg), nested_products_uri(product) %><br />
+      <%= link_to product.name, nested_products_uri(product) %>
+    </li>
+    <%- end -%>
+  </ul>
+  <div style="clear:both;"></div>
+  <br /><br />
+  <br />
+</div>
+
+<%- content_for :right do -%>
+  <%= render :partial => 'site/shared/box_subscriptions' %>
+<%- end -%>

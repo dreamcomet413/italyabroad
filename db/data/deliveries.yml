@@ -1,0 +1,21 @@
+--- 
+deliveries_4: 
+  name: Scottish Higlands - 3/4 days
+  price: "20.00"
+  id: "8"
+deliveries_5: 
+  name: Mainland UK 3/4 days
+  price: "5.95"
+  id: "10"
+deliveries_1: 
+  name: Mainland UK next day - orders received by 1pm
+  price: "6.95"
+  id: "4"
+deliveries_2: 
+  name: For ticket events
+  price: "0.01"
+  id: "9"
+deliveries_3: 
+  name: Collection at our warehouse
+  price: "0.01"
+  id: "7"

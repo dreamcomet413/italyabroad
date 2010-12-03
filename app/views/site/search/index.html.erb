@@ -1,0 +1,85 @@
+<% @title = "Search #{params[:text]}"; @class = "no-padding"  %>
+<%- @breadcrumbs = "#{link_to "Home", root_url} &raquo; Search #{ '&raquo; ' + @category.name.titleize unless @category.blank?}" -%>
+
+<% if @products && @products.size > 0 %>
+  <div id="header">Your search result has found the following products:</div>
+  <div style="margin:10px 0px;padding:5px;background-color:#F3F8DA;">
+    <table style="width:100%;" cellpadding="0" cellspacing="0" border="0">
+      <tr>
+        <%- unless will_paginate(@products).blank? -%>
+        <td><%= will_paginate(@products) %></td>
+        <%- end -%>
+        <td align="right">
+          <%- form_tag search_index_path, :method => :get, :id => "sort_by_form" do -%>
+          <%= hidden_field_tag :page, (params[:page] || 1) %>
+          <%= hidden_field_tag :text, params[:text] %>
+          <%= hidden_field_tag :id, params[:id] %>
+          <strong>Sort by:</strong>&nbsp;<%= select_tag("sort_by", options_for_select([["Price: High to low", "price desc"], ["Price: Low to high", "price asc"], ["Name", "name"], ["Region", "region_id"]], @sort_by), :onchange => "$('sort_by_form').submit()") %>
+          <%- end -%>
+        </td>
+      </tr>
+    </table>
+  </div>
+	<% for product in @products %>
+	<table style="padding-bottom:20px;width:100%;" cellpadding="0" border="0" cellspacing="0">
+		<tr>
+			<td style="width: 80px; padding: 5px 10px;">
+				<%= link_to show_image_tag(product.layout_image, product.image_1, :jpg), nested_products_uri(product) %>
+			</td>
+			<td style="width: 490px;">
+			  <%- product = Product.find(product.id) -%>
+				<h1><%= link_to product.name, nested_products_uri(product), :style => "font-size:17px;color:#003300;" %></h1>
+				<br />
+				<div style="padding-top:10px"><%= product.description_short %></div>
+			</td>
+			<td style="padding: 20px 10px 5px;">
+        <div class="box_price_product">
+          <ul>
+            <li class="price_info">
+      				<% if product.discounted? %>
+      					<div style="font-size:14px">Was <span style="text-decoration: line-through;"><%= number_to_currency product.price, :unit => "&pound;" %></span></div>
+      					<span class="price red" style="color:#003300;">Now&nbsp;<%= number_to_currency product.price_discounted, :unit => "&pound;" %></span>
+      				<% else %>
+      					<span class="price" style="color:#003300;"><%= number_to_currency product.price, :unit => "&pound;" %></span>
+      				<% end %>
+    				</li>
+    				<li style="margin-bottom:10px;">
+    				  <%= link_to_remote "Add to wishlist", :url => product_wish_list_index_path(product), :html => {:style => "color:#464646;", :method => :post} %>
+    				</li>
+  			    <li>
+  			      <%- if product.out_of_stock? -%>
+  			        <%= image_tag('out_of_stock.png') %>
+  			      <%- else -%>
+  			        <%= link_to_remote image_tag("buttons/add_to_cart_button.png"), :url => product_cart_index_path(product), :html => {:method => 'post'} %>
+  			      <%- end -%>
+  			    </li>
+  				</ul>
+        </div>
+			</td>
+		</tr>
+    <tr>
+      <td colspan="3" style="border-bottom:1px solid #CCCCCC;">&nbsp;</td>
+    </tr>
+	</table>
+	<% end %>
+	<%= content_tag(:div, will_paginate(@products), :style => "padding:5px;text-align:right;background-color:#F3F8DA") unless will_paginate(@products).blank? %>
+	<br /><br />
+<% else %>
+	<div id="header">Your search returned no result</div>
+	<div style="margin:20px;">
+		Please check the spelling or in case you did not find what you wanted <%= mail_to "info@italyabroad.com", "get in touch" %> and will find it for you
+	</div>
+<% end %>
+	
+
+<% content_for :right do %>
+	<%= render :partial => 'site/shared/box_wine_search', :locals => {:search_url => search_index_path} %>
+	<br />
+	<%= render :partial => 'site/shared/box_products_on_offer' %>
+	<br />
+	<%= render :partial => '/site/shared/box_event' %>
+	<br />
+	<%= render :partial => '/site/shared/box_subscriptions' %>
+	<br />
+	<%= render :partial => '/site/shared/box_grape_guide' %>
+<% end %>

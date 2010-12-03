@@ -1,0 +1,177 @@
+--- 
+cupons_20: 
+  min_order: "0"
+  public: "0"
+  price: "5"
+  code: 4gkvuy8h
+  product_id: 
+  id: "25"
+  active: "0"
+cupons_4: 
+  min_order: "80"
+  public: 
+  price: "10"
+  code: berco001
+  product_id: 
+  id: "8"
+  active: "0"
+cupons_21: 
+  min_order: "10"
+  public: "0"
+  price: "10"
+  code: is1x8ist
+  product_id: 
+  id: "30"
+  active: "1"
+cupons_10: 
+  min_order: "80"
+  public: "0"
+  price: "10"
+  code: tow05674x
+  product_id: 
+  id: "14"
+  active: "0"
+cupons_5: 
+  min_order: "80"
+  public: 
+  price: "10"
+  code: wils001
+  product_id: 
+  id: "9"
+  active: "0"
+cupons_22: 
+  min_order: "100"
+  public: "0"
+  price: "20"
+  code: jloo7xtjef
+  product_id: 
+  id: "32"
+  active: "0"
+cupons_11: 
+  min_order: "80"
+  public: "0"
+  price: "15"
+  code: 40818HAO
+  product_id: 
+  id: "15"
+  active: "0"
+cupons_6: 
+  min_order: "80"
+  public: 
+  price: "10"
+  code: locoff1207
+  product_id: 
+  id: "10"
+  active: "0"
+cupons_12: 
+  min_order: "80"
+  public: "0"
+  price: "15"
+  code: 40823HAO
+  product_id: 
+  id: "16"
+  active: "0"
+cupons_7: 
+  min_order: "50"
+  public: "0"
+  price: "10"
+  code: unisun10
+  product_id: 
+  id: "11"
+  active: "1"
+cupons_13: 
+  min_order: "50"
+  public: "0"
+  price: "5"
+  code: LWF08R20
+  product_id: 
+  id: "17"
+  active: "1"
+cupons_8: 
+  min_order: "50"
+  public: "0"
+  price: "15"
+  code: vawpor2wd
+  product_id: 
+  id: "12"
+  active: "1"
+cupons_14: 
+  min_order: "80"
+  public: "0"
+  price: "10"
+  code: GHE0608
+  product_id: 
+  id: "18"
+  active: "0"
+cupons_9: 
+  min_order: "80"
+  public: "0"
+  price: "5"
+  code: bnw0802
+  product_id: 
+  id: "13"
+  active: "0"
+cupons_15: 
+  min_order: "80"
+  public: "0"
+  price: "10"
+  code: 10noun08
+  product_id: 
+  id: "19"
+  active: "0"
+cupons_16: 
+  min_order: "80"
+  public: 
+  price: "10"
+  code: n4cxre48
+  product_id: 
+  id: "20"
+  active: "0"
+cupons_17: 
+  min_order: "60"
+  public: "0"
+  price: "15"
+  code: twfire0808
+  product_id: 
+  id: "21"
+  active: "0"
+cupons_1: 
+  min_order: "80"
+  public: 
+  price: "10"
+  code: crav001
+  product_id: 
+  id: "5"
+  active: "0"
+cupons_18: 
+  min_order: "80"
+  public: "0"
+  price: "10"
+  code: yaij2csz
+  product_id: 
+  id: "22"
+  active: "0"
+cupons_2: 
+  min_order: "20"
+  public: "0"
+  price: "20"
+  code: czlqacbn
+  product_id: 
+  id: "33"
+  active: "1"
+cupons_19: 
+  min_order: "80"
+  public: "0"
+  price: "20"
+  code: 47i8nw15
+  product_id: 
+  id: "24"
+  active: "0"
+cupons_3: 
+  min_order: "50"
+  public: "0"
+  price: "15"
+  code: bnjghdbh
+  product_id: 
+  id: "7"
+  active: "1"

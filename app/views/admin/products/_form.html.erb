@@ -1,0 +1,67 @@
+<fieldset id="general_information">
+	<table border="0" cellspacing="5" cellpadding="5">
+	  <tr>
+	    <td style="text-align:right" valign="top">Product Name:</td>
+	    <td><%= text_field :product, :name %></td>
+    </tr>
+	  <tr>
+	    <td style="text-align:right">Product Code:</td>
+	    <td><%= text_field :product, :code %> <em>(for internal use)</em></td>
+    </tr>
+		<tr>
+		  <td style="text-align:right">Product Date:</td>
+		  <td><%= datetime_select :product, :date %> <em>(useful for events)</em></td>
+    </tr>
+		<tr>
+		  <td style="text-align:right">Short Description:</td>
+		  <td><%= text_area :product, :description_short, :rows => 3 %></td>
+    </tr>
+		<tr>
+		  <td style="text-align:right">Long Description:</td>
+		  <td><%= text_area :product, :description, :rows => 10 %></td>
+    </tr>
+		<tr>
+		  <td style="text-align:right">Producer Name:</td>
+		  <td><%= select :product, :producer_id, Producer.all.inject([["No Producer", ""]]) {|ps, p| ps << [p.name, p.id]} %></td>
+    </tr>
+		<tr>
+		  <td style="text-align:right">Price:</td>
+		  <td><%= text_field :product, :price, :size => 20 %> </td>
+    </tr>
+		<tr>
+		  <td style="text-align:right">Rate:</td><td><%= select :product, :rate, ["17.5%","0%"] %></td>
+    </tr>
+		<tr>
+		  <td style="text-align:right">From Quantity:</td>
+		  <td><%= text_field :product, :from_quantity, :size => 2 %> customer save: <%= text_field :product, :from_quantity_price, :size => 20 %></td>
+    </tr>
+		<tr>
+		  <td style="text-align:right">Cost:</td>
+		  <td><%= text_field :product, :cost, :size => 20 %> <em>(for internal use)</em></td>
+    </tr>
+		<tr>
+		  <td style="text-align:right">Discount:</td>
+		  <td><%= text_field :product, :discount, :size => 5 %> <em>(to apply on retail price)</em></td>
+    </tr>
+		<tr>
+		  <td style="text-align:right">Quantity:</td>
+		  <td><%= text_field :product, :quantity, :size => 3, :maxlength => 3 %></td>
+    </tr>
+		<tr>
+		  <td style="text-align:right">Active:</td>
+		  <td><%= check_box :product, :active %>
+    </tr>
+    <tr>
+      <td style="text-align:right">Recommended:</td>
+      <td><%= check_box :product, :raccomanded %></td>
+    </tr>
+    <tr>
+      <td style="text-align:right">Featured:</td>
+      <td><%= check_box :product, :featured %></td>
+    </tr>
+		<tr>
+		  <td style="text-align:right">Rating:</td>
+		  <td><%= select :product, :rating, (1..5) %></td>
+    </tr>
+	</table>
+</fieldset>

@@ -1,0 +1,5 @@
+<% if logged_in? %>
+  <p>
+    <strong>Welcome back</strong> <%=h current_user.name %>, <strong>Your last visit was:</strong> <%= time_ago_in_words(current_user.last_seen_at) %>
+  </p>
+<% end %>

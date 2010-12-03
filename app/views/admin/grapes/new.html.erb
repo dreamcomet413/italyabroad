@@ -1,0 +1,13 @@
+<% @title = "New Grape"; @page_id = "Grapes" %>
+<%- @breadcrumbs = "Grapes &raquo; #{link_to "Grapes", admin_grapes_path} &raquo; #{@title}" -%>
+
+<div class="inner_content grapes" id="admin_grapes_new">
+  <h2><%= @title %></h2>
+  <br />
+  <% form_for :grape, :url => admin_grapes_path, :html => {:multipart => true} do %>
+    <%= render :partial => 'form' %>
+    <p>
+      <%= submit_tag "Save" %> or <%= link_to("Cancel", admin_grapes_path) %>
+    </p>
+  <% end %>
+</div>

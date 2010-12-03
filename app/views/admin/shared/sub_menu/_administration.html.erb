@@ -1,0 +1,25 @@
+<div id="administration" class="sub_menu">
+  <ul>
+    <li <%= "class='active'" if @current_controller == "settings" %>><%= link_to "Settings", admin_settings_path, :class => ('active' if @current_controller == "settings") %></li>
+    <li <%= "class='active'" if @current_controller == "users" %>><%= link_to "Administrators", admin_users_path, :class => ('active' if @current_controller == "users") %></li>
+    <li <%= "class='active'" if @current_controller == "customers" %>><%= link_to "Customers", admin_customers_path, :class => ('active' if @current_controller == "customers") %></li>
+  </ul>
+  <%- if @current_controller == "users" || @current_controller == "customers" -%>
+  <ul>
+    <li <%= "class='active'" if @current_action == "index" %>>
+      <% 
+        list_uri = admin_users_path
+        list_uri = admin_customers_path if @current_controller == "customers" && @current_action == "index"
+      %>
+      <%= link_to "List", list_uri, :class => ('active' if @current_action == "index") %>
+    </li>
+    <li <%= "class='active'" if @current_action == "new" %>>
+      <% 
+        new_uri = new_admin_user_path
+        new_uri = new_admin_customer_path if @current_controller == "customers"
+      %>
+      <%= link_to "New", new_uri, :class => ('active' if @current_action == "new") %>
+    </li>
+  </ul>
+  <%- end -%>
+</div>

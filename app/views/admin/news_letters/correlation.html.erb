@@ -1,0 +1,12 @@
+<%- @title = "Edit #{@news_letter.name}"; @page_id = "News Letters" -%>
+<%- @breadcrumbs = "News Letters &raquo; #{link_to "Letters", admin_news_letters_path} &raquo; #{@title}" -%>
+
+<div class="inner_content news_letters" id="admin_news_letters_edit">
+  <h2><%= @title %></h2>
+  <br />
+  <%= render :partial => 'sub_links', :locals => {:active => 'correlation'} %>
+  <%- form_for :news_letter, :url => admin_news_letters_path, :html => {:method => :put} do -%>
+    <%= render :partial => 'form_correlation' %>
+    <p><%= submit_tag "Save" %> or <%= link_to "Cancel", admin_news_letters_path %></p>
+  <%- end -%>
+</div>

@@ -1,0 +1,42 @@
+<%- @title = "Administration - Posts"; @page_id = "Blog" -%>
+<%- @breadcrumbs = "Blog &raquo; #{link_to "Posts", admin_posts_path}" -%>
+
+<div class="inner_content posts" id="admin_posts_index">
+  <h2>Post</h2>
+  <br />
+  <table>
+    <tr>
+      <td></td>
+      <td align="right"><%= link_to "New Post", new_admin_post_path %></td>
+    </tr>
+  </table>
+  <table class="list sortable" id="posts-list">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Type</th>
+        <th class="nosort"></th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+        <td colspan="3"><%= will_paginate_(@posts) %></td>
+        <td align="right"><%= page_entries_info_ @posts %></td>
+      </tr>
+    </tfoot>
+    <tbody>
+      <%- @posts.each do |post| -%>
+      <tr>
+        <td><%= post.id %></td>
+        <td><%= post.name %></td>
+        <td><%= post.blog_type.name %></td>
+        <td>
+          <%= link_to "Edit", edit_admin_post_path(post.id) %> | 
+          <%= link_to "Delete", admin_post_path(post.id), :method => :delete, :confirm => "Are you sure want to delete this post?" %>
+        </td>
+      </tr>
+    <%- end -%>
+    </tbody>
+  </table>
+</div>

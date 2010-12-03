@@ -1,0 +1,2293 @@
+body {
+    margin:0;
+    padding:0;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+a:visited, a:hover, a:active {
+    text-decoration:none;
+}
+
+img {
+    border:none;
+}
+
+.block {
+    border:1px solid #cccccc;
+    padding:10px;
+    clear:both;
+}
+
+.list {
+}
+
+.list td {
+    border-bottom:1px solid #cccccc;
+    padding:30px 0;
+}
+
+.even {
+    background-color:#f3f3f3;
+    border:1px solid #cccccc;
+}
+
+.odd {
+
+}
+
+.block h1 {
+    margin:0;
+    padding:0;
+}
+
+.clean {
+    border:none;
+    margin:0;
+    padding:0;
+}
+
+.clear {
+    margin:0;
+    padding:0;
+}
+
+/* homepage -------------------------------------------------------*/
+#logo {
+    float:left;
+    margin-bottom:10px;
+}
+
+#productDetails table{
+    margin-left:-20px;
+}
+
+#wineSearch td,
+#foodSearch td{
+    padding-left:5px
+}
+
+#siteMap td{
+    padding-left:5px;
+}
+
+td a:hover{
+    color:#721041;
+}
+
+#logIn{
+    float:right;
+    padding-top:2px;
+    margin-right:10px;
+}
+
+#cart{
+    float:right;
+}
+
+h3{
+    padding-bottom:5px;
+    font-family:"Arial";
+    color:#721041;
+    font-size:19px;
+    font-weight:100;
+    border-bottom:solid #C5D1C5;
+    border-bottom-width:1px;
+    margin-top:5px;
+}
+
+h6{
+    color:#721041;
+    font-size:15px;
+    font-weight:100;
+    padding:0px;
+    margin:4px;
+}
+
+#content{
+    max-width:1010px;
+    margin: 0 auto;
+    padding:0;
+}
+
+#topContent{
+}
+
+#cartLogin{
+    width:730px;
+    height:75px;
+    display:block;
+    float:right;
+    text-align:right;
+    font-family:"Arial";
+    color:#464646;
+    font-size:12px;
+    font-weight:100;
+    margin-top:25px;
+    padding-top:0px;
+}
+
+#nav{
+    /*  height:30px;*/
+    margin:10px 0 20px 0;
+    color:#C5D1C5;
+    clear:both;
+}
+
+a {
+    text-decoration:none;
+    list-style-type:none;
+    text-align:left;
+    color:#721041;
+}
+
+#mainContent {
+    /*  color:#464646;*/
+    font-size:12px;
+    font-weight:100;
+    width:100%;
+    height:auto;
+    float:left;
+    border-bottom:solid #ccc;
+    border-bottom-width:1px;
+    padding-bottom:20px;
+    margin-top:15px;
+}
+
+.events #rightColumn {
+    float:right !important;
+}
+
+.events #leftColumnContent {
+    float:left !important;
+}
+
+#rightColumn {
+    width:250px;
+    float:right;
+    background-color:#fff;
+}
+
+#rightColumn .block h1 {
+    color:#003400;
+    font-size:16px;
+    text-align:center;
+}
+
+.rightColumnContent {
+    border:#ccc 1px solid;
+    background-color:#F9F9F9;
+    text-align: center;
+    padding:0px;
+    padding-bottom:0px;
+}
+
+.rightColumnContent img {
+}
+
+.rightColumnContent1 {
+    border:1px solid #cccccc;
+    margin:10px 0;
+    background-color:#EFEFEF;
+    text-align: center;
+    padding-right:3px;
+    padding-bottom:10px;
+}
+
+.rightColumnContent1 ul {
+    margin:0;
+    padding:0;
+    list-style:none;
+}
+
+.rightColumnContentNews {
+    border-top:#fff 10px solid;
+    background-color:#000;
+    border-bottom:#fff 10px solid;
+    background-color:#000;
+    text-align: center;
+    padding:5px;
+    padding-bottom:10px;
+}
+
+.rightColumnContentPeople {
+    background-color:#fff;
+    border:1px #ccc solid;
+    text-align: center;
+    padding:5px;
+    padding-bottom:10px;
+    border-bottom:solid #ccc;
+    border-bottom-width:1px;
+}
+
+.rightColumnContentPeople h3 {
+    padding:0;
+    border-bottom:none;
+    color:#000666;
+}
+
+.rightColumnContent1 h3 {
+    padding:0px;
+    border-bottom:none;
+    color:#000666;
+}
+
+.rightColumnContent h3 {
+    padding:0;
+    border-bottom:none;
+    color:#000666;
+}
+
+#newsletter {
+    position:absolute;
+    left:910px;
+    top:465px;
+}
+
+.widescreen {
+    max-width:1010px !important;
+}
+
+#leftColumnContent {
+    border-style:solid;
+    border-width:1px;
+    border-color:#ccc;
+    max-width:740px;
+    padding:5px 5px 30px 5px;
+    overflow:hidden;
+}
+
+#flashBanner {
+    position:relative;
+    text-align:center;
+    padding:10px 0;
+    margin:0 auto;
+    width:723px;
+    height:284px;
+    background:transparent url(images/loading.gif) center center;
+}
+
+#flashBanner ul {
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+
+#flashBanner ul li.home_image {
+}
+
+#topTextBox {
+    width:725px;
+    /*margin-top:-15px;*/
+    float:left;
+    /*padding:5px;*/
+    border:none;
+}
+
+#reviews {
+    width:275px;
+    overflow: hidden;
+    margin-top:2px;
+    float:left;
+    padding:5px;
+    padding-top:0px;
+}
+
+#reviews ul {
+    margin:0;
+    padding:0;
+}
+
+#reviews ul li {
+    margin:0;
+    padding:0;
+    list-style:none;
+}
+
+#about {
+    position:relative;
+    width:420px;
+    overflow: hidden;
+    margin-top:2px;
+    float:right;
+    padding:5px;
+    padding-top:0px;
+}
+
+#bottomTextBox {
+    width:725px;
+    margin-top:2px;
+    float:left;
+    padding:5px;
+}
+
+#favWine {
+    width:350px;
+    overflow: hidden;
+    margin-top:2px;
+    float:left;
+    padding:5px;
+    padding-top:0px;
+}
+
+#favWine ul,
+#favFood ul {
+    margin:0;
+    padding:0;
+}
+
+#favWine ul li,
+#favFood ul li {
+    border:none;
+    list-style:none;
+}
+
+#favWine ul li a,
+#favFood ul li a {
+    font-size:14px;
+    font-weight:normal;
+    color:#721041;
+}
+
+#favFood {
+    width:350px;
+    overflow: hidden;
+    margin-top:2px;
+    float:right;
+    padding:5px;
+    padding-top:0px;
+}
+
+.faveWineIcon {
+    border-bottom:#ccc 1px solid;
+    color:#721041;
+    font-size:13px;
+    font-weight:100;
+    border-bottom:solid #C5D1C5 1px;
+    margin-bottom:10px;
+}
+
+.sitemap #leftColumnContent {
+    padding:0;
+}
+
+.sitemap #rightColumn,
+.testimonials #rightColumn {
+    float:left;
+    margin-right:10px;
+}
+
+#siteMap {
+    margin-top:1px;
+    clear:both;
+    padding-bottom:20px;
+    margin-top:10px;
+}
+
+#siteMap ul {
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+
+#siteMap ul li {
+    margin:0;
+    padding:0;
+}
+
+#siteMap ul li.list {
+    float:left;
+    width:14.2%;
+}
+
+#siteMap ul li a {
+    /*  color:#464646;*/
+    color:black;
+    font-size:11px;
+}
+
+#siteMap ul li h3 {
+    border:none;
+    padding-bottom:0;
+    margin-bottom:3px;
+    font-size:13px;
+}
+
+.rightColumnContent img {
+    text-align: center;
+    padding-top:10px;
+    padding-bottom:10px;
+}
+
+.rightColumnContent h3 {
+    border-bottom:none;
+    padding:0px;
+}
+
+#about img {
+    float:left;
+    padding-top:0px;
+    padding-right:7px;
+    padding-bottom:2px;
+}
+
+#reviews img {
+    padding-top: 0px;
+    padding-right:7px;
+    padding-bottom:2px;
+    float:left;
+}
+
+.thumbPics img {
+    padding-top:7px;
+    padding-left:0;
+    padding-right:15px;
+}
+
+#favWine img {
+    padding-right:10px;
+}
+
+#search_form {
+    float:right;
+    margin-top:10px;
+}
+
+#search_form button {
+    background:transparent;
+    border:none;
+}
+
+#pages {
+    width:730px;
+    height:20px;
+    float:left;
+    text-align:right;
+    padding-bottom:15px;
+    border-bottom:solid #C5D1C5;
+    border-bottom-width:1px;
+}
+
+#results {
+    width:730px;
+    height:auto;
+    margin-top:40px;
+    float:left;
+}
+
+.promotions {
+    position:relative;
+    height:200px;
+    text-align:center;
+    width:730px;
+    margin-top:90px;
+}
+
+#promotionsLeft {
+    float:left;
+    width:350px;
+    height:190px;
+    border:#ccc 1px solid;
+    text-align:left;
+}
+
+#promotionsRight {
+    float:right;
+    width:350px;
+    border:#ccc 1px solid;
+    height:190px;
+    text-align:right;
+}
+
+.recipes {
+}
+
+.recipes img {
+}
+
+.recipes a {
+}
+
+.featuredProducts {
+    border-bottom:1px solid #C5D1C5;
+}
+
+#contactText {
+    height:auto;
+    padding-left:20px;
+    padding-right:20px;
+}
+
+/* the box */
+#box_products_on_offer {
+    background-color:#CCCCCC;
+    border:1px solid #999999;
+}
+
+#box_latest_review,
+#box_grape_guide_forum,
+#box_get_to_know_italy {
+    width:205px;
+    float:right;
+    margin-right:10px;
+}
+
+#box_newest_members {
+    width:475px;
+    float:left;
+}
+
+#box_newest_members ul {
+    float:left;
+    list-style:none;
+    text-align:center;
+    padding:0;
+    margin:0;
+}
+
+#box_newest_members ul li {
+    float:left;
+    margin-bottom:20px;
+    margin-right:45px;
+    width:50px;
+}
+
+#box_help,
+#box_about_us {
+    padding:0;
+}
+
+#box_help ul,
+#box_about_us ul {
+    list-style:none;
+    padding-left:35px;
+}
+
+#box_help ul li,
+#box_about_us ul li {
+    margin-bottom:10px;
+    height:16px;
+}
+
+#box_help ul li a,
+#box_about_us ul li a {
+    display:block;
+}
+
+#box_help ul li a.active,
+#box_help ul li a:hover,
+#box_about_us ul li a.active,
+#box_about_us ul li a:hover {
+    font-size:14px;
+}
+
+#box_help h3,
+#box_about_us h3 {
+    border:none;
+    background-color:#f2f2f2;
+    padding:5px 10px;
+    margin:0;
+}
+
+#box_other_events {
+    background-color:#ece9d8;
+}
+
+#box_other_events h1 {
+    text-align:center;
+}
+
+#box_other_events ul {
+    list-style:none;
+    padding:0;
+}
+
+#box_wines_of_the_night {
+    float:left;
+    width:220px;
+    margin-right:10px;
+    text-align:center;
+    background-color:#EFEFEF;
+}
+
+#box_wines_of_the_night h1 {
+    margin-bottom:40px;
+}
+
+#box_wines_of_the_night ul {
+    margin:0;
+    padding:0;
+    list-style:none;
+}
+
+#box_wines_of_the_night ul li {
+    margin-bottom:30px;
+}
+
+#box_login ul {
+    list-style:none;
+    padding:0;
+}
+
+#box_login ul li {
+    background:transparent url(/images/row.png) no-repeat left center;
+    padding-left:20px;
+    padding-bottom:3px;
+    height:18px;
+}
+
+#box_login ul li a {
+    padding-top:5px;
+    display:block;
+}
+
+#box_most_read_blog {
+}
+
+#box_most_read_blog h1 {
+    text-align:center;
+}
+
+#box_most_read_blog ul {
+    list-style:none;
+    padding:0;
+}
+
+#box_most_read_blog ul li {
+    margin-bottom:10px;
+}
+
+#box_find_your_perfect_wines {
+    border:none;
+    padding:0;
+}
+#box_wine_tours {
+    border:none;
+    padding:0;
+}
+
+#box_most_read_recipes {
+    background-color:#f9fff5;
+}
+
+#box_most_read_recipes ul {
+    padding:0 5px 5px 20px;
+    list-style:none;
+}
+
+#box_popular a {
+    /*  color:#464646;*/
+    color:black;
+}
+
+#box_archives {
+    font-size:12px;
+}
+
+#box_archives ul {
+    list-style:none;
+    padding-left:0;
+}
+
+#box_archives ul ul {
+    padding-left:0;
+}
+
+#box_archives ul li {
+    margin-bottom:15px;
+    padding-left:15px;
+}
+
+#box_archives ul li.closed ul {
+    display:none;
+}
+
+#box_archives ul li.opened ul {
+    display:visible;
+}
+
+#box_archives ul li span {
+    font-weight:bold;
+    padding-left:15px;
+}
+
+#box_archives ul li ul li {
+    margin-bottom:5px;
+}
+
+#box_blog {
+    background-color:#efefef;
+}
+
+#box_latest_blog_comments {
+    background-color:#ece9d8;
+}
+
+#box_latest_blog_comments table,
+#box_latest_blog_comments table tr,
+#box_latest_blog_comments table tr td {
+    margin:0;
+    padding:0;
+}
+
+#box_latest_blog_comments #user_photo {
+    width:50px;
+    height:50px;
+}
+
+#box_latest_blog_comments ul {
+    list-style:none;
+    padding:0;
+}
+
+/*#box_blog h1,
+#box_popular h1,
+#box_latest_community_comments h1 {
+  text-align:center;
+  color:#000666 !important;
+  margin-bottom:10px;
+}
+*/
+#box_blog ul {
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+
+#box_blog .title,
+#box_blog .title a {
+    font-size:14px;
+}
+
+#box_wine_search,
+#box_food_search,
+#box_hamper_search,
+#box_search_recipes_new {
+    width:170px;
+    background:#efefef;
+    float:left;
+    margin-left:8px;
+    overflow:hidden;
+    margin-bottom:35px;
+    padding-left:5px;
+}
+
+#box_wine_search #search_text,
+#box_food_search #search_text,
+#box_hamper_search #search_text,
+#box_search_recipes_new #search_text {
+    width:90px;
+}
+
+#box_wine_search #search_region,
+#box_wine_search #search_grape,
+#box_wine_search #search_color,
+#box_wine_search #search_producer_name,
+#box_wine_search #search_price,
+#box_food_search #search_region,
+#box_food_search #search_producer_name,
+#box_food_search #search_price,
+#box_hamper_search #search_producer_name,
+#box_hamper_search #search_price,
+#box_search_recipes_new #search_recipe_type,
+#box_search_recipes_new #search_preparation_time {
+    width:95px;
+}
+
+#box_event {
+    padding:0;
+}
+
+#box_event ul {
+    list-style:none;
+    margin:0;
+    padding:5px;
+}
+
+#box_event ul li {
+    margin-left:10px;
+}
+
+#box_login {
+    margin-bottom:15px;
+    padding:10px;
+    background-color:#f3f3f3;
+}
+
+#box_latest_community_comments {
+}
+
+#box_subscription {
+    background:transparent url(/images/subscribe_bg.png) no-repeat center center;
+    height:111px;
+    width:250px;
+    border:none;
+    padding:0;
+}
+
+#box_subscription #subscription_email {
+    width:98px;
+}
+
+#box_friend h1 {
+    float:left;
+    font-weight:normal;
+    width:100px;
+    color:#BFD02D !important;
+    border-right:1px solid #1B1B1B;
+    text-align:center;
+}
+
+#box_friend form {
+    float:left;
+    padding-left:5px;
+    padding-top:30px;
+}
+
+#box_popular span.more-link a {
+    color:#721041;
+}
+
+#box_upcoming_wine_tours,
+#box_upcoming_events {
+    float:left;
+    width:215px;
+    background-color:#EFEFEF;
+}
+
+#box_upcoming_wine_tours h1,
+#box_upcoming_events h1 {
+    margin-bottom:10px;
+}
+
+#box_upcoming_wine_tours ul,
+#box_upcoming_events ul {
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+
+#box_event_reviews {
+    background-color:#ece9d8;
+}
+/*end*/
+
+#wine_tours_introduction,
+#event_introduction,
+#recipes_introduction {
+    float:left;
+    margin-left:20px;
+    /*  width:470px;*/
+    width:460px;
+}
+
+#event_introduction h3 {
+    border:none;
+}
+
+#recipes_introduction {
+    width:500px;
+}
+
+#blog_introduction {
+    float:left;
+    width:500px;
+}
+
+#blog_rss {
+    float:right;
+}
+
+#blog_container {
+    margin:0 17px;
+    color:black;
+    padding-bottom:25px;
+}
+
+#blog_container ul {
+    margin:0;
+    padding:0;
+    list-style:none;
+}
+
+#blog_container ul li h2 {
+    font-size:14px;
+}
+
+#blog_container .pagination {
+    float:right;
+}
+
+#blog_container .foot {
+    padding:0 0 10px 0;
+    margin:10px 0;
+    border-bottom:2px solid #bfd923;
+}
+
+#featured_wine_tours {
+}
+
+#featured_wine_tours ul {
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+
+#featured_events {
+    /*  margin:0 10px;*/
+}
+
+#featured_events ul {
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+
+#featured_wine_tours ul li,
+#featured_events ul li {
+    margin-bottom:20px;
+    padding-bottom:20px;
+    border-bottom:1px solid #CCCCCC;
+}
+
+#featured_events h3,
+#featured_wine_tours h3 {
+    text-align:center;
+    border:none;
+    color:#666666;
+}
+
+#topSellingWine {
+    width:260px;
+    float:left;
+    margin-left:8px;
+}
+
+#topSellingWine ul,
+#andreasWine ul {
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+
+#topSellingWine ul li,
+#andreasWine ul li {
+    margin:15px 0;
+    border-bottom:1px solid #C5D1C5;
+}
+
+#andreasWine {
+    width:265px;
+    float:left;
+    margin-left:8px;
+}
+
+#wineBanner {
+    text-align:center;
+    margin:5px 0;
+    /*  width:730px;
+      height:240px;
+      margin-top:2px;
+      float:left;
+      padding-left:5px;
+    */
+}
+
+.rightColumnContentWineTour {
+    background-color:#fff;
+    text-align: center;
+    margin-top:-10px;
+}
+
+.rightColumnFavWine {
+    border-top:10px #fff solid;
+    border-bottom:10px #fff solid;
+    text-align: center;
+}
+
+.rightColumnGuide {
+    border-bottom:10px #fff solid;
+    text-align: center;
+}
+
+.wineList {
+    position:relative;
+    width:720px;
+    padding-left:00px;
+    float:left;
+    text-align:left;
+    border-bottom:1px solid #C5D1C5;
+}
+
+.wineList a {
+    font-size:18px;
+    color:#003300;
+}
+
+.wineList a:hover {
+    color:#721041;
+}
+
+.wineList img {
+    padding:0;
+}
+
+#wineDes {
+    width:630px;
+}
+
+#price {
+    top:30px;
+    right:10px;
+    font-size:18px;
+}
+
+/* food page -------------------------------------------------------------------------------------*/
+
+#foodSearch {
+    width:170px;
+    height:230px;
+    border:1px #ccc solid;
+    background:#efefef;
+    float:left;
+    margin-left:8px;
+    overflow:hidden;
+    margin-bottom:30px;
+}
+
+#topSellingFood {
+    width:265px;
+    height:240px;
+    float:left;
+    margin-left:8px;
+}
+
+#deliChoice {
+    width:265px;
+    height:240px;
+    float:left;
+    margin-left:8px;
+}
+
+/* View product page----------------------------------------------------------------------------------------*/
+#productHeading {
+    background-color:#721041;
+}
+
+#productHeading h3 {
+    color:#efefef;
+    padding-left:50px;
+    height:22px;
+}
+
+#productImage {
+    width:100px;
+    height:200px;
+    float:left;
+    text-align:center;
+    margin-left:30px;
+    margin-top:0px;
+}
+
+#productDetails {
+    width:200px;
+    height:150px;
+    float:left;
+    padding-left:20px;
+    padding-top:10px;
+}
+
+#productFacts img {
+    position:absolute;
+    top:230px;
+    left:695px;
+}
+
+#productFacts {
+    width:200px;
+    height:140px;
+    float:left;
+    margin-left:100px;
+    margin-top:10px;
+}
+
+#productWriteup {
+    width:680px;
+    height:130px;
+    margin-left:30px;
+    float:left;
+    margin-top:0px;
+}
+
+#productReview {
+    width:600px;
+    height:100px;
+    float:left;
+    margin-left:30px;
+}
+
+#productRecommend {
+    width:600px;
+    height:100px;
+    float:left;
+    margin-left:30px;
+}
+
+#header {
+    height:18px;
+    background-color:#BCD127;
+    color:#fff;
+    padding-top:4px;
+    padding-bottom:10px;
+    padding-left:20px;
+    padding-right:20px;
+    font-size:18px;
+}
+
+#wineProduct {
+    float:left;
+    margin-top:30px;
+    margin-left:50px;
+}
+
+#wineInfo {
+    margin-top:40px;
+    margin-left:200px;
+    float:left;
+    width:275px;
+}
+
+#wineInfo img {
+    position:absolute;
+    top:205px;
+    left:215px;
+}
+
+#priceHolder {
+    float:left;
+    margin-top:40px;
+    margin-right:30px;
+    width:152px;
+    height:190px;
+    background:transparent url("/images/buy.png") center center;
+}
+
+#priceText {
+    padding-bottom:8px;
+    color:#030;
+    font-size:20px;
+    border-bottom:#ccc 1px solid;
+    width:130px;
+    text-align:center;
+}
+
+#buyButton {
+    margin-top:20px;
+    margin-left:10px;
+}
+
+#qty {
+    font-size:14px;
+    padding-left:10px;
+    margin:10px auto;
+}
+
+#buyText {
+    margin-top:20px;
+}
+
+#buyText img {
+    padding-top:9px;
+    margin-left:2px;
+}
+
+#price1 {
+    margin-bottom:-30px;
+    height:100px;
+    top:40px;
+    width:170px;
+    left:620px;
+    font-size:20px;
+}
+
+#wineDesc,
+#wineProducer,
+#wineReview,
+#wineRelated {
+    width:700px;
+    margin:0 auto;
+    clear:both;
+    word-spacing: 2px;
+    font-size:13px;
+}
+
+#wineReview ul {
+    margin:0;
+    padding:0;
+    list-style:none;
+}
+
+#wineReview ul li {
+    clear:both;
+}
+
+#wineReview ul li img {
+    float:left;
+    margin:0 10px 10px 0;
+}
+
+#wineReview ul li div.description {
+
+}
+
+#wineRelated ul {
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+
+#wineRelated ul li {
+    float:left;
+}
+
+#promotion {
+    float:right;
+    width:320px;
+    font-size:12px;
+    color:#464646;
+    font-weight:bold;
+    text-align:right;
+    margin:10px 0;
+    color:red;
+}
+
+.breadcrumbs {
+    margin:10px 0;
+    padding:0;
+    font-family:Arial;
+    font-size:12px;
+    color:#808080;
+    float:left;
+}
+
+.breadcrumbs a {
+    color:#808080;
+}
+
+#productSearchColumn {
+    width:230px;
+    float:left;
+    margin-right:20px;
+}
+
+#productSearchColumn .block {
+    border:1px solid #CCCCCC;
+    background-color:#efefef;
+    margin-bottom:10px;
+}
+
+#productSearchColumn .block h3 {
+    padding-left:20px;
+}
+
+#expandSearch {
+}
+
+#similarWine {
+}
+
+.rightColumnContent2 {
+    border:1px solid #cccccc;
+    background-color:#F9F9F9;
+    margin-top:20px;
+}
+
+#leftColumnContent1 {
+    border-style:solid;
+    border-width:1px;
+    border-color:#ccc;
+    padding-left:5px;
+    overflow:hidden;
+    padding-top:5px;
+}
+
+#promoBar {
+    height:30px;
+    width:1058px;
+    border:1px #ccc solid;
+    margin:5px;
+    float:left;
+    background-color:#efefef;
+}
+
+/*product*/
+.wine_lists #leftColumnContent,
+.sub_categories #leftColumnContent,
+.reviews #leftColumnContent,
+.checkouts #leftColumnContent,
+.cart #leftColumnContent,
+.wish_list #leftColumnContent,
+.customers #leftColumnContent,
+.orders #leftColumnContent {
+    margin:0;
+    padding:0;
+}
+
+.help-container {
+    border:1px solid #cccccc;
+    margin-top:0;
+    padding:0 10px 10px 10px;
+}
+
+.help #rightColumn,
+.about-us #rightColumn {
+    float:left;
+    margin-right:10px;
+}
+
+.help #leftColumnContent {
+    border:none;
+}
+
+.help #leftColumnContent,
+.about-us #leftColumnContent {
+    /*  float:right;
+      padding:0;
+      width:100%;
+    */
+}
+
+.wine_tours #rightColumn {
+    float:right !important;
+    margin-left:5px !important;
+}
+
+.products #rightColumn,
+#categories_show_sub #rightColumn {
+    float:left;
+    margin-right:5px;
+}
+
+.products #leftColumnContent,
+#categories_show_sub #leftColumnContent {
+    padding:0 0 50px 0;
+    max-width:100%;
+}
+
+.search #box_search_recipes_new,
+.search #box_wine_search,
+.products #box_wine_search,
+.products #box_food_search,
+.products #box_hamper_search,
+#categories_show_sub #box_wine_search,
+#categories_show_sub #box_food_search,
+#categories_show_sub #box_hamper_search {
+    margin:0 0 15px 0;
+    padding:0;
+    width:248px;
+}
+
+.search #box_search_recipes_new h3,
+.search #box_wine_search h3,
+.products #box_wine_search h3,
+.products #box_food_search h3,
+.products #box_hamper_search h3,
+#categories_show_sub #box_wine_search h3,
+#categories_show_sub #box_food_search h3,
+#categories_show_sub #box_hamper_search h3 {
+    padding-left:20px;
+}
+
+.search #box_search_recipes_new table,
+.search #box_wine_search table,
+.products #box_wine_search table,
+.products #box_food_search table,
+.products #box_hamper_search table,
+#categories_show_sub #box_wine_search table,
+#categories_show_sub #box_food_search table,
+#categories_show_sub #box_hamper_search table {
+    margin-left:20px;
+}
+
+.products #box_suggested_wines {
+    padding:0;
+}
+
+.products #box_suggested_wines h3 {
+    padding-left:20px;
+    border:none;
+    text-align:left;
+    margin:0;
+    padding:10px;
+}
+
+.products #box_suggested_wines ul {
+    list-style:none;
+    padding:0 10px 10px 10px;
+    margin:0;
+}
+
+.products #box_suggested_wines ul li {
+    margin-bottom:5px;
+}
+
+.products #box_suggested_wines ul li a {
+    color:black;
+}
+/*end*/
+
+/*recipes*/
+.recipes #leftColumnContent {
+    /*  padding:0;*/
+}
+/*end*/
+
+/*blog*/
+#blog_home {
+    text-align:center;
+    margin:10px auto;
+}
+
+#wineBanner .recipes_home_title {
+    color:white;
+    font-size:20px;
+    position:absolute;
+    margin-left:15px;
+    margin-top:145px;
+    text-align:left;
+}
+
+#wineBanner .community_home_title {
+    color:white;
+    position:absolute;
+    font-size:20px;
+    margin-left:15px;
+    margin-top:105px;
+    text-align:left;
+}
+
+#wineBanner .title_wine_tours {
+    color:white;
+    font-size:20px;
+    margin-left:25px;
+    margin-top:135px;
+    position:absolute;
+    text-align:left;
+    line-height:19px;
+}
+
+#wineBanner .title {
+    color:white;
+    font-size:20px;
+    font-weight:lighter;
+    margin-top:20px;
+    margin-left:460px;
+    position:absolute;
+    text-align:left;
+}
+
+#blog_home .title {
+    color:white;
+    font-size:20px;
+    font-weight:lighter;
+    margin-left:150px;
+    margin-top:75px;
+    position:absolute;
+    text-align:center;
+}
+
+.blog #leftColumnContent {
+    /*  padding:0;*/
+}
+/*end*/
+
+/* product info*/
+table.product_info {
+    width:700px;
+    margin:20px auto;
+}
+
+table.product_info tr,
+table.product_info tr td {
+    margin:0;
+    padding:0;
+}
+
+table.product_info tr td.image {
+    width:222px;
+}
+
+table.product_info tr td.properties {
+    width:380px;
+}
+
+/* recipes */
+#recipeSearch {
+    width:175px;
+    float:left;
+    margin-right:25px;
+}
+
+#latestRecipes {
+    width:340px;
+    float:left;
+    margin-right:20px;
+    margin-left:10px;
+}
+
+#latestRecipes ul,
+#highestRatedRecipes ul {
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+
+#highestRatedRecipes {
+    width:340px;
+    float:left;
+}
+
+h1{
+    color:#333333;
+    font-size:15px;
+}
+
+.rightColumnContentPeople1 {
+    background-color:#F9FFF4;
+    border:1px #ccc solid;
+    text-align: center;
+    padding:5px;
+    padding-bottom:10px;
+    border-bottom:solid #ccc;
+    border-bottom-width:1px;
+}
+
+.rightColumnContentPeople1 h3 {
+    padding:0px;
+    border-bottom:none;
+    color:#030;
+}
+
+#newsletter_recipe {
+    background-color:#CCCCCC;
+    height:85px;
+}
+
+#user_tabs {
+    margin-bottom:10px;
+}
+
+#base_login #leftColumnContent,
+#customers_new #leftColumnContent {
+    padding:0;
+}
+
+#login_box {
+    margin:50px auto;
+}
+
+#login_box tr td {
+    border:1px solid #ccc;
+    padding:0 20px;
+}
+
+#recipes_show_container {
+    margin:30px 40px;
+}
+
+#blog_show_container {
+    margin:20px 40px 40px 40px;
+    color:black;
+}
+
+#blog_show_container .comments ul {
+    list-style:none;
+    padding:0;
+}
+
+#blog_show_container .comments ul li {
+    margin-bottom:10px;
+}
+
+#recipe_new_home_image {
+    text-align:center;
+    margin-top:5px;
+}
+
+#recipe_new_container {
+    margin:0 40px;
+}
+
+#recipe_new_introduction {
+    text-align:center;
+}
+
+.comment_icon {
+    background:transparent url("/images/comment_icon.png") no-repeat left center;
+    padding-left:20px;
+}
+
+#customers_new_container {
+    margin:0 20px;
+}
+
+#customers_new_container .container {
+    padding:0 50px 20px 50px;
+    margin:20px 0;
+    border-bottom:1px solid #cccccc;
+}
+
+#customers_new_container .last {
+    border:none;
+}
+
+#wine_tours_content {
+    margin:10px;
+}
+
+#wine_tours_content h2 {
+    text-align:center;
+}
+
+#wine_tours_content .image {
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+
+#wine_tours_content ul.image li {
+
+}
+/* ============for slide show======*/
+ul.slideshow_images {
+    list-style:none;
+    margin:-5px 10px 0 10px;
+    padding:0;
+}
+
+ul.slideshow_images li {
+    float:left;
+    position:relative;
+    /*width:112px;
+    margin-right:10px;*/
+    margin-right:5px;
+    width:106px;
+    height:48px;
+    vertical-align: middle;
+}
+
+ul.slideshow_images li.image_slide_control {
+    margin-left:-2px;
+    margin-right:0;
+
+}
+
+ul.slideshow_images li a {
+    height:42px;
+    display:block;
+    font-size:12px;
+    /*background:transparent url(/images/thumbTrial2.png) no-repeat left center;*/
+    border:1px solid gray;
+    text-align:center;
+    /*padding:3px 5px 0 3px;*/
+    text-decoration:none;
+    line-height: 38px;
+}
+
+ul.slideshow_images li a.double-line{
+  line-height: 19px;
+}
+
+ul.slideshow_images li a.three-line{
+  line-height: 13px;
+}
+
+ul.slideshow_images li a:hover,
+ul.slideshow_images li.active a {
+    text-decoration:none;
+    /*background:transparent url(/images/thumbTrial2_hover.png) no-repeat left center;*/
+    border:1px solid gray;
+
+
+    /*font-weight:bold;*/
+    font-size:12px;
+}
+
+/*ul.slideshow_images li.number {
+    background: #656565;
+    text-align: center;
+    color: white;
+    padding: 1px 2px;
+    margin: 14px 4px 0 0;
+    width: 10px;
+    height: 15px;
+    float: left;
+}
+ul.slideshow_images li.number a {
+    display: block;
+    width:10px;
+    height: 15px;
+    padding: 1px 2px;
+    color: white;
+}
+ul.slideshow_images li.number a:hover {
+    background: #d7d5bc;
+    color: black;
+}
+ul.slideshow_images li.number_select {
+    background: #d7d5bc;
+    color: black;
+    padding: 1px 2px;
+    margin: 14px 4px 0 0;
+    width: 10px;
+    height: 15px;
+    float: left;
+}
+ul.slideshow_images li.number_select a {
+    display: block;
+    width:10px;
+    height: 15px;
+}
+
+ul.slideshow_images li.image_box {
+    border: solid 1px #cccccc;
+    width: 110px;
+    height: 45px;
+    margin: 0 4px 0 0;
+}
+ul.slideshow_images li.image_box a {
+    display: block;
+    width: 110px;
+    height: 45px;
+}*/
+
+.white_text {
+    color: white;
+    text-align: center;
+    padding: 1px 2px;
+    margin:13px 8px 0 0;
+    width: 10px;
+    height: 15px;
+    float: left;
+}
+.white_text a {
+    color: white;
+    display: block;
+    width: 10px;
+    height: 15px;
+    padding: 1px 2px;
+    background: #656565;
+    text-align: center;
+}
+.white_text a:hover {
+    background:  #d7d5bc;
+    color: black;
+}
+.white_text_select {
+    color: black;
+    text-align: center;
+    padding: 1px 2px;
+    margin:13px 8px 0 0;
+    width: 10px;
+    height: 15px;
+    float: left;
+    background: #d7d5bc;
+
+}
+.white_text_select a {
+    display: block;
+    color: black;
+    text-align: center;
+}
+
+a.slide_control {
+    /*border:1px solid green;*/
+
+    height:18px;
+    /*width:108px;*/
+    text-indent:-9000px;
+    margin:0;
+    padding:0;
+    display:block;
+    position:relative;
+}
+
+a#PauseButton {
+    background:transparent url(/images/new/pause.gif) no-repeat left top;
+    margin: 0;
+    display: block;
+}
+
+a#PauseButton:hover {
+    background:transparent url(/images/new/pause.gif) no-repeat left top;
+}
+
+a#PlayButton {
+    background:transparent url(/images/new/play.gif) no-repeat left top;
+    margin: 0;
+}
+
+a#PlayButton:hover {
+    background:transparent url(/images/new/play.gif) no-repeat left top;
+}
+/* changes */
+a#PrevButton {
+    background:transparent url(/images/new/prev.gif) no-repeat left top;
+    display: block;
+    width: 16px;
+    height: 18px;
+}
+a#PrevButton:hover {
+    background:transparent url(/images/new/prev.gif) no-repeat left top;
+}
+a#NextButton {
+    background:transparent url(/images/new/next.gif) no-repeat left top;
+    display: block;
+    width: 16px;
+    height: 18px;
+}
+a#NextButton:hover {
+    background:transparent url(/images/new/next.gif) no-repeat left top;
+}
+/*=========end slide show============*/
+#remote_form_container {
+    width:55%;
+    border:4px solid #ccc;
+    background:#fff;
+    padding:0 20px 20px;
+    margin:0 auto;
+}
+
+.data {
+    color:#000;
+}
+
+.data a {
+    color:#6a5fbb;
+}
+
+
+#loader-image {
+    text-align:center;
+}
+
+#loader-image img {
+    margin-top:25px;
+}
+
+#loader-image {
+    width:98px;
+    height:98px;
+}
+
+.user_photo_big {
+    width:98px;
+    height:98px;
+}
+
+ul.photo_list {
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+
+ul.photo_list li {
+    float:left;
+    margin-right:10px;
+}
+
+ul.photo_list li img:hover{
+    /*  width:51px;
+      height:51px;
+    */
+}
+
+.notice {
+    font-style:italic;
+    color:red;
+}
+
+#cart_form {
+}
+
+.search #leftColumnContent {
+    padding:0;
+}
+
+.people #leftColumnContent {
+    /*  float:right;*/
+    max-width:750px;
+}
+
+.people #rightColumn {
+    float:left;
+    margin-right:5px;
+}
+
+/*box price for product*/
+.box_price_product {
+    -moz-border-radius:5px 5px 5px 5px;
+    border:1px solid #E2E2E2;
+    text-align:center;
+    padding:15px;
+}
+
+.box_price_product ul {
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+
+.box_price_product ul li.price_info {
+    border-bottom:1px solid #cccccc;
+    padding-bottom:10px;
+    margin-bottom:15px;
+}
+
+.box_price_product ul li span.price {
+    font-size:20px;
+    color:#721041;
+}
+
+/*box price*/
+.box_price {
+    -moz-border-radius:5px 5px 5px 5px;
+    width:130px;
+    height:120px;
+    text-align:center;
+    border:1px solid #e2e2e2;
+}
+
+.box_price ul.inner-container {
+    margin:15px auto 0;
+    list-style:none;
+    padding:0;
+}
+
+.box_price ul.inner-container li {
+    margin:0 10px;
+    padding:0 0 5px 0;
+}
+
+.box_price ul.inner-container li.price {
+    position:inherit;
+    font-size:16px;
+    font-weight:bold;
+    margin-bottom:10px;
+    padding-bottom:5px;
+    border-bottom:1px solid #e2e2e2;
+}
+
+#my_reviews_list li.even {
+    border-left:none;
+    border-right:none;
+}
+
+.ratings {
+    width:86px;
+    height:27px;
+    display:block;
+}
+
+.opened span {
+    background:transparent url("/images/arrow-opened.png") no-repeat left center;
+}
+
+.closed span {
+    background:transparent url("/images/arrow-closed.png") no-repeat left center;
+}
+
+/*forum*/
+#forum-container table {
+    border:1px solid #000000;
+}
+
+#forum-container table tr td.last {
+    border-right:none;
+}
+
+#forum-container table tr.last td {
+    border-bottom:none;
+}
+
+#forum-container table tr td {
+    border-bottom:1px solid #000000;
+    border-right:1px solid #000000;
+    padding:10px;
+}
+
+.border {
+    /*  padding: 8px 4px 8px 8px;
+      border: 1px solid #cccccc;
+    */
+    width:100%;
+}
+
+.border th.f-bold {
+    border: 1px solid #ffffff;
+    background-color:#c3c3c3;
+    padding:5px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.border td {
+    border: 1px solid #ffffff;
+    background-color:#e9e9e9;
+}
+
+.post-text {
+    padding: 5px 5px 10px 5px;
+    font-size: 12px;
+}
+
+/*end*/
+
+/* REPLY BOX*/
+
+div.editbox
+{
+    background-color:green;
+    position:fixed;
+    bottom:0;
+    left:0;
+    width:100%;
+    padding:6px 0 7px;
+    z-index:50;
+}
+
+div.editbox .container
+{
+    width:92%;
+    margin:0 auto;
+    min-width:760px;
+}
+
+div.editbox p { margin:0.5em 0;}
+div.editbox textarea
+{
+    width:100%;
+    background:white;
+    opacity:1;
+    font-size:0.8em;
+    font-family: 'Lucida Grande', Tahoma, Arial, Helvetica, sans-serif;
+}
+div.editbox .button_or a
+{
+    color:#ccc;
+}
+div.editbox table td { border:0; }
+div.editbox a.utility
+{
+    color: #f99;
+    font-size: 0.65em;
+    padding: 2px 5px 4px;
+    display: block;
+    font-family: 'Lucida Grande', Tahoma, Arial, Helvetica, sans-serif;
+    float: right;
+    text-align: right;
+    margin-top: 0.2em;
+}
+
+div.editbox h5
+{
+    /*  background:#222;*/
+    color:white;
+    padding:2px 10px 3px;
+    font-size:0.7em;
+    margin:0.2em 0 0.5em;
+}
+
+div.editbox p.help span,
+div.editbox ul.help span { color:#666; }
+div.editbox p.help,
+div.editbox ul.help
+{
+    padding:3px 10px;
+    font-size:0.75em;
+    color:#ccc;
+    font-family: 'Lucida Grande', Tahoma, Arial, Helvetica, sans-serif;
+}
+div.editbox ul.help { margin:0; }
+
+div.editbox ul.help {
+    list-style-type:none; }
+
+#monitor_topic a
+{
+    color: #666;
+}
+
+/* END REPLY*/
+
+.profile-container {
+    margin:20px;
+}
+
+ul.profile-list-info,
+ul.profile-list-info li ul {
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+
+ul.profile-list-info li ul {
+    padding-bottom:10px;
+}
+
+ul.profile-list-info li {
+    float:left;
+    width:220px;
+    border:1px solid #cccccc;
+    margin-left:10px;
+}
+
+ul.profile-list-info li h1 {
+    margin:10px;
+    padding-bottom:10px;
+    border-bottom:1px solid #cccccc;
+    color:#003400;
+    font-weight:normal;
+}
+
+ul.profile-list-info li ul li {
+    float:none;
+    border:none;
+    list-style:square;
+    margin-left:20px;
+    width:195px;
+}
+
+#follower {
+    border:1px solid #cccccc;
+    margin:10px;
+    float:left;
+    width:97%;
+}
+
+#follower h1 {
+    margin-left:10px;
+}
+
+#follower ul {
+    list-style:none;
+    margin:10px;
+    padding:10px;
+    float:left;
+    text-align:center;
+}
+
+#follower ul li {
+    float:left;
+    width:50px;
+    margin-right:20px;
+}
+
+#site-map {
+    margin:0 20px;
+}
+
+#site-map h3 {
+    color:#083300;
+    border:none;
+}
+
+#site-map h6 {
+    font-weight:bold;
+}
+
+#site-map ul {
+    list-style:none;
+    padding-left:20px;
+}
+
+#site-map ul li a {
+    color:black;
+}
+
+#site-map .section {
+    float:left;
+    width:200px;
+}
+
+.testimonials #leftColumnContent {
+    padding:0;
+}
+
+.no-padding #leftColumnContent {
+    padding:0;
+    max-width:750px;
+}
+
+#recipe_comments ul {
+    list-style:none;
+    padding:0;
+}
+
+ul.my-account-links {
+
+}
+
+ul.my-account-links li {
+
+}
+
+ul.my-account-links li a {
+    font-size:14px;
+    color:white;
+}
+
+.account-title {
+    margin:0;
+    background-color:#F3F8DA;
+    padding:10px 10px 10px 15px;
+}
+
+.sub-categories-list tr:last-child td {
+    border:none !important;
+}
+
+.search #rightColumn {
+    float:left;
+    margin-right:5px;
+}
+
+.product_dis {
+    margin: 10px 20px 10px 30px;
+    padding: 0;
+    width: auto;
+    float: left;
+
+}
+
+/*changes by subrata */
+.green_btn {
+    background:url("/images/green_btn.png") no-repeat;
+    width:120px;
+    text-align:center;
+    color:white;
+    height:24px;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:16px;
+    font-weight:bold;
+    border:none;
+}
+.green_btn a {
+    display:block;
+    text-decoration:none;
+    color:white;
+    width:120px;
+    line-height:24px;
+}
+.search_btn{
+    background:url("/images/search_button.png") no-repeat;
+    width:71px;
+    text-align:center;
+    color:white;
+    height:23px;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:16px;
+    font-weight:bold;
+    border:none;
+    padding: 0 0 3px 0;
+}
+

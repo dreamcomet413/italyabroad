@@ -1,0 +1,21 @@
+--- 
+resources_1: 
+  content_type: image/pjpeg
+  size: "71189"
+  id: "1"
+  filename: Tramonto.jpg
+resources_2: 
+  content_type: image/jpeg
+  size: "12607"
+  id: "2"
+  filename: 251.jpg
+resources_3: 
+  content_type: image/jpeg
+  size: "14227"
+  id: "3"
+  filename: 249.jpg
+resources_4: 
+  content_type: application/pdf
+  size: "527346"
+  id: "8"
+  filename: lista_vini_Italyabroad.pdf

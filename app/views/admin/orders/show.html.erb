@@ -1,0 +1,111 @@
+<%- @title = "Order No #{@order.id}"; @page_id = "Sales" -%>
+<%- @breadcrumbs = "Sales &raquo; #{link_to("Orders", admin_orders_path)} &raquo; #{@title}" -%>
+
+<div class="inner_content orders" id="admin_orders_index">
+  <h2><%= @title %></h2>
+  <br />
+  
+  <div id="form-ct">
+  	<div id="form-cn">
+  		<div style="padding:10px 5px 10px 5px">
+  			<div style="float:left;width:300px">
+  				<b>SOLD TO:</b>
+  				<%= "<br />" + @order.user.name + " " + @order.user.surname %>
+  				<%= "<br />" + @order.user.address unless @order.user.address.blank? %>
+  				<%= "<br />" + @order.user.address_2 unless @order.user.address_2.blank?  %>
+  				<%= "<br />" + @order.user.city unless @order.user.city.blank? %>
+  				<%= "<br />" + @order.user.cap unless @order.user.cap.blank? %>
+  				<%= "<br />" + @order.user.country unless @order.user.country .blank?%>
+  				<%= "<br />" + @order.user.telephone.to_s unless @order.user.telephone.blank? %>
+  				<%= "<br />" + mail_to(@order.user.email) unless @order.user.email.blank? %>
+  			</div>
+  			<% if @order.different_shipping_address %>
+  			<div style="float:left;">
+  				<b>SHIP TO:</b>
+  				<%= "<br />" + @order.ship_name unless @order.ship_name.blank? %>
+  				<%= "<br />" + @order.ship_address unless @order.ship_address.blank? %>
+  				<%= "<br />" + @order.ship_address_2 unless @order.ship_address_2.blank?  %>
+  				<%= "<br />" + @order.ship_city unless @order.ship_city.blank? %>
+  				<%= "<br />" + @order.ship_cap unless @order.ship_cap.blank? %>
+  				<%= "<br />" + @order.ship_country unless @order.ship_country .blank?%>
+  			</div>
+  			<% else %>
+  			<div style="float:left;">
+  				<b>SHIP TO:</b>
+  				<%= "<br />" + @order.user.address unless @order.user.address.blank? %>
+  				<%= "<br />" + @order.user.address_2 unless @order.user.address_2.blank?  %>
+  				<%= "<br />" + @order.user.city unless @order.user.city.blank? %>
+  				<%= "<br />" + @order.user.cap unless @order.user.cap.blank? %>
+  				<%= "<br />" + @order.user.country unless @order.user.country .blank?%>
+  			</div>
+  			<% end %>
+  			<br style="clear:both" />
+  		</div>
+  		<div style="padding:10px 5px 10px 5px">
+  			Order Number: <%= @order.id %><br />
+  			Order Date: <%= @order.created_at.strftime("%d/%m/%Y") %><br />
+  			Invoice Date: <%= Time.now.strftime("%d/%m/%Y") %>
+  		</div>
+  		<div style="padding:40px 5px 10px 5px">
+  	<table id="table" border="0" cellspacing="0" cellpadding="0" class="formatTable">
+  	 <tr><th style="text-align:left;width:75px">Code</th>
+  	 <th style="width:75px">Quantity</th>
+  	 <th style="text-align:left">Description</th>
+  	 <th style="width:100px">Price<span style="font-size:10px">(ex VAT)</span></th>
+  	 <th>VAT</th>
+  	 <th style="width:100px">Price<span style="font-size:10px">(inc VAT)</span></th>
+  	 <th style="text-align:right; width:75px">Total</th>
+  	 </tr>
+  			<% for order_item in @order.order_items %>
+  				<% fields_for "order_item", order_item do |f| %>
+  					<tr>
+  						<td style="text-align:left"><%= order_item.product_code %></td>
+  						<td style="text-align:center"><%= order_item.quantity %></td>
+  						<td style="text-align:left"><%= order_item.name %></td>
+  						<td style="text-align:center"><%= number_to_currency order_item.vat, :unit => "&pound;" %></td>
+  						<td style="text-align:center"><%= order_item.rate %></td>
+  						<td style="text-align:center"><%= number_to_currency order_item.price, :unit => "&pound;" %></td>
+  						<td style="text-align:right"><%= number_to_currency order_item.total, :unit => "&pound;" %></td>
+  					</tr>
+  				<% end %>
+  			<% end %>
+  				<tr>
+  					<td colspan="7" style="text-align:right">
+  						<table id="table" border="0" cellpadding="0" cellspacing="0" style="margin-top:20px;float:right;text-align:right;border-top:1px solid black">
+  							<tr><td style="text-align:right">Sub Total:</td><td style="width:120px"><%= number_to_currency(@order.sub_total, :unit => "&pound;") %></td></tr>
+  							<% if @order.sub_total < Setting.order_delivery_amount %>
+  							<tr><td style="text-align:right"><%= @order.delivery_name %>:</td><td><%= number_to_currency @order.delivery_price, :unit => "&pound;" %></td></tr>
+  							<% end %>
+  							<% unless @order.cupon_code.blank? %>
+  							<tr><td style="text-align:right">Cupon:</td><td style="color:red">- <%= number_to_currency @order.cupon_price, :unit => "&pound;" %></em></td></tr>
+  							<% end %>
+  							<% if @order.gift_option && @order.gift_option.price > 0 %>
+  							<tr><td style="text-align:right">Gift <%= @order.gift_option.name %>:</td><td><%= number_to_currency @order.gift_option.price, :unit => "&pound;" %></td></tr>
+  							<% end %>
+  							<tr><td style="text-align:right"><b>Total:</b></td><td></b><%= number_to_currency(@order.total, :unit => "&pound;") %></b></td></tr>
+  						</table>
+  					</td>
+  				</tr>
+  			</table>
+  			<br style="clear:both"/>
+  			<% unless @order.note.blank? %>
+  			<div style="padding:10px 5px 10px 5px;">
+  				<b>Customer Comment:</b><br />
+  				<%= @order.note.gsub("\n","<br />") if @order.note %>
+  			</div>
+  			<% end %>
+  			<% if @order.gift_option %>
+  			<div style="padding:10px 5px 10px 5px;">
+  				<b>Gift Card Message:</b><br />
+  				<%= @order.gift_note.gsub("\n","<br />") if @order.gift_note %>
+  			</div>
+  			<% end %>
+  			<div style="font-size:11px;height:20px;margin-top:80px">
+  				Don't forget to write your review for the produces purchased.
+  				Let our users know what you think about our produces and if you are the first to write the review you will also receive £5 discount on your next purchase.
+  			</div>
+  		</div>
+  	</div>
+  </div>
+
+</div>

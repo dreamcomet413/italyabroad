@@ -1,0 +1,17 @@
+<fieldset id="extra_information">
+  <legend>Edit <em>Extra</em> for <em>"<%= @recipe.name %>"</em></legend>
+	<table cellspacing="5" cellpadding="5">
+    <tr>
+      <td style="width:200px;text-align:right">Recipe Description:</td>
+      <td><%= text_area :recipe, :description, :rows => 10, :style => "width:99%" %></td>
+    </tr>
+		<tr>
+		  <td style="width:200px;text-align:right">Ingredients:</td>
+		  <td><%= text_area :recipe, :ingredients, :rows => 10, :style => "width:99%" %></td>
+    </tr>
+		<tr>
+		  <td style="width:200px;text-align:right">Preparation:</td>
+		  <td><%= text_area :recipe, :preparation, :rows => 10, :style => "width:99%" %></td>
+		</tr>
+	</table>
+</fieldset>

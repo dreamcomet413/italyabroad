@@ -1,0 +1,34 @@
+<%- active ||= 'general' -%>
+<ul id="product_links">
+  <li class="<%= 'active' if active == "general" %>">
+    <%= @product.new_record? ? link_to("General Information", new_admin_product_path, :class => "#{'active' if active == "general"}") : link_to("General Information", edit_admin_product_path(@product), :class => "#{'active' if active == "general"}") %>
+  </li>
+  <li class="<%= 'active' if active == "meta" %>">
+    <%= @product.new_record? ? link_to("Meta") : link_to("Meta", product_meta_path(@product), :class => "#{'active' if active == "meta"}") %>
+  </li>
+  <li class="<%= 'active' if active == "categories" %>">
+    <%= @product.new_record? ? link_to("Categories") : link_to("Categories", product_categories_path(@product), :class => "#{'active' if active == "categories"}") %>
+  </li>
+  <li class="<%= 'active' if active == "extra" %>">
+    <%= @product.new_record? ? link_to("Extra") : link_to("Extra", product_extra_path(@product), :class => "#{'active' if active == "extra"}") %>
+  </li>
+  <li class="<%= 'active' if active == "ideal_with" %>">
+    <%= @product.new_record? ? link_to("Ideal With") : link_to("Ideal With", product_ideal_with_path(@product), :class => "#{'active' if active == "ideal_with"}") %>
+  </li>
+  <li class="<%= 'active' if active == "how_to_cook" %>">
+    <%= @product.new_record? ? link_to("How To Cook") : link_to("How To Cook", product_how_to_cook_path(@product), :class => "#{'active' if active == "how_to_cook"}") %>
+  </li>
+  <li class="<%= 'active' if active == "correlation" %>">
+    <%= @product.new_record? ? link_to("Correlation") : link_to("Correlation", product_correlation_path(@product), :class => "#{'active' if active == "correlation"}") %>
+  </li>
+  <li class="<%= 'active' if active == "images" %>">
+    <%= @product.new_record? ? link_to("Images") : link_to("Images", product_images_path(@product), :class => "#{'active' if active == "images"}") %>
+  </li>
+  <li class="<%= 'active' if active == "files" %>">
+    <%= @product.new_record? ? link_to("Files") : link_to("Files", product_files_path(@product), :class => "#{'active' if active == "files"}") %>
+  </li>
+  <li class="<%= 'active' if active == "included_product" %>">
+    <%= @product.new_record? ? link_to("Included Products") : link_to("Included Products", included_products_path(@product), :class => "#{'active' if active == "files"}") %>
+  </li>
+</ul>
+<div style="clear:both;"></div>

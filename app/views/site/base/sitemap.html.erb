@@ -1,0 +1,110 @@
+<% @title = "Italyabroad.com sitemap"; @class = "sitemap no-padding"; @breadcrumbs = "#{link_to("Home", root_url)} &raquo; Sitemap" %>
+
+<div id="header"><strong>italyabroad.com</strong> Sitemap</div>
+
+<!--<div id="site-map">
+  <br />
+  <p>
+    Please use our sitemap to help guide your way around italyabroad.com. If you have any trouble finding a particular product, please don't hesitate to <%= link_to "contact us", :controller => :base, :action => :contact %>
+  </p>
+  <div style="border-top:1px solid #cccccc;">
+    <h3>Useful pages and information</h3>
+    <div class="section" style="margin-left:20px;">
+      <h6>About Us</h6>
+      <ul>
+        <li><%= link_to "Who we are", about_us_path %></li>
+        <li><%= link_to "Our principles and philosophy", our_principles_path %></li>
+        <li><%= link_to "Meet us", meet_us_path %></li>
+        <li><%= link_to "Contact us", contact_us_path %></li>
+        <li><%= link_to "Wholesale", wholesale_enquiry_path %></li>
+        <li><%= link_to "Corporate services", corporate_path %></li>
+      </ul>
+    </div>
+    <div class="section">
+      <h6>Community</h6>
+      <ul>
+        <li><%= link_to "Andrea's Blog", blog_index_path %></li>
+        <li><%= link_to "Forum", forums_path %></li>
+        <li><%= link_to "Latest entries", posts_path %></li>
+        <li><%= link_to "Browse threads", forums_path %></li>
+        <li><%= link_to "Our members" %></li>
+        <li><%= link_to "Testimonial", testimonial_path %></li>
+      </ul>
+    </div>
+    <div class="section">
+      <h6>Help</h6>
+      <ul>
+        <li><%= link_to "Terms & Conditions", terms_and_conditions_path %></li>
+        <li><%= link_to "Privacy Policy ", privacy_policy_path %></li>
+        <li><%= link_to "Delivery service", delivery_services_path %></li>
+        <li><%= link_to "Managing account", managing_account_path %></li>
+        <li><%= link_to "Contact details", contact_details_path %></li>
+        <li><%= link_to "Sitemap", sitemap_path %></li>
+      </ul>
+    </div>
+  </div>
+  <div style="clear:both;"></div>
+  <div style="border-top:1px solid #cccccc;">
+    <h3>Browse by categories</h3>
+    <div class="section" style="margin-left:20px;">
+      <%- wine = Category.find('wine') -%>
+      <h6><%= link_to "Wine", "/wine" %></h6>
+      <ul>
+        <%- wine.children.each do |sub_wine| -%>
+      	<li><%= link_to sub_wine.name, nested_categories_url(wine, sub_wine) %></li>
+      	<%- end -%>
+      	<li><%= link_to "Grape & Wine guide", grapes_path %></li>
+      </ul>
+    </div>
+    <div class="section">
+      <%- food = Category.find('food') -%>
+      <h6><%= link_to "Food", "/food" %></h6>
+      <ul>
+        <%- food.children.each do |sub_food| -%>
+      	<li><%= link_to sub_food.name, nested_categories_url(food, sub_food) %></li>
+      	<%- end -%>
+      </ul>
+    </div>
+    <div class="section">
+      <%- hampers = Category.find('hampers') -%>
+      <h6><%= link_to "Hampers", "/hampers" %></h6>
+      <ul>
+        <%- hampers.children.each do |sub_hamper| -%>
+        <li><%= link_to sub_hamper.name, nested_categories_url(hampers, sub_hamper) %></li>
+        <%- end -%>
+      </ul>
+    </div>
+    <div style="clear:both;"></div>
+    <div class="section" style="margin-left:20px;">
+      <%- events = Category.find_by_name("Events") -%>
+      <h6><%= link_to "Events", "/events"  %></h6>
+    </div>
+    <div class="section">
+      <%- wine_tours = Category.find_by_name("Wine Tours") -%>
+      <h6><%= link_to "Wine Tour", "/wine-tours" %></h6>
+    </div>
+    <div class="section">
+      <h6><%= link_to "Recipes", recipes_path %></h6>
+    </div>
+  </div>
+  <br /><br /><br /><br /><br />
+
+
+</div>-->
+<% @about = AboutU.find(:first, :conditions => {:link_type => "sitemap"} ) %>
+<div id="site-map">
+  <% if @about %>
+  <%= @about.description  %>
+  <% else %>
+        <p style="padding:30px 0 30px 0;text-align:center;font: bold 16px Arial">Coming soon...</p>
+      <% end %>
+</div>
+
+
+<% content_for :right do %>
+	<%= render :partial => '/site/shared/box_grape_guide' %>
+	<br />
+	<%= render :partial => '/site/shared/box_subscriptions' %>
+	<br />
+	<%= render :partial => '/site/shared/box_popular' %>
+<% end %>

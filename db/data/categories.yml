@@ -1,0 +1,687 @@
+--- 
+categories_26: 
+  friendly_identifier: wine-hampers
+  image_url: 
+  key_2: ""
+  name: Wine Hampers
+  show_in_boxes: "1"
+  key_3: ""
+  title: Wine hamper, wine gift ideas, wine boxes, magnum
+  lft: "50"
+  show_in_menu: "1"
+  layout_card: 
+  meta_key: Wine hamper, wine gift ideas, wine boxes, magnum
+  id: "1903"
+  layout_image: 
+  meta_description: Wine hamper, wine gift ideas, wine boxes, magnum
+  description: Wine hamper, wine gift ideas, wine boxes, magnum
+  layout_search: 
+  image_id: 
+  rgt: "51"
+  parent_id: "1901"
+  layout: hamper_sub_category
+  key_1: ""
+categories_15: 
+  friendly_identifier: extra-virgin-olive-oil
+  image_url: 
+  key_2: ""
+  name: Extra virgin olive oil
+  show_in_boxes: "1"
+  key_3: ""
+  title: "Italian Extra Virgin Olive Oil "
+  lft: "28"
+  show_in_menu: "1"
+  layout_card: 
+  meta_key: Italian Extra Virgin Olive Oil,Italian Olive Oil,Extra Virgin Olive Oil
+  id: "1892"
+  layout_image: 
+  meta_description: |
+    Italian Extra Virgin Olive Oil from Small Producers, High Quality Italian Olive Oil, DOP Extra Virgin Olive Oil, Italian DOP Olive Oil
+
+  description: |
+    Italian Extra Virgin Olive Oil from Small Producers, High Quality Italian Olive Oil, DOP Extra Virgin Olive Oil, Italian DOP Olive Oil
+
+  layout_search: 
+  image_id: 
+  rgt: "29"
+  parent_id: "1888"
+  layout: food_sub_category
+  key_1: ""
+categories_9: 
+  friendly_identifier: special-offers
+  image_url: 
+  key_2: ""
+  name: Special Offers
+  show_in_boxes: "1"
+  key_3: ""
+  title: Italian wines at unbelievable prices
+  lft: "16"
+  show_in_menu: "1"
+  layout_card: 
+  meta_key: special offer, wine, reduced wine, special offers
+  id: "1886"
+  layout_image: 
+  meta_description: Italian wines at special price, barolo, brunello, amarone
+  description: Italian wines at special price, barolo, brunello, amarone
+  layout_search: 
+  image_id: 
+  rgt: "17"
+  parent_id: "1878"
+  layout: wine_sub_category
+  key_1: ""
+categories_27: 
+  friendly_identifier: christmas-hampers
+  image_url: 
+  key_2: ""
+  name: Christmas Hampers
+  show_in_boxes: "1"
+  key_3: ""
+  title: Christmas hampers, Christmas gifts, Christmas ideas
+  lft: "52"
+  show_in_menu: "1"
+  layout_card: 
+  meta_key: Christmas hampers, Christmas gifts, Christmas ideas
+  id: "1904"
+  layout_image: 
+  meta_description: Christmas hampers, Christmas gifts, Christmas ideas
+  description: Christmas hampers, Christmas gifts, Christmas ideas
+  layout_search: 
+  image_id: 
+  rgt: "53"
+  parent_id: "1901"
+  layout: hamper_sub_category
+  key_1: ""
+categories_16: 
+  friendly_identifier: pasta-sauces
+  image_url: 
+  key_2: ""
+  name: Pasta sauces
+  show_in_boxes: "1"
+  key_3: ""
+  title: Traditional Italian pasta sauce, basil, olives, peppers
+  lft: "30"
+  show_in_menu: "1"
+  layout_card: wine_card
+  meta_key: Traditional Italian pasta sauce, basil, olives, peppers
+  id: "1893"
+  layout_image: 
+  meta_description: Traditional Italian pasta sauce with olives, basil, peppers and aubergines made by small italian producers
+  description: Traditional Italian pasta sauce with olives, basil, peppers and aubergines made by small italian producers
+  layout_search: wine_search
+  image_id: 
+  rgt: "31"
+  parent_id: "1888"
+  layout: food_sub_category
+  key_1: ""
+categories_28: 
+  friendly_identifier: valentines-gifts
+  image_url: 
+  key_2: ""
+  name: Valentines gifts
+  show_in_boxes: "1"
+  key_3: ""
+  title: Valentines gift for her and him, Valentines food hampers
+  lft: "54"
+  show_in_menu: "1"
+  layout_card: 
+  meta_key: Valentine Luxury Hamper,Gifts Ideas
+  id: "1905"
+  layout_image: 
+  meta_description: "Valentine luxury hampers and gifts idea "
+  description: Valentine luxury hampers and gifts idea
+  layout_search: 
+  image_id: 
+  rgt: "55"
+  parent_id: "1901"
+  layout: hamper_sub_category
+  key_1: ""
+categories_17: 
+  friendly_identifier: organic-pasta-sauces
+  image_url: 
+  key_2: ""
+  name: Organic pasta sauces
+  show_in_boxes: "1"
+  key_3: ""
+  title: ""
+  lft: "32"
+  show_in_menu: "1"
+  layout_card: wine_card
+  meta_key: ""
+  id: "1894"
+  layout_image: 
+  meta_description: ""
+  description: ""
+  layout_search: wine_search
+  image_id: 
+  rgt: "33"
+  parent_id: "1888"
+  layout: food_sub_category
+  key_1: ""
+categories_29: 
+  friendly_identifier: wine-tours
+  image_url: 
+  key_2: ""
+  name: Wine Tours
+  show_in_boxes: "1"
+  key_3: ""
+  title: Italian Wine Tours, Wine Holidays, Wine Tasting Holidays
+  lft: "57"
+  show_in_menu: "1"
+  layout_card: "wine_tour_card"
+  meta_key: Italian Wine Tour,Self-guided Wine Tasting Tours,Guided Wine Tasting in Italy,Wine Tasting Holiday
+  id: "1906"
+  layout_image: 
+  meta_description: Italian Wine Tour, Wine Tasting Holiday, Wine Holiday Tour, Self-guided Wine Tasting Tours, Guided Wine Tasting Tour in Italy
+  description: Italian Wine Tour,self-guided wine tasting tours, guided wine tasting in Italy
+  layout_search: 
+  image_id: 
+  rgt: "58"
+  parent_id: 
+  layout: wine_tour_category
+  key_1: ""
+categories_18: 
+  friendly_identifier: pasta-collection
+  image_url: 
+  key_2: ""
+  name: Pasta collection
+  show_in_boxes: "1"
+  key_3: ""
+  title: ""
+  lft: "34"
+  show_in_menu: "1"
+  layout_card: wine_card
+  meta_key: ""
+  id: "1895"
+  layout_image: 
+  meta_description: ""
+  description: ""
+  layout_search: wine_search
+  image_id: 
+  rgt: "35"
+  parent_id: "1888"
+  layout: food_sub_category
+  key_1: ""
+categories_1: 
+  friendly_identifier: wine
+  image_url: http://www.italyabroad.com/product-search?text=prosecco
+  key_2: Fantastic Italian Wines
+  name: Wine
+  show_in_boxes: "1"
+  key_3: Italian Wine Small Producers
+  title: Italian Wines from Small Producers, Biggest Range in the UK
+  lft: "1"
+  show_in_menu: "1"
+  layout_card: wine_card
+  meta_key: Italian Wines from Small Producers, Biggest Range in the UK
+  id: "1878"
+  layout_image: product_wine
+  meta_description: Fantastic Italian Wines from Small Producers, the Biggest Range of Italian Wines in the UK, Better Value for Money Italian Wines
+  description: Fantastic Italian Wines from Small Producers, the Biggest Range of Italian Wines in the UK, Better Value for Money Italian Wines
+  layout_search: wine_sub_category
+  image_id: "1110"
+  rgt: "20"
+  parent_id: 
+  layout: wine_category
+  key_1: Italian Wines
+categories_30: 
+  friendly_identifier: events
+  image_url: ""
+  key_2: ""
+  name: Events
+  show_in_boxes: "0"
+  key_3: ""
+  title: "Wine Tasting Events - Corporate Events - Wine Courses "
+  lft: "59"
+  show_in_menu: "1"
+  layout_card: event_card
+  meta_key: Wine Tasting Events,Food Events,Corporate Wine Events,Wine Courses
+  id: "1907"
+  layout_image: product_event
+  meta_description: Wine Tasting Events Newcastle,Food Tasting Events,Corporate Wine Events,Wine Courses Newcastle,Wine Tasting Events Sunderland
+  description: Wine Tasting Events Newcastle,Food Tasting Events,Corporate Wine Events,Wine Courses Newcastle,Wine Tasting Events Sunderland
+  layout_search: event_search
+  image_id: 
+  rgt: "60"
+  parent_id: 
+  layout: event_category
+  key_1: ""
+categories_19: 
+  friendly_identifier: specialties
+  image_url: 
+  key_2: ""
+  name: Specialties
+  show_in_boxes: "1"
+  key_3: ""
+  title: Italian specialties in olive oil, porcini, black olives, green olives
+  lft: "36"
+  show_in_menu: "1"
+  layout_card: 
+  meta_key: porcini mushrooms, sun dried tomatoes, green olives, black olives, pickles
+  id: "1896"
+  layout_image: 
+  meta_description: Traditional Italian specialties in extra virgin olive oil, green olives, black olives, aubergines, roasted artichokes, porcini mushrooms made by small producers
+  description: Traditional Italian specialties in extra virgin olive oil, green olives, black olives, aubergines, roasted artichokes, porcini mushrooms made by small producers
+  layout_search: 
+  image_id: 
+  rgt: "37"
+  parent_id: "1888"
+  layout: food_sub_category
+  key_1: ""
+categories_2: 
+  friendly_identifier: white-wines
+  image_url: 
+  key_2: White Wine
+  name: White wines
+  show_in_boxes: "1"
+  key_3: Italian Wine
+  title: Italian White Wines from Small Producers, Biggest Range in the UK
+  lft: "2"
+  show_in_menu: "1"
+  layout_card: 
+  meta_key: Italian White Wines from Small Producers, Biggest Range in the UK
+  id: "1879"
+  layout_image: 
+  meta_description: Fantastic Italian White Wines from Small Producers, The Classic Italian White Wines plus many more, the biggest range of Italian white wines from small producers in the UK
+  description: Fantastic Italian White Wines from Small Producers, The Classic Italian White Wines plus many more, the biggest range of Italian white wines from small producers in the UK
+  layout_search: 
+  image_id: 
+  rgt: "3"
+  parent_id: "1878"
+  layout: wine_sub_category
+  key_1: Italian White Wine
+categories_31: 
+  friendly_identifier: wine-club
+  image_url: ""
+  key_2: ""
+  name: Wine Club
+  show_in_boxes: "0"
+  key_3: ""
+  title: Italian Wine Club - Discover Italian Wines
+  lft: "61"
+  show_in_menu: "0"
+  layout_card: wine_club_card
+  meta_key: Wine Club,Italian Wine Club,Italian Wine Club in UK
+  id: "1908"
+  layout_image: product_wine_club
+  meta_description: Italian Wine Club,Wine Club,UK Wine Club,Italian Wines Club
+  description: Italian Wine Club,Wine Club,UK Wine Club,Italian Wines Club
+  layout_search: wine_club_search
+  image_id: 
+  rgt: "62"
+  parent_id: 
+  layout: wine_club_category
+  key_1: ""
+categories_20: 
+  friendly_identifier: chocolate
+  image_url: 
+  key_2: ""
+  name: Chocolate
+  show_in_boxes: "1"
+  key_3: ""
+  title: Chocolate
+  lft: "38"
+  show_in_menu: "1"
+  layout_card: 
+  meta_key: Chocolate,Italian Chocolate
+  id: "1897"
+  layout_image: 
+  meta_description: Handmade Chocolate, High Quality Italian Chocolate from Small Producers, Fantastic Artisan Made Chocolate
+  description: Handmade Chocolate, High Quality Italian Chocolate from Small Producers, Fantastic Artisan Made Chocolate
+  layout_search: 
+  image_id: 
+  rgt: "39"
+  parent_id: "1888"
+  layout: food_sub_category
+  key_1: ""
+categories_3: 
+  friendly_identifier: "ros&#232;-wines"
+  image_url: 
+  key_2: ""
+  name: "Ros&#232; wines"
+  show_in_boxes: "1"
+  key_3: ""
+  title: Italian Rose' Wines from Small Producers, Biggest Range in the UK
+  lft: "4"
+  show_in_menu: "1"
+  layout_card: wine_card
+  meta_key: Italian Rose' Wines from Small Producers, Biggest Range in the UK
+  id: "1880"
+  layout_image: 
+  meta_description: Fantastic Italian Rose' Wines from Small Producers, The Classic Italian Rose' Wines plus many more, the biggest range of Italian Rose' wines from small producers in the UK
+  description: Fantastic Italian Rose' Wines from Small Producers, The Classic Italian Rose' Wines plus many more, the biggest range of Italian Rose' wines from small producers in the UK
+  layout_search: wine_search
+  image_id: 
+  rgt: "5"
+  parent_id: "1878"
+  layout: wine_sub_category
+  key_1: ""
+categories_21: 
+  friendly_identifier: christmas
+  image_url: 
+  key_2: ""
+  name: Christmas
+  show_in_boxes: "1"
+  key_3: ""
+  title: Christmas the Italian way
+  lft: "40"
+  show_in_menu: "1"
+  layout_card: 
+  meta_key: Italian Christmas,Italian Christmas Food
+  id: "1898"
+  layout_image: 
+  meta_description: Celebrate Christmas the Italian way, Enjoy the Authentic Italian Christmas at Home with our High quality Italian Products
+  description: Celebrate Christmas the Italian way, Enjoy the Authentic Italian Christmas at Home with our High quality Italian Products
+  layout_search: 
+  image_id: 
+  rgt: "41"
+  parent_id: "1888"
+  layout: food_sub_category
+  key_1: ""
+categories_10: 
+  friendly_identifier: wine-accessories
+  image_url: 
+  key_2: ""
+  name: Wine accessories
+  show_in_boxes: "1"
+  key_3: ""
+  title: Exclusive wines accessories
+  lft: "18"
+  show_in_menu: "1"
+  layout_card: 
+  meta_key: wine accessories, decanter, corkscrew, open bottles
+  id: "1887"
+  layout_image: 
+  meta_description: Italian wines accessories, decanter, open bottles, corkscrew
+  description: Italian wines accessories, decanter, open bottles, corkscrew
+  layout_search: 
+  image_id: 
+  rgt: "19"
+  parent_id: "1878"
+  layout: wine_sub_category
+  key_1: ""
+categories_4: 
+  friendly_identifier: red-wines
+  image_url: 
+  key_2: Red Wines
+  name: Red wines
+  show_in_boxes: "1"
+  key_3: Value for Money Red Wine
+  title: Italian Red Wines from Small Producers, Biggest Range in the UK
+  lft: "6"
+  show_in_menu: "1"
+  layout_card: wine_card
+  meta_key: Italian Red Wines from Small Producers, Biggest Range in the UK
+  id: "1881"
+  layout_image: 
+  meta_description: Fantastic Italian Red Wines from Small Producers, The Classic Italian Red Wines plus many more, the biggest range of Italian Red wines from small producers in the UK
+  description: Fantastic Italian Red Wines from Small Producers, The Classic Italian Red Wines plus many more, the biggest range of Italian Red wines from small producers in the UK
+  layout_search: wine_search
+  image_id: 
+  rgt: "7"
+  parent_id: "1878"
+  layout: wine_sub_category
+  key_1: Italian Red Wines
+categories_22: 
+  friendly_identifier: modena-balsamic-vinegar
+  image_url: 
+  key_2: ""
+  name: Modena Balsamic Vinegar
+  show_in_boxes: "1"
+  key_3: ""
+  title: Modena Balsamic Vinegars
+  lft: "42"
+  show_in_menu: "1"
+  layout_card: 
+  meta_key: Traditional Modena Balsamic Vinegar,Balsamic Vinegar,Modena Vinegar,Italian Balsamic
+  id: "1899"
+  layout_image: 
+  meta_description: Traditional Modena Balsamic Vinegar from Small Producers, High Quality Italian Balsamic Vinegar Online, Aged Balsamic Vinegar
+  description: Traditional Modena Balsamic Vinegar from Small Producers, High Quality Italian Balsamic Vinegar Online, Aged Balsamic Vinegar
+  layout_search: 
+  image_id: 
+  rgt: "43"
+  parent_id: "1888"
+  layout: food_sub_category
+  key_1: ""
+categories_11: 
+  friendly_identifier: food
+  image_url: http://www.italyabroad.com/categories/show/food
+  key_2: ""
+  name: Food
+  show_in_boxes: "1"
+  key_3: ""
+  title: Italian Food & Deli from Small Producers
+  lft: "21"
+  show_in_menu: "1"
+  layout_card: food_card
+  meta_key: Italian delicatessen, extra virgin olive oil, tuscan extra virgin olive oil, viola extra virgin olive oil, modena balsamic vinegar
+  id: "1888"
+  layout_image: product_food
+  meta_description: Italian Food & Deli from Small Producers in the UK, High Quality Italian Food online
+  description: Italian Food & Deli from Small Producers in the UK, High Quality Italian Food online
+  layout_search: food_sub_category
+  image_id: "1067"
+  rgt: "46"
+  parent_id: 
+  layout: food_category
+  key_1: ""
+categories_5: 
+  friendly_identifier: dessert-wines
+  image_url: 
+  key_2: ""
+  name: Dessert wines
+  show_in_boxes: "1"
+  key_3: ""
+  title: Italian Dessert Wines from Small Producers
+  lft: "8"
+  show_in_menu: "1"
+  layout_card: 
+  meta_key: Vin Santo,Recioto,Passito,Moscato,Italian Dessert Wine
+  id: "1882"
+  layout_image: 
+  meta_description: Italian Dessert Wines from Small Producers, Fantastic Italian Dessert Wines, Outstanding Dessert Wine from Small Italian Producers
+  description: "Italian Dessert Wines from Small Producers, Fantastic Italian Dessert Wines,Vin santo, Recioto della Valpolicella,Recioto del Soave,Passito,Aglianico. "
+  layout_search: 
+  image_id: 
+  rgt: "9"
+  parent_id: "1878"
+  layout: wine_sub_category
+  key_1: ""
+categories_23: 
+  friendly_identifier: coffee
+  image_url: 
+  key_2: ""
+  name: Coffee
+  show_in_boxes: "1"
+  key_3: ""
+  title: Italian Coffee
+  lft: "44"
+  show_in_menu: "1"
+  layout_card: 
+  meta_key: Coffee,Italian Coffee,Coffee for Espresso
+  id: "1900"
+  layout_image: 
+  meta_description: Real Italian Coffee for the Perfect Espresso, Autentic Italian Coffee to Recreate at Home the Italian Espresso
+  description: Real Italian Coffee for the Perfect Espresso, Autentic Italian Coffee to Recreate at Home the Italian Espresso
+  layout_search: 
+  image_id: 
+  rgt: "45"
+  parent_id: "1888"
+  layout: food_sub_category
+  key_1: ""
+categories_12: 
+  friendly_identifier: balsamic-vinegar
+  image_url: 
+  key_2: ""
+  name: Balsamic vinegar
+  show_in_boxes: "1"
+  key_3: ""
+  title: "Modena Balsamic Vinegars "
+  lft: "22"
+  show_in_menu: "1"
+  layout_card: 
+  meta_key: Traditional Modena Balsamic Vinegar,Balsamic Vinegar,Modena Vinegar,Italian Balsamic
+  id: "1889"
+  layout_image: 
+  meta_description: Traditional Modena Balsamic Vinegar from Small Producers, High Quality Italian Balsamic Vinegar from Modena Online, Aged Italian Balsamic Vinegar
+  description: Traditional Modena Balsamic Vinegar from Small Producers, High Quality Italian Balsamic Vinegar Online, Aged Balsamic Vinegar
+  layout_search: 
+  image_id: 
+  rgt: "23"
+  parent_id: "1888"
+  layout: food_sub_category
+  key_1: ""
+categories_6: 
+  friendly_identifier: sparkling-wines
+  image_url: 
+  key_2: ""
+  name: Sparkling wines
+  show_in_boxes: "1"
+  key_3: ""
+  title: Italian Sparkling Wines from Small Producers
+  lft: "10"
+  show_in_menu: "1"
+  layout_card: 
+  meta_key: Italian Sparkling Wines from Small Producers
+  id: "1883"
+  layout_image: 
+  meta_description: Fantastic Italian Sparkling Wines from Small Producers, The Classic Italian Sparkling Wines, the finest range of Italian Sparkling wines from small producers in the UK
+  description: Fantastic Italian Sparkling Wines from Small Producers, The Classic Italian Sparkling Wines, the finest range of Italian Sparkling wines from small producers in the UK
+  layout_search: 
+  image_id: 
+  rgt: "11"
+  parent_id: "1878"
+  layout: wine_sub_category
+  key_1: ""
+categories_24: 
+  friendly_identifier: hampers
+  image_url: http://www.italyabroad.com/categories/sub-categories/christmas-hampers
+  key_2: ""
+  name: Hampers
+  show_in_boxes: "1"
+  key_3: ""
+  title: Gourmet Hampers, Luxury Hampers, Award Winning Hampers
+  lft: "47"
+  show_in_menu: "1"
+  layout_card: hamper_card
+  meta_key: Hampers,Gift Idea,Gourmet Hamper,Luxury Hamper
+  id: "1901"
+  layout_image: product_hamper
+  meta_description: Fantastic Award Winning Hampers full of Italian Specialties, Gourmet Hamper the Perfect Gift Idea, Luxury Hamper for your loved ones
+  description: Fantastic Award Winning Hampers full of Italian Specialties, Gourmet Hamper the Perfect Gift Idea, Luxury Hamper for your loved ones
+  layout_search: hamper_sub_category
+  image_id: "1068"
+  rgt: "56"
+  parent_id: 
+  layout: hamper_category
+  key_1: ""
+categories_13: 
+  friendly_identifier: biscuits
+  image_url: 
+  key_2: ""
+  name: Biscuits
+  show_in_boxes: "1"
+  key_3: ""
+  title: Traditional Italian Biscuits
+  lft: "24"
+  show_in_menu: "1"
+  layout_card: 
+  meta_key: Traditional Italian Handmade Biscuits,Italian Biscuits,Artisan Made Biscuits
+  id: "1890"
+  layout_image: 
+  meta_description: Traditional Italian Handmade biscuits, Classic Italian Biscuits, Artisan Made Italian Biscuits, The finest Biscuits made by Small Italian Bakers
+  description: Traditional Italian Handmade biscuits, Classic Italian Biscuits, Artisan Made Italian Biscuits, The finest Biscuits made by Small Italian Bakers
+  layout_search: 
+  image_id: 
+  rgt: "25"
+  parent_id: "1888"
+  layout: food_sub_category
+  key_1: ""
+categories_7: 
+  friendly_identifier: organic-wines
+  image_url: 
+  key_2: Organic Wines
+  name: Organic wines
+  show_in_boxes: "1"
+  key_3: ""
+  title: Organic Italian Wines from Small Producers
+  lft: "12"
+  show_in_menu: "1"
+  layout_card: 
+  meta_key: Organic Italian Wines,Organic Red Wines,Organic Wines,Organic White Wines,Organic Rose' Wines,Organic Dessert Wines, Sulphites Free Wines
+  id: "1884"
+  layout_image: 
+  meta_description: Organic Italian Wines from Small Producers,Fantastic Organic Wines from Small Italian Producers, Outstanding Organic Italian Wines
+  description: Organic Italian Wines from Small Producers,Fantastic Organic Wines from Small Italian Producers, Outstanding Organic Italian Wines
+  layout_search: 
+  image_id: 
+  rgt: "13"
+  parent_id: "1878"
+  layout: wine_sub_category
+  key_1: "Organic Italian Wines "
+categories_25: 
+  friendly_identifier: food-hampers
+  image_url: 
+  key_2: ""
+  name: Food Hampers
+  show_in_boxes: "1"
+  key_3: ""
+  title: Gourmet hamper, luxury hampers, food and wine hamper
+  lft: "48"
+  show_in_menu: "1"
+  layout_card: 
+  meta_key: Food hamper, gourmet hamper, deli hamper, specialties hamper
+  id: "1902"
+  layout_image: 
+  meta_description: Food hamper, gourmet hamper, deli hamper, specialties hamper, luxury hampers, food and wine hamper
+  description: Food hamper, gourmet hamper, deli hamper, specialties hamper, luxury hampers, food and wine hamper
+  layout_search: 
+  image_id: 
+  rgt: "49"
+  parent_id: "1901"
+  layout: hamper_sub_category
+  key_1: ""
+categories_14: 
+  friendly_identifier: cakes
+  image_url: 
+  key_2: ""
+  name: Cakes
+  show_in_boxes: "1"
+  key_3: ""
+  title: Traditional Italian handmade cakes, panettone, panforte
+  lft: "26"
+  show_in_menu: "1"
+  layout_card: 
+  meta_key: Traditional Italian handmade cakes, cantuccini, panettone, panforte
+  id: "1891"
+  layout_image: 
+  meta_description: Traditional Italian handmade cakes, panettone, panforte, pandoro, artisanally made by small Italian bakers
+  description: Traditional Italian handmade cakes, panettone, panforte, pandoro, artisanally made by small Italian bakers
+  layout_search: 
+  image_id: 
+  rgt: "27"
+  parent_id: "1888"
+  layout: food_sub_category
+  key_1: ""
+categories_8: 
+  friendly_identifier: mixed-case
+  image_url: 
+  key_2: ""
+  name: Mixed case
+  show_in_boxes: "1"
+  key_3: ""
+  title: "Italian Wine Mixed Cases "
+  lft: "14"
+  show_in_menu: "1"
+  layout_card: 
+  meta_key: Mixed Case,Italian Wine Mixed Case,Red Mixed Case,White Mixed Case,Rose' Mixed Case
+  id: "1885"
+  layout_image: 
+  meta_description: Italian Wine Mixed Cases, Fantastic Selection of Italian Wine Mixed Case, Mixed Case of Italian Wines, Organic Wines Mixed Case
+  description: Italian Wine Mixed Cases, Fantastic Selection of Italian Wine Mixed Case, Mixed Case of Italian Wines, Organic Wines Mixed Case
+  layout_search: 
+  image_id: 
+  rgt: "15"
+  parent_id: "1878"
+  layout: wine_sub_category
+  key_1: ""

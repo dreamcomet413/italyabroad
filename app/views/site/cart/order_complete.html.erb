@@ -1,0 +1,14 @@
+<% @title = "Order complete"; %>
+
+<div style="text-align:center;font-size:14px;padding-top:50px" class="green">
+	Thank you for shopping with us
+	<div style="color:#333;padding-top:20px">
+		Your order with Italyabroad.com has been received and it will be delivered accordingly.
+	</div>
+</div>
+
+<% content_for :right do %>
+	<%= render :partial => '/site/shared/box_subscriptions' %>
+	<br />
+	<%= render :partial => '/site/shared/box_grape_guide' %>
+<% end %>

@@ -1,0 +1,74 @@
+<%
+if params[:action] == 'edit'
+  cupon_type = @cupon.cupon_type
+else
+  cupon_type = "price"
+end
+%>
+
+<%#= @cupon.cupon_type %>
+<table border="0" cellspacing="5" cellpadding="5">
+  <tr>
+    <td width="30%">Cupon Code: </td>
+    <td width="50%"><%= text_field :cupon, :code %></td>
+  </tr>
+  <tr><td>Chose cupon type:</td><td><%= radio_button(:cupon, :cupon_type, 'price', :checked => true, :onclick => "$('cupon-input-price').show();$('cupon-input-percentage').hide();") %>&nbsp;Price
+      &nbsp;&nbsp;&nbsp;<%= radio_button(:cupon, :cupon_type, 'percentage', :onclick => "$('cupon-input-price').hide();$('cupon-input-percentage').show();") %>&nbsp;Percentage
+    </td></tr>
+  <tr>
+    <td>
+      <% unless cupon_type == "price" %>
+        <span id="cupon-input-price" style="display:none;">Price:<br /><em>(value in price of this cupon)</em></span>
+      <%else%>
+        <span id="cupon-input-price">Price:<br /><em>(value in price of this cupon)</em></span>
+      <%end%>
+      <% unless cupon_type == "percentage" %>
+        <span id="cupon-input-percentage" style="display:none;">Percentage:<br /><em>(value in percentage of this cupon)</em></span>
+      <%else%>
+        <span id="cupon-input-percentage">Percentage:<br /><em>(value in percentage of this cupon)</em></span>
+      <%end%>
+    </td>
+    <td><%= text_field :cupon, :price, :size => 10, :maxlength => 10 %>
+    </td>
+  </tr>
+
+  <tr>
+    <td>Min Order: </td>
+    <td><%= text_field :cupon, :min_order, :size => 10, :maxlength => 10 %> <em>(Min Order before cupon is valid)</em></td>
+  </tr>
+
+
+  <tr>
+    <td valign="top">Limit to product: </td>
+    <td>
+      <%= text_field 'product', 'search' %><br/>
+
+<%#= text_field_with_auto_complete "product", "name" , { :size => 81 }, { :url => formatted_product_list_admin_cupons_path(:js), :method => :get, :param_name => 'search',:multiple => true } %>
+<%#= select_tag("cupon[product_ids][]", options_from_collection_for_select(Product.find(:all).collect, "id", "name", @cupon.products.collect{|p| p.id}), {:multiple=>true, :size=>6})%>
+      <div id="search_result">
+        <% if params[:action] == "edit"%>
+          <%= render :partial => 'product_list', :collections => @products %>
+        <% end %>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td>Active: </td>
+    <td><%= check_box :cupon, :active %></td>
+  </tr>
+  <tr>
+    <td>Public: </td>
+    <td><%= check_box :cupon, :public %></td>
+  </tr>
+</table>
+<%= observe_field 'product_search',
+  :url => {:action=>"product_list", :controller=> "admin/cupons"},
+
+  :with => 'search', :frequency => 0.25  %>
+<%#= observe_field 'cupon_type_price',
+:url => {:action=>"cupon_type", :controller=> "admin/cupons"},
+:with => 'method', :on => 'click'  %>
+
+<%#= observe_field 'cupon_type_persentage',
+:url => {:action=>"cupon_type", :controller=> "admin/cupons"},
+:with => 'method', :on => 'click' %>

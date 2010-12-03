@@ -1,0 +1,66 @@
+<% 
+  @breadcrumbs = "#{link_to "Home", root_url} &raquo; "
+  @breadcrumbs += "#{@product.unique_categories.collect {|c| link_to(c.name, "#{"/" + c.root.friendly_identifier unless c.is_root?}/#{c.friendly_identifier}")}.join(" &raquo; ")}"
+  @breadcrumbs += " &raquo; #{@product.name}"
+%>
+
+<%- @class = "events" -%>
+
+<div style="text-align:center;margin-top:5px;">
+  <%= image_tag image_url('original', @product.image_1, :jpg) %>
+</div>
+
+<div style="padding:0 10px;">
+  <br /><br />
+  <h1 style="padding-left:255px;"><%= @product.name %></h1>
+  <br /><br /><br />
+  <div id="box_wines_of_the_night" class="block">
+    <h1>Wines of the night</h1>
+    <ul>
+      <%- category = Category.find('events') -%>
+      <%- category.products.at_the_night.each do |product| -%>
+      <li><%= link_to product.name, "/wine-events/#{product.friendly_identifier}", :style => "color:#721041;" %></li>
+      <%- end -%>
+    </ul>
+  </div>
+  <div style="float:left;width:460px;">
+    <%= @product.description.gsub("\n","<br />") rescue "No description" %>
+    <br /><br />
+    <div style="clear:both;"></div>
+    <ul style="list-style:none;margin:0;padding:0;float:right;font-size:14px;">
+      <li style="margin-bottom:10px;text-align:right;">
+      	<% if @product.discount > 0 %>
+      		Was <span style="text-decoration: line-through;"><%= number_to_currency @product.price, :unit => "&pound;" %></span><br />
+      		Now <span class="red"><%= number_to_currency (@product.price - (@product.price * @product.discount / 100)), :unit => "&pound;" %></span>
+      		(save <span class="red"><%= number_to_currency (@product.price * @product.discount / 100), :unit => "&pound;" %></span>)
+      	<% else %>
+      		Price: <span class="red"><%= number_to_currency @product.price, :unit => "&pound;" %></span>
+      	<% end %>
+      </li>
+      <li style="text-align:right;">
+      	<%- form_remote_for :cart, :url => product_cart_index_path(@product), :html => {:method => :post} do  -%>
+      	  <table cellspacing="0" border="0">
+      	    <tr>
+      		    <td>Ticket qty: </td>
+      		    <td><%= text_field :cart, :quantity, :size => 2, :value => 1 %></td>
+      		    <td><%= image_submit_tag("buttons/buy_button.png", :style=>"vertical-align:bottom; border:none") %></td>
+      		  </tr>
+      		</table>
+      	<% end %>
+    	</li>
+  	</ul>
+  	<div style="clear:both;"></div>
+  </div>
+  <div style="clear:both;"></div>
+</div>
+<% content_for :right do %>
+	<%= render :partial => "/site/shared/box_event_others" %>
+	<br />
+	<%= render :partial => '/site/shared/box_subscriptions' %>
+	<br />
+	<%= render :partial => '/site/shared/box_wine_tours' %>
+	<br />
+	<%= render :partial => '/site/shared/box_grape_guide' %>
+	<br />
+	<%= render :partial => '/site/shared/box_popular' %>
+<% end %>

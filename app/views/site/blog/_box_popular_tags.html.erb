@@ -1,0 +1,16 @@
+<div id="box_popular_tags" class="block">
+  <%- @popular_tags = PostsTag.popular_tags -%>
+  <%  pmin = 100 # Minimum font size
+  pmax = 200 #Maximum font size
+  vmin = 1000000000000 #Super large number to init min
+  vmax = -1000000000000 #Super small number to init max
+  for tag in @popular_tags
+    vmin = tag.popularity.to_f if (tag.popularity.to_f < vmin)  
+    vmax = tag.popularity.to_f if (tag.popularity.to_f > vmax)
+  end  %>
+  <h1 style="text-align:center;">Popular Tags</h1>
+  <br />
+  <% @popular_tags.each do |result| %>
+    <span style="font-size:<%= ((pmax - pmin) * (Math.log(result.popularity)) / (Math.log(vmax)) + pmin).to_s %>%"><%= link_to result.tag.name.titleize, "blog/tag/#{result.tag.name}", :style => "color:#454545;" %></span>
+  <% end %>
+</div>

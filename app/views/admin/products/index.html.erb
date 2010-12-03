@@ -1,0 +1,56 @@
+<%- @title = "Administration - Products"; @page_id = "Catalog" -%>
+<%- @breadcrumbs = "Catalog &raquo; #{link_to "Products", admin_products_path}" -%>
+
+<div class="inner_content products" id="admin_products_index">
+  <h2>Products</h2>
+  <br />
+  <table>
+    <tr>
+      <td></td>
+      <td align="right"><%= link_to "New Product", new_admin_product_path %></td> 
+      <td align="right"><%= link_to "XML", :controller => 'admin/products', :action => 'xml' %></td>
+    </tr>
+  </table>
+  <table id="products-list" class="list sortable">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Code</th>
+        <th>Category</th>
+        <th>Sub Categories</th>
+        <th>Name</th>
+        <th>Discount</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Out of stock</th>
+        <th>Active</th>
+        <th class="nosort"></th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+        <td colspan="10"><%= will_paginate_(@products) %></td>
+        <td align="right"><%= page_entries_info_ @products %></td>
+      </tr>
+    </tfoot>
+    <tbody>
+      <%- @products.each do |product| -%>
+      <tr>
+        <td><%= product.id %></td>
+        <td><%= product.code %></td>
+        <td><%= product.root_category unless product.root_category.blank? %></td>
+        <td><%= product.sub_categories.join(" &raquo; ") unless product.sub_categories.blank? %></td>
+        <td><%= link_to product.name, nested_products_uri(product) %></td>
+        <td><%= product.discount %>%</td>
+        <td><%= number_to_currency product.price, :unit => "&pound;" %></td>
+        <td><%= product.quantity %></td>
+        <td><%= product.quantity == 0 %></td>
+        <td><%= product.active %></td>
+        <td>
+          <%= link_to "Edit", edit_admin_product_path(product.id) %> | <%= link_to "Delete" %>
+        </td>
+      </tr>
+      <%- end -%>
+    </tbody>
+  </table>
+</div>

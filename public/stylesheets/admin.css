@@ -1,0 +1,414 @@
+body {
+  font-family:Arial,Helvetica,sans-serif;
+  color:#404040;
+  font-size:12px;
+  line-height:18px;
+}
+
+form {
+  margin:0;
+  padding:0;
+}
+
+legend {
+  font-weight:bold;
+}
+
+a, a:visited {
+  text-decoration:none;
+/*  color:#721041;*/
+  color:blue;
+}
+
+a:hover {
+  text-decoration:underline;
+}
+
+h2 {
+  margin:0;
+  padding:0;
+  font-family:"Trebuchet MS",Arial,Helvetica,sans-serif;
+}
+
+#container {
+/*  width:780px;*/
+  margin:20px auto;
+}
+
+#header {
+  margin-left:5px;
+  float:left;
+  width:100%;
+}
+
+#header img {
+  border:none;
+}
+
+#header h1 {
+  float:left;
+  margin:0;
+  padding:0;
+}
+
+.inner_content {
+  margin:10px;
+}
+
+.inner_content .header {
+  font-weight:bold;
+}
+
+#breadcrumbs {
+  font-family:"Trebuchet MS",Arial,Helvetica,sans-serif;
+}
+
+/* the table */
+
+table,
+table.list {
+  font-size:1em;
+  width:100%;
+  border-collapse:collapse;
+  text-align:left;
+}
+
+table.list th {
+/*  background-color:#e9f77a;*/
+  background-color:#FFF1A8;
+  border-top:2px solid #AEBB45;
+  border-bottom:1px solid #cccccc;
+  padding:3px;
+}
+
+table.list th:hover {
+  background-color:#AEBB45;
+}
+
+table.list td {
+  padding:3px;
+}
+
+table.list tr.rowodd td {
+  background-color:#f5f7e1;
+}
+
+table.list tr:hover td {
+  background-color:#AEBB45;
+  font-style:italic;
+  color:black;
+  cursor:pointer;
+}
+
+/* end the table*/
+
+.menu ul.main {
+  list-style:none;
+  margin:0;
+  padding:0;
+  width:100%;
+  height:22px;
+  border-bottom:4px solid #AEBB45;
+}
+
+.menu ul li {
+  float:left;
+  display:inline;
+  margin-right:1px;
+  position:relative;
+}
+
+.menu ul li.last,
+.menu ul li#store-nav {
+  padding-top:5px;
+  float:right;
+}
+
+.menu ul li#store-nav {
+  margin-right:10px;
+}
+
+.menu ul li a {
+  display:block;
+  text-indent:-9999px;
+  height:22px;
+  color:black;
+  font-size:11px;
+}
+
+.menu ul li.last a {
+  text-indent:0px;
+  font-weight:bold;
+}
+
+.menu ul li:hover ul {
+  display:block;
+}
+
+.menu ul li#home-nav a {
+  background:transparent url(/images/admin/admin_menus.gif) no-repeat left top;
+  width:53px;
+}
+
+.menu ul li#home-nav a.active,
+.menu ul li#home-nav a:hover {
+  background:transparent url(/images/admin/admin_menus.gif) no-repeat left bottom;
+}
+
+.menu ul li#administration-nav a {
+  background:transparent url(/images/admin/admin_menus.gif) no-repeat -53px top;
+  width:103px;
+}
+
+.menu ul li#administration-nav a.active,
+.menu ul li#administration-nav a:hover {
+  background:transparent url(/images/admin/admin_menus.gif) no-repeat -53px bottom;
+}
+
+.menu ul li#catalog-nav a {
+  background:transparent url(/images/admin/admin_menus.gif) no-repeat -156px top;
+  width:62px;
+}
+
+.menu ul li#catalog-nav a.active,
+.menu ul li#catalog-nav a:hover {
+  background:transparent url(/images/admin/admin_menus.gif) no-repeat -156px bottom;
+}
+
+.menu ul li#sales-nav a {
+  background:transparent url(/images/admin/admin_menus.gif) no-repeat -218px top;
+  width:45px;
+}
+
+.menu ul li#sales-nav a.active,
+.menu ul li#sales-nav a:hover {
+  background:transparent url(/images/admin/admin_menus.gif) no-repeat -218px bottom;
+}
+
+.menu ul li#blog-nav a {
+  background:transparent url(/images/admin/admin_menus.gif) no-repeat -263px top;
+  width:46px;
+}
+
+.menu ul li#blog-nav a.active,
+.menu ul li#blog-nav a:hover {
+  background:transparent url(/images/admin/admin_menus.gif) no-repeat -263px bottom;
+}
+
+.menu ul li#other-stuff-nav a {
+  background:transparent url(/images/admin/admin_menus.gif) no-repeat -309px top;
+  width:78px;
+}
+
+.menu ul li#other-stuff-nav a.active,
+.menu ul li#other-stuff-nav a:hover {
+  background:transparent url(/images/admin/admin_menus.gif) no-repeat -309px bottom;
+}
+
+.menu ul li#newsletters-nav a {
+  background:transparent url(/images/admin/admin_menus.gif) no-repeat -387px top;
+  width:92px;
+}
+
+.menu ul li#newsletters-nav a.active,
+.menu ul li#newsletters-nav a:hover {
+  background:transparent url(/images/admin/admin_menus.gif) no-repeat -387px bottom;
+}
+
+.menu ul li#grapes-nav a {
+  background:transparent url(/images/admin/admin_menus.gif) no-repeat -479px top;
+  width:63px;
+}
+
+.menu ul li#grapes-nav a.active,
+.menu ul li#grapes-nav a:hover {
+  background:transparent url(/images/admin/admin_menus.gif) no-repeat -479px bottom;
+}
+
+.menu ul li#forum-nav a {
+  background:transparent url(/images/admin/admin_menus.gif) no-repeat -542px top;
+  width:78px;
+}
+
+.menu ul li#forum-nav a.active,
+.menu ul li#forum-nav a:hover {
+  background:transparent url(/images/admin/admin_menus.gif) no-repeat -542px bottom;
+}
+
+.menu ul li#store-nav a {
+  text-indent:0px;
+  font-weight:bold;
+}
+
+.menu ul li ul {
+  display:none;
+  position:absolute;
+  top:22px;
+  left:0;
+  z-index:99999;
+  background-color:#F3F8DA;
+  width:90px;
+  padding:10px;
+}
+
+.menu ul li ul li,
+.menu ul li ul li a {
+  display:block;
+  background:none !important;
+  text-indent:0px;
+}
+
+.sub_menu ul li a {
+}
+
+.sub_menu ul li a.active {
+  
+}
+
+#admin_categories_index ul,
+#admin_categories_index ul li ul {
+  margin-left:-30px;
+}
+
+#admin_categories_index ul li {
+  margin:10px 5px;
+}
+
+#remote_form_container {
+  width:55%;
+  border:4px solid #ccc;
+  background:#fff;
+  padding:0 20px 20px;
+  margin:0 auto;
+}
+
+ul#product_links,
+ul#recipe_links {
+  list-style:none;
+  padding:0 15px;
+}
+
+ul#product_links li,
+ul#recipe_links li {
+  float:left;
+  margin-right:20px;
+}
+
+ul#product_links li.active,
+ul#recipe_links li.active {
+  background-color:#CCCCCC;
+}
+
+ul#product_links li.active a.active,
+ul#recipe_links li.active a.active {
+  color:black;
+  padding:5px;
+}
+
+#categories_information ul {
+  list-style:none;
+}
+
+#categories_information ul li ul {
+  padding-left:20px;
+}
+
+.notice {
+  color:red;
+  padding:5px 10px;
+}
+
+fieldset {
+  border-top:2px solid #CCCCCC;
+  border-left:1px solid #CCCCCC;
+  border-right:1px solid #CCCCCC;
+  border-bottom:1px solid #CCCCCC;
+}
+
+div.actions {
+  float:left;
+  position:relative;
+}
+
+div.actions:hover ul {
+  display:block;
+}
+
+div.actions ul {
+  background-color:#FFFFFF;
+  list-style:none;
+  margin:0;
+  padding:0;
+  display:none;
+  position:absolute;
+  z-index:999999;
+  border-top:1px solid #CCCCCC;
+  border-left:1px solid #CCCCCC;
+  border-right:1px solid #CCCCCC;
+  border-bottom:1px solid #CCCCCC;
+  width:85px;
+}
+
+div.actions ul li {
+  padding:2px 5px;
+}
+
+span.current {
+  font-weight:bold;
+}
+
+.page_info {
+  color:red;
+}
+
+input#q {
+  height:20px;
+}
+
+.sortcol {
+  cursor:pointer;
+}
+#search_result select{
+    width:540px;
+}
+
+ul.makeMenu, ul.makeMenu ul {
+    width: 80px;                 /* sets the size of the menu blocks */
+    padding: 0px;           /* stops the usual indent from ul */
+    cursor: default;             /* gives an arrow cursor */
+    margin: 0px;            /* Opera 7 final's margin and margin-box model cause problems */
+  }
+  ul.makeMenu li {
+    list-style-type: none;       /* removes the bullet points */
+    margin: 0px;                 /* Opera 7 puts large spacings between li elements */
+    position: relative;          /* makes the menu blocks be positioned relative to their parent menu item
+                                    the lack of offset makes these appear normal, but it will make a difference
+                                    to the absolutely positioned child blocks */
+    color: blue;                 /* sets the default font colour to white */
+  }
+
+  ul.makeMenu li > ul {          /* using the > selector prevents many lesser browsers (and IE - see below) hiding child ULs */
+                                 display: none;               /* hides child menu blocks - one of the most important declarations */
+                                 position: absolute;          /* make child blocks hover without leaving space for them */
+                                 top: 2px;                    /* position slightly lower than the parent menu item */
+                                 left: 30px;                  /* this must not be more than the width of the parent block, or the mouse will
+                                                                 have to move off the element to move between blocks, and the menu will close */
+                                 z-index:999999;
+                                 background-color:#FFFFFF;
+                                 border: 1px solid #cccccc;
+
+  }
+  ul.makeMenu li:hover, ul.makeMenu li.CSStoHighlight {
+    color: #000;                 /* makes the active menu item text black */
+  }
+  ul.makeMenu ul.CSStoShow {     /* must not be combined with the next rule or IE gets confused */
+                                 display: block;              /* specially to go with the className changes in the behaviour file */
+  }
+  ul.makeMenu li:hover > ul {    /* one of the most important declarations - the browser must detect hovering over arbitrary elements
+                                    the > targets only the child ul, not any child uls of that child ul */
+                                 display: block;              /* makes the child block visible - one of the most important declarations */
+  }
+  /* and some link styles */
+  ul.makeMenu li a { color: blue; display: block;text-decoration: none; }
+  ul.makeMenu li a:hover, ul.makeMenu li a.CSStoHighLink { color: #000; }
+  ul.makeMenu li:hover > a { color: #000; } /* supports links in branch headings - should not be display: block; */

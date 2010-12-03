@@ -1,0 +1,14 @@
+Dear <%= @order.user.name %> <%= @order.user.surname %>,
+
+Thank you for ordering with us. Your order will be dispatched accordingly, please do not hesitate to contact us if you have any question.
+	
+Don't forget to write a review for the products purchased. Let our users know what you think about our produce and if you are the first to write the review you will also receive £10.00 discount on your next purchase.
+	
+	To download and print your invoice click here: <%= @invoice_url %>
+	
+	To check the status of your order click here: <%= @customer_url %>
+	<% if @order.has_wines? %>
+	To download and print your wine tasting notes click here: <%= @tasting_url %>
+	<% end %>
+---------------------------------------------------
+The Italyabroad.com Team

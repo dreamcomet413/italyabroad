@@ -1,0 +1,48 @@
+<%- @breadcrumbs = "#{link_to("Home", root_url)} &raquo; #{link_to("Food", '/food')}" -%>
+
+<% if @category.image && !@category.image_url.blank? %>
+  <div id="wineBanner">
+	  <%= link_to image_tag(image_url('home_image', @category.image, :jpg)), @category.image_url %>
+	</div>
+<% else %>
+  <div id="wineBanner">
+	  <%= link_to image_tag("food.png"), search_index_path(@category) %>
+	</div>
+<% end %>
+<%= render :partial => '/site/shared/box_food_search' %>
+<%= render :partial => '/site/templates/category' %>
+<% products = Product.find(:all, :limit => 3, :order => "created_at DESC", :conditions => "id IN (#{@category.all_products_ids.join(',')})") %>
+<%- products.each do |product| -%>
+<div class="wineList">
+  <table width="100%">
+    <tr>
+      <td style="padding:0;width:100px;height:100px;text-align:center;">
+        <%= link_to show_image_tag(product.layout_image, product.image_1, :jpg), nested_products_uri(product) %>
+      </td>
+      <td valign="top" style="padding:0;width:630px;">
+        <table>
+          <tr>
+            <td><%= link_to product.name, nested_products_uri(product), :style => "font-size:15px;" %></td>
+            <td><%= show_ratings(product) %></td>
+          </tr>
+        </table>
+        <br />
+        <br />
+        <%= product.description %>
+      </td>
+      <td valign="top" style="padding:10px 0;width:100px;">
+        <div style="font-size:18px;color:#721041;text-align:right;">
+          <div style="margin-bottom:15px;"><%= number_to_currency product.price, :unit => "&pound;" %></div>
+          <%= link_to image_tag("buttons/add_to_cart_button.png"), product_cart_index_path(product), :method => 'post' %>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
+<%- end -%>
+
+<% content_for :right do %>
+	<%= render :partial => '/site/shared/box_event' %>
+	<br />
+	<%= render :partial => '/site/shared/box_subscriptions' %>
+<% end %>

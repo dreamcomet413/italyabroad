@@ -1,0 +1,14 @@
+<% @title = "Edit #{@product.name}"; @page_id = "Catalog" %>
+<%- @breadcrumbs = "Catalog &raquo; #{link_to "Products", admin_products_path} &raquo; #{@title}" -%>
+
+<div class="inner_content products" id="admin_products_edit_correlation">
+  <h2><%= @title %></h2>
+  <br />
+  <%= render :partial => 'product_links', :locals => {:active => 'correlation'} %>
+  <% form_for :product, :url => admin_product_path(@product), :html => {:method => :put} do %>
+		<%= render :partial => "form_correlation" %>
+  	<p>
+  	 <%= submit_tag "Save" %> or <%= link_to "Cancel", admin_products_path %>
+  	</p>
+  <% end %>
+</div>

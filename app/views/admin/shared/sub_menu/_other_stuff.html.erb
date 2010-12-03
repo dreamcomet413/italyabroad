@@ -1,0 +1,22 @@
+<div id="other_stuff" class="sub_menu">
+  <ul>
+    <li <%= "class='active'" if @current_controller == "recipes" %>><%= link_to "Recipes", admin_recipes_path, :class => ('active' if @current_controller == "recipes") %></li>
+    <li <%= "class='active'" if @current_controller == "reviews" %>><%= link_to "Reviews", admin_reviews_path, :class => ('active' if @current_controller == "reviews") %></li>
+    <li <%= "class='active'" if @current_controller == "xml" %>><%= link_to "XML", xml_path, :class => ('active' if @current_controller == "xml") %></li>
+  </ul>
+  <ul>
+    <li <%= "class='active'" if @current_action == "index" %>>
+      <%
+        list_uri = admin_recipes_path
+        list_uri = admin_reviews_path if @current_controller == "reviews"
+		list_uri = xml_path
+      %>
+      <%= link_to "List", list_uri, :class => ('active' if @current_action == "index") %>
+    </li>
+    <%- if @current_controller == "recipes" -%>
+    <li <%= "class='active'" if @current_action == "new" %>>
+      <%= link_to "New", new_admin_recipe_path, :class => ('active' if @current_action == "new") %>
+    </li>
+    <%- end -%>
+  </ul>
+</div>

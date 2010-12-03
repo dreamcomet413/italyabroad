@@ -1,0 +1,48 @@
+# Filters added to this controller apply to all controllers in the application.
+# Likewise, all the methods added will be available for all controllers.
+
+class ApplicationController < ActionController::Base
+  include AuthenticatedSystem
+  include PdfHelper
+  include SslRequirement
+  
+  helper :all # include all helpers, all the time
+  protect_from_forgery # See ActionController::RequestForgeryProtection for details
+
+  # Scrub sensitive parameters from your log
+  # filter_parameter_logging :password
+  before_filter :redirect_to_new_url, :instantiate_controller_and_action_names, :find_or_initialize_cart, :initialize_general_variable
+
+  protected
+  def active
+    {
+      :find   => {:conditions => ["active = ?", true]}
+    }
+  end
+
+  private
+  def find_or_initialize_cart
+    @cart = session[:cart] ||= Cart.new
+  end
+
+  def instantiate_controller_and_action_names
+    @current_action = action_name
+    @current_controller = controller_name
+    @page_id = "#{@current_controller}_#{@current_action}"
+  end
+  
+  def xml
+  end
+
+  def redirect_to_new_url
+    if params[:old_url]
+      headers["Status"] = "301 Moved Permanently"
+      redirect_to(:action => action_name)
+    end
+  end
+
+  def initialize_general_variable
+    @setting = Setting.first
+  end
+
+end

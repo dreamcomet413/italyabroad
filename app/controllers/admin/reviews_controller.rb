@@ -1,0 +1,55 @@
+class Admin::ReviewsController < ApplicationController
+  before_filter :admin_login_required
+  layout "admin"
+
+  def index
+    @reviews = Review.all(:order => "created_at DESC").paginate(:page => params[:page], :per_page => 10)
+    
+    respond_to do |format|
+      format.html
+    end
+  end
+
+  def new
+    @review = Review.new
+    
+    respond_to do |format|
+      format.html
+    end
+  end
+
+  def edit
+    @review = Review.find(params[:id])
+    
+    respond_to do |format|
+      format.html
+    end
+  end
+
+  def create
+    @review = Review.new(params[:review])
+    
+    if @review.save
+      redirect_to :action => :index
+    else
+      flash[:notice] = @review.show_errors
+      render :action => :new
+    end
+  end
+
+  def update
+    @review = Review.find(params[:id])
+
+    if @review.update_attributes(params[:review])
+      redirect_to :action => :index
+    else    
+      flash[:notice] = @review.show_errors
+      render :action => :edit
+    end
+  end
+
+  def destroy
+    Review.find(params[:id]).destroy
+    redirect_to :action => :index
+  end
+end

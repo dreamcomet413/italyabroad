@@ -1,0 +1,14 @@
+<table>
+  <tr>
+    <td valign="top">Name</td>
+    <td><%= text_field :region, :name %></td>
+  </tr>
+  <tr>
+    <td valign="top">Description</td>
+    <td><%= text_area :region, :description %></td>
+  </tr>
+  <tr>
+    <td valign="top">Producers in this region</td>
+    <td><%= select :region, :producer_ids, Producer.all.collect { |p| [p.name, p.id] }, {}, {:multiple => true} %></td>
+  </tr>
+</table>

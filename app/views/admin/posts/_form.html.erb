@@ -1,0 +1,103 @@
+<div id="general_information">
+  <fieldset>
+    <legend>General Information</legend>
+  	<table border="0" cellspacing="5" cellpadding="5">
+  	  <tr>
+  	    <td style="width:100px;text-align:right">Post Name:</td>
+  	    <td><%= text_field  :post, :name, :size => 85 %></td>
+      </tr>
+  		<tr>
+  		  <td style="text-align:right">Post Date:</td>
+  		  <td><%= datetime_select :post, :created_at %></td>
+      </tr>
+  		<tr>
+  		  <td style="text-align:right">Post Category:</td>
+  		  <td><%= collection_select :post, :blog_type_id, BlogType.find(:all), :id, :name %></td>
+      </tr>
+  		<tr>
+  		  <td style="text-align:right">Description Short:</td>
+  		  <td><%= text_area :post, :description_short, :rows => 10, :cols => 73 %></td>
+      </tr>
+  		<tr>
+  		  <td style="text-align:right">Description:</td>
+  		  <td><%= text_area :post, :description, :rows => 30, :cols => 73 %></td>
+      </tr>
+      <tr>
+  		  <td style="text-align:right">Tags:</td>
+  		  <td><%= text_field_tag :tags, @post.tag_names, :html => {:size => 60} %>&nbsp;&nbsp;<span>separated by comma</span></td>
+      </tr>
+  	</table>
+  </fieldset>
+</div>
+<br />
+<div id="meta_information">
+  <fieldset>
+    <legend>Meta Information</legend>
+  	<table border="0" cellspacing="5" cellpadding="5">
+  	  <tr>
+  	    <td style="width:100px;text-align:right">Page Title:</td>
+  	    <td><%= text_field :post, :page_title %></td>
+      </tr>
+  	  <tr>
+  	    <td style="text-align:right">Meta Keys:</td>
+  	    <td><%= text_field :post, :meta_keys %></td>
+      </tr>
+  		<tr>
+  		  <td style="text-align:right">Description:</td>
+  		  <td><%= text_area :post, :meta_description, :rows => 5, :cols => 73 %></td>
+      </tr>
+  	</table>
+  </fieldset>
+</div>
+<br />
+<div id="images_information">
+  <fieldset>
+    <legend>Images Information</legend>
+    <table>
+  	  <tr>
+  	    <td style="width:100px;text-align:right">Image 1:</td>
+        <td><%= file_field_tag :image_1 %></td>
+        <td><%= image_tag(image_url("post_thumb", @post.image_1, :jpg)) if @post && @post.image_1 %></td>
+        <td style="text-align:center"><%= link_to("Destroy", {:action => :destroy_image, :id => @post, :img => 1 }, :confirm => "Are you sure?", :method => :delete) if @post && @post.image_1 %></td>
+      </tr>
+  	  <tr>
+  	    <td style="text-align:right">Image 2:</td>
+  	    <td><%= file_field_tag :image_2 %></td>
+  	    <td><%= image_tag(image_url("post_thumb", @post.image_2, :jpg)) if @post && @post.image_2  %></td>
+  	    <td style="text-align:center"><% if @post && @post.image_2 %> <%= link_to "Destroy", {:action => :destroy_image, :id => @post, :img => 2 }, :confirm => "Are you sure?", :method => :delete %> <% end %></td>
+      </tr>
+  	  <tr>
+  	    <td style="text-align:right">Image 3:</td>
+  	    <td><%= file_field_tag :image_3 %></td>
+  	    <td><%= image_tag(image_url("post_thumb", @post.image_3, :jpg)) if @post && @post.image_3 %></td>
+  	    <td style="text-align:center"><% if @post && @post.image_3 %> <%= link_to "Destroy", {:action => :destroy_image, :id => @post, :img => 3 }, :confirm => "Are you sure?", :method => :delete %> <% end %></td>
+      </tr>
+  	</table>
+  </fieldset>
+</div>
+<br />
+<div id="files_information">
+  <fieldset>
+    <legend>Files Information</legend>
+    <table border="0" cellspacing="5" cellpadding="5">
+  	  <tr>
+  	    <td style="width:100px;text-align:right">Resource 1:</td>
+  	    <td><%= file_field :resource_1, :uploaded_data %></td>
+  	    <td><%= link_to(@post.resource_1.filename, @post.resource_1.public_filename) if @post && @post.resource_1 %></td>
+  			<td><% if @post && @post.resource_1 %><%= link_to "Destroy", {:action => :destroy_resource, :id => @post, :rsc => 1 }, :confirm => "Are you sure?", :method => :delete %><% end %></td>
+      </tr>
+  	  <tr>
+  	    <td style="text-align:right">Resource 2:</td>
+  	    <td><%= file_field :resource_2, :uploaded_data %></td>
+  	    <td><% if @post && @post.resource_2 %><%= link_to @post.resource_2.filename, @post.resource_2.public_filename %><% end %></td>
+  			<td><% if @post && @post.resource_2 %><%= link_to "Destroy", {:action => :destroy_resource, :id => @post, :rsc => 2 }, :confirm => "Are you sure?", :method => :delete %><% end %></td>
+      </tr>
+  	  <tr>
+  	    <td style="text-align:right">Resource 3:</td>
+  	    <td><%= file_field :resource_3, :uploaded_data %></td>
+  	    <td><% if @post && @post.resource_3 %><%= link_to @post.resource_3.filename, @post.resource_3.public_filename %><% end %></td>
+  			<td><% if @post && @post.resource_3 %><%= link_to "Destroy", {:action => :destroy_resource, :id => @post, :rsc => 3 }, :confirm => "Are you sure?", :method => :delete %><% end %></td>
+      </tr>
+  	</table>
+  </fieldset>
+</div>

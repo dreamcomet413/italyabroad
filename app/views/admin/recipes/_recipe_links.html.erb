@@ -1,0 +1,26 @@
+<ul id="recipe_links">
+	<li class="<%= 'active' if active == "general" %>">
+	  <%= @recipe.new_record? ? link_to("General", new_admin_recipe_path, :class => "#{'active' if active == "general"}") : link_to("General", edit_admin_recipe_path(@recipe), :class => "#{'active' if active == "general"}") %>
+  </li>
+	<li class="<%= 'active' if active == "meta" %>">
+	  <%= @recipe.new_record? ? link_to("Meta") : link_to("Meta", recipe_meta_path(@recipe), :class => "#{'active' if active == "meta"}") %>
+  </li>
+	<li class="<%= 'active' if active == "extra" %>">
+	  <%= @recipe.new_record? ? link_to("Extra") : link_to("Extra", recipe_extra_path(@recipe), :class => "#{'active' if active == "extra"}") %>
+  </li>
+	<li class="<%= 'active' if active == "wine" %>">
+	  <%= @recipe.new_record? ? link_to("Racc. Wine") : link_to("Racc. Wine", recipe_wine_path(@recipe), :class => "#{'active' if active == "wine"}") %>
+	</li>
+	<li class="<%= 'active' if active == "correlation" %>">
+	  <%= @recipe.new_record? ? link_to("Correlation") : link_to("Correlation", recipe_correlation_path(@recipe), :class => "#{'active' if active == "correlation"}") %>
+  </li>
+	<li class="<%= 'active' if active == "images" %>">
+	  <%= @recipe.new_record? ? link_to("Images") : link_to("Images", recipe_images_path(@recipe), :class => "#{'active' if active == "images"}") %>
+  </li>
+	<li class="<%= 'active' if active == "files" %>">
+	  <%= @recipe.new_record? ? link_to("Files") : link_to("Files", recipe_files_path(@recipe), :class => "#{'active' if active == "files"}") %>
+  </li>
+	<%= hidden_field_tag "recipe[correlation_ids]", @recipe ? @recipe.correlation_ids.join(",") : "" %>
+	<%= hidden_field :recipe, :product_id %>
+</ul>
+<div style="clear:both;">&nbsp;</div>

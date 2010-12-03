@@ -1,0 +1,16 @@
+<div id="news_letters" class="sub_menu">
+  <ul>
+    <li <%= "class='active'" if @current_controller == "news_letters" %>><%= link_to "Letters", admin_news_letters_path, :class => ('active' if @current_controller == "news_letters") %></li>
+    <li <%= "class='active'" if @current_controller == "subscriptions" %>><%= link_to "Subscriptions", admin_subscriptions_path, :class => ('active' if @current_controller == "subscriptions") %></li>
+  </ul>
+  <ul>
+    <li <%= "class='active'" if @current_action == "index" %>>
+      <%- list_uri = admin_news_letters_path; list_uri = admin_subscriptions_path if @current_controller == "subscriptions" -%>
+      <%= link_to "List", list_uri, :class => ('active' if @current_action == "index") %>
+    </li>
+    <li <%= "class='active'" if @current_action == "new" %>>
+      <%- new_uri = new_admin_news_letter_path; new_uri = new_admin_subscription_path if @current_controller == "subscriptions" -%>
+      <%= link_to "New", new_uri, :class => ('active' if @current_action == "new") %>
+    </li>
+  </ul>
+</div>

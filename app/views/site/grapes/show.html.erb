@@ -1,0 +1,39 @@
+<% @title = "#{@grape.name}"; @class= "no-padding"; @breadcrumbs = "#{link_to("Home", root_url)} &raquo; #{link_to("Grapes", grape_guide_path)} &raquo; #{@grape.name}" %>
+
+<div id="header"><%= @grape.name %></div>
+<div style="text-align:center;padding-top:10px;"><%= image_tag("guide_home_image.jpg") %></div>
+<div style="margin:20px 40px;">
+  <h1 style="text-align:center;font-size:18px;font-weight:bold;color:#666666;margin-bottom:30px">Grape Information</h1>
+  <div style="float:left;margin-right:20px;"><%= show_grape_image(@grape) %></div>
+  <%= @grape.description || "No Description" %>
+  <div style="clear:both;"></div>
+  <br /><br />
+  <h3 style="font-size:16px;color:#013300;border:none;">Producers that grow this grape</h3>
+  <ul style="list-style:none;margin:0;padding:0;">
+    <%- @grape.producers.each do |producer| -%>
+    <li><%= link_to producer.name, producer_path(producer) %></li>
+    <%- end -%>
+  </ul>
+  <br /><br />
+  <h3 style="font-size:16px;color:#013300;border:none;">Wines made with this grape</h3>
+  <ul style="list-style:none;margin:0;padding:0;text-align:center;">
+    <%- @grape.products.each do |product| -%>
+    <li style="float:left;width:100px;margin-left:10px;margin-bottom:10px;">
+      <%= link_to show_image_tag(product.layout_image, product.image_1, :jpg), nested_products_uri(product) %><br />
+      <%= link_to product.name, nested_products_uri(product) %>
+    </li>
+    <%- end -%>
+  </ul>
+</div>
+
+<%- content_for :right do -%>
+  <%= render :partial => 'site/shared/box_event' %>
+  <br />
+  <%= render :partial => 'site/shared/box_subscriptions' %>
+  <br />
+  <%= render :partial => 'site/shared/box_wine_tours' %>
+  <br />
+  <%= render :partial => 'site/shared/box_recipes' %>
+  <br />
+  <%= render :partial => 'site/shared/box_popular' %>
+<%- end -%>

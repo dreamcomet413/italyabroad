@@ -1,0 +1,59 @@
+<%- @breadcrumbs = "#{link_to("Home", root_url)} &raquo; #{link_to("Events", '/event')}" -%>
+
+<% if @category.image && !@category.image_url.blank? %>
+  <div id="wineBanner">
+	<%= link_to image_tag(image_url('home_image', @category.image, :jpg)), @category.image_url %>
+	</div>
+<% else %>
+  <div id="wineBanner">
+    <span class="title">
+      <strong style="font-size:25px;">Discover</strong> and <strong style="font-size:24px;">taste</strong> some<br />
+      of the <strong style="font-size:24px;">finest Italian<br />
+      wines,</strong> unknown, very<br />
+      small production, fantastic<br />
+      wines, <strong style="font-size:24px;">learn about<br />
+      Italian wine regions</strong> and<br />
+      improve <strong style="font-size:24px;">your wine<br />
+      knowledge</strong> at our <strong style="font-size:24px;">wine<br />
+      events</strong>
+    </span>
+	  <%= link_to image_tag("events.jpg"), search_index_path(:id => @category) %>
+	</div>
+<% end %>
+
+<div style="margin:10px">
+  <%= render :partial => "/site/shared/box_upcoming_events" %>
+  <div id="event_introduction">
+    <h3>Wine Courses &amp; Events</h3>
+    <p>
+      <%= @category.description %>
+     <!-- Our <b>wine tasting events</b> are designed to introduce you the huge variety of <b>Italian wines</b>, including the very limited productions, wines only made in particular areas and in very limited quantity from little vineyards from small and  passionate producers. Each <b>wine tasting event</b> covers the general background of the area, the producer philosophy and the characteristics of the wines and aim to increase understanding and enjoyment of <b>Italian wines</b> not available on the high street. All our wine tasting events are held by our knowledgeable staff that has been drinking and studying wine for decades and is specialised in Italian wines, we are the best for <b>Italian wines</b>, knowing everything there is to know about <b>Italy</b> and <b>Italian wines</b>.-->
+    </p>
+  </div>
+  <div style="clear:both;"></div>
+  <% products = @category.products.find(:all, :conditions => ["active = ?", true], :order => "created_at DESC").paginate(:page => params[:page], :per_page => 4) %>
+  <div id="featured_events">
+    <br />
+    <h3>Featured Events</h3>
+    <ul>
+      <% for product in products %>
+      <li>
+        <h1><%= link_to product.name, "/wine-events/#{product.friendly_identifier}", :style => "color:black;" %></h1>
+      	<%= product.description_short.gsub("\n","<br />") %>&nbsp;<%= link_to "(More info)", "wine-events/#{product.friendly_identifier}" %>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<% content_for :right do %>
+	<%= render :partial => '/site/shared/box_event_reviews' %>
+	<br />
+	<%= render :partial => '/site/shared/box_subscriptions' %>
+	<br />
+	<%= render :partial => '/site/shared/box_wine_tours' %>
+	<br />
+	<%= render :partial => '/site/shared/box_grape_guide' %>
+	<br />
+	<%= render :partial => '/site/shared/box_popular' %>
+<% end %>

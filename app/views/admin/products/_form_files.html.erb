@@ -1,0 +1,22 @@
+<fieldset id="files_information">
+	<table border="0" cellspacing="5" cellpadding="5">
+		<tr>
+		  <td style="text-align:right;width:150px;">Resource 1:</td>
+		  <td><%= file_field :resource_1, :uploaded_data %></td>
+			<td><%= link_to(@product.resource_1.filename, @product.resource_1.public_filename) if @product && @product.resource_1 %></td>
+			<td><% if @product && @product.resource_1 %><%= link_to "Destroy", admin_product_resource_path(@product, @product.resource_1), :confirm => "Are you sure?", :method => :delete %><% end %></td>
+		</tr>
+		<tr>
+		  <td style="text-align:right;width:150px;">Resource 2:</td>
+		  <td><%= file_field :resource_2, :uploaded_data %></td>
+			<td><%= link_to(@product.resource_2.filename, @product.resource_2.public_filename) if @product && @product.resource_2 %></td>
+			<td><% if @product && @product.resource_2 %><%= link_to "Destroy", admin_product_resource_path(@product, @product.resource_2), :confirm => "Are you sure?", :method => :delete %><% end %></td>
+		</tr>
+		<tr style="text-align:right;width:150px;">
+		  <td>Resource 3:</td>
+		  <td><%= file_field :resource_3, :uploaded_data %></td>
+			<td><%= link_to(@product.resource_3.filename, @product.resource_3.public_filename) if @product && @product.resource_3 %></td>
+			<td><% if @product && @product.resource_3 %><%= link_to "Destroy", admin_product_resource_path(@product, @product.resource_3), :confirm => "Are you sure?", :method => :delete %><% end %></td>
+		</tr>
+	</table>
+</fieldset>

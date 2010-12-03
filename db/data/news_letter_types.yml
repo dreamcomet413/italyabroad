@@ -1,0 +1,7 @@
+--- 
+news_letter_types_1: 
+  name: text/plain
+  id: "1"
+news_letter_types_2: 
+  name: text/html
+  id: "2"

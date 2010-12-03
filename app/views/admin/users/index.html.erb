@@ -1,0 +1,47 @@
+<%- @title = "Administration - Administrators"; @page_id = "Administration" -%>
+<%- @breadcrumbs = "Administration &raquo; #{link_to "Users", admin_users_path}" -%>
+
+<div class="inner_content administrator" id="admin_administrator_index">
+  <h2>Users</h2>
+  <br />
+  <table>
+    <tr>
+      <td>&nbsp;</td>
+      <td align="right"><%= link_to "New User", new_admin_user_path %></td>
+    </tr>
+  </table>
+  <table id="user-list" class="list sortable">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>Name</th>
+        <th>Active</th>
+        <th class="date-us">Created at</th>
+        <th class="nosort"></th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+        <td colspan="3"><%= will_paginate_(@users) %></td>
+        <td colspan="3" align="right"><%= page_entries_info_ @users %></td>
+      </tr>
+    </tfoot>
+    <tbody>
+      <%- @users.each do |user| -%>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= user.login %></td>
+        <td><%= user.full_name %></td>
+        <td><%= user.active %></td>
+        <td><%= user.created_at.strftime("%d/%m/%y") unless user.created_at.nil? %></td>
+        <td>
+          <%= link_to "Edit", edit_admin_user_path(user) %> | 
+          <%= link_to "Delete", admin_user_path(user), :method => "delete", :confirm => "Are you sure want to delete this account?" %>
+        </td>
+      </tr>
+      <%- end -%>
+    </tbody>
+  </table>
+  <%= will_paginate(@users) %>
+</div>

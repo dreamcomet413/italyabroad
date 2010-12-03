@@ -1,0 +1,139 @@
+<h1>Personal Details</h1>
+<div class="container">
+	<p>
+	  The email address you enter here is where we'll send all communications when you shop with Italyabroad.
+  </p>
+	<table>
+		<tr>
+		  <td>Title:</td>
+		  <td><%= select :user, :title, ["Mr", "Miss", "Mrs", "Dr"] %></td>
+    </tr>
+		<tr>
+		  <td>Name:</td>
+		  <td><%= text_field :user, :name %></td>
+    </tr>
+		<tr>
+		  <td>Surname:</td>
+		  <td><%= text_field :user, :surname %></td>
+    </tr>
+		<tr>
+		  <td>Email:</td>
+		  <td><%= text_field :user, :email %></td>
+    </tr>
+		<tr>
+		  <td>DOB:</td>
+		  <td><%= date_select :user, :dob, :start_year => 1900, :end_year => Time.now.year, :order => [:day, :month, :year] %></td>
+    </tr>
+	</table>
+</div>
+
+<h1>Login Details</h1>
+<div class="container">
+	<p>
+		Choose a user name and password which you will use to log in to our site. The ideal password should be hard to guess, but easy to remember.
+	</p>
+	<table>
+		<tr>
+		  <td>User Name:</td>
+		  <td><%= text_field :user, :login, :disabled => (true unless @user.new_record?) %></td>
+    </tr>
+		<tr>
+		  <td>Password:</td>
+		  <td><%= password_field :user, :password %></td>
+    </tr>
+		<tr>
+		  <td>Password Confirm:</td>
+		  <td><%= password_field :user, :password_confirmation %></td>
+    </tr>
+	</table>
+	<p>
+		Our system keeps your password completely secure - even our technical team can't see it. We simply recognise a match when you log in.
+	</p>
+</div>
+
+<%= render :partial => 'profile_pic' %>
+
+<h1>Delivery and billing address</h1>
+<div class="container">
+	<p>
+	  You can update this any time, for example if you move or need us to deliver your shopping somewhere else.
+  </p>
+	<table>
+		<tr>
+		  <td>Address #1:</td>
+		  <td><%= text_field :user, :address %></td>
+    </tr>
+		<tr>
+		  <td>Address #2:</td>
+		  <td><%= text_field :user, :address_2 %></td>
+    </tr>
+		<tr>
+		  <td>Country:</td>
+		  <td><%= custom_country_select :user, :country, ["United Kingdom"] %></td>
+    </tr>
+		<tr>
+		  <td>Town:</td>
+		  <td><%= text_field :user, :city %></td>
+    </tr>
+		<tr>
+		  <td>Postcode:</td>
+		  <td><%= text_field :user, :cap %></td>
+    </tr>
+	</table>
+</div>
+
+<h1>Telephone number</h1>
+<div class="container">
+	<p>
+		In case we need to contact you urgently regarding your delivery. Please include the full area code.
+	</p>
+	<table>
+		<tr>
+		  <td>Telephone:</td>
+		  <td><%= text_field :user, :telephone %></td>
+		</tr>
+		<tr>
+		  <td>Mobile:</td>
+		  <td><%= text_field :user, :mobile %></td>
+		</tr>
+	</table>
+</div>
+
+<h1>Where did you hear about us?</h1>
+<div class="container">
+	<p>
+	  This helps us improve our services.
+	</p>
+	<table>
+		<tr>
+		  <td>Choose from the list:</td>
+		  <td><%= select :user, :know_through, ["Google", "Yahoo", "Msn", "Other Search Engines", "Press", "Italyabroad.com Van", "Fairs and Events", "Flyers", "Wine Tasting", "Recommended by a Friend", "Other Source"] %></td>
+		</tr>
+  </table>
+  <p>
+    If you have been told about italyabroad.com by a friend please enter his/her details below and you will both receive a free bottle of wine if you spend at least £30
+  </p>
+	<table>
+		<tr>
+		  <td>Friend's name:</td>
+		  <td><%= text_field :user, :friend_name %></td>
+    </tr>
+		<tr>
+		  <td>Friend's email:</td>
+		  <td><%= text_field :user, :friend_email %></td>
+    </tr>
+  </table>
+</div>
+
+<h1>Contact Permission</h1>
+<div class="container last">
+	<p>
+		As a valued Italyabroad customer, we don't want you to miss out on any Great Offers, Ideas or new Services. We would like to contact you from time to time about things we think you'll be interested in. We will obviously treat your details very carefully and will not share your information with any third party without your consent.
+	</p>
+	<table>
+		<tr>
+		  <td>Keep me updated </td>
+		  <td><%= check_box :user, :news_letters %></td>
+    </tr>
+	</table>
+</div>

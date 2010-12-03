@@ -1,0 +1,7 @@
+--- 
+blog_types_1: 
+  name: Blog
+  id: "1"
+blog_types_2: 
+  name: Events
+  id: "2"

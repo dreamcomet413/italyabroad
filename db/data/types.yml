@@ -1,0 +1,7 @@
+--- 
+types_1: 
+  name: Admin
+  id: "1"
+types_2: 
+  name: Customer
+  id: "2"

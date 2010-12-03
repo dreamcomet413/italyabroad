@@ -1,0 +1,43 @@
+<%- @title = "Producers"; @page_id = "Grapes" -%>
+<%- @breadcrumbs = "Grapes &raquo; #{link_to "Producers", admin_producers_path}" -%>
+
+<div class="inner_content producers" id="admin_producers_index">
+  <h2>Producers</h2>
+  <br />
+  <table>
+    <tr>
+      <td></td>
+      <td align="right"><%= link_to "New Producer", new_admin_producer_path %></td>
+    </tr>
+  </table>
+  <table id="grape-list" class="list sortable">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Region</th>
+        <th>Grapes</th>
+        <th class="nosort"></th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+        <td colspan="3"><%= will_paginate_(@producers) %></td>
+        <td colspan="3" align="right"><%= page_entries_info_ @producers %></td>
+      </tr>
+    </tfoot>
+    <tbody>
+      <%- for producer in @producers -%>
+      <tr>
+        <td valign="top"><%= producer.id %></td>
+        <td valign="top" style="width:200px;"><%= producer.name %></td>
+        <td valign="top"><%= producer.description %></td>
+        <td valign="top"><%= producer.region.name rescue "no region" %></td>
+        <td valign="top"><%= producer.grapes.collect(&:name).join(", ") %></td>
+        <td valign="top" style="width:100px;"><%= link_to "Edit", edit_admin_producer_path(producer) %> | <%= link_to "Destroy", admin_producer_path(producer), :method => :delete, :confirm => "Are you sure want to delete this producer?" %></td>
+      </tr>
+      <%- end -%>
+    </tbody>
+  </table>
+</div>

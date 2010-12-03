@@ -1,0 +1,19 @@
+<%- @title = "My favourite wines" -%>
+<%- @breadcrumbs = "#{link_to("Home", root_url)} &raquo; My Winelist" -%>
+<% @class = "no-padding" %>
+
+<div id="header"><%= render :partial => 'site/shared/box_login' %></div>
+<div>
+  <h4 class="account-title">My favourite wines</h4>
+  <ul>
+  <%- for wine_list in @wine_lists -%>
+    <li style="list-style:none;">
+      <div style="font-size:16px;"><%= wine_list.product.name %></div>
+    </li>
+  <%- end -%>
+  </ul>
+</div>
+
+<%- content_for :right do -%>
+  <%= render :partial => 'site/shared/box_subscriptions' %>
+<%- end -%>

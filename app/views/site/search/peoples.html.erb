@@ -1,0 +1,55 @@
+<%- @title = "Community search result"; @class = "people"; @breadcrumbs = "#{link_to("Home", root_url)} &raquo; Search &raquo; People" -%>
+<div id="header">Community search result</div>
+<div>
+  <%= will_paginate(@users) %>
+  <ul style="list-style:none;padding-left:20px;">
+    <%- for people in @users -%>
+    <li>
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td width="98px;">
+            <%= link_to avatar_for_user(people), customer_path(people) %>
+          </td>
+          <td valign="top">
+            <table cellspacing="5">
+              <tr>
+                <td>Name:</td
+                <td><%= people.name %></td>
+              </tr>
+              <tr>
+                <td>City:</td>
+                <td><%= people.city %></td>
+              </tr>
+              <tr>
+                <td colspan="2">My favorite wines is ...</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <br />
+      <%= people.name %>'s latest comments
+      <ul>
+        <%- for comment in people.comments.all(:order => "created_at DESC") -%>
+        <li><%= comment.name %></li>
+        <%- end -%>
+      </ul>
+      <br />
+      <% unless people == current_user %>
+      <%- if people.followed_by?(current_user) -%>
+      <%= link_to image_tag("buttons/unfollow.png"), unfollow_path(people) %>
+      <%- else -%>
+      <%= link_to image_tag("buttons/follow.png"), follow_path(people) %>
+      <%- end -%>
+      <% end %>
+    </li>
+    <%- end -%>
+  </ul>
+  <%= will_paginate(@users) %>
+</div>
+
+<% content_for :right do %>
+	<%= render :partial => '/site/shared/box_popular' %>
+	<br />
+	<%= render :partial => '/site/shared/box_grape_guide' %>
+<% end %>

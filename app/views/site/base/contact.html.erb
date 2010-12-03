@@ -1,0 +1,68 @@
+<% @title = "Contact us"; @description = "let us know what you think about italyabroad.com"; @keys = "italian wine, italian red and white wine, italian food, wine tasting, wine expert" %>
+<% @class = "about-us no-padding" %>
+<% @breadcrumbs = "#{link_to("Home", root_url)} &raquo; About us &raquo; Contact us" %>
+
+<div id="header"><strong>italyabroad.com</strong> About us</div>
+<div style="margin:20px;">
+  <% unless @hide %>
+    <h2>Contact us</h2>
+    <%= show_messages flash[:message] %>
+    <p>
+      If you have any queries regarding your order or its delivery, or if you are unable to find what you are looking for please fill the form below or alternatively call us on the number below.
+    </p>
+    <p>
+      We are more than happy to offer advice on produces or help you navigate the site.
+    </p>
+    <p>
+      Tel:  08452 69 4324 (+44 113 252 4271 outside UK)
+    </p>
+    <p>
+      Contact <%= mail_to "info@italyabroad.com" %>
+    </p>
+    <p>
+      We are open Monday to Friday from 09:00 to 17:00. If we are not able to take your call straight away, please leave a message and we will return your call.
+    </p>
+    <!--<%# @about = AboutU.find(:first, :conditions => {:link_type => "contact us"} ) %>
+    <div style="margin:20px;">
+      <%# if @about %>
+        <h2><%#= @about.title if @about %></h2>
+        <%#= @about.description if @about %>
+      <%# else %>
+        <p style="padding:30px 0 30px 0;text-align:center;font: bold 16px Arial">Coming soon...</p>
+      <%# end %>
+    </div>-->
+
+    <p>
+      <% form_tag contact_us_path do %>
+        <% unless flash[:notice].blank? %>
+        <div><%= flash[:notice] %></div>
+      <% end %>
+      <p>
+        Insert your name:<br /><%= text_field :contact, :name %>
+      </p>
+      <p>
+        Insert your email address:<br /><%= text_field :contact, :email %>
+      </p>
+      <p>
+        Insert your message:<br /><%= text_area :contact, :message, :rows => 5, :style => "width:95%" %>
+      </p>
+      <p>
+        Where did you hear about us? <%= select :contact, :know_through, ["Google", "Yahoo", "Msn", "Other Search Engines", "Press", "Italyabroad.com Van", "Fairs and Events", "Flyers", "Wine Tasting", "Recommended by a Friend", "Other Source"] %>
+      </p>
+
+      <p>
+      <div style="float:left">Verification code:<%= show_simple_captcha :label => "Please type the verification code", :image_style => "simply_green", :object => "contact" %></div>
+      <div style="float:right"><%= link_to image_tag('LiveChatHelpIcon.jpg'),chat_index_path, :popup => ['new_window_name', 'height=400,width=300'] %></div>
+      </p>
+      <div style="clear: both"></div>
+      <p>
+        <%= submit_tag "Send" %>
+      </p>
+    <% end %>
+  </p>
+<% end %>
+</div>
+
+<% content_for :right do %>
+  <%= render :partial => 'site/shared/box_about_us' %>
+<% end %>

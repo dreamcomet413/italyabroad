@@ -1,0 +1,99 @@
+<table>
+  <tr>
+    <td colspan="2"><b>General Info</b></td>
+  </tr>
+	<tr>
+		<td>Title:</td>
+		<td><%= select :user, :title, ["Mr", "Miss", "Mrs", "Dr"] %></td>
+  </tr>
+  <tr>
+		<td>Name:</td>
+		<td><%= text_field :user, :name %></td>
+	</tr>
+	<tr>
+		<td>Surname:</td>
+		<td><%= text_field :user, :surname %></td>
+  </tr>
+  <tr>
+		<td>DOB:</td>
+		<td><%= date_select :user, :dob, :start_year => 1900, :end_year => Time.now.year, :order => [:day, :month, :year] %></td>
+	</tr>
+	<tr>
+	  <td colspan="2"><br /><b>Telephone</b></td>
+  </tr>
+	<tr>
+		<td>Telephone:</td>
+		<td><%= text_field :user, :telephone %></td>
+  </tr>
+  <tr>
+		<td>Mobile:</td>
+		<td><%= text_field :user, :mobile %></td>
+	</tr>
+	<tr>
+	  <td colspan="2"><br /><b>Address</b></td>
+  </tr>
+  <tr>
+		<td>Address #1:</td>
+		<td><%= text_field :user, :address %></td>
+  </tr>
+  <tr>
+		<td>Address #2:</td>
+		<td><%= text_field :user, :address_2 %></td>
+  </tr>
+  <tr>
+  	<td>Town:</td>
+  	<td><%= text_field :user, :city %></td>
+	</tr>
+	<tr>
+		<td>Postcode:</td>
+		<td><%= text_field :user, :cap %></td>
+  </tr>
+  <tr>
+		<td>Country:</td>
+		<td><%= custom_country_select :user, :country, ["United Kingdom"] %></td>
+  </tr>
+	<tr>
+	  <td colspan="2"><br /><b>Login</b></td>
+  </tr>
+  <tr>
+		<td>User Name:</td>
+		<td><%= text_field :user, :login %></td>
+  </tr>
+  <tr>
+		<td>E-Mail:</td>
+		<td><%= text_field :user, :email %></td>
+	</tr>
+  <tr>
+		<td>Password:</td>
+		<td><%= password_field :user, :password %></td>
+  </tr>
+  <tr>
+		<td>Password Confirm:</td>
+		<td><%= password_field :user, :password_confirmation %></td>
+	</tr>
+	<tr>
+	  <td colspan="2"><br /><b>Other Info</b></td>
+  </tr>
+	<tr>
+	  <td>Where did you hear about us?</td>
+	  <td>
+	    <%= select :user, :know_through, ["Google", "Yahoo", "Msn", "Other Search Engines", "Press", "Italyabroad.com Van", "Fairs and Events", "Flyers", "Wine Tasting", "Recommended by a friend", "Other Source"] %>
+    </td>
+  </tr>
+	<tr>
+	  <td>Friend's Name:</td>
+	  <td><%= text_field :user, :friend_name %></td>
+  </tr>
+	<tr>
+	  <td>Friend's Email:</td>
+	  <td><%= text_field :user, :friend_email %></td>
+  </tr>
+	<tr>
+	  <td>Subscribe our news letters?</td>
+	  <td><%= check_box :user, :news_letters %></td>
+  </tr>
+	<tr>
+	  <td>User Active?</td>
+	  <td><%= check_box :user, :active, :checked => "checked" %><%= hidden_field :user, :type_id, :value => 2 %></td>
+	</tr>
+</table>
