@@ -1,5 +1,5 @@
 class Site::CustomersController < ApplicationController
-  before_filter :site_login_required, :except => [:new, :create, :confirmation, :find, :request_new_password, :show,:update_default_pic]
+  before_filter :site_login_required, :except => [:new, :create, :confirmation, :find, :request_new_password, :show]
 
   layout "site"
 
@@ -91,10 +91,10 @@ class Site::CustomersController < ApplicationController
   end
 
   def update_default_pic
-  #  @user = current_user
-   set_photo_from_default(params[:kind],@user)
+    @user = current_user
+   @user.set_photo_from_default(params[:kind],@user)
 
- # render :layout => false
+  render :layout => false
   end
 
   def update
@@ -177,19 +177,17 @@ class Site::CustomersController < ApplicationController
     when "e"
       image = AppConfig.avatar_6
     end
-    render :update do |page|
-      page.alert('indu');
-    end
+
 
     if image
-     #user.photo = image
+     user.photo = image
       begin
-     # user.photo.destroy if user.photo
+      user.photo.destroy if user.photo
       rescue => e
         logger.info "Unexpected error when delete photo #{self.photo.id} \n #{e.inspect}"
       end
-     # user.photo_id = nil
-    #  user.save
+      user.photo_id = nil
+      user.save
     end
   end
 
