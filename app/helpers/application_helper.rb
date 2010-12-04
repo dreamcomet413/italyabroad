@@ -32,33 +32,33 @@ module ApplicationHelper
   def w3c_date(date)
     date.utc.strftime("%Y-%m-%dT%H:%M:%S+00:00")
   end
-  
+
   def options_for_shipping_addresses(user)
     options = []
     options = user.ship_addresses.inject([["Use Default",0]]) { |options, s| options << [s.code, s.id] }
     options << ["[Create a new address]", -1]
   end
-   
+
   def title
     return  @title + " - Italyabroad.com" unless @title.blank?
     return "Discover the finest Italian food and wine made by small producers at Italyabroad.com"
   end
-  
+
   def description
     return @description unless @description.blank?
     return "The best and finest Italian food and wine, olive oil,modena balsamic vinegar, cakes,  and much more"
   end
-  
+
   def keys
     return @keys unless @keys.blank?
     return "The best and finest Italian food and wine, wine, food, red wine, white wine, rose wine, sparkling wine, dessert wine, vintage wine, fine wine, wines, foods, red wines, white wines, rose wines, sparkling wines, dessert wines, vintage wines, fine wines, authentic Italian product, finest Italian food, finest Italian wine, fine Italian wine, Italian food product, typical Italian product, finest Italian food in the UK, fine Italian food, Italian deli Newcastle, Italian desserts, Italian deli north east, Italian delicatessen north east, Italian wines north east, Italian extra virgin olive oil, Italian organic products, Italian organic wines, Italian wines Newcastle, award winning Italian wines, enoteca in the UK, Italian gift, Italian hampers, Italian deli online, hamper with Italian products, hampers free delivery, wine gift basket, strawberry wine, Italian food, organic hampers, gift baskets, anniversary gifts, Christmas gifts, gift hamper England, corporate hampers, panettone, pandoro, torrone, amaretti, Chianti Classico, Chianti riserva, Vino Nobile di Montepulciano, frascati, small producers, Modena balsamic vinegar, extra virgin olive oil, events, wine tasting, corporate, corporate gifts, corporate hampers, wine experts"
   end
-  
+
   def truncate_words(text, length = 30, end_string = ' …')
     words = text.split()
     words[0..(length-1)].join(' ') + (words.length > length ? end_string : '')
   end
-  
+
 	def ajax_spinner_for(id, spinner="spinner.gif")
 		"<img src='/images/savage_beast/#{spinner}' style='display:none; vertical-align:middle;' id='#{id.to_s}_spinner'> "
 	end
@@ -133,28 +133,29 @@ module ApplicationHelper
     return nested_product_path(product.root_category_id, product) if (product && !product.root_category_id.blank? && product.sub_category_id.blank?)
     return product_path(product)
   end
-  
+
   def show_messages(message)
-    content_tag(:div, message, :class => "notice") unless message.blank?
+   content_tag(:div, message, :class => "notice") unless message.blank?
   end
-  
+
   def show_ratings(product, score = nil)
     ratings_icon = "ratings_icon.png"
     ratings_icon = "ratings_recipe_icon.png" if product.class.to_s == "Recipe"
     return %Q(<span class="ratings" style="#{"background:transparent url(/images/#{ratings_icon}) no-repeat -#{(86 - (product.average_rating.to_f/5.to_f * 86)).round}px center;" if product.average_rating > 0}">&nbsp;</span>) if score.nil?
     return %Q(<span class="ratings" style="#{"background:transparent url(/images/#{ratings_icon}) no-repeat -#{(86 - (score.to_f/5.to_f * 86)).round}px center;"}">&nbsp;</span>)
   end
-  
+
   def show_grape_image(grape)
     return image_tag(image_url(:grape_thumb, grape.image, :jpg)) if grape.image
     return image_tag("grape_default.png")
   end
-  
+
   def will_paginate_(object)
     "<table style=\"width:auto;\"><tr><td style=\"width:32px;\"><strong>Page:</strong></td><td>#{will_paginate(object, :previous_label => "&laquo;", :next_label => "&raquo;")}</td></tr></table>" unless will_paginate(object).blank?
   end
-  
+
   def page_entries_info_(object)
     content_tag(:div, page_entries_info(object), :class => "page_info")
   end
 end
+

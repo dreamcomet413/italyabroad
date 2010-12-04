@@ -9,12 +9,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101116115517) do
+ActiveRecord::Schema.define(:version => 20101203113620) do
 
   create_table "about_us", :force => true do |t|
     t.string   "title"
     t.text     "description"
-    t.string   "type"
+    t.string   "link_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -54,8 +54,8 @@ ActiveRecord::Schema.define(:version => 20101116115517) do
     t.string  "layout_search"
     t.string  "layout_card"
     t.string  "layout_image"
-    t.string  "show_in_menu",        :default => "1"
-    t.string  "show_in_boxes",       :default => "1"
+    t.boolean "show_in_menu",        :default => true
+    t.boolean "show_in_boxes",       :default => true
     t.string  "image_url"
     t.string  "friendly_identifier"
   end
@@ -81,9 +81,9 @@ ActiveRecord::Schema.define(:version => 20101116115517) do
     t.string  "code"
     t.integer "price"
     t.integer "min_order"
-    t.string  "active",     :default => "1"
+    t.boolean "active",     :default => true
     t.integer "product_id"
-    t.string  "public"
+    t.boolean "public"
     t.string  "cupon_type", :default => "price"
   end
 
@@ -93,8 +93,8 @@ ActiveRecord::Schema.define(:version => 20101116115517) do
   end
 
   create_table "deliveries", :force => true do |t|
-    t.string "name"
-    t.float  "price", :default => 0.0
+    t.string  "name"
+    t.decimal "price", :precision => 8, :scale => 2, :default => 0.0
   end
 
   create_table "followers", :force => true do |t|
@@ -135,10 +135,10 @@ ActiveRecord::Schema.define(:version => 20101116115517) do
   end
 
   create_table "gift_options", :force => true do |t|
-    t.string "name"
-    t.text   "description"
-    t.float  "price",       :default => 0.0
-    t.string "is_default",  :default => "0"
+    t.string  "name"
+    t.text    "description"
+    t.decimal "price",       :precision => 8, :scale => 2, :default => 0.0
+    t.boolean "is_default",                                :default => false
   end
 
   create_table "grapes", :force => true do |t|
@@ -159,6 +159,15 @@ ActiveRecord::Schema.define(:version => 20101116115517) do
     t.string  "image_filename"
     t.integer "image_width"
     t.integer "image_height"
+  end
+
+  create_table "menus", :force => true do |t|
+    t.integer "parent_id"
+    t.integer "lft"
+    t.integer "rgt"
+    t.string  "name"
+    t.string  "controller"
+    t.string  "action"
   end
 
   create_table "moderatorships", :force => true do |t|
@@ -182,8 +191,8 @@ ActiveRecord::Schema.define(:version => 20101116115517) do
     t.string   "name"
     t.text     "description"
     t.integer  "news_letter_type_id"
-    t.string   "customers",             :default => "1"
-    t.string   "subscribers",           :default => "1"
+    t.boolean  "customers",             :default => true
+    t.boolean  "subscribers",           :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "status_news_letter_id"
@@ -213,9 +222,9 @@ ActiveRecord::Schema.define(:version => 20101116115517) do
 
   create_table "order_items", :force => true do |t|
     t.string  "name"
-    t.float   "price",        :default => 0.0
+    t.decimal "price",        :precision => 8, :scale => 2, :default => 0.0
     t.string  "rate"
-    t.float   "vat",          :default => 0.0
+    t.decimal "vat",          :precision => 8, :scale => 2, :default => 0.0
     t.integer "quantity"
     t.integer "order_id"
     t.string  "product_code"
@@ -229,29 +238,29 @@ ActiveRecord::Schema.define(:version => 20101116115517) do
     t.datetime "updated_at"
     t.text     "note"
     t.string   "cupon_code"
-    t.float    "cupon_price",                :default => 0.0
-    t.string   "paid",                       :default => "0"
+    t.decimal  "cupon_price",                :precision => 8, :scale => 2, :default => 0.0
+    t.boolean  "paid",                                                     :default => false
     t.string   "delivery_name"
-    t.float    "delivery_price",             :default => 0.0
+    t.decimal  "delivery_price",             :precision => 8, :scale => 2, :default => 0.0
     t.integer  "payment_method_id"
-    t.string   "different_shipping_address", :default => "0"
+    t.boolean  "different_shipping_address",                               :default => false
     t.string   "ship_name"
     t.string   "ship_address"
     t.string   "ship_address_2"
     t.string   "ship_city"
     t.string   "ship_cap"
     t.string   "ship_country"
-    t.string   "ship_a_gift",                :default => "0"
+    t.boolean  "ship_a_gift",                                              :default => false
     t.integer  "gift_option_id"
     t.text     "gift_note"
     t.string   "ship_telephone"
   end
 
   create_table "payment_methods", :force => true do |t|
-    t.string "name"
-    t.string "vendor"
-    t.string "password"
-    t.string "external", :default => "0"
+    t.string  "name"
+    t.string  "vendor"
+    t.string  "password"
+    t.boolean "external", :default => false
   end
 
   create_table "photos", :force => true do |t|
@@ -319,21 +328,21 @@ ActiveRecord::Schema.define(:version => 20101116115517) do
     t.string   "code"
     t.text     "description_short"
     t.text     "description"
-    t.float    "price",               :default => 0.0
-    t.string   "rate",                :default => "17.5%"
-    t.float    "cost",                :default => 0.0
+    t.decimal  "price",               :precision => 8, :scale => 2, :default => 0.0
+    t.string   "rate",                                              :default => "17.5%"
+    t.decimal  "cost",                :precision => 8, :scale => 2, :default => 0.0
     t.integer  "image_1_id"
     t.integer  "image_2_id"
     t.integer  "image_3_id"
     t.integer  "resource_1_id"
     t.integer  "resource_2_id"
     t.integer  "resource_3_id"
-    t.string   "active",              :default => "1"
-    t.integer  "quantity",            :default => 1
-    t.string   "raccomanded",         :default => "0"
+    t.boolean  "active",                                            :default => true
+    t.integer  "quantity",                                          :default => 1
+    t.boolean  "raccomanded",                                       :default => false
     t.string   "region"
-    t.string   "vegetarian",          :default => "0"
-    t.string   "organic",             :default => "0"
+    t.boolean  "vegetarian",                                        :default => false
+    t.boolean  "organic",                                           :default => false
     t.string   "color"
     t.string   "size"
     t.string   "weight"
@@ -341,24 +350,24 @@ ActiveRecord::Schema.define(:version => 20101116115517) do
     t.string   "meta_keys"
     t.text     "meta_description"
     t.integer  "better_together"
-    t.string   "upselling"
-    t.string   "comments"
-    t.string   "say_to_friend"
-    t.string   "review"
+    t.boolean  "upselling"
+    t.boolean  "comments"
+    t.boolean  "say_to_friend"
+    t.boolean  "review"
     t.string   "vintage"
     t.string   "volume"
     t.integer  "rating"
-    t.integer  "from_quantity",       :default => 0
-    t.float    "from_quantity_price", :default => 0.0
+    t.integer  "from_quantity",                                     :default => 0
+    t.decimal  "from_quantity_price", :precision => 8, :scale => 2, :default => 0.0
     t.string   "date_arrival"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "how_to_cook_id"
     t.integer  "ideal_with_id"
-    t.float    "discount",            :default => 0.0
+    t.decimal  "discount",            :precision => 8, :scale => 2, :default => 0.0
     t.datetime "date"
     t.string   "friendly_identifier"
-    t.boolean  "featured",            :default => false
+    t.boolean  "featured",                                          :default => false
     t.integer  "region_id"
     t.integer  "producer_id"
   end
@@ -366,6 +375,12 @@ ActiveRecord::Schema.define(:version => 20101116115517) do
   create_table "products_grapes", :force => true do |t|
     t.integer  "product_id"
     t.integer  "grape_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "rates", :force => true do |t|
+    t.integer  "score"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -403,9 +418,9 @@ ActiveRecord::Schema.define(:version => 20101116115517) do
     t.integer  "resource_3_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "raccomanded",         :default => "0"
+    t.boolean  "raccomanded",         :default => false
     t.integer  "rating"
-    t.string   "active",              :default => "0"
+    t.boolean  "active",              :default => false
     t.string   "friendly_identifier"
     t.integer  "view_count",          :default => 0
     t.integer  "user_id"
@@ -421,10 +436,58 @@ ActiveRecord::Schema.define(:version => 20101116115517) do
     t.string   "friendly_identifier"
   end
 
+  create_table "reservations", :force => true do |t|
+    t.integer  "restaurant_id"
+    t.integer  "user_id"
+    t.integer  "status_reservation_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.datetime "date"
+  end
+
   create_table "resources", :force => true do |t|
     t.integer "size"
     t.string  "content_type"
     t.string  "filename"
+  end
+
+  create_table "restaurants", :force => true do |t|
+    t.string   "name"
+    t.string   "lunch"
+    t.string   "dinner"
+    t.string   "weekend_lunch"
+    t.string   "weekend_dinner"
+    t.string   "reservation"
+    t.integer  "cost",               :limit => 10, :precision => 10, :scale => 0, :default => 0
+    t.string   "closed"
+    t.text     "happy_hour"
+    t.text     "regional_cuisine"
+    t.text     "address"
+    t.text     "description"
+    t.boolean  "online_reservation"
+    t.string   "page_title"
+    t.string   "meta_keys"
+    t.text     "meta_description"
+    t.integer  "image_1_id"
+    t.integer  "image_2_id"
+    t.integer  "image_3_id"
+    t.integer  "resource_1_id"
+    t.integer  "resource_2_id"
+    t.integer  "resource_3_id"
+    t.string   "telephone"
+    t.string   "fax"
+    t.string   "mobile"
+    t.string   "email"
+    t.string   "website"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "google_map_link"
+    t.boolean  "raccomanded",                                                     :default => false
+    t.integer  "rating"
+    t.string   "city"
+    t.string   "cap"
+    t.string   "style"
+    t.boolean  "active",                                                          :default => false
   end
 
   create_table "reviews", :force => true do |t|
@@ -460,9 +523,9 @@ ActiveRecord::Schema.define(:version => 20101116115517) do
 
   create_table "settings", :force => true do |t|
     t.integer "wine_pdf_id"
-    t.float   "order_amount",          :default => 0.0
-    t.float   "order_cupon_amount",    :default => 0.0
-    t.float   "order_delivery_amount", :default => 0.0
+    t.decimal "order_amount",          :precision => 8, :scale => 2, :default => 0.0
+    t.decimal "order_cupon_amount",    :precision => 8, :scale => 2, :default => 0.0
+    t.decimal "order_delivery_amount", :precision => 8, :scale => 2, :default => 0.0
     t.integer "home_image_1_id"
     t.string  "home_image_1_url"
     t.integer "home_image_2_id"
@@ -514,6 +577,10 @@ ActiveRecord::Schema.define(:version => 20101116115517) do
   end
 
   create_table "status_orders", :force => true do |t|
+    t.string "name"
+  end
+
+  create_table "status_reservations", :force => true do |t|
     t.string "name"
   end
 
@@ -577,16 +644,16 @@ ActiveRecord::Schema.define(:version => 20101116115517) do
     t.datetime "updated_at"
     t.string   "remember_token"
     t.datetime "remember_token_expires_at"
-    t.string   "active",                                  :default => "0"
-    t.string   "activation_sent",                         :default => "0"
+    t.boolean  "active",                                  :default => false
+    t.boolean  "activation_sent",                         :default => false
     t.integer  "type_id"
     t.string   "country"
     t.string   "activation_code"
     t.string   "know_through"
     t.string   "title"
     t.string   "address_2"
-    t.string   "news_letters",                            :default => "1"
-    t.string   "ship_a_gift",                             :default => "0"
+    t.boolean  "news_letters",                            :default => true
+    t.boolean  "ship_a_gift",                             :default => false
     t.string   "friend_name"
     t.string   "friend_email",                            :default => "If Known"
     t.date     "dob"

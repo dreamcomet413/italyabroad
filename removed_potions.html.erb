@@ -1,0 +1,31 @@
+from user.rb
+--------------------------------------
+ def set_photo_from_default(kind)
+    case kind
+    when "1"
+      image = AppConfig.avatar_1
+    when "a"
+      image = AppConfig.avatar_2
+    when "b"
+      image = AppConfig.avatar_3
+    when "c"
+      image = AppConfig.avatar_4
+    when "d"
+      image = AppConfig.avatar_5
+    when "e"
+      image = AppConfig.avatar_6
+    end
+    if image
+      self.photo_default = image
+      begin
+        self.photo.destroy if self.photo
+      rescue => e
+        logger.info "Unexpected error when delete photo #{self.photo.id} \n #{e.inspect}"
+      end
+      self.photo_id = nil
+      self.save
+    end
+  end
+  ----------------------------------------------------------------------
+ removed from user.rb ends
+

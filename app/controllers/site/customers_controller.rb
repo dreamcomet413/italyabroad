@@ -1,5 +1,5 @@
 class Site::CustomersController < ApplicationController
-  before_filter :site_login_required, :except => [:new, :create, :confirmation, :find, :request_new_password, :show]
+  before_filter :site_login_required, :except => [:new, :create, :confirmation, :find, :request_new_password, :show,:update_default_pic]
 
   layout "site"
 
@@ -12,7 +12,7 @@ class Site::CustomersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @my_profile = @user == current_user
-    
+
     respond_to do |format|
       format.html
     end
@@ -26,7 +26,7 @@ class Site::CustomersController < ApplicationController
       make_and_send_pdf("site/customers/print_invoice", "Italyabroad_Invoice_#{@order.id}.pdf")
     end
   end
-  
+
   def print_tasting
     @order = Order.find(params[:id])
     if @order.user != current_user
@@ -36,7 +36,7 @@ class Site::CustomersController < ApplicationController
       make_and_send_pdf("site/customers/print_tasting", "Italyabroad_Tasting_Notes_#{@order.id}.pdf")
     end
   end
-  
+
   def create
     @user = User.new(params[:user])
     @user.type_id = 2
@@ -53,10 +53,10 @@ class Site::CustomersController < ApplicationController
       render :action => :new
     end
   end
-  
+
   def confirmation
     @user = User.find_by_id(params[:id])
-    
+
     if @user
       if @user.activation_code == params[:code]
         if @user.active
@@ -81,21 +81,22 @@ class Site::CustomersController < ApplicationController
       flash[:title] = "Sorry"
       flash[:message] = "We couldn't find your account, please contact us or create a new account."
     end
-    
+
     render :action => :messages
   end
-  
+
   def account
     @user = current_user
     redirect_to :controller => :base, :action => :index if @user.nil?
   end
 
   def update_default_pic
-    @user = current_user
-    @user.set_photo_from_default(params[:kind])
-    render :layout => false
+  #  @user = current_user
+   set_photo_from_default(params[:kind],@user)
+
+ # render :layout => false
   end
-  
+
   def update
     @user = current_user
     old_mail = @user.email
@@ -111,12 +112,12 @@ class Site::CustomersController < ApplicationController
       render :action => :account
     end
   end
-  
+
   def find
     @user = User.find_by_login(params[:user][:login])
     @user = User.find_by_email(params[:user][:email]) if @user.nil?
     if @user
-      Notifier.deliver_account_data(@user) 
+      Notifier.deliver_account_data(@user)
       flash[:title] = "Mail Sent"
       flash[:message] = "Your login details have been sent to #{@user.email}."
     else
@@ -129,16 +130,16 @@ class Site::CustomersController < ApplicationController
   def follow
     follower = User.find(params[:user_id])
     follower.followers.create(:follower_id => current_user.id) if follower && !follower.followed_by?(current_user)
-    
+
     respond_to do |format|
       if follower
         format.html { redirect_to(customer_path(follower)) }
       else
         format.html { redirect_to(customer_path(current_user)) }
-      end 
+      end
     end
   end
-  
+
   def unfollow
     user = User.find(params[:user_id])
     follower = user.followers.find_by_follower_id(current_user.id)
@@ -150,15 +151,47 @@ class Site::CustomersController < ApplicationController
         format.html { redirect_to(customer_path(user)) }
       else
         format.html { redirect_to(customer_path(current_user)) }
-      end 
+      end
     end
   end
 
   def request_new_password
-    
+
     respond_to do |format|
       format.html
     end
   end
 
+  def set_photo_from_default(kind,user)
+    case kind
+    when "1"
+      image = AppConfig.avatar_1
+    when "a"
+      image = AppConfig.avatar_2
+    when "b"
+      image = AppConfig.avatar_3
+    when "c"
+      image = AppConfig.avatar_4
+    when "d"
+      image = AppConfig.avatar_5
+    when "e"
+      image = AppConfig.avatar_6
+    end
+    render :update do |page|
+      page.alert('indu');
+    end
+
+    if image
+     #user.photo = image
+      begin
+     # user.photo.destroy if user.photo
+      rescue => e
+        logger.info "Unexpected error when delete photo #{self.photo.id} \n #{e.inspect}"
+      end
+     # user.photo_id = nil
+    #  user.save
+    end
+  end
+
 end
+

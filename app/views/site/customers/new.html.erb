@@ -5,6 +5,7 @@
 <div id="customers_new_container">
   <% form_for :user, :url => customers_path, :html => {:multipart => true} do %>
   	<%= show_messages(flash[:notice]) %>
+
     <%= render :partial => 'form' %>
   	<p style="text-align:right;">
   	  <%= image_submit_tag "buttons/register_button.png" %>
@@ -19,3 +20,4 @@
 	<br />
 	<%= render :partial => '/site/shared/box_popular' %>
 <% end %>
+

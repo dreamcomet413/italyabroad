@@ -1,7 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <title><%= h(title) %></title>
+    <title><%= h(title) %>
+    </title>
     <link rel="shortcut icon" href="/images/italyabroad.ico" />
     <link rel="alternate" type="application/rss+xml" title="Italyabroad.com Products, Feed RSS 2.0" href="<%= products_url %>" />
     <link rel="alternate" type="application/rss+xml" title="Italyabroad.com Blog, Feed RSS 2.0" href="<%= blog_index_url %>" />
@@ -89,6 +90,7 @@
         <div style="clear:both;"></div>
         <div id="mainContent">
           <% if flash[:error] or flash[:notice] %>
+
             <div id="notice" style="font:bold italic large Palatino, serif;text-align:center;background:#F5F6CE" <% if flash[:error] %> color="red"<% else %> style="color:green;"<% end %>><%= flash[:error] || flash[:notice] %></div>
             <script type="text/javascript">
               setTimeout("new Effect.Fade('notice');", 12000)

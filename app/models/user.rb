@@ -46,7 +46,7 @@ class User < ActiveRecord::Base
     #Notifier.deliver_update(record)
   end
 
-  
+
   def group
     self.type_id == 1 ? "Admin" : "Member"
   end
@@ -65,39 +65,14 @@ class User < ActiveRecord::Base
       self.photo_id = photo.id
       self.photo_default = nil
       self.save
-    end
+  end
   end
 
   def get_photo_default(size)
     (size=="small") ? "#{self.photo_default.downcase}.jpg" : "#{self.photo_default.downcase}_big.jpg"
   end
 
-  def set_photo_from_default(kind)
-    case kind
-    when "1"
-      image = AppConfig.avatar_1
-    when "a"
-      image = AppConfig.avatar_2
-    when "b"
-      image = AppConfig.avatar_3
-    when "c"
-      image = AppConfig.avatar_4
-    when "d"
-      image = AppConfig.avatar_5
-    when "e"
-      image = AppConfig.avatar_6
-    end
-    if image
-      self.photo_default = image
-      begin
-        self.photo.destroy if self.photo
-      rescue => e
-        logger.info "Unexpected error when delete photo #{self.photo.id} \n #{e.inspect}"
-      end
-      self.photo_id = nil
-      self.save
-    end
-  end
+
 
   def saved_to_winelist?(product)
     self.wine_lists.collect(&:product_id).include?(product.id)
@@ -237,3 +212,4 @@ class User < ActiveRecord::Base
     return type_id == 1 ? false : true
   end
 end
+

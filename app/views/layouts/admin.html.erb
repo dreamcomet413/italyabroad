@@ -13,6 +13,7 @@
                 });
               </script>
           <% end %>
+
 		<div id="header">
                   <div style="width:226px;float:left;"><%= link_to image_tag("admin/logo.png"), siteadmin_path %></div>
 		  <div style="width:auto;float:right;font-weight:bold;">Welcome, <%= current_user.login %></div>
@@ -20,7 +21,8 @@
 		<%= render :partial => "admin/shared/menu" %>
 		<div style="clear:both;"></div>
 		<%= content_tag(:div, @breadcrumbs, :id => "breadcrumbs") unless @breadcrumbs.blank? %>
-		<div id="content"><%= yield %></div>
+		<div id="content"><%= yield  %></div>
 	</div>
 </body>
 </html>
+
