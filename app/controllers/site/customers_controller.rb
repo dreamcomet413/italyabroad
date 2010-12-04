@@ -92,7 +92,7 @@ class Site::CustomersController < ApplicationController
 
   def update_default_pic
     @user = current_user
-   @user.set_photo_from_default(params[:kind],@user)
+    set_photo_from_default(params[:kind],@user)
 
   render :layout => false
   end
@@ -180,7 +180,7 @@ class Site::CustomersController < ApplicationController
 
 
     if image
-     user.photo = image
+     user.photo_default = image
       begin
       user.photo.destroy if user.photo
       rescue => e
