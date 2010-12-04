@@ -264,6 +264,7 @@ a {
     width:723px;
     height:284px;
     background:transparent url(images/loading.gif) center center;
+    overflow:hidden;
 }
 
 #flashBanner ul {
