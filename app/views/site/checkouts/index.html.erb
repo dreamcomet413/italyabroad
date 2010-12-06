@@ -4,8 +4,6 @@
 
 <% unless @cart.items.blank? %>
   <div id="header">Checkout</div>
-  <div style="text-align:center;margin-top:40px;"><%= image_tag("cart_step_2.png") %></div>
-  <%= render :partial => 'site/shared/box_cart_form' %>
   <div style="margin:10px 20px;">
     <h2 style="font-weight:normal;">Delivery and Billing Address (if different from account)</h2>
     <p>Your order will be delivered to the address below.</p>
@@ -41,6 +39,8 @@
       </p>
     </div>
   </div>
+  <div style="text-align:center;margin-top:40px;"><%= image_tag("cart_step_2.png") %></div>
+  <%= render :partial => 'site/shared/box_cart_form' %>
   <p style="text-align:right;margin:10px;">
   	<%= image_submit_tag("buttons/continue_button.png", :id => "ship_address_form_continue") %>
   	<%= javascript_tag "document.observe('dom:loaded', function(e){ RemoteAddressFrom.setup('#{confirm_address_checkouts_path}') });" %>
