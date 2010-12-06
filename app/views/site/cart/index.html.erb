@@ -28,9 +28,13 @@
             <% if product.from_quantity > 0 && product.from_quantity_price > 0 && cart_item.quantity < product.from_quantity %>
               <div style="color:red">
                 <% if product.categories.root.name == "Wine" %>
-                        (Buy a case of <%= product.from_quantity %> and save <%= number_to_currency product.from_quantity_price, :unit => "&pound;" %>)
+
+<%= link_to "(Buy a case of #{product.from_quantity} and save  #{number_to_currency product.from_quantity_price, :unit => "&pound;"} )",  '#', :onclick => "$('txt_qty_#{cart_item.product.id }').value=#{product.from_quantity}; $('form_cart').submit(); " %>
+
                 <% elsif product.categories.root.name == "Food" %>
-                        (Buy <%= product.from_quantity %> and save <%= number_to_currency product.from_quantity_price, :unit => "&pound;" %>)
+
+<%= link_to "(Buy #{product.from_quantity} and save  #{number_to_currency product.from_quantity_price, :unit => "&pound;"} )",  '#', :onclick => "$('txt_qty_#{cart_item.product.id }').value=#{product.from_quantity}; $('form_cart').submit();" %>
+
                 <% end %>
               </div>
             <% end %>
@@ -39,7 +43,7 @@
             <%= number_to_currency cart_item.price, :unit => "&pound;" %>
           </td>
           <td>
-            <%= text_field_tag "cart[][quantity]", nil, :value => cart_item.quantity, :size => 2, :maxlength => 2, :style => "text-align:center" %>
+            <%= text_field_tag "cart[][quantity]", nil, :value => cart_item.quantity, :size => 2, :maxlength => 2, :style => "text-align:center", :id => "txt_qty_#{cart_item.product.id }" %>
           </td>
           <td>
             <%= number_to_currency cart_item.total, :unit => "&pound;" %>
@@ -166,3 +170,4 @@
   <br />
   <%= render :partial => '/site/shared/box_popular' %>
 <% end %>
+
