@@ -8,12 +8,25 @@
       <table>
         <tr>
           <td valign='top'>
-            <%= avatar_for_user(@user, "big") %>
+            <%#= avatar_for_user(@user, "big") %>
+            <% if !@photo.nil? and current_user %>
+               <%= embedded_image_tag(@photo.operate { |img| img.resize 100 }) if @photo.has_image? %>
+            <% elsif @user.new_record? %>
+
+             <%= avatar_for_user(@user, "big") %>
+             <input type="hidden" name="kind" value="1">
+             <% elsif @user.photo_id.nil? %>
+
+             <img src ="images/<%= @user.photo_default+'.jpg'%>">
+            <% end %>
+
            <div id="loader-image" style="display:none" align="center"><%= image_tag "loading.gif" %></div>
           </td>
           <td>
+          <% form_for :photo, :html => {:multipart => true} do %>
             <%= file_field :photo, :image_file %>
             <%#= hidden_field :user, :photo_default %>
+            <% end %>
             <p>
               Or if you would not like to upload an image please select your preferred color from the default images below.
               <ul class="photo_list">
@@ -41,7 +54,6 @@
                   <%= link_to_remote (image_tag('default_e.jpg')), :url => update_default_pic_customers_path(:kind => "e"),
                   :method => :get, :update => "profile_pic", :loading => "$('loader-image').show();$('user_photo').hide();" %>
                 </li>
-
               </ul>
             </p>
           </td>

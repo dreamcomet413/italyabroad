@@ -1,1 +1,4 @@
-<%= render :partial => "profile_pic" %>
+<%#= render :partial => "profile_pic" %>
+<img src ="images/default_<%=params[:kind]%>.jpg">
+<input type="hidden" name="kind" value="<%=params[:kind]%>">
+

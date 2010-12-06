@@ -1,4 +1,6 @@
+public/resources/*
 config/database.yml
+config/environment.rb
 config/deploy.rb
 log/*
 tmp/*

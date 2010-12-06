@@ -16,7 +16,7 @@
         <td>To use a different address please select here:</td>
         <td><%= select :ship_address, :id, options_for_shipping_addresses(current_user) %></td>
         <td>
-          <%= observe_field :ship_address_id, 
+          <%= observe_field :ship_address_id,
                             :update => :ship_address,
                             :method => :get,
                             :loading => "$('loader').show()",
@@ -52,4 +52,7 @@
 	<%= render :partial => '/site/shared/box_subscriptions' %>
 	<br />
 	<%= render :partial => '/site/shared/box_grape_guide' %>
+
+
 <% end %>
+

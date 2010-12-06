@@ -263,6 +263,7 @@ a {
     margin:0 auto;
     width:723px;
     height:284px;
+    overflow :hidden;
     background:transparent url(images/loading.gif) center center;
 }
 

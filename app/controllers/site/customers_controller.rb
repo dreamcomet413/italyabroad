@@ -1,5 +1,5 @@
 class Site::CustomersController < ApplicationController
-  before_filter :site_login_required, :except => [:new, :create, :confirmation, :find, :request_new_password, :show]
+  before_filter :site_login_required, :except => [:new, :create, :confirmation, :find, :request_new_password, :show,:update_default_pic]
 
   layout "site"
 
@@ -39,6 +39,14 @@ class Site::CustomersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
+    unless params[:photo].nil?
+    @photo = Photo.new(params[:photo])
+     @photo.save
+    @user.photo_id = @photo.id
+  else
+    set_photo_from_default(params[:kind],@user)
+  end
+
     @user.type_id = 2
     @user.active = true
     #@user.activation_code = ActivePassword.new #Customers don't wont activations
@@ -87,12 +95,17 @@ class Site::CustomersController < ApplicationController
 
   def account
     @user = current_user
+    unless @user.photo_id.nil? or @user.photo_id.blank?
+     @photo = Photo.find_by_id(current_user.photo_id)
+    end
+
     redirect_to :controller => :base, :action => :index if @user.nil?
+
   end
 
   def update_default_pic
-    @user = current_user
-   @user.set_photo_from_default(params[:kind],@user)
+  #  @user = current_user
+  # set_photo_from_default(params[:kind],@user)
 
   render :layout => false
   end
@@ -100,13 +113,20 @@ class Site::CustomersController < ApplicationController
   def update
     @user = current_user
     old_mail = @user.email
-
-    @user.set_photo_from_upload(params[:photo])
+     unless params[:photo].nil?
+    @photo = Photo.new(params[:photo])
+     @photo.save
+    @user.photo_id = @photo.id
+  else
+    set_photo_from_default(params[:kind],@user)
+  end
+   # @user.set_photo_from_upload(params[:photo])
     if @user.update_attributes(params[:user])
         Notifier.deliver_account_data(User.find(@user.id))
         flash[:title] = "Congratulations"
         flash[:message] = "Your account has been update, you will now receive an email"
-      render :action => :messages
+   #   render :action => :messages
+   redirect_to root_url
     else
       flash[:notice] = @user.show_errors
       render :action => :account
@@ -180,15 +200,23 @@ class Site::CustomersController < ApplicationController
 
 
     if image
-     user.photo = image
+    user.photo_id = ""
+    user.photo_default = image
+   # @photo = Photo.new
+   # @photo.image_file = image
+    # user.photo = image
+   # @photo.save
+   # user.photo_id = @photo.id
+
       begin
-      user.photo.destroy if user.photo
+    #  user.photo.destroy if user.photo
       rescue => e
         logger.info "Unexpected error when delete photo #{self.photo.id} \n #{e.inspect}"
       end
-      user.photo_id = nil
-      user.save
+     # user.photo_id = nil
+    #  user.save
     end
+
   end
 
 end

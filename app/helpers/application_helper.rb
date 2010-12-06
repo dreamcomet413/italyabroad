@@ -157,5 +157,7 @@ module ApplicationHelper
   def page_entries_info_(object)
     content_tag(:div, page_entries_info(object), :class => "page_info")
   end
+
+
 end
 
