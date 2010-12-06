@@ -5,4 +5,5 @@ config/deploy.rb
 log/*
 tmp/*
 *~
+.gitignore
 
