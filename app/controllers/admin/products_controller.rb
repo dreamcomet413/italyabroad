@@ -3,12 +3,20 @@ class Admin::ProductsController < ApplicationController
   before_filter :store_location, :only => [:edit, :meta, :categories, :extra, :ideal_with, :how_to_cook, :correlation, :images, :files]
 
   layout "admin"
-  
+
   def index
-    @products = Product.find(:all, :include => [:categories], :order => "created_at DESC").paginate(:page => params[:page], :per_page => 20)     
+     categories = Category.find_by_sql("select * from categories where parent_id is null")
+     @categories_data = Admin::CategoriesController.new
+    @data = @categories_data.get_tree(categories,nil)
+
+    if params[:search]
+    @products = Product.find(:all, :include => [:categories],:conditions=>['(categories.name) LIKE ?',"#{params[:search]}" ], :order => "created_at DESC").paginate(:page => params[:page], :per_page => 20)
+  else
+    @products = Product.find(:all, :include => [:categories], :order => "created_at DESC").paginate(:page => params[:page], :per_page => 20)
   end
-  
-  
+  end
+
+
   def new
     @product = Product.new
 
@@ -32,7 +40,7 @@ class Admin::ProductsController < ApplicationController
 
   def create
     @product = Product.new(params[:product])
-    
+
     if @product.save
       redirect_to edit_admin_product_path(@product)
     else
@@ -43,7 +51,7 @@ class Admin::ProductsController < ApplicationController
 
   def meta
     @product = Product.find(params[:id])
-    
+
     respond_to do |format|
       format.html
     end
@@ -60,7 +68,7 @@ class Admin::ProductsController < ApplicationController
 
   def extra
     @product = Product.find(params[:id])
-    
+
     respond_to do |format|
       format.html
     end
@@ -78,7 +86,7 @@ class Admin::ProductsController < ApplicationController
   def how_to_cook
     @product = Product.find(params[:id])
     @recipes = Recipe.find(:all)
-    
+
     respond_to do |format|
       format.html
     end
@@ -87,7 +95,7 @@ class Admin::ProductsController < ApplicationController
   def correlation
     @product = Product.find(params[:id])
     @products = Product.find(:all, :conditions => ["products.id NOT IN (?)", @product.id])
-    
+
     respond_to do |format|
       format.html
     end
@@ -95,7 +103,7 @@ class Admin::ProductsController < ApplicationController
 
   def images
     @product = Product.find(params[:id])
-    
+
     respond_to do |format|
       format.html
     end
@@ -103,7 +111,7 @@ class Admin::ProductsController < ApplicationController
 
   def files
     @product = Product.find(params[:id])
-    
+
     respond_to do |format|
       format.html
     end
@@ -121,19 +129,19 @@ class Admin::ProductsController < ApplicationController
 
     @product.image_1.destroy if @product.image_1 && !params[:image_1].blank?
     @product.build_image_1(:image_file => params[:image_1]) unless params[:image_1].blank?
-    
+
     @product.image_2.destroy if @product.image_2 && !params[:image_2].blank?
     @product.build_image_2(:image_file => params[:image_2]) unless params[:image_2].blank?
-    
+
     @product.image_3.destroy if @product.image_3 && !params[:image_3].blank?
     @product.build_image_3(:image_file => params[:image_3]) unless params[:image_3].blank?
-    
+
     @product.resource_1.destroy if @product.resource_1 && !params[:resource_1].blank?
     @product.build_resource_1(params[:resource_1]) unless params[:resource_1].blank?
-    
+
     @product.resource_2.destroy if @product.resource_2 && !params[:resource_2].blank?
     @product.build_resource_2(params[:resource_2]) unless params[:resource_2].blank?
-    
+
     @product.resource_3.destroy if @product.resource_3 && !params[:resource_3].blank?
     @product.build_resource_3(params[:resource_3]) unless params[:resource_3].blank?
     p ("===============")
@@ -150,14 +158,14 @@ p params[:product]
       @product.resource_1 = nil
       @product.resource_2 = nil
       @product.resource_3 = nil
-      
-      flash.now[:notice] = @product.show_errors      
+
+      flash.now[:notice] = @product.show_errors
       redirect_back_or_default(admin_products_path)
     end
   end
 
   def included_products
-    
+
     @product = Product.find(params[:id])
     @products = Product.find(:all, :conditions => ["products.id NOT IN (?)", @product.id])
 
@@ -165,6 +173,5 @@ p params[:product]
       format.html
     end
   end
-  
-end
+ end
 

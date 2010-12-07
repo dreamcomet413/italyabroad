@@ -6,8 +6,23 @@
   <br />
   <table>
     <tr>
-      <td></td>
-      <td align="right"><%= link_to "New Product", new_admin_product_path %></td> 
+      <% form_tag admin_products_path, :method=>:get do  %>
+      <td>
+        <select name="search">
+        <option value="">Select ...</option>
+        <%- @data.each do |category| -%>
+          <optgroup label="<%= category['text']%>">
+          <%- category["children"].each do |children| -%>
+         <option value="<%= children['text']%>"><%= children['text'] %></option>
+          <% end %>
+           </optgroup>
+        <% end %>
+        </select>
+        <%= params[:search] %>
+        <%= submit_tag 'Search' %>
+        <% end %>
+      </td>
+      <td align="right"><%= link_to "New Product", new_admin_product_path %></td>
       <td align="right"><%= link_to "XML", :controller => 'admin/products', :action => 'xml' %></td>
     </tr>
   </table>

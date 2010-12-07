@@ -191,33 +191,33 @@ class Product < ActiveRecord::Base
     RAILS_DEFAULT_LOGGER.debug "----> #{root_category}"
     root_category == "Food"
   end
-  
+
   def unique_categories
     tmp = []
     categories.each {|t| tmp << t unless tmp.include?(t)}
     return tmp
   end
-  
+
   def layout
     return categories.root.layout_card if categories && categories.size > 0 && categories.root
   end
-  
+
   def layout_image
     return categories.root.layout_image if categories && categories.size > 0 && categories.root
   end
-  
+
   def category_ids=(ids)
     ids = [ids] unless ids.kind_of? Array
-    
+
     categorizations.each do |categorization|
       categorization.destroy unless ids.include? categorization.category_id
     end
-    
+
     ids.each do |id|
       self.categorizations.create(:category_id => id) unless categorizations.any? { |d| d.category_id == id }
     end
   end
-  
+
   def category_ids
     ids = []
     categorizations.each do |categorization|
@@ -225,19 +225,19 @@ class Product < ActiveRecord::Base
     end
     return ids
   end
-  
+
   def correlation_ids=(ids)
     ids = [ids] unless ids.kind_of? Array
-    
+
     product_correlations.each do |product_correlation|
       product_correlation.destroy unless ids.include? product_correlation.correlation_id
     end
-    
+
     ids.each do |id|
       self.product_correlations.create(:correlation_id => id) unless product_correlations.any? { |d| d.correlation_id == id }
     end
   end
-  
+
   def correlation_ids
     ids = []
     product_correlations.each do |product_correlation|
@@ -245,15 +245,15 @@ class Product < ActiveRecord::Base
     end
     return ids
   end
-  
+
   def wine_name
     return "#{vintage} #{name}".strip
   end
-  
+
   def show_errors
     return "- " + self.errors.full_messages.join("<br />- ")
   end
-  
+
   def related_products
     unless self.cupons.nil? or self.cupons.empty?
       coupon_ids = self.cupons.map{|c| c.cupon_id.to_i}
@@ -262,7 +262,7 @@ class Product < ActiveRecord::Base
     end
     related
   end
-  
+
   def out_of_stock?
     self.quantity == 0
   end
