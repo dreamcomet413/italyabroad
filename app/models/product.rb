@@ -1,51 +1,52 @@
 class Product < ActiveRecord::Base
   validates_presence_of :name, :message => "of product can't be blank"
   validates_presence_of :code, :message => "can't be blank"
-  
+
   validates_numericality_of :price, :message => "is not a number"
   validates_numericality_of :from_quantity_price, :message => "is not a number"
   validates_numericality_of :from_quantity, :message => "is not a number"
   validates_numericality_of :cost, :message => "is not a number"
   validates_numericality_of :discount, :message => "is not a number"
   validates_numericality_of :quantity, :message => "is not a number"
-  
+
   validates_uniqueness_of :name, :message => "of product must be unique"
   validates_uniqueness_of :code, :message => "must be unique"
-  
+
   has_many :categorizations, :dependent => :destroy
   has_many :categories, :through => :categorizations
-  
+
   has_many :product_correlations
   has_many :correlations, :through => :product_correlations
 
   has_many :product_includeds
   has_many :included_products, :through => :product_includeds
-  
+
   has_many :news_letters_products, :dependent => :destroy
   has_many :news_letters, :through => :news_letters_products
-  
+
   has_many :wish_lists, :dependent => :destroy
   has_many :order_items
   has_many :products_grapes
   has_many :grapes, :through => :products_grapes
-  
+
   belongs_to :ideal_with, :class_name => "Product", :foreign_key => "ideal_with_id"
   belongs_to :how_to_cook, :class_name => "Recipe", :foreign_key => "how_to_cook_id"
   belongs_to :producer
   belongs_to :region
-  
+  belongs_to :occasion
+
   belongs_to :image_1, :class_name => "Image"
   belongs_to :image_2, :class_name => "Image", :foreign_key => "image_2_id"
   belongs_to :image_3, :class_name => "Image", :foreign_key => "image_3_id"
-  
+
   belongs_to :resource_1, :class_name => "Resource", :foreign_key => "resource_1_id"
   belongs_to :resource_2, :class_name => "Resource", :foreign_key => "resource_2_id"
   belongs_to :resource_3, :class_name => "Resource", :foreign_key => "resource_3_id"
-  
+
   has_and_belongs_to_many :cupons
 
   has_many :reviews, :as => :reviewer, :dependent => :destroy
-  
+
   friendly_identifier :name
 
   named_scope :featured, :conditions => {:featured, true}, :limit => 5
@@ -53,16 +54,16 @@ class Product < ActiveRecord::Base
   named_scope :other_events, lambda { |product|
     { :conditions => ["categories.name LIKE 'Events' AND products.id <> ?", product.id], :include => {:categorizations => :category}, :order => "RAND()", :limit => 3 }
   }
-  
+
   def validate
     errors.add(:price, "must be positive !") if price < 0
   end
-  
+
   def name_short(len)
     len ||= 20
     name >= len ? name[0,len] + " ..." : name
   end
-  
+
   def self.grapes(category, search=nil)
     grapes = [[" Any",""]]
     for i in (1..6)
@@ -77,20 +78,20 @@ class Product < ActiveRecord::Base
     end
     return grapes.sort
   end
-  
+
   def self.regions(category, search=nil)
     regions = [[" Any",""]]
     conditions  = "products.id IN (#{category.all_products_ids.join(",")})"
     conditions += " AND " if search && !search.conditions.blank?
     conditions += search.conditions if search && !search.conditions.blank?
-        
+
     self.find(:all, :include => :categories, :conditions => conditions ).group_by(&:region).each do |t,  product|
       region = t.strip if !t.blank?
       regions  << [region, region] if !region.blank? && !regions.include?([region, region])
     end
     return regions.sort
   end
-  
+
   def self.colors(category, search=nil)
     colors = [[" Any",""]]
     conditions  = "products.id IN (#{category.all_products_ids.join(",")})"
@@ -103,15 +104,15 @@ class Product < ActiveRecord::Base
     end
     return colors.sort
   end
-  
+
   def page_title_formatted
     page_title.blank? ? name : page_title
   end
-  
+
   def meta_description_formatted
     meta_description.blank? ? description_short : meta_description
-  end 
-  
+  end
+
   def meta_keys_formatted
     if meta_keys.blank?
       keys = []
@@ -125,11 +126,11 @@ class Product < ActiveRecord::Base
       return meta_keys
     end
   end
-  
+
   def discounted?
     self.discount > 0
   end
-  
+
   def price_discounted
     if discount.to_i > 0
       return price - (price * discount / 100)
@@ -137,22 +138,22 @@ class Product < ActiveRecord::Base
       return price
     end
   end
-  
+
   def vat
   if rate == "17.5%"
   	return price_discounted / 1.175
   	else
   	return price_discounted
-  	end 
+  	end
   end
-  	
-  
+
+
   def price_per_bottle
   	return price_discounted - from_quantity_price / from_quantity
   end
-  	
+
   def root_category(object = false)
-    if categories && categories.size > 0 && categories.root 
+    if categories && categories.size > 0 && categories.root
       return categories.root.name unless object
       return categories.root
     end
@@ -169,7 +170,7 @@ class Product < ActiveRecord::Base
         end
       end
     end
-    return tmp  
+    return tmp
   end
 
   def root_category_id
@@ -181,7 +182,7 @@ class Product < ActiveRecord::Base
     sub_cat = sub_categories(true).first
     sub_cat.friendly_identifier unless sub_cat.nil?
   end
-  
+
   def is_wine?
     RAILS_DEFAULT_LOGGER.debug "----> #{root_category}"
     root_category == "Wine"
@@ -278,3 +279,4 @@ class Product < ActiveRecord::Base
 		average_rating.round
 	end
 end
+

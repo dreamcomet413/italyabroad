@@ -63,5 +63,9 @@
 		  <td style="text-align:right">Rating:</td>
 		  <td><%= select :product, :rating, (1..5) %></td>
     </tr>
+    <tr>
+		  <td style="text-align:right">Occasion Name:</td>
+		  <td><%= select :product, :occasion_id, Occasion.all.inject([["No Occasion", "0"]]) {|ps, p| ps << [p.name, p.id]} %></td>
+    </tr>
 	</table>
 </fieldset>

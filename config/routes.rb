@@ -89,6 +89,7 @@ ActionController::Routing::Routes.draw do |map|
 
 
   map.namespace :admin do |admin|
+    admin.resources :occasions
     admin.resources :about_us
     admin.resources :regions
     admin.resources :producers

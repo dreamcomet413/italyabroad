@@ -1,6 +1,6 @@
 class Search
   attr_accessor :text, :region, :color, :grape, :organic, :vegetarian, :price, :category, :preparation_time, :recipe_type, :producer, :user, :difficulty
-  
+
   def initialize(params = {})
     @text             = params[:text] ||= ""
     @region           = params[:region_id] ||= ""
@@ -14,15 +14,16 @@ class Search
     @difficulty       = params[:difficulty] ||= ""
     @preparation_time = params[:preparation_time] ||= ""
     @producer         = params[:producer_id] ||= ""
+    @occasion         = params[:occasion_id] ||= ""
     @category         = params[:category].nil? ? nil : Category.find(params[:category])
   end
-  
+
   def conditions(products=true)
     text   = @text.gsub("'","''")
-    text.strip! 
+    text.strip!
     color  = @color.gsub("'","''")
     color.strip!
-        
+
     conditions  = []
     conditions << "categories.name <> 'Events' AND categories.name <> 'Wine club'" if products
     conditions << "active = #{true}"
@@ -35,11 +36,12 @@ class Search
     conditions << "producer_id = #{@producer}" unless @producer.blank?
     conditions << "price #{price}" unless price.blank?
     conditions << "grapes.id = #{@grape}" unless grape.blank?
-    conditions = conditions.join(" AND ")                      
+    conditions << "occasion_id = #{@occasion}" unless @occasion.blank?
+    conditions = conditions.join(" AND ")
     conditions = nil if conditions.blank?
     return conditions
   end
-  
+
   def conditions_for_recipes
     text = @text.gsub("'", "''").strip!
 
@@ -54,3 +56,4 @@ class Search
     return conditions
   end
 end
+

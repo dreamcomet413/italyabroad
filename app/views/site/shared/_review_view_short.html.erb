@@ -1,7 +1,7 @@
 <%#= reviewer.reviews.size %>
 <% if reviewer.reviews.size > 0 %>
   <ul>
-	  <% for review in @reviews  %>
+	  <% for review in reviewer.reviews %>
 	  <li style="border-bottom:1px solid #CCCCCC;margin-top:15px;padding-bottom:10px ">
             <div>
               <div style="margin: 0 5px 5px 0;float:left"><%= avatar_for_user(review.user, "small") %></div>
@@ -24,7 +24,7 @@
                 <tr><td><%= review.created_at.strftime("%m/%d/%Y %H:%M %p") %></td></tr>
                 <tr><td><%= show_ratings(review.reviewer, review.score) %></td>
               </tr>
-              
+
             </table>
           </td>
         </tr>
@@ -41,3 +41,4 @@
 	  <li>No reviews have been written yet for this product, be the first to write one and <span> you will receive a £10.00 voucher</span></li>
 	</ul>
 <% end %>
+
