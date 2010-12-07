@@ -259,8 +259,9 @@ a {
 #flashBanner {
     position:relative;
     text-align:center;
-    padding:10px 0;
+    padding:10px 0 0 0;
     margin:0 auto;
+    margin-bottom :10px;
     width:723px;
     height:284px;
     overflow :hidden;
