@@ -29,9 +29,9 @@
         <td><%= select_tag :price, options_for_select([["Any Price",""],["Less than 5","< 5"],["From £5 to £10","BETWEEN 5 AND 10"],["From £11 to £20","BETWEEN 11 AND 20"],["From £21 to £30","BETWEEN 21 AND 30"],["More than £30","> 30"]], params[:price]), :id => "search_price" %></td>
       </tr>
       <tr>
-		  <td>Occasion Name:</td>
+		  <td>Occasion:</td>
 		  <% @occasions = Occasion.find(:all)%>
-		  <td><%= select_tag (:occasion_id,"<option value="">-Select</option>" +  options_from_collection_for_select(@occasions, :id, :name,params[:occasion_id].to_i)) %></td>
+		  <td><%= select_tag (:occasion_id,"<option value="">Any</option>" +  options_from_collection_for_select(@occasions, :id, :name,params[:occasion_id].to_i)) %></td>
     </tr>
       <tr>
         <td></td>
@@ -40,3 +40,4 @@
     </table>
   <% end %>
 </div>
+

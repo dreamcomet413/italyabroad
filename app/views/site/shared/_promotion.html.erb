@@ -1,11 +1,11 @@
 <%- if @cart.items.size > 0 -%>
-<%- @promotion_limit = @setting.promotion.to_f - @cart.sub_total.to_f -%>
+<%- @promotion_limit = @setting.order_delivery_amount.to_f - @cart.sub_total.to_f -%>
 <%- if @promotion_limit > 0 -%>
 Add another <%= number_to_currency(@promotion_limit,{:unit => "&pound;"}) -%> to your basket for free delivery
 <%- else -%>
 Your order qualifies for free delivery *
 <%- end -%>
 <%- else -%>
-Add another £<%= @setting.promotion %> to your basket for free delivery
+Add another £<%= @setting.order_delivery_amount %> to your basket for free delivery
 <%- end -%>
 
