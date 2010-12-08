@@ -790,6 +790,7 @@ a {
 #box_food_search #search_price,
 #box_hamper_search #search_producer_name,
 #box_hamper_search #search_price,
+#box_hamper_search #occasion_id,
 #box_search_recipes_new #search_recipe_type,
 #box_search_recipes_new #search_preparation_time {
     width:95px;
