@@ -162,6 +162,8 @@ ActionController::Routing::Routes.draw do |map|
   map.connect "/events/:id", :controller => 'site/products', :action => 'show', :category => "events"
   map.connect "/wine-club/", :controller => 'site/categories', :action => 'show', :category => "wine-club"
   map.connect "/wine-club/:id", :controller => 'site/products', :action => 'show', :category => "wine-club"
+
+
   #end
   map.nested_products '/:root_category/:category/:id', :controller => 'site/products', :action => 'show'
   map.nested_product '/:category/:id', :controller => 'site/products', :action => 'show'

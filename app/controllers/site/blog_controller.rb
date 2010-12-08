@@ -19,13 +19,13 @@ class Site::BlogController < ApplicationController
       wants.xml { render :layout => false }
     end
   end
-  
+
   def show
-    @post = Post.find(params[:id])
+    @post = Post.find_by_name(params[:id])
     @post.count_view if @post
     @comments = (@post.comments.latest).paginate(:page => params[:page], :per_page => 5, :offset => 5,:order => "created_at DESC")
   end
-  
+
   def comment
     @post = Post.find(params[:id])
     @comment = Comment.new(
@@ -50,7 +50,7 @@ class Site::BlogController < ApplicationController
 
   protected
   def store_comment
-    
+
     if params[:comment]
       session[:name] = params[:comment][:name]
       session[:description] = params[:comment][:description]
@@ -59,7 +59,7 @@ class Site::BlogController < ApplicationController
       session[:mail_check] = params[:comment][:mail_check]
     end
   end
-  
+
   def check_mail_list(post, user)
     @post = Post.find(post)
     no_of_comment = @post.comments.count
@@ -76,5 +76,6 @@ class Site::BlogController < ApplicationController
       end
     end
   end
-  
+
 end
+

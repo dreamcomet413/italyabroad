@@ -2,7 +2,7 @@
 <%- @breadcrumbs = "#{link_to("Home", root_url)} &raquo; #{link_to("Blog", blog_index_path)}" -%>
 
 <% @about = AboutU.find(:first, :conditions => {:link_type => "blog"} ) %>
-<div id="blog_home"> 
+<div id="blog_home">
 
   <span class="title">
     <%= @about.title if @about %>
@@ -20,7 +20,7 @@
     <br/><br/>
     That was the moment where my passion for italian food & wine was born.
     <br/><br/>
-    In my blog I will write about my adventures whilst discovering the finest itailian produce. 
+    In my blog I will write about my adventures whilst discovering the finest itailian produce.
     <br/><br/>
     I will also like to hear what you have to say so please share your views & comments.  -->
   </div>
@@ -66,3 +66,4 @@
 	<br />
 	<%= render :partial => 'box_archives' %>
 <% end %>
+
