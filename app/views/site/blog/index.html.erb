@@ -32,7 +32,7 @@
 	<ul>
 	<% for post in @posts %>
 	  <li>
-      <h2><%= link_to post.name, blog_path(:id => post.id) %></h2>
+      <h2><%= link_to post.name, post.friendly_identifier.blank? ? "blog/#{post.id}" : "blog/#{post.friendly_identifier}" %></h2>
       <div><%= post.description_short_cleared %></div>
       <table width="100%" class="foot">
         <tr>

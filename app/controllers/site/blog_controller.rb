@@ -21,7 +21,7 @@ class Site::BlogController < ApplicationController
   end
 
   def show
-    @post = Post.find_by_name(params[:id])
+    @post = Post.find(params[:id])
     @post.count_view if @post
     @comments = (@post.comments.latest).paginate(:page => params[:page], :per_page => 5, :offset => 5,:order => "created_at DESC")
   end
