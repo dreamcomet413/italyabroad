@@ -1,7 +1,11 @@
---- 
-types_1: 
+---
+types_1:
   name: Admin
   id: "1"
-types_2: 
+types_2:
   name: Customer
   id: "2"
+types_3:
+  name: Guest
+  id: "3"
+

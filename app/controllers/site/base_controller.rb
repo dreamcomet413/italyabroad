@@ -4,13 +4,13 @@ class Site::BaseController < ApplicationController
   def index
     @setting = Setting.first
   end
-  
+
   def google_sitemap
     @products = Product.find(:all, :select => "friendly_identifier, name, updated_at", :conditions => ['active IS TRUE'])
     @posts = Post.find(:all, :select => "id, name, created_at")
     render :layout => false
   end
-  
+
   def login
     params[:user_type] = ""
     if request.post?
@@ -26,20 +26,33 @@ class Site::BaseController < ApplicationController
   end
 
   def guest_login
-    params[:user_type] = "guest"
+    params[:user_type] = "Guest"
+
     reg = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
     if (!params[:name].blank? && !params[:email].blank?)
       @user = User.find_by_name_and_email(params[:name],params[:email])
-      @user ||= User.new(:name => params[:name], :email => params[:email], :type_id => 3 )
-      if !(reg.match(params[:email])).nil?
-        @user.save(false)
-        self.current_user = @user
-        flash[:notice] = "Successfully logged in"
-        redirect_back_or_default(root_url)
+      #@user = User.find(:first,:include=>[:type],:conditions=>["users.name = ? and users.email = ? and types.name != ? ",params[:name],params[:email],params[:user_type]])
+
+      if @user
+        if @user.type_id == 3
+          self.current_user = @user
+          flash[:notice] = "Successfully logged in"
+          redirect_back_or_default(root_url)
+        else
+          flash[:notice] = "You are already registered, please login to continue."
+          redirect_to :back
+        end
       else
-        @user.errors.add_to_base("Email is invalid")
-        flash[:guest_login]
+        if !(reg.match(params[:email])).nil?
+          @user= User.new(:name => params[:name], :email => params[:email], :type_id => 3, :photo_default=>"default",  :login => params[:email] )
+            @user.save(false)
+            self.current_user = @user
+            flash[:notice] = "Successfully logged in"
+            redirect_back_or_default(root_url)
+        else
+        flash[:guest_login] = "Email is invalid"
         render :action => "login"
+        end
       end
     else
       flash[:guest_login] = "Please provide Name and Email to login as guest."
@@ -66,14 +79,14 @@ class Site::BaseController < ApplicationController
       @contact = Contact.new
     end
   end
-  
+
   def logout
     self.current_user.forget_me if logged_in?
     cookies.delete :auth_token
     reset_session
     redirect_back_or_default(root_url)
   end
-  
+
   def subscribe
     @subscription = Subscription.new(params[:subscription])
   end
@@ -91,7 +104,7 @@ class Site::BaseController < ApplicationController
 
   def subscription_complete
   end
-  
+
   def unsubscribe
     if request.post? && params[:subscriptions]
       if subscription = Subscription.find_by_email(params[:subscriptions][:email])
@@ -106,7 +119,7 @@ class Site::BaseController < ApplicationController
       end
     end
   end
-  
+
   def terms_conditions
     render :layout => false
   end
@@ -115,6 +128,7 @@ class Site::BaseController < ApplicationController
 
   end
   def wine_club
-   
+
   end
 end
+
