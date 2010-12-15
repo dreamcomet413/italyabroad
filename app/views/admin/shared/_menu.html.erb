@@ -188,6 +188,9 @@
     <span <%= "class='active'" if @current_controller == "occasions" %>>
       <%= link_to "Occasions", admin_occasions_path, :class => ('active' if @current_controller == "occasions") %>
     </span>
+    <span <%= "class='active'" if @current_controller == "shipping_agencies" %>>
+      <%= link_to "Shipping Agencies", admin_shipping_agencies_path, :class => ('active' if @current_controller == "shipping_agencies") %>
+    </span>
   </div>
   <!--2nd drop down menu -->
   <!--3rd drop down menu -->

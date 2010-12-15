@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101207115837) do
+ActiveRecord::Schema.define(:version => 20101215064555) do
 
   create_table "about_us", :force => true do |t|
     t.string   "title"
@@ -260,6 +260,7 @@ ActiveRecord::Schema.define(:version => 20101207115837) do
     t.integer  "gift_option_id"
     t.text     "gift_note"
     t.string   "ship_telephone"
+    t.integer  "shipping_agency_id"
   end
 
   create_table "payment_methods", :force => true do |t|
@@ -465,7 +466,7 @@ ActiveRecord::Schema.define(:version => 20101207115837) do
     t.string   "weekend_lunch"
     t.string   "weekend_dinner"
     t.string   "reservation"
-    t.integer  "cost",               :limit => 10, :precision => 10, :scale => 0, :default => 0
+    t.integer  "cost",               :default => 0
     t.string   "closed"
     t.text     "happy_hour"
     t.text     "regional_cuisine"
@@ -489,12 +490,12 @@ ActiveRecord::Schema.define(:version => 20101207115837) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "google_map_link"
-    t.boolean  "raccomanded",                                                     :default => false
+    t.boolean  "raccomanded",        :default => false
     t.integer  "rating"
     t.string   "city"
     t.string   "cap"
     t.string   "style"
-    t.boolean  "active",                                                          :default => false
+    t.boolean  "active",             :default => false
   end
 
   create_table "reviews", :force => true do |t|
@@ -562,6 +563,12 @@ ActiveRecord::Schema.define(:version => 20101207115837) do
     t.string  "country"
     t.text    "note"
     t.integer "user_id"
+  end
+
+  create_table "shipping_agencies", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "simple_captcha_data", :force => true do |t|
@@ -672,6 +679,8 @@ ActiveRecord::Schema.define(:version => 20101207115837) do
     t.string   "songs"
     t.string   "films"
     t.string   "newspapers"
+    t.string   "chef_bio"
+    t.string   "establishment_link"
   end
 
   create_table "wine_lists", :force => true do |t|

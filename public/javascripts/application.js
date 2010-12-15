@@ -16,7 +16,7 @@ var LoginForm = {
     $('openid_fields').hide();
     $('password_fields').show();
   },
-  
+
   setToOpenID: function() {
     $('password_fields').hide();
     $('openid_fields').show();
@@ -36,7 +36,7 @@ var EditForm = {
     //$('post_' + postId + '-row').addClassName('editing');
     if($('reply')) $('reply').hide();
   },
-  
+
   // clears the current post id
   clearReplyId: function() {
     var currentId = this.currentReplyId()
@@ -46,12 +46,12 @@ var EditForm = {
     if(row) row.removeClassName('editing');
     $('edit').setAttribute('post_id', '');
   },
-  
+
   // gets the current post id we're editing
   currentReplyId: function() {
     return $('edit').getAttribute('post_id');
   },
-  
+
   // checks whether we're editing this post already
   isEditing: function(postId) {
     if (this.currentReplyId() == postId.toString())
@@ -83,10 +83,10 @@ var ReplyForm = {
 
 var RemoteForm = {
   setup: function() {
-    
+
     var remote_form_popups = $$("a.remote_form_popup");
-    
-    
+
+
     for (var index = 0; index < remote_form_popups.length; ++index) {
       var remote_form_popup = remote_form_popups[index];
       var remote_form_popup_id = "remote_form_popup_"+index;
@@ -102,7 +102,7 @@ var RemoteForm = {
           div_remote_form.writeAttribute("id", dialog_id);
           document.body.appendChild(div_remote_form);
         };
-        
+
         RemoteForm.initialize(dialog_id);
 
         new Ajax.Updater(dialog_id, $(this).href, {method: 'get'});
@@ -110,14 +110,14 @@ var RemoteForm = {
         $(dialog_id).persistent_show(); Event.stop(event);
 
         return false
-        
-        
+
+
       });
-      
+
     };
-  
+
   },
-  
+
   initialize: function(dialog_id) {
     new Dialog.Box($(dialog_id), {overlay_color:'#589', opacity_to:0.5, persistent:false});
   }
@@ -134,14 +134,24 @@ var RemoteAddressFrom = {
 var RemotePaymentMethodForm = {
   setup: function() {
     var payment_methods = $$("input.payment_method");
-    
+
     for (var i=1; i < payment_methods.length+1; i++) {
       var payment_method_id = "payment_method_"+i;
-      
+
       $(payment_method_id).observe('click', function(event) {
         new Ajax.Updater("form", "/orders/new", {method: 'get', parameters: {payment_method: $(this).value}});
         return false;
       })
     };
   }
+}
+function display_chef_details(){
+   if (document.getElementById('chef').checked == true){
+    document.getElementById('chef_details').style.display = 'block';
+   }
+   else{
+       document.getElementById('chef_details').style.display = 'none';
+   }
+
+
 }

@@ -1,0 +1,12 @@
+<% @title = "Edit #{@shipping_agency.name}" %>
+<%- @breadcrumbs = "Catalog &raquo; #{link_to "Shipping Agencies", admin_shipping_agencies_path} &raquo; #{@title}" -%>
+
+<div class="inner_content posts">
+  <h2><%= @title %></h2>
+  <br />
+  <% form_for [:admin,@shipping_agency] do %>
+  	<%= render :partial => "form" %>
+  	<p><%= submit_tag "Save" %> or <%= link_to "Cancel", admin_shipping_agencies_path %></p>
+  <% end %>
+</div>
+

@@ -8,12 +8,15 @@
     <tr>
       <td>
         <%- form_tag admin_customers_path, :method => :get do -%>
-        <strong>Search:</strong> 
-        <%= text_field_tag :q %> 
-        in 
-        <%= select_tag :f, options_for_select([["All", ""], ["Login", "login"], ["Name", "name"], ["Surname", "surname"]]) %> 
-        <%= submit_tag "Search", :name => nil %>
-        <%= set_focus_to 'q' %>
+        <strong>Search:</strong>
+        <%= text_field_tag :search_text,'',:value=>params[:search_text] %>
+        in
+        <%= select_tag :field_text, options_for_select([["All", ""], ["Login", "login"], ["Name", "name"], ["Surname", "surname"]],params[:field_text]) %>
+         <% @user_types = Type.find(:all,:conditions=>"name != 'Admin' and name!='Guest'")%>
+        <%= select_tag :user_type, options_from_collection_for_select(@user_types, "id", "name",params[:user_type].to_i) %>
+%>
+        <%= submit_tag "Search", :name => 'search' %>
+        <%= set_focus_to 'search' %>
         <%- end -%>
       </td>
       <td align="right"><%= link_to "New Customer", new_admin_customer_path %></td>
@@ -49,7 +52,7 @@
         <td><%= user.active %></td>
         <td><%= user.created_at.strftime("%d/%m/%y") unless user.created_at.nil? %></td>
         <td>
-          <%= link_to "Edit", edit_admin_customer_path(user) %> | 
+          <%= link_to "Edit", edit_admin_customer_path(user) %> |
           <%= link_to "Delete", admin_customer_path(user), :method => "delete", :confirm => "Are you sure want to delete this account?" %>
         </td>
       </tr>
@@ -57,3 +60,4 @@
     </tbody>
   </table>
 </div>
+

@@ -46,15 +46,21 @@ class Site::CustomersController < ApplicationController
   else
     set_photo_from_default(params[:kind],@user)
   end
-
-    @user.type_id = 2
-    @user.active = true
+    if params[:chef].to_i == 4
+      @user.type_id = 4
+      @user.active = false
+   else
+       @user.type_id = 2
+      @user.active = true
+  end
     #@user.activation_code = ActivePassword.new #Customers don't wont activations
     if @user.save
       flash[:title] = "Congratulations"
       flash[:message] = "Your account has been created, an email with your account details has been sent to #{@user.email}."
+      if @user.type_id != 4
       self.current_user = User.authenticate(@user.login, @user.password_clean)
 #      redirect_back_or_default(:action => :messages)
+      end
       redirect_back_or_default(root_url)
     else
       flash[:notice] = @user.show_errors

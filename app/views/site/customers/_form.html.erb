@@ -98,6 +98,29 @@
 		</tr>
 	</table>
 </div>
+<% if @user.type_id.to_i == 4
+ checked = true
+div_style = 'display:block'
+ else
+ checked = false
+  div_style = 'display:none'
+end%>
+<h1>Are you a Chef?<%= check_box_tag 'chef',4,checked,:onclick=>'display_chef_details();' %></h1>
+<div class="container">
+  <div id="chef_details" style="<%=div_style %>">
+  <table>
+		<tr>
+		  <td>Description</td>
+		  <td><%= text_area :user, :chef_bio,:size=>'30x5' %></td>
+		</tr>
+		<tr>
+		  <td>Link to your Establishment</td>
+		  <td><%= text_field :user, :establishment_link %></td>
+		</tr>
+	</table>
+
+  </div>
+</div>
 
 <h1>Where did you hear about us?</h1>
 <div class="container">

@@ -15,6 +15,7 @@
 </div>
 <br/>
 <%= render :partial => '/site/shared/box_search_recipes_new' %>
+<%= link_to 'New Recipes',new_recipe_path %>
 <div id="recipes_introduction">
   <h3>About Italian food</h3>
   <%= image_tag("aboutItalianFood.png", :style => "float:left;") %>
@@ -38,7 +39,9 @@
               <% if recipe.user_id == 3 %>
                 Guest
               <%else%>
-                <%= (recipe.user.name).capitalize rescue "Admin" %><% end %>
+                <%= (recipe.user.name).capitalize rescue "Admin" %>
+               &nbsp;&nbsp;&nbsp; <%= link_to recipe.user.establishment_link %>
+                <% end %>
             </td>
             <td align="right">
               <% if !recipe.image_1.blank? %>
@@ -46,7 +49,7 @@
               <% else %>
               <%= link_to image_tag("no_images/PastaRecipe.jpg",:size => "100x75"), recipe_path(recipe) %>
               <% end %>
-              
+
             </td>
           </tr>
           <tr>
@@ -105,3 +108,4 @@
   <br />
   <%= render :partial => '/site/shared/box_subscriptions' %>
 <% end %>
+

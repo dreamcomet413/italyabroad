@@ -173,5 +173,11 @@ p params[:product]
       format.html
     end
   end
- end
 
+  def xml
+    @products = Product.find(:all)
+     @xml = @products.to_xml(:only => [:name, :description_short,:price])
+     File.open("products.xml", 'w') {|f| f.write(@xml) }
+     send_file File.join(Rails.root,"products.xml" ), :type => "xml"
+  end
+ end

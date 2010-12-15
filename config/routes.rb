@@ -80,8 +80,9 @@ ActionController::Routing::Routes.draw do |map|
     map.resources :posts, :controller => "site/posts", :name_prefix => "#{attr}_", :path_prefix => "/#{attr.pluralize}/:#{attr}_id"
   end
 
-  #map.connect "admin/products/xml", :controller => '/admin/products', :action => 'xml'
-  #map.connect "admin/recipes/xml", :controller => '/admin/recipes', :action => 'xml'
+  map.connect "admin/products/xml", :controller => '/admin/products', :action => 'xml'
+
+  map.connect "admin/recipes/xml", :controller => '/admin/recipes', :action => 'xml'
   map.xml 'admin/xml', :controller => 'admin/xml', :action => 'index'
   map.xml_options 'admin/xml/xml_options', :controller => 'admin/xml', :action => 'xml_options'
   map.eval_xml 'admin/xml/eval_xml', :controller => 'admin/xml', :action => 'eval_xml'
@@ -89,6 +90,7 @@ ActionController::Routing::Routes.draw do |map|
 
 
   map.namespace :admin do |admin|
+    admin.resources :shipping_agencies
     admin.resources :occasions
     admin.resources :about_us
     admin.resources :regions
@@ -102,7 +104,7 @@ ActionController::Routing::Routes.draw do |map|
     admin.resources :posts
     admin.resources :comments
     admin.resources :reviews
-    admin.resources :orders, :only => [:index, :show, :destroy], :member => {:print_tasting => :get, :print_invoice => :get, :print_picking_list => :get}
+    admin.resources :orders, :only => [:index, :show, :destroy], :member => {:print_tasting => :get, :print_invoice => :get, :print_picking_list => :get,:delivery_details=>:get}
     admin.resources :users
     admin.resources :customers
     admin.resources :gift_options

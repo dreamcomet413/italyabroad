@@ -1,0 +1,13 @@
+Hai <%= @order.user.name %>,
+Your order contains the following items
+
+<% for order_item in @order.order_items %>
+    Product :<%= order_item.name %>
+    Quantity : <%= order_item.quantity %>|
+    Rate : <%= order_item.rate %>
+    Price:<%= number_to_currency order_item.price %>
+    Total:<%= number_to_currency order_item.total %>
+ <% end %>
+Total Amount : <%= number_to_currency(@order.total) %>
+The order is shipped by <%= @order.shipping_agency.name %>
+

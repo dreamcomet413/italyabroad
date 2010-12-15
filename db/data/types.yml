@@ -8,4 +8,7 @@ types_2:
 types_3:
   name: Guest
   id: "3"
+type_4:
+  name: Chef
+  id: "4"
 

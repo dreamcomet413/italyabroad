@@ -94,6 +94,7 @@
   </tr>
 	<tr>
 	  <td>User Active?</td>
-	  <td><%= check_box :user, :active, :checked => "checked" %><%= hidden_field :user, :type_id, :value => 2 %></td>
+	  <td><%= check_box :user, :active, :checked=>@user.active %>
+	  <%#= hidden_field :user, :type_id, :value => 2 %></td>
 	</tr>
 </table>

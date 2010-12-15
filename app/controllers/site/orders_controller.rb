@@ -3,12 +3,12 @@ class Site::OrdersController < ApplicationController
   before_filter :store_location, :only => [:show]
 
   ssl_required :create if RAILS_ENV == "production"
-  ssl_allowed 
-  require "prawn"
+  ssl_allowed
+ # require "prawn"
 
   def index
     @orders = current_user.orders.all(:order => "created_at DESC").paginate(:page => params[:page], :per_page => 10)
-    
+
     respond_to do |format|
       format.html { render :layout => 'site' }
     end
@@ -18,7 +18,7 @@ class Site::OrdersController < ApplicationController
     store_location
 
     @order = current_user.orders.find(params[:id])
-    
+
     respond_to do |format|
       format.html { render :layout => 'site' }
     end
@@ -35,10 +35,10 @@ class Site::OrdersController < ApplicationController
       end
     end
   end
-  
+
   def create
     @payment_method = PaymentMethod.find(params[:payment_method])
-    
+
     if @payment_method && !@payment_method.external
       production = RAILS_ENV == "production"
       @credit_card = ActiveMerchant::Billing::CreditCard.new(params[:credit_card])
@@ -52,7 +52,7 @@ class Site::OrdersController < ApplicationController
             gateway = ActiveMerchant::Billing::SagePayGateway.new(:login => @payment_method.vendor)
             response = gateway.purchase(@cart.total*100, @credit_card, :order_id => "#{order.id}", :address => { :address1 => current_user.address, :zip => current_user.cap })
           end
-          
+
           if (!response.nil? && response.success?) or !production
             new_order.update_attributes(:paid => true)
             redirect_to confirmed_checkouts_path
@@ -77,7 +77,7 @@ class Site::OrdersController < ApplicationController
     end
   end
 
-  def invoice    
+  def invoice
     @order = current_user.orders.find(params[:id])
 
     respond_to do |format|
@@ -93,9 +93,9 @@ class Site::OrdersController < ApplicationController
   end
 
 
-  
+
   private
-  
+
   def create_order_items
     for item in @cart.items
       @order.order_items.create( :name         => item.product.name,
@@ -108,7 +108,7 @@ class Site::OrdersController < ApplicationController
       item.product.update_attributes(:quantity => item.product.quantity-item.quantity)
     end
   end
-  
+
   def new_order
     @order = current_user.orders.new(
       :status_order_id            => 1,

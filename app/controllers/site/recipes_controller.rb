@@ -1,12 +1,12 @@
 class Site::RecipesController < ApplicationController
   layout "site"
   before_filter :store_location, :only => [:show]
-  #before_filter :site_login_required, :only => :new
-  
+  before_filter :chef_login_required, :only => :new
+
   def index
     @show = true
   end
-  
+
   def new
     @recipe = Recipe.new
   end
@@ -16,7 +16,7 @@ class Site::RecipesController < ApplicationController
       redirect_to login_url
     else
       if session[:current_user] == "guest"
-     
+
         @recipe = Recipe.new(params[:recipe])
         @recipe.active = true
 
@@ -46,14 +46,14 @@ class Site::RecipesController < ApplicationController
       end
     end
   end
-  
+
   def show
     @recipe = Recipe.find(params[:id])
     @recipe.count_view
     @reviews = (@recipe.reviews).paginate(:page => params[:page], :per_page => 5, :offset=>2, :order => 'created_at DESC')
 
   end
-  
+
   def new_review
     @reviewer = Recipe.find(params[:id])
     @review = Review.new
@@ -65,11 +65,11 @@ class Site::RecipesController < ApplicationController
       end
     end
   end
-  
+
   def create_review
     @review = Recipe.find(params[:id]).reviews.build(params[:review])
     @review.user_id = current_user.id
-    if @review.save 
+    if @review.save
       status = "Review correctly published!"
     else
       status = "Your body message is empty."
@@ -81,25 +81,25 @@ class Site::RecipesController < ApplicationController
       page.replace_html("review_add", "")
     end
   end
-  
+
   def send_to_friend
     @recipe = Recipe.find(params[:id])
     if params[:email] =~ /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
-      Notifier.deliver_send_to_friend(params[:email], url_for(:host => "www.italyabroad.com", 
+      Notifier.deliver_send_to_friend(params[:email], url_for(:host => "www.italyabroad.com",
           :controller => "site/recipes",
           :action => :show,
           :id => @recipe))
-      
+
       status = "E-mail correctly send"
     else
       status = "Wrong e-mail."
     end
-    
+
     render :update do |page|
       page << "alert('#{status}')"
     end
   end
-  
+
   def print
     @recipe = Recipe.find(params[:id])
     if logged_in?

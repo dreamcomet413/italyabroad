@@ -3,7 +3,15 @@ class Admin::CustomersController < ApplicationController
   layout "admin"
 
   def index
-    @users = User.regulars.paginate(:page => params[:page], :per_page => 10)
+    if params[:search] and !params[:field_text].blank?
+    @users = User.paginate(:conditions=>"(#{params[:field_text]} LIKE '%#{params[:search_text]}%') AND type_id = #{params[:user_type]}",:page => params[:page], :per_page => 10,:order=>'id desc')
+    elsif params[:search] and params[:field_text].blank?
+    @users = User.paginate(:conditions=>"(name LIKE '%#{params[:search_text]}%' OR login LIKE '%#{params[:search_text]}%' OR surname LIKE '%#{params[:search_text]}%') AND type_id = #{params[:user_type]}",:page => params[:page], :per_page => 10,:order=>'id desc')
+    elsif params[:search] and !params[:user_type].blank?
+       @users = User.paginate(:conditions=>['type_id=?',params[:user_type]],:page => params[:page], :per_page => 10,:order=>'id desc')
+     else
+      @users = User.regulars.paginate(:page => params[:page], :per_page => 10,:order=>'id desc')
+    end
   end
 
   def new
@@ -40,3 +48,4 @@ class Admin::CustomersController < ApplicationController
     redirect_to :action => :index
   end
 end
+
