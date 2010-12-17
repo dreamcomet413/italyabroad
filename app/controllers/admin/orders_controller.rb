@@ -53,12 +53,13 @@ end
   def print_invoice
     @order = Order.find(params[:id])
     render :layout => "print"
-#    make_and_send_pdf("/admin/orders/#{@order.id}/print_invoice", "Italyabroad_Invoice_#{@order.id}.pdf")
+ #    make_and_send_pdf("/admin/orders/#{@order.id}/print_invoice", "Italyabroad_Invoice_#{@order.id}.pdf")
   end
 
   def print_picking_list
     @order = Order.find(params[:id])
-    render :layout => "print"
+
+   render :layout => "print"
 
     #make_and_send_pdf("admin/orders/print_picking_list", "Italyabroad_Picking_List_#{@order.id}.pdf")
   end

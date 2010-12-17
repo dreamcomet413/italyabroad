@@ -181,3 +181,4 @@ p params[:product]
      send_file File.join(Rails.root,"products.xml" ), :type => "xml"
   end
  end
+

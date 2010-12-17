@@ -21,7 +21,12 @@
 
          <% @order_status = StatusOrder.find(:all,:conditions=>"name != 'Admin' and name!='Guest'")%>
        <%=  select_tag :status, "<option value="">Select ....</option>"+options_from_collection_for_select(@order_status, "id", "name",params[:status].to_i)%>
-     <%= date_select('order_date','',:order => [:month, :day, :year])%>
+       <% if params[:order_date]
+          date=Date.new(params[:order_date]['(1i)'].to_i,params[:order_date]['(2i)'].to_i, params[:order_date]['(3i)'].to_i)
+        else
+        date = Date.today
+        end %>
+     <%= date_select('order_date','',:default=>date,:order => [:month, :day, :year])%>
         <%= submit_tag "Search", :name => 'search' %>
         <%= set_focus_to 'search' %>
         <%- end -%>
@@ -79,3 +84,4 @@
     </tbody>
   </table>
 </div>
+

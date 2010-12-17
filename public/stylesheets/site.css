@@ -704,7 +704,7 @@ a {
 }
 
 #box_archives ul li.opened ul {
-    display:visible;
+    display:block;
 }
 
 #box_archives ul li span {

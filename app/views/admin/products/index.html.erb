@@ -11,11 +11,11 @@
         <select name="search">
         <option value="">Select ...</option>
         <%- @data.each do |category| -%>
-          <optgroup label="<%= category['text']%>">
+
+           <option value="<%= category['text']%>"><%= category['text']%></option>
           <%- category["children"].each do |children| -%>
-         <option value="<%= children['text']%>"><%= children['text'] %></option>
+         <option value="<%= children['text']%>">&nbsp;&nbsp;--<%= children['text'] %></option>
           <% end %>
-           </optgroup>
         <% end %>
         </select>
         <%= submit_tag 'Search' %>

@@ -42,6 +42,7 @@
       	<%= product.description_short.gsub("\n","<br />") %>&nbsp;<%= link_to "(More info)", "wine-events/#{product.friendly_identifier}" %>
       </li>
       <% end %>
+      <%= will_paginate(products) %><%#= page_entries_info_ products %>
     </ul>
   </div>
 </div>
@@ -57,3 +58,4 @@
 	<br />
 	<%= render :partial => '/site/shared/box_popular' %>
 <% end %>
+

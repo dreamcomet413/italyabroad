@@ -65,7 +65,7 @@
 <%#- comments = @post.comments.latest -%>
       <%- if @comments.blank? -%>
         <div class="comment_icon">No comments</div>
-      <%- else -%>        
+      <%- else -%>
         <ul>
           <% @comments.each_with_index do |comment, i| %>
 
@@ -81,21 +81,6 @@
               <div class="description"><%= comment.description.gsub("\n","<br />") rescue "No description" %></div>
             </div>
 
-              <!--<table>
-                <tr>
-                  <td><%= avatar_for_user(comment.user, "small") %></td>
-                  <td>
-                    <table>
-                      <tr>
-                        <td style="font:bold 12px Arial"><%= comment.name.upcase %> </td></tr>
-                      <tr><td><%= comment.created_at.strftime("%m/%d/%Y %H:%M %p") %></td></tr>
-                    </table>
-                  </td>
-                </tr>
-                <tr>
-                  <td colspan="2"><div class="description">"<%= comment.description.gsub("\n","<br />") rescue "No description" %>"</div></td>
-                </tr>
-              </table>-->
             </li>
           <% end %>
         </ul>
@@ -105,56 +90,8 @@
 
     <h1 style="text-align:right"><%= will_paginate @comments %></h1>
 
-
-
-
-
-    <!--
-    <h2>Your Comments:</h2>
-    <%- comments = @post.comments.latest -%>
-    <%- if comments.blank? -%>
-        <div class="comment_icon">No comments</div>
-    <%- else -%>
-        <div class="comment_icon"><%= @post.comments.size %> comments</div>
-        <ul>
-      <% comments.each_with_index do |comment, i| %>
-              <li>
-                <strong><%= comment.name.upcase %> Wrote:</strong><br />
-                <div><%= comment.description %></div>
-              </li>
-      <% end %>
-          <ul>
-    <%- end -%>
-        </div>
-        <h2>Leave your comment</h2>
-    <% if logged_in? %>
-      <% form_tag comment_blog_path(:id => @post.id) do %>
-        <% unless flash[:blog_notice].blank? %>
-                    <div style="color:red"><%= flash[:blog_notice] %></div>
-        <% end %>
-                <p>
-                  Your name:<br /><%= text_field :comment, :name, :size => 50 %>
-                </p>
-                <p>
-                  Your Comment:<br /><%= text_area :comment, :description, :rows => 10, :cols => 50 %>
-                </p>
-                <p>
-        <%= check_box :comment, :mail_check %>&nbsp;&nbsp;Be informed if someone else posts comment.&nbsp;&nbsp;
-                </p>
-                <p>
-                  Verification code:<%= show_simple_captcha :label => "Please type the verification code", :image_style => "simply_green", :object => "comment" %>
-                </p>
-                <p>
-        <%= submit_tag "Send" %>
-                </p>
-      <% end %>
-    <% else %>
-            <p style="font:italic 16px Arial;text-align:center">To submit any comment please log in!</p>
-    <% end %>-->
   </div>
-
-
-  <% content_for :right do %>
+<% content_for :right do %>
     <%= render :partial => '/site/shared/box_login' %>
     <%= render :partial => '/site/shared/box_grape_guide' %>
     <br />
@@ -166,3 +103,4 @@
     <br />
     <%= render :partial => 'box_latest_blog_comments' %>
   <% end %>
+
