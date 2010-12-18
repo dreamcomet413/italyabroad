@@ -68,8 +68,8 @@ end
     @order = Order.find(params[:id])
     if params[:submit] == "Deliver"
       @order = Order.find(params[:order_id])
+        @order.update_attributes(:status_order_id=>5,:shipping_agency_id=>params[:agency])
       Notifier.deliver_order_details_after_shipping(@order)
-      @order.update_attributes(:status_order_id=>5,:shipping_agency_id=>params[:agency])
       flash[:notice] = 'The items are shipped'
       redirect_to admin_orders_path
    end
