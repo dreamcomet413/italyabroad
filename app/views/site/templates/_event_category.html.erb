@@ -31,7 +31,7 @@
     </p>
   </div>
   <div style="clear:both;"></div>
-  <% products = @category.products.find(:all, :conditions => ["active = ?", true], :order => "created_at DESC").paginate(:page => params[:page], :per_page => 4) %>
+  <% products = @category.products.find(:all, :conditions => ["active = ?", true], :order => "date DESC").paginate(:page => params[:page], :per_page => 4) %>
   <div id="featured_events">
     <br />
     <h3>Featured Events</h3>

@@ -26,7 +26,7 @@
     </p>
   </div>
   <div style="clear:both;"></div>
-  <% products = @category.products.find(:all, :conditions => ["active = ?", true], :order => "created_at DESC").paginate(:page => params[:page], :per_page => 3) %>
+  <% products = @category.products.find(:all, :conditions => ["active = ?", true], :order => "date DESC").paginate(:page => params[:page], :per_page => 3) %>
   <%- unless products.blank? -%>
   <div id="featured_wine_tours">
     <br />
@@ -53,3 +53,4 @@
 	<br />
 	<%= render :partial => '/site/shared/box_grape_guide' %>
 <% end %>
+

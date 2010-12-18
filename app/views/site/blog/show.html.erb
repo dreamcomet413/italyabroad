@@ -2,11 +2,11 @@
 <% @class = "no-padding"; @breadcrumbs = "#{link_to("Home", root_url)} &raquo; #{link_to("Blog", blog_index_path)} &raquo; #{@post.name}" %>
 
 <div id="header">
-  <%= truncate @post.name, :length => 70 %>
-  <span style="float:right;font-size:12px;">Subscribe to our RSS feed <%= link_to image_tag('RSS.png'), blog_index_path(:format => :xml, :show => :all) %></span>
+ <%= truncate @post.name, :length => 70 %>
+<span style="float:right;font-size:12px;">Subscribe to our RSS feed <%= link_to image_tag('RSS.png'), blog_index_path(:format => :xml, :show => :all) %></span>
 </div>
 <div id="blog_show_container">
-  <div style="text-align:center;"><%= image_tag(image_url('blog_view', (@post.image_1 or @post.image_2 or @post.image_3), :jpg)) if @post.image_1 or @post.image_2 or @post.image_3 %></div>
+<div style="text-align:center;"><%= image_tag(image_url('blog_view', (@post.image_1 or @post.image_2 or @post.image_3), :jpg)) if @post.image_1 or @post.image_2 or @post.image_3 %></div>
   <br />
   <div class="comment_icon"><%= @post.comments.size %> comments</div>
   <div><%= @post.description_cleared %></div>
@@ -14,7 +14,7 @@
     <tr>
       <td><strong>Tags:</strong> <%= @post.tag_names %></td>
       <td align="right"><%= render :partial => '/site/shared/social_bookmarks'%></td>
-    </tr>  
+    </tr>
   </table>
   <div style="border-bottom:1px solid #CCCCCC;margin-top:20px;"></div>
   <div class="comments">
@@ -92,7 +92,7 @@
 
   </div>
 <% content_for :right do %>
-    <%= render :partial => '/site/shared/box_login' %>
+    <%#= render :partial => '/site/shared/box_login' %>
     <%= render :partial => '/site/shared/box_grape_guide' %>
     <br />
     <%= render :partial => 'box_most_read_blog' %>
