@@ -12,10 +12,12 @@ class Site::BaseController < ApplicationController
   end
 
   def login
-    params[:user_type] = ""
+  # params[:user_type] = ""
     if request.post?
-      self.current_user = User.authenticate(params[:login], params[:password])
-      if logged_in?
+    # self.current_user = User.authenticate(params[:login], params[:password])
+    logged_in  = User.authenticate(params[:login], params[:password])
+      if logged_in
+        self.current_user = User.authenticate(params[:login], params[:password])
         current_user.set_last_seen_at
         redirect_back_or_default(root_url)
       else

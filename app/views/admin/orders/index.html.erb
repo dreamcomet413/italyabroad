@@ -25,7 +25,7 @@
           date=Date.new(params[:order_date]['(1i)'].to_i,params[:order_date]['(2i)'].to_i, params[:order_date]['(3i)'].to_i)
         else
         date = Date.today
-        end %>
+        end %>Before
      <%= date_select('order_date','',:default=>date,:order => [:month, :day, :year])%>
         <%= submit_tag "Search", :name => 'search' %>
         <%= set_focus_to 'search' %>
