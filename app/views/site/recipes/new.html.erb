@@ -36,8 +36,8 @@
   <div id="recipe_new_introduction">
     <h2>Submit your Recipe</h2>
     <p>
-      If you have a recipe that you would like to share with other users, please give details in the section below, please note that to submit a recipe you must 
-      <%= link_to "logged in,", login_url %> if you are a chef, you can create your <%= link_to "own profile" %> and promote your establishement
+      If you have a recipe that you would like to share with other users, please give details in the section below, please note that to submit a recipe you must
+      <%= link_to "logged in,", login_url %> if you are a chef, you can create your <%= link_to "own profile",account_path %> and promote your establishement
     </p>
   </div>
   <h1>Recipe Details</h1>
@@ -108,3 +108,4 @@
     alert("You need to login to submit your recipe!");
   </script>
 <% end %>
+

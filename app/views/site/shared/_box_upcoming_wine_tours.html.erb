@@ -1,4 +1,4 @@
-<% products = Product.find(:all, :limit => 2, :order => "RAND()", :include => {:categorizations => :category}, :conditions => "categories.name LIKE 'Wine Tours'") %>
+<% products = Product.find(:all, :limit => 2, :include => {:categorizations => :category}, :conditions => "categories.name LIKE 'Wine Tours'") %>
 <% unless products.blank? %>
 <div class="block" id="box_upcoming_wine_tours">
   <h1>Upcoming Tours</h1>
@@ -12,3 +12,4 @@
   </ul>
 </div>
 <% end %>
+

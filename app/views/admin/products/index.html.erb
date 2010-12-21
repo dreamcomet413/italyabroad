@@ -8,23 +8,38 @@
     <tr>
       <% form_tag admin_products_path, :method=>:get do  %>
       <td>
-        <select name="search">
+      <strong>Search</strong><%= text_field_tag 'search_name',params[:search_name]%>
+
+        <select name="search" >
         <option value="">Select ...</option>
         <%- @data.each do |category| -%>
+        <%-if params[:search].to_s == category['text'].to_s
+          selected = "selected=\"selected\""
+          else
+          selected =""
+          end
+          -%>
 
-           <option value="<%= category['text']%>"><%= category['text']%></option>
+           <option value="<%= category['text']%>" <%= selected %> ><%= category['text']%></option>
           <%- category["children"].each do |children| -%>
-         <option value="<%= children['text']%>">&nbsp;&nbsp;--<%= children['text'] %></option>
+             <%-if params[:search].to_s == children['text'].to_s
+          selected = "selected=\"selected\""
+          else
+          selected =""
+          end
+          -%>
+         <option value="<%= children['text']%>" <%= selected %> >&nbsp;&nbsp;--<%= children['text'] %></option>
           <% end %>
         <% end %>
         </select>
         <%= submit_tag 'Search' %>
-        <% end %>
+
       </td>
       <td align="right"><%= link_to "New Product", new_admin_product_path %></td>
       <td align="right"><%= link_to "XML", :controller => 'admin/products', :action => 'xml' %></td>
     </tr>
-  </table>
+  </table> <br />
+ Discount<%= text_field_tag 'discount',params[:discount]%><%= submit_tag 'Update',:name=>'update' %>
   <table id="products-list" class="list sortable">
     <thead>
       <tr>
@@ -39,6 +54,7 @@
         <th>Out of stock</th>
         <th>Active</th>
         <th class="nosort"></th>
+       
       </tr>
     </thead>
     <tfoot>
@@ -63,9 +79,10 @@
         <td>
           <%= link_to "Edit", edit_admin_product_path(product.id) %> | <%= link_to "Delete" %>
         </td>
-      </tr>
+       </tr>
       <%- end -%>
     </tbody>
   </table>
+  <% end %>
 </div>
 

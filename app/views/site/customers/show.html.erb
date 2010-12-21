@@ -45,7 +45,7 @@
               <td>
                 <%= @user.holidays rescue "No holiday" %> <%= link_to("Edit") if @my_profile && !@user.holidays.blank? %>
                 <%- if @my_profile -%>
-                <div id="favorite_holiday" style="display:none;">
+                <div id="favorite_holiday">
                   <%- form_for :user, :url => customer_path(@user), :html => {:method => :put} do -%>
                     <%= text_field :user, :holidays, :size => 45 %> <%= submit_tag("Save") %> or <%= link_to("Cancel", customer_path(current_user)) %>
                   <%- end -%>
@@ -58,9 +58,9 @@
               <td>
                 <%= @user.songs rescue "No song" %> <%= link_to("Edit") if @my_profile && !@user.songs.blank? %>
                 <%- if @my_profile -%>
-                <div id="favorite_song" style="display:none;">
-                  <%- form_for :user, :url => customer_path(@user), :html => {:method => :put} do -%>
-                    <%= text_field :user, :songs, :size => 45 %> <%= submit_tag("Save") %> or <%= link_to("Cancel", customer_path(current_user)) %>
+                <div id="favorite_song">
+                  <%- form_for :user, :html => {:method => :put} do -%>
+                    <%= text_field :user, :songs, :size => 45 %> <%= submit_tag("Save") %> or <%= link_to("Cancel",'', :onclick=>"document.getElementById('favorite_song').style.display = 'none';return false;") %>
                   <%- end -%>
                 </div>
                 <%- end -%>
@@ -165,3 +165,4 @@
   <br />
   <%= render :partial => 'site/shared/box_wine_tours' %>
 <%- end -%>
+

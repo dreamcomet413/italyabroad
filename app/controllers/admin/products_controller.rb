@@ -8,13 +8,20 @@ class Admin::ProductsController < ApplicationController
      categories = Category.find_by_sql("select * from categories where parent_id is null")
      @categories_data = Admin::CategoriesController.new
     @data = @categories_data.get_tree(categories,nil)
+    if params[:update]  and !params[:discount].blank?
+      @products = Product.find(:all, :include => [:categories],:conditions=>['categories.name LIKE ? AND products.name LIKE ? ',"%#{params[:search]}%" ,"%#{params[:search_name]}%"], :order => "created_at DESC").paginate(:page => params[:page], :per_page => 20)
+      for product in @products
+        @product = Product.find(product.id)
+        @product.update_attribute('discount',params[:discount])
 
-    if params[:search]
-    @products = Product.find(:all, :include => [:categories],:conditions=>['(categories.name) LIKE ?',"#{params[:search]}" ], :order => "created_at DESC").paginate(:page => params[:page], :per_page => 20)
+      end
+    end
+    if params[:search] or params[:update]
+    @products = Product.find(:all, :include => [:categories],:conditions=>['categories.name LIKE ? AND products.name LIKE ? ',"%#{params[:search]}%" ,"%#{params[:search_name]}%"], :order => "created_at DESC").paginate(:page => params[:page], :per_page => 20)
   else
     @products = Product.find(:all, :include => [:categories], :order => "created_at DESC").paginate(:page => params[:page], :per_page => 20)
   end
-  end
+ end
 
 
   def new

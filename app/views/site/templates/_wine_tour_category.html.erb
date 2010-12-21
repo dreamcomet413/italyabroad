@@ -26,7 +26,7 @@
     </p>
   </div>
   <div style="clear:both;"></div>
-  <% products = @category.products.find(:all, :conditions => ["active = ?", true], :order => "date DESC").paginate(:page => params[:page], :per_page => 3) %>
+  <% products = @category.products.find(:all, :conditions => ["active = ?", true], :order => "date").paginate(:page => params[:page], :per_page => 3) %>
   <%- unless products.blank? -%>
   <div id="featured_wine_tours">
     <br />

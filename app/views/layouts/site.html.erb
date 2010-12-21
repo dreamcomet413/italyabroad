@@ -76,9 +76,7 @@
                     <!--<li class="<%#= " active" if active_uri == "/wine-club" %>"><%#= link_to "Wine Club", :action=>"wine_club", :controller=>"site/base" %></li>-->
               <li id="link-to-forum" <%= 'class="active"' if active_uri == "/forums" %>><%= link_to "Community", wine_community_path %></li>
               <li id="link-to-recipes" <%= 'class="active"' if active_uri == "/recipes" %>><%= link_to "Recipes", recipes_path  %>
-              <ul><li><%= link_to 'New Recipe',new_recipe_path%></li></ul>
-
-              </li>
+               </li>
               <li id="link-to-blog" class="last<%= " active" if active_uri == "/blog" %>"><%= link_to "Blog", blog_index_path %></li>
 
 

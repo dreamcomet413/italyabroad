@@ -6,6 +6,6 @@ Add another <%= number_to_currency(@promotion_limit,{:unit => "&pound;"}) -%> to
 Your order qualifies for free delivery *
 <%- end -%>
 <%- else -%>
-Add another £<%= @setting.order_delivery_amount %> to your basket for free delivery
+Add another <%= number_to_currency(@setting.order_delivery_amount,{:unit => "&pound;"}) %> to your basket for free delivery
 <%- end -%>
 
