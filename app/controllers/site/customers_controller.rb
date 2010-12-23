@@ -117,7 +117,7 @@ class Site::CustomersController < ApplicationController
   end
 
   def update
-    @user = current_user
+     @user = current_user
     old_mail = @user.email
      unless params[:photo].nil?
     @photo = Photo.new(params[:photo])
@@ -163,6 +163,13 @@ class Site::CustomersController < ApplicationController
       else
         format.html { redirect_to(customer_path(current_user)) }
       end
+    end
+  end
+
+  def send_message
+    @message = Message.new(:name=>params[:name],:user_id=>params[:user_id],:send_by_id=>params[:send_by])
+    if @message.save
+      redirect_to customer_path(params[:user_id])
     end
   end
 

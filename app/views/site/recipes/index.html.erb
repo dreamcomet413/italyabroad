@@ -40,7 +40,10 @@
                 Guest
               <%else%>
                 <%= (recipe.user.name).capitalize rescue "Admin" %>
-               &nbsp;&nbsp;&nbsp; <%= link_to recipe.user.establishment_link %>
+               &nbsp;&nbsp;&nbsp;
+               <% if !recipe.user.nil? %>
+               <%= link_to recipe.user.establishment_link %>
+               <% end %>
                 <% end %>
             </td>
             <td align="right">

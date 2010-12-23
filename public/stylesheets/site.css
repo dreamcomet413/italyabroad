@@ -1138,7 +1138,8 @@ a {
 #header {
     height:18px;
     background-color:#BCD127;
-    color:#fff;
+   /* color:#fff;*/
+    color:#8B0000;
     padding-top:4px;
     padding-bottom:10px;
     padding-left:20px;

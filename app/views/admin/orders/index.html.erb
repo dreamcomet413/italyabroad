@@ -66,10 +66,12 @@
               <ul class="makeMenu">
                 <li><%= link_to "Print", print_invoice_admin_order_path(order, :format => "pdf"),:target => '_blank'%>
                   <ul>
-                    <li><%= link_to "Invoice", print_invoice_admin_order_path(order, :format => "pdf"),:target =>'_blank' %></li>
-                    <li><%= link_to "Tasting Notes", print_tasting_admin_order_path(order, :format => "pdf"),:target =>'_blank' %></li>
-                    <li><%= link_to "Picking List", print_picking_list_admin_order_path(order, :format => "pdf"),:target=> '_blank' %></li>
-
+                    <li><%= link_to "Invoice", print_invoice_admin_order_path(order),:target =>'_blank' %><!--, :format => "pdf">--></li>
+                    <li><%= link_to "Tasting Notes", print_tasting_admin_order_path(order),:target =>'_blank' %>
+                    <!--, :format => "pdf">-->
+                    </li>
+                    <li><%= link_to "Picking List", print_picking_list_admin_order_path(order),:target=> '_blank' %></li>
+      <!--, :format => "pdf">-->
                   </ul>
                 </li>
 

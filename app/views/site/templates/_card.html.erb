@@ -1,4 +1,3 @@
-
 <%
 @breadcrumbs = "#{link_to "Home", root_url} &raquo; "
 @breadcrumbs += "#{@product.unique_categories.collect {|c| link_to(c.name, "#{"/" + c.root.friendly_identifier unless c.is_root?}/#{c.friendly_identifier}")}.join(" &raquo; ")}"

@@ -29,6 +29,7 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :followers
   has_many :wine_lists
+  has_many :messages
 
   before_save :encrypt_password
 

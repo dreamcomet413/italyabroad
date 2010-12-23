@@ -24,9 +24,11 @@
               <td><p><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> favorite Meal:&nbsp;</p></td>
               <td>
                 <%- if @my_profile -%>
+                <div id="favorite_meal">
                   <%- form_for :user, :url => customer_path(@user), :html => {:method => :put} do -%>
-                    <%= text_field_tag :my_meal, "", :size => 45 %> <%= submit_tag("Save") %> or <%= link_to("Cancel", customer_path(current_user)) %>
+                    <%= text_field :user,:fav_meals,:size => 45 %> <%= submit_tag("Save") %> or <%= link_to("Cancel", '', :onclick=>"document.getElementById('favorite_meal').style.display = 'none';return false;") %>
                   <%- end -%>
+                  </div>
                 <%- end -%>
               </td>
             </tr>
@@ -34,9 +36,11 @@
               <td><p><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> favorite Wine:&nbsp;</p></td>
               <td>
                 <%- if @my_profile -%>
+                 <div id="favorite_wine">
                   <%- form_for :user, :url => customer_path(@user), :html => {:method => :put} do -%>
-                    <%= text_field_tag :my_wine, "", :size => 45 %> <%= submit_tag("Save") %> or <%= link_to("Cancel", customer_path(current_user)) %>
+                    <%= text_field :user,:fav_wine, :size => 45 %> <%= submit_tag("Save") %> or <%= link_to("Cancel", '', :onclick=>"document.getElementById('favorite_wine').style.display = 'none';return false;") %>
                   <%- end -%>
+                  </div>
                 <%- end -%>
               </td>
             </tr>
@@ -47,7 +51,7 @@
                 <%- if @my_profile -%>
                 <div id="favorite_holiday">
                   <%- form_for :user, :url => customer_path(@user), :html => {:method => :put} do -%>
-                    <%= text_field :user, :holidays, :size => 45 %> <%= submit_tag("Save") %> or <%= link_to("Cancel", customer_path(current_user)) %>
+                    <%= text_field :user, :holidays, :size => 45 %> <%= submit_tag("Save") %> or <%= link_to("Cancel", '', :onclick=>"document.getElementById('favorite_holiday').style.display = 'none';return false;") %>
                   <%- end -%>
                 </div>
                 <%- end -%>
@@ -71,9 +75,9 @@
               <td>
                 <%= @user.films rescue "No film" %> <%= link_to("Edit") if @my_profile && !@user.films.blank? %>
                 <%- if @my_profile -%>
-                <div id="favorite_film" style="display:none;">
+                <div id="favorite_film">
                   <%- form_for :user, :url => customer_path(@user), :html => {:method => :put} do -%>
-                    <%= text_field :user, :films, :size => 45 %> <%= submit_tag("Save") %> or <%= link_to("Cancel", customer_path(current_user)) %>
+                    <%= text_field :user, :films, :size => 45 %> <%= submit_tag("Save") %> or <%= link_to("Cancel",'', :onclick=>"document.getElementById('favorite_film').style.display = 'none';return false;") %>
                   <%- end -%>
                 </div>
                 <%- end -%>
@@ -84,10 +88,11 @@
               <td>
                 <%= @user.newspapers rescue "No newspaper" %> <%= link_to("Edit") if @my_profile && !@user.newspapers.blank? %>
                 <%- if @my_profile -%>
+                <div id="favorite_newspaper">
                 <%- @display = "none" unless @user.newspapers.blank? -%>
                 <div id="favorite_newspaper" style="display:<%= @display %>;">
                   <%- form_for :user, :url => customer_path(@user), :html => {:method => :put} do -%>
-                    <%= text_field :user, :newspapers, :size => 45 %> <%= submit_tag("Save") %> or <%= link_to("Cancel", customer_path(current_user)) %>
+                    <%= text_field :user, :newspapers, :size => 45 %> <%= submit_tag("Save") %> or <%= link_to("Cancel",'', :onclick=>"document.getElementById('favorite_newspaper').style.display = 'none';return false;") %>
                   <%- end -%>
                 </div>
                 <%- end -%>
@@ -105,45 +110,65 @@
     <li>
       <h1><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> Comments</h1>
       <ul>
-        <%- @user.comments.all(:limit => 5).each do |comment| -%>
+        <%- @user.comments.all(:order=>' id desc',:limit => 5).each do |comment| -%>
         <li><%= comment.name unless comment.name.blank? %></li>
         <%- end -%>
         <% if @user.comments.size > 5 %>
-        <li style="list-style:none;text-align:right;margin-top:20px;"><%= link_to("more") %></li>
+        <li style="list-style:none;text-align:right;margin-top:20px;"><%= link_to("more",:controller=>'comments',:action=>'index',:id=>params[:id]) %></li>
         <% end %>
       </ul>
     </li>
+
     <li>
       <h1><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> Latest Reviews</h1>
       <ul>
-        <%- @user.reviews.all(:limit => 5).each do |review| -%>
+        <%- @user.reviews.all(:order=>' id desc',:limit => 5).each do |review| -%>
         <li><%= review.name unless review.name.blank? %></li>
         <%- end -%>
         <% if @user.reviews.size > 5 %>
-        <li style="list-style:none;text-align:right;margin-top:20px;"><%= link_to("more") %></li>
+        <li style="list-style:none;text-align:right;margin-top:20px;"><%= link_to("more",reviews_path) %></li>
         <% end %>
       </ul>
     </li>
     <li>
       <h1><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> Winelist</h1>
       <ul>
-        <%- @user.wine_lists.all(:limit => 5).each do |wine_list| -%>
+        <%- @user.wine_lists.all(:order=>' id desc',:limit => 5).each do |wine_list| -%>
         <li><%= wine_list.product.name %></li>
         <%- end -%>
         <% if @user.wine_lists.size > 5 %>
-        <li style="list-style:none;text-align:right;margin-top:20px;"><%= link_to("more") %></li>
+        <li style="list-style:none;text-align:right;margin-top:20px;"><%= link_to("more",wine_lists_path) %></li>
         <% end %>
       </ul>
     </li>
   </ul>
   <div style="clear:both;"></div>
+
+   <div>
+      <h1><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> Messages</h1>
+      <ul>
+        <%- @user.messages.all(:order=>' id desc',:limit => 5).each do |msg| -%>
+        <li><%= msg.name unless msg.name.blank? %></li>
+        <%- end -%>
+        <% if @user.messages.size > 5 %>
+        <li style="list-style:none;text-align:right;margin-top:20px;"><%= link_to("more",:controller=>'site/messages',:action=>'index',:id=>params[:id]) %></li>
+        <% end %>
+      </ul>
+  </div>
+
+  <% unless @my_profile %>
   <div>
     <h1><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> wall - write a Message:</h1>
-    <%- form_tag "/customers/message" do -%>
-    <%= text_area_tag :wall, "", :size => "87x5" %>
-    <p style="text-align:right;"><%= image_submit_tag("buttons/submit.png") %></p>
-    <%- end -%>
+    <% form_tag 'send_message' do |f| %>
+    <%= text_area_tag  :name,'', :size => "87x5" %>
+    <%= hidden_field_tag :user_id,params[:id]%>
+    <%= hidden_field_tag :send_by,current_user.id %>
+    <p style="text-align:right;">
+
+    <%= image_submit_tag("buttons/submit.png") %></p>
+    <% end %>
   </div>
+  <% end %>
 </div>
 
 <div id="follower">

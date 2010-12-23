@@ -1,0 +1,3 @@
+module Site::MessagesHelper
+end
+

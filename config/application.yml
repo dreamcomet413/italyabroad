@@ -6,6 +6,7 @@ common: &default_settings
   smtp_password: test123
   application_name: vuconnector.com
   subject: Italyabroad.com
+  admin_email: 'admin@ejubel.com'
 
   avatar_1: default
   avatar_2: default_a
@@ -13,11 +14,11 @@ common: &default_settings
   avatar_4: default_c
   avatar_5: default_d
   avatar_6: default_e
-  
+
 development:
   <<: *default_settings
   site_url: localhost:3000
-  
+
 test:
   <<: *default_settings
   site_url: localhost:3000
@@ -29,4 +30,4 @@ production:
 production:
   <<: *default_settings
   site_url: italyabroad.ejubel.com
-  
+

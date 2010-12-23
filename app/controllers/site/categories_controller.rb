@@ -11,16 +11,19 @@ class Site::CategoriesController < ApplicationController
       return
     end
     @category = Category.find(params[:category])
+
     @show = true
 
   end
 
   def show_sub
+
     if params[:category] != "offer"
 
     if params[:parent].blank? || params[:category].blank?
       redirect_to root_url and return
     else
+
       @sort_by = available_sorting.include?(params[:sort_by]) ? params[:sort_by] : "products.price DESC"
       @category = Category.find(params[:category])
       @search = Search.new(params || Hash.new)
@@ -28,14 +31,21 @@ class Site::CategoriesController < ApplicationController
       SearchQuery.create(:query => @search.text) unless @search.text.blank?
     end
     else
+
       @sort_by = available_sorting.include?(params[:sort_by]) ? params[:sort_by] : "products.price DESC"
       @category = Category.find(params[:parent])
       @search = Search.new(params || Hash.new)
 #      @products = @category.blank? ? [] : @category.products.find(:all, :order => @sort_by, :include => [:categories, :grapes], :conditions => @search.conditions).paginate(:page => (params[:page] ||=1), :per_page => 10)
       @products = @category.blank? ? [] : @category.products.find(:all, :order => @sort_by, :include => [:categories, :grapes], :conditions => [@search.conditions && 'discount != ?','0.00']).paginate(:page => (params[:page] ||=1), :per_page => 10)
-      SearchQuery.create(:query => @search.text) unless @search.text.blank?
+   SearchQuery.create(:query => @search.text) unless @search.text.blank?
 
     end
+   @setting = Setting.find(:first)
+    for product in @products
+     if product.quantity < @setting.reorder_quantity
+        Notifier.deliver_reorder_quantity_notification(product,AppConfig.admin_email)
+      end
+   end
   end
 
   def all_mixedcase_image
@@ -48,6 +58,7 @@ class Site::CategoriesController < ApplicationController
     render :update do|page|
       page.replace_html "other-image", :partial => "site/categories/mixedcase_images", :collections => @products
     end
+
   end
 
   def special_offer

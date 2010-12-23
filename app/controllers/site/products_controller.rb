@@ -1,9 +1,14 @@
 class Site::ProductsController < ApplicationController
   before_filter :store_location
   layout "site"
-  
+
+  def index
+    @products = Product.find(:all)
+
+  end
+
   def show
-    
+
     @product = Product.find(params[:id]) || Product.find_by_id(params[:id])
     unless @product
       render :file => File.join(RAILS_ROOT, 'public', '404.html'), :status => 404
@@ -24,3 +29,4 @@ class Site::ProductsController < ApplicationController
   end
 
 end
+

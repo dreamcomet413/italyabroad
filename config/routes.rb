@@ -18,6 +18,7 @@ ActionController::Routing::Routes.draw do |map|
   map.contact_details 'help/contact-details', :controller => 'site/base', :action => 'contact_details'
   map.sitemap 'sitemap', :controller => 'site/base', :action => 'sitemap'
   map.connect "sitemap.xml", :controller => "site/base", :action => "google_sitemap"
+#  map.connect "products.xml",:controller=>'site/products',:action=>'index'
 
   map.testimonial 'testimonial', :controller => 'site/base', :action => 'testimonial'
   map.popular 'popular', :controller => 'site/base', :action => 'popular'
@@ -37,6 +38,7 @@ ActionController::Routing::Routes.draw do |map|
   map.account 'my-account', :controller => 'site/customers', :action => 'account'
   map.follow 'follow/:user_id', :controller => 'site/customers', :action => 'follow'
   map.unfollow 'unfollow/:user_id', :controller => 'site/customers', :action => 'unfollow'
+
   map.grape_guide 'grape-guide', :controller => 'site/grapes', :action => 'index'
   map.request_new_password 'request-new-password', :controller => 'site/customers', :action => :request_new_password
   map.wine_events 'wine-events', :controller => 'site/categories', :action => 'show', :category => "events"
@@ -65,12 +67,14 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :grapes, :controller => 'site/grapes', :only => [:index, :show]
   map.resources :wine_lists, :controller => 'site/wine_lists'
   map.resources :reviews, :controller => 'site/reviews'
+  map.resources :messages, :controller => 'site/messages'
+   map.resources :comments, :controller => 'site/comments'
   map.resources :search, :controller => 'site/search', :only => [:index]
   map.resources :cart, :controller => 'site/cart', :only => [:index, :update], :collection => {:empty => :get, :continue_shopping => :get}
   map.resources :ship_addresses, :controller => 'site/ship_addresses'
   map.resources :checkouts, :controller => 'site/checkouts', :only => [:index], :collection => {:confirm_address => :post, :payment => :get, :paypal => :get, :confirmed => :get}
   map.resources :orders, :controller => 'site/orders', :only => [:index, :new, :create, :show],:collection => {:download_pdf => :any}
-  map.resources :customers, :controller => 'site/customers', :collection => {:account => :get, :update_default_pic => :get, :request_new_password => :get, :find => :post}
+  map.resources :customers, :controller => 'site/customers', :collection => {:account => :get, :update_default_pic => :get, :request_new_password => :get, :find => :post,:send_message=>:post}
   map.resources :image, :controller => 'site/images', :only => [:show], :path_prefix => ':image_type'
   map.resources :blog, :controller => 'site/blog', :only => [:index, :show], :member => {:comment => :any}
   map.resources :posts, :controller => 'site/posts', :collection => { :search => :post }

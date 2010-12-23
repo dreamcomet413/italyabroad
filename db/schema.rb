@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101215064555) do
+ActiveRecord::Schema.define(:version => 20101223015532) do
 
   create_table "about_us", :force => true do |t|
     t.string   "title"
@@ -168,6 +168,14 @@ ActiveRecord::Schema.define(:version => 20101215064555) do
     t.string  "name"
     t.string  "controller"
     t.string  "action"
+  end
+
+  create_table "messages", :force => true do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.integer  "send_by_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "moderatorships", :force => true do |t|
@@ -550,6 +558,7 @@ ActiveRecord::Schema.define(:version => 20101215064555) do
     t.string  "home_image_5_title"
     t.string  "home_image_5_url"
     t.string  "promotion"
+    t.integer "reorder_quantity"
   end
 
   create_table "ship_addresses", :force => true do |t|
@@ -658,20 +667,20 @@ ActiveRecord::Schema.define(:version => 20101215064555) do
     t.datetime "updated_at"
     t.string   "remember_token"
     t.datetime "remember_token_expires_at"
-    t.boolean  "active",                                  :default => false
-    t.boolean  "activation_sent",                         :default => false
+    t.boolean  "active",                                   :default => false
+    t.boolean  "activation_sent",                          :default => false
     t.integer  "type_id"
     t.string   "country"
     t.string   "activation_code"
     t.string   "know_through"
     t.string   "title"
     t.string   "address_2"
-    t.boolean  "news_letters",                            :default => true
-    t.boolean  "ship_a_gift",                             :default => false
+    t.boolean  "news_letters",                             :default => true
+    t.boolean  "ship_a_gift",                              :default => false
     t.string   "friend_name"
-    t.string   "friend_email",                            :default => "If Known"
+    t.string   "friend_email",                             :default => "If Known"
     t.date     "dob"
-    t.integer  "posts_count",                             :default => 0
+    t.integer  "posts_count",                              :default => 0
     t.datetime "last_seen_at"
     t.integer  "photo_id"
     t.string   "photo_default"
@@ -681,6 +690,8 @@ ActiveRecord::Schema.define(:version => 20101215064555) do
     t.string   "newspapers"
     t.string   "chef_bio"
     t.string   "establishment_link"
+    t.string   "fav_meals",                 :limit => 100
+    t.string   "fav_wine",                  :limit => 100
   end
 
   create_table "wine_lists", :force => true do |t|
