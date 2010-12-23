@@ -42,10 +42,10 @@ class Site::CategoriesController < ApplicationController
     end
    @setting = Setting.find(:first)
     for product in @products
-     if product.quantity < @setting.reorder_quantity
+      if product.quantity < @setting.reorder_quantity
         Notifier.deliver_reorder_quantity_notification(product,AppConfig.admin_email)
       end
-   end
+    end
   end
 
   def all_mixedcase_image
