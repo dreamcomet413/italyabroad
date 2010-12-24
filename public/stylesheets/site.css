@@ -104,7 +104,7 @@ h6{
 }
 
 #content{
-    max-width:1010px;
+    width:1010px;
     margin: 0 auto;
     padding:0;
 }
@@ -144,7 +144,7 @@ a {
     /*  color:#464646;*/
     font-size:12px;
     font-weight:100;
-    width:100%;
+    width:1010px;
     height:auto;
     float:left;
     border-bottom:solid #ccc;
@@ -1138,8 +1138,8 @@ a {
 #header {
     height:18px;
     background-color:#BCD127;
-   /* color:#fff;*/
-    color:#8B0000;
+    color:#fff;
+    /*color:#8B0000;*/
     padding-top:4px;
     padding-bottom:10px;
     padding-left:20px;
