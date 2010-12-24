@@ -21,7 +21,7 @@ class Site::BaseController < ApplicationController
         current_user.set_last_seen_at
         redirect_back_or_default(root_url)
       else
-        flash[:login] = "Wrong password or username"
+        flash[:notice] = "Wrong password or username"
         redirect_to :back
       end
     end

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101223015532) do
+ActiveRecord::Schema.define(:version => 20101224082730) do
 
   create_table "about_us", :force => true do |t|
     t.string   "title"
@@ -692,6 +692,7 @@ ActiveRecord::Schema.define(:version => 20101223015532) do
     t.string   "establishment_link"
     t.string   "fav_meals",                 :limit => 100
     t.string   "fav_wine",                  :limit => 100
+    t.string   "password_reset_token"
   end
 
   create_table "wine_lists", :force => true do |t|

@@ -13,7 +13,7 @@
         in
         <%= select_tag :field_text, options_for_select([["All", ""], ["Login", "login"], ["Name", "name"], ["Surname", "surname"]],params[:field_text]) %>
          <% @user_types = Type.find(:all,:conditions=>"name != 'Admin' and name!='Guest'")%>
-        <%= select_tag :user_type, options_from_collection_for_select(@user_types, "id", "name",params[:user_type].to_i) %>
+        <%= select_tag :user_type,'<option value="">Any</option>'+options_from_collection_for_select(@user_types, "id", "name",params[:user_type].to_i) %>
 
         <%= submit_tag "Search", :name => 'search' %>
         <%= set_focus_to 'search' %>

@@ -5,13 +5,14 @@
 <div id="header">Login</div>
 <div>
   <%#= error_messages_for 'user' unless params[:user_type] == "guest" %>
+
 </div>
 <table align="center" width="95%" id="login_box" cellpadding="0" cellspacing="0">
   <tr>
     <td valign="top" width="50%">
       <h1>Existing User</h1>
       <% form_tag login_url do  %>
-        <%= content_tag :p, flash[:notice] if flash[:notice] %>
+
         <p>Username</p>
         <p><%= text_field_tag :login, nil %></p>
         <%= set_focus_to('login') %>
