@@ -1,4 +1,4 @@
-<% products = Product.find(:all, :limit => 3, :order => "RAND()", :include => {:categorizations => :category}, :conditions => "categories.name LIKE 'Events'") %>
+<% products = Product.find(:all, :limit => 3,:include => {:categorizations => :category},:conditions => ["categories.name LIKE ? AND DATE(date) > ?" ,'Events',Date.today],:order =>'date') %>
 <% unless products.blank? %>
 <div class="block" id="box_event">
   <%= link_to((image_tag "upcomingEvents1.png"), '/events')%><br />
@@ -10,8 +10,8 @@
 	  </li>
   <%- end -%>
   </ul>
-</div>	
-<% else %> 
+</div>
+<% else %>
 <div class="block" id="box_event">
   <div><%= image_tag "upcomingEvents1.png" %></div>
   <div>Sorry there are currently no upcoming events planned please come back later.</div>

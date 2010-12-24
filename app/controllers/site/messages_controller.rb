@@ -6,5 +6,12 @@ class Site::MessagesController < ApplicationController
       format.html { render :layout => 'site' }
     end
   end
+
+  def create
+    @message = Message.new(params[:message])
+    if @message.save
+      redirect_to customer_path(@message.user_id)
+   end
+  end
 end
 

@@ -23,7 +23,7 @@ class Site::BlogController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @post.count_view if @post
-    @comments = (@post.comments.latest).paginate(:page => params[:page], :per_page => 5, :offset => 5,:order => "created_at DESC")
+    @comments = (@post.comments).paginate(:page => params[:page], :per_page => 5, :offset => 5,:order => "created_at DESC")
   end
 
   def comment
@@ -44,7 +44,8 @@ class Site::BlogController < ApplicationController
       redirect_to blog_path(:id => @post.id)
     else
       flash[:notice] = @comment.show_errors
-      render :action => :show
+       redirect_to blog_path(:id => @post.id)
+     # render :action => :show
     end
   end
 

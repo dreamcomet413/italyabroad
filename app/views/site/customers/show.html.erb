@@ -155,20 +155,16 @@
         <% end %>
       </ul>
   </div>
-
+   <%# if logged_in? %>
   <% unless @my_profile %>
   <div>
     <h1><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> wall - write a Message:</h1>
-    <% form_tag 'send_message' do |f| %>
-    <%= text_area_tag  :name,'', :size => "87x5" %>
-    <%= hidden_field_tag :user_id,params[:id]%>
-    <%= hidden_field_tag :send_by,current_user.id %>
-    <p style="text-align:right;">
+      <%= render(:partial => 'site/messages/new') %>
 
-    <%= image_submit_tag("buttons/submit.png") %></p>
-    <% end %>
   </div>
-  <% end %>
+  <% end
+  #end
+  %>
 </div>
 
 <div id="follower">

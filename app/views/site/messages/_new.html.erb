@@ -1,0 +1,13 @@
+<%= content_tag :p, flash[:notice] %>
+<% form_for @message do %>
+  <p>
+            Title:<br /><%= text_area :message, :name %>
+            <%= hidden_field :message,:user_id,:value=>params[:id]%>
+    <%= hidden_field :message,:send_by_id,:value=>current_user.id %>
+  </p>
+
+  <p style="text-align:right;">
+
+    <%= image_submit_tag("buttons/submit.png") %></p>
+<% end %>
+

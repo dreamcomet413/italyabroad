@@ -12,7 +12,7 @@ class Site::CustomersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @my_profile = @user == current_user
-
+    @message = Message.new
     respond_to do |format|
       format.html
     end
