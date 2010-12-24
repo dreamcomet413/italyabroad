@@ -10,6 +10,7 @@ class Site::CustomersController < ApplicationController
   end
 
   def show
+    store_location
     @user = User.find(params[:id])
     @my_profile = @user == current_user
     respond_to do |format|
@@ -168,6 +169,9 @@ class Site::CustomersController < ApplicationController
   def send_message
     @message = Message.new(:name=>params[:name],:user_id=>params[:user_id],:send_by_id=>params[:send_by])
     if @message.save
+      redirect_to customer_path(params[:user_id])
+    else
+      flash[:notice] = @message.show_errors
       redirect_to customer_path(params[:user_id])
     end
   end
