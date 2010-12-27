@@ -19,7 +19,7 @@
   <div style="border-bottom:1px solid #CCCCCC;margin-top:20px;"></div>
   <div class="comments">
 
-    <h2><%= @post.comments.size %> comments</h2>
+   <!-- <h2><%#= @post.comments.size %> comments</h2> -->
     <% if logged_in? %>
       <div id="recipe_comments_add" style="border-bottom:1px solid #CCCCCC;background-color:#F3F8DA;padding:5px 0 5px 8px">
         <% form_tag comment_blog_path(:id => @post.id) do %>
@@ -44,14 +44,14 @@
         <% end %>
       </div>
     <% else %>
-      <p style="font:italic 16px Arial;text-align:center">To submit any comment please log in!</p>
+    <!--  <p style="font:italic 16px Arial;text-align:center">To submit any comment please log in!</p> -->
 
     <%# end %>
 
     <%# if !logged_in? %>
       <div style="border-bottom:1px solid #CCCCCC;background-color:#F3F8DA;color:#161616;font-size:1.3em;margin-top:8px;padding:1px 0 0 8px;">
         <h1>Add a comment</h1>
-        <p>Comment with italyabroad account</p>
+       <!-- <p>Comment with italyabroad account</p> -->
         <p style = "font:bold 16px Arial;"><%= link_to("Login", login_path) %> ||
           <%= link_to "Register", "/signup" %> </p>
       </div>

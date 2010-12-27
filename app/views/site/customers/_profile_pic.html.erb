@@ -23,7 +23,7 @@
            <div id="loader-image" style="display:none" align="center"><%= image_tag "loading.gif" %></div>
           </td>
           <td>
-          <% form_for :photo, :html => {:multipart => true} do %>
+          <% fields_for :photo do %>
             <%= file_field :photo, :image_file %>
             <%#= hidden_field :user, :photo_default %>
             <% end %>

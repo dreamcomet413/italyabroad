@@ -8,9 +8,16 @@ class Site::CartController < ApplicationController
   end
 
   def create
-    created = @cart.create(product, quantity)
+    created = @cart.create(product,quantity)
     if created
+         @setting = Setting.find(:first)
+          if product.quantity - quantity < @setting.reorder_quantity
+
+            Notifier.deliver_reorder_quantity_notification(product,AppConfig.admin_email)
+          end
+
       status = "#{product.name.gsub("'", "\\'")} correctly added to your cart."
+
     else
       status = @cart.show_warnings
     end
@@ -38,6 +45,12 @@ class Site::CartController < ApplicationController
     else
       flash[:notice] = @cart.show_errors
     end
+    @setting = Setting.find(:first)
+   for cart_item in @cart.items
+          if cart_item.quantity < @setting.reorder_quantity
+            Notifier.deliver_reorder_quantity_notification(cart_item.product,AppConfig.admin_email)
+        end
+   end
     redirect_to :action => :index
   end
 

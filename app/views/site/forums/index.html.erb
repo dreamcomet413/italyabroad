@@ -41,7 +41,7 @@
                   </tr>
                 </table>
                 <%- end -%>
-                <%= link_to "more", grape_guide_path %>
+                <%= link_to "more", producers_path %>
               </div>
               <br /><br />
               <div id="box_latest_blog" style="background-color:#f8f7ef;padding:5px 10px;margin-right:10px;">
@@ -121,11 +121,11 @@
           <h1 style="color:#233f2d;font-size:16px;">Get to know italy</h1>
           <%- regions = Region.find(:all, :limit => 1, :order => "RAND()") -%>
           <%- for region in regions -%>
-          <div style="padding-bottom:10px;color:#7f2d54;"><%= link_to region.name, region_path(grape) %></div>
+          <div style="padding-bottom:10px;color:#7f2d54;"><%= link_to region.name, region_path(region) %></div>
           <%= image_tag("get_to_know_italy.png") %>
           <%= region.description %>
           <%- end -%>
-          <%= link_to "more", grape_guide_path %>
+          <%= link_to "more", regions_path %>
         </div>
       </td>
     </tr>
@@ -139,3 +139,4 @@
   <br />
   <%= render :partial => '/site/shared/box_subscriptions' %>
 <% end %>
+

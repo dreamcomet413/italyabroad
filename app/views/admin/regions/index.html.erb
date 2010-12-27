@@ -16,13 +16,13 @@
         <th>ID</th>
         <th>Name</th>
         <th>Description</th>
-        <th>Producers in this region</th>
-        <th class="nosort"></th>
+       <!-- <th>Producers in this region</th>
+        <th class="nosort"></th> -->
       </tr>
     </thead>
     <tfoot>
       <tr>
-        <td colspan="3"><%= will_paginate_(@regions) %></td>
+        <td colspan="2"><%= will_paginate_(@regions) %></td>
         <td colspan="2" align="right"><%= page_entries_info_ @regions %></td>
       </tr>
     </tfoot>
@@ -31,17 +31,18 @@
       <tr>
         <td valign="top"><%= region.id %></td>
         <td valign="top"><%= link_to region.name, region_path(region) %></td>
-        <td valign="top" style="width:50%"><%= region.description %></td>
-        <td valign="top">
+       <!--<td valign="top" style="width:50%"><%#= region.description %></td> -->
+       <!-- <td valign="top">
           <ol>
-          <%- region.producers.each do |p| -%>
-            <li><%= p.name %></li>
-          <%- end -%>
+          <%#- region.producers.each do |p| -%>
+            <li><%#= p.name %></li>
+          <%#- end -%>
           </ol>
-        </td>
+        </td> -->
         <td valign="top"><%= link_to "Edit", edit_admin_region_path(region) %> | <%= link_to "Destroy", admin_region_path(region), :method => :delete, :confirm => "Are you sure want to delete this region?" %></td>
       </tr>
       <%- end -%>
     </tbody>
   </table>
 </div>
+

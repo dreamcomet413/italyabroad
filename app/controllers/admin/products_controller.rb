@@ -202,7 +202,7 @@ p params[:product]
       item_string += '<g:quantity>'+ product.quantity.to_s + '</g:quantity>'
       item_string += '<name>'+ product.name + '</name>'
       item_string += '<description>'+ product.description + '</description>'
-      item_string += '<link><%=h url_for(:only_path => false, :controller => "site/products", :action => "show", :id =>"#{product.friendly_identifier}") %></link>'
+      item_string += '<link>' + url_for(:only_path => false, :controller => "site/products", :action => "show", :id =>"#{product.friendly_identifier}")  + '</link>'
       item_string += '<g:price>'+ product.price.to_s + '</g:price>'
       item_string += '<rate>'+ product.rate.to_s + '</rate>'
       item_string += '</item>'

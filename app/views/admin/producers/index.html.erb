@@ -15,9 +15,9 @@
       <tr>
         <th>ID</th>
         <th>Name</th>
-        <th>Description</th>
+       <!-- <th>Description</th> -->
         <th>Region</th>
-        <th>Grapes</th>
+      <!--  <th>Grapes</th> -->
         <th class="nosort"></th>
       </tr>
     </thead>
@@ -32,12 +32,13 @@
       <tr>
         <td valign="top"><%= producer.id %></td>
         <td valign="top" style="width:200px;"><%= producer.name %></td>
-        <td valign="top"><%= producer.description %></td>
+       <!-- <td valign="top"><%#= producer.description %></td> -->
         <td valign="top"><%= producer.region.name rescue "no region" %></td>
-        <td valign="top"><%= producer.grapes.collect(&:name).join(", ") %></td>
+       <!-- <td valign="top"><%#= producer.grapes.collect(&:name).join(", ") %></td> -->
         <td valign="top" style="width:100px;"><%= link_to "Edit", edit_admin_producer_path(producer) %> | <%= link_to "Destroy", admin_producer_path(producer), :method => :delete, :confirm => "Are you sure want to delete this producer?" %></td>
       </tr>
       <%- end -%>
     </tbody>
   </table>
 </div>
+

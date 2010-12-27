@@ -16,6 +16,7 @@ class Search
     @producer         = params[:producer_id] ||= ""
     @occasion         = params[:occasion_id] ||= ""
     @category         = params[:category].nil? ? nil : Category.find(params[:category])
+    @user_id          = params[:chef] ||= ""
   end
 
   def conditions(products=true)
@@ -51,6 +52,7 @@ class Search
     conditions << "preparation_time #{@preparation_time}" unless @preparation_time.blank?
     conditions << "recipe_type_id = #{@recipe_type}" unless @recipe_type.blank?
     conditions << "recipe_level_id = #{@difficulty}" unless @difficulty.blank?
+    conditions << "user_id = #{@user_id}" unless @user_id.blank?
     conditions = conditions.join(" AND ")
     conditions = nil if conditions.blank?
     return conditions

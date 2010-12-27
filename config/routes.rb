@@ -62,8 +62,8 @@ ActionController::Routing::Routes.draw do |map|
   end
 
   map.resources :news_letters, :controller => 'site/news_letters', :only => [:show]
-  map.resources :producers, :controller => 'site/producers', :only => [:show]
-  map.resources :regions, :controller => 'site/regions', :only => [:show]
+  map.resources :producers, :controller => 'site/producers', :only => [:show,:index]
+  map.resources :regions, :controller => 'site/regions', :only => [:show,:index]
   map.resources :grapes, :controller => 'site/grapes', :only => [:index, :show]
   map.resources :wine_lists, :controller => 'site/wine_lists'
   map.resources :reviews, :controller => 'site/reviews'

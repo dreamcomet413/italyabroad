@@ -15,8 +15,8 @@
       <tr>
         <th>ID</th>
         <th>Name</th>
-        <th>Description</th>
-        <th>Producers</th>
+       <!-- <th>Description</th> -->
+       <!-- <th>Producers</th>-->
         <th class="nosort">Image</th>
         <th class="nosort"></th>
       </tr>
@@ -32,17 +32,17 @@
       <tr>
         <td valign="top"><%= grape.id %></td>
         <td valign="top"><%= grape.name %></td>
-        <td valign="top"><%= grape.description %></td>
-        <td valign="top">
+       <!-- <td valign="top"><%#= grape.description %></td> -->
+      <!--  <td valign="top">
           <ol style="padding-left:20px;">
-          <%- grape.producers.each do |p| -%>
-            <li><%= link_to p.name, admin_producer_path(p) %></li>
-          <%- end -%>
+          <%#- grape.producers.each do |p| -%>
+            <li><%#= link_to p.name, admin_producer_path(p) %></li>
+          <%#- end -%>
           </ol>
-        </td>
+        </td> -->
         <td valign="top"><%= show_grape_image(grape) %></td>
         <td valign="top">
-          <%= link_to "Edit", edit_admin_grape_path(grape) %> | 
+          <%= link_to "Edit", edit_admin_grape_path(grape) %> |
           <%= link_to "Destroy", admin_grape_path(grape), :method => :delete, :confirm => "Are you sure want to delete this grape?" %>
         </td>
       </tr>
@@ -50,3 +50,4 @@
     </tbody>
   </table>
 </div>
+
