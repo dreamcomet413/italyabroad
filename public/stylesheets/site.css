@@ -1580,7 +1580,10 @@ h1{
     margin-bottom:10px;
 }
 
-#base_login #leftColumnContent,
+#base_login #leftColumnContent {
+    padding:0;
+    width:750px;
+}
 #customers_new #leftColumnContent {
     padding:0;
 }
