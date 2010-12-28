@@ -100,10 +100,15 @@
           <table>
             <tr>
               <td style="width:50px;text-align:center;">
-                <%= avatar_for_user(latest_review.user, 'small') %><br />
-                <%= latest_review.user.name %>
+                <%= link_to avatar_for_user(latest_review.user, 'small'), customer_path(latest_review.user.id)%><br />
+                <%= link_to latest_review.user.name, customer_path(latest_review.user.id)%>
               </td>
-              <td>"<%= latest_review.description %>"</td>
+              <td><% unless latest_review.description.blank? %>
+              "<%= latest_review.description %>"
+               <% else %>
+                 "<%= 'Added a new review' %>"
+                <% end %>
+              </td>
             </tr>
           </table>
         </div>

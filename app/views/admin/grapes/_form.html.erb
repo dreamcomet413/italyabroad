@@ -9,10 +9,13 @@
   </tr>
   <tr>
     <td>Image</td>
-    <td><%= file_field_tag :image %></td>
+    <% fields_for :image do %>
+    <td><%= file_field :image,:image_file %></td>
+     <% end %>
   </tr>
   <tr>
     <td valign="top">Producers</td>
     <td valign="top"><%= select :grape, :producer_ids, Producer.all.collect {|p| [p.name, p.id]}, {}, {:multiple => true} %></td>
   </tr>
 </table>
+

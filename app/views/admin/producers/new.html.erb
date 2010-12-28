@@ -4,10 +4,11 @@
 <div class="inner_content producers" id="admin_producers_new">
   <h2><%= @title %></h2>
   <br />
-  <% form_for :producer, :url => admin_producers_path do %>
+  <% form_for :producer, :url => admin_producers_path,:html => {:multipart => true} do %>
     <%= render :partial => 'form' %>
     <p>
       <%= submit_tag "Save" %> or <%= link_to "Cancel", admin_producers_path %>
     </p>
   <% end %>
 </div>
+

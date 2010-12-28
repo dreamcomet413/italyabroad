@@ -8,6 +8,13 @@
     <td><%= text_area :producer, :description %></td>
   </tr>
   <tr>
+    <td valign="top">Image</td>
+    <% fields_for :image do %>
+    <td><%= file_field :image,:image_file %></td>
+    <% end %>
+
+  </tr>
+  <tr>
     <td>Region</td>
     <td><%= select :producer, :region_id, Region.all.inject([["No region", ""]]) { |rs, r| rs << [r.name, r.id] } %></td>
   </tr>
@@ -16,3 +23,4 @@
     <td><%= select :producer, :grape_ids, Grape.all.collect { |g| [g.name, g.id] }, {}, :multiple => true %></td>
   </tr>
 </table>
+
