@@ -7,6 +7,7 @@ common: &default_settings
   application_name: vuconnector.com
   subject: Italyabroad.com
   admin_email: 'admin@ejubel.com'
+  wine_list_limit: 10
 
   avatar_1: default
   avatar_2: default_a

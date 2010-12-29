@@ -1,0 +1,76 @@
+<% @title = "Regions"; @description = "Andrea’s Wine Blog, The Italian Wine Blog, A Guide to Italian Wines, Journey Through Italian Wines"; @keys = "Wine Blog,Italian Wine Blog,Italian Red and White Wine,Italian Food,Wine Tasting,Wine Expert" %>
+<%- @breadcrumbs = "#{link_to("Home", root_url)} &raquo; #{link_to("Regions", regions_path)}" -%>
+
+<% @about = AboutU.find(:first, :conditions => {:link_type => "blog"} ) %>
+<div id="blog_home">
+
+  <span class="title">
+    <%= @about.title if @about %>
+    <!--A <strong style="font-size:30px;">blog</strong> dedicated entirely to<br />
+    <strong style="font-size:30px;">Italian wine,</strong> follow us in our<br />
+    discovery journey, <strong style="font-size:30px;">read news</strong><br />
+    and our <strong style="font-size:30px;">views</strong> on Italian wine-->
+  </span>
+ <%= image_tag("blog_home.jpg") %>
+</div>
+<div id="blog_container">
+  <div id="blog_introduction">
+    <%= @about.description if @about %>
+    <!--I had my first sip of wine when I was 2, I can still recall that moment like it was yesterday. Sitting on my grandpa knees, sipping the wine he had produced from his glass.
+    <br/><br/>
+    That was the moment where my passion for italian food & wine was born.
+    <br/><br/>
+    In my blog I will write about my adventures whilst discovering the finest itailian produce.
+    <br/><br/>
+    I will also like to hear what you have to say so please share your views & comments.  -->
+  </div>
+
+  <div style="clear:both;"></div>
+  <br />
+  <br />
+  <div><%= will_paginate_(@regions) %></div>
+<% if @regions && @regions.size > 0 %>
+	<ul>
+	<% for region in @regions %>
+	  <li>
+      <h2><%= link_to region.name, region.friendly_identifier.blank? ? "regions/#{region.id}" : "regions/#{region.friendly_identifier}" %><%#= show_region_image(region) %></h2>
+      <div><%= region.description %></div>
+      <div>
+      <% unless region.producers.blank? %>
+      Producers in this region : <%- region.producers.each do |p| -%>
+            <%= p.name %>
+          <%- end -%>
+       <% else %>
+       No Producers from this region
+       <% end %>
+      </div>
+      <table width="100%" class="foot">
+        <tr>
+
+          <td align="right">
+
+          </td>
+        </tr>
+      </table>
+    </li>
+  <% end %>
+  </ul>
+<div><%= will_paginate_(@regions) %></div>
+  <div style="clear:both;"></div>
+  <div style="float:right;margin-top:20px;margin-bottom:10px;"><%= render :partial => '/site/shared/social_bookmarks' %></div>
+  <% end %>
+</div>
+<% content_for :right do %>
+<%#= render :partial => '/site/shared/box_grape_guide' %>
+	<br />
+	<%#= render :partial => 'box_most_read_blog' %>
+	<br />
+	<%#= render :partial => '/site/shared/box_subscriptions' %>
+	<br />
+	<%#= render :partial => 'box_popular_tags' %>
+	<br />
+	<%#= render :partial => 'box_latest_blog_comments' %>
+	<br />
+	<%#= render :partial => 'box_archives' %>
+<% end %>
+

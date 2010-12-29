@@ -150,6 +150,11 @@ module ApplicationHelper
     return image_tag("grape_default.png")
   end
 
+  def show_region_image(region)
+    return image_tag(image_url(:region_thumb, region.image, :jpg),:size => "100x120") if region.image
+    return image_tag("region_default.png",:size => "100x120")
+  end
+
   def will_paginate_(object)
     "<table style=\"width:auto;\"><tr><td style=\"width:32px;\"><strong>Page:</strong></td><td>#{will_paginate(object, :previous_label => "&laquo;", :next_label => "&raquo;")}</td></tr></table>" unless will_paginate(object).blank?
   end

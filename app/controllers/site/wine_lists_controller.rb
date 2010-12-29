@@ -12,11 +12,14 @@ class Site::WineListsController < ApplicationController
   def create
   #  @wine_list = current_user.wine_lists.create(:product_id => params[:product_id])
   product = Product.find(params[:product_id])
-     if logged_in?
 
+     if logged_in?
+        if current_user.wine_lists.count < AppConfig.wine_list_limit
         current_user.wine_lists.create(:product_id => product.id)
         render :js => "alert('#{product.name} correctly added to your wine list')"
-
+        else
+          render :js => "alert('Not able to add more, your limit reached')"
+        end
     else
       render :js => "alert('You must login to add a product to your wine list')"
     end
