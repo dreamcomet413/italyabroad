@@ -1,6 +1,6 @@
 class Site::WineListsController < ApplicationController
-  before_filter :site_login_required
-
+  before_filter :site_login_required, :only => [:index]
+  before_filter :store_location
   layout 'site'
 
   def index
@@ -13,8 +13,10 @@ class Site::WineListsController < ApplicationController
   #  @wine_list = current_user.wine_lists.create(:product_id => params[:product_id])
   product = Product.find(params[:product_id])
      if logged_in?
-      current_user.wine_lists.create(:product_id => product.id)
-      render :js => "alert('#{product.name} correctly added to your wine list')"
+
+        current_user.wine_lists.create(:product_id => product.id)
+        render :js => "alert('#{product.name} correctly added to your wine list')"
+
     else
       render :js => "alert('You must login to add a product to your wine list')"
     end

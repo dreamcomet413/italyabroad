@@ -48,7 +48,7 @@ ActionController::Routing::Routes.draw do |map|
     products.resources :reviews, :controller => 'site/reviews', :only => [:new, :create]
     products.resources :cart, :controller => 'site/cart', :only => [:create, :update, :destroy], :collection => {:empty => :get}
     products.resources :wish_list, :controller => 'site/wish_list', :only => [:index, :create, :destroy]
-    products.resources :wine_list, :controller => 'site/wine_lists', :only => [:index, :create, :destroy]
+  products.resources :wine_list, :controller => 'site/wine_lists', :only => [:index, :create, :destroy]
   end
 
   map.resources :recipes, :controller => 'site/recipes' do |recipes|
