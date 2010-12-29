@@ -55,6 +55,7 @@ class Site::CustomersController < ApplicationController
   end
     #@user.activation_code = ActivePassword.new #Customers don't wont activations
     if @user.save
+
       flash[:title] = "Congratulations"
       flash[:message] = "Your account has been created, an email with your account details has been sent to #{@user.email}."
       if @user.type_id != 4
@@ -123,6 +124,7 @@ class Site::CustomersController < ApplicationController
     @photo = Photo.new(params[:photo])
      @photo.save
     @user.photo_id = @photo.id
+    @user.photo_default = ""
   else
     set_photo_from_default(params[:kind],@user)
   end
