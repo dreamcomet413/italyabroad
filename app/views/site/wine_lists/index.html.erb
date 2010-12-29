@@ -1,19 +1,49 @@
+
+
 <%- @title = "My favourite wines" -%>
-<%- @breadcrumbs = "#{link_to("Home", root_url)} &raquo; My Winelist" -%>
+<%- @breadcrumbs = "#{link_to "Home", root_url} &raquo; My favourite wines" -%>
 <% @class = "no-padding" %>
 
 <div id="header"><%= render :partial => 'site/shared/box_login' %></div>
-<div>
-  <h4 class="account-title">My favourite wines</h4>
-  <ul>
-  <%- for wine_list in @wine_lists -%>
-    <li style="list-style:none;">
-      <div style="font-size:16px;"><%= wine_list.product.name %></div>
-    </li>
-  <%- end -%>
-  </ul>
-</div>
+<h4 class="account-title">My favourite wines</h4>
+<table border="0" cellspacing="0" cellpadding="10" width="100%">
+	<% if @wine_lists.size == 0 %>
+		<tr>
+		  <td>You don't have any products in your wine list.</td>
+    </tr>
+	<% else %>
+  <% for wine_list in @wine_lists  %>
+  <% product = wine_list.product %>
+	<tr>
+	  <td>
+	   <%= show_image_tag(product.layout_image, product.image_1) %>
+	  </td>
+		<td valign="top">
+		  <h2 style="font-weight:normal;"><%= product.name %></h2>
+		  <%= product.description_short %>
+		</td>
+		<td style="text-align:center;">
+		  <div class="box_price">
+		    <ul class="inner-container">
+  		    <li class="price"><%= number_to_currency (product.price,{:unit => "&pound;"}) %></li>
+  	      <li class="add_to_cart_button"><%- if product.out_of_stock? -%>
+			        <%= image_tag('out_of_stock.png') %>
+			      <%- else -%>
+			        <%= link_to_remote image_tag("buttons/add_to_cart_button.png"), :url => product_cart_index_path(product), :html => {:method => 'post'} %>
+			      <%- end -%></li>
+  			  <li class="wish_list_button"><%= link_to image_tag("remove_wish.png"), product_wine_list_path(product, wine_list), :method => :delete, :confirm => "Are you sure want to delete this product from your wine list?" %></li>
+  			</ul>
+			</div>
+		</td>
+	</tr>
+	<% end %>
 
-<%- content_for :right do -%>
-  <%= render :partial => 'site/shared/box_subscriptions' %>
-<%- end -%>
+	<% end %>
+</table>
+
+<% content_for :right do %>
+	<%= render :partial => '/site/shared/box_blog' %>
+	<br />
+	<%= render :partial => '/site/shared/box_subscriptions' %>
+<% end %>
+

@@ -3,14 +3,14 @@ class Site::WishListController < ApplicationController
   before_filter :store_location
 
   layout "site"
-  
+
   def index
     @wish_lists = current_user.wish_lists.all(:order => "created_at DESC")
   end
-  
+
   def create
     product = Product.find(params[:product_id])
-    
+
     if logged_in?
       current_user.wish_lists.create(:product_id => product.id)
       render :js => "alert('#{product.name} correctly added to your wish list')"
@@ -18,10 +18,11 @@ class Site::WishListController < ApplicationController
       render :js => "alert('You must login to add a product to your wish list')"
     end
   end
-  
+
   def destroy
     current_user.wish_lists.find(params[:id]).destroy
     redirect_to :action => :index
   end
-  
+
 end
+

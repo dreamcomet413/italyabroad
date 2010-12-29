@@ -34,7 +34,7 @@
 
     </tr>
   </table>
-  <table id="cupons-list" class="list sortable">
+  <table id="cupons-list" class="list sortable" >
     <thead>
       <tr>
         <th>No</th><th>Customer</th><th>Cupon</th><th>Gift</th><th>Paid</th><th>Status</th><th>Method</th><th>Sub Total</th><th>Total</th><th>Created</th><th>Updated</th><th class="nosort"></th>
@@ -59,26 +59,31 @@
         <td><%= number_to_currency(order.total, :unit => "&pound;") %></td>
         <td><%= order.created_at.strftime("%d/%m/%y") %></td>
         <td><%= order.updated_at.strftime("%d/%m/%y") %></td>
-        <td>
+        <td width="60%">
           <span style="float:left;"><%= link_to "Preview", admin_order_path(order) %>&nbsp;|&nbsp;</span>
-          <span style="float:left"><%= link_to "Destroy", admin_order_path(order), :method => :delete, :confirm => "Are you sure want to delete this order?" %>&nbsp;|&nbsp;</span>
+          <span style="float:left"><%= link_to "Destroy", admin_order_path(order), :method => :delete, :confirm => "Are you sure want to delete this order?" %></span>
           <span style="float:left">
-              <ul class="makeMenu">
-                <li><%= link_to "Print", print_invoice_admin_order_path(order, :format => "pdf"),:target => '_blank'%>
-                  <ul>
-                    <li><%= link_to "Invoice", print_invoice_admin_order_path(order),:target =>'_blank' %><!--, :format => "pdf">--></li>
-                    <li><%= link_to "Tasting Notes", print_tasting_admin_order_path(order),:target =>'_blank' %>
+             <!-- <ul  class="makeMenu">
+                <li> -->
+             <!--   <%= link_to "Print", print_invoice_admin_order_path(order),:target => '_blank'%>&nbsp;|&nbsp; -->
+                 <!-- <ul>
+                    <li> -->
+                    <%= link_to "Invoice", print_invoice_admin_order_path(order),:target =>'_blank' %><!--, :format => "pdf">--> <!--</li>-->&nbsp;|&nbsp;
+                    <!--<li>-->
+               <%= link_to "Tasting Notes", print_tasting_admin_order_path(order),:target =>'_blank' %>&nbsp;|&nbsp;
                     <!--, :format => "pdf">-->
-                    </li>
-                    <li><%= link_to "Picking List", print_picking_list_admin_order_path(order),:target=> '_blank' %></li>
+                    <!--</li>-->
+                    <!--<li>-->
+                   <%= link_to "Picking List", print_picking_list_admin_order_path(order),:target=> '_blank' %> &nbsp;&nbsp;
+                    <!--</li>-->
       <!--, :format => "pdf">-->
-                  </ul>
-                </li>
+                 <!-- </ul>-->
+               <!--  </li>-->
 
-              </ul>
+              <!--</ul>-->
             </span>
             <% if order.paid and order.status_order_id == 3 %>
-             <span style="float:left"><%= link_to "Delivery Details",:controller=>'admin/orders',:action=>'delivery_details',:id=>order.id %></span>
+           &nbsp;|&nbsp;  <span style="float:left"><%= link_to "Delivery Details",:controller=>'admin/orders',:action=>'delivery_details',:id=>order.id %></span>
              <% end %>
         </td>
       </tr>

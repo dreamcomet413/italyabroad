@@ -105,9 +105,13 @@
                                   Qty: <%#= select :cart, :quantity, [1,2,3,4,5,6,7,8,9] %>
                                         <%= text_field :cart, :quantity,:value=> 1, :size => '4' %><br /><br />
                 <%= image_submit_tag("buttons/add_to_cart_button.png") %>
+
               <%- end -%>
             <%- end -%>
             <%= link_to_remote image_tag("add_to_wish_list.png"), :url => product_wish_list_index_path(@product), :html => {:method => :post} %>
+           <% if  @product.categories.root.name.downcase == 'wine' %>
+           <%= link_to_remote image_tag("add_to_winelist.png"), :url => product_wine_list_index_path(@product), :html => {:style => "color:#464646;", :method => :post} %>
+           <% end %>
           </li>
         </ul>
       </div>

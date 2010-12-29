@@ -48,6 +48,7 @@ ActionController::Routing::Routes.draw do |map|
     products.resources :reviews, :controller => 'site/reviews', :only => [:new, :create]
     products.resources :cart, :controller => 'site/cart', :only => [:create, :update, :destroy], :collection => {:empty => :get}
     products.resources :wish_list, :controller => 'site/wish_list', :only => [:index, :create, :destroy]
+    products.resources :wine_list, :controller => 'site/wine_lists', :only => [:index, :create, :destroy]
   end
 
   map.resources :recipes, :controller => 'site/recipes' do |recipes|
@@ -79,6 +80,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :blog, :controller => 'site/blog', :only => [:index, :show], :member => {:comment => :any}
   map.resources :posts, :controller => 'site/posts', :collection => { :search => :post }
   map.resources :wish_list, :controller => 'site/wish_list', :only => [:index, :create, :destroy]
+   map.resources :wine_lists, :controller => 'site/wine_lists', :only => [:index, :create, :destroy]
 
   %w(forum).each do |attr|
     map.resources :posts, :controller => "site/posts", :name_prefix => "#{attr}_", :path_prefix => "/#{attr.pluralize}/:#{attr}_id"

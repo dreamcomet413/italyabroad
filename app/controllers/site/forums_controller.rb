@@ -1,9 +1,9 @@
 class Site::ForumsController < ApplicationController
   layout 'site'
-  
+
 	before_filter :site_login_required, :except => [:index, :show]
   before_filter :find_or_initialize_forum, :except => :index
-	before_filter :admin_login_required, :except => [:show, :index]
+#before_filter :admin_login_required, :except => [:show, :index]
   before_filter :load_active_users, :only => [:index, :show]
   #cache_sweeper :posts_sweeper, :only => [:create, :update, :destroy]
 
@@ -30,16 +30,16 @@ class Site::ForumsController < ApplicationController
       format.xml { render :xml => @forum }
     end
   end
-  
+
   def new
     render :layout => 'admin'
   end
-  
+
   def edit
     render :layout => 'admin'
   end
 
-  # new renders new.html.erb  
+  # new renders new.html.erb
   def create
     @forum.attributes = params[:forum]
     @forum.save!
@@ -56,7 +56,7 @@ class Site::ForumsController < ApplicationController
       format.xml  { head 200 }
     end
   end
-  
+
   def destroy
     @forum.destroy
     respond_to do |format|
@@ -64,7 +64,7 @@ class Site::ForumsController < ApplicationController
       format.xml  { head 200 }
     end
   end
-  
+
   protected
     def find_or_initialize_forum
       @forum = params[:id] ? Forum.find(params[:id]) : Forum.new
@@ -76,3 +76,4 @@ class Site::ForumsController < ApplicationController
 
     alias authorized? admin?
 end
+

@@ -23,15 +23,22 @@
 		<td style="text-align:center;">
 		  <div class="box_price">
 		    <ul class="inner-container">
-  		    <li class="price"><%= number_to_currency product.price %></li>
-  	      <li class="add_to_cart_button"><%= link_to image_tag("buttons/add_to_cart_button.png"), product_cart_index_path(product), :method => 'post' %></li>
+  		    <li class="price"><%= number_to_currency (product.price,{:unit => "&pound;"}) %></li>
+      <li class="add_to_cart_button">
+  		   <%- if product.out_of_stock? -%>
+			        <%= image_tag('out_of_stock.png') %>
+			      <%- else -%>
+			        <%= link_to_remote image_tag("buttons/add_to_cart_button.png"), :url => product_cart_index_path(product), :html => {:method => 'post'} %>
+			      <%- end -%>
+         </li>
+
   			  <li class="wish_list_button"><%= link_to image_tag("remove_wish.png"), product_wish_list_path(product, wish_list), :method => :delete, :confirm => "Are you sure want to delete this product from your wish list?" %></li>
   			</ul>
 			</div>
 		</td>
 	</tr>
 	<% end %>
-	
+
 	<% end %>
 </table>
 
@@ -40,3 +47,4 @@
 	<br />
 	<%= render :partial => '/site/shared/box_subscriptions' %>
 <% end %>
+

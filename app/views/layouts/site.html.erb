@@ -89,13 +89,13 @@
         </div>
         <div style="clear:both;"></div>
         <div id="mainContent">
-          <% if flash[:error] or flash[:notice] %>
+          <%# if flash[:error] or flash[:notice] %>
 
-            <div id="notice" style="font:bold italic large Palatino, serif;text-align:center;background:#F5F6CE" <% if flash[:error] %> color="red"<% else %> style="color:green;"<% end %>><%= flash[:error] || flash[:notice] %></div>
+         <!--   <div id="notice" style="font:bold italic large Palatino, serif;text-align:center;background:#F5F6CE" <% if flash[:error] %> color="red"<% else %> style="color:green;"<% end %>><%= flash[:error] || flash[:notice] %></div>
             <script type="text/javascript">
               setTimeout("new Effect.Fade('notice');", 12000)
             </script>
-          <% end %>
+          <%# end %> -->
           <% if flash[:alert] %>
               <script type="text/javascript">
                 document.observe('dom:loaded', function() {
