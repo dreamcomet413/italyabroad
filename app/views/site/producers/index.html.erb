@@ -35,7 +35,10 @@
 	  <li>
       <h2><%= link_to producer.name, producer.friendly_identifier.blank? ? "producers/#{producer.id}" : "producers/#{producer.friendly_identifier}" %><%#= show_region_image(region) %></h2>
       <div><%= producer.region.name rescue "No region" %></div> <br />
-      <div><%= producer.description %></div> <br /><br />
+      <div><% unless producer.description.blank? %>
+      <%= producer.description[0,250] %>
+      <% end %>
+      </div> <br /><br />
       <div>
       <% unless producer.grapes.blank? %>
         Grapes : <%= producer.grapes.collect(&:name).join(", ") %>

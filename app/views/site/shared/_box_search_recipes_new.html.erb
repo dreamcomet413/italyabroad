@@ -9,11 +9,11 @@
       </tr>
       <tr>
         <td>Chef:</td>
-        <td><%= select_tag :chef, options_for_select(Recipe.users(@search), params[:chef]), :id => "search_recipe_type" %></td>
+        <td><%= select_tag :chef, options_for_select(Recipe.users, params[:chef]), :id => "search_recipe_type" %></td>
       </tr>
 			<tr>
 			  <td>Course:</td>
-			  <td><%= select_tag :recipe_type, options_for_select(Recipe.recipe_types(@search), params[:recipe_type]), :id => "search_recipe_type" %></td>
+			  <td><%= select_tag :recipe_type, options_for_select(Recipe.recipe_types, params[:recipe_type]), :id => "search_recipe_type" %></td>
       </tr>
       <tr>
         <td>Difficulty:</td>

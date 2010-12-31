@@ -1,0 +1,45 @@
+
+	<% for product in @wines %>
+	<table style="padding-bottom:20px;width:100%;" cellpadding="0" border="0" cellspacing="0">
+		<tr>
+
+			<td style="width: 490px;">
+
+				<h1><%= link_to product.name, nested_products_uri(product), :style => "font-size:17px;color:#003300;" %></h1>
+			</td>
+			</tr>
+			<tr>
+			<td style="width: 490px;">
+        <% if product.discounted? %>
+      					Was <span style="text-decoration: line-through;"><%= number_to_currency product.price, :unit => "&pound;" %></span>
+      					<span class="price red" style="color:#003300;">Now&nbsp;<%= number_to_currency product.price_discounted, :unit => "&pound;" %></span>
+      				<% else %>
+      					<span class="price" style="color:#003300;"><%= number_to_currency product.price, :unit => "&pound;" %></span>
+      				<% end %>
+			</td>
+		</tr>
+			<tr>
+				<div style="padding-top:10px"><%= product.description_short %></div>
+			</td>
+			</tr>
+
+    <tr>
+      <td colspan="3" style="border-bottom:1px solid #CCCCCC;">&nbsp;</td>
+    </tr>
+	</table>
+	<% end %>
+
+
+
+<% content_for :right do %>
+	<%= render :partial => 'site/shared/box_wine_search', :locals => {:search_url => search_index_path} %>
+	<br />
+	<%= render :partial => 'site/shared/box_products_on_offer' %>
+	<br />
+	<%= render :partial => '/site/shared/box_event' %>
+	<br />
+	<%= render :partial => '/site/shared/box_subscriptions' %>
+	<br />
+	<%= render :partial => '/site/shared/box_grape_guide' %>
+<% end %>
+

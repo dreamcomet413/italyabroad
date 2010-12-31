@@ -1,8 +1,8 @@
 class Admin::XmlController < ApplicationController
-  
+
   before_filter :admin_login_required
   layout "admin"
-  
+
   def index
     @count = 1
     @tables = ["Category",  "Comment",
@@ -10,11 +10,11 @@ class Admin::XmlController < ApplicationController
       "Producer",  "Product", "ProductsGrape",
       "Recipe", "Region", "Resource", "Review",
        "StatusOrder", "Subscription",  "User"]
-       
+
   end
-   
-   
-  def xml_options   
+
+
+  def xml_options
     if params[:table] != 'Category'
       @columns = eval(params[:table]).column_names
     else
@@ -22,7 +22,7 @@ class Admin::XmlController < ApplicationController
     end
     respond_to do |format|
       format.html{ render :update do |page|
-          if params[:type] == 'Newsletters subscribers'            
+          if params[:type] == 'Newsletters subscribers'
             page.replace_html "options#{params[:count]}" , :partial => "xml_options", :locals => {:columns => @columns,
               :table => params[:table], :id => params[:id], :type => params[:type]}
             page.visual_effect :highlight, "options#{params[:count]}"
@@ -35,11 +35,11 @@ class Admin::XmlController < ApplicationController
       }
     end
   end
-   
+
   def eval_xml
     @dataset = []
     # @data = eval(params[:table]).all
-    if params[:table] == 'Category'    
+    if params[:table] == 'Category'
       @root = Category.find(params[:id])
       @dataset= @root.children
       @dataset.each do |data|
@@ -97,5 +97,6 @@ class Admin::XmlController < ApplicationController
     end
 
   end
-  
+
 end
+

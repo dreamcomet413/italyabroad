@@ -44,10 +44,10 @@ class Search
   end
 
   def conditions_for_recipes
-    text = @text.gsub("'", "''").strip!
-
+    text = @text.gsub("'", "''")
+    text.strip!
     conditions = []
-    conditions << "recipes.name LIKE '%#{text}%'" unless text.blank?
+    conditions << "recipes.name LIKE '%#{text}%'"
     conditions << "active = #{true}"
     conditions << "preparation_time #{@preparation_time}" unless @preparation_time.blank?
     conditions << "recipe_type_id = #{@recipe_type}" unless @recipe_type.blank?

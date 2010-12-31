@@ -1,7 +1,3 @@
-<%- @title = "Community search result"; @class = "people"; @breadcrumbs = "#{link_to("Home", root_url)} &raquo; Search &raquo; People" -%>
-<div id="header">Community search result</div>
-<div>
- <%= will_paginate(@users) %>
   <ul style="list-style:none;padding-left:20px;">
     <%- for people in @users -%>
     <li>
@@ -45,7 +41,6 @@
     </li>
     <%- end -%>
   </ul>
-  <%= will_paginate(@users) %>
 </div>
 
 <% content_for :right do %>

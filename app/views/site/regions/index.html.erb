@@ -34,7 +34,10 @@
 	<% for region in @regions %>
 	  <li>
       <h2><%= link_to region.name, region.friendly_identifier.blank? ? "regions/#{region.id}" : "regions/#{region.friendly_identifier}" %><%#= show_region_image(region) %></h2>
-      <div><%= region.description %></div>
+      <div><% unless region.description.blank? %>
+      <%= region.description[0,250] %>
+       <%- end -%>
+      </div>
       <div>
       <% unless region.producers.blank? %>
       Producers in this region : <%- region.producers.each do |p| -%>

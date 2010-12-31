@@ -186,27 +186,30 @@ p params[:product]
  whole_product = ""
     @products = Product.find(:all)
    header_string = '<?xml version="1.0" encoding="UTF-8" ?>'
-   header_string += '<rss version ="2.0" xmlns:g="http://base.google.com/ns/1.0">'
+  header_string += '<rss version ="2.0" xmlns:g="http://base.google.com/ns/1.0">'
   header_string += '<channel>'
-  header_string += '<title>Products Data.</title>'
-  header_string += '<description>Details of the product.</description>'
+  header_string += '<title>Products Data</title>'
+ # header_string += '<description>Details of the product</description>'
   header_string += '<link>http://www.example.com</link>'
-  footer_string = '</channel></rss>'
+  footer_string = '</channel>'
+  footer_string +='</rss>'
   #   @xml = @products.to_xml(:only => [:name, :description_short,:price])
    #  File.open("products.xml", 'w') {|f| f.write(@xml) }
-   for product in @products
+    for product in @products
       item_string += '<item>'
       item_string += '<g:id>'+ product.id.to_s + '</g:id>'
-      item_string += '<title></title>'
+      item_string += '<title>Title</title>'
       item_string += '<g:condition>new</g:condition>'
       item_string += '<g:quantity>'+ product.quantity.to_s + '</g:quantity>'
-      item_string += '<name>'+ product.name + '</name>'
-      item_string += '<description>'+ product.description + '</description>'
-      item_string += '<link>' + url_for(:only_path => false, :controller => "site/products", :action => "show", :id =>"#{product.friendly_identifier}")  + '</link>'
+      item_string += '<name>'+ h(product.name) + '</name>'
+      item_string += '<description>'+ h(product.description) + '</description>'
+
+     item_string += '<link>' + h(url_for(:only_path => false, :controller => "site/products", :action => "show", :id =>"#{product.friendly_identifier}"))  + '</link>'
       item_string += '<g:price>'+ product.price.to_s + '</g:price>'
       item_string += '<rate>'+ product.rate.to_s + '</rate>'
       item_string += '</item>'
      end
+
     whole_product = header_string + item_string + footer_string
     File.open("products.xml", 'a+') {|f| f.write(whole_product) }
     send_file File.join(Rails.root,"products.xml" ), :type => "xml"
