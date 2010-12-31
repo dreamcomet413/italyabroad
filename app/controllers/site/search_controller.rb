@@ -31,6 +31,7 @@ class Site::SearchController < ApplicationController
         format.html { render :action => :peoples }
       end
        elsif params[:category] == "all"
+         @search = Search.new(params || Hash.new)
         @recipes = Recipe.find(:all, :conditions =>     @search.conditions_for_recipes)
 
       @search = Search.new(params || Hash.new)
