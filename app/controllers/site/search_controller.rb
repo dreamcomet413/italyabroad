@@ -27,9 +27,9 @@ class Site::SearchController < ApplicationController
         @users = User.find(:all, :conditions => ["name LIKE ? AND type_id = ?", "%#{params[:text]}%",@type.id]).paginate(:page => params[:page], :per_page => 10)
     #  end
 
-      respond_to do |format|
-        format.html { render :action => :peoples }
-      end
+        respond_to do |format|
+          format.html { render :action => :peoples }
+        end
        elsif params[:category] == "all"
          @search = Search.new(params || Hash.new)
         @recipes = Recipe.find(:all, :conditions =>     @search.conditions_for_recipes)

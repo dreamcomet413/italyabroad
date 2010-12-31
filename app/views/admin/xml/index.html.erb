@@ -15,7 +15,7 @@
       </div><div style="font-size:15px;padding: 5px 0px 8px 0px"><%="<div id=options#{@count}>"%></div>
       <% @count = @count + 1 %>
     <% end %>
-      
+
   <% elsif table == "Newsletters subscribers" %>
     <%="<div id=table#{@count}>"%>
     <%= link_to_remote table, :url => { :action => "xml_options", :count => @count, :table => 'User',:type => 'Newsletters subscribers' }%><br />
@@ -34,3 +34,4 @@
 
 
 </div>
+

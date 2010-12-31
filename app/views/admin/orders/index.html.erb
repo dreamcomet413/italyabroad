@@ -47,6 +47,7 @@
     </tfoot>
     <tbody>
       <%- @orders.each do |order| -%>
+      <% unless order.order_items.blank? %>
       <tr>
         <td><%= order.id %></td>
         <td><%= order.customer %></td>
@@ -61,7 +62,7 @@
         <td><%= order.updated_at.strftime("%d/%m/%y") %></td>
         <td width="60%">
           <span style="float:left;"><%= link_to "Preview", admin_order_path(order) %>&nbsp;|&nbsp;</span>
-          <span style="float:left"><%= link_to "Destroy", admin_order_path(order), :method => :delete, :confirm => "Are you sure want to delete this order?" %></span>
+          <span style="float:left"><%= link_to "Cancel", admin_order_path(order), :method => :delete, :confirm => "Are you sure want to delete this order?" %></span>&nbsp;|&nbsp;
           <span style="float:left">
              <!-- <ul  class="makeMenu">
                 <li> -->
@@ -87,7 +88,7 @@
              <% end %>
         </td>
       </tr>
-      <%- end -%>
+      <%- end end -%>
     </tbody>
   </table>
 </div>

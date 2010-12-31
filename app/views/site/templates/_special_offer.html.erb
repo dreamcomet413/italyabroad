@@ -63,7 +63,7 @@
                 <%#= link_to_remote "Add to wishlist", :url => product_wish_list_index_path(product), :html => {:style => "color:#464646;", :method => :post} %>
                 <%= link_to_remote image_tag("add_to_wish_list.png"), :url => product_wish_list_index_path(product), :html => {:method => :post} %>
               </li>
-              
+
             </ul>
           </div>
         </td>
@@ -99,3 +99,4 @@ end
   <br />
   <%= render :partial => '/site/shared/box_subscriptions' %>
 <% end %>
+

@@ -3,14 +3,16 @@
 <%- @breadcrumbs = "Sales &raquo; #{link_to("Orders", admin_orders_path)} &raquo; #{@title}" -%>
 
 <div class="inner_content orders" id="admin_orders_index">
-  <h2><%= @title %></h2>
+  <div style="padding:10px 15px 10px 15px;border: 1px solid black;width:80%">
+  <h2><%= @title %></h2> <br />
   <% form_tag '', :method => :get do %>
-    Consignment No:<%= text_field_tag :consignment_no %>
+    Consignment No:<%= text_field_tag :consignment_no %>&nbsp;&nbsp;
      <% @agencies = ShippingAgency.find(:all)%>
       Shipping Agency: <%= select_tag :agency, '<option value="">Select ...</option>' + options_from_collection_for_select(@agencies, "id", "name",params[:agency].to_i) %>
       <%= hidden_field_tag 'order_id','',:value=>@order.id %>
     <%= submit_tag 'Deliver',:name=>"submit"%>
   <% end %>
+  </div>
   <br />
 
   <div id="form-ct">
@@ -49,12 +51,13 @@
   			<% end %>
   			<br style="clear:both" />
   		</div>
-  		<div style="padding:10px 5px 10px 5px">
+  		<div style="padding:10px 5px 10px 5px;">
   			Order Number: <%= @order.id %><br />
   			Order Date: <%= @order.created_at.strftime("%d/%m/%Y") %><br />
   			Invoice Date: <%= Time.now.strftime("%d/%m/%Y") %>
   		</div>
-  		<div style="padding:40px 5px 10px 5px">
+  		<div style="padding:40px 5px 10px 5px;">
+  		<div style="padding:10px 15px 10px 15px;border: 1px solid black;">
   	<table id="table" border="0" cellspacing="0" cellpadding="0" class="formatTable">
   	 <tr><th style="text-align:left;width:75px">Code</th>
   	 <th style="width:75px">Quantity</th>
@@ -95,6 +98,7 @@
   					</td>
   				</tr>
   			</table>
+  			</div>
   			<br style="clear:both"/>
   			<% unless @order.note.blank? %>
   			<div style="padding:10px 5px 10px 5px;">

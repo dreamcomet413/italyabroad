@@ -44,7 +44,7 @@
       				<% end %>
     				</li>
     				<li style="margin-bottom:10px;">
-    				  <%= link_to_remote "Add to wishlist", :url => product_wish_list_index_path(product), :html => {:style => "color:#464646;", :method => :post} %>
+    				  <%= link_to_remote image_tag("add_to_wish_list.png"), :url => product_wish_list_index_path(product), :html => {:style => "color:#464646;", :method => :post} %>
     				</li>
   			    <li>
   			      <%- if product.out_of_stock? -%>

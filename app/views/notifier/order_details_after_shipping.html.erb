@@ -3,7 +3,13 @@ Dear Sir/Madam <%= @order.user.name %>,
 Greetings from Italyabroad.com.
 Thank you for shopping from Italyabroad.com
 
-Your order No: <%= @order.id %> with following items have been shipped.
+Your order No: <%= @order.id %> with following items have been shipped to the following address
+
+<%= @order.user.name %>
+<%= @order.ship_address %>
+<%= @order.ship_city %>
+<%= @order.ship_cap %>
+<%= @order.ship_country %>
 
 <% for order_item in @order.order_items %>
 Product :<%= order_item.name %>

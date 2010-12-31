@@ -148,3 +148,4 @@ class Site::OrdersController < ApplicationController
     end.render
   end
 end
+
