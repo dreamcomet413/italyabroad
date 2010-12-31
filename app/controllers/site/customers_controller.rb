@@ -147,12 +147,12 @@ class Site::CustomersController < ApplicationController
     if @user
       Notifier.deliver_account_data(@user)
       flash[:title] = "Mail Sent"
-      flash[:notice] = "Your login details have been sent to #{@user.email}."
+      flash[:notice] = "An email with the password has been sent to the registered address"
     else
       flash[:title] = "Sorry"
       flash[:notice] = "Sorry We couldn't find your account, please contact us or create a new account"
     end
-    redirect_to root_url
+    redirect_to request_new_password_path
   end
 
   def follow
