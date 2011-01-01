@@ -71,6 +71,19 @@
 		<td>Password Confirm:</td>
 		<td><%= password_field :user, :password_confirmation %></td>
 	</tr>
+	<% if @user.type_id == 4 %>
+	<tr>
+	  <td colspan="2"><br /><b>Chef Info</b></td>
+  </tr>
+  <tr>
+		  <td>Biography</td>
+		  <td><%= text_area :user, :chef_bio,:size=>'30x5' %></td>
+		</tr>
+	<tr>
+		  <td>My restaurant website</td>
+		  <td><%= text_field :user, :establishment_link %></td>
+		</tr>
+  <% end %>
 	<tr>
 	  <td colspan="2"><br /><b>Other Info</b></td>
   </tr>

@@ -98,7 +98,7 @@ class Site::OrdersController < ApplicationController
 
   def create_order_items
     for item in @cart.items
-      @order.order_items.create( :name         => item.product.name,
+      @order.order_items.create( :name => item.product.name,
         :price        => item.price,
         :rate         => item.product.rate,
         :vat          => item.vat,
