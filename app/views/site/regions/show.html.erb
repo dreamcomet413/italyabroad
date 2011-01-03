@@ -11,10 +11,11 @@
   <h3 style="font-size:16px;color:#013300;border:none;">Our producers from <%= @region.name %></h3>
   <ul>
   <%- @region.producers.each do |p| -%>
-    <li><%= p.name %></li>
+    <li><%= link_to p.name,producer_path(p) %></li>
   <%- end -%>
   </ul>
-  <h3 style="font-size:16px;color:#013300;border:none;">Wine and Food from <%= @region.name %></h3>
+ <!--> <h3 style="font-size:16px;color:#013300;border:none;">Wine and Food from <%#= @region.name %></h3> -->
+ <h3 style="font-size:16px;color:#013300;border:none;">Produce from the region <%= @region.name %></h3>
   <ul style="list-style:none;margin:0;padding:0;text-align:center;float:left;">
     <%- @region.products.each do |product| -%>
     <li style="float:left;width:100px;margin-left:10px;margin-bottom:10px;">

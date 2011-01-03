@@ -108,7 +108,7 @@
                 <%= link_to latest_review.user.name, customer_path(latest_review.user.id)%>
               </td>
               <td><% unless latest_review.description.blank? %>
-              "<%= latest_review.description %>"
+              "<%= link_to latest_review.description,review_path(latest_review) %>"
                <% else %>
                  "<%= 'Added a new review' %>"
                 <% end %>

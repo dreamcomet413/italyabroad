@@ -29,7 +29,16 @@
 		  <td><%= text_field :product, :price, :size => 20 %> </td>
     </tr>
 		<tr>
-		  <td style="text-align:right">Rate:</td><td><%= select :product, :rate, ["17.5%","0%"] %></td>
+		  <td style="text-align:right">Rate:</td><td>
+		  <%#= select :product, :rate, ["17.5%","0%"] %>
+		  <% @setting = Setting.find(:first) %>
+		  <select name="product[rate]" id="prodct_rate" >
+        <option value="<%= @setting.vat_rate.to_s + '%' %>"> <%= @setting.vat_rate.to_s + '%'%></option>
+        <option value="0%">0%</option>
+
+      </select>
+
+		  </td>
     </tr>
 		<tr>
 		  <td style="text-align:right">From Quantity:</td>
@@ -69,3 +78,4 @@
     </tr>
 	</table>
 </fieldset>
+

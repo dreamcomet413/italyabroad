@@ -140,11 +140,17 @@ class Product < ActiveRecord::Base
   end
 
   def vat
-  if rate == "17.5%"
-  	return price_discounted / 1.175
-  	else
-  	return price_discounted
-  	end
+  #  if rate == "17.5%"
+   # 	return price_discounted / 1.175
+    #	else
+  	# return price_discounted
+    #	end
+
+  if rate == "0%"
+  	   return price_discounted
+  else
+     	return price_discounted / (1 + (rate.to_f)/100) if rate != "0%"
+  end
   end
 
 

@@ -1,5 +1,5 @@
 class Site::ReviewsController < ApplicationController
-  before_filter :site_login_required
+  before_filter :site_login_required,:except=>[:show]
 
   def index
     @reviews = current_user.reviews.all(:order => "created_at DESC").paginate(:page => params[:page], :per_page => 10)
@@ -21,6 +21,11 @@ class Site::ReviewsController < ApplicationController
     redirect_to(params[:return_to])
   end
 
+  def show
+    @review = Review.find(params[:id])
+    render :layout=>'site'
+  end
+
   private
 
   def reviewer
@@ -28,3 +33,4 @@ class Site::ReviewsController < ApplicationController
     return Recipe.find(params[:recipe_id]) if !params[:recipe_id].blank?
   end
 end
+
