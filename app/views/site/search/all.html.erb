@@ -10,6 +10,15 @@
   <% end %> <br /><br /><br />
 <div id="all_users"></div><br /><br /><br />
 
+<div id="header">The search string you entered appears in the following producers:</div>
+  <% unless @producers.blank? %>
+ <%= link_to_remote @producers.count.to_s + 'Producers', :url => { :action => "find_producers",:text=>params[:text]} %>
+  <% else %>
+  0 Producers
+  <% end %> <br /><br /><br />
+<div id="all_producers"></div><br /><br /><br />
+
+
 <div id="header">The search string you entered appears in the following wines:</div>
   <% unless @wines.blank? %>
   <%= link_to_remote @wines.count.to_s + 'Wines' , :url => { :action => "find_wines",:text=>params[:text]} %>

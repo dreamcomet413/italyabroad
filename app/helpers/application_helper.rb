@@ -152,7 +152,13 @@ module ApplicationHelper
 
   def show_region_image(region)
     return image_tag(image_url(:region_thumb, region.image, :jpg),:size => "100x120") if region.image
-    return image_tag("region_default.png",:size => "100x120")
+    return image_tag("region-home-image.jpg",:size => "100x120")
+   # return image_tag("region_default.png",:size => "100x120")
+  end
+   def show_producer_image(producer)
+    return image_tag(image_url(:producer_thumb, producer.image, :jpg),:size => "100x120") if producer.image
+   # return image_tag("region_default.png",:size => "100x120")
+   return image_tag("producer_default.png",:size => "100x120")
   end
 
   def will_paginate_(object)

@@ -5,6 +5,7 @@
 <br />
 <div style="margin:0 40px;">
   <h3 style="text-align:center;border:none;color:#666666;">Producer Information</h3>
+  <div><%= show_producer_image(@producer) %></div>
   <%= @producer.description || "No Description" %>
   <br />
   <h3 style="font-size:16px;color:#013300;border:none;">Grapes grown by this producer</h3>
@@ -30,3 +31,4 @@
 <%- content_for :right do -%>
   <%= render :partial => 'site/shared/box_subscriptions' %>
 <%- end -%>
+

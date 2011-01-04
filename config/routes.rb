@@ -70,7 +70,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :reviews, :controller => 'site/reviews'
   map.resources :messages, :controller => 'site/messages'
    map.resources :comments, :controller => 'site/comments'
-  map.resources :search, :controller => 'site/search', :only => [:index],:collection=>[:find_users,:find_wines,:find_foods,:find_recipes]
+  map.resources :search, :controller => 'site/search', :only => [:index],:collection=>[:find_users,:find_wines,:find_foods,:find_recipes,:find_producers]
   map.resources :cart, :controller => 'site/cart', :only => [:index, :update], :collection => {:empty => :get, :continue_shopping => :get}
   map.resources :ship_addresses, :controller => 'site/ship_addresses'
   map.resources :checkouts, :controller => 'site/checkouts', :only => [:index], :collection => {:confirm_address => :post, :payment => :get, :paypal => :get, :confirmed => :get}

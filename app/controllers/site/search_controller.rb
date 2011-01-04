@@ -42,6 +42,7 @@ class Site::SearchController < ApplicationController
 
       @users = User.find(:all, :conditions => ["name LIKE ?", "%#{params[:text]}%"])
 
+      @producers = Producer.find(:all, :conditions => ["name LIKE ?", "%#{params[:text]}%"])
       respond_to do |format|
         format.html { render :action => :all }
       end
@@ -68,6 +69,17 @@ class Site::SearchController < ApplicationController
       }
     end
   end
+  def find_producers
+      @producers = Producer.find(:all, :conditions => ["name LIKE ?", "%#{params[:text]}%"])
+
+    respond_to do |format|
+      format.html{ render :update do |page|
+        page.replace_html 'all_producers',:partial=>'producer',:object=>@producers
+      end
+      }
+    end
+  end
+
 
   def find_wines
     @search = Search.new(params || Hash.new)
@@ -101,6 +113,8 @@ class Site::SearchController < ApplicationController
       }
     end
   end
+
+
 
   private
   def available_categories

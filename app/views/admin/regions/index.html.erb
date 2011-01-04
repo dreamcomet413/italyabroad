@@ -16,6 +16,7 @@
         <th>ID</th>
         <th>Name</th>
         <th>Description</th>
+        <th></th>
        <!-- <th>Producers in this region</th>
         <th class="nosort"></th> -->
       </tr>
@@ -39,6 +40,7 @@
           <%#- end -%>
           </ol>
         </td> -->
+        <td valign="top"><%= show_region_image(region) %></td>
         <td valign="top"><%= link_to "Edit", edit_admin_region_path(region) %> | <%= link_to "Destroy", admin_region_path(region), :method => :delete, :confirm => "Are you sure want to delete this region?" %></td>
       </tr>
       <%- end -%>
