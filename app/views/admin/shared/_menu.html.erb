@@ -210,6 +210,7 @@
     <span <%= "class='active'" if @current_controller == "recipes" %>><%= link_to "Recipes", admin_recipes_path, :class => ('active' if @current_controller == "recipes") %></span>
     <span <%= "class='active'" if @current_controller == "reviews" %>><%= link_to "Reviews", admin_reviews_path, :class => ('active' if @current_controller == "reviews") %></span>
     <span <%= "class='active'" if @current_controller == "xml" %>><%= link_to "XML", xml_path , :class => ('active' if @current_controller == "xml") %></span>
+    <span <%= "class='active'" if @current_controller == "faqs" %>><%= link_to "Faqs", admin_faqs_path , :class => ('active' if @current_controller == "faqs") %></span>
 
     <!--<span <%#= "class='active'" if @current_controller == "about_us" %>><%#= link_to "Wine Club", admin_about_us_path(:type => "wine club") , :class => ('active' if @current_controller == "about_us") %></span>-->
   </div>

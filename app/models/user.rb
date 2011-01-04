@@ -30,6 +30,7 @@ class User < ActiveRecord::Base
   has_many :followers
   has_many :wine_lists
   has_many :messages
+  has_many :faqs
 
   before_save :encrypt_password
 

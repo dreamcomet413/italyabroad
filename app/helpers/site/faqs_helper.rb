@@ -1,0 +1,3 @@
+module Site::FaqsHelper
+end
+

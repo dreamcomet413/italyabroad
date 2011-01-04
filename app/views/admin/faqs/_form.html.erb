@@ -1,0 +1,18 @@
+<div>
+  	<table border="0" cellspacing="5" cellpadding="5">
+  	  <tr>
+  	    <td style="width:100px;text-align:right">Question:</td>
+  	    <td><%= text_area  :faq, :question,:size=>'60x3' %></td>
+  	  </tr>
+  	  <tr>
+  	    <td style="width:100px;text-align:right">Answer:</td>
+  	    <td><%= text_area  :faq, :answer,:size=>'60x3' %></td>
+  	    <td><%= hidden_field  :faq, :user_id,:value=>current_user.id %></td>
+      </tr>
+      <tr>
+	      <td>Publish?</td>
+	      <td><%= check_box :faq, :publish, :checked=>@faq.publish %>
+  	  </tr>
+  	</table>
+</div>
+

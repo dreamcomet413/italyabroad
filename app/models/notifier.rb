@@ -162,6 +162,15 @@ class Notifier < ActionMailer::Base
     body    :product=>product
   end
 
+  def faq_notification(faq,user)
+    recipients  AppConfig.admin_email
+    from        "info@italyabroad.com"
+    subject     "A Question asked by #{user.name}"
+    body        :faq=>faq,
+                :url  => url_for(:host => AppConfig.site_url, :controller => "admin/faqs", :action => "edit", :id=>faq.id),
+                :user=>user
+  end
+
   protected
 
   def setup_email(user)

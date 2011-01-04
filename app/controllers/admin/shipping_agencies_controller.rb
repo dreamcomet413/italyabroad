@@ -1,5 +1,5 @@
 class Admin::ShippingAgenciesController < ApplicationController
-   layout "admin"
+  layout "admin"
   before_filter :admin_login_required
 
   def index

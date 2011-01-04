@@ -1,0 +1,60 @@
+<% @title = "Ask our Experts"; @description = "Andrea’s Wine Blog, The Italian Wine Blog, A Guide to Italian Wines, Journey Through Italian Wines"; @keys = "Wine Blog,Italian Wine Blog,Italian Red and White Wine,Italian Food,Wine Tasting,Wine Expert" %>
+<%- @breadcrumbs = "#{link_to("Home", root_url)} &raquo; #{link_to("Ask our Experts",faqs_path)}" -%>
+
+<div id="blog_home">
+
+
+  <%= image_tag("blog_home.jpg") %>
+</div>
+<div id="blog_container">
+<%= show_messages(flash[:notice]) %>
+  <div style="clear:both;"></div>
+  <br />
+  <br />
+  <% if @faqs && @faqs.size > 0 %>
+	<ul>
+	<% for faq in @faqs %>
+	  <li>
+      <h2><%=  faq.question %></h2>
+      <div><%= faq.answer %></div>
+      <div>Posted by : <%= faq.user.name %></div>
+      <table width="100%" class="foot">
+        <tr><td></td></tr></table>
+    </li>
+  <% end %>
+  </ul>
+   <div style="float:left;"><%= will_paginate(@faqs) %>
+   </div>
+ <% end %>
+  <div style="clear:both;"></div>
+<div style="float:right"><%= render :partial => '/site/shared/social_bookmarks' %></div><br /><br />
+</div>
+<div style="border-bottom:1px solid #CCCCCC;margin-top:20px;"></div>
+<% if logged_in? %>
+<%= render :partial =>'new'%>
+<% else %>
+
+      <div style="border-bottom:1px solid #CCCCCC;background-color:#F3F8DA;color:#161616;font-size:1.3em;margin-top:8px;padding:1px 0 0 8px;">
+        <h1>To Ask Question </h1>
+        <p style = "font:bold 16px Arial;"><%= link_to("Login", login_path) %> ||
+          <%= link_to "Register", "/signup" %> </p>
+      </div>
+  <% end %>
+
+
+
+
+<% content_for :right do %>
+	<%= render :partial => '/site/shared/box_grape_guide' %>
+	<br />
+	<%#= render :partial => 'box_most_read_blog' %>
+	<br />
+	<%= render :partial => '/site/shared/box_subscriptions' %>
+	<br />
+	<%#= render :partial => 'box_popular_tags' %>
+	<br />
+	<%#= render :partial => 'box_latest_blog_comments' %>
+	<br />
+	<%#= render :partial => 'box_archives' %>
+<% end %>
+

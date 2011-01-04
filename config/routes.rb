@@ -61,7 +61,7 @@ ActionController::Routing::Routes.draw do |map|
       topic.resource :monitorship, :controller => "site/monitorships"
     end
   end
-
+  map.resources :faqs,:controller => 'site/faqs'
   map.resources :news_letters, :controller => 'site/news_letters', :only => [:show]
   map.resources :producers, :controller => 'site/producers', :only => [:show,:index]
   map.resources :regions, :controller => 'site/regions', :only => [:show,:index]
@@ -96,6 +96,7 @@ ActionController::Routing::Routes.draw do |map|
 
 
   map.namespace :admin do |admin|
+    admin.resources :faqs
     admin.resources :shipping_agencies
     admin.resources :occasions
     admin.resources :about_us

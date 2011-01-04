@@ -3,6 +3,7 @@
     <li <%= "class='active'" if @current_controller == "recipes" %>><%= link_to "Recipes", admin_recipes_path, :class => ('active' if @current_controller == "recipes") %></li>
     <li <%= "class='active'" if @current_controller == "reviews" %>><%= link_to "Reviews", admin_reviews_path, :class => ('active' if @current_controller == "reviews") %></li>
     <li <%= "class='active'" if @current_controller == "xml" %>><%= link_to "XML", xml_path, :class => ('active' if @current_controller == "xml") %></li>
+    <li <%= "class='active'" if @current_controller == "faqs" %>><%= link_to "XML", faqs_path, :class => ('active' if @current_controller == "faqs") %></li>
   </ul>
   <ul>
     <li <%= "class='active'" if @current_action == "index" %>>
@@ -20,3 +21,4 @@
     <%- end -%>
   </ul>
 </div>
+

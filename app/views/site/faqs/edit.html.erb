@@ -1,0 +1,12 @@
+<% @title = "Edit #{@faq.question}" %>
+<%- @breadcrumbs = "Other Stuff &raquo; #{link_to "Faqs", admin_faqs_path} &raquo; #{@title}" -%>
+
+<div class="inner_content posts">
+  <h2><%= @title %></h2>
+  <br />
+  <% form_for [:admin,@faq] do %>
+  	<%= render :partial => "form" %>
+  	<p><%= submit_tag "Save" %> or <%= link_to "Cancel", admin_faqs_path %></p>
+  <% end %>
+</div>
+
