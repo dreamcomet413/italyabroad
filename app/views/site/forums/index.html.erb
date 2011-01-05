@@ -58,22 +58,26 @@
                 <h1 style="color:#233f2d;font-size:16px;text-align:center;">Forum</h1>
                 <ul style="list-style:none;padding:0;margin:0;">
                   <li>
-                    <h1 style="color:#7f2d54;">General Discussion</h1>
+                   <!-- <h1 style="color:#7f2d54;">General Discussion</h1> -->
                   <li>
                   <li>
                     <h1 style="color:#7f2d54;"><%= link_to 'Ask our experts',faqs_path %></h1>
                   </li>
                   <li>
                     <table style="list-style:none;margin:0;padding:0;" cellspacing="0" border="0" width="100%">
-                      <tr>
+                      <tr> <% @faq = Faq.find(:last,:conditions=>['publish = true and answer != ""']) %><% unless @faq.blank? %>
                         <td valign="top">
                        <div style="color:#666666;padding:5px 0 10px 0">Latest Entries<br />
-                        <% @faq = Faq.find(:last,:conditions=>['publish = true and answer != ""']) %>
-                        <%= @faq.question %><br /><%= link_to 'View all',faqs_path %>
+
+
+                        <%= @faq.question %><br />
+
+                        <%= link_to 'View all',faqs_path %>
                         </div>
                         </td>
                         <td valign="top" align="right">
                           <div style="color:#666666;padding:5px 0 10px 0">Posted by<br /><%= @faq.user.name %>
+                          <% end %>
                          </div>
                         </td>
                       </tr>
