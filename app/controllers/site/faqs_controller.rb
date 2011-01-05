@@ -19,12 +19,13 @@ class Site::FaqsController < ApplicationController
     @faq = Faq.new(params[:faq])
 
     if @faq.save
-      flash[:notice] = 'Your question along with answer will be displayed soon'
+      flash[:notice] = 'Thank you for your interest in Italyabroad.com. <br/>'
+      flash[:notice] += 'Expect the answer soon.'
       Notifier.deliver_faq_notification(@faq,current_user)
       redirect_to faqs_path
     else
       flash[:notice] = @faq.show_errors
-      render :action => :new
+      render :action => 'index'
     end
   end
 
