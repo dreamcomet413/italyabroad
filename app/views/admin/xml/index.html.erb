@@ -2,6 +2,8 @@
 <%- @breadcrumbs = "Other Stuff &raquo; #{link_to "XML", xml_path}" -%>
 
 <div class="inner_content recipes" id="admin_recipes_index">
+<table>
+<tr><td valign="top">
   <h2>XML</h2>
   <br />
   <% @category = Category.find(:all, :conditions =>{:parent_id => nil}) %>
@@ -31,7 +33,25 @@
   <%end%>
 
 <%end%>
+</td>
+<td valign="top"><h2>Google compatible XML Download</h2>
+    <table>
+    <% @category.each do |p| %>
 
-
+    <tr>
+    <td width="25%"><br /><%=  p.name %> </td>
+     <td>
+       <% form_tag(:action => :eval_xml_g_comptible,:table=>p.name, :id =>p.id) do %>
+      <%= submit_tag "Get XML" %></td>
+     <% end %>
+    </tr>
+    <% end %>
+    <tr><td><br /><%= 'All Products' %></td>
+    <td><% form_tag(:action => :eval_xml_g_comptible,:table=>'products') do %>
+      <%= submit_tag "Get XML" %></td>
+     <% end %>
+    </td></tr>
+</td>
+</tr></table>
 </div>
 

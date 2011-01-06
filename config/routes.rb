@@ -93,7 +93,7 @@ ActionController::Routing::Routes.draw do |map|
   map.xml_options 'admin/xml/xml_options', :controller => 'admin/xml', :action => 'xml_options'
   map.eval_xml 'admin/xml/eval_xml', :controller => 'admin/xml', :action => 'eval_xml'
 
-
+map.eval_xml_g_comptible 'admin/xml/eval_xml_g_comptible', :controller => 'admin/xml', :action => 'eval_xml_g_comptible'
 
   map.namespace :admin do |admin|
     admin.resources :faqs
