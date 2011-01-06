@@ -158,7 +158,7 @@ class Notifier < ActionMailer::Base
   def reorder_quantity_notification(product,admin_email)
     recipients "#{admin_email}"
     from "info@italyabroad.com"
-    subject  "Reorder quanity reached"
+    subject  "Reorder quantity alert :" + product.name
     body    :product=>product
   end
 
