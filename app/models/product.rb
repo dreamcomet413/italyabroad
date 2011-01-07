@@ -179,6 +179,7 @@ class Product < ActiveRecord::Base
     return tmp
   end
 
+
   def root_category_id
     root_cat = root_category(true)
     root_cat.friendly_identifier unless root_cat.nil?

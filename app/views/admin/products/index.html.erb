@@ -13,22 +13,22 @@
         <select name="search" >
         <option value="">Select ...</option>
         <%- @data.each do |category| -%>
-        <%-if params[:search].to_s == category['text'].to_s
+        <%-if params[:search].to_i == category['id'].to_i
           selected = "selected=\"selected\""
           else
           selected =""
           end
           -%>
 
-           <option value="<%= category['text']%>" <%= selected %> ><%= category['text']%></option>
+           <option value="<%= category['id']%>" <%= selected %> ><%= category['text']%></option>
           <%- category["children"].each do |children| -%>
-             <%-if params[:search].to_s == children['text'].to_s
+             <%-if params[:search].to_i == children['id'].to_i
           selected = "selected=\"selected\""
           else
           selected =""
           end
           -%>
-         <option value="<%= children['text']%>" <%= selected %> >&nbsp;&nbsp;--<%= children['text'] %></option>
+         <option value="<%= children['id']%>" <%= selected %> >&nbsp;&nbsp;--<%= children['text'] %></option>
           <% end %>
         <% end %>
         </select>
@@ -39,7 +39,7 @@
       <td align="right"><%= link_to "XML", :controller => 'admin/products', :action => 'xml' %></td>
     </tr>
   </table> <br />
- Discount<%= text_field_tag 'discount',params[:discount]%><%= submit_tag 'Update',:name=>'update' %>
+ Discount<%= text_field_tag 'discount',params[:discount]%><%= submit_tag 'Update',:name=>'update'%>
   <table id="products-list" class="list sortable">
     <thead>
       <tr>

@@ -8,19 +8,27 @@ class Admin::ProductsController < ApplicationController
      categories = Category.find_by_sql("select * from categories where parent_id is null")
      @categories_data = Admin::CategoriesController.new
     @data = @categories_data.get_tree(categories,nil)
-    if params[:update]  and !params[:discount].blank?
-      @products = Product.find(:all, :include => [:categories],:conditions=>['categories.name LIKE ? AND products.name LIKE ? ',"%#{params[:search]}%" ,"%#{params[:search_name]}%"], :order => "created_at DESC").paginate(:page => params[:page], :per_page => 20)
-      for product in @products
-        @product = Product.find(product.id)
-        @product.update_attribute('discount',params[:discount])
+    if !params[:search].blank?
 
+      @products = Product.find(:all, :include => [:categories],:conditions=>['categories.id = ? AND products.name LIKE ? ',"#{params[:search]}" ,"%#{params[:search_name]}%"], :order => "created_at DESC").paginate(:page => params[:page], :per_page => 20)
+      if params[:update] and !params[:discount].blank?
+        update_discount(@products,params[:discount])
       end
-    end
-    if params[:search] or params[:update]
-    @products = Product.find(:all, :include => [:categories],:conditions=>['categories.name LIKE ? AND products.name LIKE ? ',"%#{params[:search]}%" ,"%#{params[:search_name]}%"], :order => "created_at DESC").paginate(:page => params[:page], :per_page => 20)
+      @products = Product.find(:all, :include => [:categories],:conditions=>['categories.id = ? AND     products.name LIKE ? ',"#{params[:search]}" ,"%#{params[:search_name]}%"], :order => "created_at DESC").paginate(:page => params[:page], :per_page => 20)
+  elsif params[:search].blank?
+      @products = Product.find(:all, :include => [:categories],:conditions=>[' products.name LIKE ? ',"%#{params[:search_name]}%"], :order => "created_at DESC").paginate(:page => params[:page], :per_page => 20)
+      if params[:update] and !params[:discount].blank?
+        update_discount(@products,params[:discount])
+      end
+      @products = Product.find(:all, :include => [:categories],:conditions=>[' products.name LIKE ? ',"%#{params[:search_name]}%"], :order => "created_at DESC").paginate(:page => params[:page], :per_page => 20)
   else
-    @products = Product.find(:all, :include => [:categories], :order => "created_at DESC").paginate(:page => params[:page], :per_page => 20)
+      @products = Product.find(:all, :include => [:categories], :order => "created_at DESC").paginate(:page => params[:page], :per_page => 20)
+      if params[:update] and !params[:discount].blank?
+       update_discount(@products,params[:discount])
+      end
+     @products = Product.find(:all, :include => [:categories], :order => "created_at DESC").paginate(:page => params[:page], :per_page => 20)
   end
+
  end
 
 
@@ -211,8 +219,17 @@ p params[:product]
      end
 
     whole_product = header_string + item_string + footer_string
-    File.open("products.xml", 'a+') {|f| f.write(whole_product) }
+    File.open("products.xml", 'w') {|f| f.write(whole_product) }
     send_file File.join(Rails.root,"products.xml" ), :type => "xml"
+  end
+
+  def update_discount(products,discount)
+     for product in products
+
+        @product = Product.find(product.id)
+        @product.update_attribute('discount',discount)
+
+      end
   end
  end
 
