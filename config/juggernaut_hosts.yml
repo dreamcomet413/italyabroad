@@ -1,6 +1,6 @@
 # You should list any juggernaut hosts here.
 # You need only specify the secret key if you're using that type of authentication (see juggernaut.yml)
-# 
+#
 # Name:                       Mapping:
 # :port                       internal push server's port
 # :host                       internal push server's host/ip
@@ -11,8 +11,9 @@
 
 :hosts:
   - :port: 5001
-    :host: italyabroad.ejubel.com
-    :public_host: italyabroad.ejubel.com
+    :host: italyabroad.local
+    :public_host: italyabroad.local
     :public_port: 5001
     # :secret_key: your_secret_key
     # :environment: :development
+
