@@ -49,6 +49,9 @@ class Site::SearchController < ApplicationController
 
     else
       @sort_by = available_sorting.include?(params[:sort_by]) ? params[:sort_by] : "products.price DESC"
+       if @sort_by.to_s.upcase == 'NAME'
+        @sort_by = 'products.name'
+       end
       @search = Search.new(params || Hash.new)
       @category = @search.category
       @products = Product.find(:all, :order => @sort_by, :include => [:categories, :grapes], :conditions => @search.conditions).paginate(:page => params[:page], :per_page => 10)

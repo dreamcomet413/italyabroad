@@ -25,6 +25,10 @@ class Site::CategoriesController < ApplicationController
     else
 
       @sort_by = available_sorting.include?(params[:sort_by]) ? params[:sort_by] : "products.price DESC"
+       if @sort_by.to_s.upcase == 'NAME'
+        @sort_by = 'products.name'
+       end
+
       @category = Category.find(params[:category])
       @search = Search.new(params || Hash.new)
       @products = @category.blank? ? [] : @category.products.find(:all, :order => @sort_by, :include => [:categories, :grapes], :conditions => @search.conditions).paginate(:page => (params[:page] ||=1), :per_page => 10)
@@ -33,6 +37,10 @@ class Site::CategoriesController < ApplicationController
     else
 
       @sort_by = available_sorting.include?(params[:sort_by]) ? params[:sort_by] : "products.price DESC"
+       if @sort_by.to_s.upcase == 'NAME'
+        @sort_by = 'products.name'
+       end
+
       @category = Category.find(params[:parent])
       @search = Search.new(params || Hash.new)
 #      @products = @category.blank? ? [] : @category.products.find(:all, :order => @sort_by, :include => [:categories, :grapes], :conditions => @search.conditions).paginate(:page => (params[:page] ||=1), :per_page => 10)
