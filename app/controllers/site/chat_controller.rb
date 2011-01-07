@@ -21,12 +21,14 @@ class Site::ChatController < ApplicationController
       render :juggernaut  => {:type => :send_to_clients_on_channel, :channel => session[:juggernaut_channels], :client_ids => [params[:reply_to], session[:chat_user_name]] }  do |page|
         p request.remote_ip
         page.insert_html :bottom, 'chat_data', "<li>#{time}<span class='support_name'>#{session[:chat_user_name]}:</span> <span class='support_chat_data'>#{h params[:chat_input]}</span></li>"
+        page.call 'scrollup',"chat_data"
       end
     else
 
       render :juggernaut  => {:type => :send_to_client_on_channel, :channel => session[:juggernaut_channels], :client_id => "admin" }  do |page|
         p request.remote_ip
         page.insert_html :bottom, 'chat_data', "<li>#{time}<span class='support_name'>#{session[:chat_user_name]}:</span> <span class='support_chat_error'>No Chat User Selected !</span></li>"
+        page.call 'scrollup',"chat_data"
       end
     end
 
@@ -40,11 +42,16 @@ class Site::ChatController < ApplicationController
         reply_link = "<a class=\"reply_link\" href=\"#\" onclick=\"$('reply_to').value='#{session[:chat_user_name]}'; $('label_reply').innerHTML='Reply to :: #{session[:chat_user_name]}'; $(this).remove(); return false;\">Reply</a>"
         p request.remote_ip
         page.insert_html :bottom, 'chat_data', "<li>#{time}<span class='chat_user_name'>#{session[:chat_user_name]}:</span> <span class='chat_user_data'>#{h params[:chat_input]}</span> #{reply_link}</li>"
+        page.call 'scrollup',"chat_data"
+
+
       end
 
       render :juggernaut  => {:type => :send_to_client_on_channel, :channel => session[:juggernaut_channels], :client_id => session[:chat_user_name] }  do |page|
         reply_link = "<a href=\"#\" onclick=\"$('reply_to').value='#{session[:chat_user_name]}';return false;\">Reply</a>"
         page.insert_html :bottom, 'chat_data', "<li>#{time}<span class='chat_user_name'>#{session[:chat_user_name]}:</span> <span class='chat_user_data'>#{h params[:chat_input]}</span> </li>"
+         page.call 'scrollup',"chat_data"
+
       end
     end
 

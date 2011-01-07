@@ -7,7 +7,13 @@
     <% unless session[:chat_user_name].blank? %>
     <%= juggernaut(:channels => session[:juggernaut_channels], :client_id => session[:chat_user_name], :debug => false) %>
     <% end -%>
+<script type="text/javascript" >
+function scrollup(chat_data){
+var objDiv = document.getElementById(chat_data);
+objDiv.scrollTop = objDiv.scrollHeight;
 
+}
+</script>
   </head>
   <body>
     <div>
