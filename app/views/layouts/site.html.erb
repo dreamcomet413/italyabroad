@@ -28,11 +28,19 @@
         <div id="cartLogin">
           <div id="cart"><%= render :partial => "/site/shared/cart" %></div>
           <div id="logIn">
+            <%     @support_user = Setting.find(:first).support
+                   @support_status = Juggernaut.show_client(@support_user) ? true : false
+                   if @support_status == true
+                      support_link = "Open"
+                   else
+                      support_link = "Closed"
+                   end
+                    %>
             <% if logged_in? %>
-              <span style="font:bold 13px Arial"><%= link_to "Live chat",chat_index_path, :popup => ['new_window_name', 'height=540,width=490'] %></span> |
+              <span style="font:bold 13px Arial"><%= link_to "Live chat (#{support_link})",chat_index_path, :popup => ['new_window_name', 'height=540,width=490'] %></span> |
               Welcome <%= current_user.name %> <% if current_user.type_id == 1 %> | <%= link_to "Admin Site",siteadmin_path %><% end %> | <%= link_to "My Account", account_path %> | <%= link_to "Log out", logout_path %>
             <% else %>
-              <span style="font:bold 13px Arial"><%= link_to "Live chat",chat_index_path, :popup => ['new_window_name', 'height=540,width=490'] %></span> |
+              <span style="font:bold 13px Arial"><%= link_to "Live chat (#{support_link})",chat_index_path, :popup => ['new_window_name', 'height=540,width=490'] %></span> |
               <%= link_to "Log in", login_path %> | <%= link_to "Sign up", signup_path %>
             <% end %>
           </div>
