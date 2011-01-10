@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   include AuthenticatedSystem
   include PdfHelper
   include SslRequirement
-  
+
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
 
@@ -13,12 +13,31 @@ class ApplicationController < ActionController::Base
   # filter_parameter_logging :password
   before_filter :redirect_to_new_url, :instantiate_controller_and_action_names, :find_or_initialize_cart, :initialize_general_variable
 
+  rescue_from ActiveRecord::RecordNotFound, :with => :render_record_not_found
+  rescue_from ActiveRecord::RecordInvalid, :with => :render_record_not_found
+  rescue_from ActionController::RoutingError, :with => :render_record_not_found
+  rescue_from ActionController::UnknownController, :with => :render_record_not_found
+  rescue_from ActionController::UnknownAction, :with => :render_record_not_found
+  rescue_from ActionController::MethodNotAllowed, :with => :render_record_not_found
+
+
+
   protected
   def active
     {
       :find   => {:conditions => ["active = ?", true]}
     }
   end
+
+
+
+  def render_record_not_found
+    flash[:notice] = "Error cannot proceed"
+    redirect_to root_url
+ end
+
+
+
 
   private
   def find_or_initialize_cart
@@ -30,7 +49,7 @@ class ApplicationController < ActionController::Base
     @current_controller = controller_name
     @page_id = "#{@current_controller}_#{@current_action}"
   end
-  
+
   def xml
   end
 
@@ -46,3 +65,4 @@ class ApplicationController < ActionController::Base
   end
 
 end
+

@@ -1,8 +1,8 @@
 <% @title = "Italian Wines & Italian Food made by Small Producers"; @description = "Italian Food and Italian Wine made by Passionate Small Producers in the UK,Fantastic Italian Wine and Italian Food,High Quality Italian Wine and Food"; @keys = "Italian Wines,Fine Italian Wines,Italian Red and White Wines, Italian Food, Wine Tasting, Wine Expert,Italian Wine Blog,Italy,Food,Wines,Barolo,Amarone,Brunello" %>
+
 <%- @breadcrumbs = "Welcome to Italyabroad.com" -%>
 <%- @onload = "StartSlideShow()" -%>
 <%#= javascript_tag "document.observe('dom:loaded', function(e){ HomeImageSlideShow.setup() });" %>
-
 <div id="flashBanner">
   <ul>
     <li id="home_image_1" class="home_image">
@@ -102,6 +102,7 @@
   <div style="float:left; margin-right:3px; width: 16px; height: 18px;"><%= link_to "", "javascript:GoNext();", :id => "NextButton" %></div>
 </div>
 <%= render :partial => '/site/shared/box_welcome' %>
+
 <div id="bottomTextBox">
   <div id="favWine">
     <h3>Featured Wines</h3>
