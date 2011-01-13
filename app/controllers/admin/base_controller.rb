@@ -16,7 +16,7 @@ class Admin::BaseController < ApplicationController
       render :layout => false
     end
   end
-  
+
   def logout
     self.current_user.forget_me if logged_in?
     cookies.delete :auth_token
@@ -25,3 +25,4 @@ class Admin::BaseController < ApplicationController
     redirect_back_or_default(:controller => '/admin/base', :action => 'index')
   end
 end
+

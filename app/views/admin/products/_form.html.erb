@@ -33,7 +33,18 @@
 		  <%#= select :product, :rate, ["17.5%","0%"] %>
 		  <% @setting = Setting.find(:first) %>
 		  <select name="product[rate]" id="prodct_rate" >
-        <option value="<%= @setting.vat_rate.to_s + '%' %>"> <%= @setting.vat_rate.to_s + '%'%></option>
+		  <% vat = @setting.vat_rate.split(",") %>
+		  <% vat.length.times do |i| %>
+		  <%-if vat[i].strip.to_s + "%" == @product.rate
+         selected = "selected=\"selected\""
+
+          else
+          selected = ""
+
+          end
+          -%>
+        <option value="<%= vat[i].strip.to_s + '%' %>"  <%= selected %> > <%= vat[i].strip.to_s + '%'%></option>
+       <% end %>
         <option value="0%">0%</option>
 
       </select>

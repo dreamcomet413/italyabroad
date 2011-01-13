@@ -11,7 +11,7 @@
             <td><%= show_ratings(review.reviewer, review.score) unless review.reviewer.nil? %></td>
             <td align="right">
               <%- if review.reviewer_type == "Product" -%>
-              <%= image_tag("buttons/add_to_winelist.png") if review.reviewer.is_wine? %>
+              <%= image_tag("WINE_LIST.jpg") if review.reviewer.is_wine? %>
               <%- end -%>
             </td>
           </tr>
@@ -20,3 +20,4 @@
     </tr>
   </table>
 </li>
+

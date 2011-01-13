@@ -65,7 +65,7 @@
   				</li>
   				<% if @category.parent.name == 'Wine' %>
   				<li style="margin-bottom:10px;">
-  				  <%= link_to_remote image_tag("add_to_winelist.png"), :url => product_wine_list_index_path(product), :html => {:style => "color:#464646;", :method => :post} %>
+  				  <%= link_to_remote image_tag("WINE_LIST.jpg"), :url => product_wine_list_index_path(product), :html => {:style => "color:#464646;", :method => :post} %>
   				</li>
   				<% end %>
 				</ul>
