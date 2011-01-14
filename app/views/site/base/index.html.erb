@@ -115,7 +115,7 @@
           <table width="100%" cellpadding="0" cellspacing="0" border="0">
             <tr>
               <td><%= link_to wine.name, nested_products_uri(wine)  %></td>
-              <td align="right"><span style="color:#721041;">
+              <td align="right"><span style="color:#9b0707;">
                   <% if wine.discount > 0 %>
 
                     <%= number_to_currency wine.price_discounted, :unit => "&pound;" %>
@@ -142,7 +142,7 @@
           <table width="100%" cellpadding="0" cellspacing="0" border="0">
             <tr>
               <td><%= link_to food.name, nested_products_uri(food) %></td>
-              <td align="right"><span style="color:#721041;">
+              <td align="right"><span style="color:#9b0707;">
                   <% if food.discount > 0 %>
                     <%= number_to_currency food.price_discounted, :unit => "&pound;" if food %>
                   <% else %>

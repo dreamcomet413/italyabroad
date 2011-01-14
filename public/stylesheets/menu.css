@@ -35,7 +35,7 @@ ul.nav1 a {
 
 ul.nav1 li.active a,
 ul.nav1 a:hover {
-  color:#721041;
+  color:#9b0707;
 }
 
 ul.nav1 ul {
@@ -178,4 +178,5 @@ ul.nav1 ul li.iehover ul,
 ul.nav1 ul ul li.iehover ul {
   display: block;
 /*  border: 0 none;*/
-}    
+}
+

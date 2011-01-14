@@ -16,7 +16,7 @@ legend {
 
 a, a:visited {
   text-decoration:none;
-/*  color:#721041;*/
+/*  color:#9b0707;*/
   color:blue;
 }
 
@@ -262,7 +262,7 @@ table.list tr:hover td {
 }
 
 .sub_menu ul li a.active {
-  
+
 }
 
 #admin_categories_index ul,
@@ -412,3 +412,4 @@ ul.makeMenu, ul.makeMenu ul {
   ul.makeMenu li a { color: blue; display: block;text-decoration: none; }
   ul.makeMenu li a:hover, ul.makeMenu li a.CSStoHighLink { color: #000; }
   ul.makeMenu li:hover > a { color: #000; } /* supports links in branch headings - should not be display: block; */
+

@@ -71,7 +71,7 @@ img {
 }
 
 td a:hover{
-    color:#721041;
+    color:#9b0707;
 }
 
 #logIn{
@@ -87,7 +87,7 @@ td a:hover{
 h3{
     padding-bottom:5px;
     font-family:"Arial";
-    color:#721041;
+    color:#9b0707;
     font-size:19px;
     font-weight:100;
     border-bottom:solid #C5D1C5;
@@ -96,7 +96,7 @@ h3{
 }
 
 h6{
-    color:#721041;
+    color:#9b0707;
     font-size:15px;
     font-weight:100;
     padding:0px;
@@ -137,7 +137,7 @@ a {
     text-decoration:none;
     list-style-type:none;
     text-align:left;
-    color:#721041;
+    color:#9b0707;
 }
 
 #mainContent {
@@ -347,7 +347,7 @@ a {
 #favFood ul li a {
     font-size:14px;
     font-weight:normal;
-    color:#721041;
+    color:#9b0707;
 }
 
 #favFood {
@@ -361,7 +361,7 @@ a {
 
 .faveWineIcon {
     border-bottom:#ccc 1px solid;
-    color:#721041;
+    color:#9b0707;
     font-size:13px;
     font-weight:100;
     border-bottom:solid #C5D1C5 1px;
@@ -847,7 +847,7 @@ a {
 }
 
 #box_popular span.more-link a {
-    color:#721041;
+    color:#9b0707;
 }
 
 #box_upcoming_wine_tours,
@@ -1027,7 +1027,7 @@ a {
 }
 
 .wineList a:hover {
-    color:#721041;
+    color:#9b0707;
 }
 
 .wineList img {
@@ -1073,7 +1073,7 @@ a {
 
 /* View product page----------------------------------------------------------------------------------------*/
 #productHeading {
-    background-color:#721041;
+    background-color:#9b0707;
 }
 
 #productHeading h3 {
@@ -1952,7 +1952,7 @@ ul.photo_list li img:hover{
 
 .box_price_product ul li span.price {
     font-size:20px;
-    color:#721041;
+    color:#9b0707;
 }
 
 /*box price*/

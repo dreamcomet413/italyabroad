@@ -1,4 +1,4 @@
-<% 
+<%
   @breadcrumbs = "#{link_to "Home", root_url} &raquo; "
   @breadcrumbs += "#{@product.unique_categories.collect {|c| link_to(c.name, "#{"/" + c.root.friendly_identifier unless c.is_root?}/#{c.friendly_identifier}")}.join(" &raquo; ")}"
   @breadcrumbs += " &raquo; #{@product.name}"
@@ -19,7 +19,7 @@
     <ul>
       <%- category = Category.find('events') -%>
       <%- category.products.at_the_night.each do |product| -%>
-      <li><%= link_to product.name, "/wine-events/#{product.friendly_identifier}", :style => "color:#721041;" %></li>
+      <li><%= link_to product.name, "/wine-events/#{product.friendly_identifier}", :style => "color:#9b0707;" %></li>
       <%- end -%>
     </ul>
   </div>
@@ -64,3 +64,4 @@
 	<br />
 	<%= render :partial => '/site/shared/box_popular' %>
 <% end %>
+

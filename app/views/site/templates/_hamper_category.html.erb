@@ -31,7 +31,7 @@
         <%= product.description %>
       </td>
       <td valign="top" style="padding:10px 0;width:100px;">
-        <div style="font-size:18px;color:#721041;text-align:right;">
+        <div style="font-size:18px;color:#9b0707;text-align:right;">
           <div style="margin-bottom:15px;"><%= number_to_currency product.price, :unit => "&pound;" %></div>
           <%= link_to image_tag("buttons/add_to_cart_button.png"), product_cart_index_path(product), :method => 'post' %>
         </div>
@@ -49,3 +49,4 @@
 	<br />
 	<%= render :partial => '/site/shared/box_grape_guide' %>
 <% end %>
+

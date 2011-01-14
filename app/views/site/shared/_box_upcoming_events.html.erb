@@ -7,7 +7,7 @@
     <%- products.each do |product| -%>
     <li style="margin-bottom:10px;">
       <%= product.date.strftime("%d %B %Y at %H:%M") if product.date %><br />
-  	  <%= link_to product.name, "/wine-events/#{product.friendly_identifier}", :style => "font-size:14px;color:#721041" %>
+  	  <%= link_to product.name, "/wine-events/#{product.friendly_identifier}", :style => "font-size:14px;color:#9b0707" %>
     </li>
     <%- end -%>
   </ul>

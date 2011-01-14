@@ -33,7 +33,7 @@
         <%= product.description %>
       </td>
       <td valign="top" style="padding:10px 0;width:100px;">
-        <div style="font-size:18px;color:#721041;text-align:right;">
+        <div style="font-size:18px;color:#9b0707;text-align:right;">
           <div style="margin-bottom:15px;"><%= number_to_currency product.price, :unit => "&pound;" %></div>
           <%- if product.out_of_stock? -%>
             <%= image_tag('out_of_stock.png') %>
