@@ -4,11 +4,15 @@
 
 <div id="customers_new_container">
   <% form_for :user, :url => customers_path, :html => {:multipart => true} do %>
-  	<%= show_messages(flash[:notice]) %>
+  <%= show_messages(flash[:notice]) %>
 
     <%= render :partial => 'form' %>
+
   	<p style="text-align:right;">
-  	  <%= image_submit_tag "buttons/register_button.png" %>
+  	<table align="right"><tr><td>
+  	<%= show_simple_captcha(:object=>"user") %></td>
+  	  <td><%= image_submit_tag "buttons/register_button.png" %></td></tr>
+  	  </table>
   	</p>
   <% end %>
 </div>

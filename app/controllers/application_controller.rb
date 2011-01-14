@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   include AuthenticatedSystem
   include PdfHelper
   include SslRequirement
+  include SimpleCaptcha::ControllerHelpers
 
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
