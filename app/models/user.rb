@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
   # Virtual attribute for the unencrypted password
   attr_accessor :password
 
+  apply_simple_captcha :message => " image and text were different", :add_to_base => true
+
   validates_presence_of     :login, :email, :name, :surname
   validates_presence_of     :password,                   :if => :password_required?
   validates_presence_of     :password_confirmation,      :if => :password_required?

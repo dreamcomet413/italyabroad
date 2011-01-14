@@ -1909,8 +1909,10 @@ ul.photo_list li img:hover{
 }
 
 .notice {
-    font-style:italic;
+   /* font-style:italic;*/
     color:red;
+    text-align: center;
+    font-size: 14px;
 }
 
 #cart_form {
