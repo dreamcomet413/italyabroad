@@ -19,7 +19,7 @@
         <%- parent_category.children[0..5].each do |category| -%>
           <li><%= link_to category.name.split(" ").map{|w| w.capitalize}.join(" "), nested_categories_url(parent_category, category) %></li>
         <%- end -%>
-        <li><%= link_to("more", "/wine", :style => "text-decoration:underline;") %></li>
+        <li><%= link_to("more", "/wine", :style => "text-decoration:underline; color:#9b0707;") %></li>
       </ul>
     </li>
     <li class="list">
@@ -29,7 +29,7 @@
         <%- parent_category.children[0..5].each do |category| -%>
           <li><%= link_to category.name.split(" ").map{|w| w.capitalize}.join(" "), nested_categories_url(parent_category, category) %></li>
         <%- end -%>
-        <li><%= link_to("more", "/food", :style => "text-decoration:underline;") %></li>
+        <li><%= link_to("more", "/food", :style => "text-decoration:underline; color:#9b0707;") %></li>
       </ul>
     </li>
     <li class="list">
