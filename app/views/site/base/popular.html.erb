@@ -6,23 +6,24 @@
   <div style="text-align:left;">Browse through our customers' favourite Italian produce with our brand new Search Cloud.</div>
   <br />
   <% @popular_searches = SearchQuery.popular_searches(50) %>
-  <%  
-  pmin = 150 # Minimum font size  
-  pmax = 300 #Maximum font size  
-  vmin = 1000000000000 #Super large number to init min  
-  vmax = -1000000000000 #Super small number to init max  
-  for search in @popular_searches  
-    vmin = search.popularity.to_f if (search.popularity.to_f < vmin)  
+  <%
+  pmin = 150 # Minimum font size
+  pmax = 300 #Maximum font size
+  vmin = 1000000000000 #Super large number to init min
+  vmax = -1000000000000 #Super small number to init max
+  for search in @popular_searches
+    vmin = search.popularity.to_f if (search.popularity.to_f < vmin)
     vmax = search.popularity.to_f if (search.popularity.to_f > vmax)
-  end  
-  %>  
+  end
+  %>
   <% @popular_searches.each do |result| %>
     <span style="font-size:<%= (((pmax - pmin) * (Math.log(result.popularity)) / (Math.log(vmax)) + pmin)/100 * 12).round.to_s %>px"><%= link_to result.query.titleize, search_index_path(:text => result.query), :style => "color:black;" %></span> &nbsp;&nbsp;
   <% end %>
-</div>	
+</div>
 
 <% content_for :right do %>
 	<%= render :partial => '/site/shared/box_subscriptions' %>
 	<br />
 	<%= render :partial => '/site/shared/box_grape_guide' %>
 <% end %>
+
