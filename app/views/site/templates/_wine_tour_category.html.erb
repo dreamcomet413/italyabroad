@@ -18,8 +18,9 @@
 
 <div style="margin:8px;">
   <%= render :partial => '/site/shared/box_upcoming_wine_tours' %>
-  <div id="wine_tours_introduction">
-    <h3 style="border:none;"><%= @category.name %></h3>
+ <!-- before changing the following div has this id="wine_tours_introduction" -->
+  <div >
+    <h3 style="border:none;"  align="center"><%= @category.name %></h3>
     <p>
       <%= @category.description %>
       <!--Make your own wine, live the harvesting in one of the most beautiful area of Tuscany-->
@@ -30,7 +31,7 @@
   <%- unless products.blank? -%>
   <div id="featured_wine_tours">
     <br />
-    <h3>Featured Tours</h3>
+    <h3>Coming Tours</h3>
     <ul>
       <%- products.each do |product| -%>
       <li>

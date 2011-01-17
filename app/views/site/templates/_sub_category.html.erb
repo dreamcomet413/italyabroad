@@ -36,7 +36,7 @@
       <%= link_to show_image_tag(product.layout_image, product.image_1, :jpg), nested_products_uri(product) %>
     </td>
     <td style="width:490px;" valign="top">
-      <h2 style="margin:0;padding:20px 0 0 0;"><%= link_to product.name, nested_products_uri(product), :style => "font-size:17px;color:#9ACD32;" %></h2>
+      <h2 style="margin:0;padding:20px 0 0 0;"><%= link_to product.name, nested_products_uri(product), :style => "font-size:17px;color:#003300;" %></h2>
       <%= show_ratings(product, product.average_rating_round) %>
       <br />
       <%= product.description_short %>

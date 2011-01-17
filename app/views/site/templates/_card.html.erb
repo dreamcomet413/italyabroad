@@ -38,13 +38,13 @@
           <%- if @product.is_wine? || @product.is_food? -%>
             <tr>
               <td valign="top">Region:</td>
-              <td class="data"><%= link_to(@product.region.name, region_path(@product.region)) rescue "No region" %></td>
+              <td class="data"><%= link_to (@product.region.name, region_path(@product.region),:class=>"user_name_class") rescue "No region" %></td>
             </tr>
           <%- end -%>
           <%- if @product.is_wine? -%>
             <tr>
               <td valign="top">Grape:</td>
-              <td class="data">
+              <td class="data user_name_class">
                 <%= @product.grapes.collect{ |g| [link_to(g.name, grape_path(g))] }.join(", ") %>
               </td>
             </tr>

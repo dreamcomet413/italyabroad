@@ -14,12 +14,12 @@
       <td valign="top" width="475px">
         <div id="box_newest_members">
           <% users = User.find(:all, :order => "created_at DESC", :limit => 10) %>
-          <h1 style="color:#233f2d;font-size:16px;">Our Newest Members</h1>
+          <h1 style="color:#9b0707;font-size:16px;">Our Newest Members</h1>
           <ul>
             <%- for user in users -%>
             <li>
               <%= link_to avatar_for_user(user, 'small'), customer_path(user) %>
-              <%= link_to user.name, customer_path(user) %>
+              <%= link_to user.name, customer_path(user),:class=>'data'%>
             </li>
             <%- end -%>
           </ul>
@@ -28,7 +28,7 @@
           <tr>
             <td width="45%" valign="top">
               <div id="box_producer">
-                <h1 style="color:#233f2d;font-size:16px;">Get to know our producers</h1>
+                <h1 style="color:#9b0707;font-size:16px;">Get to know our producers</h1>
                 <% producers = Producer.find(:all, :limit => 1, :order => "RAND()") %>
                 <%- for producer in producers -%>
                 <table>
@@ -46,7 +46,7 @@
               <br /><br />
               <div id="box_latest_blog" style="background-color:#f8f7ef;padding:5px 10px;margin-right:10px;">
                 <% blog = Post.last %>
-                <h1 style="color:#233f2d;font-size:16px;text-align:center;">Blog</h1>
+                <h1 style="color:#9b0707;font-size:16px;text-align:center;">Blog</h1>
                 <%= link_to "Latest Entry", blog_index_path %><br /><br />
                 <%= link_to blog.name.upcase, blog_path(blog.id) %> - <%= blog.created_at.strftime("%d/%m/%Y") %><br /><br />
                 <%= blog.description_short %><br /><br />
@@ -55,7 +55,7 @@
             </td>
             <td valign="top" style="padding-left:15px;">
               <div id="box_forum">
-                <h1 style="color:#233f2d;font-size:16px;text-align:center;">Forum</h1>
+                <h1 style="color:#9b0707;font-size:16px;text-align:center;">Forum</h1>
                 <ul style="list-style:none;padding:0;margin:0;">
                   <li>
                    <!-- <h1 style="color:#7f2d54;">General Discussion</h1> -->
@@ -104,28 +104,29 @@
       <td valign="top">
         <div id="box_latest_review">
           <% latest_review = Review.last %>
-          <h1 style="color:#233f2d;font-size:16px;">Latest Review</h1>
+          <h1 style="color:#9b0707;font-size:16px;">Latest Review</h1>
           <table cellpadding="0" cellspacing="0">
             <tr>
               <td style="width:50px;text-align:center;">
                 <%= link_to avatar_for_user(latest_review.user, 'small'), customer_path(latest_review.user.id)%>
               </td>
-              </tr>
-              <tr>
-              <td>
-                <%= link_to latest_review.user.name, customer_path(latest_review.user.id)%>
-              </td>
-              <td><% unless latest_review.description.blank? %>
-              "<%= link_to latest_review.description,review_path(latest_review) %>"
+              <td valign="top"><% unless latest_review.description.blank? %> &nbsp;&nbsp;
+              "<%= link_to latest_review.description,review_path(latest_review),:class=>'data' %>"
                <% else %>
                  "<%= 'Added a new review' %>"
                 <% end %>
               </td>
+              </tr>
+              <tr>
+              <td>
+                <%= link_to latest_review.user.name, customer_path(latest_review.user.id),:class=>'data'%>
+              </td>
+              <td></td>
             </tr>
           </table>
         </div>
-        <div id="box_grape_guide_forum">
-          <h1 style="color:#233f2d;font-size:16px;">Grape Guide</h1>
+        <div id="box_grape_guide_forum"><br /><br />
+          <h1 style="color:#9b0707;font-size:16px;">Grape Guide</h1>
           <%- grapes = Grape.find(:all, :limit => 1, :order => "RAND()") -%>
           <%- for grape in grapes -%>
           <div style="padding-bottom:10px;color:#7f2d54;"><%= link_to grape.name, grape_path(grape) %></div>
@@ -134,8 +135,8 @@
           <%- end -%>
           <%= link_to "more grapes", grape_guide_path %>
         </div>
-        <div id="box_get_to_know_italy">
-          <h1 style="color:#233f2d;font-size:16px;">Get to know italy</h1>
+        <div id="box_get_to_know_italy"><br /><br />
+          <h1 style="color:#9b0707;font-size:16px;">Get to know italy</h1>
           <%- regions = Region.find(:all, :limit => 1, :order => "RAND()") -%>
           <%- for region in regions -%>
           <div style="padding-bottom:10px;color:#7f2d54;"><%= link_to region.name, region_path(region) %></div>
