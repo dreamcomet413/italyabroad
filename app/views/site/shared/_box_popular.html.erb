@@ -1,7 +1,7 @@
 <div class="block" id="box_popular">
   <% @popular_searches = SearchQuery.popular_searches(10) %>
-  <%  pmin = 100 # Minimum font size
-  pmax = 150 #Maximum font size
+  <%  pmin = 75 # Minimum font size
+  pmax = 112 #Maximum font size
   vmin = 1000000000000 #Super large number to init min
   vmax = -1000000000000 #Super small number to init max
   for search in @popular_searches
