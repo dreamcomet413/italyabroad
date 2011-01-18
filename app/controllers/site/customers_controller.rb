@@ -129,6 +129,13 @@ class Site::CustomersController < ApplicationController
   else
     set_photo_from_default(params[:kind],@user)
   end
+  if params[:chef].to_i == 4
+      @user.type_id = 4
+      @user.active = false
+   else
+       @user.type_id = 2
+      @user.active = true
+  end
    # @user.set_photo_from_upload(params[:photo])
     if @user.update_attributes(params[:user])
         Notifier.deliver_account_data(User.find(@user.id))
