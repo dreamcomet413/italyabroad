@@ -1,22 +1,19 @@
 <div class="block" id="box_popular">
-  <% @popular_searches = SearchQuery.popular_searches(10) %>
+  <% @popular_searches = SearchQuery.popular_searches_box(10) %>
   <%
-  #pmin = 100 # Minimum font size
-  pmin = 75 # Minimum font size
-  #pmax = 150 #Maximum font size
-  pmax = 112 #Maximum font size
-  vmin = 1000000000000 #Super large number to init min
-  vmax = -1000000000000 #Super small number to init max
+  font_size = 21
+  arr_popular = []
   for search in @popular_searches
-    vmin = search.popularity.to_f if (search.popularity.to_f < vmin)
-    vmax = search.popularity.to_f if (search.popularity.to_f > vmax)
+    arr_popular << {:query=> search.query,:popularity => search.popularity, :font_size => font_size-=1 }
   end  %>
   <h1>Popular Searches</h1>
   <br />
   <div style="text-align:center;">
-    <% @popular_searches.each do |result| %>
-      <% font_size = ((((pmax - pmin) * (Math.log(result.popularity) / Math.log(vmax))) + pmin) / 100) * 12 %>
-      <span style="font-size:<%= font_size.round.to_s %>px;line-height:25px;"><%= link_to result.query.titleize, search_index_path(:text => result.query) %></span> &nbsp;&nbsp;
+    <%
+    arr_popular = arr_popular.shuffle
+    arr_popular.each do |result| %>
+
+      <span style="font-size:<%= result[:font_size] %>px;line-height:25px;"><%= link_to result[:query].titleize, search_index_path(:text => result[:query]) %></span> &nbsp;&nbsp;
     <% end %>
     <span class="more-link"><%= link_to "more", popular_path %></span>
   </div>
