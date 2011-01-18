@@ -41,7 +41,7 @@
                   </tr>
                 </table>
                 <%- end -%>
-                <%= link_to "more producers", producers_path %>
+                <div style="text-align:right;"><%= link_to "more producers", producers_path %></div>
               </div>
               <br /><br />
               <div id="box_latest_blog" style="background-color:#f8f7ef;padding:5px 10px;margin-right:10px;">
@@ -72,7 +72,7 @@
 
                         <%= @faq.question %><br />
 
-                        <%= link_to 'View all',faqs_path %>
+                       <%= link_to 'View all',faqs_path %>
                         </div>
                         </td>
                         <td valign="top" align="right">
@@ -125,7 +125,7 @@
             </tr>
           </table>
         </div>
-        <div id="box_grape_guide_forum"><br /><br />
+        <div id="box_grape_guide_forum"><br /><br /><br /><br /><br /><br /><br /><br />
           <h1 style="color:#9b0707;font-size:16px;">Grape Guide</h1>
           <%- grapes = Grape.find(:all, :limit => 1, :order => "RAND()") -%>
           <%- for grape in grapes -%>

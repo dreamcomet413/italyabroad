@@ -34,7 +34,7 @@
   <% products = @category.products.find(:all, :conditions => ["active = ?", true], :order => "date").paginate(:page => params[:page], :per_page => 4) %>
   <div id="featured_events">
     <br />
-    <h3>Featured Events</h3>
+    <h3>Coming Events</h3>
     <ul>
       <% for product in products %>
       <li>

@@ -38,7 +38,7 @@
           <%- if @product.is_wine? || @product.is_food? -%>
             <tr>
               <td valign="top">Region:</td>
-              <td class="data"><%= link_to (@product.region.name, region_path(@product.region),:class=>"user_name_class") rescue "No region" %></td>
+              <td class="data"><%= link_to (@product.region.name, region_path(@product.region)) rescue "No region" %></td>
             </tr>
           <%- end -%>
           <%- if @product.is_wine? -%>

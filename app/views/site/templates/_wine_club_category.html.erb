@@ -18,8 +18,8 @@
 
 <div style="margin:8px;">
   <%= render :partial => '/site/shared/box_upcoming_events' %>
-  <div id="wine_tours_introduction">
-    <h3 style="border:none;">Wine Club</h3>
+  <div ><!--id="wine_tours_introduction"-->
+    <h3 style="border:none;" align="center">Wine Club</h3>
     <p>
       <%= @category.description %>
       <!--Need content to change this static description.-->
@@ -30,7 +30,7 @@
   <%- unless products.blank? -%>
   <div id="featured_wine_tours">
     <br />
-    <h3>Membership Details</h3>
+    <h3>Wine Club Options</h3>
     <ul>
       <%- products.each do |product| -%>
       <li>

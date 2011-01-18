@@ -15,7 +15,7 @@
 </div>
 <br/>
 <%= render :partial => '/site/shared/box_search_recipes_new' %>
-<div align="right"><%= link_to 'Add New Recipe',new_recipe_path %></div>
+<!--<div align="right"><%#= link_to 'Add New Recipe',new_recipe_path %></div> -->
 <div id="recipes_introduction">
   <h3>About Italian food</h3>
   <%= image_tag("aboutItalianFood.png", :style => "float:left;") %>
@@ -105,6 +105,7 @@
 <% content_for :right do %>
   <%= render :partial => '/site/shared/box_latest_recipe_reviews' %>
   <br />
+  <div align="right"><%= link_to 'Add New Recipe',new_recipe_path %></div><br />
   <%= link_to image_tag("shareRecipe.png"), {:controller => 'site/recipes', :action => 'new'} %>
   <br />
   <%= link_to image_tag("chefProfile.png"), account_path %>
