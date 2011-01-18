@@ -924,7 +924,8 @@ a {
 #blog_container .foot {
     padding:0 0 10px 0;
     margin:10px 0;
-    border-bottom:2px solid #bfd923;
+  /*  border-bottom:2px solid #bfd923; */
+  border-bottom:2px solid #CCCCCC;
 }
 
 #featured_wine_tours {

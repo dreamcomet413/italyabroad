@@ -34,7 +34,7 @@
 	  <li>
       <h2><%= link_to post.name, post.friendly_identifier.blank? ? "blog/#{post.id}" : "blog/#{post.friendly_identifier}" %></h2>
       <div><%= post.description_short_cleared %></div>
-      <table width="100%" class="foot">
+      <table width="100%"  class="foot">
         <tr>
           <td>
             <strong>Tags:</strong>&nbsp;<%= post.tag_names %>
