@@ -988,6 +988,14 @@ a {
 #andreasWine ul li {
     margin:15px 0;
     border-bottom:1px solid #C5D1C5;
+    color: #000;
+}
+
+#topSellingWine ul li a,
+#andreasWine ul li a {
+    margin:15px 0;
+    border-bottom:1px solid #C5D1C5;
+    color: #000;
 }
 
 #andreasWine {
@@ -2311,5 +2319,10 @@ ul.my-account-links li a {
     font-weight:bold;
     border:none;
     padding: 0 0 3px 0;
+}
+
+#box_latest_recipe_reviews a {
+    color:#000;
+
 }
 
