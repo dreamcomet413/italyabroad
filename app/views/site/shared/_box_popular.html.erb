@@ -3,7 +3,6 @@
   <%
   #pmin = 100 # Minimum font size
   pmin = 75 # Minimum font size
-
   #pmax = 150 #Maximum font size
   pmax = 112 #Maximum font size
   vmin = 1000000000000 #Super large number to init min
@@ -16,8 +15,7 @@
   <br />
   <div style="text-align:center;">
     <% @popular_searches.each do |result| %>
-      <% font_size = ((((pmax - pmin) * (Math.log(result.popularity) / Math.log(vmax))) + pmin) / 100) * 12
-      %>
+      <% font_size = ((((pmax - pmin) * (Math.log(result.popularity) / Math.log(vmax))) + pmin) / 100) * 12 %>
       <span style="font-size:<%= font_size.round.to_s %>px;line-height:25px;"><%= link_to result.query.titleize, search_index_path(:text => result.query) %></span> &nbsp;&nbsp;
     <% end %>
     <span class="more-link"><%= link_to "more", popular_path %></span>

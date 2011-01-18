@@ -647,6 +647,7 @@ a {
 }
 
 #box_most_read_blog h1 {
+    color:#9b0707;
     text-align:center;
 }
 
@@ -659,6 +660,10 @@ a {
     margin-bottom:10px;
 }
 
+#box_most_read_blog ul li a {
+    margin-bottom:10px;
+    color:#000;
+}
 #box_find_your_perfect_wines {
     border:none;
     padding:0;
