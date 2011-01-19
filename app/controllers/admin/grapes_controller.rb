@@ -3,7 +3,11 @@ class Admin::GrapesController < ApplicationController
   layout "admin"
 
   def index
-    @grapes = Grape.all(:order => "name ASC").paginate(:page => params[:page], :per_page => 10)
+    if params[:search]
+       @grapes = Grape.find(:all,:conditions=>['name LIKE ? ',"%#{params[:search_text]}%"],:order => "name ASC").paginate(:page => params[:page], :per_page => 10)
+    else
+        @grapes = Grape.all(:order => "name ASC").paginate(:page => params[:page], :per_page => 10)
+    end
 
     respond_to do |format|
       format.html

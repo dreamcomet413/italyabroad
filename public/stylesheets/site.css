@@ -1694,7 +1694,7 @@ ul.slideshow_images {
 ul.slideshow_images li {
     float:left;
     position:relative;
-    /*width:112px;
+      /*width:112px;
     margin-right:10px;*/
     margin-right:5px;
     width:106px;
@@ -1721,11 +1721,13 @@ ul.slideshow_images li a {
 }
 
 ul.slideshow_images li a.double-line{
-  line-height: 19px;
+ line-height: 20px;
+/* line-height: 19px;*/
 }
 
 ul.slideshow_images li a.three-line{
-  line-height: 13px;
+    line-height: 13px;
+  /* line-height: 20px;*/
 }
 
 ul.slideshow_images li a:hover,

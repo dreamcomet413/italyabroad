@@ -28,7 +28,7 @@
     <%= link_to_function "1", "javascript:GoTo('home_image_1');", :class => "slide" %></span>
   <%
   ln_class = ""
-  if @setting.home_image_1_title.size < 16
+  if @setting.home_image_1_title.size < 18  #earlier it was 16
     ln_class = "single-line"
   elsif @setting.home_image_1_title.size < 32
     ln_class = "double-line"
@@ -36,7 +36,7 @@
     ln_class = "three-line"
   end
 %>
-  <li id="link_home_image_1" class="active">
+<li id="link_home_image_1" class="active">
     <%= link_to_function @setting.home_image_1_title, "javascript:GoTo('home_image_1');", :class => "slide #{ln_class}" %>
   </li>
   <span id="link_number_2" class="white_text">
@@ -64,7 +64,7 @@
     ln_class = "three-line"
   end
 %>
-  <li id="link_home_image_3"><%= link_to_function @setting.home_image_3_title, "javascript:GoTo('home_image_3');", :class => "slide #{ln_class}" %></li>
+<li id="link_home_image_3"><%= link_to_function @setting.home_image_3_title, "javascript:GoTo('home_image_3');", :class => "slide #{ln_class}" %></li>
   <span id="link_number_4" class="white_text" >
     <%= link_to_function "4", "javascript:GoTo('home_image_4');", :class => "slide" %></span>
   <%

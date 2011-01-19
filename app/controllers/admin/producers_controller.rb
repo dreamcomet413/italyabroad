@@ -3,8 +3,11 @@ class Admin::ProducersController < ApplicationController
   layout "admin"
 
   def index
-    @producers = Producer.all(:order => "id DESC").paginate(:page => params[:page], :per_page => 10)
-
+    if params[:search]
+      @producers = Producer.find(:all,:conditions=>['name LIKE ? ',"%#{params[:search_text]}%"],:order => "id DESC").paginate(:page => params[:page], :per_page => 10)
+    else
+      @producers = Producer.all(:order => "id DESC").paginate(:page => params[:page], :per_page => 10)
+    end
     respond_to do |format|
       format.html
     end

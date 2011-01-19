@@ -6,7 +6,11 @@
   <br />
   <table>
     <tr>
-      <td></td>
+      <td><%- form_tag admin_producers_path, :method => :get do -%>
+        <strong>Search:</strong>
+        <%= text_field_tag :search_text,'',:value=>params[:search_text] %>
+        <%= submit_tag "Search", :name => 'search' %>
+        <% end %></td>
       <td align="right"><%= link_to "New Producer", new_admin_producer_path %></td>
     </tr>
   </table>

@@ -3,8 +3,11 @@ class Admin::RegionsController < ApplicationController
   layout "admin"
 
   def index
-    @regions = Region.all(:order => "created_at DESC").paginate(:page => params[:page], :per_page => 10)
-
+    if params[:search]
+      @regions = Region.find(:all,:conditions=>['name LIKE ? ',"%#{params[:search_text]}%"],:order => "created_at DESC").paginate(:page => params[:page], :per_page => 10)
+    else
+      @regions = Region.all(:order => "created_at DESC").paginate(:page => params[:page], :per_page => 10)
+    end
     respond_to do |format|
       format.html
     end
