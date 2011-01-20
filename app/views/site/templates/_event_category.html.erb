@@ -1,5 +1,5 @@
 <%- @breadcrumbs = "#{link_to("Home", root_url)} &raquo; #{link_to("Events", '/event')}" -%>
-
+<% @about = AboutU.find(:first, :conditions => {:link_type => "events"} ) %>
 <% if @category.image && !@category.image_url.blank? %>
   <div id="wineBanner">
 	<%= link_to image_tag(image_url('home_image', @category.image, :jpg)), @category.image_url %>
@@ -7,7 +7,7 @@
 <% else %>
   <div id="wineBanner">
     <span class="title">
-      <strong style="font-size:25px;">Discover</strong> and <strong style="font-size:24px;">taste</strong> some<br />
+   <!-- <strong style="font-size:25px;">Discover</strong> and <strong style="font-size:24px;">taste</strong> some<br />
       of the <strong style="font-size:24px;">finest Italian<br />
       wines,</strong> unknown, very<br />
       small production, fantastic<br />
@@ -15,7 +15,8 @@
       Italian wine regions</strong> and<br />
       improve <strong style="font-size:24px;">your wine<br />
       knowledge</strong> at our <strong style="font-size:24px;">wine<br />
-      events</strong>
+      events</strong> -->
+     <%= @about.title if @about %>
     </span>
 	  <%= link_to image_tag("events.jpg"), search_index_path(:id => @category) %>
 	</div>

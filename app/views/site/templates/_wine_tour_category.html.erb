@@ -1,5 +1,5 @@
 <%- @breadcrumbs = "#{link_to("Home", root_url)} &raquo; #{link_to("Wine Tours", '/wine-tours')}" -%>
-
+<% @about = AboutU.find(:first, :conditions => {:link_type => "wine-tour"} ) %>
 <% if @category.image && !@category.image_url.blank? %>
   <div id="wineBanner">
 	  <%= link_to image_tag(image_url('home_image', @category.image, :jpg)), @category.image_url %>
@@ -7,11 +7,13 @@
 <% else %>
   <div id="wineBanner">
     <span class="title_wine_tours">
-      <strong style="font-size:24px;">Experience</strong> firsthand the <strong style="font-size:24px;">passion,</strong><br />
+    <%= @about.title if @about %>
+     <!-- <strong style="font-size:24px;">Experience</strong> firsthand the <strong style="font-size:24px;">passion,</strong><br />
       talk to the <strong style="font-size:24px;">winemakers</strong>, visit the<br >
       <strong style="font-size:24px;">vineyards,</strong> the cellar, <strong style="font-size:24px;">taste the<br />
       wines</strong> directly from the barrels,<br />
-      <strong style="font-size:24px;">harvest</strong> the grapes and <strong style="font-size:24px;">make your<br />own wine</strong> with our <strong style="font-size:24px;">wine tours</strong></span>
+      <strong style="font-size:24px;">harvest</strong> the grapes and <strong style="font-size:24px;">make your<br />own wine</strong> with our <strong style="font-size:24px;">wine tours</strong>-->
+      </span>
 	  <%= link_to image_tag("wine_tours_home.jpg"), search_index_path(:id => @category.friendly_identifier) %>
 	</div>
 <% end %>

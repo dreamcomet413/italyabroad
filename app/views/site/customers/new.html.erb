@@ -9,10 +9,10 @@
     <%= render :partial => 'form' %>
 
   	<p style="text-align:right;">
-  	<table align="right"><tr><td>
-  	<%= show_simple_captcha(:object=>"user") %></td>
-  	  <td><%= image_submit_tag "buttons/register_button.png" %></td></tr>
-  	  </table>
+    <table width="100%"><tr>
+  	<td><%= show_simple_captcha(:object=>"user") %></td>
+  	<td> <div align="right"> <%= image_submit_tag "buttons/register_button.png" %></div></td>
+    </tr></table>
   	</p>
   <% end %>
 </div>

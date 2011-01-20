@@ -1,10 +1,11 @@
 <%- set_title "Community" -%>
 <% @breadcrumbs = "#{link_to("Home", root_url)} &raquo; Community" %>
-
+<% @about = AboutU.find(:first, :conditions => {:link_type => "community"} ) %>
 <div id="wineBanner">
   <span class="community_home_title">
-    Share your <strong style="font-size:24px;">passion,</strong> meet <strong style="font-size:24px;">people</strong> like you, compare<br />
-    <strong style="font-size:24px;">tasting notes</strong> and get <strong style="font-size:24px;">recommendations</strong>
+     <%= @about.title %>
+    <!--Share your <strong style="font-size:24px;">passion,</strong> meet <strong style="font-size:24px;">people</strong> like you, compare<br />
+    <strong style="font-size:24px;">tasting notes</strong> and get <strong style="font-size:24px;">recommendations</strong> -->
   </span>
   <%= image_tag("forum_home.jpg") %>
 </div>
