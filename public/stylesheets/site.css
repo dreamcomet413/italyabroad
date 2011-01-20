@@ -994,7 +994,7 @@ a {
 #topSellingWine ul li a,
 #andreasWine ul li a {
     margin:15px 0;
-    border-bottom:1px solid #C5D1C5;
+ /*border-bottom:1px solid #C5D1C5;*/
     color: #000;
 }
 
