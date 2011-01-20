@@ -265,6 +265,15 @@
      <span <%= "class='active'" if @current_controller == "about_us" %>>
       <%= link_to "Recipe", admin_about_us_path(:type => "recipe") , :class => ('active' if @current_controller == "about_us") %>
     </span>
+     <span <%= "class='active'" if @current_controller == "about_us" %>>
+      <%= link_to "Producers", admin_about_us_path(:type=> "producers"), :class => ('active' if @current_controller == "about_us") %>
+    </span>
+     <span <%= "class='active'" if @current_controller == "about_us" %>>
+      <%= link_to "Region", admin_about_us_path(:type=> "region"), :class => ('active' if @current_controller == "about_us") %>
+      </span>
+      <span <%= "class='active'" if @current_controller == "about_us" %>>
+      <%= link_to "Grape Guides", admin_about_us_path(:type=> "grape-guide"), :class => ('active' if @current_controller == "about_us") %>
+      </span>
   </div>
 
   <div id="dropmenu9" class="dropmenudiv" style="width:130px">

@@ -1,7 +1,17 @@
 <% @title = "Guide to Italian wines and Italian grapes"; @description = "Guide to Italian wines and Italian grapes"; @keys = ", Italian wine information,Italian wine guide,Italian wine,Italian red and white wine,italian grapes,wine grapes,wine expert,guide to Italian wines,aglianico,barbera,montepulciano,nero d'avola,nebbiolo" %>
 <% @breadcrumbs = "#{link_to("Home", root_url)} &raquo; Guide to Italian wines and Italian grapes" %>
+<% @about = AboutU.find(:first, :conditions => {:link_type => "grape-guide"} ) %>
+<div style="text-align:center;padding-top:10px;"></div>
+<div id="blog_home">
 
-<div style="text-align:center;padding-top:10px;"><%= image_tag("guide_home_image.jpg") %></div>
+  <span class="title">
+    <%= @about.title if @about %>
+
+  </span>
+<%= image_tag("guide_home_image.jpg") %></div>
+</div>
+<div id="blog_container">
+   <%= @about.description if @about %>
 <div style="margin:10px;">
   <h1 style="text-align:center;font-size:18px;font-weight:bold;color:#666666;">Wine and Grape Guide</h1>
   <h3 style="font-size:16px;border:none;">Introduction to Italian wines and grapes</h3>
