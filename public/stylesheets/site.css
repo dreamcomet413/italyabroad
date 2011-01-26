@@ -1475,10 +1475,10 @@ a {
     color:white;
     font-size:20px;
     position:absolute;
-   /* margin-left:15px;
-    margin-top:145px;*/
-    margin-left:130px;
-    margin-top:180px;
+    margin-left:15px;
+    margin-top:145px;
+    /*margin-left:130px;
+    margin-top:180px;*/
     text-align:left;
 }
 
