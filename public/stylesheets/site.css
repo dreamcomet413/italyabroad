@@ -523,7 +523,7 @@ a {
 #box_products_on_offer {
   /*  background-color:#CCCCCC;*/
   background-color:	#F5F5F5;
-    border:1px solid #999999;
+  border:1px solid #999999;
 }
 
 #box_latest_review,
@@ -533,6 +533,19 @@ a {
     float:right;
     margin-right:10px;
 }
+
+#box_latest_review a,
+#box_grape_guide_forum a,
+#box_get_to_know_italy a{
+    color: #9b0707;
+}
+
+#box_latest_review div a,
+#box_grape_guide_forum div a,
+#box_get_to_know_italy div a{
+    color: #9b0707;
+}
+
 
 #box_newest_members {
     width:475px;
@@ -764,11 +777,11 @@ a {
 #box_blog .title,
 #box_blog .title a {
     font-size:14px;
-    color: #000;
+    color: #9b0707;
 }
 
 #box_blog .teaser a {
-    color: #000;
+    color: #9b0707;
 }
 
 #box_wine_search,
