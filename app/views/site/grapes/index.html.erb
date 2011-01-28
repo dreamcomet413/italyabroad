@@ -9,25 +9,13 @@
 
   </span>
 <%= image_tag("guide_home_image.jpg") %></div>
-
+<br />
 <div id="blog_container">
-   <%= @about.description if @about %>
-<div style="margin:10px;">
-  <h1 style="text-align:center;font-size:18px;font-weight:bold;color:#666666;">Wine and Grape Guide</h1>
-  <h3 style="font-size:16px;border:none;">Introduction to Italian wines and grapes</h3>
-  <p>
-    Italy grows more than thousand varieties of grapes, international and native ones, with some of them only planted in very small areas and with a very limited wine production and therefore only available to the locals. Wines as we all know, can be made by a single grape or a blend of different grapes, and with such a variety we can easily imagine how many wines can be made without considering the wine making process. <b>Italian wines</b> are an endless story.
-  </p>
-  <p>
-    This <b>Italian wine and grape guide</b> has been thought to offer you an introduction, an insight, into Italian wines & grapes highlighting the most important native grapes, as well as a selection of Italian wines that many drinkers enjoy without knowing the grapes used in making them.
-  </p>
-  <p>
-    This guide should be seen as the starting point, your first point of reference when wanting to know more about Italian wines and grapes and does not pretend to answer all your questions about Italian wines.
-  </p>
-  <p>
-    The first thing to say about <b>Italian wines</b> is that the appellation system divides the wines into 4 different categories, <b>DOCG, DOC, IGT</b> and <b>vino da tavola</b> in this order. Except for the vino da tavola (table wine) where any grape from anywhere in Italy of any quality can be used, for the wines in the other categories, the law specifies the characteristics of the grapes used in making the wine (eg. maximum yield, origin) and or the wine making process (eg. minimum ageing, grapes allowed), however, a DOCG wine does not mean a better wine that an IGT, it simply means that the wine is made following a different wine making process. A good wine can only be made if the grapes are good and the wine maker knows its job, if any of the two is missing, the wine is not going to be any good not even if it has the DOCG label.
-  </p>
-  <br />
+   <%= @about.description rescue 'The wine and grape details ...' %>
+
+
+
+  <br />  <br />  <br />
   <h3 style="font-size:16px;border:none;margin-bottom:0;">Grape list, click for information</h3>
   <br />
   <table cellpadding="5" cellspacing="0" border="0" width="100%">
