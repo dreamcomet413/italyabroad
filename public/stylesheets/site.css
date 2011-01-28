@@ -917,7 +917,7 @@ a {
 
 #blog_introduction {
     float:left;
-    width:500px;
+    /*width:500px;*/
 }
 
 #blog_introduction h2 {
@@ -954,6 +954,7 @@ a {
   /*  border-bottom:2px solid #bfd923; */
   border-bottom:2px solid #CCCCCC;
 }
+
 
 #featured_wine_tours {
 }
@@ -2078,7 +2079,7 @@ ul.photo_list li img:hover{
     background-color:#c3c3c3;
     padding:5px;
     font-size: 12px;
-    font-weight: bold;
+    /*font-weight: bold;*/
 }
 
 .border td {
@@ -2344,6 +2345,4 @@ ul.my-account-links li a {
 
 #box_latest_recipe_reviews a {
     color:#000;
-
-}
 
