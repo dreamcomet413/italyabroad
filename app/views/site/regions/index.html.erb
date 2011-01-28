@@ -34,7 +34,7 @@
 	<% for region in @regions %>
 	  <li>
       <h2><%= link_to region.name, region.friendly_identifier.blank? ? "regions/#{region.id}" : "regions/#{region.friendly_identifier}" %><%#= show_region_image(region) %></h2>
-      <%= show_region_image(region) %>
+      <%#= show_region_image(region) %>
       <div><% unless region.description.blank? %>
       <%= region.description[0,250] %>
        <%- end -%>
@@ -60,6 +60,56 @@
   <% end %>
   </ul>
 <div><%= will_paginate_(@regions) %></div>
+<!-- Alphabetical listing of regions added by Sujith on 2011.jan.28 START -->
+
+
+
+
+
+
+  <h3 style="font-size:16px;border:none;margin-bottom:0;">Regions list, click for information</h3>
+  <br />
+  <table cellpadding="5" cellspacing="0" border="0" width="100%">
+    <tr>
+      <td valign="top" style="width:33%;">
+        <h4 style="margin:0;padding:0;">A-G</h4>
+        <br />
+        <ul class="clean" style="list-style:none;">
+          <%- for producer in @regions -%>
+          <li><%= link_to region.name, region_path(region) if region.name.upcase =~ /^[A-G]/ %></li>
+          <%- end -%>
+        </ul>
+      </td>
+      <td valign="top" style="width:33%;">
+        <h4 style="margin:0;padding:0;">M-R</h4>
+        <br />
+        <ul class="clean" style="list-style:none;">
+          <%- for region in @regions -%>
+          <li><%= link_to region.name, region_path(region) if region.name.upcase =~ /^[M-R]/ %></li>
+          <%- end -%>
+        </ul>
+      </td>
+      <td valign="top" style="width:33%;">
+        <h4 style="margin:0;padding:0;">S-Z</h4>
+        <br />
+        <ul class="clean" style="list-style:none;">
+          <%- for region in @regions -%>
+          <li><%= link_to region.name, region_path(region) if region.name.upcase =~ /^[S-Z]/ %></li>
+          <%- end -%>
+        </ul>
+      </td>
+    </tr>
+  </table>
+
+
+
+
+
+
+
+<!-- Alphabetical listing of regions added by Sujith on 2011.jan.28 END -->
+
+
   <div style="clear:both;"></div>
   <div style="float:right;margin-top:20px;margin-bottom:10px;"><%= render :partial => '/site/shared/social_bookmarks' %></div>
   <% end %>
