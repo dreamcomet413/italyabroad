@@ -926,6 +926,9 @@ a {
 
 #blog_rss {
     float:right;
+    color:red;
+    font-family:Arial;
+    font-size:10px;
 }
 
 #blog_container {
