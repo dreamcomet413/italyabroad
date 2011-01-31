@@ -33,7 +33,7 @@
 	<ul>
 	<% for producer in @producers %>
 	  <li>
-      <h2><%= link_to producer.name, producer.friendly_identifier.blank? ? "producers/#{producer.id}" : "producers/#{producer.friendly_identifier}" %></h2>
+      <h2><%= link_to producer.name, producer.friendly_identifier.blank? ? "/producers/#{producer.id}" : "/producers/#{producer.friendly_identifier}" %></h2>
       <%#= show_producer_image(producer) %>
       <div><%= producer.region.name rescue "No region" %>
 
