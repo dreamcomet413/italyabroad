@@ -2348,4 +2348,10 @@ ul.my-account-links li a {
 
 #box_latest_recipe_reviews a {
     color:#000;
+}
+
+.product_cell {
+    text-align:center;
+    padding:20px;
+}
 
