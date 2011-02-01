@@ -54,21 +54,22 @@ class Site::CustomersController < ApplicationController
       @user.active = true
   end
     #@user.activation_code = ActivePassword.new #Customers don't wont activations
-    simple_captcha_valid?
-    if @user.save_with_captcha
+        simple_captcha_valid?
+        if @user.save_with_captcha and !(params[:conditions].nil?)
 
-      flash[:title] = "Congratulations"
-      flash[:message] = "Your account has been created, an email with your account details has been sent to #{@user.email}."
-      if @user.type_id != 4
-      self.current_user = User.authenticate(@user.login, @user.password_clean)
-#      redirect_back_or_default(:action => :messages)
-      end
-      redirect_back_or_default(root_url)
-    else
-      flash[:notice] = @user.show_errors
-      render :action => :new
-    end
-  end
+          flash[:title] = "Congratulations"
+          flash[:message] = "Your account has been created, an email with your account details has been sent to #{@user.email}."
+          if @user.type_id != 4
+          self.current_user = User.authenticate(@user.login, @user.password_clean)
+    #      redirect_back_or_default(:action => :messages)
+          end
+          redirect_back_or_default(root_url)
+        else
+          flash[:notice] = @user.show_errors
+          flash[:notice] +=  '<br />' + "You have to accept the terms and conditions"
+          render :action => :new
+        end
+   end
 
   def confirmation
     @user = User.find_by_id(params[:id])

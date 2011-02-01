@@ -158,6 +158,12 @@ end%>
 		  <td>Keep me updated </td>
 		  <td><%= check_box :user, :news_letters %></td>
     </tr>
+    <% if @user.new_record? %>
+    <tr>
+		  <td>I agree to the Italyabroad.com terms and conditions </td>
+		  <td><%= check_box_tag 'conditions' %></td>
+    </tr>
+    <% end %>
 	</table>
 </div>
 
