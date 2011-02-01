@@ -75,7 +75,7 @@
         <h4 style="margin:0;padding:0;">A-G</h4>
         <br />
         <ul class="clean" style="list-style:none;">
-          <%- for producer in @regions -%>
+          <%- for region in @regions_all -%>
           <li><%= link_to region.name, region_path(region) if region.name.upcase =~ /^[A-G]/ %></li>
           <%- end -%>
         </ul>
@@ -84,7 +84,7 @@
         <h4 style="margin:0;padding:0;">M-R</h4>
         <br />
         <ul class="clean" style="list-style:none;">
-          <%- for region in @regions -%>
+          <%- for region in @regions_all -%>
           <li><%= link_to region.name, region_path(region) if region.name.upcase =~ /^[M-R]/ %></li>
           <%- end -%>
         </ul>
@@ -93,7 +93,7 @@
         <h4 style="margin:0;padding:0;">S-Z</h4>
         <br />
         <ul class="clean" style="list-style:none;">
-          <%- for region in @regions -%>
+          <%- for region in @regions_all -%>
           <li><%= link_to region.name, region_path(region) if region.name.upcase =~ /^[S-Z]/ %></li>
           <%- end -%>
         </ul>

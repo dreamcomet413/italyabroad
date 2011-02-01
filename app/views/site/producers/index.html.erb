@@ -74,7 +74,7 @@
         <h4 style="margin:0;padding:0;">A-G</h4>
         <br />
         <ul class="clean" style="list-style:none;">
-          <%- for producer in @producers -%>
+          <%- for producer in @producers_all -%>
           <li><%= link_to producer.name, producer_path(producer) if producer.name.upcase =~ /^[A-G]/ %></li>
           <%- end -%>
         </ul>
@@ -83,7 +83,7 @@
         <h4 style="margin:0;padding:0;">M-R</h4>
         <br />
         <ul class="clean" style="list-style:none;">
-          <%- for producer in @producers -%>
+          <%- for producer in @producers_all -%>
           <li><%= link_to producer.name, producer_path(producer) if producer.name.upcase =~ /^[M-R]/ %></li>
           <%- end -%>
         </ul>
@@ -92,7 +92,7 @@
         <h4 style="margin:0;padding:0;">S-Z</h4>
         <br />
         <ul class="clean" style="list-style:none;">
-          <%- for producer in @producers -%>
+          <%- for producer in @producers_all -%>
           <li><%= link_to producer.name, producer_path(producer) if producer.name.upcase =~ /^[S-Z]/ %></li>
           <%- end -%>
         </ul>
