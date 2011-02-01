@@ -1,6 +1,7 @@
 class Site::GrapesController < ApplicationController
   layout 'site'
 
+  
   def index
     if params[:search]
       @grapes = Grape.find(:all,:conditions=>['name LIKE ? ',"%#{params[:search_by_name]}%"],:order => "name asc").paginate(:page => params[:page], :per_page => 10)

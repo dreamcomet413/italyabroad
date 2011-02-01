@@ -81,7 +81,11 @@
         <h4 style="margin:0;padding:0;">A-G</h4>
         <br />
         <ul class="clean" style="list-style:none;">
+<<<<<<< HEAD
           <%- for region in @regions_all  -%>
+=======
+          <%- for region in @regions_all -%>
+>>>>>>> 7739150c2141c9f84a17394a65a554b302e9a206
           <li><%= link_to region.name, region_path(region) if region.name.upcase =~ /^[A-G]/ %></li>
           <%- end -%>
         </ul>
