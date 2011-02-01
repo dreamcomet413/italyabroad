@@ -20,20 +20,42 @@
     <%-
       wine = ""
       food = ""
+      final_food = ""
+      final_wine = ""
+      index = 0
       @producer.products.each do |product|
         if product.categories.root.root.name == "Food"
-          food += "<li style=\"float:left;width:100px;margin-left:10px;margin-bottom:10px;\"> #{link_to show_image_tag(product.layout_image, product.image_1, :jpg), nested_products_uri(product)} <br /> #{link_to product.name, nested_products_uri(product)} </li>"
-        end
+          if index == 0
+            food += "<tr>"
+          end
+          food += "<td valign='top'>#{link_to show_image_tag(product.layout_image, product.image_1, :jpg), nested_products_uri(product)} <br /> #{link_to product.name, nested_products_uri(product)}</td>"
+         index = index + 1
+          if index == 6
+            food += "</tr>"
+            index = 0
+          end
+       end
+
         if product.categories.root.root.name == "Wine"
-          wine += "<li style=\"float:left;width:100px;margin-left:10px;margin-bottom:10px;\"> #{link_to show_image_tag(product.layout_image, product.image_1, :jpg), nested_products_uri(product)} <br /> #{link_to product.name, nested_products_uri(product)} </li>"
+         if index == 0
+          wine += "<tr>"
+         end
+         wine += "<td valign='top'>#{link_to show_image_tag(product.layout_image, product.image_1, :jpg), nested_products_uri(product)} <br /> #{link_to product.name, nested_products_uri(product)}</td>"
+         index = index + 1
+         if index == 6
+          wine += "</tr>"
+          index = 0
         end
-      end -%>
+      end
+   end -%>
     <% unless wine == "" %>
-    <%=  "<h3 style=\"font-size:16px;color:#013300;border:none;\">Wines made from this producer</h3><ul style=\"list-style:none;margin:0;padding:0;text-align:center;float:left;\"> #{wine} </ul>"  -%>
+    <% final_wine = "<table>#{wine}</table>" %>
+    <%=  "<h3 style=\"font-size:16px;color:#013300;border:none;\">Wines made from this producer</h3> #{final_wine}"  -%>
     <%- end -%>
 
-    <% unless food == "" %>
-    <%=  "<h3 style=\"font-size:16px;color:#013300;border:none;\">Foods made from this producer</h3><ul style=\"list-style:none;margin:0;padding:0;text-align:center;float:left;\"> #{food} </ul>"  -%>
+  <% unless food == "" %>
+    <% final_food = "<table>#{food}</table>" %>
+    <%=  "<h3 style=\"font-size:16px;color:#013300;border:none;\">Foods made from this producer</h3> #{final_food} "  -%>
     <%- end -%>
 
 
