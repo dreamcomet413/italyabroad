@@ -160,7 +160,7 @@ end%>
     </tr>
     <% if @user.new_record? %>
     <tr>
-		  <td>I agree to the Italyabroad.com terms and conditions </td>
+		  <td><%= link_to 'I agree to the Italyabroad.com terms and conditions', terms_and_conditions_path %> </td>
 		  <td><%= check_box_tag 'conditions' %></td>
     </tr>
     <% end %>

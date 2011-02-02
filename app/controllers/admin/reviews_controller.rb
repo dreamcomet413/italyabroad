@@ -4,7 +4,7 @@ class Admin::ReviewsController < ApplicationController
 
   def index
     @reviews = Review.all(:order => "created_at DESC").paginate(:page => params[:page], :per_page => 10)
-    
+
     respond_to do |format|
       format.html
     end
@@ -12,7 +12,7 @@ class Admin::ReviewsController < ApplicationController
 
   def new
     @review = Review.new
-    
+
     respond_to do |format|
       format.html
     end
@@ -20,7 +20,7 @@ class Admin::ReviewsController < ApplicationController
 
   def edit
     @review = Review.find(params[:id])
-    
+
     respond_to do |format|
       format.html
     end
@@ -28,9 +28,9 @@ class Admin::ReviewsController < ApplicationController
 
   def create
     @review = Review.new(params[:review])
-    
+    @review.user = current_user
     if @review.save
-      redirect_to :action => :index
+      redirect_to admin_reviews_path
     else
       flash[:notice] = @review.show_errors
       render :action => :new
@@ -42,7 +42,7 @@ class Admin::ReviewsController < ApplicationController
 
     if @review.update_attributes(params[:review])
       redirect_to :action => :index
-    else    
+    else
       flash[:notice] = @review.show_errors
       render :action => :edit
     end
@@ -53,3 +53,4 @@ class Admin::ReviewsController < ApplicationController
     redirect_to :action => :index
   end
 end
+
