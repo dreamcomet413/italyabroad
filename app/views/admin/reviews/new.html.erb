@@ -1,0 +1,26 @@
+<%= content_tag :p, flash[:notice] %>
+<% @products = Product.find(:all,:include=>'categories',:conditions=>['categories.name = "Events" or categories.name = "Wine Club" or categories.name = "Wine Tours"'])%>
+
+<% form_for [:admin,@review] do %>
+<p>
+  Select: <br />
+  <%= select (:review, :reviewer_id, @products.map {|p| [p.name,p.id]},{:include_blank => 'Select ...'}) %>
+</p>
+
+  <p>
+            Title:<br /><%= text_field :review, :name %>
+  </p>
+  <p>
+            Body:<br /><%= text_area :review, :description, :rows => 5, :style => "width:50%" %>
+  </p>
+  <p>
+    Rate: <%= select :review, :score, [5,4,3,2,1] %>
+  </p>
+  <p><%= hidden_field :reiview,:user_id,:value=>current_user.id %>
+    <%= hidden_field :review,:reviewer_type,:value=>'Product' %>
+  </p>
+  <p>
+    <%= submit_tag 'Submit' %><%= link_to 'Cancel',admin_reviews_path %>
+  </p>
+<% end %>
+
