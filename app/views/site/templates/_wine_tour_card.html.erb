@@ -28,6 +28,7 @@
       </td>
     </tr>
   </table>
+
   <div class="invite" style="text-align:center;margin:10px 20px;padding-top:10px;border-top:2px solid #b6cb31;padding-left:20px;padding-right:20px;">
     <h2 style="font-size:16px;color:#666666;">Invite a Friend</h2>
     <%- form_for :friend do -%>
@@ -57,6 +58,12 @@
     <%= image_submit_tag("send_ico.png") %>
     <%- end -%>
   </div>
+  <h3>Reviews <%= link_to("(Add Review)", login_path, :style => "font-size:12px;") unless logged_in?  %></h3>
+   <%= render :partial => 'site/shared/review_view_short', :locals => {:reviewer => @product} %>
+   <%- if logged_in? -%>
+    <h3>Leave your review</h3>
+    <%= render(:partial => 'site/reviews/new', :locals => {:create_url => product_reviews_path(@product, :return_to => nested_products_uri(@product))}) %>
+  <%- end -%>
 </div>
 
 <% content_for :right do %>
@@ -68,3 +75,4 @@
 	<br />
 	<%= render :partial => '/site/shared/box_grape_guide' %>
 <% end %>
+

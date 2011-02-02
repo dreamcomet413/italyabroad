@@ -58,7 +58,12 @@
     <%- end -%>
   </div>
 </div>
-
+<h3>Reviews <%= link_to("(Add Review)", login_path, :style => "font-size:12px;") unless logged_in?  %></h3>
+ <%= render :partial => 'site/shared/review_view_short', :locals => {:reviewer => @product} %>
+ <%- if logged_in? -%>
+    <h3>Leave your review</h3>
+    <%= render(:partial => 'site/reviews/new', :locals => {:create_url => product_reviews_path(@product, :return_to => nested_products_uri(@product))}) %>
+  <%- end -%>
 <% content_for :right do %>
   <%= render :partial => 'site/shared/box_product_reviews' %>
   <br />
@@ -68,3 +73,4 @@
 	<br />
 	<%= render :partial => '/site/shared/box_grape_guide' %>
 <% end %>
+
