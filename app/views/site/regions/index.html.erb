@@ -25,48 +25,16 @@
     I will also like to hear what you have to say so please share your views & comments.  -->
   </div>
 
-  <div style="clear:both;"></div>
-<div style="float:right;">
+  <div style="clear:both;"></div><br />
+  <div style="float:right;">
   <%- form_tag regions_path, :method => :get do -%>
-    <strong>Search</strong><%= text_field_tag 'search_by_name',params[:search_by_name] %>
+    <strong>Region Search</strong><%= text_field_tag 'search_by_name',params[:search_by_name] %>
     <%= submit_tag 'Search', :name => 'search' %>
   <% end %>
   </div>
   <br />
   <br />
-  <div><%= will_paginate_(@regions) %></div>
-<% if @regions && @regions.size > 0 %>
-	<ul>
-	<% for region in @regions %>
-	  <li>
-      <h2><%= link_to region.name, region.friendly_identifier.blank? ? "regions/#{region.id}" : "regions/#{region.friendly_identifier}" %><%#= show_region_image(region) %></h2>
-      <%#= show_region_image(region) %>
-      <div><% unless region.description.blank? %>
-      <%= region.description[0,250] %>
-       <%- end -%>
-      </div>
-      <div>
-      <% unless region.producers.blank? %>
-      Producers in this region : <%- region.producers.each do |p| -%>
-            <%= p.name %>
-          <%- end -%>
-       <% else %>
-       No Producers from this region
-       <% end %>
-      </div>
-      <table width="100%" class="foot">
-        <tr>
-
-          <td align="right">
-
-          </td>
-        </tr>
-      </table>
-    </li>
-  <% end %>
-  </ul>
-<div><%= will_paginate_(@regions) %></div>
-<!-- Alphabetical listing of regions added by Sujith on 2011.jan.28 START -->
+  <!-- Alphabetical listing of regions added by Sujith on 2011.jan.28 START -->
 
 
 
@@ -83,7 +51,7 @@
         <ul class="clean" style="list-style:none;">
 
           <%- for region in @regions_all  -%>
-   
+
 
            <li><%= link_to region.name, region_path(region) if region.name.upcase =~ /^[A-G]/ %></li>
           <%- end -%>
@@ -116,7 +84,41 @@
 
 
 
-<!-- Alphabetical listing of regions added by Sujith on 2011.jan.28 END -->
+<!-- Alphabetical listing of regions added by Sujith on 2011.jan.28 END --><br />
+
+
+  <div><%= will_paginate_(@regions) %></div>
+<% if @regions && @regions.size > 0 %>
+	<ul>
+	<% for region in @regions %>
+	  <li>
+      <h2><%= link_to region.name, region.friendly_identifier.blank? ? "regions/#{region.id}" : "regions/#{region.friendly_identifier}" %><%#= show_region_image(region) %></h2>
+      <%#= show_region_image(region) %>
+      <div><% unless region.description.blank? %>
+      <%= region.description[0,250] %>
+       <%- end -%>
+      </div>
+      <div>
+      <% unless region.producers.blank? %>
+      Producers in this region : <%- region.producers.each do |p| -%>
+            <%= p.name %>
+          <%- end -%>
+       <% else %>
+       No Producers from this region
+       <% end %>
+      </div>
+      <table width="100%" class="foot">
+        <tr>
+
+          <td align="right">
+
+          </td>
+        </tr>
+      </table>
+    </li>
+  <% end %>
+  </ul>
+<div><%= will_paginate_(@regions) %></div>
 
 
   <div style="clear:both;"></div>
