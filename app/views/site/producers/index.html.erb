@@ -81,6 +81,7 @@
 
 
 <!-- Alphabetical listing of producers added by Sujith on 2011.jan.28 END --> <br />
+ <% if params[:search] %>
   <div><%= will_paginate_(@producers) %></div>
 <% if @producers && @producers.size > 0 %>
 	<ul>
@@ -113,7 +114,7 @@
   <% end %>
   </ul>
 <div><%= will_paginate_(@producers) %></div>
-
+ <% end %>
 
 
   <div style="clear:both;"></div>

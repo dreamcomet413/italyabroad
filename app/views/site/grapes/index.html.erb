@@ -51,7 +51,8 @@
       </td>
     </tr>
   </table>
-   <div><%= will_paginate_(@grapes) %></div>
+ <% if params[:search] %>
+  <div><%= will_paginate_(@grapes) %></div>
 <% if @grapes && @grapes.size > 0 %>
 	<ul>
 	<% for grape in @grapes %>
@@ -76,7 +77,7 @@
   </ul>
 <div><%= will_paginate_(@grapes) %></div>
 <%- end -%><br />
-
+<% end %>
 
 
 </div>
