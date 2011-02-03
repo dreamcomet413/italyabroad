@@ -49,7 +49,7 @@ class Admin::ProductsController < ApplicationController
   end
 
   def destroy
-    Product.find_by_id(params[:id]).destroy
+    Product.find(params[:id]).destroy
     redirect_to :action => :index
   end
 
