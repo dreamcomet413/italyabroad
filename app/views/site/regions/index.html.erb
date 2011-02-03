@@ -86,7 +86,7 @@
 
 <!-- Alphabetical listing of regions added by Sujith on 2011.jan.28 END --><br />
 
-
+ <% if params[:search] %>
   <div><%= will_paginate_(@regions) %></div>
 <% if @regions && @regions.size > 0 %>
 	<ul>
@@ -119,7 +119,7 @@
   <% end %>
   </ul>
 <div><%= will_paginate_(@regions) %></div>
-
+  <% end %>
 
   <div style="clear:both;"></div>
   <div style="float:right;margin-top:20px;margin-bottom:10px;"><%= render :partial => '/site/shared/social_bookmarks' %></div>
