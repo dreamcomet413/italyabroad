@@ -14,38 +14,11 @@
    <%= @about.description rescue 'The wine and grape details ...' %> <br />
    <div style="float:right;">
   <%- form_tag grapes_path, :method => :get do -%>
-    <strong>Search</strong><%= text_field_tag 'search_by_name',params[:search_by_name] %>
+    <strong>Grape Search</strong><%= text_field_tag 'search_by_name',params[:search_by_name] %>
     <%= submit_tag 'Search', :name => 'search' %>
   <% end %>
-  </div> <br />
-   <div><%= will_paginate_(@grapes) %></div>
-<% if @grapes && @grapes.size > 0 %>
-	<ul>
-	<% for grape in @grapes %>
-	  <li>
-      <h2><%= link_to grape.name, grape.friendly_identifier.blank? ? "grapes/#{grape.id}" : "grapes/#{grape.friendly_identifier}" %><%#= show_region_image(region) %></h2>
-      <%#= show_region_image(region) %>
-      <div><% unless grape.description.blank? %>
-      <%= grape.description[0,250] %>
-       <%- end -%>
-      </div>
-
-      <table width="100%" class="foot">
-        <tr>
-
-          <td align="right">
-
-          </td>
-        </tr>
-      </table>
-    </li>
-  <% end %>
-  </ul>
-<div><%= will_paginate_(@grapes) %></div>
-<%- end -%><br />
-
-
-  <h3 style="font-size:16px;border:none;margin-bottom:0;">Grape list, click for information</h3>
+  </div> <br /> <br />
+   <h3 style="font-size:16px;border:none;margin-bottom:0;">Grape list, click for information</h3>
   <br />
   <table cellpadding="5" cellspacing="0" border="0" width="100%">
     <tr>
@@ -78,6 +51,34 @@
       </td>
     </tr>
   </table>
+   <div><%= will_paginate_(@grapes) %></div>
+<% if @grapes && @grapes.size > 0 %>
+	<ul>
+	<% for grape in @grapes %>
+	  <li>
+      <h2><%= link_to grape.name, grape.friendly_identifier.blank? ? "grapes/#{grape.id}" : "grapes/#{grape.friendly_identifier}" %><%#= show_region_image(region) %></h2>
+      <%#= show_region_image(region) %>
+      <div><% unless grape.description.blank? %>
+      <%= grape.description[0,250] %>
+       <%- end -%>
+      </div>
+
+      <table width="100%" class="foot">
+        <tr>
+
+          <td align="right">
+
+          </td>
+        </tr>
+      </table>
+    </li>
+  <% end %>
+  </ul>
+<div><%= will_paginate_(@grapes) %></div>
+<%- end -%><br />
+
+
+
 </div>
 
 <%- content_for :right do -%>

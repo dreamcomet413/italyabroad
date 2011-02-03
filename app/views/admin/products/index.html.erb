@@ -77,7 +77,7 @@
         <td><%= product.quantity == 0 %></td>
         <td><%= product.active %></td>
         <td>
-          <%= link_to "Edit", edit_admin_product_path(product.id), :popup => ['Edit #{product.name}', 'height=1000,width=1000,scrollbars=yes']%> | <%= link_to "Delete" %>
+          <%= link_to "Edit", edit_admin_product_path(product.id), :popup => ['Edit #{product.name}', 'height=1000,width=1000,scrollbars=yes']%> | <%= link_to "Delete",admin_product_path(product),:confirm => 'Are you sure?', :method => :delete %>
         </td>
        </tr>
       <%- end -%>

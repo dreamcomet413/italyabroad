@@ -25,48 +25,16 @@
     I will also like to hear what you have to say so please share your views & comments.  -->
   </div>
 
-  <div style="clear:both;"></div>
+  <div style="clear:both;"></div><br />
   <div style="float:right;">
   <%- form_tag producers_path, :method => :get do -%>
-    <strong>Search</strong><%= text_field_tag 'search_by_name',params[:search_by_name] %>
+    <strong>Producer Search</strong><%= text_field_tag 'search_by_name',params[:search_by_name] %>
     <%= submit_tag 'Search', :name => 'search' %>
   <% end %>
   </div>
   <br />
   <br />
-  <div><%= will_paginate_(@producers) %></div>
-<% if @producers && @producers.size > 0 %>
-	<ul>
-	<% for producer in @producers %>
-	  <li>
-      <h2><%= link_to producer.name, producer.friendly_identifier.blank? ? "/producers/#{producer.id}" : "/producers/#{producer.friendly_identifier}" %></h2>
-      <%#= show_producer_image(producer) %>
-      <div><%= producer.region.name rescue "No region" %>
-
-      </div> <br />
-      <div><% unless producer.description.blank? %>
-      <%= producer.description[0,250] %>
-      <% end %>
-      </div> <br /><br />
-      <div>
-      <% unless producer.grapes.blank? %>
-        Grapes : <%= producer.grapes.collect(&:name).join(", ") %>
-       <% else %>
-       <% end %>
-      </div>
-      <table width="100%" class="foot">
-        <tr>
-
-          <td align="right">
-
-          </td>
-        </tr>
-      </table>
-    </li>
-  <% end %>
-  </ul>
-<div><%= will_paginate_(@producers) %></div>
-<!-- Alphabetical listing of producers added by Sujith on 2011.jan.28 START -->
+  <!-- Alphabetical listing of producers added by Sujith on 2011.jan.28 START -->
 
 
 
@@ -112,7 +80,40 @@
 
 
 
-<!-- Alphabetical listing of producers added by Sujith on 2011.jan.28 END -->
+<!-- Alphabetical listing of producers added by Sujith on 2011.jan.28 END --> <br />
+  <div><%= will_paginate_(@producers) %></div>
+<% if @producers && @producers.size > 0 %>
+	<ul>
+	<% for producer in @producers %>
+	  <li>
+      <h2><%= link_to producer.name, producer.friendly_identifier.blank? ? "/producers/#{producer.id}" : "/producers/#{producer.friendly_identifier}" %></h2>
+      <%#= show_producer_image(producer) %>
+      <div><%= producer.region.name rescue "No region" %>
+
+      </div> <br />
+      <div><% unless producer.description.blank? %>
+      <%= producer.description[0,250] %>
+      <% end %>
+      </div> <br /><br />
+      <div>
+      <% unless producer.grapes.blank? %>
+        Grapes : <%= producer.grapes.collect(&:name).join(", ") %>
+       <% else %>
+       <% end %>
+      </div>
+      <table width="100%" class="foot">
+        <tr>
+
+          <td align="right">
+
+          </td>
+        </tr>
+      </table>
+    </li>
+  <% end %>
+  </ul>
+<div><%= will_paginate_(@producers) %></div>
+
 
 
   <div style="clear:both;"></div>

@@ -12,8 +12,9 @@ class Site::ProductsController < ApplicationController
     @product = Product.find(params[:id]) || Product.find_by_id(params[:id])
     unless @product
       render :file => File.join(RAILS_ROOT, 'public', '404.html'), :status => 404
-    end
-
+   # end
+    #unless @product.blank?
+  else
     p "**************************"
     p params[:category]
     p "*************************"
@@ -28,6 +29,8 @@ class Site::ProductsController < ApplicationController
       @images = @category.blank? ? [] : @category.products.find(:all,:order => "products.price DESC", :include => [:categories, :grapes]).paginate(:page => params[:page], :per_page => 10)
 
     end
+  end
+
   end
   end
 
