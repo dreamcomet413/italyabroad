@@ -7,11 +7,11 @@
               <div style="margin: 0 5px 5px 0;float:left"><%= avatar_for_user(review.user, "small") %></div>
               <div style="text-align:left;margin: 0 0 5px 15px;float:left">
                 <span style="font:bold 13px Arial"><%= (review.user.name).capitalize %></span><br/>
-                   <%= review.created_at.strftime("%m/%d/%Y %H:%M %p") %><br/>
+                  <span style="font:10px Arial"> <%= review.created_at.strftime("%d/%m/%Y") %></span><!-- %H:%M %p"--><br/>
                    <span ><%= show_ratings(review.reviewer, review.score) %></span>
               </div>
               <div style="clear:both"></div>
-              <div class="description"><%= review.description.gsub("\n","<br />") rescue "No description" %></div>
+              <div class="description"> <span style="font:10px Arial"><%= review.description.gsub("\n","<br />") rescue "No description" %></span></div>
             </div>
 
 	    <!--<table>

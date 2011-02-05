@@ -126,11 +126,11 @@
   <% end %>
 </div>
 <% content_for :right do %>
-<%#= render :partial => '/site/shared/box_grape_guide' %>
+<%= render :partial => 'site/shared/box_event' %>
 	<br />
-	<%#= render :partial => 'box_most_read_blog' %>
+	<%= render :partial => '/site/blog/box_most_read_blog' %>
 	<br />
-	<%#= render :partial => '/site/shared/box_subscriptions' %>
+	<%= render :partial => 'site/shared/box_popular' %>
 	<br />
 	<%#= render :partial => 'box_popular_tags' %>
 	<br />
