@@ -38,7 +38,8 @@
           <%- if product.out_of_stock? -%>
             <%= image_tag('out_of_stock.png') %>
           <%- else -%>
-            <%= link_to image_tag("buttons/add_to_cart_button.png"), product_cart_index_path(product), :method => 'post' %>
+            <%#= link_to_remote image_tag("buttons/add_to_cart_button.png"), product_cart_index_path(product), :method => 'post' %>
+            <%= link_to_remote image_tag("buttons/add_to_cart_button.png"), :url => product_cart_index_path(product), :html => {:method => 'post'} %>
           <%- end -%>
         </div>
       </td>
