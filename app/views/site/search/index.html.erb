@@ -21,13 +21,14 @@
     </table>
   </div>
 	<% for product in @products %>
+	<%- product = Product.find(product.id) -%>
 	<table style="padding-bottom:20px;width:100%;" cellpadding="0" border="0" cellspacing="0">
 		<tr>
 			<td style="width: 80px; padding: 5px 10px;">
 				<%= link_to show_image_tag(product.layout_image, product.image_1, :jpg), nested_products_uri(product) %>
 			</td>
 			<td style="width: 490px;">
-			  <%- product = Product.find(product.id) -%>
+
 				<h1><%= link_to product.name, nested_products_uri(product), :style => "font-size:17px;color:#003300;" %></h1>
 				<br />
 				<div style="padding-top:10px"><%= product.description_short %></div>

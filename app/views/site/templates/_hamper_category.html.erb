@@ -11,7 +11,7 @@
 <% end %>
 <%= render :partial => '/site/shared/box_hamper_search' %>
 <%= render :partial => '/site/templates/category' %>
-<% products = Product.find(:all, :limit => 3, :order => "created_at DESC", :conditions => "id IN (#{@category.all_products_ids.join(',')})") %>
+<% products = Product.find(:all, :limit => 3, :order => "created_at DESC", :conditions => "id IN (#{@category.all_products_ids.join(',')}) AND quantity > 0") %>
 <%- products.each do |product| -%>
 <div  class="wineList">
   <table width="100%">
