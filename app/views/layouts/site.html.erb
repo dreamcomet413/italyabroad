@@ -93,8 +93,8 @@
             <%= content_tag(:div, @breadcrumbs, :class => "breadcrumbs") if @breadcrumbs %>
             <div class="breadcrumbs" >&nbsp;&nbsp;&nbsp;
             <strong>
-            <% if logged_in? %>
-            <span class="data"><%= link_to 'Write review of products you bought',:controller=>'orders',:action=>'show_order_details' %></span>
+            <% if logged_in? and !(current_user.orders.blank?)%>
+            <span class="data"><%= link_to 'Why not review the products you bought?',:controller=>'orders',:action=>'show_order_details' %></span>
             <% end %>
             </strong>
             </div>
