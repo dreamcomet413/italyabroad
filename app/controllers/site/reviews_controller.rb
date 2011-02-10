@@ -14,12 +14,17 @@ class Site::ReviewsController < ApplicationController
     @review.user = current_user
 
     if @review.save
+      flash[:notice] = 'Review correctly published!'
       status = "Review correctly published!"
     else
       status = "Your body message is empty."
     end
-    redirect_to(params[:return_to])
-  end
+    if  session[:return_url] != ""
+      params[:return_to] = session[:return_url]
+      session[:return_url] = ""
+    end
+      redirect_to params[:return_to]
+    end
 
   def show
     @review = Review.find(params[:id])

@@ -1,0 +1,21 @@
+<% for order in @orders %>
+
+
+		<% for order_item in order.order_items %>
+            <tr class="list <%= cycle("odd", "even") %>">
+              <td><%= order.id %></td>
+              <% product = Product.find(order_item.product_id) %>
+  						<td style="text-align:left"><%= link_to order_item.name,nested_products_uri(product) %></td>
+  						<td style="text-align:center"><%= order_item.quantity %></td>
+              <td><%= order.created_at.strftime("%d/%m/%y %H:%M") %></td>
+  					<td style="text-align:center"><%= order_item.rate %></td>
+  						<td style="text-align:center"><%= number_to_currency order_item.price, :unit => "&pound;" %></td>
+  						<td style="text-align:right"><%= number_to_currency order_item.total, :unit => "&pound;" %></td>
+  						<td><td style="text-align:left"><%= link_to 'Write Review',nested_products_uri(product) %></td>
+          </tr>
+  				<% end %>
+
+
+
+<% end %>
+

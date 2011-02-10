@@ -87,6 +87,7 @@ ActionController::Routing::Routes.draw do |map|
   end
 
   map.connect "admin/products/xml", :controller => '/admin/products', :action => 'xml'
+  map.connect "site/orders/show_order_details",:controller => '/site/orders', :action => 'show_order_details'
 
   map.connect "admin/recipes/xml", :controller => '/admin/recipes', :action => 'xml'
   map.xml 'admin/xml', :controller => 'admin/xml', :action => 'index'

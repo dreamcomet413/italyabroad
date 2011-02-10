@@ -92,6 +92,13 @@ class Site::OrdersController < ApplicationController
     send_data(generate_pdf(@order), :filename => "Tasting-Notes.pdf", :type => "application/pdf")
   end
 
+  def show_order_details
+    @orders = current_user.orders.all(:order => "created_at DESC")
+    respond_to do |format|
+      format.html { render :layout => 'site' }
+    end
+    session[:return_url] = request.request_uri
+  end
 
 
   private

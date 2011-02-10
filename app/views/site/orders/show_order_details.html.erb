@@ -1,0 +1,26 @@
+<% @title = "Your recent orders" %>
+<%- @breadcrumbs = "#{link_to "Home", root_url} &raquo; My Orders and Tracking" -%>
+<% @class = "no-padding" %>
+
+<div id="header"><%= render :partial => 'site/shared/box_login' %></div>
+<%= flash[:notice] %>
+<h4 class="account-title">Your recent orders</h4>
+<br />
+<table width="99%" align="center" style="text-align:center;" cellspacing="0" cellpadding="0" border="0">
+	<tr>
+	  <td><strong>Order No.</strong></td>
+	  <td><strong>Item</strong></td>
+	  <td><strong>Quantity</strong></td>
+	  <td><strong>Order Placed</strong></td>
+	  <td><strong>Rate</strong></td>
+	  <td><strong>Price</strong></td>
+	  <td><strong>Total</strong></td>
+	  <td>&nbsp;</td>
+	</tr>
+	<%= render :partial => 'review_order'%>
+</table>
+<br /><br /><br />
+<% content_for :right do %>
+	<%= render :partial => '/site/shared/box_grape_guide' %>
+<% end %>
+
