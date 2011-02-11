@@ -2,6 +2,7 @@
 
 
 		<% for order_item in order.order_items %>
+		<% unless order_item.product_id.nil? %>
             <tr class="list <%= cycle("odd", "even") %>">
               <td><%= order.id %></td>
               <% product = Product.find(order_item.product_id) %>
@@ -14,7 +15,7 @@
   						<td><td style="text-align:left"><%= link_to 'Write Review',nested_products_uri(product) %></td>
           </tr>
   				<% end %>
-
+          <% end %>
 
 
 <% end %>
