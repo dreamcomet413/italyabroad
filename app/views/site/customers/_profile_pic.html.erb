@@ -16,8 +16,11 @@
              <%= avatar_for_user(@user, "big") %>
              <input type="hidden" name="kind" value="1">
              <% elsif @user.photo_id.nil? %>
-
+              <% unless @user.photo_default.nil? %>
              <img src ="images/<%= @user.photo_default+'.jpg'%>">
+             <% else %>
+              <img src ="images/default.jpg">
+             <% end %>
             <% end %>
 
            <div id="loader-image" style="display:none" align="center"><%= image_tag "loading.gif" %></div>
