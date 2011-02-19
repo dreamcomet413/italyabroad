@@ -3,8 +3,7 @@
 
 		<% for order_item in order.order_items %>
 		<% unless order_item.product_id.nil? %>
-            <tr class="list <%= cycle("odd", "even") %>">
-
+            <tr class="list_plain %>">
               <% product = Product.find(order_item.product_id) %>
   						<td style="text-align:left;width:400px;"><%=order_item.name%></td>
 
