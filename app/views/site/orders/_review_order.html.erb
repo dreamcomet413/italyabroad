@@ -6,9 +6,19 @@
             <tr class="list <%= cycle("odd", "even") %>">
 
               <% product = Product.find(order_item.product_id) %>
-  						<td style="text-align:left"><%= link_to order_item.name,nested_products_uri(product) %></td>
+  						<td style="text-align:left;width:400px;"><%=order_item.name%></td>
 
-  						<td><td style="text-align:left"><%= link_to 'Write Review',nested_products_uri(product) %></td>
+  						<td><td style="text-align:left">
+              	<% if order_item.reviewed == false %>
+              <%= link_to_remote "Write Review",
+               :update =>"write_review#{product.id}" ,
+                        :url => {:controller=>'site/orders', :action => "write_review", :id => product.id,:order_id=>order.id}
+  %>          <% end %>
+  						</td>
+
+  						<tr><td>
+<div id="write_review<%=product.id%>"></div></td></tr>
+
           </tr>
   				<% end %>
           <% end %>

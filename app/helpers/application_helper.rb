@@ -169,6 +169,19 @@ module ApplicationHelper
     content_tag(:div, page_entries_info(object), :class => "page_info")
   end
 
+  def check_any_products_remains_for_review(orders)
+    show_link = false
+    for order in orders
+      for order_item in order.order_items
+        unless order_item.product_id.nil?
+            if order_item.reviewed == false
+              show_link = true
+            end
+          end
+        end
+      end
+      show_link
+  end
 
 end
 
