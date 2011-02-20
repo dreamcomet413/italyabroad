@@ -29,6 +29,13 @@ img {
     padding:3px 0;
 }
 
+.list_plain td {
+   padding:3px 0;
+}
+
+
+
+
 .even {
     background-color:#f3f3f3;
     border:1px solid #cccccc;

@@ -1,0 +1,22 @@
+<% form_tag 'review' do %>
+<table align="center">
+
+  <tr>
+           <td> Title:</td><td><%= text_field_tag  :name %></td>
+  </tr>
+  <tr>
+           <td> Body:</td><td><%= text_area_tag  :description,'',:size => '50x5', :style => "width:50%" %></td>
+  </tr>
+  <tr>
+   <td> Rate:</td><td> <%= select_tag "score",'<option value="5">5</option><option value="4">4</option><option value="3">3</option><option value="2">2</option><option value="1">1</option>' %>
+  </td>
+  </tr>
+  <tr><td colspan="2" align="center">
+    <%= submit_tag 'Submit' %>
+  </td></tr>
+  <input type="hidden" value="<%= product_id%>" name="product_id">
+  <input type="hidden" value="<%= order_id%>" name="order_id">
+
+</table>
+<% end %>
+

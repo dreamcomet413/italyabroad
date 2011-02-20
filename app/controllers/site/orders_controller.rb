@@ -98,6 +98,21 @@ class Site::OrdersController < ApplicationController
       format.html { render :layout => 'site' }
     end
     session[:return_url] = request.request_uri
+
+  end
+
+  def write_review
+    render :partial => "site/reviews/write_review",:locals=>{:product_id=>params[:id],:order_id=>params[:order_id]}
+
+  end
+
+ def review
+      @review = Review.create!(:name=>params[:name],:description=>params[:description],:reviewer_id=>params[:product_id],:user_id=>current_user.id,:reviewer_type=>'Product',:score=>params[:score])
+      @order = current_user.orders.find(params[:order_id])
+      @order_item = @order.order_items.find_by_product_id(params[:product_id])
+      @order_item.update_attribute('reviewed',true)
+      flash[:notice] = 'Review correctly published!'
+      redirect_to session[:return_url]
   end
 
 
