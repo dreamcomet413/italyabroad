@@ -5,9 +5,8 @@
 %>
 
 <%- @class = "events" -%>
-
 <div style="text-align:center;margin-top:5px;">
-  <%= image_tag image_url('original', @product.image_1, :jpg) %>
+  <%= image_tag image_url('original', @product.image_1, :jpg) if @product && @product.image_1 %>
 </div>
 
 <div style="padding:0 10px;">
