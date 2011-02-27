@@ -145,6 +145,17 @@ module ApplicationHelper
     return %Q(<span class="ratings" style="#{"background:transparent url(/images/#{ratings_icon}) no-repeat -#{(86 - (score.to_f/5.to_f * 86)).round}px center;"}">&nbsp;</span>)
   end
 
+  def show_review_ratings(product, score = nil)
+   ratings_icon = "ratings_icon.png"
+    ratings_icon = "ratings_recipe_icon.png" if product.class.to_s == "Recipe"
+    if product.class.to_s != "Recipe"
+    ratings_icon = "ratings_recipe_icon.png" if product.categories.root.name.downcase == "food" or product.categories.root.name.downcase == "hampers"
+  end
+    return %Q(<span class="ratings" style="#{"background:transparent url(/images/#{ratings_icon}) no-repeat -#{(86 - (product.average_rating.to_f/5.to_f * 86)).round}px center;" if product.average_rating > 0}">&nbsp;</span>) if score.nil?
+    return %Q(<span class="ratings" style="#{"background:transparent url(/images/#{ratings_icon}) no-repeat -#{(86 - (score.to_f/5.to_f * 86)).round}px center;"}">&nbsp;</span>)
+  end
+
+
   def show_grape_image(grape)
     return image_tag(image_url(:grape_thumb, grape.image, :jpg)) if grape.image
     return image_tag("grape_default.png")
