@@ -47,7 +47,7 @@ class Site::OrdersController < ApplicationController
         saved = @order.save
         if saved
           create_order_items
-
+           Notifier.deliver_new_order_placed(@order,current_user,AppConfig.admin_email)
           if production
             gateway = ActiveMerchant::Billing::SagePayGateway.new(:login => @payment_method.vendor)
             response = gateway.purchase(@cart.total*100, @credit_card, :order_id => "#{order.id}", :address => { :address1 => current_user.address, :zip => current_user.cap })
@@ -72,6 +72,7 @@ class Site::OrdersController < ApplicationController
       saved = @order.save
       if saved
         create_order_items
+        Notifier.deliver_new_order_placed(@order,current_user,AppConfig.admin_email)
       end
       redirect_to paypal_checkouts_path(:id => new_order.id)
     end
@@ -108,6 +109,7 @@ class Site::OrdersController < ApplicationController
 
  def review
       @review = Review.create!(:name=>params[:name],:description=>params[:description],:reviewer_id=>params[:product_id],:user_id=>current_user.id,:reviewer_type=>'Product',:score=>params[:score])
+      Notifier.deliver_new_review_added(Product.find(@review.reviewer_id),current_user,AppConfig.admin_email,@review)
       @order = current_user.orders.find(params[:order_id])
       @order_item = @order.order_items.find_by_product_id(params[:product_id])
       @order_item.update_attribute('reviewed',true)

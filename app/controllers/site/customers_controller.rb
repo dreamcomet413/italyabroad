@@ -56,7 +56,7 @@ class Site::CustomersController < ApplicationController
     #@user.activation_code = ActivePassword.new #Customers don't wont activations
         simple_captcha_valid?
         if @user.save_with_captcha and !(params[:conditions].nil?)
-
+           Notifier.deliver_new_account_created(@user,AppConfig.admin_email)
           flash[:title] = "Congratulations"
           flash[:message] = "Your account has been created, an email with your account details has been sent to #{@user.email}."
           if @user.type_id != 4

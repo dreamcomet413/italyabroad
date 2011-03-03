@@ -171,6 +171,32 @@ class Notifier < ActionMailer::Base
                 :user=>user
   end
 
+
+  def new_review_added(product,user,admin_email,review)
+    recipients "#{admin_email}"
+    from "info@italyabroad.com"
+    subject  "A review of " + product.name + "added"
+    body      :product  => product,
+              :review=>review,
+                :user=>user
+  end
+
+  def new_order_placed(order,user,admin_email)
+    recipients "#{admin_email}"
+    from "info@italyabroad.com"
+    subject  "New order from  " + user.name
+     body      :order  => order,
+               :user=>user
+  end
+
+  def new_account_created(user,admin_email)
+    recipients "#{admin_email}"
+    from "info@italyabroad.com"
+    subject  "New Account created by  " + user.name
+    body     :user=>user,
+            :url  => url_for(:host => AppConfig.site_url, :controller => "site/customers", :action => "show", :id=>user.id)
+  end
+
   protected
 
   def setup_email(user)

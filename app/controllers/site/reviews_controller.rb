@@ -14,6 +14,7 @@ class Site::ReviewsController < ApplicationController
     @review.user = current_user
 
     if @review.save
+      Notifier.deliver_new_review_added(Product.find(@review.reviewer_id),current_user,AppConfig.admin_email,@review)
       flash[:notice] = 'Review correctly published!'
       status = "Review correctly published!"
     else

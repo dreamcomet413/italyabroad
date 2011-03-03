@@ -1,0 +1,13 @@
+Hi,
+
+New order is placed by <%=@user.name.titleize %> <%= @user.surname.titleize %>
+
+The order contains the following items
+<% for order_item in @order.order_items %>
+  Item :<%= order_item.name %>
+  Quantity : <%= order_item.quantity %>
+  Total:<%= number_to_currency order_item.total %>
+<% end %>
+---------------------------------------------------
+The Italyabroad.com Team
+
