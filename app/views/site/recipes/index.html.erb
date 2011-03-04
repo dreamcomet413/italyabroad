@@ -12,7 +12,11 @@
     recipes... the <strong style="font-size:26px;">best Italian recipes</strong><br /> -->
 
   </span>
+  <% if  @about and !@about.image_id.nil? %>
+  <%= link_to image_tag(image_url(:about_thumb, @about.image, :jpg)) , search_index_path(:id => "recipe") unless @about.blank? %>
+  <% else %>
   <%= link_to image_tag("recipes.jpg"), search_index_path(:id => "recipe") %>
+  <% end %>
 </div>
 <br/>
 <%= render :partial => '/site/shared/box_search_recipes_new' %>

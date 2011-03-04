@@ -5,7 +5,8 @@
   <h2><%#= @title %></h2>
   <h2><%= params[:type] %></h2>
   <br />
-<% form_tag(:action => "create") do %>
+<% form_tag admin_about_us_path,:multipart=>true do %>
+
   <%= error_messages_for %>
   <fieldset>
   <%= hidden_field(:about_u, :link_type, :value => params[:type]) %>
@@ -17,6 +18,13 @@
     <div style="float:left;height:300px;font:normal 15px Arial;padding:110px 14px 0 0;">Description</div>
     <div><%= text_area :about_u, 'description', :cols => 80, :rows => 25 %>
     </div></p>
+ <p>
+    <span style="font:normal 15px Arial;padding-right:60px">Image</span>
+    <% fields_for :image do %>
+    <%= file_field :image,:image_file %>
+    <% end %>
+
+  </p>
   <p>
     <%= submit_tag 'Create' %> or <%= link_to "Cancel", siteadmin_path %>
   </p>

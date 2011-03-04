@@ -1,5 +1,5 @@
 <h1>Editing <%= params[:type] %></h1>
-<% form_tag admin_about_u_path,:id => @about_u.id, :method => 'put' do  %>
+<% form_tag admin_about_u_path,:id => @about_u.id, :method => 'put' ,:multipart=>true do  %>
   <%= error_messages_for :about_u %>
 <fieldset>
   <%= hidden_field(:about_u, :link_type, :value => params[:type]) %>
@@ -12,6 +12,13 @@
     <div><%= text_area :about_u, 'description', :cols => 80, :rows => 25 %>
     </div></p>
   <p>
+  <p>
+    <span style="font:normal 15px Arial;padding-right:60px">Image</span>
+    <% fields_for :image do %>
+    <%= file_field :image,:image_file %>
+    <% end %>
+
+  </p>
     <%= submit_tag 'Update' %> or <%= link_to "Cancel", admin_about_us_path(:type => @about_u.link_type) %>
   </p>
   </fieldset>

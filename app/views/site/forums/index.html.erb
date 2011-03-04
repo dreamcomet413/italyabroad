@@ -7,7 +7,11 @@
     <!--Share your <strong style="font-size:24px;">passion,</strong> meet <strong style="font-size:24px;">people</strong> like you, compare<br />
     <strong style="font-size:24px;">tasting notes</strong> and get <strong style="font-size:24px;">recommendations</strong> -->
   </span>
-  <%= image_tag("forum_home.jpg") %>
+  <% if  @about and !@about.image_id.nil? %>
+  <%=  image_tag(image_url(:about_thumb, @about.image, :jpg))   unless @about.blank?  %>
+  <% else %>
+  <%= image_tag("forum_home.jpg") if @about.blank? %>
+  <% end %>
 </div>
 <div style="margin:10px;" id="forum-container-new">
   <table width="100%" cellspacing="0" cellpadding="0">
