@@ -42,8 +42,8 @@
                     <td><%= link_to producer.name, producer_path(producer) %></td>
                   </tr>
                   <tr>
-                    <td colspan="2"><%= producer.description[0..100] rescue "No Info" %>
-                    <%= link_to 'Continue Reading',producer_path(producer)%>
+                    <td colspan="2"><%= producer.description[0..100] + "..." rescue "" %><br />
+                      <%= link_to 'Continue Reading',producer_path(producer) if producer.description %>
 
                     </td>
                   </tr>
