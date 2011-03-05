@@ -1,5 +1,5 @@
 <% @title = @post.page_title_formatted; @description = @post.meta_description_formatted; @keys = @post.meta_keys_formatted %>
-<% @class = "no-padding"; @breadcrumbs = "#{link_to("Home", root_url)} &raquo; #{link_to("Blog", blog_index_path)} &raquo; #{@post.name}" %>
+<% @class = "no-padding"; @breadcrumbs = "#{link_to("Home", root_url)} &raquo; Community &raquo; #{link_to("Blog", blog_index_path)} &raquo; #{@post.name}" %>
 
 <div id="header">
  <%= truncate @post.name, :length => 70 %>

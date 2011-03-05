@@ -1,5 +1,5 @@
 <%- @title = "#{@my_profile ? "My" : @user.name+"'s"} Profile" -%>
-<%- @breadcrumbs = "#{link_to "Home", root_url} &raquo #{@title}" -%>
+<%- @breadcrumbs = "#{link_to "Home", root_url} &raquo; Community &raquo #{@title}" -%>
 <% @class = "no-padding" %>
 
 <div id="header"><%= @title %></div>
