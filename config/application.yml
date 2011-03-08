@@ -6,7 +6,7 @@ common: &default_settings
   smtp_password: test123
   application_name: vuconnector.com
   subject: Italyabroad.com
-  admin_email: 'admin@ejubel.com'
+  admin_email: 'info@italyabroad.com'
   wine_list_limit: 10
 
   avatar_1: default

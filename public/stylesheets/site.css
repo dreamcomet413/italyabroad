@@ -265,13 +265,27 @@ a {
     padding:5px 5px 30px 5px;
     overflow:hidden;
 }
-
+/*
 #flashBanner {
     position:relative;
     text-align:center;
     padding:10px 0 0 0;
     margin:0 auto;
     margin-bottom :10px;
+    width:723px;
+    height:284px;
+    overflow :hidden;
+    background:transparent url(images/loading.gif) center center;
+}*/
+
+#flashBanner {
+   position:relative;
+    text-align:center;
+    margin:auto;
+    margin-top:0px;
+    margin-bottom:auto;
+    padding-top:0px;
+    padding-bottom:auto;
     width:723px;
     height:284px;
     overflow :hidden;
@@ -550,6 +564,14 @@ a {
     color: #9b0707;
 }
 
+#box_latest_review table tbody tr td a#latest_review_name.data{
+    color: black;
+}
+#box_producer table tbody tr td a {
+    text-align: left;
+    float: left;
+}
+
 #box_latest_review div a,
 #box_grape_guide_forum div a,
 #box_get_to_know_italy div a{
@@ -574,7 +596,8 @@ a {
     float:left;
     margin-bottom:20px;
     margin-right:45px;
-    width:50px;
+    width:113px;
+    overflow:hidden;
 }
 
 #box_help,
