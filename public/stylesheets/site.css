@@ -596,9 +596,13 @@ a {
     float:left;
     margin-bottom:20px;
     margin-right:45px;
-    width:113px;
+    width:50px;
+    font-size:10px;
     overflow:hidden;
+    text-wrap: avoid;
+    white-space:nowrap;
 }
+
 
 #box_help,
 #box_about_us {
@@ -851,6 +855,7 @@ a {
 #box_search_recipes_new #search_recipe_type,
 #box_search_recipes_new #search_preparation_time {
     width:95px;
+    font-size: 10px;
 }
 
 #box_event {

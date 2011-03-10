@@ -18,8 +18,8 @@
       <h2><%=  faq.question %></h2>
       <div><%= faq.answer %></div>
       <div>Posted by : <%= faq.user.name %></div>
-      <table width="100%" class="foot">
-        <tr><td></td></tr></table>
+      <!-- table width="100%" class="foot">
+        <tr><td></td></tr></table -->
     </li>
   <% end %>
   </ul>
@@ -27,7 +27,7 @@
    </div>
  <% end %>
   <div style="clear:both;"></div>
-<div style="float:right"><%= render :partial => '/site/shared/social_bookmarks' %></div><br /><br />
+<div style="float:right"><%#= render :partial => '/site/shared/social_bookmarks' %></div><br /><br />
 </div>
 <div style="border-bottom:1px solid #CCCCCC;margin-top:20px;"></div>
 <% if logged_in? %>

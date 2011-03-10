@@ -8,7 +8,7 @@
     <strong style="font-size:24px;">tasting notes</strong> and get <strong style="font-size:24px;">recommendations</strong> -->
   </span>
   <% if  @about and !@about.image_id.nil? %>
-  <%=  image_tag(image_url(:about_thumb, @about.image, :jpg))   unless @about.blank? z %>
+  <%=  image_tag(image_url(:about_thumb, @about.image, :jpg))   unless @about.blank? %>
   <% else %>
   <%= image_tag("forum_home.jpg") if @about.blank? %>
   <% end %>
@@ -24,7 +24,7 @@
             <%- for user in users -%>
             <li>
               <%= link_to avatar_for_user(user, 'small'), customer_path(user), :title => user.name  %>
-              <%= link_to user.name, customer_path(user), :class=>'data', :title => user.name %>
+              <%= link_to (user.name.length > 10 ? user.name[0..10] + '<br />' + user.name[11..20] : user.name ), customer_path(user), :class=>'data', :title => user.name %>
             </li>
             <%- end -%>
           </ul>
