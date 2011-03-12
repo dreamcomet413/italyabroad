@@ -567,11 +567,24 @@ a {
 #box_latest_review table tbody tr td a#latest_review_name.data{
     color: black;
 }
+#box_latest_review table tbody tr td {
+    padding-left:10px;
+}
+
+#box_latest_review table tbody tr td a.data{
+     color: black;
+}
+
 #box_producer table tbody tr td a {
     text-align: left;
     float: left;
 }
-
+#box_producer table tbody tr td {
+    text-align: left;
+    float: left;
+    font-size:13px;
+    font-family:Arial;
+}
 #box_latest_review div a,
 #box_grape_guide_forum div a,
 #box_get_to_know_italy div a{
@@ -595,7 +608,8 @@ a {
 #box_newest_members ul li {
     float:left;
     margin-bottom:20px;
-    margin-right:45px;
+    margin-right:10px;
+    margin-left:10px;
     width:50px;
     font-size:10px;
     overflow:hidden;
