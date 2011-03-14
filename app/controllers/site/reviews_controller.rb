@@ -29,6 +29,7 @@ class Site::ReviewsController < ApplicationController
 
   def show
     @review = Review.find(params[:id])
+    @product = Product.find(params[:product_id]) if !params[:product_id].blank?
     render :layout=>'site'
   end
 

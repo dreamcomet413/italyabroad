@@ -43,7 +43,7 @@
                     <td><%= link_to producer.name, producer_path(producer) %></td>
                   </tr>
                   <tr>
-                    <td colspan="2"><%= producer.description[0..100] + "..." rescue "" %><br />
+                    <td colspan="2"><%= producer.description[0..155] + "..." rescue "" %><br />
                       <%= link_to '(Continue Reading)',producer_path(producer) if producer.description %><br /><br />
 
                     </td>
@@ -137,20 +137,53 @@
         <div id="box_grape_guide_forum"><br /><br /><br /><br /><br /><br /><br /><br />
           <h1 style="color:#9b0707;font-size:16px;">Grape Guide</h1>
           <%- grapes = Grape.find(:all, :limit => 1, :order => "RAND()") -%>
+          <%#- grapes = Grape.find(:all, :limit => 1, :conditions => "id = 1") -%>
           <%- for grape in grapes -%>
           <div style="padding-bottom:10px;color:#7f2d54;"><%= link_to grape.name, grape_path(grape) %></div>
           <%= image_tag("grape_guide_small.png") %>
-          <%= grape.description %>
+
+                  <%#= grape.description %>
+                  <%=
+                  if grape.description
+                      if grape.description.length > 155
+                        grape.description[0..155] + "..." + link_to('(Continue Reading)',grape_path(grape)) + '<br /><br />'
+                      else
+                        grape.description
+                      end
+                  else
+                    ""
+                  end
+
+                  %>
+
+
           <%- end -%>
           <%= link_to "more grapes", grape_guide_path %>
         </div>
         <div id="box_get_to_know_italy"><br /><br />
           <h1 style="color:#9b0707;font-size:16px;">Get to know italy</h1>
           <%- regions = Region.find(:all, :limit => 1, :order => "RAND()") -%>
+          <%#- regions = Region.find(:all, :limit => 1, :conditions => "id = 15") -%>
           <%- for region in regions -%>
           <div style="padding-bottom:10px;color:#7f2d54;"><%= link_to region.name, region_path(region) %></div>
           <%= image_tag("get_to_know_italy.png") %>
-          <%= region.description %>
+          <%#= region.description %>
+                   <%=
+                  if region.description and !region.description.empty? and !region.description.nil?
+                      if region.description.length > 155
+                        region.description[0..155] + "..." + link_to('(Continue Reading)',region_path(region)) + '<br /><br />'
+                      else
+                        region.description
+                      end
+                  else
+                    ""
+                  end
+
+                  %>
+
+
+
+
           <%- end -%>
           <%= link_to "more regions", regions_path %>
         </div>
