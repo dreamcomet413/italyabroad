@@ -5,19 +5,20 @@
   <table width="100%" border="0" cellspacing="0" cellpadding="0">
     <tr>
       <td valign="top">
-        <h3 style="border:none;">Review of <%= @review.reviewer.name %></h3>
+        <h3 style="border:none;">Review of <%= link_to @review.reviewer.name,product_path(@review.reviewer)%> </h3>
         Avg.Rating:<%= show_ratings(@review.reviewer, @review.reviewer.average_rating_round) %>
         <%= @review.description %> <br /><br />
-        Review written by :<%= @review.user.name %>
+        Review written by :<%= link_to @review.user.name, customer_path(@review.user) %> <br />
+        <%= link_to 'more reviews',product_path(@review.reviewer) %>
       </td>
       <td valign="top" style="padding-left:80px;">
         <h3 style="border:none;"></h3>
         <table>
         <tr><td>
         <% if !@review.reviewer.image_1.blank? %>
-              <%= image_tag image_url(:review_thumb, @review.reviewer.image_1) %>
+              <%= link_to image_tag image_url(:review_thumb, @review.reviewer.image_1) ,product_path(@review.reviewer)%>
               <% else %>
-              <%= image_tag("no_images/product_wine.jpg",:size => "150x150") %>
+              <%= link_to image_tag("no_images/product_wine.jpg",:size => "150x150") ,product_path(@review.reviewer)%>
               <% end %>
         </td><td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
         <td valign="top">Type : <%= @review.reviewer.categories.root.name %><br /><br />
@@ -27,7 +28,19 @@
                                   <br />(save <span style="color:red;"><%= number_to_currency (@review.reviewer.price * @review.reviewer.discount / 100), :unit => "&pound;" %></span>)
             <% else %>
               <span class="price" style="color:#003300;"><%= number_to_currency @review.reviewer.price, :unit => "&pound;" %></span>
-            <% end %>
+            <% end %> <br /><br />
+        <%- if @review.reviewer.out_of_stock? -%>
+              <%= image_tag('out_of_stock.png') %>
+            <%- else -%>
+              <%- form_remote_for :cart, :url => product_cart_index_path(@review.reviewer) do  -%>
+                                <%= image_submit_tag("buy_ico.png") %>
+
+              <%- end -%>
+            <%- end -%>
+            <%= link_to_remote image_tag("add_to_wish_list.png"), :url => product_wish_list_index_path(@review.reviewer), :html => {:method => :post} %>
+           <% if  @review.reviewer.categories.root.name.downcase == 'wine' %>
+           <%= link_to_remote image_tag("WINE_LIST.jpg"), :url => product_wine_list_index_path(@review.reviewer), :html => {:style => "color:#464646;", :method => :post} %>
+           <% end %>
 
         </td>
 
