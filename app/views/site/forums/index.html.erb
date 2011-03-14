@@ -35,22 +35,55 @@
             <td width="45%" valign="top">
               <div id="box_producer">
                 <h1 style="color:#9b0707;font-size:16px;">Get to know our producers</h1>
-                <% producers = Producer.find(:all, :limit => 1, :order => "RAND()") %>
+                <%- producers = Producer.find(:all, :limit => 1, :order => "RAND()") %>
+                <%# producers = Producer.find(:all, :limit => 1, :conditions => "id=1") %>
                 <%- for producer in producers -%>
                 <table>
                   <tr>
-                    <td style="width:50px;height:50px;"><%= avatar_for_user(nil, "small") %></td>
-                    <td><%= link_to producer.name, producer_path(producer) %></td>
+                    <td style="width:150px;height:75px;">
+                      <div style="width:150px;margin:auto;text-align:center;">
+                      <%= link_to producer.name, producer_path(producer) %>&nbsp;<%= link_to "(more producers)", producers_path %><br /><br />
+
+                      <%= avatar_for_user(nil, "small") %> <br />
+                      </div>
+                      </td>
+                    <!-- td><%#= link_to producer.name, producer_path(producer) %></td -->
+
                   </tr>
                   <tr>
-                    <td colspan="2"><%= producer.description[0..155] + "..." rescue "" %><br />
-                      <%= link_to '(Continue Reading)',producer_path(producer) if producer.description %><br /><br />
+                    <td colspan="2">
+
+
+
+
+                    <%#= producer.description[0..@enough_chars] + "..." rescue "" %>
+
+
+                  <%=
+                  if producer.description
+                      if producer.description.length > @enough_chars
+                        producer.description[0..@enough_chars] + "..." + link_to('(Continue Reading)',producer_path(producer)) + '<br /><br />'
+                      else
+                        producer.description
+                      end
+                  else
+                    ""
+                  end
+
+                  %>
+
+
+
+
+
+                    <br />
+
 
                     </td>
                   </tr>
                 </table>
                 <%- end -%>
-                <div style="text-align:right;"><%= link_to "more producers", producers_path %></div>
+
               </div>
               <br /><br />
               <div id="box_latest_blog" style="background-color:#f8f7ef;padding:5px 10px;margin-right:10px;">
@@ -134,19 +167,19 @@
             </tr>
           </table>
         </div>
-        <div id="box_grape_guide_forum"><br /><br /><br /><br /><br /><br /><br /><br />
+        <div id="box_grape_guide_forum"><br /><br /><br /><br /><br /><br /><br />
           <h1 style="color:#9b0707;font-size:16px;">Grape Guide</h1>
           <%- grapes = Grape.find(:all, :limit => 1, :order => "RAND()") -%>
           <%#- grapes = Grape.find(:all, :limit => 1, :conditions => "id = 1") -%>
           <%- for grape in grapes -%>
-          <div style="padding-bottom:10px;color:#7f2d54;"><%= link_to grape.name, grape_path(grape) %></div>
+          <div style="padding-bottom:10px;color:#7f2d54;"><%= link_to grape.name, grape_path(grape) %>&nbsp;<%= link_to "(more grapes)", grape_guide_path %></div>
           <%= image_tag("grape_guide_small.png") %>
 
                   <%#= grape.description %>
                   <%=
                   if grape.description
-                      if grape.description.length > 155
-                        grape.description[0..155] + "..." + link_to('(Continue Reading)',grape_path(grape)) + '<br /><br />'
+                      if grape.description.length > @enough_chars
+                        grape.description[0..@enough_chars] + "..." + link_to('(Continue Reading)',grape_path(grape)) + '<br /><br />'
                       else
                         grape.description
                       end
@@ -158,20 +191,20 @@
 
 
           <%- end -%>
-          <%= link_to "more grapes", grape_guide_path %>
+
         </div>
         <div id="box_get_to_know_italy"><br /><br />
           <h1 style="color:#9b0707;font-size:16px;">Get to know italy</h1>
           <%- regions = Region.find(:all, :limit => 1, :order => "RAND()") -%>
           <%#- regions = Region.find(:all, :limit => 1, :conditions => "id = 15") -%>
           <%- for region in regions -%>
-          <div style="padding-bottom:10px;color:#7f2d54;"><%= link_to region.name, region_path(region) %></div>
+          <div style="padding-bottom:10px;color:#7f2d54;"><%= link_to region.name, region_path(region) %>&nbsp;<%= link_to "(more regions)", regions_path %></div>
           <%= image_tag("get_to_know_italy.png") %>
           <%#= region.description %>
                    <%=
                   if region.description and !region.description.empty? and !region.description.nil?
-                      if region.description.length > 155
-                        region.description[0..155] + "..." + link_to('(Continue Reading)',region_path(region)) + '<br /><br />'
+                      if region.description.length > @enough_chars
+                        region.description[0..@enough_chars] + "..." + link_to('(Continue Reading)',region_path(region)) + '<br /><br />'
                       else
                         region.description
                       end
@@ -185,7 +218,7 @@
 
 
           <%- end -%>
-          <%= link_to "more regions", regions_path %>
+
         </div>
       </td>
     </tr>

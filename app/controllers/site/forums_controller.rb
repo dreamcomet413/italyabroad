@@ -8,6 +8,7 @@ class Site::ForumsController < ApplicationController
   #cache_sweeper :posts_sweeper, :only => [:create, :update, :destroy]
 
   def index
+    @enough_chars=195
     @forums = Forum.find_ordered
     # reset the page of each forum we have visited when we go back to index
     session[:forum_page] = nil
