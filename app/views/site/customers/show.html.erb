@@ -168,8 +168,8 @@
     <li>
       <h1><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> Latest Reviews</h1>
       <ul>
-        <%- @user.reviews.all(:order=>' id desc',:limit => 5).each do |review| -%>
-        <li><%= review.name unless review.name.blank? %></li>
+        <%- @user.reviews.all(:order=>' id desc', :limit => 5, :select => 'DISTINCT reviewer_id' ).each do |review| -%>
+        <li><%= link_to Product.find_by_id(review.reviewer_id).name, product_path(review.reviewer_id) %></li>
         <%- end -%>
         <% if @user.reviews.size > 5 %>
         <li style="list-style:none;text-align:right;margin-top:20px;"><%= link_to("more",reviews_path) %></li>
