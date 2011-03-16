@@ -3,7 +3,7 @@
     @category = Category.find("wine")
     end
 %>
-
+<% unless @category.blank? %>
 <%- product_on_offers = @category.products.on_offer || Product.on_offers -%>
 <div id="box_products_on_offer" class="block">
   <h1  style="color:#9b0707;">Special Offers</h1>
@@ -19,4 +19,5 @@
   No products
   <%- end -%>
 </div>
+<% end %>
 
