@@ -585,6 +585,15 @@ a {
     font-size:13px;
     font-family:Arial;
 }
+
+#box_producer div#get_to_know_our_producers_avatar{
+    margin-auto;
+    text-align:center;
+}
+#wine_tour_description {
+    float:left;
+    margin:20px;
+}
 #box_latest_review div a,
 #box_grape_guide_forum div a,
 #box_get_to_know_italy div a{

@@ -38,51 +38,22 @@
                 <%- producers = Producer.find(:all, :limit => 1, :order => "RAND()") %>
                 <%# producers = Producer.find(:all, :limit => 1, :conditions => "id=1") %>
                 <%- for producer in producers -%>
-                <table>
-                  <tr>
-                    <td style="width:150px;height:75px;">
-                      <div style="width:150px;margin:auto;text-align:center;">
-                      <%= link_to producer.name, producer_path(producer) %>&nbsp;<%= link_to "(more producers)", producers_path %><br /><br />
-
-                      <%= avatar_for_user(nil, "small") %> <br />
+                      <div id="get_to_know_our_producers_avatar">
+                      <%= link_to producer.name, producer_path(producer) %>
+                      <%= link_to "(more producers)", producers_path %><br /><br />
+                      <%= avatar_for_user(nil, "small") %><br />
                       </div>
-                      </td>
-                    <!-- td><%#= link_to producer.name, producer_path(producer) %></td -->
 
-                  </tr>
-                  <tr>
-                    <td colspan="2">
-
-
-
-
-                    <%#= producer.description[0..@enough_chars] + "..." rescue "" %>
-
-
-                  <%=
-                  if producer.description
-                      if producer.description.length > @enough_chars
-                        producer.description[0..@enough_chars] + "..." + link_to('(Continue Reading)',producer_path(producer)) + '<br /><br />'
+                      <%- if producer.description
+                            if producer.description.length > @enough_chars-%>
+                                  <%= producer.description[0..@enough_chars] + "... &nbsp;" + link_to('(Continue Reading)',producer_path(producer)) %>
+                            <%- else -%>
+                                  <%= producer.description %>
+                            <%end
                       else
-                        producer.description
+
                       end
-                  else
-                    ""
-                  end
-
-                  %>
-
-
-
-
-
-                    <br />
-
-
-                    </td>
-                  </tr>
-                </table>
-                <%- end -%>
+                end -%>
 
               </div>
               <br /><br />
