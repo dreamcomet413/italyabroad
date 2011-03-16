@@ -1,7 +1,7 @@
 <div class="block" id="box_latest_recipe_reviews">
   <h1>Latest Recipe Reviews</h1><br/>
 
-  <%- Review.find(:all, :conditions => ["reviewer_type = ?", "Recipe"], :order => "created_at DESC").paginate(:page => params[:page], :per_page => 3).each do |review| -%>
+  <%- Review.find(:all, :conditions => ["reviewer_type = ? and publish = ?", "Recipe",true], :order => "created_at DESC").paginate(:page => params[:page], :per_page => 3).each do |review| -%>
     <table cellpadding="0" cellspacing="0" border="0">
        <tr><td>
           <%= avatar_for_user(review.user, "small") %>

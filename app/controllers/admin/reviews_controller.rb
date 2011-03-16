@@ -3,7 +3,14 @@ class Admin::ReviewsController < ApplicationController
   layout "admin"
 
   def index
+
     @reviews = Review.all(:order => "created_at DESC").paginate(:page => params[:page], :per_page => 10)
+    if params[:approve]
+      for review in params[:publish]
+        @review = Review.find(review)
+        @review.update_attribute('publish',true)
+      end
+    end
 
     respond_to do |format|
       format.html
