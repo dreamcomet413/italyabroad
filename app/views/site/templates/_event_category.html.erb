@@ -39,7 +39,7 @@
 
 <div style="clear:both;">
 </div>
-<% products = @category.products.find(:all, :conditions => ["active = ?", true], :order => "date").paginate(:page => params[:page], :per_page => 4) %>
+<% products = @category.products.find(:all, :conditions => ["active = ? AND DATE(date) > ?", true, Date.today], :order => "date").paginate(:page => params[:page], :per_page => 4) %>
 <div id="featured_events">
         <br />
         <h3>Coming Events</h3>
@@ -47,7 +47,9 @@
                 <% for product in products %>
                 <li>
                           <h1><%= link_to product.name, "/wine-events/#{product.friendly_identifier}", :style => "color:black;" %></h1>
-                          <%= product.description_short.gsub("\n","<br />") %>&nbsp;<%= link_to "(More info)", "wine-events/#{product.friendly_identifier}" %>
+                          <%#= product.description_short.gsub("\n","<br />") %>&nbsp;<%#= link_to "(More info)", "wine-events/#{product.friendly_identifier}" %>
+                          <%= product.date.strftime("%d %B %Y at %H:%M") if product.date -%><br /><%= product.description_short %>
+
                 </li>
                 <% end %>
                 <%= will_paginate(products) %><%#= page_entries_info_ products %>

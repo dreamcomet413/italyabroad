@@ -6,7 +6,7 @@
   <ul>
     <%- products.each do |product| -%>
     <li style="margin-bottom:10px;">
-      <%= product.date.strftime("%d %B %Y at %H:%M") if product.date %><br />
+      <span id = "upcomming_tours_date"><%= product.date.strftime("%d %B %Y at %H:%M") if product.date %></span><br />
   	  <%= link_to product.name, "/wine-events/#{product.friendly_identifier}", :style => "font-size:14px;color:#9b0707" %>
     </li>
     <%- end -%>

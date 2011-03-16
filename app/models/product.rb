@@ -52,7 +52,7 @@ class Product < ActiveRecord::Base
   named_scope :featured, :conditions => {:featured, true}, :limit => 5
   named_scope :on_offer, :conditions => ["active = ? AND discount > ?", true, 0], :limit => 5, :order => "RAND()"
   named_scope :other_events, lambda { |product|
-    { :conditions => ["categories.name LIKE 'Events' AND products.id <> ?", product.id], :include => {:categorizations => :category}, :order => "RAND()", :limit => 3 }
+    { :conditions => ["categories.name LIKE 'Events' AND products.id <> ? AND DATE(products.date) > ?", product.id, Date.today], :include => {:categorizations => :category}, :order => "date", :limit => 3 }
   }
 
   def validate

@@ -11,7 +11,7 @@
 
 <div style="padding:0 10px;">
   <br /><br />
-  <h1 style="padding-left:255px;"><%= @product.name %></h1>
+  <!-- h1 style="padding-left:255px;"><%= @product.name %></h1 -->
   <br /><br /><br />
   <div id="box_wines_of_the_night" class="block">
     <h1>Wines of the night</h1>
@@ -22,7 +22,8 @@
       <%- end -%>
     </ul>
   </div>
-  <div style="float:left;width:460px;">
+  <div style="float:left;width:420px;margin:20px;">
+    <div style="width:100%;text-align:center;margin:auto;"><h1><%= @product.name %></h1></div>
     <%= @product.description.gsub("\n","<br />") rescue "No description" %>
     <br /><br />
     <div style="clear:both;"></div>
