@@ -947,6 +947,15 @@ a {
     margin-bottom:10px;
 }
 
+#box_upcoming_wine_tours.block {
+    margin-left:auto;
+    margin-right:auto;
+    text-align:center;
+}
+#box_upcoming_wine_tours.block ul li span#upcomming_tours_date {
+    font-size:10px;
+}
+
 #box_upcoming_wine_tours ul,
 #box_upcoming_events ul {
     list-style:none;

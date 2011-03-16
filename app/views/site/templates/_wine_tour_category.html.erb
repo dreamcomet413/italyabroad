@@ -34,15 +34,16 @@
     </p>
   </div>
   <div style="clear:both;"></div>
-  <% products = @category.products.find(:all, :conditions => ["active = ?", true], :order => "date").paginate(:page => params[:page], :per_page => 3) %>
+  <% products = @category.products.find(:all, :conditions => ["active = ? AND DATE(date) > ?", true, Date.today], :order => "date").paginate(:page => params[:page], :per_page => 3) %>
   <%- unless products.blank? -%>
   <div id="featured_wine_tours">
     <br />
-    <h3>Coming Tours</h3>
+    <h3>More Tours</h3>
     <ul>
       <%- products.each do |product| -%>
       <li>
         <h1><%= link_to product.name, nested_products_uri(product), :style => "color:black;" %></h1>
+        <%= product.date.strftime("%d %B %Y") if product.date %>
         <div><%= product.description_short %></div>
       </li>
       <%- end -%>
