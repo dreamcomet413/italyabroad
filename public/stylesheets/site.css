@@ -937,6 +937,7 @@ a {
 
 #box_upcoming_wine_tours,
 #box_upcoming_events {
+    padding:5px;
     float:left;
     width:215px;
     background-color:#EFEFEF;
@@ -962,6 +963,19 @@ a {
     margin:0;
     padding:0;
 }
+#box_upcoming_wine_tours.block {
+    float:left;
+    width:215px;
+    margin:10px;
+}
+
+#wine_event_description {
+    float:left;
+    margin:10px;
+    width:460px;
+    text-align:justify;
+}
+
 
 #box_event_reviews {
     background-color:#ece9d8;
