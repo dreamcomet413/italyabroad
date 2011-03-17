@@ -14,6 +14,7 @@
     <thead>
       <tr>
         <th>User</th>
+        <th>Product</th>
         <th>Object</th>
       </tr>
     </thead>
@@ -27,7 +28,8 @@
       <%- for review in @reviews -%>
       <tr>
         <td><%= review.user.name rescue "Anonymous" %></td>
-        <td><%= review.reviewer_type %></td>
+        <td><%= Product.find_by_id(review.reviewer_id).name %></td>
+        <td><%= review.reviewer_type %> </td>
       </tr>
       <%- end -%>
     </tbody>
