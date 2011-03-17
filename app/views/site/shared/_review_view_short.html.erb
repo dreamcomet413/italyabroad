@@ -1,7 +1,8 @@
 <%#= reviewer.reviews.size %>
-<% if reviewer.reviews.size > 0 %>
+<% @reviews = reviewer.reviews.all(:conditions=>['publish = ?',true]) %>
+<% if @reviews.size > 0 %>
   <ul>
-	  <% for review in reviewer.reviews %>
+	  <% for review in @reviews %>
 	  <li style="border-bottom:1px solid #CCCCCC;margin-top:15px;padding-bottom:10px ">
             <div>
               <div style="margin: 0 5px 5px 0;float:left"><%= avatar_for_user(review.user, "small") %></div>

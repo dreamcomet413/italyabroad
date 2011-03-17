@@ -168,7 +168,7 @@
     <li>
       <h1><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> Latest Reviews</h1>
       <ul>
-        <%- @user.reviews.all(:order=>' id desc', :limit => 5, :select => 'DISTINCT reviewer_id' ).each do |review| -%>
+        <%- @user.reviews.all(:order=>' id desc', :limit => 5, :conditions=>['publish = ?',true],:select => 'DISTINCT reviewer_id' ).each do |review| -%>
 
 
         <%= link_to '<li>' +  Product.find_by_id(review.reviewer_id).name + '</li>', product_path(review.reviewer_id) rescue "" %>

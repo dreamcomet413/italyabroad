@@ -1,7 +1,7 @@
 <li class="review <%= cycle('odd', 'even') %>" style="padding:10px;">
   <table width="100%">
     <tr>
-      <td style="width:70px;"><%= show_image_tag :product_thumb, review.reviewer.image_1 %></td>
+      <td style="width:70px;"><%= show_image_tag :product_thumb, review.reviewer.image_1 unless review.reviewer.nil? %></td>
       <td>
         <strong>You Wrote:</strong><br /><br />
         <%= review.description %><br /><br />
@@ -11,7 +11,7 @@
             <td><%= show_ratings(review.reviewer, review.score) unless review.reviewer.nil? %></td>
             <td align="right">
               <%- if review.reviewer_type == "Product" -%>
-              <%= image_tag("WINE_LIST.jpg") if review.reviewer.is_wine? %>
+              <%= image_tag("WINE_LIST.jpg") if review.reviewer.is_wine? unless review.reviewer.nil?%>
               <%- end -%>
             </td>
           </tr>

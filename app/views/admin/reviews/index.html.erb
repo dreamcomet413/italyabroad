@@ -15,7 +15,8 @@
       <tr>
         <th>User</th>
         <th>Product</th>
-        <th>Object</th>
+        <th>Publish</th>
+        <th></th>
       </tr>
     </thead>
     <tfoot>
@@ -25,14 +26,25 @@
       </tr>
     </tfoot>
     <tbody>
+    <% form_tag admin_reviews_path, :method=>:get do  %>
       <%- for review in @reviews -%>
       <tr>
+
         <td><%= review.user.name rescue "Anonymous" %></td>
-        <td><%= Product.find_by_id(review.reviewer_id).name %></td>
-        <td><%= review.reviewer_type %> </td>
+        <td><%= Product.find_by_id(review.reviewer_id).name %>&nbsp;[<%= review.reviewer_type %]> </td>
+        <td><%= check_box_tag 'publish[]',review.id,review.publish %></td>
+
+        <!-- td>
+        <%# = review.user.name rescue "Anonymous" %></td>
+        <td><%# = review.reviewer_type %></td>
+        <td><%# = check_box_tag 'publish[]',review.id,review.publish %></td -->
+
       </tr>
       <%- end -%>
+      <%= submit_tag 'Approve',:name=>'approve' %>
+      <% end %>
     </tbody>
+
   </table>
 </div>
 
