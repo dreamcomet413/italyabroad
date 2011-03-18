@@ -117,27 +117,35 @@
       <td valign="top">
         <div id="box_latest_review">
           <% latest_review = Review.last(:conditions=>['publish = ?',true]) %>
-          <h1 style="color:#9b0707;font-size:16px;">Latest Review</h1>
-          <table cellpadding="0" cellspacing="0">
-            <tr>
-              <td style="width:5px;text-align:center;">
-                <%= link_to avatar_for_user(latest_review.user, 'small'), customer_path(latest_review.user.id)%>
-              </td>
-              <td valign="top"><% unless latest_review.description.blank? %> &nbsp;&nbsp;
-              "<%= link_to latest_review.description,review_path(latest_review),:class=>'data' %>"
-               <% else %>
-                 "<%= 'Added a new review' %>"
-                <% end %>
-              </td>
-              </tr>
-              <tr>
-              <td>
-                <%= link_to latest_review.user.name, customer_path(latest_review.user.id), :class=>'data', :id => 'latest_review_name'%>
-              </td>
-              <td></td>
-            </tr>
-          </table>
+          <%- unless latest_review.nil? -%>
+                <h1 style="color:#9b0707;font-size:16px;">Latest Review</h1>
+                <table cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td style="width:5px;text-align:center;">
+                      <%= link_to avatar_for_user(latest_review.user, 'small'), customer_path(latest_review.user.id)%>
+                    </td>
+                    <td valign="top"><% unless latest_review.description.blank? %> &nbsp;&nbsp;
+                    "<%= link_to latest_review.description,review_path(latest_review),:class=>'data' %>"
+                     <% else %>
+                       "<%= 'Added a new review' %>"
+                      <% end %>
+                    </td>
+                    </tr>
+                    <tr>
+                    <td>
+                      <%= link_to latest_review.user.name, customer_path(latest_review.user.id), :class=>'data', :id => 'latest_review_name'%>
+                    </td>
+                    <td></td>
+                  </tr>
+                </table>
+            <%- else -%>
+                No published reviews
+            <%- end -%>
+
         </div>
+
+
+
         <div id="box_grape_guide_forum"><br /><br /><br /><br /><br /><br /><br />
           <h1 style="color:#9b0707;font-size:16px;">Grape Guide</h1>
           <%- grapes = Grape.find(:all, :limit => 1, :order => "RAND()") -%>

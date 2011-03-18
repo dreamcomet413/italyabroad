@@ -47,8 +47,10 @@
                 <% for product in products %>
                 <li>
                           <h1><%= link_to product.name, "/wine-events/#{product.friendly_identifier}", :style => "color:black;" %></h1>
-                          <%#= product.description_short.gsub("\n","<br />") %>&nbsp;<%#= link_to "(More info)", "wine-events/#{product.friendly_identifier}" %>
-                          <%= product.date.strftime("%d %B %Y at %H:%M") if product.date -%><br /><%= product.description_short %>
+                          <%#= product.description_short.gsub("\n","<br />") %><%#= link_to "(More info)", "wine-events/#{product.friendly_identifier}" %>
+                          <%= product.date.strftime("%d %B %Y at %H:%M") if product.date -%>
+                          <br /><br />
+                          <%= product.description_short %>
 
                 </li>
                 <% end %>
