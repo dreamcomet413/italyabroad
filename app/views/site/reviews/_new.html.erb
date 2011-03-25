@@ -1,15 +1,14 @@
 <%= content_tag :p, flash[:notice] %>
 <% form_for :review, :url => create_url do %>
-  <p>
-            Title:<br /><%= text_field :review, :name %>
-  </p>
-  <p>
-            Body:<br /><%= text_area :review, :description, :rows => 5, :style => "width:50%" %>
-  </p>
-  <p>
-    Rate: <%= select :review, :score, [5,4,3,2,1] %>
-  </p>
-  <p>
-    <%= submit_tag 'Submit' %>
-  </p>
+<!-- div class="add_new_review" -->
+  Title:<br />
+  <%= text_field :review, :name %><br />
+
+  Body:<br />
+  <%= text_area :review, :description, :rows => 5, :style => "width:50%" %><br />
+
+  Rate: <%= select :review, :score, [5,4,3,2,1] %>
+  <%= submit_tag 'Submit' %>
+<!-- /div -->
 <% end %>
+

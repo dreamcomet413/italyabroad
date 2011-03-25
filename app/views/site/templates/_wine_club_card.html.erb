@@ -58,6 +58,7 @@
     <%- end -%>
   </div>
 </div>
+<div class="add_new_review">
 <h3>Reviews <%= link_to("(Add Review)", login_path, :style => "font-size:12px;") unless logged_in?  %></h3>
  <%= render :partial => 'site/shared/review_view_short', :locals => {:reviewer => @product} %>
  <%- if logged_in? -%>
@@ -73,4 +74,5 @@
 	<br />
 	<%= render :partial => '/site/shared/box_grape_guide' %>
 <% end %>
+</div>
 

@@ -28,18 +28,20 @@
     <tbody>
     <% form_tag admin_reviews_path, :method=>:get do  %>
       <%- for review in @reviews -%>
-      <tr>
+        <%- unless Product.find_by_id(review.reviewer_id).nil? -%>
+            <tr>
 
-        <td><%= review.user.name rescue "Anonymous" %></td>
-        <td><%= link_to Product.find_by_id(review.reviewer_id).name, edit_admin_review_path(review.id) %>&nbsp;[<%= review.reviewer_type %>]</td>
-        <td><%= check_box_tag 'publish[]',review.id,review.publish %></td>
+              <td><%= review.user.name rescue "Anonymous" %></td>
+              <td><%= link_to Product.find_by_id(review.reviewer_id).name, edit_admin_review_path(review.id) %>&nbsp;[<%= review.reviewer_type %>]</td>
+              <td><%= check_box_tag 'publish[]',review.id,review.publish %></td>
 
-        <!-- td>
-        <%# = review.user.name rescue "Anonymous" %></td>
-        <td><%# = review.reviewer_type %></td>
-        <td><%# = check_box_tag 'publish[]',review.id,review.publish %></td -->
+              <!-- td>
+              <%# = review.user.name rescue "Anonymous" %></td>
+              <td><%# = review.reviewer_type %></td>
+              <td><%# = check_box_tag 'publish[]',review.id,review.publish %></td -->
 
-      </tr>
+            </tr>
+        <%- end -%>
       <%- end -%>
       <%= submit_tag 'Approve',:name=>'approve' %>
       <% end %>

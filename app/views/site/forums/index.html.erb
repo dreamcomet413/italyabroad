@@ -80,16 +80,17 @@
                     <table style="list-style:none;margin:0;padding:0;" cellspacing="0" border="0" width="100%">
                       <tr> <% @faq = Faq.find(:last,:conditions=>['publish = true and answer != ""']) %><% unless @faq.blank? %>
                         <td valign="top">
-                       <div style="color:#666666;padding:5px 0 10px 0">Latest Entries<br />
+                       <div style="color:#666666;padding:5px 0 10px 0"><%= link_to '<span style="color:black;">Latest Questions</span>',faqs_path %><br />
+                        <br />
 
+                        <%= @faq.question %><br /><br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;<%= @faq.answer[0..200] %><br />
 
-                        <%= @faq.question %><br />
-
-                       <%= link_to 'View all',faqs_path %>
+                       <%= link_to 'Read all',faqs_path %>
                         </div>
                         </td>
                         <td valign="top" align="right">
-                          <div style="color:#666666;padding:5px 0 10px 0">Posted by<br /><%= @faq.user.name %>
+                          <div style="color:#666666;padding:5px 0 10px 0"><!--Posted by<br /> %= @faq.user.name %> -->
                           <% end %>
                          </div>
                         </td>

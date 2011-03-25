@@ -1,4 +1,4 @@
-<% @title = "Ask a Question" %>
+<% @title = "Type your question" %>
 <%#- @breadcrumbs = "Home &raquo; #{link_to "Faqs", faqs_path} &raquo; #{@title}" -%>
 
 <div class="inner_content posts">
@@ -7,7 +7,7 @@
   <% form_for :faq, :url =>faqs_path do %>
 
   	<%= render :partial => "form" %>
-  	<p><%= submit_tag "Save" %> or <%= link_to "Cancel", faqs_path %></p>
+  	<p><%= submit_tag "Ask" %> or <%= link_to "Cancel", faqs_path %></p>
   <% end %>
 </div>
 

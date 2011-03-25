@@ -104,6 +104,10 @@ h3{
     border-bottom-width:1px;
     margin-top:5px;
 }
+.add_new_review {
+    padding:10px;
+    padding-left:35px;
+}
 
 h6{
     color:#9b0707;

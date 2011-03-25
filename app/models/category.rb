@@ -12,7 +12,7 @@ class Category < ActiveRecord::Base
 
     def at_the_night
       #find(:all, :conditions => ["HOUR(products.date) BETWEEN 17 AND 24"], :limit => 5, :order => "RAND()")
-      find(:all, :conditions => ["HOUR(products.date) BETWEEN 17 AND 24"], :limit => 15, :order => "products.date")
+      find(:all, :conditions => ["HOUR(products.date) BETWEEN 17 AND 24"], :limit => 20, :order => "products.date")
     end
 
     def regions

@@ -3,7 +3,7 @@
 <% if @reviews.size > 0 %>
   <ul>
 	  <% for review in @reviews %>
-	  <li style="border-bottom:1px solid #CCCCCC;margin-top:15px;padding-bottom:10px ">
+	  <li style="border-bottom:0px solid #CCCCCC;margin-top:15px;padding-bottom:10px;list-style-type:none; ">
             <div>
               <div style="margin: 0 5px 5px 0;float:left"><%= avatar_for_user(review.user, "small") %></div>
               <div style="text-align:left;margin: 0 0 5px 15px;float:left">
@@ -35,11 +35,12 @@
        </tr>
       </table>-->
     </li>
-	  <% end %>
+	  <%- end -%>
 	</ul>
-<% else %>
+<%- else -%>
   <ul>
 	  <li>No reviews have been written yet for this product, be the first to write one and <span> you will receive a £10.00 voucher</span></li>
 	</ul>
-<% end %>
+<%- end -%>
+<h3>&nbsp;</h3>
 
