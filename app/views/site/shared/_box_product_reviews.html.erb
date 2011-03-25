@@ -1,4 +1,4 @@
-<%- @category ||= Category.find(params[:category]) if params[:category]-%>
+<%- @category ||= Category.find(params[:category]) if params[:category] -%>
 <% unless @category.blank? %>
 <div class="block" id="box_event_reviews">
   <h1><%= @category.name.titleize %> reviews</h1>

@@ -27,6 +27,13 @@
     <%= @product.description.gsub("\n","<br />") rescue "No description" %>
     <br /><br />
     <div style="clear:both;"></div>
+    <div align="center"><h4>Wine List</h4>
+    <% for included_product in @product.included_products %>
+
+      <%= link_to included_product.name, "/wine-events/#{included_product.friendly_identifier}", :style => "color:#9b0707;" %> <br />
+    <% end %>
+    <br />
+    </div>
     <ul style="list-style:none;margin:0;padding:0;float:right;font-size:14px;">
       <li style="margin-bottom:10px;text-align:right;">
       	<% if @product.discount > 0 %>
@@ -37,6 +44,7 @@
       		Price: <span class="red"><%= number_to_currency @product.price, :unit => "&pound;" %></span>
       	<% end %>
       </li>
+
       <li style="text-align:right;">
       	<%- form_remote_for :cart, :url => product_cart_index_path(@product), :html => {:method => :post} do  -%>
       	  <table cellspacing="0" border="0">
