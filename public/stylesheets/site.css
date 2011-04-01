@@ -2267,6 +2267,11 @@ div.editbox ul.help {
     margin:20px;
 }
 
+.profile-container h1 {
+    font-weight:normal;
+    font-size:12px;
+}
+
 ul.profile-list-info,
 ul.profile-list-info li ul {
     list-style:none;
