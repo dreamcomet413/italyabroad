@@ -10,7 +10,7 @@ class Admin::CuponsController < ApplicationController
   def new
     @cupon = Cupon.new
     @cupon.code = ActivePassword.new
-    
+
     respond_to do |format|
       #      format.dialog { render :partial => 'new' }
       format.html
@@ -36,7 +36,7 @@ class Admin::CuponsController < ApplicationController
     else
       flash[:notice] = @cupon.show_errors
     end
-    
+
     redirect_to :action => :index
   end
 
@@ -65,3 +65,4 @@ class Admin::CuponsController < ApplicationController
     end
   end
 end
+

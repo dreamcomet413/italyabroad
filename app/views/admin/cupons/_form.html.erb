@@ -42,12 +42,24 @@ end
     <td valign="top">Limit to product: </td>
     <td>
       <%= text_field 'product', 'search' %><br/>
+      <%#= text_field_with_auto_complete :product, :name , :name=>"cupon[product_id]"%>
+
+
+
+
+
+
+
+
+
+
+
 
 <%#= text_field_with_auto_complete "product", "name" , { :size => 81 }, { :url => formatted_product_list_admin_cupons_path(:js), :method => :get, :param_name => 'search',:multiple => true } %>
 <%#= select_tag("cupon[product_ids][]", options_from_collection_for_select(Product.find(:all).collect, "id", "name", @cupon.products.collect{|p| p.id}), {:multiple=>true, :size=>6})%>
       <div id="search_result">
         <% if params[:action] == "edit"%>
-          <%= render :partial => 'product_list', :collections => @products %>
+          <%#= render :partial => 'product_list', :collections => @products %>
         <% end %>
       </div>
     </td>
@@ -72,3 +84,4 @@ end
 <%#= observe_field 'cupon_type_persentage',
 :url => {:action=>"cupon_type", :controller=> "admin/cupons"},
 :with => 'method', :on => 'click' %>
+
