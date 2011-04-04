@@ -1495,6 +1495,11 @@ a {
     margin-left:5px !important;
 }
 
+.wine_club #rightColumn {
+    float:right !important;
+    margin-left:5px !important;
+}
+
 .products #rightColumn,
 #categories_show_sub #rightColumn {
     float:left;

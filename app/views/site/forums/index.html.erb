@@ -3,7 +3,7 @@
 <% @about = AboutU.find(:first, :conditions => {:link_type => "community"} ) %>
 <div id="wineBanner">
   <span class="community_home_title">
-     <%= @about.title %>
+     <%= @about.title rescue "About us"%>
     <!--Share your <strong style="font-size:24px;">passion,</strong> meet <strong style="font-size:24px;">people</strong> like you, compare<br />
     <strong style="font-size:24px;">tasting notes</strong> and get <strong style="font-size:24px;">recommendations</strong> -->
   </span>
