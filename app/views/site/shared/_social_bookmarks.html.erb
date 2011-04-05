@@ -1,10 +1,15 @@
 
+
 <div style="padding-bottom:8px;font-weight:bold;color:#CC0000;"><!-- Share this with: -->
-<a rel="nofollow" style="text-decoration:none;" href="http://en.wikipedia.org/wiki/Social_bookmarking" target="_blank"  title="Information"><!--  ?  --></a></div>
+
+<a rel="nofollow" style="text-decoration:none;" href="http://en.wikipedia.org/wiki/Social_bookmarking" target="_blank"  title="Information"><!--  ?  --></a>
+</div>
 <div>
+<a href="http://www.facebook.com/sharer.php?u=<%= "#{request.url}" -%>&t=<%= "#{request.url}" -%>" target="blank"><img style="padding-bottom:1px;" src="/images/facebook.gif" alt="facebook" name="facebook" border="0" id="facebook"></a>
+
 <a rel="nofollow" style="text-decoration:none;" href="http://del.icio.us/" onclick="window.open('http://del.icio.us/post?v=2&amp;url='+encodeURIComponent(location.href)+'&amp;notes=&amp;tags=&amp;title='+encodeURIComponent(document.title));return false;" title="Add to: Del.icio.us"> <img style="padding-bottom:1px;" src="/images/delicious.jpg" alt="Share with: Del.icio.us" name="Delicious" border="0" id="Delicious"> </a>
 
-<a rel="nofollow" style="text-decoration:none;" href="http://digg.com/" onclick="window.open('http://digg.com/submit?phase=2&amp;url='+encodeURIComponent(location.href)+'&amp;bodytext=&amp;tags=&amp;title='+encodeURIComponent(document.title));return false;" title="Add to: Digg"> <img style="padding-bottom:1px;" src="/images/digg.jpg" alt="Share with: Digg" name="Digg" border="0" id="Digg"> </a>
+<a rel="nofollow" style="text-decoration:none;" href="http://digg.com/" onclick="window.open('http://digg.com/submit?phase=2&amp;url='+encodeURIComponent(location.href)+'&amp;bodytext=&amp;tags=&ang mp;title='+encodeURIComponent(document.title));return false;" title="Add to: Digg"> <img style="padding-bottom:1px;" src="/images/digg.jpg" alt="Share with: Digg" name="Digg" border="0" id="Digg"> </a>
 
 <a rel="nofollow" style="text-decoration:none;" href="http://www.stumbleupon.com/" onclick="window.open('http://www.stumbleupon.com/submit?popoff=0&amp;url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title));return false;" title="Add to: StumbleUpon"> <img style="padding-bottom:1px;" src="/images/stumble.jpg" alt="Share with: StumbleUpon" name="StumbleUpon" border="0" id="StumbleUpon"> </a>
 
@@ -12,5 +17,9 @@
 
 <a rel="nofollow" style="text-decoration:none;" href="http://corkd.com/"> <img style="padding-bottom:1px;" src="/images/corkd.gif" alt="Corkd" name="Corkd" border="0" id="corkd"> </a>
 
+ <br />
 </div>
+
+
+<br/>
 
