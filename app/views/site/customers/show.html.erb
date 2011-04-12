@@ -207,7 +207,9 @@
       </ul>
   </div>
   <% else %>
+    <br />
    <h1>&nbsp;&nbsp;You don't have any messages</h1>
+   <br />
   <% end %>
    <% if logged_in? %>
   <% unless @my_profile %>
@@ -227,7 +229,7 @@
   <div style="border-bottom:1px solid #CCCCCC;background-color:#F3F8DA;color:#161616;font-size:1.3em;margin-top:8px;padding:1px 0 0 8px;">
         <h1>Write a message for <%= @user.name %></h1>
        <!-- <p>Comment with italyabroad account</p> -->
-        <p style = "font:bold 16px Arial;"><%= link_to("Login", login_path) %> ||
+        <p style = "font:bold 16px Arial;">&nbsp;<%= link_to("Login", login_path) %> ||
           <%= link_to "Register", "/signup" %> </p>
       </div>
   <%end %>

@@ -10,7 +10,7 @@
     <td class="image" style ="padding:0 10px 0 0">
       <% if !(@product.image_1).blank? %>
       <%#= show_image_tag('product', @product.image_1, :jpg) %>
-      <%= link_to show_image_tag('product', @product.image_1, :jpg), image_url('product_display', @product.image_1, :jpg),{:rel => "lightbox", :title => @product.name}  %>
+      <%= link_to show_image_tag('product', @product.image_1, :jpg, @product.name), image_url('product_display', @product.image_1, :jpg),{:rel => "lightbox", :title => @product.name} %>
       <% else %>
       <% if params[:root_category] == "wine" %>
       <%= image_tag("no_images/product_wine.jpg",:size => "230x250") %>
