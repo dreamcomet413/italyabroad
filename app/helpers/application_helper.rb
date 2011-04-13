@@ -120,6 +120,24 @@ module ApplicationHelper
     end
   end
 
+  def show_image_tag_product(image_type, image, format = :jpg, image_alt = "italyabroad.com", image_size = "-1")
+    if image_type && image && format
+
+      if image_size = "-1"
+          return image_tag(image_url(image_type, image, format), :alt => image_alt)
+      else
+          #return image_tag(image_url(image_type, image, format), {:alt => image_alt, :size => "230x250"})
+          return image_tag(image_url(image_type, image, format), {:alt => image_alt, :size => "23x25", :title => "testingggg"})
+      end
+
+
+    elsif image_type
+      return image_tag("no_images/#{image_type}.jpg", :size => "100x120", :alt => image_alt)
+    else
+      return image_tag("no_images/noimage.png", :alt => image_alt)
+    end
+  end
+
   def show_home_image_tag(image, format = :jpg)
     if image && format
       return image_tag(image_url(:original, image, format), :size => "723x284")
