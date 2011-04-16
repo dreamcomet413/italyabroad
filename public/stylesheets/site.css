@@ -1125,6 +1125,11 @@ a {
     */
 }
 
+#wineBanner a img {
+    width:723px;
+    height:284px;
+}
+
 .rightColumnContentWineTour {
     background-color:#fff;
     text-align: center;
@@ -1491,6 +1496,11 @@ a {
 }
 
 .wine_tours #rightColumn {
+    float:right !important;
+    margin-left:5px !important;
+}
+
+.wine_club #rightColumn {
     float:right !important;
     margin-left:5px !important;
 }
@@ -2266,6 +2276,15 @@ div.editbox ul.help {
 .profile-container {
     margin:20px;
 }
+#leftColumnContent div.profile-container div {
+     margin:10px;
+}
+
+.profile-container h1 {
+    font-weight:normal;
+    font-size:12px;
+    margin-left:5px;
+}
 
 ul.profile-list-info,
 ul.profile-list-info li ul {
@@ -2303,9 +2322,9 @@ ul.profile-list-info li ul li {
 
 #follower {
     border:1px solid #cccccc;
-    margin:10px;
+    margin:30px;
     float:left;
-    width:97%;
+    width:92%;
 }
 
 #follower h1 {

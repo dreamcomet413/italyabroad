@@ -110,13 +110,13 @@ module ApplicationHelper
 		options[:q] ? search_all_posts_path(options) : send("posts_path", options)
 	end
 
-  def show_image_tag(image_type, image, format = :jpg)
+  def show_image_tag(image_type, image, format = :jpg, image_alt = "italyabroad.com")
     if image_type && image && format
-      return image_tag(image_url(image_type, image, format))
+      return image_tag(image_url(image_type, image, format), {:alt => image_alt, :title => image_alt})
     elsif image_type
-      return image_tag("no_images/#{image_type}.jpg", :size => "100x120")
+      return image_tag("no_images/#{image_type}.jpg", :size => "100x120", :alt => image_alt)
     else
-      return image_tag("no_images/noimage.png")
+      return image_tag("no_images/noimage.png", :alt => image_alt)
     end
   end
 

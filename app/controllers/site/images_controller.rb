@@ -1,7 +1,7 @@
 class Site::ImagesController < ApplicationController
 
   before_filter :load_image
-  
+
   def show
     image_type = params[:image_type].to_s
 
@@ -16,11 +16,12 @@ class Site::ImagesController < ApplicationController
             # image.resize '723x284', :stretch => false, :upsample => false if image_type == :home_image
             image.resize '723x284' if image_type == :home_image
             image.resize '100x75', :crop => true if image_type == :home_image_thumb
-            
+
             image.resize '500x270', :stretch => false, :upsample => false if image_type == :category
             image.resize '100x75', :crop => true if image_type == :category_thumb
 
             image.resize '200x200', :crop => true if image_type == :product
+            image.resize '200x200', :crop => true if image_type == :product_master
             image.resize '800x600' if image_type == :product_display
             image.resize '60x128' if image_type == :product_wine
             image.resize '60x128' if image_type == :product_food
@@ -30,21 +31,21 @@ class Site::ImagesController < ApplicationController
             image.resize '30x30' if image_type == :product_thumb_cart
             image.resize '100x100' if image_type == :product_rec
             image.resize '237x180' if image_type == :product_wine_tour
-            
+
             image.resize '480x450' if image_type == :recipe
             image.resize '100x75', :stretch => true, :upsample => true if image_type == :recipe_thumb
-            
+
             image.resize '100x75', :crop => true if image_type == :post_thumb
             image.resize '480x450', :crop => true if image_type == :post
-            
+
             image.resize '100x75', :stretch => true, :upsample => true if image_type == :restaurant_thumb
             image.resize '250x200' if image_type == :restaurant_thumb_site
-            
+
             image.resize '480x450' if image_type == :recipe
             image.resize '100x75', :stretch => true, :upsample => true if image_type == :recipe_thumb
-            
+
             image.resize '100x75' if image_type == :review_thumb
-            
+
             image.resize '287x200' if image_type == :blog_view
           end
         end unless @image.blank?
@@ -67,3 +68,4 @@ class Site::ImagesController < ApplicationController
        news_letters_product news_letters_banner news_letters_other product_wine_tour blog_view product_thumb_cart grape_thumb)
   end
 end
+

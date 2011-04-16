@@ -1,4 +1,3 @@
-     # invoke using /usr/local/bin/ruby /usr/local/bin/juggernaut -c juggernaut.yml -d
      # ======================
      # Juggernaut Options
      # ======================
@@ -33,7 +32,7 @@
      #
      :allowed_ips:
                   - 127.0.0.1
-                 #  - 89.145.121.178
+                  - 89.145.121.178
 
      # 2) Via HTTP request
      #

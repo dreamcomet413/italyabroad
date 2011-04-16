@@ -9,6 +9,7 @@
     <meta name="keywords" content="<%= h(keys) %>" />
     <meta name="copyright" content="italyabroad.com" />
     <meta http-equiv="content-language" content="EN" />
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
     <meta name="ROBOTS" content="INDEX,FOLLOW" />
     <meta name="creation_Date" content="09/21/2007" />
     <meta name="revisit-after" content="7 days" />
@@ -24,14 +25,14 @@
   <body <%= @paypal_redirect %> <%= "id='#{@page_id}'" if @page_id %> class="<%= @current_controller %><%= " #{@class}" if @class %>" <%= "onload='#{@onload}'" if @onload %>>
     <div id="content">
       <div id="topContent">
-        <%= link_to image_tag('logo.png'), root_path, :id => "logo" %>
+        <%= link_to image_tag('logo.png', :alt => "Italian wine and food", :title => "Italian wine and food"), root_path, :id => "logo" %>
         <div id="cartLogin">
           <div id="cart"><%= render :partial => "/site/shared/cart" %></div>
           <div id="logIn">
 
             <!-- Remove this line and uncomment the other lines when u go live -->
-            <% support_link = "Closed" -%>
-            <%#    @support_user = Setting.find(:first).support
+            <%# support_link = "Closed" -%>
+            <%    @support_user = Setting.find(:first).support
                    @support_status = Juggernaut.show_client(@support_user) ? true : false
                    if @support_status == true
                       support_link = "Open"

@@ -27,7 +27,7 @@
     <%= @product.description.gsub("\n","<br />") rescue "No description" %>
     <br /><br />
     <div style="clear:both;"></div>
-    <div align="center"><h4>Wine List</h4>
+    <div align="center"><h4><%= @product.included_products.count > 0 ? "Wine List" : "" %></h4>
     <% for included_product in @product.included_products %>
 
       <%= link_to included_product.name, "/wine-events/#{included_product.friendly_identifier}", :style => "color:#9b0707;" %> <br />
