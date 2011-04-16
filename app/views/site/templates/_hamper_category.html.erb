@@ -1,6 +1,6 @@
 <%- @breadcrumbs = "#{link_to("Home", root_url)} &raquo; #{link_to("Hampers", '/hampers')}" -%>
 
-<% if @category.image && !@category.image_url.blank? %>
+<% if @category.image  && !@category.image_url.blank? %>
   <div id="wineBanner">
 	  <%= link_to image_tag(image_url('home_image', @category.image, :jpg)), @category.image_url %>
 	</div>
