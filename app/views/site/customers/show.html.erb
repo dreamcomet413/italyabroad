@@ -238,10 +238,15 @@
 <div id="follower">
   <h1>&nbsp;&nbsp;Members I am following:</h1>
   <ul>
-    <%- @user.followers.all(:limit => 10).each do |people| -%>
+    <%#- @user.followers.all(:limit => 10).each do |people| -%>
+    <% @followers = Follower.find(:all,:conditions=>['follower_id = ?',params[:id]],:limit=>10)%>
+    <% for people in @followers %>
     <li>
-      <%= link_to avatar_for_user(people.follower, 'small'), customer_path(people.follower) %>
-      <%= link_to people.follower.name, customer_path(people.follower) %>
+      <% @user = User.find_by_id(people.user_id)%>
+      <%#= link_to avatar_for_user(people.follower, 'small'), customer_path(people.follower) %>
+      <%= link_to avatar_for_user(@user, 'small'), customer_path(@user.id) %>
+      <%#= link_to people.follower.name, customer_path(people.follower) %>
+      <%= link_to @user.name, customer_path(@user.id) %>
     </li>
     <%- end -%>
   </ul>
