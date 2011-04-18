@@ -57,7 +57,12 @@
   </tr>
   <tr>
     <td>Home Image</td>
-    <td valign="top"><%#= file_field :category, :home_image %>&nbsp;URL&nbsp;<%= file_field :category, :image_url %></td>
+    <td valign="top"><%#= file_field :category, :home_image %>&nbsp;URL&nbsp;<%#= file_field :category, :image_url %>
+    <% fields_for :image do %>
+   <%= file_field :image,:image_file %>
+    <% end %>
+
+    </td>
   </tr>
   <tr>
     <td></td>
