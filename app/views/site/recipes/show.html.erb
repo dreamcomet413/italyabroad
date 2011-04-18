@@ -40,7 +40,7 @@
   <%- if logged_in? -%>
   <div id="recipe_comments_add" style="border-bottom:1px solid #CCCCCC;background-color:#F3F8DA;padding:5px 0 5px 8px">
       <h2>Leave your review</h2>
-      <%= render(:partial => 'site/reviews/new', :locals => {:create_url => recipe_reviews_path(@recipe, :return_to => recipe_path(@recipe))}) %>
+      <%= render(:partial => 'site/reviews/new', :locals => {:create_url => recipe_reviews_path(@recipe, :return_to => recipe_path(@recipe))}) %>    
   </div>
   <%- else -%>
   <%# if !logged_in? %>
@@ -62,6 +62,10 @@
   <h1 style="text-align:right"><%= will_paginate @reviews unless @reviews.blank? %></h1>
 
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> 55fc7dccf83327d5e5b8ff8d4b3bf09ce77b5943
 </div>
 
 <% content_for :right do %>

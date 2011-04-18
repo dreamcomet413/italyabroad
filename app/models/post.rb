@@ -5,11 +5,11 @@ class Post < ActiveRecord::Base
   belongs_to :image_1, :class_name => "Image", :foreign_key => "image_1_id"
   belongs_to :image_2, :class_name => "Image", :foreign_key => "image_2_id"
   belongs_to :image_3, :class_name => "Image", :foreign_key => "image_3_id"
-  
+
   belongs_to :resource_1, :class_name => "Resource", :foreign_key => "resource_1_id"
   belongs_to :resource_2, :class_name => "Resource", :foreign_key => "resource_2_id"
   belongs_to :resource_3, :class_name => "Resource", :foreign_key => "resource_3_id"
-  
+
   has_many :comments do
     def latest
       self.all(:order => "created_at DESC")
@@ -19,8 +19,8 @@ class Post < ActiveRecord::Base
   belongs_to :blog_type
   has_many :posts_tags
   has_many :tags, :through => :posts_tags
-  
-  friendly_identifier :name
+
+  friendly_identifier :name,:keep_updated=>true
 
   named_scope :most_read, :order => "view_count DESC", :limit => 5
 
@@ -40,15 +40,15 @@ class Post < ActiveRecord::Base
   def description_short_cleared
     self.description_short.gsub("\n","<br />")
   end
-  
+
   def page_title_formatted
     page_title.blank? ? name : page_title
   end
-  
+
   def meta_description_formatted
     meta_description.blank? ? description[0..500] : meta_description
   end
-  
+
   def meta_keys_formatted
     if meta_keys.blank?
       keys = []
@@ -62,11 +62,11 @@ class Post < ActiveRecord::Base
       return meta_keys
     end
   end
-  
+
   def show_errors
     return "- " + self.errors.full_messages.join("<br />- ")
   end
-  
+
   def self.archives
     blogs = find_by_sql(["SELECT COUNT(*) as count, EXTRACT(YEAR FROM created_at) as year, EXTRACT(MONTH FROM created_at) as month FROM posts WHERE created_at < ? GROUP BY year, month ORDER BY year desc, month desc", Time.now])
     blogs.collect(&:year).uniq.inject([]) do |results, year|
@@ -86,3 +86,4 @@ class Post < ActiveRecord::Base
     end
   end
 end
+
