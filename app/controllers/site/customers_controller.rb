@@ -54,22 +54,32 @@ class Site::CustomersController < ApplicationController
       @user.active = true
   end
     #@user.activation_code = ActivePassword.new #Customers don't wont activations
-        simple_captcha_valid?
-        if @user.save_with_captcha and !(params[:conditions].nil?)
-           Notifier.deliver_new_account_created(@user,AppConfig.admin_email)
-          flash[:title] = "Congratulations"
-          flash[:message] = "Your account has been created, an email with your account details has been sent to #{@user.email}."
-          if @user.type_id != 4
-          self.current_user = User.authenticate(@user.login, @user.password_clean)
-    #      redirect_back_or_default(:action => :messages)
+
+        if @user.valid_with_captcha?
+          if  !params[:conditions].nil?
+            @user.save
+            #.save_with_captcha
+            Notifier.deliver_new_account_created(@user,AppConfig.admin_email)
+            flash[:title] = "Congratulations"
+            flash[:message] = "Your account has been created, an email with your account details has been sent to #{@user.email}."
+            if @user.type_id != 4
+              self.current_user = User.authenticate(@user.login, @user.password_clean)
+              #redirect_back_or_default(:action => :messages)
+            end
+            redirect_back_or_default(root_url)
+          else
+            flash[:notice] = @user.show_errors
+            flash[:notice] +=  '<br />' + "You have to accept the terms and conditions"
+            render :action => :new
           end
-          redirect_back_or_default(root_url)
-        else
-          flash[:notice] = @user.show_errors
+      else
+        flash[:notice] = @user.show_errors
+        if params[:conditions].nil?
           flash[:notice] +=  '<br />' + "You have to accept the terms and conditions"
-          render :action => :new
         end
-   end
+        render :action => :new
+      end
+  end
 
   def confirmation
     @user = User.find_by_id(params[:id])
@@ -178,7 +188,7 @@ class Site::CustomersController < ApplicationController
   end
 
   def send_message
-    @message = Message.new(:name=>params[:name],:user_id=>params[:user_id],:send_by_id=>params[:send_by])
+    @message = Message.new(:name=>params[:name],:user_id=>params[:user_id],:send_by_id=>params[:send_by_id])
     if @message.save
       redirect_to customer_path(params[:user_id])
     else
