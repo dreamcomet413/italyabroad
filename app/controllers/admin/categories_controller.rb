@@ -21,6 +21,7 @@ class Admin::CategoriesController < ApplicationController
       @image = Image.new(params[:image])
       @image.save
       @category.image_id = @image.id
+      @category.image_url = params[:image][:image_file]
     end
     if @category.save
 
@@ -34,7 +35,7 @@ class Admin::CategoriesController < ApplicationController
 
   def edit
     @category = Category.find(params[:id])
-    
+
     respond_to do |format|
       format.html
     end
@@ -43,10 +44,11 @@ class Admin::CategoriesController < ApplicationController
   def update
     @category = Category.find(params[:id])
     if @category.valid? and  !params[:image].nil?
-      @category.image.destroy
+      @category.image.destroy unless @category.image.nil?
       @image = Image.new(params[:image])
       @image.save
       @category.image_id = @image.id
+      @category.image_url = params[:image][:image_file]
      end
     if @category.update_attributes(params[:category])
       flash[:notice] = "Category is updated successfully"
