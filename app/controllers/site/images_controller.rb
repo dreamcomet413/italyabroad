@@ -10,6 +10,9 @@ class Site::ImagesController < ApplicationController
         image_type = image_type.to_sym
         format.jpg do
           @image.operate do |image|
+
+            #IMPORTANT THESE TYPES DEFINED SHOULD BE MENTIONED IN THE FUNCTION DEFINED IN THE BOTTOM ..
+
             image.resize '65x104', :crop => true if image_type == :grape_thumb
             image.resize '50x50', :crop => true if image_type == :avatar_thumb_small
             image.resize '98x98', :crop => true if image_type == :avatar_thumb
@@ -19,9 +22,7 @@ class Site::ImagesController < ApplicationController
 
             image.resize '500x270', :stretch => false, :upsample => false if image_type == :category
             image.resize '100x75', :crop => true if image_type == :category_thumb
-
             image.resize '200x200', :crop => true if image_type == :product
-            image.resize '200x200', :crop => true if image_type == :product_master
             image.resize '800x600' if image_type == :product_display
             image.resize '60x128' if image_type == :product_wine
             image.resize '60x128' if image_type == :product_food
@@ -31,7 +32,7 @@ class Site::ImagesController < ApplicationController
             image.resize '30x30' if image_type == :product_thumb_cart
             image.resize '100x100' if image_type == :product_rec
             image.resize '237x180' if image_type == :product_wine_tour
-
+            image.resize '300x300' if image_type == :product_show
             image.resize '480x450' if image_type == :recipe
             image.resize '100x75', :stretch => true, :upsample => true if image_type == :recipe_thumb
 
@@ -47,6 +48,7 @@ class Site::ImagesController < ApplicationController
             image.resize '100x75' if image_type == :review_thumb
 
             image.resize '287x200' if image_type == :blog_view
+
           end
         end unless @image.blank?
       else
@@ -63,7 +65,7 @@ class Site::ImagesController < ApplicationController
 
   def available_image_types
     %w(category category_thumb home_image home_image_thumb product product_display product_wine product_food avatar_thumb avatar_thumb_small
-       product_hamper product_event product_thumb product_rec restaurant restaurant_thumb restaurant_thumb_site
+       product_hamper product_event product_thumb product_rec restaurant restaurant_thumb restaurant_thumb_site product_show
        recipe recipe_thumb post post_thumb review review_thumb news_letters_header news_letters_thumb news_letters_week
        news_letters_product news_letters_banner news_letters_other product_wine_tour blog_view product_thumb_cart grape_thumb)
   end
