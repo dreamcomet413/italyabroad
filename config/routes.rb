@@ -68,7 +68,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :grapes, :controller => 'site/grapes', :only => [:index, :show]
   map.resources :wine_lists, :controller => 'site/wine_lists'
   map.resources :reviews, :controller => 'site/reviews'
-  map.resources :messages, :controller => 'site/messages'
+  map.resources :messages, :controller => 'site/messages',:collection=>[:send_reply,:send_message]
    map.resources :comments, :controller => 'site/comments'
   map.resources :search, :controller => 'site/search', :only => [:index],:collection=>[:find_users,:find_wines,:find_foods,:find_recipes,:find_producers]
   map.resources :cart, :controller => 'site/cart', :only => [:index, :update], :collection => {:empty => :get, :continue_shopping => :get}
