@@ -199,7 +199,10 @@
       <h1><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> Messages</h1>
       <ul>
         <%- @messages.each do |msg| -%>
-        <li><%= msg.name unless msg.name.blank? %></li>
+        <li><%= msg.name unless msg.name.blank? %>
+        <%= link_to_remote 'Reply', :url => { :controller=>'messages',:action => "send_reply",:msg_id=>msg.id} %>
+        <div id='reply<%=msg.id%>'> </div>
+        </li>
         <%- end -%>
         <% if @user.messages.size > 5 %>
         <li style="list-style:none;text-align:right;margin-top:20px;"><%= link_to("more",:controller=>'site/messages',:action=>'index',:id=>params[:id]) %></li>
