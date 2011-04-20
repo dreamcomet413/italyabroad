@@ -23,9 +23,9 @@
   <ul style="margin:0;list-style:none;padding-left:20px;">
   <%- for recipe in @recipes -%>
     <li>
-      <h1><%= link_to recipe.name, recipe_path(recipe), :style => "font-size:17px;color:#003300;" %></h1><br />
+      <h1><%= link_to recipe.name, recipe_path(recipe) %></h1><br /><!--, :style => "font-size:17px;color:#003300;"-->
       <%= recipe.ingredients %>
-    </li>
+    </li><br />
   <%- end -%>
   </ul>
   <br /><br />

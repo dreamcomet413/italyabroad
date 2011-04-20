@@ -23,7 +23,7 @@
         <table>
           <tr>
             <td><%= link_to truncate(product.name, :length => 60), nested_products_uri(product) %></td>
-            <td><%= show_ratings(product) %></td>
+            <td><%#= show_ratings(product) %><%= show_review_ratings(product) %></td>
           </tr>
         </table>
         <br />

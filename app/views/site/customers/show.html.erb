@@ -192,6 +192,7 @@
     </li>
   </ul>
   <div style="clear:both;"></div>
+ <% if  @my_profile %>
   <% @messages = @user.messages.all(:order=>' id desc',:limit => 5)
   unless @messages.blank?%>
 
@@ -214,6 +215,7 @@
    <h1>&nbsp;&nbsp;You don't have any messages</h1>
    <br />
   <% end %>
+  <% end %> <br />
    <% if logged_in? %>
   <% unless @my_profile %>
   <div>

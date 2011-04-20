@@ -23,7 +23,7 @@
         <table>
           <tr>
             <td><%= link_to product.name, nested_products_uri(product), :style => "font-size:15px;" %></td>
-            <td><%= show_ratings(product) %></td>
+            <td><%#= show_ratings(product) %><%= show_review_ratings(product) %></td>
           </tr>
         </table>
         <br />
