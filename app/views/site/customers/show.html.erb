@@ -201,7 +201,7 @@
       <ul>
         <%- @messages.each do |msg| -%>
         <li><%= msg.name unless msg.name.blank? %>
-        <%= link_to_remote 'Reply', :url => { :controller=>'messages',:action => "send_reply",:msg_id=>msg.id} %>
+        <%= link_to_remote '&nbsp;&#171;Reply&#187;&nbsp;', :url => { :controller=>'messages',:action => "send_reply",:msg_id=>msg.id} %>
         <div id='reply<%=msg.id%>'> </div>
         </li>
         <%- end -%>
