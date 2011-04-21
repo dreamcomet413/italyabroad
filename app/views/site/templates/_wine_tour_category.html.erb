@@ -2,23 +2,27 @@
 <% @about = AboutU.find(:first, :conditions => {:link_type => "wine-tour"} ) %>
 <% if @category.image && !@category.image_url.blank? %>
   <div id="wineBanner">
-	  <%= link_to image_tag(image_url('home_image', @category.image, :jpg)), @category.image_url %>
+  <span class="title_wine_tours">
+    <%= @category.text_on_image %>
+  </span>
+	  <%= link_to image_tag(image_url('home_image', @category.image, :jpg)),  search_index_path(:id => @category.friendly_identifier) %>
+
 	</div>
 <% else %>
   <div id="wineBanner">
-    <span class="title_wine_tours">
-    <%= @about.title if @about %>
-     <!-- <strong style="font-size:24px;">Experience</strong> firsthand the <strong style="font-size:24px;">passion,</strong><br />
+  <span class="title_wine_tours">
+    <%#= @about.title if @about %>
+     <strong style="font-size:24px;">Experience</strong> firsthand the <strong style="font-size:24px;">passion,</strong><br />
       talk to the <strong style="font-size:24px;">winemakers</strong>, visit the<br >
       <strong style="font-size:24px;">vineyards,</strong> the cellar, <strong style="font-size:24px;">taste the<br />
       wines</strong> directly from the barrels,<br />
       <strong style="font-size:24px;">harvest</strong> the grapes and <strong style="font-size:24px;">make your<br />own wine</strong> with our <strong style="font-size:24px;">wine tours</strong>-->
       </span>
-   <% if  @about and !@about.image_id.nil? %>
-      <%= link_to image_tag(image_url(:about_thumb, @about.image, :jpg)) , search_index_path(:id => @category.friendly_identifier)  unless @about.blank?  %>
-      <% else %>
+   <%# if  @about and !@about.image_id.nil? %>
+      <%#= link_to image_tag(image_url(:about_thumb, @about.image, :jpg)) , search_index_path(:id => @category.friendly_identifier)  unless @about.blank?  %>
+      <%# else %>
  <%= link_to image_tag("wine_tours_home.jpg"), search_index_path(:id => @category.friendly_identifier)  %>
- <% end %>
+ <%# end %>
 	</div>
 <% end %>
 

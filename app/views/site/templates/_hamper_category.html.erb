@@ -2,7 +2,10 @@
 
 <% if @category.image  && !@category.image_url.blank? %>
   <div id="wineBanner">
-	  <%= link_to image_tag(image_url('home_image', @category.image, :jpg)), @category.image_url %>
+    <span class="title_wine_tours">
+    <%= @category.text_on_image %>
+    </span>
+	  <%= link_to image_tag(image_url('home_image', @category.image, :jpg)), search_index_path(@category) %>
 	</div>
 <% else %>
   <div id="wineBanner">
