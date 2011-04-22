@@ -26,6 +26,7 @@
       <h1><%= link_to recipe.name, recipe_path(recipe) %></h1><br /><!--, :style => "font-size:17px;color:#003300;"-->
       <%= recipe.ingredients %>
     </li><br />
+    <br /><br />
   <%- end -%>
   </ul>
   <br /><br />
@@ -42,3 +43,4 @@
 	<br />
 	<%= render :partial => '/site/shared/box_grape_guide' %>
 <% end %>
+
