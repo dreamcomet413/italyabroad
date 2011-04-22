@@ -30,26 +30,27 @@
   </table>
   <div class="invite" style="text-align:center;margin:10px 20px;padding-top:10px;border-top:2px solid #b6cb31;padding-left:20px;padding-right:20px;">
     <h2 style="font-size:16px;color:#666666;">Invite a Friend</h2>
-    <%- form_for :friend do -%>
+    <%- form_tag 'invite_a_friend' do -%>
     <table align="center">
       <tr>
         <td>
           <div style="text-align:left;">Your name</div>
-          <%= text_field :friend, :your_name, :size => 20 %>
+          <%= text_field_tag  'your_name','', :size => 20 %>
         </td>
         <td>
           <div style="text-align:left;">Your friends name</div>
-          <%= text_field :friend, :your_friend_name, :size => 20 %>
+          <%= text_field_tag  'your_friend_name', '',:size => 20 %>
         </td>
         <td>
           <div style="text-align:left;">Your friends email</div>
-          <%= text_field :friend, :your_friend_email, :size => 20 %>
+          <%= text_field_tag  'your_friend_email', '',:size => 20 %>
         </td>
       </tr>
       <tr>
         <td colspan="3">
           <div style="text-align:left;">Your message</div>
-          <%= text_field :friend, :your_message, :size => 68, :value => "I thought you might be interested in this..." %>
+          <%= text_field_tag  'your_message','', :value => "I thought you might be interested in this...",:size => 68 %>
+          <%= hidden_field_tag 'h_product_id',request.request_uri %>
         </td>
       </tr>
     </table>

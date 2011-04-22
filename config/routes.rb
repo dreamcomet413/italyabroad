@@ -167,12 +167,18 @@ map.eval_xml_g_comptible 'admin/xml/eval_xml_g_comptible', :controller => 'admin
   end
   #special case
   map.connect "/wine-tours", :controller => 'site/categories', :action => 'show', :category => 'wine-tours'
+
+  #the following route map.connect "/wine-tours/invite_a_friend" must come before map.connect "/wine-tours/:id" route definition
+  map.connect "/wine-tours/invite_a_friend", :controller => 'site/products', :action => 'invite_a_friend', :category => 'wine-tours'
+
   map.connect "/wine-tours/:id", :controller => 'site/products', :action => 'show', :category => 'wine-tours'
   map.connect "/wine-events", :controller => 'site/categories', :action => 'show', :category => "events"
   map.connect "/wine-events/:id", :controller => 'site/products', :action => 'show', :category => "events"
   map.connect "/events", :controller => 'site/categories', :action => 'show', :category => "events"
   map.connect "/events/:id", :controller => 'site/products', :action => 'show', :category => "events"
   map.connect "/wine-club/", :controller => 'site/categories', :action => 'show', :category => "wine-club"
+  #the following route map.connect "/wine-club/invite_a_friend" must come before map.connect "/wine-club/:id" route definition
+   map.connect "/wine-club/invite_a_friend", :controller => 'site/products', :action => 'invite_a_friend', :category => 'wine-club'
   map.connect "/wine-club/:id", :controller => 'site/products', :action => 'show', :category => "wine-club"
 
 

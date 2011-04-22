@@ -197,6 +197,14 @@ class Notifier < ActionMailer::Base
             :url  => url_for(:host => AppConfig.site_url, :controller => "site/customers", :action => "show", :id=>user.id)
   end
 
+  def invite_a_friend(email,name,friend_name,message)
+    recipients "#{email}"
+    from "info@italyabroad.com"
+    subject  "An invitation from  " + "#{name}"
+    body  :message =>message,:your_name=>name,:friend_name=>friend_name
+
+  end
+
   protected
 
   def setup_email(user)
