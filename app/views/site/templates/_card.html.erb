@@ -126,34 +126,7 @@
   <h3>Description</h3>
   <%= @product.description.gsub("\n","<br />") rescue "Product has no description" %>
 </div>
-<% if @product.categories.root.name == "Hampers" or params[:category] == "mixed-case" or params[:category] == "wine-hampers" %>
-<% @includes = @product.product_includeds.all(:limit => 5) %>
-    <% if !@includes.blank? %>
-<div id="wineRelated">
-  <br/>
-  <h3>Other images</h3>
-  <ul style="margin-bottom: 25px;">
 
-  <% for include in @includes %>
-    <% inc_product = Product.find(include.included_product_id) %>
-  <li style="float:left;width:140px;text-align:center;margin:0 0 10px 0; height: 210px;">
-    <table>
-      <tr><td valign="bottom" style="height: 150px;"><%= link_to show_image_tag(inc_product.layout_image, inc_product.image_1, :jpg), nested_products_uri(inc_product) %>
-              <%#= image_tag(image_url(image.layout_image, image.image_1, "jpg")) %>
-        </td></tr>
-      <tr>
-        <td style="vertical-align:bottom;"><%= link_to truncate(inc_product.name,80), nested_products_uri(inc_product) %></td>
-      </tr>
-    </table>
-  <%#= show_image_tag('product', image.image_1, :jpg) %>
-  </li>
-  <% end %>
-
-  </ul>
-</div>
-
-  <% end %>
-<% end %>
 <!--<div style="float: left;" id ="other-image"></div>
 
 <div style="font:normal 16px Arial;padding:0 0 0 10px"><%= link_to_remote(("Other images"),:url => { :controller => "site/categories",:action => "all_mixedcase_image", :parent =>@product.categories.root.name }) %></div>
@@ -174,7 +147,7 @@
     <%= render(:partial => 'site/reviews/new', :locals => {:create_url => product_reviews_path(@product, :return_to => nested_products_uri(@product))}) %>
   <%- end -%>
 </div><br />
-<%- related_products = @product.correlations.all(:limit => 5) -%>
+<%- related_products = @product.correlations.all(:limit => 3) -%>
 <%- column_width = related_products.size -%>
 <% unless related_products.blank? %>
   <div id="wineRelated">
@@ -202,4 +175,36 @@
           </ul>
           </div>
         <% end %>
+ <% if @product.categories.root.name.downcase == "wine"  %>
+<% @includes = @product.product_includeds.all(:limit => 5) %>
+    <% if !@includes.blank? %>
+<div id="wineRelated">
+  <br/>
+  <h3>Wines you may like</h3>
+  <ul style="margin-bottom: 25px;">
+
+  <% for include in @includes %>
+    <% inc_product = Product.find(include.included_product_id) %>
+  <li style="float:left;width:140px;text-align:center;margin:0 0 10px 0; height: 210px;">
+    <table>
+      <tr><td valign="bottom" style="height: 150px;"><%= link_to show_image_tag(inc_product.layout_image, inc_product.image_1, :jpg), nested_products_uri(inc_product) %>
+              <%#= image_tag(image_url(image.layout_image, image.image_1, "jpg")) %>
+        </td></tr>
+      <tr>
+        <td style="vertical-align:bottom;"><%= link_to truncate(inc_product.name,80), nested_products_uri(inc_product) %></td>
+      </tr>
+      <tr>
+            <td><%= number_to_currency inc_product.price, :unit => "&pound;" %></td>
+            </tr>
+      <tr><td><%= link_to_remote image_tag("buttons/add_to_cart_button.png"), :url => product_cart_index_path(inc_product), :html => {:method => 'post'} %></td></tr>
+    </table>
+  <%#= show_image_tag('product', image.image_1, :jpg) %>
+  </li>
+  <% end %>
+
+  </ul>
+</div>
+
+  <% end %>
+<% end %>
 
