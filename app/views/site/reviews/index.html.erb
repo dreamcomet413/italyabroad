@@ -2,13 +2,18 @@
 <%- @breadcrumbs = "#{link_to "Home", root_url} &raquo; My Reviews" -%>
 
 <div id="header"><%= render :partial => 'site/shared/box_login' %></div>
+<% if @reviews.size > 0  %>
 <h4 class="account-title">My Reviews</h4>
 <%= content_tag(:div, will_paginate(@reviews), :style => "margin:10px 20px;") if @reviews.size > 0  %>
 <ul style="padding:0;list-style:none;" id="my_reviews_list">
 
   <%= render :partial => 'review', :collection => @reviews %>
 </ul>
-
+<% else %>
+<div style="height:300px;">
+<h4>You haven’t written any review yet, why not to write one</h4>
+</div>
+<% end %>
 <%- content_for :right do -%>
   <%= render :partial => '/site/shared/box_subscriptions' %>
 <%- end -%>

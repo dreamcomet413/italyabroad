@@ -4,7 +4,7 @@ class Site::OrdersController < ApplicationController
 
   ssl_required :create if RAILS_ENV == "production"
   ssl_allowed
- # require "prawn"
+  require "prawn"
 
   def index
     @orders = current_user.orders.all(:order => "created_at DESC").paginate(:page => params[:page], :per_page => 10)

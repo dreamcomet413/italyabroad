@@ -24,6 +24,7 @@ Rails::Initializer.run do |config|
   # config.gem "rmagick"
   # config.gem "xml-simple", :version => '1.0.12'
   # config.gem " mime-types"
+  config.gem 'prawn'
   config.gem "activemerchant", :version => ">= 1.5.1", :lib => "active_merchant"
   config.gem 'fleximage'
   config.gem 'will_paginate', :version => '>= 2.3.12'
@@ -59,3 +60,4 @@ ActionMailer::Base.smtp_settings = {
   :password => "server123"
 }
 require "custom_country_select"
+

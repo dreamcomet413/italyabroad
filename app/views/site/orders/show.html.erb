@@ -18,8 +18,8 @@
     <tr>
       <td style="width:20px;padding-left:5px;"><%= show_image_tag(:product_thumb_cart, order_item.product.image_1) %></td>
       <td><%= order_item.product.name %></td>
-      <td>X<%= order_item.quantity %></td>
-      <td><%= number_to_currency order_item.product.price %></td>
+      <td><%= order_item.quantity %></td>
+      <td><%= number_to_currency order_item.product.price,:unit => "&pound;" %></td>
       <td align="right">
         <%= link_to(image_tag("buttons/add_to_cart_button.png"), product_cart_index_path(order_item.product), :method => 'post') %>
       </td>
@@ -43,3 +43,4 @@
   <br />
   <%= render :partial => '/site/shared/box_popular' %>
 <%- end -%>
+

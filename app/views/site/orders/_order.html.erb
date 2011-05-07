@@ -1,7 +1,8 @@
 <tr class="list <%= cycle("odd", "even") %>">
 	<td><%= order.id %></td>
-	<td><%= number_to_currency order.sub_total %></td>
+	<td><%= number_to_currency order.sub_total, :unit => "&pound;" %></td>
 	<td><%= order.created_at.strftime("%d/%m/%y %H:%M") %></td>
 	<td><%= order.status_order.name %></td>
 	<td><%= link_to(image_tag("buttons/more_info.png"), order_path(order)) %></td>
 </tr>
+
