@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
 
   apply_simple_captcha :message => " image and text were different", :add_to_base => true
 
-  validates_presence_of     :login, :email, :name, :surname
+  validates_presence_of     :login, :email, :name, :surname,:telephone
   validates_presence_of     :password,                   :if => :password_required?
   validates_presence_of     :password_confirmation,      :if => :password_required?
   validates_length_of       :password, :within => 6..40, :if => :password_required?

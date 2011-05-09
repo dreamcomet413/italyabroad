@@ -20,8 +20,8 @@
   <div class="comments">
 
    <!-- <h2><%#= @post.comments.size %> comments</h2> -->
-    <% if logged_in? %>
-      <div id="recipe_comments_add" style="border-bottom:1px solid #CCCCCC;background-color:#F3F8DA;padding:5px 0 5px 8px">
+    <% if logged_in? %><%= link_to 'Add Review',"#",:onclick=>"document.getElementById('recipe_comments_add').style.display='block';return false;" %>
+      <div id="recipe_comments_add" style="border-bottom:1px solid #CCCCCC;background-color:#F3F8DA;padding:5px 0 5px 8px;display:none;">
         <% form_tag comment_blog_path(:id => @post.id) do %>
           <% unless flash[:blog_notice].blank? %>
             <div style="color:red"><%= flash[:blog_notice] %></div>

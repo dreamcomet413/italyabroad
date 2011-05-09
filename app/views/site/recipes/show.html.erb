@@ -37,10 +37,10 @@
 
   <div style="border-bottom:1px solid #CCCCCC;margin-top:20px;"></div>
   <h2><%= @recipe.reviews.size %>  Comments</h2>
-  <%- if logged_in? -%>
-  <div id="recipe_comments_add" style="border-bottom:1px solid #CCCCCC;background-color:#F3F8DA;padding:5px 0 5px 8px">
+  <%- if logged_in? -%><%= link_to 'Add Review',"#",:onclick=>"document.getElementById('recipe_comments_add').style.display='block';return false;" %>
+  <div id="recipe_comments_add" style="border-bottom:1px solid #CCCCCC;background-color:#F3F8DA;padding:5px 0 5px 8px;display:none;">
       <h2>Leave your review</h2>
-      <%= render(:partial => 'site/reviews/new', :locals => {:create_url => recipe_reviews_path(@recipe, :return_to => recipe_path(@recipe))}) %>    
+      <%= render(:partial => 'site/reviews/new', :locals => {:create_url => recipe_reviews_path(@recipe, :return_to => recipe_path(@recipe))}) %>
   </div>
   <%- else -%>
   <%# if !logged_in? %>

@@ -19,7 +19,7 @@
 	   <%= show_image_tag(product.layout_image, product.image_1) %>
 	  </td>
 		<td valign="top">
-		  <h2 style="font-weight:normal;"><%= product.name %></h2>
+		  <h2 style="font-weight:normal;"><%= link_to product.name,nested_products_uri(product) %></h2>
 		  <%= product.description_short %>
 		</td>
 		<td style="text-align:center;">
