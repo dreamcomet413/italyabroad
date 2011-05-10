@@ -6,5 +6,7 @@
   <li style="display:inline;margin-left:10px;"><%= link_to "My Reviews", reviews_path %></li>
   <li style="display:inline;margin-left:10px;"><%= link_to "My Messages",:controller=>'site/messages',:action=>'index',:id=>current_user.id %></li>
   <li style="display:inline;margin-left:10px;"><%= link_to "My Winelist", wine_lists_path %></li>
+  <li style="display:inline;margin-left:10px;"><%= link_to "My Profile", "customers/#{@user.id}" %></li>
 </ul>
 <% end %>
+
