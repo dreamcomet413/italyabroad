@@ -1,8 +1,11 @@
 <%- @title = "#{@my_profile ? "My" : @user.name+"'s"} Profile" -%>
 <%- @breadcrumbs = "#{link_to "Home", root_url} &raquo; Community &raquo #{@title}" -%>
+<div id="header"><%= render :partial => 'site/shared/box_login' %></div>
+
 <% @class = "no-padding" %>
 
-<div id="header"><%= @title %></div>
+<!-- div id="header"><%= @title %></div -->
+<h4 class="account-title"><%= @title %></h4>
 <div class="profile-container">
   <table width="100%" cellpadding="0" cellspacing="0">
     <tr>
@@ -18,7 +21,7 @@
       </td>
       <td valign="top">
         <div style="margin-left:20px;">
-          <div style="font-size:18px;"><%= @user.name %></div>
+          <div style="font-size:18px;"><%#= @user.name %></div>
           <table cellpadding="0" cellspacing="0">
             <tr>
               <td><p><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> favorite Meal:&nbsp;</p></td>
@@ -26,7 +29,7 @@
                 <%- if @my_profile -%>
                 <div id="favorite_meal">
                   <%- form_for :user, :url => customer_path(@user), :html => {:method => :put} do -%>
-                    <%= text_field :user,:fav_meals,:size => 45 %> <%= submit_tag("Save") %> or <%= link_to("Cancel", '', :onclick=>"document.getElementById('favorite_meal').style.display = 'none';return false;") %>
+                    <%= text_field :user,:fav_meals,:size => 45 %> <%= submit_tag("Save") %> <!-- or --> <%#= link_to("Cancel", '', :onclick=>"document.getElementById('favorite_meal').style.display = 'none';return false;") %>
                   <%- end -%>
                   </div>
                   <% else %>
@@ -40,7 +43,7 @@
                 <%- if @my_profile -%>
                  <div id="favorite_wine">
                   <%- form_for :user, :url => customer_path(@user), :html => {:method => :put} do -%>
-                    <%= text_field :user,:fav_wine, :size => 45 %> <%= submit_tag("Save") %> or <%= link_to("Cancel", '', :onclick=>"document.getElementById('favorite_wine').style.display = 'none';return false;") %>
+                    <%= text_field :user,:fav_wine, :size => 45 %> <%= submit_tag("Save") %> <!-- or --> <%#= link_to("Cancel", '', :onclick=>"document.getElementById('favorite_wine').style.display = 'none';return false;") %>
                   <%- end -%>
                   </div>
                   <% else %>
@@ -55,7 +58,7 @@
                 <%- if @my_profile -%>
                 <div id="favorite_holiday">
                   <%- form_for :user, :url => customer_path(@user), :html => {:method => :put} do -%>
-                    <%= text_field :user, :holidays, :size => 45 %> <%= submit_tag("Save") %> or <%= link_to("Cancel", '', :onclick=>"document.getElementById('favorite_holiday').style.display = 'none';return false;") %>
+                    <%= text_field :user, :holidays, :size => 45 %> <%= submit_tag("Save") %> <!-- or --> <%#= link_to("Cancel", '', :onclick=>"document.getElementById('favorite_holiday').style.display = 'none';return false;") %>
                   <%- end -%>
                 </div>
                 <% else %>
@@ -70,7 +73,7 @@
                 <%- if @my_profile -%>
                 <div id="favorite_song">
                   <%- form_for :user, :html => {:method => :put} do -%>
-                    <%= text_field :user, :songs, :size => 45 %> <%= submit_tag("Save") %> or <%= link_to("Cancel",'', :onclick=>"document.getElementById('favorite_song').style.display = 'none';return false;") %>
+                    <%= text_field :user, :songs, :size => 45 %> <%= submit_tag("Save") %> <!-- or --> <%#= link_to("Cancel",'', :onclick=>"document.getElementById('favorite_song').style.display = 'none';return false;") %>
                   <%- end -%>
                 </div>
                 <% else %>
@@ -85,7 +88,7 @@
                 <%- if @my_profile -%>
                 <div id="favorite_film">
                   <%- form_for :user, :url => customer_path(@user), :html => {:method => :put} do -%>
-                    <%= text_field :user, :films, :size => 45 %> <%= submit_tag("Save") %> or <%= link_to("Cancel",'', :onclick=>"document.getElementById('favorite_film').style.display = 'none';return false;") %>
+                    <%= text_field :user, :films, :size => 45 %> <%= submit_tag("Save") %> <!-- or --> <%#= link_to("Cancel",'', :onclick=>"document.getElementById('favorite_film').style.display = 'none';return false;") %>
                   <%- end -%>
                 </div>
                 <% else %>
@@ -100,9 +103,7 @@
                 <%- if @my_profile -%>
                 <div id="favorite_newspaper">
                 <%- @display = "none" unless @user.newspapers.blank? -%>
-                <div id="favorite_newspaper">
-                  <%- form_for :user, :url => customer_path(@user), :html => {:method => :put} do -%>
-                    <%= text_field :user, :newspapers, :size => 45 %> <%= submit_tag("Save") %> or <%= link_to("Cancel",'', :onclick=>"document.getElementById('favorite_newspaper').style.display = 'none';return false;") %>
+                  <%- form_for :user, :url => customer_path(@user), :html => {:method => :put} do -%><%= text_field :user, :newspapers, :size => 45 %> <%= submit_tag("Save") %> <!-- or --> <%#= link_to("Cancel",'', :onclick=>"document.getElementById('favorite_newspaper').style.display = 'none';return false;") %>
                   <%- end -%>
                 </div>
                 <% else %>
@@ -120,7 +121,7 @@
               <%- if @my_profile -%>
               <div id="chef_bio">
                 <%- form_for :user, :url => customer_path(@user), :html => {:method => :put} do -%>
-                    <%= text_area :user, :chef_bio, :size =>'45x5' %> <%= submit_tag("Save") %> or <%= link_to("Cancel",'', :onclick=>"document.getElementById('chef_bio').style.display = 'none';return false;") %>
+                    <%= text_area :user, :chef_bio, :size =>'45x5' %> <%= submit_tag("Save") %> <!-- or --> <%#= link_to("Cancel",'', :onclick=>"document.getElementById('chef_bio').style.display = 'none';return false;") %>
                   <%- end -%>
                   </div>
                   <% else %>
@@ -136,7 +137,7 @@
               <%- if @my_profile -%>
               <div id="establishment_link">
                 <%- form_for :user, :url => customer_path(@user), :html => {:method => :put} do -%>
-                    <%= text_field :user, :establishment_link, :size => 45 %> <%= submit_tag("Save") %> or <%= link_to("Cancel",'', :onclick=>"document.getElementById('establishment_link').style.display = 'none';return false;") %>
+                    <%= text_field :user, :establishment_link, :size => 45 %> <%= submit_tag("Save") %> <!-- or --> <%#= link_to("Cancel",'', :onclick=>"document.getElementById('establishment_link').style.display = 'none';return false;") %>
                   <%- end -%>
                   </div>
                 </td>
