@@ -153,8 +153,10 @@ class Site::CustomersController < ApplicationController
         flash[:title] = "Congratulations"
         flash[:message] = "Your account has been update, you will now receive an email"
    #   render :action => :messages
-   redirect_to root_url
+     redirect_to customer_path(@user.id)
+     #  redirect_to root_url
     else
+
       flash[:notice] = @user.show_errors
       render :action => :account
     end
@@ -205,7 +207,11 @@ class Site::CustomersController < ApplicationController
       if user && follower
         follower_id = follower.follower_id
         follower.destroy
+        unless session[:return_to].blank?
+          format.html { redirect_to(session[:return_to]) }
+        else
         format.html { redirect_to(customer_path(user)) }
+        end
       else
         format.html { redirect_to(customer_path(current_user)) }
       end

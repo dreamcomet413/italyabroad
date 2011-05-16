@@ -22,130 +22,137 @@
       <td valign="top">
         <div style="margin-left:20px;">
           <div style="font-size:18px;"><%#= @user.name %></div>
+          <%- if @my_profile -%>
+           <%- form_for :user, :url => customer_path(@user), :html => {:method => :put} do -%>
           <table cellpadding="0" cellspacing="0">
             <tr>
               <td><p><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> favorite Meal:&nbsp;</p></td>
               <td>
-                <%- if @my_profile -%>
+
                 <div id="favorite_meal">
-                  <%- form_for :user, :url => customer_path(@user), :html => {:method => :put} do -%>
-                    <%= text_field :user,:fav_meals,:size => 45 %> <%= submit_tag("Save") %> <!-- or --> <%#= link_to("Cancel", '', :onclick=>"document.getElementById('favorite_meal').style.display = 'none';return false;") %>
-                  <%- end -%>
+                    <%= text_field :user,:fav_meals,:size => 45 %>  <!-- or --> <%#= link_to("Cancel", '', :onclick=>"document.getElementById('favorite_meal').style.display = 'none';return false;") %>
                   </div>
-                  <% else %>
-                  <%= @user.fav_meals  %>
-                <%- end -%>
               </td>
             </tr>
             <tr>
               <td><p><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> favorite Wine:&nbsp;</p></td>
               <td>
-                <%- if @my_profile -%>
                  <div id="favorite_wine">
-                  <%- form_for :user, :url => customer_path(@user), :html => {:method => :put} do -%>
-                    <%= text_field :user,:fav_wine, :size => 45 %> <%= submit_tag("Save") %> <!-- or --> <%#= link_to("Cancel", '', :onclick=>"document.getElementById('favorite_wine').style.display = 'none';return false;") %>
-                  <%- end -%>
+                    <%= text_field :user,:fav_wine, :size => 45 %> <!-- or --> <%#= link_to("Cancel", '', :onclick=>"document.getElementById('favorite_wine').style.display = 'none';return false;") %>
                   </div>
-                  <% else %>
-                  <%= @user.fav_wine %>
-                <%- end -%>
               </td>
             </tr>
             <tr>
               <td><p><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> favorite Holiday:&nbsp;</p></td>
               <td>
-
-                <%- if @my_profile -%>
                 <div id="favorite_holiday">
-                  <%- form_for :user, :url => customer_path(@user), :html => {:method => :put} do -%>
-                    <%= text_field :user, :holidays, :size => 45 %> <%= submit_tag("Save") %> <!-- or --> <%#= link_to("Cancel", '', :onclick=>"document.getElementById('favorite_holiday').style.display = 'none';return false;") %>
-                  <%- end -%>
+                    <%= text_field :user, :holidays, :size => 45 %>  <!-- or --> <%#= link_to("Cancel", '', :onclick=>"document.getElementById('favorite_holiday').style.display = 'none';return false;") %>
                 </div>
-                <% else %>
-                <%= @user.holidays  %>
-                <%- end -%>
               </td>
             </tr>
             <tr>
               <td><p><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> favorite Song:&nbsp;</p></td>
               <td>
-
-                <%- if @my_profile -%>
                 <div id="favorite_song">
-                  <%- form_for :user, :html => {:method => :put} do -%>
-                    <%= text_field :user, :songs, :size => 45 %> <%= submit_tag("Save") %> <!-- or --> <%#= link_to("Cancel",'', :onclick=>"document.getElementById('favorite_song').style.display = 'none';return false;") %>
-                  <%- end -%>
+                    <%= text_field :user, :songs, :size => 45 %>  <!-- or --> <%#= link_to("Cancel",'', :onclick=>"document.getElementById('favorite_song').style.display = 'none';return false;") %>                </div>
+              </td>
+            </tr>
+            <tr>
+              <td><p><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> favorite Film:&nbsp;</p></td>
+              <td>
+                <div id="favorite_film">
+                    <%= text_field :user, :films, :size => 45 %>  <!-- or --> <%#= link_to("Cancel",'', :onclick=>"document.getElementById('favorite_film').style.display = 'none';return false;") %>                </div>
+              </td>
+            </tr>
+            <tr>
+              <td><p><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> favorite Newspaper:&nbsp;</p></td>
+              <td>
+                <div id="favorite_newspaper">
+                <%- @display = "none" unless @user.newspapers.blank? -%>
+               <%= text_field :user, :newspapers, :size => 45 %>  <!-- or --> <%#= link_to("Cancel",'', :onclick=>"document.getElementById('favorite_newspaper').style.display = 'none';return false;") %>
                 </div>
-                <% else %>
+              </td>
+            </tr>
+            <% if @user.type_id.to_i == 4 %>
+            <tr>
+            <td><p>Biography :</p></td>
+              <td><p>
+             <div id="chef_bio">
+                    <%= text_area :user, :chef_bio, :size =>'45x5' %>  <!-- or --> <%#= link_to("Cancel",'', :onclick=>"document.getElementById('chef_bio').style.display = 'none';return false;") %>
+                  </div>
+               </p></td>
+            </tr>
+            <tr>
+            <td>My restaurant website :</td>
+              <td>
+              <%= @user.establishment_link  %>
+              <%#= link_to("Edit") if @my_profile && !@user.establishment_link.blank? %>
+              <div id="establishment_link">
+                    <%= text_field :user, :establishment_link, :size => 45 %>  <!-- or --> <%#= link_to("Cancel",'', :onclick=>"document.getElementById('establishment_link').style.display = 'none';return false;") %>
+                  </div>
+                </td>
+            </tr>
+            </td></tr>
+            <% end %>
+            <tr><td colspan="2" align="center">
+            <%= image_submit_tag("buttons/save_button.png") %>
+          </table>
+          <%- end -%>
+          <% else %>
+           <table cellpadding="0" cellspacing="0" border="2">
+            <tr>
+              <td><p><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> favorite Meal:&nbsp;</p></td>
+              <td>
+                  <%= @user.fav_meals  %>
+              </td>
+            </tr>
+            <tr>
+              <td><p><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> favorite Wine:&nbsp;</p></td>
+              <td>
+                  <%= @user.fav_wine %>
+              </td>
+            </tr>
+            <tr>
+              <td><p><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> favorite Holiday:&nbsp;</p></td>
+              <td>
+                <%= @user.holidays  %>
+              </td>
+            </tr>
+            <tr>
+              <td><p><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> favorite Song:&nbsp;</p></td>
+              <td>
                 <%= @user.songs %>
-                <%- end -%>
               </td>
             </tr>
             <tr>
               <td><p><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> favorite Film:&nbsp;</p></td>
               <td>
                 <%= @user.films %>
-                <%- if @my_profile -%>
-                <div id="favorite_film">
-                  <%- form_for :user, :url => customer_path(@user), :html => {:method => :put} do -%>
-                    <%= text_field :user, :films, :size => 45 %> <%= submit_tag("Save") %> <!-- or --> <%#= link_to("Cancel",'', :onclick=>"document.getElementById('favorite_film').style.display = 'none';return false;") %>
-                  <%- end -%>
-                </div>
-                <% else %>
-                <%= @user.films %>
-                <%- end -%>
               </td>
             </tr>
             <tr>
               <td><p><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> favorite Newspaper:&nbsp;</p></td>
               <td>
-
-                <%- if @my_profile -%>
-                <div id="favorite_newspaper">
-                <%- @display = "none" unless @user.newspapers.blank? -%>
-                  <%- form_for :user, :url => customer_path(@user), :html => {:method => :put} do -%><%= text_field :user, :newspapers, :size => 45 %> <%= submit_tag("Save") %> <!-- or --> <%#= link_to("Cancel",'', :onclick=>"document.getElementById('favorite_newspaper').style.display = 'none';return false;") %>
-                  <%- end -%>
-                </div>
-                <% else %>
                  <%= @user.newspapers rescue "No newspaper" %>
-                <%- end -%>
               </td>
-
             </tr>
             <% if @user.type_id.to_i == 4 %>
             <tr>
             <td><p>Biography :</p></td>
               <td><p>
-
-
-              <%- if @my_profile -%>
-              <div id="chef_bio">
-                <%- form_for :user, :url => customer_path(@user), :html => {:method => :put} do -%>
-                    <%= text_area :user, :chef_bio, :size =>'45x5' %> <%= submit_tag("Save") %> <!-- or --> <%#= link_to("Cancel",'', :onclick=>"document.getElementById('chef_bio').style.display = 'none';return false;") %>
-                  <%- end -%>
-                  </div>
-                  <% else %>
                   <%= @user.chef_bio  %>
-                <% end %>
                 </p></td>
             </tr>
             <tr>
             <td>My restaurant website :</td>
               <td>
               <%= @user.establishment_link  %>
-              <%= link_to("Edit") if @my_profile && !@user.establishment_link.blank? %>
-              <%- if @my_profile -%>
-              <div id="establishment_link">
-                <%- form_for :user, :url => customer_path(@user), :html => {:method => :put} do -%>
-                    <%= text_field :user, :establishment_link, :size => 45 %> <%= submit_tag("Save") %> <!-- or --> <%#= link_to("Cancel",'', :onclick=>"document.getElementById('establishment_link').style.display = 'none';return false;") %>
-                  <%- end -%>
-                  </div>
+              <%#= link_to("Edit") if @my_profile && !@user.establishment_link.blank? %>
                 </td>
             </tr><% end %>
-
-            <% end %>
-
+            </td></tr>
           </table>
+          <% end %>
         </div>
       </td>
     </tr>
@@ -243,19 +250,25 @@
 
 <div id="follower">
   <h1>&nbsp;&nbsp;Members I am following:</h1>
-  <ul>
+  <table><tr>
     <%#- @user.followers.all(:limit => 10).each do |people| -%>
     <% @followers = Follower.find(:all,:conditions=>['follower_id = ?',params[:id]],:limit=>10)%>
     <% for people in @followers %>
-    <li>
+    <td>
       <% @user = User.find_by_id(people.user_id)%>
       <%#= link_to avatar_for_user(people.follower, 'small'), customer_path(people.follower) %>
       <%= link_to avatar_for_user(@user, 'small'), customer_path(@user.id) %>
       <%#= link_to people.follower.name, customer_path(people.follower) %>
-      <%= link_to @user.name, customer_path(@user.id) %>
-    </li>
+      <%= link_to @user.name, customer_path(@user.id) %><br />
+
+        <%- if @user.followed_by?(current_user) -%>
+       <%= link_to image_tag("buttons/unfollow.png"), unfollow_path(@user) %>
+
+        <%- end -%>
+
+    </td>
     <%- end -%>
-  </ul>
+  </tr></table>
 </div>
 <div style="clear:both;"></div>
 <br /><br /><br />
