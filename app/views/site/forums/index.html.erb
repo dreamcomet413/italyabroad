@@ -116,7 +116,7 @@
         </table>
       </td>
       <td valign="top">
-        <div id="box_latest_review">
+        <div id="box_latest_review" style="height:100px;">
          <h1 style="color:#9b0707;font-size:16px;">Latest Review</h1>
           <% latest_review = Review.last(:conditions=>['publish = ?',true]) %>
           <%- unless latest_review.nil? -%>
@@ -141,13 +141,10 @@
                   </tr>
                 </table>
             <%- else -%>
-                No published reviews
+                There are no reviews yet, why not write one and get £10 voucher
             <%- end -%>
 
         </div>
-
-
-
         <div id="box_grape_guide_forum"><br /><br /><br /><br /><br /><br /><br />
           <h1 style="color:#9b0707;font-size:16px;">Grape Guide</h1>
           <%- grapes = Grape.find(:all, :limit => 1, :order => "RAND()") -%>

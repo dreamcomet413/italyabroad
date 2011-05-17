@@ -145,7 +145,7 @@
   <%- if logged_in? -%><%= link_to 'Add Review',"#",:onclick=>"document.getElementById('add_review').style.display='block';return false;" %>
     <div id="add_review" style="display:none;"><h3><%=  'Leave your review' %></h3>
     <%= render(:partial => 'site/reviews/new', :locals => {:create_url => product_reviews_path(@product, :return_to => nested_products_uri(@product))}) %>
-  <%- end -%></div>
+  </div><%- end -%>
 <br /></div>
 <% if @product.categories.root.name.downcase == "wine"  %>
 <% @includes = @product.product_includeds.all(:limit => 3) %>

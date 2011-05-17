@@ -261,7 +261,7 @@
       <%#= link_to people.follower.name, customer_path(people.follower) %>
       <%= link_to @user.name, customer_path(@user.id) %><br />
 
-        <%- if @user.followed_by?(current_user) -%>
+        <%- if @user.followed_by?(current_user) -%><br >
        <%= link_to image_tag("buttons/unfollow.png"), unfollow_path(@user) %>
 
         <%- end -%>
