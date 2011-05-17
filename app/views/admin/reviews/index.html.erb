@@ -28,7 +28,7 @@
     <tbody>
     <% form_tag admin_reviews_path, :method=>:get do  %>
       <%- for review in @reviews -%>
-        <%- unless Product.find_by_id(review.reviewer_id).nil? -%>
+        <% unless Product.find_by_id(review.reviewer_id).nil? -%>
             <tr>
 
               <td><%= review.user.name rescue "Anonymous" %></td>
@@ -41,7 +41,19 @@
               <td><%# = check_box_tag 'publish[]',review.id,review.publish %></td -->
 
             </tr>
-        <%- end -%>
+             <% end -%>
+
+             <% unless Recipe.find_by_id(review.reviewer_id).nil? -%>
+            <tr>
+
+              <td><%=review.id %><%= review.user.name rescue "Anonymous" %></td>
+              <td><%= link_to Recipe.find_by_id(review.reviewer_id).name, edit_admin_review_path(review.id) %>&nbsp;[<%= review.reviewer_type %>]</td>
+              <td><%= check_box_tag 'publish[]',review.id,review.publish %></td>
+
+
+
+            </tr>
+        <% end -%>
       <%- end -%>
       <%= submit_tag 'Approve',:name=>'approve' %>
       <% end %>

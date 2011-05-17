@@ -36,7 +36,10 @@
 
 
   <div style="border-bottom:1px solid #CCCCCC;margin-top:20px;"></div>
-  <h2><%= @recipe.reviews.size %>  Comments</h2>
+  <% if @reviews.size > 0 %>
+  <h2>
+  <%= @reviews.size %>  Comments</h2>
+  <% end %>
   <%- if logged_in? -%><%= link_to 'Add Review',"#",:onclick=>"document.getElementById('recipe_comments_add').style.display='block';return false;" %>
   <div id="recipe_comments_add" style="border-bottom:1px solid #CCCCCC;background-color:#F3F8DA;padding:5px 0 5px 8px;display:none;">
       <h2>Leave your review</h2>
@@ -53,13 +56,13 @@
   <% end %>
 
   <div style="padding-bottom:16px; border-bottom:1px solid #CCCCCC;margin-top:8px;font:normal 14px Arial;">
-    Showing <%= @reviews.blank? ? "0" : (@reviews.offset) +1 %>--<%= (@reviews.offset)+(@reviews.length) %> of <%= @recipe.reviews.size %> comments.</div>
+     Showing <%= @reviews.blank? ? "0" : (@reviews.offset) +1 %>--<%= (@reviews.offset)+(@reviews.length) %> of <%= @reviews.size %> comments.</div>
   <div id="recipe_comments">
     <!--<h3 style="border:none;">Your Comments <%= link_to("(Add comment)", login_path, :style => "font-size:12px;") unless logged_in? %></h3>-->
     <%= render :partial => 'site/shared/review_view_short', :locals => {:reviewer => @recipe} %>
   </div>
 
-  <h1 style="text-align:right"><%= will_paginate @reviews unless @reviews.blank? %></h1>
+  <h1 style="text-align:right"><%#= will_paginate @reviews unless @reviews.blank? %></h1>
 
 
 </div>
