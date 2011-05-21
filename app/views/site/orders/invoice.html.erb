@@ -81,7 +81,8 @@
 						<% if @order.gift_option && @order.gift_option.price > 0 %>
 						<tr><td style="text-align:right">Wrapping option (<%= @order.gift_option.name %>):</td><td><%= number_to_currency @order.gift_option.price %></td></tr>
 						<% end %>
-						<tr><td style="text-align:right"><b>Total:</b></td><td></b><%= number_to_currency(@order.total) %></b></td></tr>
+						<tr><td style="text-align:right"><b>Total:</b></td><td></b>
+						<%#= number_to_currency(@order.total) %><%= number_to_currency @order.total - (@order.points_used * Setting.find(:first).points_to_pound), :unit => "&pound;" %></b></td></tr>
 					</table>
 				</td>
 			</tr>
@@ -97,3 +98,4 @@
 <%- content_for :right do -%>
   <%= render :partial => '/site/shared/box_subscriptions' %>
 <%- end -%>
+

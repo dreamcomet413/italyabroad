@@ -50,7 +50,17 @@ class Site::OrdersController < ApplicationController
            Notifier.deliver_new_order_placed(@order,current_user,AppConfig.admin_email)
           if production
             gateway = ActiveMerchant::Billing::SagePayGateway.new(:login => @payment_method.vendor)
-            response = gateway.purchase(@cart.total*100, @credit_card, :order_id => "#{order.id}", :address => { :address1 => current_user.address, :zip => current_user.cap })
+
+         #   response = gateway.purchase(@cart.total*100, @credit_card, :order_id => "#{order.id}", :address => { :address1 => current_user.address, :zip => current_user.cap })
+          # modified for loyalty system
+           if params[:total_points] > params[:points_to_be_used]
+             total_amount = (@cart.total*100) - (params[:points_to_be_used] * Setting.find(:first).points_to_pound)
+             new_order.update_attributes(:points_used => params[:points_to_be_used])
+           else
+             total_amount = @cart.total*100
+           end
+         response = gateway.purchase(total_amount, @credit_card, :order_id => "#{order.id}", :address => { :address1 => current_user.address, :zip => current_user.cap })
+
           end
 
           if (!response.nil? && response.success?) or !production
