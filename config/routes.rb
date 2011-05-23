@@ -50,10 +50,11 @@ ActionController::Routing::Routes.draw do |map|
     products.resources :wish_list, :controller => 'site/wish_list', :only => [:index, :create, :destroy]
   products.resources :wine_list, :controller => 'site/wine_lists', :only => [:index, :create, :destroy]
   end
-
-  map.resources :recipes, :controller => 'site/recipes' do |recipes|
+   map.resources :recipes, :controller => 'site/recipes',:collection=>{:recipes_list=>:get}
+  map.resources :recipes, :controller => 'site/recipes'  do |recipes|
     recipes.resources :reviews, :controller => 'site/reviews', :only => [:new, :create]
   end
+
 
   map.resources :forums, :controller => "site/forums" do |forum|
     forum.resources :topics, :controller => "site/topics"  do |topic|

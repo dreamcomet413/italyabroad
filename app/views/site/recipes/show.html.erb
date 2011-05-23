@@ -23,6 +23,7 @@
             <%- end -%>
           <% end %>
         </div>
+        <div>Recipes by <%= link_to @recipe.user.name,:controller=>'/recipes',:action=>'recipes_list',:user_id=>@recipe.user.id %>
       </td>
     </tr>
   </table>

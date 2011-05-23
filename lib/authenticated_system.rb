@@ -37,7 +37,7 @@ module AuthenticatedSystem
        username, passwd = get_auth_data
       self.current_user ||= User.authenticate(username, passwd) if username && passwd
     (logged_in? && chef?) || (User.count == 0) ? true : access_denied('site')
-    flash[:notice] = 'You have to login as a chef to add new recipes'
+    flash[:notice] = 'You have to login as a chef to add new recipe'
     end
 
       def chef?

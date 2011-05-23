@@ -85,7 +85,7 @@
             <tr>
             <td>My restaurant website :</td>
               <td>
-              <%= @user.establishment_link  %>
+              <%#= @user.establishment_link  %>
               <%#= link_to("Edit") if @my_profile && !@user.establishment_link.blank? %>
               <div id="establishment_link">
                     <%= text_field :user, :establishment_link, :size => 45 %>  <!-- or --> <%#= link_to("Cancel",'', :onclick=>"document.getElementById('establishment_link').style.display = 'none';return false;") %>
@@ -103,37 +103,37 @@
             <tr>
               <td><p><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> favorite Meal:&nbsp;</p></td>
               <td>
-                  <%= @user.fav_meals  %>
+                  <%= @user.fav_meals ? @user.fav_meals : 'Not Added yet'%>
               </td>
             </tr>
             <tr>
               <td><p><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> favorite Wine:&nbsp;</p></td>
               <td>
-                  <%= @user.fav_wine %>
+                  <%= @user.fav_wine ? @user.fav_wine : 'Not Added yet'%>
               </td>
             </tr>
             <tr>
               <td><p><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> favorite Holiday:&nbsp;</p></td>
               <td>
-                <%= @user.holidays  %>
+                <%= @user.holidays ? @user.holidays : 'Not Added yet' %>
               </td>
             </tr>
             <tr>
               <td><p><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> favorite Song:&nbsp;</p></td>
               <td>
-                <%= @user.songs %>
+                <%= @user.songs ? @user.songs : 'Not Added yet' %>
               </td>
             </tr>
             <tr>
               <td><p><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> favorite Film:&nbsp;</p></td>
               <td>
-                <%= @user.films %>
+                <%= @user.films ? @user.films : 'Not Added yet'  %>
               </td>
             </tr>
             <tr>
               <td><p><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> favorite Newspaper:&nbsp;</p></td>
               <td>
-                 <%= @user.newspapers rescue "No newspaper" %>
+                 <%= @user.newspapers ? @user.newspapers : 'Not Added yet' %>
               </td>
             </tr>
             <% if @user.type_id.to_i == 4 %>

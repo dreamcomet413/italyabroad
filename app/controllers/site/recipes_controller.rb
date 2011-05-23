@@ -12,6 +12,7 @@ class Site::RecipesController < ApplicationController
   end
 
   def create
+
     if current_user == :false
       redirect_to login_url
     else
@@ -31,12 +32,11 @@ class Site::RecipesController < ApplicationController
           render :action => "new"
         end
       else
+
         @recipe = current_user.recipes.new(params[:recipe])
         @recipe.active = true
-
         @recipe.image_1.destroy if @recipe.image_1 && !params[:image_1].blank?
         @recipe.build_image_1(:image_file => params[:image_1]) unless params[:image_1].blank?
-
         if @recipe.save
           flash[:alert] = "Recipe successfully created!"
           redirect_to :action => "index"
@@ -109,5 +109,11 @@ class Site::RecipesController < ApplicationController
       redirect_to :controller => :base, :action => 'login'
     end
   end
+
+  def recipes_list
+    @recipes = Recipe.find(:all,:conditions=>['user_id = ?',params[:user_id]])
+    @user = User.find_by_id(params[:user_id])
+  end
+
 end
 
