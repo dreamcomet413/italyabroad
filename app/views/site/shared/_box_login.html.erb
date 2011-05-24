@@ -1,4 +1,5 @@
 <% if logged_in? %>
+<% if (params[:id] and params[:id].to_i == current_user.id.to_i) or request.request_uri.to_s == '/my-account'.to_s   %>
 <ul style="margin:0 0 0 -20px;padding:0;list-style:none;" class="my-account-links">
   <li style="display:inline;margin-left:10px;"><%= link_to "My Account", account_path %></li>
   <li style="display:inline;margin-left:10px;"><%= link_to "My Orders and Tracking", orders_path %></li>
@@ -8,5 +9,6 @@
   <li style="display:inline;margin-left:10px;"><%= link_to "My Winelist", wine_lists_path %></li>
   <li style="display:inline;margin-left:10px;"><%= link_to "My Profile", :controller=>'site/customers',:action=>'show',:id=>current_user.id %></li>
 </ul>
+<% end %>
 <% end %>
 

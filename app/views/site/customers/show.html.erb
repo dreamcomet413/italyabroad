@@ -94,7 +94,7 @@
             </tr>
             </td></tr>
             <% end %>
-            <tr><td colspan="2" align="center">
+            <tr><td colspan="2" align="right">
             <%= image_submit_tag("buttons/save_button.png") %>
           </table>
           <%- end -%>
@@ -249,7 +249,7 @@
 </div>
 
 <div id="follower">
-  <h1>&nbsp;&nbsp;Members I am following:</h1>
+  <h1 style="margin-left:0px;">Members I am following:</h1>
   <table><tr>
     <%#- @user.followers.all(:limit => 10).each do |people| -%>
     <% @followers = Follower.find(:all,:conditions=>['follower_id = ?',params[:id]],:limit=>10)%>
