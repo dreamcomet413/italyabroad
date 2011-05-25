@@ -56,9 +56,11 @@ class Site::OrdersController < ApplicationController
           unless params[:points_to_be_used].nil?
             if params[:total_points] > params[:points_to_be_used] and  ((@cart.total) - (params[:points_to_be_used].to_f * Setting.find(:first).points_to_pound)) >= 0
              total_amount = (@cart.total) - (params[:points_to_be_used].to_f * Setting.find(:first).points_to_pound)
-             new_order.update_attributes(:points_used => params[:points_to_be_used])
+             points_used = params[:points_to_be_used]
+            # new_order.update_attributes(:points_used => params[:points_to_be_used])
             else
-              new_order.update_attributes(:points_used =>(@cart.total)/ Setting.find(:first).points_to_pound )
+              points_used = (@cart.total)/ Setting.find(:first).points_to_pound
+             # new_order.update_attributes(:points_used =>(@cart.total)/ Setting.find(:first).points_to_pound )
              total_amount = 0
             end
            else
@@ -70,6 +72,7 @@ class Site::OrdersController < ApplicationController
 
           if (!response.nil? && response.success?) or !production
             new_order.update_attributes(:paid => true)
+            new_order.update_attributes(:points_used => points_used)
             redirect_to confirmed_checkouts_path
           else
             flash[:notice] = response.message
