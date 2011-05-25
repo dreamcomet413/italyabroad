@@ -19,6 +19,14 @@
 		  <td style="width:200px;text-align:right">Difficult:</td>
 		  <td><%= collection_select :recipe, :recipe_level_id, RecipeLevel.find(:all), :id, :name %></td>
     </tr>
+     <tr>
+          <td style="width:200px;text-align:right">Ingredients:</td>
+          <td><%= text_area :recipe,:ingredients, :rows => 10 %></td>
+        </tr>
+        <tr>
+          <td style="width:200px;text-align:right"Cooking Instructions:</td>
+          <td><%= text_area :recipe,:preparation, :rows => 10 %></td>
+        </tr>
 		<tr>
 		  <td style="width:200px;text-align:right">Type:</td>
 		  <td><%= collection_select :recipe, :recipe_type_id, RecipeType.find(:all), :id, :name %></td>
@@ -41,3 +49,4 @@
     </tr>
 	</table>
 </fieldset>
+

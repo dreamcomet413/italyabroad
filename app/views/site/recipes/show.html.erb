@@ -24,8 +24,11 @@
           <% end %>
         </div>
         <% if !@recipe.user.nil? %>
-        <div>Recipes by <%= link_to @recipe.user.name,:controller=>'/recipes',:action=>'recipes_list',:user_id=>@recipe.user.id %> </div>
+        <div>Recipes by <%#= link_to @recipe.user.name,:controller=>'/recipes',:action=>'recipes_list',:user_id=>@recipe.user.id %>
+        <%= link_to @recipe.user.name,customer_path(@recipe.user.id)%>  </div>
+        <div><%= link_to @recipe.user.establishment_link,@recipe.user.establishment_link%></div>
         <%- end -%>
+
       </td>
     </tr>
   </table>

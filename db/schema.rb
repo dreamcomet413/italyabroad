@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110521045415) do
+ActiveRecord::Schema.define(:version => 20110525053219) do
 
   create_table "about_us", :force => true do |t|
     t.string   "title"
@@ -282,7 +282,7 @@ ActiveRecord::Schema.define(:version => 20110521045415) do
     t.string   "ship_telephone"
     t.integer  "shipping_agency_id"
     t.string   "consignment_no"
-    t.decimal "points_used",                                              :default => 0
+    t.float    "points_used",                                              :default => 0.0
   end
 
   create_table "payment_methods", :force => true do |t|
@@ -578,8 +578,8 @@ ActiveRecord::Schema.define(:version => 20110521045415) do
     t.integer "reorder_quantity"
     t.string  "vat_rate",                                            :default => "0.00"
     t.string  "support",                                             :default => "admin"
-    t.integer "points_per_pound"
-    t.integer "points_to_pound"
+    t.float   "points_per_pound",                                    :default => 0.0
+    t.float   "points_to_pound",                                     :default => 0.0
   end
 
   create_table "ship_addresses", :force => true do |t|

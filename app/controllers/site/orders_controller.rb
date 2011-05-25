@@ -38,8 +38,7 @@ class Site::OrdersController < ApplicationController
 
   def create
     @payment_method = PaymentMethod.find(params[:payment_method])
-
-    if @payment_method && !@payment_method.external
+     if @payment_method && !@payment_method.external
       production = RAILS_ENV == "production"
       @credit_card = ActiveMerchant::Billing::CreditCard.new(params[:credit_card])
       if @credit_card.valid? or !production
@@ -53,11 +52,17 @@ class Site::OrdersController < ApplicationController
 
          #   response = gateway.purchase(@cart.total*100, @credit_card, :order_id => "#{order.id}", :address => { :address1 => current_user.address, :zip => current_user.cap })
           # modified for loyalty system
-           if params[:total_points] > params[:points_to_be_used]
-             total_amount = (@cart.total*100) - (params[:points_to_be_used] * Setting.find(:first).points_to_pound)
+
+          unless params[:points_to_be_used].nil?
+            if params[:total_points] > params[:points_to_be_used] and  ((@cart.total) - (params[:points_to_be_used].to_f * Setting.find(:first).points_to_pound)) >= 0
+             total_amount = (@cart.total) - (params[:points_to_be_used].to_f * Setting.find(:first).points_to_pound)
              new_order.update_attributes(:points_used => params[:points_to_be_used])
+            else
+              new_order.update_attributes(:points_used =>(@cart.total)/ Setting.find(:first).points_to_pound )
+             total_amount = 0
+            end
            else
-             total_amount = @cart.total*100
+             total_amount = @cart.total
            end
          response = gateway.purchase(total_amount, @credit_card, :order_id => "#{order.id}", :address => { :address1 => current_user.address, :zip => current_user.cap })
 
@@ -80,6 +85,17 @@ class Site::OrdersController < ApplicationController
     else
       new_order
       saved = @order.save
+         unless params[:points_to_be_used].nil?
+            if params[:total_points] > params[:points_to_be_used] and  ((@cart.total) - (params[:points_to_be_used].to_f * Setting.find(:first).points_to_pound)) >= 0
+             total_amount = (@cart.total) - (params[:points_to_be_used].to_f * Setting.find(:first).points_to_pound)
+             new_order.update_attributes(:points_used => params[:points_to_be_used])
+            else
+              new_order.update_attributes(:points_used =>(@cart.total)/ Setting.find(:first).points_to_pound )
+             total_amount = 0
+            end
+          else
+             total_amount = @cart.total
+           end
       if saved
         create_order_items
         Notifier.deliver_new_order_placed(@order,current_user,AppConfig.admin_email)

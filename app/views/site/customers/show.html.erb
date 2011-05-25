@@ -255,14 +255,14 @@
     <% @followers = Follower.find(:all,:conditions=>['follower_id = ?',params[:id]],:limit=>10)%>
     <% for people in @followers %>
     <td>
-      <% @user = User.find_by_id(people.user_id)%>
+      <% user = User.find_by_id(people.user_id)%>
       <%#= link_to avatar_for_user(people.follower, 'small'), customer_path(people.follower) %>
-      <%= link_to avatar_for_user(@user, 'small'), customer_path(@user.id) %>
+      <%= link_to avatar_for_user(user, 'small'), customer_path(user.id) %>
       <%#= link_to people.follower.name, customer_path(people.follower) %>
-      <%= link_to @user.name, customer_path(@user.id) %><br />
+      <%= link_to user.name, customer_path(user.id) %><br />
 
-        <%- if @user.followed_by?(current_user) -%><br >
-       <%= link_to image_tag("buttons/unfollow.png"), unfollow_path(@user) %>
+        <%- if user.followed_by?(current_user) -%><br >
+       <%= link_to image_tag("buttons/unfollow.png"), unfollow_path(user) %>
 
         <%- end -%>
 
@@ -270,7 +270,28 @@
     <%- end -%>
   </tr></table>
 </div>
+<% if @user.type_id == 4 %>
+
+
+<div style="margin-left:30px;"><h1 style="margin-left:0px;"><% if !@user.recipes.blank? %>Recipes by <%= @user.name %>:</h1><% end %>
+  <% @recipes = Recipe.find(:all,:conditions=>['user_id = ?',@user.id]).each do |recipe| %>
+        <table>
+          <tr>
+            <td width="60%" valign="top">
+              <strong><%= link_to recipe.name, recipe_path(recipe) %></strong>
+              <%= show_ratings(recipe, recipe.average_rating_round) if recipe.average_rating_round > 0 %><br />
+              <strong>Course:</strong> <%= recipe.recipe_type.name %><br />
+              <strong>Difficulty:</strong> <%= recipe.recipe_level.name %><br />
+              <strong>Prep time:</strong> <%= recipe.preparation_time %> min<br/>
+            </td>
+          </tr>
+        </table>
+        <br />
+    <%- end -%>
+</div>
+<% end %>
 <div style="clear:both;"></div>
+
 <br /><br /><br />
 
 <%- content_for :right do -%>

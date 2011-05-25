@@ -44,10 +44,10 @@
               <% if recipe.user_id == 3 %>
                 Guest
               <%else%>
-                <%= (recipe.user.name).capitalize rescue "Admin" %>
+                <%= link_to recipe.user.name.capitalize,customer_path(recipe.user.id) rescue "Admin" %>
                &nbsp;&nbsp;&nbsp;
                <% if !recipe.user.nil? %>
-               <%= link_to recipe.user.establishment_link %>
+               <%= link_to recipe.user.establishment_link,recipe.user.establishment_link%>
                <% end %>
                 <% end %>
             </td>
@@ -85,7 +85,7 @@
               <strong>Added by:</strong>
               <% if recipe.user_id == 3 %>
                 Guest
-              <%else%><%= recipe.user.name rescue "Admin" %><% end %>
+              <%else%><%= link_to recipe.user.name,customer_path(recipe.user.id) rescue "Admin" %><% end %>
             </td>
             <td align="right">
               <% if !recipe.image_1.blank? %>
