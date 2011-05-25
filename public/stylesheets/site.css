@@ -2276,6 +2276,17 @@ div.editbox ul.help {
 .profile-container {
     margin:20px;
 }
+
+.profile-container table tbody tr td div table,
+.profile-container table tbody tr td div table tr,
+.profile-container table tbody tr td div table tr td
+ {
+border-collapse: collapse;
+border-spacing: 0;
+border-width: 0px 0px 0px 0px;
+border:none;
+border-color:white;
+}
 #leftColumnContent div.profile-container div {
      margin:10px;
 }
