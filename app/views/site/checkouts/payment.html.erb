@@ -18,10 +18,12 @@ for order in current_user.orders
 end
 %>
 <% form_tag orders_path, :id => "check_payment" do %>
-<div  style="margin:10px;border-bottom:1px solid #cccccc;">You have <%= total_points - total_points_used %>in your credit which is equivalent to <%= number_to_currency ((total_points - total_points_used)* Setting.find(:first).points_to_pound, :unit => "&pound;") %> <br /><br />Would you like to use these points for the purchase? <br /><br />Enter the required points here
-<%= text_field_tag :points_to_be_used %>
-<%= hidden_field_tag :total_points, total_points - total_points_used %>
-</div>
+<% if total_points - total_points_used > 0 %>
+    <div  style="margin:10px;border-bottom:1px solid #cccccc;">You have <%= total_points - total_points_used %> points in your credit.  This is equivalent to <%= number_to_currency ((total_points - total_points_used)* Setting.find(:first).points_to_pound, :unit => "&pound;") %> <br /><br />Would you like to use these points for the purchase? <br /><br />Enter the required points here
+    <%= text_field_tag :points_to_be_used %>
+    <%= hidden_field_tag :total_points, total_points - total_points_used %>
+    </div>
+<%- end -%>
 <div style="margin: 10px 20px;">
   <h2 style="font-weight:normal;">Billing Information</h2>
 
