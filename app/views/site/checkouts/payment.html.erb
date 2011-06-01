@@ -8,6 +8,7 @@
 <div id="header">Payment Information</div>
 <div style="text-align:center;margin-top:40px;"><%= image_tag("cart_step_3.png") %></div>
 <%= render :partial => 'site/shared/box_cart_form' %>
+
 <% total_points = 0
 total_points_used = 0
 for order in current_user.orders
@@ -33,7 +34,7 @@ end
       <%= render :partial => 'site/orders/cc_form' %>
     </div>
     <p style="text-align:right;">
-  		<%= image_submit_tag "buttons/checkout.png" %>
+  		<%= image_submit_tag "buttons/checkout.png" %>&nbsp;&nbsp;<%= link_to image_tag("buttons/continue_shopping_button.png"), continue_shopping_cart_path %>
   	</p>
 
 </div>
