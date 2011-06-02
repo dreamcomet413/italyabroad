@@ -18,7 +18,7 @@
       <h2><span style="color:red">Q&nbsp;</span><%=  faq.question %></h2>
       <div>Asked by : <%= faq.user.name %></div>
       <h2><span style="color:red">A&nbsp;</span><%= faq.answer %></h2>
-      <h3>&nbsp;</h3>
+      <!-- h3>&nbsp;</h3 -->
       <!-- table width="100%" class="foot">
         <tr><td></td></tr></table -->
     </li>
@@ -30,13 +30,13 @@
   <div style="clear:both;"></div>
 <div style="float:right"><%#= render :partial => '/site/shared/social_bookmarks' %></div><br /><br />
 </div>
-<div style="border-bottom:1px solid #CCCCCC;margin-top:20px;"></div>
+<!-- div style="border-bottom:1px solid #CCCCCC;margin-top:20px;"></div -->
 <% if logged_in? %>
 <%= render :partial =>'new'%>
 <% else %>
 
       <div style="border-bottom:1px solid #CCCCCC;background-color:#F3F8DA;color:#161616;font-size:1.3em;margin-top:8px;padding:1px 0 0 8px;">
-        <h1>Type your question </h1>
+        <h1>Type your question</h1>
         <p style = "font:bold 16px Arial;"><%= link_to("Login", login_path) %> ||
           <%= link_to "Register", "/signup" %> </p>
       </div>

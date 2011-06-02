@@ -151,14 +151,17 @@
   </table>
 <% end %>
 
-<div style="border:1px solid #ccc;margin:10px 20px;background-color:#f3f3f3;padding:5px;float:left;text-align:center;width:690px;">
-  <div style="font-size:14px;font-weight:bold;color:#003400;text-align:left;">Other products you may be interested in</div>
+<!-- div style="border:1px solid #ccc;margin:10px 20px;background-color:#f3f3f3;padding:5px;float:left;text-align:center;width:690px;" -->
+
+<div style="border:1px solid #ccc;margin:10px 20px;padding:5px;float:left;text-align:center;width:690px;">
+
+  <div style="font-size:14px;font-weight:bold;color:#003400;text-align:left;">Other products you may be interested in</div><br /><br />
 <%#- products = Product.find(:all, :include => :categories, :conditions => ["categories.friendly_identifier = ? or categories.friendly_identifier = ? or categories.friendly_identifier = ?", "wine", "food", "hampers"], :limit => 5) -%>
   <%- products = Product.find(:all, :limit => 5, :order => "RAND()") -%>
   <ul style="list-style:none;margin:0;padding:0;float:left:margin-left:10px;">
     <%- for product in products -%>
-      <li style="float:left;">
-        <%= link_to show_image_tag(:product_thumb, product.image_1, :jpg), nested_products_uri(product) %><br />
+      <li style="float:left;v-align:center;">
+        <%= link_to show_image_tag_in_cart(:product_thumb, product.image_1, :jpg), nested_products_uri(product) %><br />
         <%= link_to product.name, nested_products_uri(product), :style => "width:130px;display:block;text-align:center;" %>
       </li>
     <%- end -%>

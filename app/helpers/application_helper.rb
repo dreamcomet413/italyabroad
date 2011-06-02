@@ -122,6 +122,18 @@ module ApplicationHelper
     end
   end
 
+  def show_image_tag_in_cart(image_type, image, format = :jpg, image_alt = "italyabroad.com")
+    if image_type && image && format
+
+        return '<div style="width:100px;height:150px;text-align:center;margin:auto;border-style:solid;border-width:1px;border-color:white;overflow:hidden;v-align:bottom;">' + image_tag(image_url(image_type, image, format), {:alt => image_alt, :title => image_alt, :size => "150"}) + '</div>'
+
+    elsif image_type
+      return image_tag("no_images/#{image_type}.jpg", :size => "100x120", :alt => image_alt)
+    else
+      return image_tag("no_images/noimage.png", :alt => image_alt)
+    end
+  end
+
   def show_home_image_tag(image, format = :jpg)
     if image && format
       return image_tag(image_url(:original, image, format), :size => "723x284")
