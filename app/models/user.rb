@@ -212,6 +212,10 @@ named_scope :regulars, :conditions => ['type_id = ? or type_id = ?', 2,4], :orde
       :is_new => false)
   end
 
+  def find_total_points(user)
+    return user.orders.map {|o| o.total}.sum.to_f * Setting.find(:first).points_per_pound
+  end
+
   protected
   # before filter
   def encrypt_password

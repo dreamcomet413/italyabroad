@@ -1,15 +1,10 @@
 <% @title = "Your recent orders" %>
 <%- @breadcrumbs = "#{link_to "Home", root_url} &raquo; My Orders and Tracking" -%>
 <% @class = "no-padding" %>
-<% total_points = 0
-total_points_used = 0
-for order in current_user.orders
-  unless order.order_items.blank?
-    total_points = total_points + order.total * Setting.find(:first).points_per_pound
-    total_points_used = total_points_used + order.points_used %>
- <% end
-end
-%>
+<% total_points = current_user.find_total_points(current_user)
+total_points_used = current_user.orders.sum('points_used')
+    %>
+
 <div id="header"><%= render :partial => 'site/shared/box_login' %></div>
 <h4 class="account-title">Your recent orders <% if total_points - total_points_used > 0 %>  (You have <%= total_points - total_points_used %> points in your credit.  This is equivalent to <%= number_to_currency ((total_points - total_points_used)* Setting.find(:first).points_to_pound, :unit => "&pound;") %>)<% end %></h4>
 <br />
@@ -19,7 +14,7 @@ end
 	  <td><strong>Sub Total</strong></td>
 	  <td><strong>Order Placed</strong></td>
 	  <td><strong>Last Action</strong></td>
-	  <td><strong>Points Used</strong></td>
+	  <td><strong></strong></td>
 	  <td>&nbsp;</td>
 	</tr>
 	<%= render :partial => 'order', :collection => @orders %>

@@ -8,16 +8,9 @@
 <div id="header">Payment Information</div>
 <div style="text-align:center;margin-top:40px;"><%= image_tag("cart_step_3.png") %></div>
 <%= render :partial => 'site/shared/box_cart_form' %>
-
-<% total_points = 0
-total_points_used = 0
-for order in current_user.orders
-  unless order.order_items.blank?
-    total_points = total_points + order.total * Setting.find(:first).points_per_pound
-    total_points_used = total_points_used + order.points_used %>
- <% end
-end
-%>
+<% total_points = current_user.find_total_points(current_user)
+total_points_used = current_user.orders.sum('points_used')
+    %>
 <% form_tag orders_path, :id => "check_payment" do %>
 <% if total_points - total_points_used > 0 %>
     <div  style="margin:10px;border-bottom:1px solid #cccccc;">You have <%= total_points - total_points_used %> points in your credit.  This is equivalent to <%= number_to_currency ((total_points - total_points_used)* Setting.find(:first).points_to_pound, :unit => "&pound;") %> <br /><br />Would you like to use these points for the purchase? <br /><br />Enter the required points here

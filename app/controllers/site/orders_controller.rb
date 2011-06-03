@@ -46,6 +46,7 @@ class Site::OrdersController < ApplicationController
         saved = @order.save
         if saved
           create_order_items
+          points_used = 0
           unless params[:points_to_be_used].nil?
             if params[:total_points].to_f > params[:points_to_be_used].to_f and  (@cart.total - (params[:points_to_be_used].to_f * Setting.find(:first).points_to_pound) >= 0)
                 total_amount = (@cart.total) - (params[:points_to_be_used].to_f * Setting.find(:first).points_to_pound)
@@ -57,6 +58,7 @@ class Site::OrdersController < ApplicationController
              total_amount = 0
             end
            else
+
              total_amount = @cart.total
            end
            Notifier.deliver_new_order_placed(@order,current_user,AppConfig.admin_email)

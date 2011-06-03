@@ -282,7 +282,7 @@ ActiveRecord::Schema.define(:version => 20110525053219) do
     t.string   "ship_telephone"
     t.integer  "shipping_agency_id"
     t.string   "consignment_no"
-    t.float    "points_used",                                              :default => 0.0
+    t.float    "points_used",                                              :default => 0.0,   :null => false
   end
 
   create_table "payment_methods", :force => true do |t|
@@ -578,8 +578,8 @@ ActiveRecord::Schema.define(:version => 20110525053219) do
     t.integer "reorder_quantity"
     t.string  "vat_rate",                                            :default => "0.00"
     t.string  "support",                                             :default => "admin"
-    t.float   "points_per_pound",                                    :default => 0.0
-    t.float   "points_to_pound",                                     :default => 0.0
+    t.float   "points_per_pound",                                    :default => 0.0,     :null => false
+    t.float   "points_to_pound",                                     :default => 0.0,     :null => false
   end
 
   create_table "ship_addresses", :force => true do |t|
