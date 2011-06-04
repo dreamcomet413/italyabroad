@@ -2473,4 +2473,8 @@ ul.my-account-links li a {
     text-align:center;
     padding:20px;
 }
+#highlight {
+    font-weight:bold;
+    color:brown;
+}
 
