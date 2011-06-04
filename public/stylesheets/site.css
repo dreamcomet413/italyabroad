@@ -948,6 +948,7 @@ a {
     background-color:#EFEFEF;
 }
 
+
 #box_upcoming_wine_tours h1,
 #box_upcoming_events h1 {
     margin-bottom:10px;
@@ -957,6 +958,7 @@ a {
     margin-left:auto;
     margin-right:auto;
     text-align:center;
+    padding:15px;
 }
 #box_upcoming_wine_tours.block ul li span#upcomming_tours_date {
     font-size:10px;
@@ -978,6 +980,14 @@ a {
     float:left;
     margin:10px;
     width:460px;
+    text-align:justify;
+}
+
+
+#wine_event_description_new {
+    float:left;
+    margin:10px;
+    width:723px;
     text-align:justify;
 }
 
@@ -1064,7 +1074,8 @@ a {
 #featured_events ul {
     list-style:none;
     margin:0;
-    padding:0;
+    padding:10px;
+    text-align:justify;
 }
 
 #featured_wine_tours ul li,

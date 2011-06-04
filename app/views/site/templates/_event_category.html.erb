@@ -29,15 +29,13 @@
              <%= link_to image_tag("events.jpg"), search_index_path(:id => @category)%>
           </div>
 <% end %>
-<div>
-  <div id="box_upcoming_events_new">
+<div id="wine_event_description_new">
+  <div>
     <%= render :partial => "/site/shared/box_upcoming_events" -%>
   </div>
-  <div > <!-- id="wine_event_description"   before centralizing the Wine Corses this div has  id="event_introduction" -->
+  <div>
       <h3 align="center" style="border:none;" >Wine Courses &amp; Events</h3>
-      <p>
       <%= @category.description %>
-      </p>
   </div>
 </div>
 
