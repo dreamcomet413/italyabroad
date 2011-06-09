@@ -5,6 +5,7 @@
 %>
 <%#= params[:category] %>
 <div id="header"><%= @product.name %> <%= "(" + @product.size + ")" unless @product.size.blank? %></div>
+<div style="margin-left:20px;"><h4><%= Setting.find(:first).desc_food_of_the_week %></h4></div>
 <table class="product_info">
   <tr>
     <td class="image" style ="padding:0 10px 0 0">
