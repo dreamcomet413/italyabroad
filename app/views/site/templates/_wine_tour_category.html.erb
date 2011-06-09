@@ -31,7 +31,7 @@
 </div>
 
 <div id="wine_tour_description">
-  <h3 style="border:none;"  align="center"><%= @category.name %></h3>
+  <h3 style="border:none;"  align="center"><%= @category.page_heading ?  @category.page_heading : @category.name %></h3>
   <p>
   <%= @category.description %>
   <!--Make your own wine, live the harvesting in one of the most beautiful area of Tuscany-->
