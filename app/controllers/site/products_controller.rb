@@ -49,5 +49,14 @@ class Site::ProductsController < ApplicationController
     end
 
   end
+
+  def wine_of_the_week
+    @product = Product.find(params[:id])
+  end
+
+  def food_of_the_week
+    @product = Product.find(params[:id])
+  end
+
 end
 

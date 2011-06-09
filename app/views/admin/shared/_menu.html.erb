@@ -182,6 +182,9 @@
     <span <%= "class='active'" if @current_controller == "products" %>>
       <%= link_to "Products", admin_products_path, :class => ('active' if @current_controller == "products") %>
     </span>
+    <span <%= "class='active'" if @current_controller == "products" %>>
+      <%= link_to "Products of the Week", {:controller=>'admin/products',:action=>'products_of_the_week'}, :class => ('active' if @current_controller == "products") %>
+    </span>
     <span <%= "class='active'" if @current_controller == "gift_options" %>>
       <%= link_to "Gift Options", admin_gift_options_path, :class => ('active' if @current_controller == "gift_options") %>
     </span>

@@ -26,7 +26,7 @@ class Admin::ProductsController < ApplicationController
       if params[:update] and !params[:discount].blank?
        update_discount(@products,params[:discount])
       end
-     @products = Product.find(:all, :include => [:categories], :order => "created_at DESC").paginate(:page => params[:page], :per_page => 20)
+     @products = Product.find(:all,:include => [:categories], :order => "created_at DESC").paginate(:page => params[:page], :per_page => 20)
   end
 
  end
@@ -232,6 +232,45 @@ p params[:product]
         @product.update_attribute('discount',discount)
 
       end
+  end
+
+  def products_of_the_week
+    @products = Product.all
+    @week_product_ids = WeekProduct.find(:all)
+ categories = Category.find_by_sql("select * from categories where parent_id is null")
+     @categories_data = Admin::CategoriesController.new
+    @data = @categories_data.get_tree(categories,nil)
+
+    if !params[:search].blank?
+
+      @products = Product.find(:all, :include => [:categories],:conditions=>['categories.id = ? AND products.name LIKE ? AND(UPPER(categories.name) = ? OR UPPER(categories.name = ?)) ',"#{params[:search]}" ,"%#{params[:search_name]}%",'WINE','FOOD']).paginate(:page => params[:page], :per_page => 20)
+
+
+  elsif params[:search].blank?
+      @products = Product.find(:all, :include => [:categories],:conditions=>['products.name LIKE ? AND(UPPER(categories.name) = ? OR UPPER(categories.name = ?))',"%#{params[:search_name]}%",'WINE','FOOD']).paginate(:page => params[:page], :per_page => 20)
+
+  else
+      @products = Product.find(:all,:conditions=>['UPPER(categories.name) = ? OR UPPER(categories.name = ?)','Wine','FOOD'],:include => [:categories]).paginate(:page => params[:page], :per_page => 20)
+
+  end
+
+
+     if params[:save]
+       unless params[:products_of_the_week_ids].nil?
+         unless @week_product_ids.blank?
+            for week_product in @week_product_ids
+               params[:products_of_the_week_ids].each do |w|
+              if w.to_i == week_product.week_product_id.to_i
+                week_product.destroy
+              end
+            end
+            end
+         end
+          for product_id in params[:products_of_the_week_ids]
+            WeekProduct.create(:week_product_id=>product_id)
+          end
+       end
+    end
   end
  end
 

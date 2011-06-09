@@ -39,6 +39,14 @@
       <td style="padding-left:40px;"><%= text_field :setting, :support %></td>
     </tr>
     <tr>
+      <td>Wine of the week description: </td>
+      <td style="padding-left:40px;"><%= text_area :setting, :desc_wine_of_the_week,:size=>'35x5' %></td>
+    </tr>
+    <tr>
+      <td>Food of the week description: </td>
+      <td style="padding-left:40px;"><%= text_area :setting, :desc_food_of_the_week,:size=>'35x5' %></td>
+    </tr>
+    <tr>
       <td valign="top">Wine PDF:</td>
       <td style="padding-left:40px;">
         <%= file_field :wine_pdf, :uploaded_data %> <em>(2mb limit)</em>
