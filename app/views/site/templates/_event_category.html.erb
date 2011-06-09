@@ -34,7 +34,7 @@
     <%= render :partial => "/site/shared/box_upcoming_events" -%>
   </div>
   <div>
-      <h3 align="center" style="border:none;" >Wine Courses &amp; Events</h3>
+      <h3 align="center" style="border:none;" ><%= @category.page_heading ?  @category.page_heading : 'Wine Courses &amp; Events' %></h3>
       <%= @category.description %>
   </div>
 </div>

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110525053219) do
+ActiveRecord::Schema.define(:version => 20110609060403) do
 
   create_table "about_us", :force => true do |t|
     t.string   "title"
@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(:version => 20110525053219) do
     t.string  "image_url"
     t.string  "friendly_identifier"
     t.string  "text_on_image"
+    t.string  "page_heading"
   end
 
   create_table "categorizations", :force => true do |t|
@@ -580,6 +581,8 @@ ActiveRecord::Schema.define(:version => 20110525053219) do
     t.string  "support",                                             :default => "admin"
     t.float   "points_per_pound",                                    :default => 0.0,     :null => false
     t.float   "points_to_pound",                                     :default => 0.0,     :null => false
+    t.string  "desc_wine_of_the_week"
+    t.string  "desc_food_of_the_week"
   end
 
   create_table "ship_addresses", :force => true do |t|
@@ -713,6 +716,12 @@ ActiveRecord::Schema.define(:version => 20110525053219) do
     t.string   "establishment_link"
     t.string   "fav_meals",                 :limit => 100
     t.string   "fav_wine",                  :limit => 100
+  end
+
+  create_table "week_products", :force => true do |t|
+    t.integer  "week_product_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "wine_lists", :force => true do |t|

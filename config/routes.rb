@@ -44,7 +44,7 @@ ActionController::Routing::Routes.draw do |map|
   map.wine_events 'wine-events', :controller => 'site/categories', :action => 'show', :category => "events"
   map.wine_community 'wine-community', :controller => 'site/forums', :action => 'index'
 
-  map.resources :products, :controller => 'site/products', :only => [:index, :show] do |products|
+  map.resources :products, :controller => 'site/products', :only => [:index, :show,:wine_of_the_week,:food_of_the_week] do |products|
     products.resources :reviews, :controller => 'site/reviews', :only => [:new, :create]
     products.resources :cart, :controller => 'site/cart', :only => [:create, :update, :destroy], :collection => {:empty => :get}
     products.resources :wish_list, :controller => 'site/wish_list', :only => [:index, :create, :destroy]
@@ -86,7 +86,7 @@ ActionController::Routing::Routes.draw do |map|
   %w(forum).each do |attr|
     map.resources :posts, :controller => "site/posts", :name_prefix => "#{attr}_", :path_prefix => "/#{attr.pluralize}/:#{attr}_id"
   end
-
+  map.connect 'admin/products/products_of_the_week', :controller => '/admin/products', :action => 'products_of_the_week'
   map.connect "admin/products/xml", :controller => '/admin/products', :action => 'xml'
   map.connect "site/orders/show_order_details",:controller => '/site/orders', :action => 'show_order_details'
 
