@@ -1,5 +1,5 @@
 <%- @title = "#{@my_profile ? "My" : @user.name+"'s"} Profile" -%>
-<%- @breadcrumbs = "#{link_to "Home", root_url} &raquo; Community &raquo #{@title}" -%>
+<%- @breadcrumbs = "#{link_to "Home", root_url} &raquo; #{link_to ('Community',wine_community_path)} &raquo #{@title}" -%>
 <div id="header"><%= render :partial => 'site/shared/box_login' %></div>
 
 <% @class = "no-padding" %>

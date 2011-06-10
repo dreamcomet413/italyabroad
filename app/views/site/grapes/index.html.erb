@@ -1,5 +1,5 @@
 <% @title = "Guide to Italian wines and Italian grapes"; @description = "Guide to Italian wines and Italian grapes"; @keys = ", Italian wine information,Italian wine guide,Italian wine,Italian red and white wine,italian grapes,wine grapes,wine expert,guide to Italian wines,aglianico,barbera,montepulciano,nero d'avola,nebbiolo" %>
-<% @breadcrumbs = "#{link_to("Home", root_url)}&raquo; Community &raquo; Guide to Italian wines and Italian grapes" %>
+<% @breadcrumbs = "#{link_to("Home", root_url)}&raquo; #{link_to ('Community',wine_community_path)} &raquo; Guide to Italian wines and Italian grapes" %>
 <% @about = AboutU.find(:first, :conditions => {:link_type => "grape-guide"} ) %>
 <div style="text-align:center;padding-top:10px;"></div>
 <div id="blog_home">

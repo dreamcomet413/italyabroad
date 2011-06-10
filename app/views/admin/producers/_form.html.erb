@@ -16,11 +16,12 @@
   </tr>
   <tr>
     <td>Region</td>
-    <td><%= select :producer, :region_id, Region.all.inject([["No region", ""]]) { |rs, r| rs << [r.name, r.id] } %></td>
+    <td><%= select :producer, :region_id, Region.find(:all,:order=>'name asc').inject([["No region", ""]]) { |rs, r| rs << [r.name, r.id] } %>
+    </td>
   </tr>
   <tr>
     <td valign="top">Grapes</td>
-    <td><%= select :producer, :grape_ids, Grape.all.collect { |g| [g.name, g.id] }, {}, :multiple => true %></td>
+    <td><%= select :producer, :grape_ids, Grape.find(:all,:order=>'name').collect { |g| [g.name, g.id] }, {}, :multiple => true %></td>
   </tr>
 </table>
 
