@@ -184,7 +184,7 @@ module ApplicationHelper
    # return image_tag("region_default.png",:size => "100x120")
   end
    def show_producer_image(producer)
-    return image_tag(image_url(:producer_thumb, producer.image, :jpg),:size => "100x120") if producer.image
+    return image_tag(image_url(:producer_thumb, producer.image, :jpg)) if producer.image
    # return image_tag("region_default.png",:size => "100x120")
    return image_tag("producer_default.png",:size => "100x120")
   end
