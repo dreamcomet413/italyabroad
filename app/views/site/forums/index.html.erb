@@ -1,5 +1,5 @@
 <%- set_title "Community" -%>
-<% @breadcrumbs = "#{link_to("Home", root_url)} &raquo; Community" %>
+<% @breadcrumbs = "#{link_to("Home", root_url)} &raquo; #{link_to ('Community',wine_community_path)}" %>
 <% @about = AboutU.find(:first, :conditions => {:link_type => "community"} ) %>
 <div id="wineBanner">
   <span class="community_home_title">
@@ -41,7 +41,8 @@
                       <div id="get_to_know_our_producers_avatar">
                       <%= link_to producer.name, producer_path(producer) %>
                       <%= link_to "(more producers)", producers_path %><br /><br />
-                      <%= avatar_for_user(nil, "small") %><br />
+                      <%#= avatar_for_user(producer, "small") %>
+                      <%= show_producer_image(producer) %><br />
                       </div>
 
                       <%- if producer.description
@@ -127,7 +128,12 @@
                       <%= link_to avatar_for_user(latest_review.user, 'small'), customer_path(latest_review.user.id)%>
                     </td>
                     <td valign="top"><% unless latest_review.description.blank? %> &nbsp;&nbsp;
-                    "<%= link_to latest_review.description,review_path(latest_review),:class=>'data' %>"
+                    <%#= link_to latest_review.description,review_path(latest_review),:class=>'data' %>
+                   <% if latest_review.reviewer_type == 'Product' %>
+                    "<%= link_to latest_review.description, nested_products_uri(Product.find(latest_review.reviewer_id)  ),:class=>'data' %>"
+                    <% elsif latest_review.reviewer_type == 'Recipe' %>
+                    "<%= link_to latest_review.description, recipe_path(Recipe.find(latest_review.reviewer_id)  ),:class=>'data' %>"
+                    <% end %>
                      <% else %>
                        "<%= 'Added a new review' %>"
                       <% end %>

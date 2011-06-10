@@ -1,4 +1,4 @@
-<% @title = "#{@grape.name}"; @class= "no-padding"; @breadcrumbs = "#{link_to("Home", root_url)} &raquo; &raquo; Community &raquo; #{link_to("Grapes", grape_guide_path)} #{@grape.name}" %>
+<% @title = "#{@grape.name}"; @class= "no-padding"; @breadcrumbs = "#{link_to("Home", root_url)} &raquo; &raquo;#{link_to ('Community',wine_community_path)} &raquo; #{link_to("Grapes", grape_guide_path)} #{@grape.name}" %>
 
 <div id="header"><%= @grape.name %></div>
 <div style="text-align:center;padding-top:10px;"><%= image_tag("guide_home_image.jpg") %></div>
