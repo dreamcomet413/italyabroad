@@ -2,6 +2,7 @@
 <% unless week_products.blank?
 
 %>
+	<br />
 <div class="block" id="box_event">
   <%= link_to((image_tag "WinesOfTheWeek.png"), '/wine')%><br />
   <ul>
@@ -16,10 +17,6 @@
   <%- end -%>
   </ul>
 </div>
-<% else %>
-<div class="block" id="box_event" >
-  <div><%= image_tag "upcomingEvents1.png" %></div>
-  <div style="padding:10px 10px 10px 10px;"></div>
-</div>
+
 <% end %>
 
