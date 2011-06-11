@@ -1,7 +1,9 @@
 <%- @title = @producer.name; @class = "no-padding"; @breadcrumbs = "#{link_to("Home", root_url)} &raquo;#{link_to ('Community',wine_community_path)}&raquo; Producer &raquo; #{@title}" -%>
 
 <div id="header"><%= @title %></div>
-<div style="text-align:center;margin-top:15px;"><%= image_tag("region-home-image.jpg") %></div>
+<div style="margin-left:35px;margin-top:15px;"><%= image_tag("region-home-image.jpg") %>
+<%#= show_producer_image(@producer) -%>
+</div>
 <br />
 <div style="margin:0 40px;">
   <h3 style="text-align:center;border:none;color:#666666;">Producer Information</h3>
@@ -24,29 +26,32 @@
       final_food = ""
       final_wine = ""
       index = 0
+      wine_index = 0
       @producer.products.each do |product|
         if product.categories.root.root.name == "Food"
           if index == 0
             food += "<tr>"
           end
           food += "<td valign='top' class='product_cell' >#{link_to show_image_tag(product.layout_image, product.image_1, :jpg), nested_products_uri(product)} <br /> <br /> #{link_to product.name, nested_products_uri(product)}</td>"
-         index = index + 1
+          index = index + 1
           if index == 4
             food += "</tr>"
             index = 0
           end
+
        end
 
         if product.categories.root.root.name == "Wine"
-         if index == 0
+         if wine_index == 0
           wine += "<tr>"
          end
          wine += "<td valign='top'   class='product_cell' >#{link_to show_image_tag(product.layout_image, product.image_1, :jpg), nested_products_uri(product)} <br /><br /> #{link_to product.name, nested_products_uri(product)}</td>"
-         index = index + 1
-         if index == 4
+        wine_index = wine_index + 1
+         if wine_index == 4
           wine += "</tr>"
-          index = 0
+          wine_index = 0
         end
+
       end
    end -%>
     <% unless wine == "" %>
