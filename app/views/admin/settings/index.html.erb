@@ -47,6 +47,10 @@
       <td style="padding-left:40px;"><%= text_area :setting, :desc_food_of_the_week,:size=>'35x5' %></td>
     </tr>
     <tr>
+      <td>Quote on Producer: </td>
+      <td style="padding-left:40px;"><%= text_field :setting, :producer_page_quote,:size=>'35x5' %></td>
+    </tr>
+    <tr>
       <td valign="top">Wine PDF:</td>
       <td style="padding-left:40px;">
         <%= file_field :wine_pdf, :uploaded_data %> <em>(2mb limit)</em>

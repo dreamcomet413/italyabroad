@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110609060403) do
+ActiveRecord::Schema.define(:version => 20110611083408) do
 
   create_table "about_us", :force => true do |t|
     t.string   "title"
@@ -583,6 +583,7 @@ ActiveRecord::Schema.define(:version => 20110609060403) do
     t.float   "points_to_pound",                                     :default => 0.0,     :null => false
     t.string  "desc_wine_of_the_week"
     t.string  "desc_food_of_the_week"
+    t.string  "producer_page_quote"
   end
 
   create_table "ship_addresses", :force => true do |t|
