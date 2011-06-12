@@ -1,13 +1,13 @@
-<%- @title = @producer.name; @class = "no-padding"; @breadcrumbs = "#{link_to("Home", root_url)} &raquo;#{link_to ('Community',wine_community_path)}&raquo; Producer &raquo; #{@title}" -%>
+<%- @title = @producer.name; @class = "no-padding"; @breadcrumbs = "#{link_to("Home", root_url)} &raquo;#{link_to ('Community',wine_community_path)}&raquo; #{link_to("Producer", producers_path)} &raquo; #{@title}" -%>
 
 <div id="header"><%= @title %></div>
 <br />
-<div style="border:1px solid grey;margin-left:35px;">
-  <table width="100%">
+<div>
+  <table id="producers_banner">
 
    <tr><td width="50%" ><%= show_producer_image(@producer) -%></td>
 
-   <td width="50%" style="font-size:20px;font-weight:lighter;"> <%= Setting.find(:first).producer_page_quote %></td>
+   <td width="50%" style="font-size:20px;font-weight:lighter;background-color:#e7e5e5;"> <%= Setting.find(:first).producer_page_quote %></td>
     <!--A <strong style="font-size:30px;">blog</strong> dedicated entirely to<br />
     <strong style="font-size:30px;">Italian wine,</strong> follow us in our<br />
     discovery journey, <strong style="font-size:30px;">read news</strong><br />

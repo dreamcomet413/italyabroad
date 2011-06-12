@@ -305,6 +305,30 @@ a {
 #flashBanner ul li.home_image {
 }
 
+
+#producers_banner {
+    position:relative;
+    text-align:center;
+    margin:auto;
+    margin-top:0px;
+    margin-bottom:auto;
+    /*padding-top:0px;
+    padding-bottom:auto;*/
+    width:723px;
+    height:200px;
+    overflow :hidden;
+    background:transparent url(images/loading.gif) center center;
+
+
+
+    border-style:solid;
+    border-width:1px;
+    border-color:#ccc;
+    /*padding:5px 5px 5px 5px;*/
+    padding:0px 0px 0px 0px;
+    overflow:hidden;
+}
+
 #topTextBox {
     width:725px;
     /*margin-top:-15px;*/
@@ -988,6 +1012,11 @@ a {
     float:left;
     margin:10px;
     width:723px;
+    text-align:justify;
+}
+#region_description {
+    margin:10px;
+    width:710px;
     text-align:justify;
 }
 
