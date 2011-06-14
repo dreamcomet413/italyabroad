@@ -49,6 +49,7 @@ class Site::ImagesController < ApplicationController
 
             image.resize '287x200' if image_type == :blog_view
             image.resize '300' if image_type == :producer_thumb
+            image.resize '300' if image_type == :region_thumb
           end
         end unless @image.blank?
       else

@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   apply_simple_captcha :message => " image and text were different", :add_to_base => true
 
   validates_presence_of     :login, :email, :name, :surname
-  validates_presence_of :telephone,:on=>:create
+ # validates_presence_of :telephone,:on=>:create,:message=>'Please supply a phone number so that we can call'
   validates_presence_of     :password,                   :if => :password_required?
   validates_presence_of     :password_confirmation,      :if => :password_required?
   validates_length_of       :password, :within => 6..40, :if => :password_required?
@@ -20,6 +20,14 @@ class User < ActiveRecord::Base
   validates_length_of       :email,                      :within => 3..100
   validates_uniqueness_of   :login,  :case_sensitive => false
   validates_format_of       :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
+
+ # validate :validate_phone_number,:on=>:create
+  def validate_on_create
+    if self.telephone.blank?
+      errors.add_to_base("Please supply a phone number so we can call if there are any problems using this address")
+
+    end
+  end
 
   has_many :reviews
   has_many :reservation, :dependent => :destroy
@@ -39,6 +47,7 @@ class User < ActiveRecord::Base
 
   # Relations with other tables
   belongs_to :type
+
 
   after_create do |record|
     #Notifier.deliver_activation(record) #Customers don't wont activation by mail hum

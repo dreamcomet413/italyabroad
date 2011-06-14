@@ -55,7 +55,7 @@ class Admin::GrapesController < ApplicationController
       unless params[:image].nil?
     @image = Image.new(params[:image])
     @image.save
-    @grape.image_id = @image.id
+    @grape.update_attribute('image_id',@image.id)
   end
 
       flash[:notice] = "Grape updated successfully"
