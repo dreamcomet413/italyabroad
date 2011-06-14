@@ -1625,11 +1625,7 @@ a {
 }
 /*end*/
 
-/*blog*/
-#blog_home {
-    text-align:center;
-    margin:10px auto;
-}
+
 
 #wineBanner .recipes_home_title {
     color:white;
@@ -1670,15 +1666,20 @@ a {
     position:absolute;
     text-align:left;
 }
-
+/*blog*/
+#blog_home {
+    text-align:center;
+    margin:10px auto;
+}
 #blog_home .title {
     /*color:#9b0707;*/
     font-size:20px;
     font-weight:lighter;
-    margin-left:240px;
+    margin-left:100px;
     margin-top:130px;
     position:absolute;
-    text-align:left;
+    text-align:right;
+    width:250px;
 }
 
 .blog #leftColumnContent {
