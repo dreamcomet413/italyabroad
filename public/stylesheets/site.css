@@ -997,7 +997,7 @@ a {
 #box_upcoming_wine_tours.block {
     float:left;
     width:215px;
-    margin:10px;
+    margin:0px;
 }
 
 #wine_event_description {
@@ -2529,4 +2529,5 @@ ul.my-account-links li a {
     font-family:Arial,Helvetica,sans-serif;
     font-size:13px;
     color:black;
+}
 
