@@ -10,7 +10,7 @@
     <tr>
     <td>Page</td>
 
-    <td><%= select :testimonial, :page_to_display,options_for_select([ "Home", "Wine Club", "Wine Tour","Wine Events"]) %></td>
+    <td><%= select :testimonial, :page_to_display,options_for_select([ "Home", "Wine Club", "Wine Tour","Wine Events"],@testimonial.page_to_display) %></td>
 
   </tr>
  <!--<tr>
