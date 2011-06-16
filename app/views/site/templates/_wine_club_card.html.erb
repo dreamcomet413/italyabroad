@@ -67,7 +67,8 @@
     <%= render(:partial => 'site/reviews/new', :locals => {:create_url => product_reviews_path(@product, :return_to => nested_products_uri(@product))}) %>
   <%- end -%></div>
 <% content_for :right do %>
-  <%= render :partial => 'site/shared/box_product_reviews' %>
+   <%= render :partial => 'site/shared/box_wine_club_testimonials' %>
+  <%#= render :partial => 'site/shared/box_product_reviews' %>
   <br />
 	<%= render :partial => '/site/shared/box_subscriptions' %>
 	<br />

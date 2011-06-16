@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+
+
   map.resources :chat, :controller => 'site/chat',:collection =>{:create_chat_user=> :any,:send_data => :any}
   map.meet_us 'supplier', :controller => 'site/base', :action => 'supplier'
 #  map.meet_us 'wine-club', :controller => 'site/base', :action => 'wine_club'
@@ -20,7 +22,8 @@ ActionController::Routing::Routes.draw do |map|
   map.connect "sitemap.xml", :controller => "site/base", :action => "google_sitemap"
 #  map.connect "products.xml",:controller=>'site/products',:action=>'index'
 
-  map.testimonial 'testimonial', :controller => 'site/base', :action => 'testimonial'
+ # map.testimonial 'testimonial', :controller => 'site/base', :action => 'testimonial'
+  map.testimonial 'testimonial', :controller => 'site/testimonials', :action => 'index'
   map.popular 'popular', :controller => 'site/base', :action => 'popular'
   map.signup 'signup', :controller => 'site/customers', :action => "new"
   map.login   'login', :controller => 'site/base', :action => 'login'
@@ -100,6 +103,7 @@ ActionController::Routing::Routes.draw do |map|
 map.eval_xml_g_comptible 'admin/xml/eval_xml_g_comptible', :controller => 'admin/xml', :action => 'eval_xml_g_comptible'
 
   map.namespace :admin do |admin|
+    admin.resources :testimonials
     admin.resources :faqs
     admin.resources :shipping_agencies
     admin.resources :occasions

@@ -1,11 +1,21 @@
 <div class="block" id="topTextBox">
   <div id="reviews">
     <h3>Our customers say</h3>
-    <ul>
+   <table>
+    <% Testimonial.find(:all,:conditions=>['UPPER(page_to_display)=?','HOME']).each do |testimonial| %>
+      <tr>
+        <td>
+          <%= image_tag "default.jpg" %>
+          "<%= testimonial.description %>"
+        </td>
+      </tr>
+    <% end %>
+</table>
+  <!-- <ul>
       <li>
         <p>
           <%= image_tag "default.jpg" %>
-          "The wines you have supplied have never failed to please, I dont have a clue about what grapes or where they come from, but i know that I enjoy them"
+
         </p>
       </li>
       <li>
@@ -29,7 +39,7 @@
       <li>
         <p style="text-align:right;"><%= link_to "read all", testimonial_path  %></p>
       </li>
-    </ul>
+    </ul> -->
   </div>
   <div id="about">
     <h3>About italyabroad.com</h3>

@@ -1,4 +1,4 @@
-<%- @category = Category.find(params[:category] || "wine") -%>
+<%- @category = Category.find(params[:category]) || Category.find(:first,:conditions=>['LOWER(name = ?)','wine']) -%>
 <%- @parent = Category.find(params[:parent] || "wine") -%>
 <%- search_url ||= @category == @parent ? search_index_path(:id => @parent) : nested_categories_url(@parent, @category) -%>
 <div class="block center" id="box_wine_search">
