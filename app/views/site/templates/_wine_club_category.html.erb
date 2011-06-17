@@ -24,15 +24,16 @@
 	</div>
 <% end %>
 
-<div style="margin:8px;">
-  <%= render :partial => '/site/shared/box_upcoming_events' %>
-  <div ><!--id="wine_tours_introduction"-->
-    <h3 style="border:none;" align="center"><%= @category.page_heading ?  @category.page_heading : @category.name %></h3>
-    <p>
-      <%= @category.description %>
-      <!--Need content to change this static description.-->
-    </p>
-  </div>
+<div style="margin:8px;float:left;margin-right:30px;">
+  <%= render :partial => '/site/shared/box_upcoming_events' -%>
+</div>
+
+  <h3 style="border:none;" align="center"><%= @category.page_heading ?  @category.page_heading : @category.name %></h3>
+  <p style="text-align:justify;margin:20px;">
+    <%= @category.description %>
+    <!--Need content to change this static description.-->
+  </p><div id="wine_tour_description">
+</div>
   <div style="clear:both;"></div>
   <% products = @category.products.find(:all, :conditions => ["active = ?", true], :order => "created_at DESC").paginate(:page => params[:page], :per_page => 3) %>
   <%- unless products.blank? -%>
@@ -50,7 +51,7 @@
     <%= will_paginate(products) %>
   </div>
   <%- end -%>
-</div>
+<!-- /div -->
 
 <% content_for :right do %>
   <%= render :partial => 'site/shared/box_product_reviews' %>

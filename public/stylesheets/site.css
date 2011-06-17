@@ -621,6 +621,8 @@ a {
 #wine_tour_description {
     float:left;
     margin:20px;
+    text-align:justify;
+    margin-left:10px;
 }
 #box_latest_review div a,
 #box_grape_guide_forum div a,

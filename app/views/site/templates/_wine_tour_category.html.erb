@@ -25,17 +25,17 @@
 	</div>
 <% end %>
 
-<div style="margin:8px;" style = "float:left;">
+<div style="margin:8px;float:left;margin-right:30px;">
   <%= render :partial => '/site/shared/box_upcoming_wine_tours' %>
   <!-- before changing the following div has this id="wine_tours_introduction" -->
 </div>
 
-<div id="wine_tour_description">
   <h3 style="border:none;"  align="center"><%= @category.page_heading ?  @category.page_heading : @category.name %></h3>
-  <p>
+  <p style="text-align:justify;margin:20px;">
   <%= @category.description %>
   <!--Make your own wine, live the harvesting in one of the most beautiful area of Tuscany-->
   </p>
+<div id="wine_tour_description" style = "float:left;margin-left:10px;">
 </div>
 
 <div style="clear:both;"></div>

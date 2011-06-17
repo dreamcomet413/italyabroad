@@ -29,15 +29,13 @@
              <%= link_to image_tag("events.jpg"), search_index_path(:id => @category)%>
           </div>
 <% end %>
-<div id="wine_event_description_new">
-  <div>
+<div style="margin:8px;float:left;margin-right:30px;">
     <%= render :partial => "/site/shared/box_upcoming_events" -%>
-  </div>
-  <div>
-      <h3 align="center" style="border:none;" ><%= @category.page_heading ?  @category.page_heading : 'Wine Courses &amp; Events' %></h3>
-      <%= @category.description %>
-  </div>
 </div>
+      <h3 align="center" style="border:none;" ><%= @category.page_heading ?  @category.page_heading : 'Wine Courses &amp; Events' %></h3>
+      <p style="text-align:justify;margin:20px;">
+      <%= @category.description %>
+      </p>
 
 <div style="clear:both;">
 </div>
