@@ -33,7 +33,7 @@ class Category < ActiveRecord::Base
   acts_as_nested_set
 
   def reviews
-    Review.find(:all, :conditions => ["reviews.reviewer_id IN (?) AND reviews.reviewer_type = ?", self.products.collect(&:id), "Product"], :limit => 5, :order => "reviews.created_at DESC")
+    Review.find(:all, :conditions => ["reviews.reviewer_id IN (?) AND reviews.reviewer_type = ? AND publish = ?", self.products.collect(&:id), "Product",true], :limit => 5, :order => "reviews.created_at DESC")
   end
 
   def is_root?

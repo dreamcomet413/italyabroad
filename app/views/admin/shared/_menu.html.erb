@@ -260,7 +260,8 @@
       <%= link_to "Supplier", admin_about_us_path(:type => "supplier") , :class => ('active' if @current_controller == "about_us") %>
     </span>
     <span <%= "class='active'" if @current_controller == "about_us" %>>
-      <%= link_to "Testimonials", admin_about_us_path(:type => "testimonials") , :class => ('active' if @current_controller == "about_us") %>
+      <%#= link_to "Testimonials", admin_about_us_path(:type => "testimonials") , :class => ('active' if @current_controller == "about_us") %>
+      <%= link_to "Testimonials", admin_testimonials_path , :class => ('active' if @current_controller == "testimonials") %>
     </span>
     <span <%= "class='active'" if @current_controller == "about_us" %>>
       <%= link_to "Blog", admin_about_us_path(:type => "blog") , :class => ('active' if @current_controller == "about_us") %>

@@ -1,0 +1,3 @@
+module Site::TestimonialsHelper
+end
+

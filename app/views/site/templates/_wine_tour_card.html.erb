@@ -62,7 +62,16 @@
     <%= image_submit_tag("send_ico.png") %>
     <%- end -%>
   </div>
-<!--  <h3>Reviews <%#= link_to("(Add Review)", login_path, :style => "font-size:12px;") unless logged_in?  %></h3>
+
+ <!--<div class="add_new_review">
+<h3>Reviews <%= link_to("(Add Review)", login_path, :style => "font-size:12px;") unless logged_in?  %></h3>
+ <%= render :partial => 'site/shared/review_view_short', :locals => {:reviewer => @product} %>
+ <%- if logged_in? -%><%= link_to 'Add Review',"#",:onclick=>"document.getElementById('add_review').style.display='block';return false;" %>
+    <div id="add_review" style="display:none;"><h3>Leave your review</h3>
+    <%= render(:partial => 'site/reviews/new', :locals => {:create_url => product_reviews_path(@product, :return_to => nested_products_uri(@product))}) %>
+  <%- end -%></div>-->
+
+ <!-- <h3>Reviews <%#= link_to("(Add Review)", login_path, :style => "font-size:12px;") unless logged_in?  %></h3>
    <%#= render :partial => 'site/shared/review_view_short', :locals => {:reviewer => @product} %>
    <%#- if logged_in? -%>
     <h3>Leave your review</h3>
@@ -71,7 +80,8 @@
 </div>
 
 <% content_for :right do %>
-  <%= render :partial => 'site/shared/box_product_reviews' %>
+  <%#= render :partial => 'site/shared/box_product_reviews' %>
+  <%= render :partial => 'site/shared/box_wine_tour_testimonials' %>
   <br />
 	<%= render :partial => '/site/shared/box_subscriptions' %>
 	<br />

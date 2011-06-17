@@ -1,0 +1,21 @@
+<table>
+  <tr>
+    <td valign="top">Name</td>
+    <td><%= text_field :testimonial, :title %></td>
+  </tr>
+  <tr>
+    <td valign="top">Description</td>
+    <td><%= text_area :testimonial, :description,:size=>'35x10' %></td>
+  </tr>
+    <tr>
+    <td>Page</td>
+
+    <td><%= select :testimonial, :page_to_display,options_for_select([ "Home", "Wine Club", "Wine Tour","Wine Events"],@testimonial.page_to_display) %></td>
+
+  </tr>
+ <!--<tr>
+    <td valign="top">Order</td>
+    <td><%#= select_tag "testimonial", options_for_select([ "1", "2", "3","4" ], "1") %></td>
+  </tr>-->
+</table>
+
