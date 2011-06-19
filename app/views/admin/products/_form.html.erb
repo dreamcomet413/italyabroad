@@ -22,7 +22,7 @@
     </tr>
 		<tr>
 		  <td style="text-align:right">Producer Name:</td>
-		  <td><%= select :product, :producer_id, Producer.all.inject([["No Producer", ""]]) {|ps, p| ps << [p.name, p.id]} %></td>
+		  <td><%= select :product, :producer_id, Producer.find(:all,:order=>'name asc').inject([["No Producer", ""]]) {|ps, p| ps << [p.name, p.id]} %></td>
     </tr>
 		<tr>
 		  <td style="text-align:right">Price:</td>

@@ -1,4 +1,4 @@
-<% @title = "#{@grape.name}"; @class= "no-padding"; @breadcrumbs = "#{link_to("Home", root_url)} &raquo; &raquo;#{link_to ('Community',wine_community_path)} &raquo; #{link_to("Grapes", grape_guide_path)} #{@grape.name}" %>
+<% @title = "#{@grape.name}"; @class= "no-padding"; @breadcrumbs = "#{link_to("Home", root_url)} &raquo; #{link_to ('Community',wine_community_path)} &raquo; #{link_to("Grapes", grape_guide_path)} #{@grape.name}" %>
 
 <div id="header"><%= @grape.name %></div>
 <div>
@@ -16,7 +16,7 @@
 
 <!--<div style="text-align:center;padding-top:10px;"><%#= image_tag("guide_home_image.jpg") %></div> -->
 <div style="margin:20px 40px;">
-  <h1 style="text-align:center;font-size:18px;font-weight:bold;color:#666666;margin-bottom:30px">Grape Information</h1>
+ <!-- <h1 style="text-align:center;font-size:18px;font-weight:bold;color:#666666;margin-bottom:30px">Grape Information</h1> -->
   <div style="float:left;margin-right:20px;"><%#= show_grape_image(@grape) %></div>
   <%= @grape.description || "No Description" %>
   <div style="clear:both;"></div>

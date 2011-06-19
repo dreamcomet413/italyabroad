@@ -1,3 +1,10 @@
+<%- @title = "Testimonials" -%>
+<%- @breadcrumbs = "#{link_to "Testimonials", admin_testimonials_path} &raquo; #{@testimonial.title}" -%>
 
-<%= link_to 'Edit', edit_testimonial_path(@testimonial) %> |
-<%= link_to 'Back', testimonials_path %>
+<div class="inner_content regions" id="admin_regions_index">
+  <h2>Testimonials</h2><div align="right"><%= link_to "New Testimonial", new_admin_testimonial_path %></div>
+  <h1><%= @testimonial.title %> </h1><br />
+  <%= @testimonial.description %><br />
+<%= link_to 'Edit', edit_admin_testimonial_path(@testimonial) %> |
+<%= link_to 'Cancel', admin_testimonials_path %>
+

@@ -19,7 +19,7 @@
 
 <br />
 <div style="margin:0 40px;">
-  <h3 style="text-align:center;border:none;color:#666666;">Region Information</h3>
+ <!-- <h3 style="text-align:center;border:none;color:#666666;">Region Information</h3> -->
   <%#= @region.description || "No Description" %>
   <span id="region_description"><%= @region.description || "Have a look at " %></span>
   <br /><br />
@@ -31,14 +31,36 @@
   </ul>
  <!-- <h3 style="font-size:16px;color:#013300;border:none;">Wine and Food from <%#= @region.name %></h3> -->
  <h3 style="font-size:16px;color:#013300;border:none;">Produce from the region <%= @region.name %></h3>
-  <ul style="list-style:none;margin:0;padding:0;text-align:center;float:left;">
-    <%- @region.products.each do |product| -%>
-    <li style="float:left;width:100px;margin-left:10px;margin-bottom:10px;">
-      <%= link_to show_image_tag(product.layout_image, product.image_1, :jpg), nested_products_uri(product) %><br />
-      <%= link_to product.name, nested_products_uri(product) %>
-    </li>
+      <%-
+      region_products = ""
+      final_region_products = ""
+      index = 0
+     @region.products.each do |product|
+          if index == 0
+            region_products += "<tr>"
+          end
+          region_products += "<td valign='top' class='product_cell' >#{link_to show_image_tag(product.layout_image, product.image_1, :jpg), nested_products_uri(product)} <br /> <br /> #{link_to product.name, nested_products_uri(product)}</td>"
+          index = index + 1
+          if index == 5
+            region_products += "</tr>"
+            index = 0
+          end
+       end %>
+
+   <% unless region_products == "" %>
+    <% region_products = "<table>#{region_products}</table>" %>
+    <%=  "#{region_products}"  -%>
     <%- end -%>
-  </ul>
+  <!--<ul style="list-style:none;margin:0;padding:0;text-align:center;float:left;">
+    <%#- @region.products.each do |product| -%>
+    <li style="float:left;width:100px;margin-left:10px;margin-bottom:10px;">
+      <%#= link_to show_image_tag(product.layout_image, product.image_1, :jpg), nested_products_uri(product) %><br />
+      <%#= link_to product.name, nested_products_uri(product) %>
+    </li>  -->
+    <%#- end -%>
+ <!-- </ul> -->
+
+
   <div style="clear:both;"></div>
   <br /><br />
   <br />

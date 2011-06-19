@@ -8,7 +8,12 @@
     <%= @about.title if @about %>
 
   </span>
-<%= image_tag("guide_home_image.jpg") %></div>
+  <% if  @about and !@about.image_id.nil? %>
+  <%= link_to image_tag(image_url(:about_thumb, @about.image, :jpg)) , search_index_path(:id => "grapes") unless @about.blank? %>
+  <% else %>
+  <%= link_to image_tag("guide_home_image.jpg"), search_index_path(:id => "grapes") %>
+  <% end %>
+</div>
 <br />
 <div id="blog_container">
    <%= @about.description rescue 'The wine and grape details ...' %> <br />

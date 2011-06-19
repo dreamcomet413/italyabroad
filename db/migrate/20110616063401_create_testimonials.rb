@@ -4,7 +4,7 @@ class CreateTestimonials < ActiveRecord::Migration
       t.string :title
       t.string :description
       t.string :page_to_display
-      t.integer :sequence
+      t.integer :sequence,:null=>true
       t.timestamps
     end
   end
