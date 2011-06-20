@@ -8,7 +8,7 @@
 
    <tr><td width="50%" ><%= show_region_image(@region) -%></td>
 
-   <td width="50%" style="font-size:20px;font-weight:lighter;background-color:#e7e5e5;"> <%= Setting.find(:first).region_page_quote %></td>
+   <td width="50%" style="font-size:20px;font-weight:lighter;"> <%= Setting.find(:first).region_page_quote %></td>
     <!--A <strong style="font-size:30px;">blog</strong> dedicated entirely to<br />
     <strong style="font-size:30px;">Italian wine,</strong> follow us in our<br />
     discovery journey, <strong style="font-size:30px;">read news</strong><br />
@@ -39,7 +39,7 @@
           if index == 0
             region_products += "<tr>"
           end
-          region_products += "<td valign='top' class='product_cell' >#{link_to show_image_tag(product.layout_image, product.image_1, :jpg), nested_products_uri(product)} <br /> <br /> #{link_to product.name, nested_products_uri(product)}</td>"
+          region_products += "<td valign='top' class='product_cell' >#{link_to show_image_tag(:region_thumb_small, product.image_1, :jpg), nested_products_uri(product)} <br /> <br /> #{link_to product.name, nested_products_uri(product)}</td>"
           index = index + 1
           if index == 5
             region_products += "</tr>"
