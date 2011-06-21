@@ -23,8 +23,13 @@ class Site::BlogController < ApplicationController
   def show
     store_location
     @post = Post.find(params[:id])
-    @post.count_view if @post
-    @comments = (@post.comments).paginate(:page => params[:page], :per_page => 5, :offset => 5,:order => "created_at DESC")
+    unless @post
+      redirect_to "/blog"
+    else
+      @post.count_view if @post
+      @comments = (@post.comments).paginate(:page => params[:page], :per_page => 5, :offset => 5,:order => "created_at DESC")
+    end
+
   end
 
   def comment
