@@ -1025,6 +1025,7 @@ a {
 
 #box_event_reviews {
     background-color:#ece9d8;
+    overflow:hidden
 }
 /*end*/
 
@@ -1677,8 +1678,8 @@ a {
     /*color:#9b0707;*/
     font-size:20px;
     font-weight:lighter;
-    margin-left:100px;
-    margin-top:130px;
+    margin-left:110px;
+    margin-top:80px;
     position:absolute;
     text-align:right;
     width:250px;
