@@ -1,9 +1,13 @@
-<% week_products = WeekProduct.find(:all) %>
-<% unless week_products.blank?
-
-%>
-<div class="block" id="box_event">
-  <%= link_to((image_tag "FoodOfTheWeek.png"), '/food')%><br />
+<% displayed = false
+ week_products = WeekProduct.find(:all) %>
+<% unless week_products.blank?%>
+ <%- week_products.each do |w_product| -%>
+   <% product = Product.find(w_product.week_product_id) %>
+   <% if  product.categories.root.name.downcase == 'food' %>
+    <div class="block" id="box_event">
+    <% displayed = true %>
+      <%= link_to (image_tag "FoodOfTheWeek.png"), :controller=>'site/products',:action=>'food_of_the_week',:id=>product.id %><br />
+     <% break end  end %>
   <ul>
   <%- week_products.each do |w_product| -%>
    <% product = Product.find(w_product.week_product_id) %>
@@ -15,7 +19,8 @@
 	  <% end  %>
   <%- end -%>
   </ul>
+<% if displayed == true %>
 </div>
-
+<% end %>
 <% end %>
 

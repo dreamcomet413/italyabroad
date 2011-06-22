@@ -235,42 +235,36 @@ p params[:product]
   end
 
   def products_of_the_week
-    @products = Product.all
-    @week_product_ids = WeekProduct.find(:all)
+  #  @products = Product.all
+   # @week_product_ids = WeekProduct.find(:all)
  categories = Category.find_by_sql("select * from categories where parent_id is null")
      @categories_data = Admin::CategoriesController.new
     @data = @categories_data.get_tree(categories,nil)
 
+
     if !params[:search].blank?
 
-      @products = Product.find(:all, :include => [:categories],:conditions=>['categories.id = ? AND products.name LIKE ? AND(UPPER(categories.name) = ? OR UPPER(categories.name = ?)) ',"#{params[:search]}" ,"%#{params[:search_name]}%",'WINE','FOOD']).paginate(:page => params[:page], :per_page => 20)
-
-
+      @products = Product.find(:all, :include => [:categories],:conditions=>['categories.id = ? AND products.name LIKE ? AND(UPPER(categories.name) = ? OR UPPER(categories.name = ?)) and products.id NOT IN (select week_product_id from week_products) ',"#{params[:search]}" ,"%#{params[:search_name]}%",'WINE','FOOD']).paginate(:page => params[:page], :per_page => 20)
   elsif params[:search].blank?
-      @products = Product.find(:all, :include => [:categories],:conditions=>['products.name LIKE ? AND(UPPER(categories.name) = ? OR UPPER(categories.name = ?))',"%#{params[:search_name]}%",'WINE','FOOD']).paginate(:page => params[:page], :per_page => 20)
+    @products = Product.find(:all, :include => [:categories],:conditions=>['products.name LIKE ? AND(UPPER(categories.name) = ? OR UPPER(categories.name = ?)) and products.id NOT IN (select week_product_id from week_products)',"%#{params[:search_name]}%",'WINE','FOOD']).paginate(:page => params[:page], :per_page => 20)
 
   else
-      @products = Product.find(:all,:conditions=>['UPPER(categories.name) = ? OR UPPER(categories.name = ?)','Wine','FOOD'],:include => [:categories]).paginate(:page => params[:page], :per_page => 20)
+      @products = Product.find(:all,:include => [:week_products],:conditions=>['UPPER(categories.name) = ? OR UPPER(categories.name = ?) and products.id NOT IN (select week_product_id from week_products)','Wine','FOOD'],:include => [:categories]).paginate(:page => params[:page], :per_page => 20)
 
   end
-
-
-     if params[:save]
-       unless params[:products_of_the_week_ids].nil?
-         unless @week_product_ids.blank?
-            for week_product in @week_product_ids
-               params[:products_of_the_week_ids].each do |w|
-              if w.to_i == week_product.week_product_id.to_i
-                week_product.destroy
-              end
-            end
-            end
-         end
-          for product_id in params[:products_of_the_week_ids]
-            WeekProduct.create(:week_product_id=>product_id)
-          end
-       end
+    if params[:id] and request.xhr?
+      WeekProduct.find_or_create_by_week_product_id(params[:id])
     end
   end
+
+  def delete_products_of_the_week
+    @week_products = WeekProduct.find(:all)
+     if params[:id] and request.xhr?
+       @week_product = WeekProduct.find_by_week_product_id(params[:id])
+       @week_product.destroy
+     end
+  end
+
+
  end
 

@@ -1,0 +1,32 @@
+<%- @title = "Administration - Products"; @page_id = "Catalog" -%>
+<%- @breadcrumbs = "Catalog &raquo; #{link_to "Delete Products", :controller=>'admin/products',:action=>'delete_products_of_the_week'}" -%>
+<div class="inner_content products" id="admin_products_index">
+
+  <h2>Products</h2>
+  <table class="list" width="100%">
+  <thead>
+    <tr>
+      <th>&nbsp;</th>
+      <th>Category</th>
+      <th>Name</th>
+      <th>Price</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <%- @week_products.each do |w_product| -%>
+     <% product = Product.find(w_product.week_product_id) %>
+      <tr id="<%= product.id %>" class="<%= cycle("even", "odd") %>" >
+      <td><%= button_to_remote "Delete",
+    :url => { :action => "delete_products_of_the_week", :id => product.id }
+ %>
+      </td>
+      <td><%= product.root_category_id.titleize unless product.root_category_id.blank? %></td>
+      <td><%= product.name %></td>
+      <td><%= number_to_currency product.price, :unit => "&pound;" %></td>
+    </tr>
+    <%- end -%>
+    </tbody>
+  </table>
+</div>
+
