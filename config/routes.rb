@@ -89,6 +89,7 @@ ActionController::Routing::Routes.draw do |map|
   %w(forum).each do |attr|
     map.resources :posts, :controller => "site/posts", :name_prefix => "#{attr}_", :path_prefix => "/#{attr.pluralize}/:#{attr}_id"
   end
+  map.connect 'admin/products/delete_products_of_the_week', :controller => '/admin/products', :action => 'delete_products_of_the_week'
   map.connect 'admin/products/products_of_the_week', :controller => '/admin/products', :action => 'products_of_the_week'
   map.connect "admin/products/xml", :controller => '/admin/products', :action => 'xml'
   map.connect "site/orders/show_order_details",:controller => '/site/orders', :action => 'show_order_details'

@@ -1,5 +1,5 @@
 <%- @title = "Administration - Products"; @page_id = "Catalog" -%>
-<%- @breadcrumbs = "Catalog &raquo; #{link_to "Products", admin_products_path}" -%>
+<%- @breadcrumbs = "Catalog &raquo; #{link_to "Products of the Week", :controller=>'admin/products',:action=>'products_of_the_week'}" -%>
 <table>
     <tr>
       <td>
@@ -32,43 +32,45 @@
        <% end %>
       </td>
      </tr></table>
-<% form_tag  do %>
 <div class="inner_content products" id="admin_products_index">
+
   <h2>Products</h2>
+  <% if WeekProduct.find(:first) %><div style="float:right"><%= link_to 'Remove',:controller=>'admin/products',:action=>'delete_products_of_the_week' %></div><% end %>
   <table class="list" width="100%">
   <thead>
     <tr>
-      <th>&nbsp;</th>
+      <th></th>
       <th>Category</th>
       <th>Name</th>
       <th>Price</th>
     </tr>
     </thead>
-    <tfoot>
+  <tfoot>
       <tr>
-        <td colspan="10"><%= will_paginate_(@products) %></td>
-        <td align="right"><%= page_entries_info_ @products %></td>
+        <td colspan="2"><%= will_paginate_(@products) %></td>
+        <td colspan="2" align="right"><%= page_entries_info_ @products %></td>
       </tr>
     </tfoot>
     <tbody>
     <%- @products.each do |product| -%>
-    <% checked = false
-     @week_product_ids.each do |w|
-     if w.week_product_id == product.id
-      checked = true
-     end
-    end %>
-
-    <tr class="<%= cycle("even", "odd") %>">
-      <td><%= check_box_tag "products_of_the_week_ids[]", product.id, checked %></td>
+    <% displayed = false  %>
+        <% WeekProduct.all.each do |w|
+          if w.week_product_id.to_i == product.id.to_i
+          displayed = true
+         end end %>
+       <% if displayed == false %>
+      <tr id="<%= product.id %>" class="<%= cycle("even", "odd") %>" >
+      <td width="10%"><%= button_to_remote "Add",
+    :url => { :action => "products_of_the_week", :id => product.id }
+ %>
+      </td>
       <td><%= product.root_category_id.titleize unless product.root_category_id.blank? %></td>
       <td><%= product.name %></td>
       <td><%= number_to_currency product.price, :unit => "&pound;" %></td>
     </tr>
-    <%- end -%>
-    <tr><td colspan="4"><%= submit_tag "Save",:name=>'save' %> </td></tr>
+    <%- end end -%>
+   <!-- <tr><td colspan="4"><%#= submit_tag "Save",:name=>'save' %> </td></tr> -->
     </tbody>
   </table>
 </div>
-<% end %>
 
