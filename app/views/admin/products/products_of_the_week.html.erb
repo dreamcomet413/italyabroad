@@ -53,13 +53,7 @@
     </tfoot>
     <tbody>
     <%- @products.each do |product| -%>
-    <% displayed = false  %>
-        <% WeekProduct.all.each do |w|
-          if w.week_product_id.to_i == product.id.to_i
-          displayed = true
-         end end %>
-       <% if displayed == false %>
-      <tr id="<%= product.id %>" class="<%= cycle("even", "odd") %>" >
+     <tr id="<%= product.id %>" class="<%= cycle("even", "odd") %>" >
       <td width="10%"><%= button_to_remote "Add",
     :url => { :action => "products_of_the_week", :id => product.id }
  %>
@@ -68,7 +62,7 @@
       <td><%= product.name %></td>
       <td><%= number_to_currency product.price, :unit => "&pound;" %></td>
     </tr>
-    <%- end end -%>
+    <%- end  -%>
    <!-- <tr><td colspan="4"><%#= submit_tag "Save",:name=>'save' %> </td></tr> -->
     </tbody>
   </table>
