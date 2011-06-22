@@ -2,13 +2,18 @@
 <% @class = "no-padding"; @breadcrumbs = "#{link_to("Home", root_url)} &raquo; #{link_to ('Community',wine_community_path)} &raquo; #{link_to("Blog", blog_index_path)} &raquo; #{@post.name[0..25] + '...'}" %>
 
 <div id="header">
- <%= truncate @post.name, :length => 70 %>
-<span style="float:right;font-size:12px;">Subscribe to our RSS feed <%= link_to image_tag('RSS.png'), blog_index_path(:format => :xml, :show => :all) %></span>
+  <%= truncate @post.name, :length => 70 %>
+  <span style="float:right;font-size:12px;">Subscribe to our RSS feed <%= link_to image_tag('RSS.png'), blog_index_path(:format   => :xml, :show => :all) %></span>
 </div>
+
+
+
 <div id="blog_show_container">
-<div style="text-align:center;"><%= image_tag(image_url('blog_view', (@post.image_1 or @post.image_2 or @post.image_3), :jpg)) if @post.image_1 or @post.image_2 or @post.image_3 %></div>
+  <div style="text-align:center;"><%= image_tag(image_url('blog_view', (@post.image_1 or @post.image_2 or @post.image_3), :jpg)) if @post.image_1 or @post.image_2 or @post.image_3 %></div>
   <br />
+
   <div class="comment_icon"><%= @post.comments.size %> comments</div>
+
   <div><%= @post.description_cleared %></div>
   <table width="100%">
     <tr>
@@ -71,25 +76,25 @@
 
             <li style="border-bottom:1px solid #CCCCCC;margin-top:20px;">
               <div style="margin-bottom:5px;  ">
-              <div style="margin: 0 5px 5px 0;float:left"><%= avatar_for_user(comment.user, "small") %></div>
-              <div style="text-align:left;margin: 0 0 5px 15px;float:left">
+                <div style="margin: 0 5px 5px 0;float:left"><%= avatar_for_user(comment.user, "small") %></div>
+                <div style="text-align:left;margin: 0 0 5px 15px;float:left">
                 <span style="font:bold 13px Arial"><%= comment.name.upcase %></span><br/>
                    <%= comment.created_at.strftime("%m/%d/%Y %H:%M %p") %><br/>
-
+                </div>
+                <div style="clear:both"></div>
+                <div class="description"><%= comment.description.gsub("\n","<br />") rescue "No description" %></div>
               </div>
-              <div style="clear:both"></div>
-              <div class="description"><%= comment.description.gsub("\n","<br />") rescue "No description" %></div>
-            </div>
 
             </li>
           <% end %>
         </ul>
       <%- end -%>
 
-    </div>
+      </div>
 
     <h1 style="text-align:right"><%= will_paginate @comments %></h1>
 
+  </div>
   </div>
 <% content_for :right do %>
     <%#= render :partial => '/site/shared/box_login' %>
