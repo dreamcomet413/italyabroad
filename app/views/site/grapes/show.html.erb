@@ -1,12 +1,13 @@
 <% @title = "#{@grape.name}"; @class= "no-padding"; @breadcrumbs = "#{link_to("Home", root_url)} &raquo; #{link_to ('Community',wine_community_path)} &raquo; #{link_to("Grapes", grape_guide_path)} #{@grape.name}" %>
 
 <div id="header"><%= @grape.name %></div>
+<br />
 <div>
   <table id="producers_banner">
 
    <tr><td width="50%" ><%= show_grape_image(@grape) -%></td>
 
-   <td width="50%" style="font-size:20px;font-weight:lighter;background-color:#e7e5e5;"> <%= Setting.find(:first).grape_page_quote %></td>
+   <td width="50%" style="font-size:20px;font-weight:lighter"> <%= @grape.grape_quote %></td>
     <!--A <strong style="font-size:30px;">blog</strong> dedicated entirely to<br />
     <strong style="font-size:30px;">Italian wine,</strong> follow us in our<br />
     discovery journey, <strong style="font-size:30px;">read news</strong><br />

@@ -6,7 +6,7 @@ class Site::ProducersController < ApplicationController
     else
       @producers = Producer.all(:order => "name asc").paginate(:page => params[:page], :per_page => 10)
     end
-    @producers_all = Producer.find(:all)
+    @producers_all = Producer.find(:all,:order => "name asc")
     respond_to do |format|
       format.html
     end

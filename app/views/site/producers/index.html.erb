@@ -63,23 +63,23 @@
         </ul>
       </td>
       <td valign="top" style="width:33%;">
-        <h4 style="margin:0;padding:0;">M-R</h4>
+        <h4 style="margin:0;padding:0;">M-Z</h4>
         <br />
         <ul class="clean" style="list-style:none;">
           <%- for producer in @producers_all -%>
-          <li><%= link_to truncate (producer.name,50), producer_path(producer) if producer.name.upcase =~ /^[M-R]/ %></li>
+          <li><%= link_to truncate (producer.name,50), producer_path(producer) if producer.name.upcase =~ /^[M-Z]/ %></li>
           <%- end -%>
         </ul>
       </td>
-      <td valign="top" style="width:33%;">
+     <!-- <td valign="top" style="width:33%;">
         <h4 style="margin:0;padding:0;">S-Z</h4>
         <br />
         <ul class="clean" style="list-style:none;">
-          <%- for producer in @producers_all -%>
-          <li><%= link_to truncate (producer.name,50), producer_path(producer) if producer.name.upcase =~ /^[S-Z]/ %></li>
-          <%- end -%>
+          <%#- for producer in @producers_all -%>
+          <li><%#= link_to truncate (producer.name,50), producer_path(producer) if producer.name.upcase =~ /^[S-Z]/ %></li>
+          <%#- end -%>
         </ul>
-      </td>
+      </td>-->
     </tr>
   </table>
 

@@ -8,6 +8,10 @@
     <td><%= text_area :grape, :description %></td>
   </tr>
   <tr>
+      <td>Quote on Grape: </td>
+      <td><%= text_field :grape, :grape_quote %></td>
+    </tr>
+  <tr>
     <td>Image</td>
     <% fields_for :image do %>
     <td><%= file_field :image,:image_file %></td>

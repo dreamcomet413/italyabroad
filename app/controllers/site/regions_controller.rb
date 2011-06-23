@@ -8,7 +8,7 @@ class Site::RegionsController < ApplicationController
     else
       @regions = Region.find(:all,:order => "name asc").paginate(:page => params[:page], :per_page => 10)
     end
-    @regions_all = Region.find(:all)
+    @regions_all = Region.find(:all,:order => "name asc")
     respond_to do |format|
       format.html
     end

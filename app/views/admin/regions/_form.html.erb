@@ -7,6 +7,10 @@
     <td valign="top">Description</td>
     <td><%= text_area :region, :description %></td>
   </tr>
+  <tr>
+      <td>Quote on Region: </td>
+      <td><%= text_field :region, :region_quote %></td>
+    </tr>
     <tr>
     <td>Image</td>
     <% fields_for :image do %>

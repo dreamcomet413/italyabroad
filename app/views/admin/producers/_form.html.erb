@@ -8,6 +8,10 @@
     <td><%= text_area :producer, :description %></td>
   </tr>
   <tr>
+      <td>Quote on Producer page: </td>
+      <td><%= text_field :producer, :producer_quote %></td>
+    </tr>
+  <tr>
     <td valign="top">Image</td>
     <% fields_for :image do %>
     <td><%= file_field :image,:image_file %></td>
