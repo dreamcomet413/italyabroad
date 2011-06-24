@@ -2,7 +2,8 @@
 <%- @breadcrumbs = "Catalog &raquo; #{link_to "Delete Products", :controller=>'admin/products',:action=>'delete_products_of_the_week'}" -%>
 <div class="inner_content products" id="admin_products_index">
 
-  <h2>Products</h2>
+  <!--<h2>Products</h2>-->
+<%= link_to (image_tag 'products_non_focus.png', :border => 0) ,{:controller=>'admin/products',:action=>'products_of_the_week'}%><%= link_to (image_tag 'selected_focus.png', :border => 0) ,{:controller=>'admin/products',:action=>'delete_products_of_the_week'}%>
   <table class="list" width="100%">
   <thead>
     <tr>

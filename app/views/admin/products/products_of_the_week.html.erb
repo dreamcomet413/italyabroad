@@ -34,8 +34,9 @@
      </tr></table>
 <div class="inner_content products" id="admin_products_index">
 
-  <h2>Products</h2>
-  <% if WeekProduct.find(:first) %><div style="float:right"><%= link_to 'Remove',:controller=>'admin/products',:action=>'delete_products_of_the_week' %></div><% end %>
+  <!--<h2>Products</h2>-->
+  <%= link_to (image_tag 'products_focussed.png', :border => 0) ,{:controller=>'admin/products',:action=>'products_of_the_week'}%><%= link_to (image_tag 'selected_nonfocus.png', :border => 0) ,{:controller=>'admin/products',:action=>'delete_products_of_the_week'}%>
+  <%# if WeekProduct.find(:first) %><div style="float:right"><%#= link_to 'Remove',:controller=>'admin/products',:action=>'delete_products_of_the_week' %></div><%# end %>
   <table class="list" width="100%">
   <thead>
     <tr>

@@ -7,15 +7,15 @@
     <% displayed = true %>
       <%= link_to((image_tag "WinesOfTheWeek.png"), :controller=>'site/products',:action=>'wine_of_the_week',:id=>product.id)%><br />
      <ul> <% break end %>   <%end %>
-  <%- week_products.each do |w_product| -%>
-   <% product = Product.find(w_product.week_product_id) %>
+<!--  <%#- week_products.each do |w_product| -%>
+   <%# product = Product.find(w_product.week_product_id) %>
 
-   <% if  product.categories.root.name.downcase == 'wine' %>
+   <%# if  product.categories.root.name.downcase == 'wine' %>
     <li style="margin-bottom:10px;">
-    <div><%= link_to product.name,{:controller=>'site/products',:action=>'wine_of_the_week',:id=>product.id}, {:style => "font-size:14px;color:#9b0707"} %></div>
+    <div><%#= link_to product.name,{:controller=>'site/products',:action=>'wine_of_the_week',:id=>product.id}, {:style => "font-size:14px;color:#9b0707"} %></div>
 	  </li>
-	  <% end  %>
-  <%- end -%>
+	  <%# end  %>
+  <%#- end -%> -->
 <% if displayed == true %>
  </ul></div>
 <%end %>

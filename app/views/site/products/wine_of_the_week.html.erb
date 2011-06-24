@@ -4,8 +4,9 @@
 @breadcrumbs += " &raquo; #{@product.name[0..25]+ '...'}"
 %>
 <%#= params[:category] %>
-<div id="header"><%= @product.name %> <%= "(" + @product.size + ")" unless @product.size.blank? %></div>
-<div style="margin-left:20px;"><h4><%= Setting.find(:first).desc_wine_of_the_week %></h4></div>
+<!--<div id="header"><%#= @product.name %> <%#= "(" + @product.size + ")" unless @product.size.blank? %></div> -->
+<div id="header">Wine of the Week</div><br />
+<div style="margin-left:20px;"><%= Setting.find(:first).desc_wine_of_the_week %></div>
 <table class="product_info">
   <tr>
     <td class="image" style ="padding:0 10px 0 0">
@@ -26,6 +27,10 @@
     <td class="properties" valign="top">
       <% if @product.categories.root.name.downcase == "food" || @product.categories.root.name.downcase == "hampers" || @product.categories.root.name.downcase == "wine" %>
         <table>
+        <tr>
+          <td>Product:</td>
+          <td class="data"><%= @product.name %> <%= "(" + @product.size + ")" unless @product.size.blank? %></td>
+          </tr>
           <tr>
             <td>Avg.Rating:</td>
             <td class="data">

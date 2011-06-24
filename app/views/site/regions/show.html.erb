@@ -1,14 +1,15 @@
-<%- @title = "#{@region.name}"; @breadcrumbs = "#{link_to("Home", root_url)}  &raquo; #{link_to ('Community',wine_community_path)} &raquo;  #{link_to("Region", regions_path)} &raquo; #{@region.name}" -%>
+<%- @title = "#{@region.name}"; @breadcrumbs = "#{link_to("Home", root_url)}  &raquo; #{link_to ('Community',wine_community_path)} &raquo;  #{link_to("Regions", regions_path)} &raquo; #{@region.name}" -%>
 <%- @class = "no-padding" -%>
 
 <div id="header"><%= @region.name %></div>
+<br />
 <!--<div style="text-align:center;margin-top:15px;"><%#= image_tag("region-home-image.jpg") %></div> -->
 <div>
   <table id="producers_banner">
 
    <tr><td width="50%" ><%= show_region_image(@region) -%></td>
 
-   <td width="50%" style="font-size:20px;font-weight:lighter;"> <%= Setting.find(:first).region_page_quote %></td>
+   <td width="50%" style="font-size:20px;font-weight:lighter;"> <%= @region.region_quote %></td>
     <!--A <strong style="font-size:30px;">blog</strong> dedicated entirely to<br />
     <strong style="font-size:30px;">Italian wine,</strong> follow us in our<br />
     discovery journey, <strong style="font-size:30px;">read news</strong><br />

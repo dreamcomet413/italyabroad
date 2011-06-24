@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110616063401) do
+ActiveRecord::Schema.define(:version => 20110623055817) do
 
   create_table "about_us", :force => true do |t|
     t.string   "title"
@@ -160,6 +160,7 @@ ActiveRecord::Schema.define(:version => 20110616063401) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "friendly_identifier"
+    t.string   "grape_quote"
   end
 
   create_table "grapes_producers", :id => false, :force => true do |t|
@@ -335,6 +336,7 @@ ActiveRecord::Schema.define(:version => 20110616063401) do
     t.integer  "region_id"
     t.string   "friendly_identifier"
     t.integer  "image_id"
+    t.string   "producer_quote"
   end
 
   create_table "producers_products", :force => true do |t|
@@ -467,6 +469,7 @@ ActiveRecord::Schema.define(:version => 20110616063401) do
     t.datetime "updated_at"
     t.string   "friendly_identifier"
     t.integer  "image_id"
+    t.string   "region_quote"
   end
 
   create_table "reservations", :force => true do |t|
@@ -653,6 +656,7 @@ ActiveRecord::Schema.define(:version => 20110616063401) do
   create_table "testimonials", :force => true do |t|
     t.string   "title"
     t.string   "description"
+    t.string   "page_to_display"
     t.integer  "sequence"
     t.datetime "created_at"
     t.datetime "updated_at"

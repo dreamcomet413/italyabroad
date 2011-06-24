@@ -71,23 +71,23 @@
         </ul>
       </td>
       <td valign="top" style="width:33%;">
-        <h4 style="margin:0;padding:0;">M-R</h4>
+        <h4 style="margin:0;padding:0;">M-Z</h4>
         <br />
         <ul class="clean" style="list-style:none;">
           <%- for region in @regions_all -%>
-          <li><%= link_to truncate(region.name,50), region_path(region) if region.name.upcase =~ /^[M-R]/ %></li>
+          <li><%= link_to truncate(region.name,50), region_path(region) if region.name.upcase =~ /^[M-Z]/ %></li>
           <%- end -%>
         </ul>
       </td>
-      <td valign="top" style="width:33%;">
+     <!-- <td valign="top" style="width:33%;">
         <h4 style="margin:0;padding:0;">S-Z</h4>
         <br />
         <ul class="clean" style="list-style:none;">
-          <%- for region in @regions_all -%>
-          <li><%= link_to truncate(region.name,50), region_path(region) if region.name.upcase =~ /^[S-Z]/ %></li>
-          <%- end -%>
+          <%#- for region in @regions_all -%>
+          <li><%#= link_to truncate(region.name,50), region_path(region) if region.name.upcase =~ /^[S-Z]/ %></li>
+          <%#- end -%>
         </ul>
-      </td>
+      </td>-->
     </tr>
   </table>
 

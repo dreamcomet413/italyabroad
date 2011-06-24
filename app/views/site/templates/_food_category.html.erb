@@ -23,21 +23,19 @@
         <%= link_to show_image_tag(product.layout_image, product.image_1, :jpg), nested_products_uri(product) %>
       </td>
       <td valign="top" style="padding:0;width:630px;">
-        <table>
-          <tr>
-            <td><%= link_to product.name, nested_products_uri(product), :style => "font-size:15px;" %>
-            <br /><%= show_review_ratings(product) %>
-            </td>
-            <td><%#= show_ratings(product) %><%#= show_review_ratings(product) %></td>
-          </tr>
-        </table>
-        <br />
-        <br />
-        <%= product.description %>
+
+            <%= link_to product.name, nested_products_uri(product), :style => "font-size:15px;" %><br />
+            <%= product.description %>
+            <%= show_review_ratings(product) %>
+            <!--<td><%#= show_ratings(product) %><%#= show_review_ratings(product) %></td> -->
+
+        <!--<br />
+        <br /> -->
+        <%#= product.description %>
       </td>
-      <td valign="top" style="padding:10px 0;width:100px;">
-        <div style="font-size:18px;color:#9b0707;text-align:right;">
-          <div style="margin-bottom:15px;"><%= number_to_currency product.price, :unit => "&pound;" %></div>
+      <td style="padding:10px 0;width:100px;">
+        <div style="font-size:18px;color:#9b0707;text-align:right;margin-top:40px;">
+          <div ><%= number_to_currency product.price, :unit => "&pound;" %></div>
             <%- if product.out_of_stock? -%>
             <%= image_tag('out_of_stock.png') %>
           <%- else -%>
@@ -45,7 +43,7 @@
           <%= link_to_remote image_tag("buttons/add_to_cart_button.png"), :url => product_cart_index_path(product), :html => {:method => 'post'} %>
           <% end %>
         </div>
-      </td>
+     </td>
     </tr>
   </table>
 </div>
