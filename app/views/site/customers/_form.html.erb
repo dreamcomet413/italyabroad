@@ -39,7 +39,9 @@
     </tr>
 		<tr>
 		  <td>Password:</td>
-		  <td><%= password_field :user, :password %></td>
+		  <td><%= password_field :user, :password %><br />
+		  <small style="color:red;font-size:10px;">Password should be at least "6 character long"</small>
+		  </td>
     </tr>
 		<tr>
 		  <td>Password Confirm:</td>
