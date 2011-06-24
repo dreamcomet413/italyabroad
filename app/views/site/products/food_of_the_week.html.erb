@@ -4,8 +4,8 @@
 @breadcrumbs += " &raquo; #{@product.name[0..25]+ '...'}"
 %>
 <%#= params[:category] %>
-<div id="header">Food of the Week<%#= @product.name %> <%#= "(" + @product.size + ")" unless @product.size.blank? %></div><br />
-<div style="margin-left:20px;"><%= Setting.find(:first).desc_food_of_the_week %></div>
+<div id="header">Food of the Week: <%= @product.name %> <%= "(" + @product.size + ")" unless @product.size.blank? %></div><br />
+<div style="margin:20px;text-align:justify;"><%= Setting.find(:first).desc_food_of_the_week %></div><br /><br /><br /><br /><br />
 <table class="product_info">
   <tr>
     <td class="image" style ="padding:0 10px 0 0">
@@ -26,12 +26,7 @@
     <td class="properties" valign="top">
       <% if @product.categories.root.name.downcase == "food" || @product.categories.root.name.downcase == "hampers" || @product.categories.root.name.downcase == "wine" %>
         <table>
-        <tr>
-            <td>Product:</td>
-            <td class="data">
-              <%= @product.name %> <%= "(" + @product.size + ")" unless @product.size.blank? %>
-            </td>
-          </tr>
+
           <tr>
             <td>Avg.Rating:</td>
             <td class="data">
@@ -144,16 +139,6 @@
   <h3>Producer</h3>
   <%= @product.producer.description.gsub("\n","<br />") rescue "Product has no producer description" %>
 </div>
-<div id="wineReview">
-  <br />
-  <h3>Reviews <%= link_to("(Add Review)", login_path, :style => "font-size:12px;") unless logged_in?  %></h3>
-  <%= render :partial => 'site/shared/review_view_short', :locals => {:reviewer => @product} %>
-  <div style="clear:both;"></div>
-  <%- if logged_in? -%><%= link_to 'Add Review',"#",:onclick=>"document.getElementById('add_review').style.display='block';return false;" %>
-    <div id="add_review" style="display:none;"><h3><%=  'Leave your review' %></h3>
-    <%= render(:partial => 'site/reviews/new', :locals => {:create_url => product_reviews_path(@product, :return_to => nested_products_uri(@product))}) %>
-  </div><%- end -%>
-<br /></div>
 <% if @product.categories.root.name.downcase == "wine"  %>
 <% @includes = @product.product_includeds.all(:limit => 3) %>
     <% if !@includes.blank? %>
@@ -187,34 +172,6 @@
   <% end %>
 <% end %>
 
-<%- related_products = @product.correlations.all(:limit => 3) -%>
-<%- column_width = related_products.size -%>
-<% unless related_products.blank? %>
-  <div id="wineRelated">
-  <br /><br /><br /><br />
-    <h3>People who bought this also bought..</h3>
-    <ul>
-      <% for related_product in related_products %>
-        <li style="width:<%= 100/column_width %>%;text-align:center">
-            <table>
-            <tr>
-            <td style="height:150px;vertical-align:bottom"><%= link_to show_image_tag(related_product.layout_image, related_product.image_1, :jpg), nested_products_uri(related_product) %></td>
-            </tr>
-            <tr>
-            <td><%= link_to related_product.name, nested_products_uri(related_product) %></td>
-            </tr>
-            <tr>
-            <td><%= number_to_currency related_product.price, :unit => "&pound;" %></td>
-            </tr>
-            <tr>
-            <td><%= link_to_remote image_tag("buttons/add_to_cart_button.png"), :url => product_cart_index_path(related_product), :html => {:method => 'post'} %></td>
-            </tr>
-            </table>
-            </li>
-          <% end %>
-          </ul>
-          </div>
-        <% end %>
 <% content_for :right do %>
 	<%= render :partial => '/site/shared/box_food_search' %>
 	<br />
