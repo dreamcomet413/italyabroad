@@ -48,9 +48,10 @@ class Site::ImagesController < ApplicationController
             image.resize '100x75' if image_type == :review_thumb
 
             image.resize '287x200' if image_type == :blog_view
-            image.resize '300' if image_type == :producer_thumb
-            image.resize '300' if image_type == :region_thumb
-            image.resize '100' if image_type == :region_thumb_small
+            image.resize '300x300',:crop=>true if image_type == :producer_thumb
+            image.resize '300x300',:crop=>true if image_type == :region_thumb
+            image.resize '100x100',:crop=>true if image_type == :region_thumb_small
+            image.resize '300x300',:crop=>true if image_type == :about_thumb
           end
         end unless @image.blank?
       else
@@ -69,7 +70,7 @@ class Site::ImagesController < ApplicationController
     %w(category category_thumb home_image home_image_thumb product product_display product_wine product_food avatar_thumb avatar_thumb_small producer_thumb
        product_hamper product_event product_thumb product_rec restaurant restaurant_thumb restaurant_thumb_site product_show
        recipe recipe_thumb post post_thumb review review_thumb news_letters_header news_letters_thumb news_letters_week
-       news_letters_product news_letters_banner news_letters_other product_wine_tour blog_view product_thumb_cart grape_thumb region_thumb_small region_thumb)
+       news_letters_product news_letters_banner news_letters_other product_wine_tour blog_view product_thumb_cart grape_thumb region_thumb_small region_thumb about_thumb)
   end
 end
 

@@ -11,7 +11,11 @@
     discovery journey, <strong style="font-size:30px;">read news</strong><br />
     and our <strong style="font-size:30px;">views</strong> on Italian wine-->
   </span>
+  <% if  @about and !@about.image_id.nil? %>
+  <%= link_to image_tag(image_url('about_thumb', @about.image, :jpg)), search_index_path(:id => "producers") unless @about.blank? %>
+  <% else %>
  <%= image_tag("blog_home.jpg") %>
+ <% end %>
 </div>
 <div id="blog_container">
   <div id="blog_introduction">

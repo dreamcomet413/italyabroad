@@ -6,19 +6,28 @@
 
 <%- @class = "events" -%>
 <div style="text-align:center;margin-top:5px;">
-  <%= image_tag image_url('original', @product.image_1, :jpg) if @product && @product.image_1 %>
+  <%#= image_tag image_url('original', @product.image_1, :jpg) if @product && @product.image_1 %>
+  <%= image_tag image_url('about_thumb', @product.image_1, :jpg) if @product && @product.image_1 %>
 </div>
 
 <div style="padding:0 10px;">
   <br /><br />
   <!-- h1 style="padding-left:255px;"><%= @product.name %></h1 -->
   <br /><br /><br />
-  <div id="box_wines_of_the_night" class="block">
+ <!-- <div id="box_wines_of_the_night" class="block">
     <h1>Wines of the night</h1>
     <ul>
-      <%- category = Category.find('events') -%>
-      <%- category.products.at_the_night.each do |product| -%>
-      <li><%= link_to product.name, "/wine-events/#{product.friendly_identifier}", :style => "color:#9b0707;" %></li>
+      <%#- category = Category.find('events') -%>
+      <%#- category.products.at_the_night.each do |product| -%>
+      <li><%#= link_to product.name, "/wine-events/#{product.friendly_identifier}", :style => "color:#9b0707;" %></li>
+      <%#- end -%>
+    </ul>
+  </div> -->
+  <div id="box_wines_of_the_night" class="block">
+    <h1>Wine List</h1>
+    <ul>
+      <% for included_product in @product.included_products.find(:all,:order=>'name asc') %>
+       <li><%= link_to included_product.name, "/wine-events/#{included_product.friendly_identifier}", :style => "color:#9b0707;" %></li>
       <%- end -%>
     </ul>
   </div>
@@ -27,13 +36,13 @@
     <%= @product.description.gsub("\n","<br />") rescue "No description" %>
     <br /><br />
     <div style="clear:both;"></div>
-    <div align="center"><h4><%= @product.included_products.count > 0 ? "Wine List" : "" %></h4>
-    <% for included_product in @product.included_products %>
+    <!--<div align="center"><h4><%#= @product.included_products.count > 0 ? "Wine List" : "" %></h4>
+    <%# for included_product in @product.included_products %>
 
-      <%= link_to included_product.name, "/wine-events/#{included_product.friendly_identifier}", :style => "color:#9b0707;" %> <br />
-    <% end %>
+      <%#= link_to included_product.name, "/wine-events/#{included_product.friendly_identifier}", :style => "color:#9b0707;" %> <br />
+    <%#end %>
     <br />
-    </div>
+    </div> -->
     <ul style="list-style:none;margin:0;padding:0;float:right;font-size:14px;">
       <li style="margin-bottom:10px;text-align:right;">
       	<% if @product.discount > 0 %>

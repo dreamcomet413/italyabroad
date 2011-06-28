@@ -1,19 +1,25 @@
 <%- @class = "wine_tours"; @breadcrumbs = "#{link_to("Home", root_url)} &raquo; #{link_to("Wine Tours", "/wine-tours")} &raquo; #{@product.name+ '...'}" -%>
 
-<div id="wineBanner" style="padding-top:5px;"><%= image_tag("wine_tours_card_home.jpg") %></div>
+<div id="wineBanner" style="padding-top:5px;"><%#= image_tag("wine_tours_card_home.jpg") %>
+ <%- if @product.image_1 or @product.image_2 or @product.image_3 -%>
+    <%= image_tag(image_url("region_thumb", @product.image_1, :jpg)) if @product.image_1 %>
+          <%= image_tag(image_url("region_thumb", @product.image_2, :jpg)) if @product.image_2 %>
+          <%=  image_tag(image_url("region_thumb", @product.image_3, :jpg)) if @product.image_3 %>
+      <%- end -%>
+</div>
 <div id="wine_tours_content">
   <h2 style="font-size:18px;color:#666666;"><%= @product.name.upcase %></h2>
   <table width="100%">
     <tr>
-      <%- if @product.image_1 or @product.image_2 or @product.image_3 -%>
-      <td valign="top">
+      <%#- if @product.image_1 or @product.image_2 or @product.image_3 -%>
+     <!-- <td valign="top">
         <ul class="image">
-          <%= content_tag(:li, image_tag(image_url("product_wine_tour", @product.image_1, :jpg))) if @product.image_1 %>
-          <%= content_tag(:li, image_tag(image_url("product_wine_tour", @product.image_2, :jpg))) if @product.image_2 %>
-          <%= content_tag(:li, image_tag(image_url("product_wine_tour", @product.image_3, :jpg))) if @product.image_3 %>
+          <%#= content_tag(:li, image_tag(image_url("product_wine_tour", @product.image_1, :jpg))) if @product.image_1 %>
+          <%#= content_tag(:li, image_tag(image_url("product_wine_tour", @product.image_2, :jpg))) if @product.image_2 %>
+          <%#= content_tag(:li, image_tag(image_url("product_wine_tour", @product.image_3, :jpg))) if @product.image_3 %>
         </ul>
-      </td>
-      <%- end -%>
+      </td> -->
+      <%#- end -%>
       <td valign="top">
         <div style="padding-left:10px;">
           <%= @product.description.gsub("\n","<br />") rescue "Product has no description" %>
@@ -64,12 +70,12 @@
   </div>
 
  <!--<div class="add_new_review">
-<h3>Reviews <%= link_to("(Add Review)", login_path, :style => "font-size:12px;") unless logged_in?  %></h3>
- <%= render :partial => 'site/shared/review_view_short', :locals => {:reviewer => @product} %>
- <%- if logged_in? -%><%= link_to 'Add Review',"#",:onclick=>"document.getElementById('add_review').style.display='block';return false;" %>
+<h3>Reviews <%#= link_to("(Add Review)", login_path, :style => "font-size:12px;") unless logged_in?  %></h3>
+ <%#= render :partial => 'site/shared/review_view_short', :locals => {:reviewer => @product} %>
+ <%#- if logged_in? -%><%#= link_to 'Add Review',"#",:onclick=>"document.getElementById('add_review').style.display='block';return false;" %>
     <div id="add_review" style="display:none;"><h3>Leave your review</h3>
-    <%= render(:partial => 'site/reviews/new', :locals => {:create_url => product_reviews_path(@product, :return_to => nested_products_uri(@product))}) %>
-  <%- end -%></div>-->
+    <%#= render(:partial => 'site/reviews/new', :locals => {:create_url => product_reviews_path(@product, :return_to => nested_products_uri(@product))}) %>
+  <%#- end -%></div>-->
 
  <!-- <h3>Reviews <%#= link_to("(Add Review)", login_path, :style => "font-size:12px;") unless logged_in?  %></h3>
    <%#= render :partial => 'site/shared/review_view_short', :locals => {:reviewer => @product} %>
