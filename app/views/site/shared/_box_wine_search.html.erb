@@ -1,4 +1,4 @@
-<%- if params[:category]
+<%- if !params[:category].blank?
 @category = Category.find(params[:category])
  else
 @category = Category.find(:first,:conditions=>['LOWER(name = ?)','wine'])
