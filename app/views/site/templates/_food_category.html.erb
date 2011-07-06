@@ -25,8 +25,9 @@
       <td valign="top" style="padding:0;width:630px;">
 
             <%= link_to product.name, nested_products_uri(product), :style => "font-size:15px;" %><br />
-            <%= product.description %>
             <%= show_review_ratings(product) %>
+            <%= product.description %>
+
             <!--<td><%#= show_ratings(product) %><%#= show_review_ratings(product) %></td> -->
 
         <!--<br />

@@ -179,7 +179,7 @@ module ApplicationHelper
   end
 
   def show_region_image(region)
-    return image_tag(image_url(:region_thumb, region.image, :jpg)) if region.image #,:size => "100x120"
+    return image_tag(image_url(:region_card, region.image, :jpg)) if region.image #,:size => "100x120"
     return image_tag("region-home-image.jpg",:size => "100x120")
    # return image_tag("region_default.png",:size => "100x120")
   end
