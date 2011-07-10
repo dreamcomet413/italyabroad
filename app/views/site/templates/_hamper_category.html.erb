@@ -23,13 +23,8 @@
         <%= link_to show_image_tag(product.layout_image, product.image_1, :jpg), nested_products_uri(product) %>
       </td>
       <td valign="top" style="padding:0;width:630px;">
-        <table>
-          <tr>
-            <td><%= link_to truncate(product.name, :length => 60), nested_products_uri(product) %></td>
-            <td><%#= show_ratings(product) %><%= show_review_ratings(product) %></td>
-          </tr>
-        </table>
-        <br />
+        <%= link_to truncate(product.name, :length => 60), nested_products_uri(product) %><br />
+            <%= show_review_ratings(product) %>
         <br />
         <%= product.description %>
       </td>
@@ -51,10 +46,6 @@
 
 
 <% content_for :right do %>
-  <%= render :partial => '/site/shared/box_wine_of_the_week' %>
-	<br />
-  <%= render :partial => '/site/shared/box_food_of_the_week' %>
-	<br />
 	<%= render :partial => '/site/shared/box_event' %>
 	<br />
 	<%= render :partial => '/site/shared/box_subscriptions' %>

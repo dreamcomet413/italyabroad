@@ -28,19 +28,13 @@
             <%= show_review_ratings(product) %>
             <%= product.description %>
 
-            <!--<td><%#= show_ratings(product) %><%#= show_review_ratings(product) %></td> -->
-
-        <!--<br />
-        <br /> -->
-        <%#= product.description %>
       </td>
-      <td style="padding:10px 0;width:100px;">
-        <div style="font-size:18px;color:#9b0707;text-align:right;margin-top:40px;">
-          <div ><%= number_to_currency product.price, :unit => "&pound;" %></div>
+      <td style="width:100px;vertical-align:top">
+        <div style="font-size:18px;color:#9b0707;text-align:right;vertical-align: top">
+          <div><%= number_to_currency product.price, :unit => "&pound;" %></div>
             <%- if product.out_of_stock? -%>
             <%= image_tag('out_of_stock.png') %>
           <%- else -%>
-          <%#= link_to image_tag("buttons/add_to_cart_button.png"), product_cart_index_path(product), :method => 'post' %>
           <%= link_to_remote image_tag("buttons/add_to_cart_button.png"), :url => product_cart_index_path(product), :html => {:method => 'post'} %>
           <% end %>
         </div>
