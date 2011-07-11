@@ -63,7 +63,7 @@
                 <tr>
                   <td>Search: <%= text_field_tag :text, params[:text], :style=>"width:110px" %></td>
                   <td>
-                    <%= select_tag :id, options_for_select([['Wine', 'wine'], ['Food', 'food'], ['Recipe', 'recipe'], ['People', 'people'],['Chef', 'chef'],['All Site','all']], (params[:id] || params[:category])) %>
+                    <%= select_tag :id, options_for_select([['Wine', 'wine'], ['Food', 'food'], ['Recipe', 'recipe'],['Hampers','hampers'], ['People', 'people'],['Chef', 'chef'],['All Site','all']], (params[:id] || params[:category])) %>
                   </td>
                   <td>
                     <%= image_submit_tag("searchButton.gif", :name => nil, :alt => "search") %>

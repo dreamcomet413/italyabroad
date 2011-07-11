@@ -69,7 +69,12 @@
     </tr>
 		<tr>
 		  <td style="text-align:right">Active:</td>
-		  <td><%= check_box :product, :active %>
+		  <% if @product.new_record?
+		  checked = false
+		  else
+		  checked = @product.active
+		   end %>
+		  <td><%= check_box :product, :active,:checked => checked %>
     </tr>
     <tr>
       <td style="text-align:right">Recommended:</td>

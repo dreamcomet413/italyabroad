@@ -57,9 +57,10 @@ class Site::SearchController < ApplicationController
       @products = Product.find(:all, :order => @sort_by, :include => [:categories, :grapes], :conditions => @search.conditions).paginate(:page => params[:page], :per_page => 10)
       SearchQuery.create(:query => @search.text) unless @products.blank?
 
-      respond_to do |format|
-        format.html
-      end
+     respond_to do |format|
+
+       format.html
+    end
     end
   end
   def find_users

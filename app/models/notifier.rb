@@ -204,6 +204,18 @@ class Notifier < ActionMailer::Base
     body  :message =>message,:your_name=>name,:friend_name=>friend_name
 
   end
+  def coupon_notification_for_first_review (product,user,coupon_code)
+
+    recipients "#{user.email}"
+    from AppConfig.admin_email
+    subject  "A review of " + product.name + "added"
+    body      :product  => product,
+              :user=>user,
+              :coupon_code=>coupon_code
+    content_type "text/html"
+  end
+
+
 
   protected
 

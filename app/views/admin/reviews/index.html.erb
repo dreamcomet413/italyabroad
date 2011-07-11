@@ -14,9 +14,9 @@
     <thead>
       <tr>
         <th>User</th>
+        <th>Review</th>
         <th>Product</th>
         <th>Publish</th>
-        <th></th>
       </tr>
     </thead>
     <tfoot>
@@ -32,6 +32,7 @@
             <tr>
 
               <td><%= review.user.name rescue "Anonymous" %></td>
+              <td><%= review.name %></td>
               <td><%= link_to Product.find_by_id(review.reviewer_id).name, edit_admin_review_path(review.id) %>&nbsp;[<%= review.reviewer_type %>]</td>
               <td><%= check_box_tag 'publish[]',review.id,review.publish %></td>
 
@@ -46,7 +47,8 @@
              <% unless Recipe.find_by_id(review.reviewer_id).nil? -%>
             <tr>
 
-              <td><%=review.id %><%= review.user.name rescue "Anonymous" %></td>
+              <td><%= review.user.name rescue "Anonymous" %></td>
+              <td><%= review.name %></td>
               <td><%= link_to Recipe.find_by_id(review.reviewer_id).name, edit_admin_review_path(review.id) %>&nbsp;[<%= review.reviewer_type %>]</td>
               <td><%= check_box_tag 'publish[]',review.id,review.publish %></td>
 

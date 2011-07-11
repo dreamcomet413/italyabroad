@@ -42,7 +42,7 @@
     </tr>
 		<tr>
 		  <td></td>
-		  <td style="padding:0 0 0 17px;"><%= submit_tag "search" ,:class=>"search_btn"%></td>
+		  <td style="padding:0 0 0 17px;"><%= submit_tag "search" ,:class=>"search_btn"%><%= hidden_field_tag :id,@category.name.downcase %></td>
     </tr>
 	</table>
 	<% end %>
