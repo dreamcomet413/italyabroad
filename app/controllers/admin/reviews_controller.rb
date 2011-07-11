@@ -9,13 +9,18 @@ class Admin::ReviewsController < ApplicationController
       for review in params[:publish]
         @review = Review.find(review)
         @review.update_attribute('publish',true)
-        @review = Review.find_by_reviewer_id(@review.reviewer_id,:order=>'id asc',:limit=>1)
-         coupon_code = ""
-          (8+rand(10)).times{coupon_code << (65 + rand(25)).chr}
-          coupon_code << rand(1000).to_s
-        Notifier.deliver_coupon_notification_for_first_review(Product.find(@review.reviewer_id),@review.user,coupon_code)
-        Cupon.create(:code=>coupon_code,:price=>10,:min_order=>80,:active=>1,:cupon_type=>'price')
+        @review = Review.find_by_reviewer_id_and_reviewer_type(@review.reviewer_id,'Product',:order=>'id asc',:limit=>1)
+        unless @review.blank?
+          if @review.cupon_send == false
+             coupon_code = ""
+              (8+rand(10)).times{coupon_code << (65 + rand(25)).chr}
+              coupon_code << rand(1000).to_s
+            Notifier.deliver_coupon_notification_for_first_review(Product.find(@review.reviewer_id),@review.user,coupon_code)
+             @review.update_attribute('cupon_send',true)
+            Cupon.create(:code=>coupon_code,:price=>10,:min_order=>80,:active=>1,:cupon_type=>'price')
+        end
       end
+    end
 
     end
 

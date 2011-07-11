@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110623055817) do
+ActiveRecord::Schema.define(:version => 20110711084042) do
 
   create_table "about_us", :force => true do |t|
     t.string   "title"
@@ -536,6 +536,7 @@ ActiveRecord::Schema.define(:version => 20110623055817) do
     t.datetime "updated_at"
     t.integer  "score"
     t.boolean  "publish",       :default => false
+    t.boolean  "cupon_send",    :default => false
   end
 
   create_table "schemaInfo", :id => false, :force => true do |t|
