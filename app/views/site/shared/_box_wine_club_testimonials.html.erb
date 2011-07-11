@@ -1,4 +1,4 @@
-<%- @testimonials = Testimonial.find(:all,:conditions=>['UPPER(page_to_display) = ?','WINE CLUB']) -%>
+<%- @testimonials = Testimonial.find(:all,:conditions=>['UPPER(page_to_display) = ?','WINE CLUB'],:order=>'id DESC',:limit=>2) -%>
 <%# unless @testimonials.blank? %>
 <div class="block" id="box_event_reviews">
   <h1>Wine Club Testimonials</h1>
