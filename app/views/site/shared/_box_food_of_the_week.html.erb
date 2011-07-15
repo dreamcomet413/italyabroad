@@ -4,7 +4,7 @@
  <%- week_products.each do |w_product| -%>
    <% product = Product.find(w_product.week_product_id) %>
    <% if  product.categories.root.name.downcase == 'food' %>
-    <div class="block" id="box_event">
+    <div class="block" id="food-of-the-week">
     <% displayed = true %>
       <%= link_to (image_tag "FoodOfTheWeek.png"), :controller=>'site/products',:action=>'food_of_the_week',:id=>product.id %><br />
      <% break end  end %>
@@ -21,7 +21,7 @@
   </ul> -->
 <% if displayed == true %>
 	<br />
-</div>
+</div><br />
 <% end %>
 <% end %>
 

@@ -13,7 +13,7 @@ class Site::ImagesController < ApplicationController
 
             #IMPORTANT THESE TYPES DEFINED SHOULD BE MENTIONED IN THE FUNCTION DEFINED IN THE BOTTOM ..
             #image.resize '60x128', :crop => true if image_type == :wine_category
-            image.resize '200', :crop => true if image_type == :wine_category
+            image.resize '80x150', :crop => true if image_type == :wine_category
             image.resize '65x104', :crop => true if image_type == :grape_thumb
             image.resize '50x50', :crop => true if image_type == :avatar_thumb_small
             image.resize '98x98', :crop => true if image_type == :avatar_thumb
