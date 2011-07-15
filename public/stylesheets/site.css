@@ -127,7 +127,8 @@ h6{
 }
 
 #cartLogin{
-    width:730px;
+/*    width:730px;*/
+    width:760px;
     height:75px;
     display:block;
     float:right;
