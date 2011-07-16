@@ -22,14 +22,14 @@
       <td style="padding:0;width:100px;height:100px;text-align:center;">
         <%= link_to show_image_tag(product.layout_image, product.image_1, :jpg), nested_products_uri(product) %>
       </td>
-      <td valign="top" style="padding:0;width:630px;">
+      <td valign="top" style="padding:0;width:630px;padding-top:15px;">
 
             <%= link_to product.name, nested_products_uri(product), :style => "font-size:15px;" %><br />
             <%= show_review_ratings(product) %>
             <%= product.description %>
 
       </td>
-      <td style="width:100px;vertical-align:top">
+      <td style="width:100px;vertical-align:top;padding-top:15px;">
         <div style="font-size:18px;color:#9b0707;text-align:right;vertical-align: top">
           <div><%= number_to_currency product.price, :unit => "&pound;" %></div>
             <%- if product.out_of_stock? -%>

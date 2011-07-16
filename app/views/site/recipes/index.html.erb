@@ -85,7 +85,7 @@
               <strong>Added by:</strong>
               <% if recipe.user_id == 3 %>
                 Guest
-              <%else%><%= link_to recipe.user.name,customer_path(recipe.user.id) rescue "Admin" %><% end %>
+              <%else%><%#= link_to recipe.user.name,customer_path(recipe.user.id) rescue "Admin" %><% end %>
             </td>
             <td align="right">
               <% if !recipe.image_1.blank? %>
