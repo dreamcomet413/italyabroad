@@ -11,7 +11,9 @@
         <%#= avatar_for_user(review.user, 'small') %><br />
         <%#= testimonial.title %>
       </td> -->
-      <td valign="top"><%= truncate testimonial.description, 30 %></td>
+      <td valign="top"><%#= truncate testimonial.description, 30 %>
+      <%= link_to testimonial.description,testimonial_path %><br /><br />
+      </td>
     </tr>
     <%- end -%>
   <%- else -%>
