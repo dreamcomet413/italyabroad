@@ -5,7 +5,9 @@
 <div id="blog_home">
 
   <span class="title">
+   <div style="color:white;width:350px;height:100px;background:black;opacity: 0.6;filter:alpha(opacity=40);text-align:left">
     <%= @about.title if @about %>
+    </div>
     <!--A <strong style="font-size:30px;">blog</strong> dedicated entirely to<br />
     <strong style="font-size:30px;">Italian wine,</strong> follow us in our<br />
     discovery journey, <strong style="font-size:30px;">read news</strong><br />
@@ -30,12 +32,12 @@
   </div>
 
   <div style="clear:both;"></div><br />
-  <div style="float:right;">
-  <%- form_tag regions_path, :method => :get do -%>
+ <!-- <div style="float:right;">
+  <%#- form_tag regions_path, :method => :get do -%>
     <strong>Region Search</strong><%= text_field_tag 'search_by_name',params[:search_by_name] %>
-    <%= submit_tag 'Search', :name => 'search' %>
+    <%#= submit_tag 'Search', :name => 'search' %>
   <% end %>
-  </div>
+  </div> -->
   <br />
   <br />
   <!-- Alphabetical listing of regions added by Sujith on 2011.jan.28 START -->

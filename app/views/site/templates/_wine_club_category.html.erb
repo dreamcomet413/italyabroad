@@ -3,7 +3,9 @@
 <% if @category.image && !@category.image_url.blank? %>
   <div id="wineBanner">
     <span class="title_wine_tours">
+     <div style="width:260px;height:100px;color:white;background:black;opacity: 0.6;filter:alpha(opacity=40);text-align:left">
     <%= @category.text_on_image %>
+    </div>
   </span>
 	  <%= link_to image_tag(image_url('home_image', @category.image, :jpg)), search_index_path(:id => @category.friendly_identifier) %>
 	</div>

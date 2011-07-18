@@ -42,7 +42,13 @@
                       <%= link_to producer.name, producer_path(producer) %>
                       <%= link_to "(more producers)", producers_path %><br /><br />
                       <%#= avatar_for_user(producer, "small") %>
-                      <%= show_producer_image(producer) %><br />
+                      <%#= show_producer_image(producer) %>
+                      <% if producer.image %>
+                       <%=  image_tag(image_url('community_producer_thumb', producer.image, :jpg)) %>
+                      <% else %>
+                      <%= image_tag("default.jpg",:size => "100x120") %>
+                      <% end %>
+                      <br />
                       </div>
 
                       <%- if producer.description
