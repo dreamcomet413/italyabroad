@@ -35,8 +35,8 @@
             <td width="45%" valign="top">
               <div id="box_producer">
                 <h1 style="color:#9b0707;font-size:16px;">Get to know our producers</h1>
-                <%#- producers = Producer.find(:all, :limit => 1, :order => "RAND()") %>
-                <% producers = Producer.find(:all, :limit => 1, :conditions => "id=39") %>
+                <%- producers = Producer.find(:all, :limit => 1, :order => "RAND()") %>
+                <%# producers = Producer.find(:all, :limit => 1, :conditions => "id=39") %>
                 <%- for producer in producers -%>
                       <div id="get_to_know_our_producers_avatar">
                       <%= link_to producer.name, producer_path(producer) %>
