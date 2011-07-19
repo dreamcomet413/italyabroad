@@ -23,7 +23,7 @@
           <div style="font-size:18px;"><%#= @user.name %></div>
           <%- if @my_profile -%>
            <%- form_for :user, :url => customer_path(@user), :html => {:method => :put} do -%>
-          <table cellpadding="0" cellspacing="0">
+          <table class = "chef_profile">
             <tr>
               <td><p><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> favorite Meal:&nbsp;</p></td>
               <td>
@@ -138,14 +138,14 @@
       </td>
     </tr>
   </table>
-  <p>Biography :
+  <p>Biography
 
-                    <%= @user.chef_bio ? @user.chef_bio : 'Not Added yet' %>
+                    <div class = "chef_bigraphy"><%= @user.chef_bio ? @user.chef_bio : 'Not Added yet' %></div>
   </p>
   <br />
 
 <!-- Recipes lsit -->
-  <div style="margin-left:0px;"><h1 style="margin-left:0px;"><% if !@user.recipes.blank? %>Recipes by <%= @user.name %>:</h1><% end %>
+  <div style="margin-left:0px;"><h2 style="margin-left:0px;"><% if !@user.recipes.blank? %>Recipes by <%= @user.name %>:</h1><% end %>
   <% @recipes = Recipe.find(:all,:conditions=>['user_id = ?',@user.id]).each do |recipe| %>
         <table>
           <tr>

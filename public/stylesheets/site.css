@@ -2556,3 +2556,18 @@ ul.my-account-links li a {
  color:#726969;
 }
 
+
+.profile-container table tbody tr td div table tbody tr td {
+    padding:0px;
+    border:1px solid #cccccc;
+    width:250px;
+    padding-left:10px;
+}
+.chef_bigraphy {
+    padding:0px;
+    border:1px solid #cccccc;
+    width:400px;
+    padding:10px;
+
+}
+
