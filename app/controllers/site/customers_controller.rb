@@ -13,9 +13,16 @@ class Site::CustomersController < ApplicationController
     store_location
     @user = User.find(params[:id])
     @my_profile = @user == current_user
+
     respond_to do |format|
-      format.html
+       if @user.type_id == 4
+          format.html {render :action => :chef_profile}
+
+       else
+          format.html
+      end
     end
+
   end
 
   def print_invoice
