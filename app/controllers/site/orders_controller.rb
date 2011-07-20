@@ -191,11 +191,9 @@ class Site::OrdersController < ApplicationController
   end
 
   def generate_pdf(order)
-
     Prawn::Document.new do |pdf|
 
-
-     # for order_item in order.order_items
+       # for order_item in order.order_items
       #  if (product = Product.find_by_name(order_item.name)) && product.is_wine?
           pdf.image  "#{RAILS_ROOT}/public/images/pdf_tasting_header.png",:width => 550, :height => 108
           pdf.bounding_box([0, 510], :width => 300, :height => 100) do
@@ -205,23 +203,24 @@ class Site::OrdersController < ApplicationController
               order.user.address_2 + "\n" +
               order.user.city  + "\n"
           end
-           if order.different_shipping_address
+          if order.different_shipping_address
               pdf.bounding_box([200, 510], :width => 300, :height => 100) do
-              pdf.text order.ship_name + "\n" +
-              order.ship_address  + "\n" +
-              order.ship_address_2 + "\n" +
-              order.ship_city  + "\n"+
-              order.ship_cap + "\n" +
-              order.ship_country + "\n"
+                pdf.text order.ship_name + "\n" +
+                order.ship_address  + "\n" +
+                order.ship_address_2 + "\n" +
+                order.ship_city  + "\n"+
+                order.ship_cap + "\n" +
+                order.ship_country + "\n"
+              end
           else
               pdf.bounding_box([200, 510], :width => 300, :height => 100) do
-             pdf.text order.user.name + " " + order.user.surname  + "\n" +
-              order.user.address  + "\n" +
-              order.user.address_2 + "\n" +
-              order.user.city  + "\n"
-              order.user.cap + "\n" +
-              order.user.country + "\n"
-          end
+                pdf.text order.user.name + " " + order.user.surname  + "\n" +
+                order.user.address  + "\n" +
+                order.user.address_2 + "\n" +
+                order.user.city  + "\n"
+                order.user.cap + "\n" +
+                order.user.country + "\n"
+            end
           end
         pdf.text "Order Number: #{ @order.id}"  + "\n"
 		    pdf.text "Order Date:  #{order.created_at.strftime('%d/%m/%Y')}"  + "\n"
@@ -261,7 +260,11 @@ class Site::OrdersController < ApplicationController
    pdf.text "<font size='8'>Don't forget to write your review for the produces purchased.
 			Let our users know what you think about our produces and if you are the first to write the review you will also receive £5 discount on your next purchase.</font>", :inline_format => true
 
+
     end.render
+
   end
+
+
 end
 
