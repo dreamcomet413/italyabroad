@@ -47,7 +47,7 @@
                 <%= link_to recipe.user.name.capitalize,customer_path(recipe.user.id) rescue "Admin" %>
                &nbsp;&nbsp;&nbsp;
                <% if !recipe.user.nil? %>
-               <%= link_to recipe.user.establishment_link,recipe.user.establishment_link%>
+               <%#= link_to recipe.user.establishment_link,recipe.user.establishment_link%>
                <% end %>
                 <% end %>
             </td>
