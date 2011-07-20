@@ -25,7 +25,7 @@
 <table style="padding-bottom:20px;width:100%;" cellpadding="0" border="0" cellspacing="0" class="sub-categories-list">
 
   <% @products.each do |product| %>
-  <% if product.quantity > 0 %>
+  <%# if product.quantity > 0 %><!--commented this condition to avoid error in pagination(page without a product)-->
   <tr>
     <td style="width:80px;padding:5px 10px;">
       <%#= product.image_1 %>
@@ -71,7 +71,7 @@
   <tr>
     <td colspan="3" style="border-bottom:1px solid #CCCCCC;">&nbsp;</td>
   </tr>
-  <% end %> <!-- #end of condition for eliminating out of stock items -->
+  <%# end %> <!-- #end of condition for eliminating out of stock items -->
   <% end %> <!-- #end of @products.each -->
 
 </table>
