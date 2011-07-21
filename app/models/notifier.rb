@@ -215,6 +215,12 @@ class Notifier < ActionMailer::Base
     content_type "text/html"
   end
 
+  def new_message_received(message,user,sender)
+    recipients "#{user.email}"
+    from "info@italyabroad.com"
+    subject  "Message from  " + "#{sender.name}"
+    body  :message =>message,:user=>user,:sender=>sender
+  end
 
 
   protected

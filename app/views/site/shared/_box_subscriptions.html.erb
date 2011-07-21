@@ -3,7 +3,7 @@
   <div style="float:right;margin-top:28px;margin-right:10px;">
     <%= f.text_field :email, :value => "Enter your e-mail", :size => 15, :onblur => "if(this.value=='')this.value=this.defaultValue;", :onfocus => "if(this.value==this.defaultValue)this.value='';" %><br />
     <br />
-    <%= image_submit_tag "subscribe_button.png", :style=>"border:none" %>
+    <%= image_submit_tag "subscribe_button.png", :style=>"border:none" ,:alt=>'Subscribe',:title=>'Subscribe for NewsLetter'%>
   </div>
   <% end %>
 </div>

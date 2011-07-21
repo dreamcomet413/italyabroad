@@ -124,13 +124,15 @@
         <td colspan="6">&nbsp;</td>
       </tr>
       <tr>
-        <td colspan="3"></td>
+        <td colspan="4"></td>
         <td align="right">
           <%= link_to image_tag("buttons/continue_shopping_button.png"), continue_shopping_cart_path %>
+          &nbsp;<%#= link_to image_tag("buttons/continue_button.png"), checkouts_url %>
+                <%= link_to image_tag("buttons/pay_now_btn.png"), checkouts_url %>
         </td>
-        <td align="right">
-          <%= link_to image_tag("buttons/continue_button.png"), checkouts_url %>
-        </td>
+       <!-- <td align="right">
+          <%#= link_to image_tag("buttons/continue_button.png"), checkouts_url %>
+        </td>-->
         <td align="right">
              or <%= link_to "Empty", empty_cart_path, :confirm => "Are you sure want to empty this cart?" %>
         </td>
@@ -158,14 +160,24 @@
   <div style="font-size:14px;font-weight:bold;color:#003400;text-align:left;">Other products you may be interested in</div><br /><br />
 <%#- products = Product.find(:all, :include => :categories, :conditions => ["categories.friendly_identifier = ? or categories.friendly_identifier = ? or categories.friendly_identifier = ?", "wine", "food", "hampers"], :limit => 5) -%>
   <%- products = Product.find(:all, :limit => 5, :order => "RAND()") -%>
-  <ul style="list-style:none;margin:0;padding:0;float:left:margin-left:10px;">
-    <%- for product in products -%>
-      <li style="float:left;v-align:center;">
-        <%= link_to show_image_tag_in_cart(:product_thumb, product.image_1, :jpg), nested_products_uri(product) %><br />
-        <%= link_to product.name, nested_products_uri(product), :style => "width:130px;display:block;text-align:center;" %>
-      </li>
-    <%- end -%>
-  </ul>
+ <!-- <ul style="list-style:none;margin:0;padding:0;float:left:margin-left:10px;">-->
+    <%#- for product in products -%>
+    <!--  <li style="float:left;v-align:center;">-->
+        <%#= link_to show_image_tag_in_cart(:product_thumb, product.image_1, :jpg), nested_products_uri(product) %><br />
+        <%#= link_to product.name, nested_products_uri(product), :style => "width:130px;display:block;text-align:center;" %>
+     <!-- </li>-->
+    <%#- end -%>
+  <!--</ul>-->
+  <table align="center">
+  <tr>
+   <%- for product in products -%>
+
+      <td valign="top"><%= link_to show_image_tag_in_cart(:product_thumb, product.image_1, :jpg), nested_products_uri(product) %><br />
+     <%= link_to product.name, nested_products_uri(product) %>
+     </td>
+   <% end %>
+   </tr>
+  </table>
 </div>
 
 <% content_for :right do %>

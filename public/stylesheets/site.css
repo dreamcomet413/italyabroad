@@ -2571,3 +2571,10 @@ ul.my-account-links li a {
 
 }
 
+.request_password_msg {
+   /* font-style:italic;*/
+    color:blue;
+    text-align: center;
+    font-size: 14px;
+}
+

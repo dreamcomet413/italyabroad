@@ -5,7 +5,10 @@
 <% @class = "no-padding" %>
 
 <!-- div id="header"><%= @title %></div -->
-<h4 class="account-title"><%= @title %></h4>
+<h4 class="account-title"><%= @title %>
+&nbsp;&nbsp;<%= link_to 'You have new message',:controller=>'site/messages',:action=>'index',:id=>current_user.id if @unread_msg %>
+
+</h4>
 <div class="profile-container">
   <table width="100%" cellpadding="0" cellspacing="0">
     <tr>

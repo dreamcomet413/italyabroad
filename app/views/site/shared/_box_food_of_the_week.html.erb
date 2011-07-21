@@ -6,7 +6,7 @@
    <% if  product.categories.root.name.downcase == 'food' %>
     <div class="block" id="food-of-the-week">
     <% displayed = true %>
-      <%= link_to (image_tag "FoodOfTheWeek.png"), :controller=>'site/products',:action=>'food_of_the_week',:id=>product.id %><br />
+      <%= link_to (image_tag "FoodOfTheWeek.png",:alt=>'Food of the Week',:title=>'Food of the Week'), :controller=>'site/products',:action=>'food_of_the_week',:id=>product.id %><br />
      <% break end  end %>
  <!-- <ul>
   <%#- week_products.each do |w_product| -%>

@@ -13,7 +13,12 @@ class Site::CustomersController < ApplicationController
     store_location
     @user = User.find(params[:id])
     @my_profile = @user == current_user
-
+    #to show link You have new message in my profile page if there is unread msg
+    @unread_msg = false
+    if @my_profile and Message.find(:all,:conditions=>['user_id =? and read_or_not = ?',@user.id,false]).size > 0
+      @unread_msg = true
+    end
+    # end to show link You have new message
     respond_to do |format|
        if @user.type_id == 4
           format.html {render :action => :chef_profile}
@@ -175,7 +180,7 @@ class Site::CustomersController < ApplicationController
     if @user
       Notifier.deliver_account_data(@user)
       flash[:title] = "Mail Sent"
-      flash[:notice] = "An email with the password has been sent to the registered address"
+      flash[:msg] = "An email with the password has been sent to the registered address"
     else
       flash[:title] = "Sorry"
       flash[:notice] = "Sorry We couldn't find your account, please contact us or create a new account"
@@ -197,8 +202,9 @@ class Site::CustomersController < ApplicationController
   end
 
   def send_message
-    @message = Message.new(:name=>params[:name],:user_id=>params[:user_id],:send_by_id=>params[:send_by_id])
+     @message = Message.new(:name=>params[:name],:user_id=>params[:user_id],:send_by_id=>params[:send_by_id])
     if @message.save
+      Notifier.deliver_new_message_received(params[:name],User.find(params[:user_id]),User.find(params[:send_by_id]))
       redirect_to customer_path(params[:user_id])
     else
       flash[:notice] = @message.show_errors

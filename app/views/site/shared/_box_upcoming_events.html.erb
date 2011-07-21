@@ -1,7 +1,7 @@
 <% products = Product.find(:all, :limit => 2, :include => {:categorizations => :category}, :conditions => ["categories.name LIKE ? AND DATE(date) > ?" ,'Events',Date.today],:order =>'date') %>
 <% unless products.blank? -%>
 <div class="block" id="box_upcoming_wine_tours">
-  <h1><%= link_to"Upcoming Events","/wine-events" %></h1>
+  <h1><%= link_to"Upcoming Events","/wine-events",:alt=>'Upcoming Events',:title=>'Upcoming Events' %></h1>
   <ul>
     <%- products.each do |product| -%>
     <li style="margin-bottom:10px;">
