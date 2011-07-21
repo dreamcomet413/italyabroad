@@ -138,7 +138,7 @@
       </td>
     </tr>
   </table>
-  <p>Biography
+  <p>&nbsp;&nbsp;&nbsp;Biography
 
                     <div class = "chef_bigraphy"><%= @user.chef_bio ? @user.chef_bio : 'Not Added yet' %></div>
   </p>
@@ -165,7 +165,7 @@
   unless @messages.blank?%>
 
    <div style="margin-left:0px;">
-      <h1><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> Messages</h1>
+      <h1>&nbsp;<%= "#{@my_profile ? "My" : @user.name+"'s"}" %> Messages</h1>
       <ul>
         <%- @messages.each do |msg| -%>
         <li><%= msg.name unless msg.name.blank? %>
@@ -212,7 +212,7 @@
 <!-- end of message !-->
 
 <!-- comments and reviews -->
- <ul class="profile-list-info">
+ <ul class="profile-list-info" style="margin-left:20px;">
     <li>
       <h1><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> Comments</h1>
       <ul>

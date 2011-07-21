@@ -5,7 +5,7 @@
    <% if  product.categories.root.name.downcase == 'wine' %>
     <div class="block" id="wine-of-the-week">
     <% displayed = true %>
-      <%= link_to((image_tag "WinesOfTheWeek.png",:alt=>'Wine of the Week',:title=>'Wine of the Week'), :controller=>'site/products',:action=>'wine_of_the_week',:id=>product.id)%><br />
+      <%= link_to((image_tag "wineoftheweek.jpg",:alt=>'Wine of the Week',:title=>'Wine of the Week'), :controller=>'site/products',:action=>'wine_of_the_week',:id=>product.id)%><br />
      <!-- ul--> <% break end %>   <%end %>
 <!--  <%#- week_products.each do |w_product| -%>
    <%# product = Product.find(w_product.week_product_id) %>
