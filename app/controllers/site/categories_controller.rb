@@ -28,9 +28,9 @@ class Site::CategoriesController < ApplicationController
        if @sort_by.to_s.upcase == 'NAME'
         @sort_by = 'products.name'
        end
+      @category = Category.find(params[:category])
       unless @category.blank?
-        @category = Category.find(params[:category])
-        @search = Search.new(params || Hash.new)
+       @search = Search.new(params || Hash.new)
         @products = @category.blank? ? [] : @category.products.find(:all, :order => @sort_by, :include => [:categories, :grapes], :conditions => @search.conditions).paginate(:page => (params[:page] ||=1), :per_page => 10)
         SearchQuery.create(:query => @search.text) unless @search.text.blank?
       else
