@@ -172,7 +172,7 @@
   <tr>
    <%- for product in products -%>
 
-      <td valign="top"><%= link_to show_image_tag_in_cart(:product_thumb, product.image_1, :jpg), nested_products_uri(product) %><br />
+      <td valign="top"><%= link_to show_image_tag(:product_thumb_carta, product.image_1, :jpg), nested_products_uri(product) %><br />
      <%= link_to product.name, nested_products_uri(product) %>
      </td>
    <% end %>
