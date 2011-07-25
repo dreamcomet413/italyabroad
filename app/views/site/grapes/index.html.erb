@@ -5,9 +5,11 @@
 <div id="blog_home">
 
   <span class="title">
+  <% unless @about.title.blank? %>
   <div style="color:white;width:350px;height:100px;background:black;opacity: 0.6;filter:alpha(opacity=40);text-align:left">
     <%= @about.title if @about %>
   </div>
+  <% end %>
   </span>
   <% if  @about and !@about.image_id.nil? %>
   <%= link_to image_tag(image_url(:about_thumb, @about.image, :jpg)) , search_index_path(:id => "grapes") unless @about.blank? %>

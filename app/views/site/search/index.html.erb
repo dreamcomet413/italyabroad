@@ -77,13 +77,15 @@
   <% if !params[:id].blank?
     if params[:id].upcase == 'HAMPERS' %>
       <%= render :partial => 'site/shared/box_hamper_search' %>
+      <br />
     <% elsif params[:id].upcase == 'FOOD' %>
       <%= render :partial => 'site/shared/box_food_search' %>
+      <br />
    <%end else %>
     <%= render :partial => 'site/shared/box_wine_search', :locals => {:search_url => search_index_path} %>
+    <br />
   <% end %>
 
-	<br />
 	<%= render :partial => 'site/shared/box_products_on_offer' %>
 	<br />
 	<%= render :partial => '/site/shared/box_event' %>
