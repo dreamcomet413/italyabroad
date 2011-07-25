@@ -145,12 +145,12 @@
   <br />
 
 <!-- Recipes lsit -->
-  <div style="margin-left:0px;"><h2 style="margin-left:0px;"><% if !@user.recipes.blank? %>Recipes by <%= @user.name %>:</h1><% end %>
+  <div style="margin-left:0px;"><h2 style="margin-left:0px;"><% if !@user.recipes.blank? %>&nbsp;&nbsp;Recipes by <%= @user.name %>:</h1><% end %>
   <% @recipes = Recipe.find(:all,:conditions=>['user_id = ?',@user.id]).each do |recipe| %>
         <table>
           <tr>
             <td width="60%" valign="top">
-              <strong><%= link_to recipe.name, recipe_path(recipe) %></strong>
+              &nbsp;&nbsp;<strong><%= link_to recipe.name, recipe_path(recipe) %></strong>
 
             </td>
           </tr>
