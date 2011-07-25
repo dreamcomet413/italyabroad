@@ -1,6 +1,6 @@
 <% @title = "Terms and Condition"; @class = "help no-padding"; @breadcrumbs = "#{link_to("Home", root_url)} &raquo; Help &raquo; Terms and Condition" %>
 
-<div id="header"><strong>italyabroad.com</strong> Help</div>
+<div id="header"><strong>Italyabroad.com</strong>-Help</div>
 <% @about = AboutU.find(:first, :conditions => {:link_type => "terms_conditions"} ) %>
 <div class="help-container">
   <% if @about %>
@@ -61,7 +61,7 @@
 	</p>-->
 
 
-  
+
   <%= @about.description %>
   <% end %>
 </div>
@@ -69,3 +69,4 @@
 <% content_for :right do %>
   <%= render :partial => '/site/shared/box_help' %>
 <% end %>
+
