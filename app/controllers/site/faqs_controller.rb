@@ -19,8 +19,9 @@ class Site::FaqsController < ApplicationController
     @faq = Faq.new(params[:faq])
 
     if @faq.save
-      flash[:notice] = 'Thank you for your interest in Italyabroad.com. <br/>'
-      flash[:notice] += 'Expect the answer soon.'
+      #flash[:notice] = 'Thank you for your interest in Italyabroad.com. <br/>'
+      #flash[:notice] += 'Expect the answer soon.'
+      flash[:notice] = 'Thank you for question, we will answer you as soon as possible'
       Notifier.deliver_faq_notification(@faq,current_user)
       redirect_to faqs_path
     else

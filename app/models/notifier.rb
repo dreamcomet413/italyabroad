@@ -222,6 +222,13 @@ class Notifier < ActionMailer::Base
     body  :message =>message,:user=>user,:sender=>sender
   end
 
+  def faq_answered_notification(faq)
+    recipients "#{faq.user.email}"
+    from "info@italyabroad.com"
+    subject  "Your Question is answered by Italyabroad Team"
+    body  :faq =>faq
+  end
+
 
   protected
 

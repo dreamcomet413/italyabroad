@@ -2,8 +2,9 @@ class Site::ReviewsController < ApplicationController
   before_filter :site_login_required,:except=>[:show]
 
   def index
-    @reviews = current_user.reviews.all(:conditions=>['publish =?',true],:order => "created_at DESC").paginate(:page => params[:page], :per_page => 10)
-
+    @reviews = current_user.reviews.all(:conditions=>['publish =?',true],:limit=>10,:order => "created_at DESC")
+    @followers = Follower.find(:all,:conditions=>['follower_id = ?',current_user.id])
+   # .paginate(:page => params[:page], :per_page => 10)
     respond_to do |format|
       format.html { render :layout => 'site' }
     end

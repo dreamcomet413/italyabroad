@@ -38,6 +38,9 @@ class Admin::FaqsController < ApplicationController
     @faq = Faq.find(params[:id])
       if @faq.update_attributes(params[:faq])
         flash[:notice] = "Faq updated successfully"
+        unless params[:faq][:answer].blank?
+          Notifier.deliver_faq_answered_notification(@faq)
+        end
         redirect_to admin_faqs_path
       else
          render :action => "edit"

@@ -42,6 +42,7 @@ class User < ActiveRecord::Base
   has_many :wine_lists
   has_many :messages
   has_many :faqs
+  has_many :testimonials
 
   before_save :encrypt_password
 

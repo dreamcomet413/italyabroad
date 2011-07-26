@@ -2,10 +2,12 @@
   <div id="reviews">
     <h3>Our customers say</h3>
    <table>
-    <% Testimonial.find(:all,:conditions=>['UPPER(page_to_display)=?','HOME']).each do |testimonial| %>
+    <% Testimonial.find(:all,:limit=>4,:order=>'created_at DESC',:conditions=>['UPPER(page_to_display)=?','HOME']).each do |testimonial| %>
       <tr>
         <td>
-          <%= image_tag "default.jpg" %>
+          <%#= image_tag "default.jpg" %>
+          <%# user = User.find_by_id(testimonial.user_id) %>
+          <%= link_to avatar_for_user(testimonial.user, 'small'), customer_path(testimonial.user_id), :title => testimonial.user.name  %>
           "<%= testimonial.description %>"
         </td>
       </tr>

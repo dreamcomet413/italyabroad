@@ -16,7 +16,8 @@
         <%- else -%>
         <%= link_to image_tag("buttons/follow.png"), follow_path(@user) %>
         <%- end -%>
-        <% end %>
+        <% end %><br />
+        <%= link_to 'My restaurant' unless @user.establishment_link.blank? %>
       </td>
       <td valign="top">
         <div style="margin-left:20px;">

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110721052935) do
+ActiveRecord::Schema.define(:version => 20110726091852) do
 
   create_table "about_us", :force => true do |t|
     t.string   "title"
@@ -189,7 +189,7 @@ ActiveRecord::Schema.define(:version => 20110721052935) do
     t.integer  "send_by_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "read",       :default => false
+    t.boolean  "read_or_not", :default => false
   end
 
   create_table "moderatorships", :force => true do |t|
@@ -662,6 +662,7 @@ ActiveRecord::Schema.define(:version => 20110721052935) do
     t.integer  "sequence"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   create_table "topics", :force => true do |t|

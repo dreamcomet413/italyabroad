@@ -3,7 +3,11 @@
     <tr>
       <td style="width:70px;"><%= show_image_tag :product_thumb, review.reviewer.image_1 unless review.reviewer.nil? %></td>
       <td>
-        <strong>You Wrote:</strong><br /><br />
+        <strong><% if current_user.id.to_i == review.user_id.to_i %>You Wrote:
+        <% else %>
+        <%= User.find_by_id(review.user_id).name %> Wrote:
+        <% end %>
+        </strong><br /><br />
         <%= review.description %><br /><br />
         <table width="100%">
           <tr>

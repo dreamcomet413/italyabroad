@@ -7,9 +7,12 @@
     <td valign="top">Description</td>
     <td><%= text_area :testimonial, :description,:size=>'35x10' %></td>
   </tr>
+  <tr>
+    <td valign="top">User</td>
+    <td><%= select :testimonial, :user_id, User.all.collect {|p| [p.name, p.id]}, {} %></td>
+  </tr>
     <tr>
     <td>Page</td>
-
     <td><%= select :testimonial, :page_to_display,options_for_select([ "Home", "Wine Club", "Wine Tour","Wine Events"],@testimonial.page_to_display) %></td>
 
   </tr>
