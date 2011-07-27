@@ -9,7 +9,7 @@
 
   <div style="border-top:1px solid #cccccc;">
     <h3>Useful pages and information</h3>
-    <div class="section" style="margin-left:20px;">
+    <div class="section">
       <h6>About Us</h6>
       <ul>
         <li><%= link_to "Who we are", about_us_path %></li>
@@ -66,14 +66,14 @@
 
      </div>
      <% end %>
-
+<h6><%= link_to "Recipes", recipes_path %></h6>
   </div>
  <div style="clear:both;"></div>
- <div style="border-top:1px solid #cccccc;">
+<!-- <div style="border-top:1px solid #cccccc;">
    <div class="section">
-        <h6><%= link_to "Recipes", recipes_path %></h6>
+        <h6><%#= link_to "Recipes", recipes_path %></h6>
       </div>
-   </div>
+   </div>-->
 </div>
 
 <% content_for :right do %>

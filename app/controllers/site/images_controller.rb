@@ -27,7 +27,9 @@ class Site::ImagesController < ApplicationController
             image.resize '800x600' if image_type == :product_display
             image.resize '60x128' if image_type == :product_wine
             image.resize '60x128' if image_type == :product_food
-            image.resize '70x90', :crop => true if image_type == :product_hamper
+            #commented by indu to change the hamper image size as his request on July 26, 2011 by mail subject-sitemap
+           # image.resize '70x90', :crop => true if image_type == :product_hamper
+            image.resize '120x120', :crop => true if image_type == :product_hamper_big
             image.resize '70x90', :crop => true if image_type == :product_event
             image.resize '65x190' if image_type == :product_thumb
             image.resize '30x30' if image_type == :product_thumb_cart
@@ -82,7 +84,7 @@ class Site::ImagesController < ApplicationController
     %w(category category_thumb home_image home_image_thumb product product_display product_wine product_food avatar_thumb avatar_thumb_small producer_thumb
        product_hamper product_event product_thumb product_rec restaurant restaurant_thumb restaurant_thumb_site product_show
        recipe recipe_thumb post post_thumb review review_thumb news_letters_header news_letters_thumb news_letters_week
-       news_letters_product news_letters_banner news_letters_other product_wine_tour blog_view product_thumb_cart product_thumb_carta grape_thumb region_thumb_small region_thumb about_thumb region_card wine_category community_producer_thumb wine_tour_category)
+       news_letters_product news_letters_banner news_letters_other product_wine_tour blog_view product_thumb_cart product_thumb_carta grape_thumb region_thumb_small region_thumb about_thumb region_card wine_category community_producer_thumb wine_tour_category product_hamper_big)
   end
 end
 
