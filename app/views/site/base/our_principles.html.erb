@@ -2,7 +2,7 @@
 <% @class = "about-us no-padding" %>
 <% @breadcrumbs = "#{link_to("Home", root_url)} &raquo; About us &raquo; Our principles and philosophy" %>
 
-<div id="header"><strong>italyabroad.com</strong> About us</div>
+<div id="header"><strong>Italyabroad.com</strong>-About us</div>
 <% @about = AboutU.find(:first, :conditions => {:link_type => "pricipal and philosophy"} ) %>
 <div style="margin:20px;">
   <% if @about %>
@@ -16,3 +16,4 @@
 <% content_for :right do %>
   <%= render :partial => 'site/shared/box_about_us' %>
 <% end %>
+

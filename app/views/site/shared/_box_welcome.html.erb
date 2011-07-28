@@ -7,12 +7,17 @@
         <td>
           <%#= image_tag "default.jpg" %>
           <%# user = User.find_by_id(testimonial.user_id) %>
-          <%= link_to avatar_for_user(testimonial.user, 'small'), customer_path(testimonial.user_id), :title => testimonial.user.name  %>
+          <% if testimonial.user_id %>
+            <%= link_to avatar_for_user(testimonial.user, 'small'), customer_path(testimonial.user_id), :title => testimonial.user.name  %>
+          <% else %>
+            <%= image_tag "default.jpg" %>
+          <% end %>
           "<%= testimonial.description %>"
         </td>
       </tr>
     <% end %>
 </table>
+<%= link_to "more", "/testimonial" %>
   <!-- <ul>
       <li>
         <p>
