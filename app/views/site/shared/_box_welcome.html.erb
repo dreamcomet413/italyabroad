@@ -13,11 +13,15 @@
             <%= image_tag "default.jpg" %>
           <% end %>
           "<%= testimonial.description %>"
-        </td>
       </tr>
     <% end %>
+    <tr>
+      <td style="text-align:right;">
+        <%= link_to "more", "/testimonial" %>&nbsp;&nbsp;&nbsp;&nbsp;
+      </td>
+    </tr>
 </table>
-<%= link_to "more", "/testimonial" %>
+
   <!-- <ul>
       <li>
         <p>
