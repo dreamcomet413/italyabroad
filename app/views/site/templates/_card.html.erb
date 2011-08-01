@@ -14,13 +14,17 @@
       <%= link_to show_image_tag(@product.layout_image, @product.image_1, :jpg, @product.name), image_url('product_display', @product.image_1, :jpg),{:rel => "lightbox", :title => @product.name} %>
       <% else %>
       <% if params[:root_category] == "wine" %>
-      <%= image_tag("no_images/product_wine.jpg",:size => "230x250") %>
+      <%#= image_tag("no_images/product_wine.jpg",:size => "230x250") %>
+      <%= image_tag("no_images/product_wine.jpg",:size => "80x150") %>
       <% elsif params[:root_category] == "food" %>
-      <%= image_tag("no_images/product_food.jpg",:size => "230x250") %>
+      <%#= image_tag("no_images/product_food.jpg",:size => "230x250") %>
+      <%= image_tag("no_images/product_food.jpg",:size => "120x150") %>
       <% elsif params[:root_category] == "hampers" %>
-      <%= image_tag("no_images/product_hamper.jpg",:size => "230x250") %>
+      <%#= image_tag("no_images/product_hamper.jpg",:size => "230x250") %>
+      <%= image_tag("no_images/product_hamper.jpg",:size => "120x150") %>
       <% else %>
-      <%= image_tag("no_images/product_wine.jpg",:size => "230x250") %>
+      <%#= image_tag("no_images/product_wine.jpg",:size => "230x250") %>
+      <%= image_tag("no_images/product_wine.jpg",:size => "120x150") %>
       <% end %>
       <% end %>
     </td>
