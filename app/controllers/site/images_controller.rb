@@ -14,6 +14,15 @@ class Site::ImagesController < ApplicationController
             #IMPORTANT THESE TYPES DEFINED SHOULD BE MENTIONED IN THE FUNCTION DEFINED IN THE BOTTOM ..
             #image.resize '60x128', :crop => true if image_type == :wine_category
             image.resize '80x150', :crop => true if image_type == :wine_category
+
+            # added by indu on august 2001, according to mail July 29, 2011, 12:44 PM subject - RE: Important - need your help
+            image.resize '120x150 ' if image_type == :food_category
+            image.resize '120x150 ' if image_type == :food_sub_category
+            image.resize '120x150 ' if image_type == :hamper_category
+            image.resize '120x150 ' if image_type == :hamper_sub_category
+            image.resize '80x150', :crop => true if image_type == :wine_sub_category
+
+
             image.resize '65x104', :crop => true if image_type == :grape_thumb
             image.resize '50x50', :crop => true if image_type == :avatar_thumb_small
             image.resize '98x98', :crop => true if image_type == :avatar_thumb
@@ -85,7 +94,7 @@ class Site::ImagesController < ApplicationController
     %w(category category_thumb home_image home_image_thumb product product_display product_wine product_food avatar_thumb avatar_thumb_small producer_thumb
        product_hamper product_event product_thumb product_rec restaurant restaurant_thumb restaurant_thumb_site product_show
        recipe recipe_thumb post post_thumb review review_thumb news_letters_header news_letters_thumb news_letters_week
-       news_letters_product news_letters_banner news_letters_other product_wine_tour blog_view product_thumb_cart product_thumb_carta grape_thumb region_thumb_small region_thumb about_thumb region_card wine_category community_producer_thumb wine_tour_category product_hamper_big)
+       news_letters_product news_letters_banner news_letters_other product_wine_tour blog_view product_thumb_cart product_thumb_carta grape_thumb region_thumb_small region_thumb about_thumb region_card wine_category community_producer_thumb wine_tour_category product_hamper_big food_category hamper_category food_sub_category hamper_sub_category wine_sub_category)
   end
 end
 

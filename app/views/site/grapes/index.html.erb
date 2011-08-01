@@ -32,29 +32,29 @@
   <table cellpadding="5" cellspacing="0" border="0" width="100%">
     <tr>
       <td valign="top" style="width:33%;">
-        <h4 style="margin:0;padding:0;">A-G</h4>
+        <h4 style="margin:0;padding:0;">A-H</h4>
         <br />
         <ul class="clean" style="list-style:none;">
           <%- for grape in @grapes_all -%>
-          <li><%= link_to truncate(grape.name,50), grape_path(grape) if grape.name.upcase =~ /^[A-G]/ %></li>
+          <li><%= link_to truncate(grape.name,50), grape_path(grape) if grape.name.upcase =~ /^[A-H]/ %></li>
           <%- end -%>
         </ul>
       </td>
       <td valign="top" style="width:33%;">
-        <h4 style="margin:0;padding:0;">H-L</h4>
+        <h4 style="margin:0;padding:0;">I-P</h4>
         <br />
         <ul class="clean" style="list-style:none;">
           <%- for grape in @grapes_all -%>
-          <li><%= link_to truncate(grape.name,50), grape_path(grape) if grape.name.upcase =~ /^[H-L]/ %></li>
+          <li><%= link_to truncate(grape.name,50), grape_path(grape) if grape.name.upcase =~ /^[I-P]/ %></li>
           <%- end -%>
         </ul>
       </td>
       <td valign="top" style="width:33%;">
-        <h4 style="margin:0;padding:0;">M-Z</h4>
+        <h4 style="margin:0;padding:0;">Q-Z</h4>
         <br />
         <ul class="clean" style="list-style:none;">
           <%- for grape in @grapes_all -%>
-          <li><%= link_to truncate(grape.name,50), grape_path(grape) if grape.name.upcase =~ /^[M-Z]/ %></li>
+          <li><%= link_to truncate(grape.name,50), grape_path(grape) if grape.name.upcase =~ /^[Q-Z]/ %></li>
           <%- end -%>
         </ul>
       </td>
