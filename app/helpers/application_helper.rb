@@ -212,5 +212,13 @@ module ApplicationHelper
       show_link
   end
 
+  def find_any_active_product_exists(products)
+    num_products = 0
+    for p in products
+      num_products = num_products + 1 if p.active == true
+    end
+    num_products
+  end
+
 end
 

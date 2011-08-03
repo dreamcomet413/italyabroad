@@ -27,7 +27,8 @@
       <ul>
         <%- parent_category = Category.find('food') -%>
         <%- parent_category.children[0..5].each do |category| -%>
-          <li><%= link_to category.name.split(" ").map{|w| w.capitalize}.join(" "), nested_categories_url(parent_category, category) %></li>
+        <% num_products  = find_any_active_product_exists(category.products) %>
+          <li><%= link_to category.name.split(" ").map{|w| w.capitalize}.join(" "), nested_categories_url(parent_category, category) if num_products > 0 %></li>
         <%- end -%>
         <li><%= link_to("more", "/food", :style => "text-decoration:underline; color:#9b0707;") %></li>
       </ul>
@@ -37,12 +38,14 @@
       <ul>
         <%- parent_category = Category.find('hampers') -%>
         <%- parent_category.children.each do |category| -%>
-          <li><%= link_to category.name.split(" ").map{|w| w.capitalize}.join(" "), nested_categories_url(parent_category, category) %></li>
+             <% num_products  = find_any_active_product_exists(category.products) %>
+          <li><%= link_to category.name.split(" ").map{|w| w.capitalize}.join(" "), nested_categories_url(parent_category, category) if num_products > 0 %></li>
         <%- end -%>
         <li><h3><%= link_to"Events","/wine-events", :style => "font-size:14px;color:#9b0707" %></h3></li>
         <%- parent_category = Category.find('events') -%>
         <%- parent_category.children.each do |category| -%>
-          <li><%= link_to category.name, nested_categories_url(parent_category, category) %></li>
+        <% num_products  = find_any_active_product_exists(category.products) %>
+          <li><%= link_to category.name, nested_categories_url(parent_category, category) if num_products > 0%></li>
         <%- end -%>
         <li><h3><%= link_to"Wine Tours","/wine-tours", :style => "font-size:14px;color:#9b0707" %></h3></li>
         <%- parent_category = Category.find('wine-tours') -%>
