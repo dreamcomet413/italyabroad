@@ -615,9 +615,24 @@ a {
     font-family:Arial;
 }
 
+#box_producer {
+    width: 200px;
+
+
+}
+.box_producer_description {
+
+    width: 250px;
+/*    height: 250px;*/
+    overflow:hidden;
+    word-wrap: break-word;
+    text-align:justify;
+}
+
 #box_producer div#get_to_know_our_producers_avatar{
-    margin-auto;
+    margin:auto;
     text-align:center;
+    width:200px;
 }
 #wine_tour_description {
     float:left;
@@ -630,7 +645,9 @@ a {
 #box_get_to_know_italy div a{
     color: #9b0707;
 }
-
+#forum-container-new table tbody tr td table tbody tr td {
+    width:260px;
+}
 
 #box_newest_members {
     width:475px;

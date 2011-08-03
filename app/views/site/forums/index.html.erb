@@ -32,11 +32,11 @@
         </div>
         <table width="100%" cellspacing="0" cellpadding="0">
           <tr>
-            <td width="45%" valign="top">
+            <td>
               <div id="box_producer">
                 <h1 style="color:#9b0707;font-size:16px;">Get to know our producers</h1>
                 <%- producers = Producer.find(:all, :limit => 1, :order => "RAND()") %>
-                <%# producers = Producer.find(:all, :limit => 1, :conditions => "id=11") %>
+                <%# producers = Producer.find(:all, :limit => 1, :conditions => "id=39") %>
                 <%- for producer in producers -%>
                       <div id="get_to_know_our_producers_avatar">
                       <%= link_to producer.name, producer_path(producer) %>
@@ -49,18 +49,23 @@
                       <%= image_tag("default.jpg",:size => "100x120") %>
                       <% end %>
                       <br />
+
                       </div>
 
+                      <div class = "box_producer_description">
                       <%- if producer.description
-                            if producer.description.length > @enough_chars-%>
-                                  <%= producer.description[0..@enough_chars] + "... &nbsp;" + link_to('(Continue Reading)',producer_path(producer)) %>
+                            if producer.description.length > @enough_chars -%>
+                              <%= producer.description[0..@enough_chars] + "... &nbsp;" + link_to('(Continue Reading)',producer_path(producer)) %>
                             <%- else -%>
-                                  <%= producer.description %>
+                              <%= producer.description %>
                             <%end
-                      else
+                          else
 
-                      end
-                end -%>
+                          end-%>
+                      </div>
+
+
+                <% end -%>
 
               </div>
               <br /><br />
