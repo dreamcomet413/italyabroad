@@ -12,15 +12,15 @@
   <h1 align="center" style="padding-top:0px;color:#9b0707;"><%= @product.name %></h1>
   <table width="100%">
     <tr>
-      <%#- if @product.image_1 or @product.image_2 or @product.image_3 -%>
-     <!-- <td valign="top">
+      <%- if  @product.image_2 or @product.image_3 -%>
+     <td valign="top" width="35%">
         <ul class="image">
           <%#= content_tag(:li, image_tag(image_url("product_wine_tour", @product.image_1, :jpg))) if @product.image_1 %>
-          <%#= content_tag(:li, image_tag(image_url("product_wine_tour", @product.image_2, :jpg))) if @product.image_2 %>
-          <%#= content_tag(:li, image_tag(image_url("product_wine_tour", @product.image_3, :jpg))) if @product.image_3 %>
+          <%= content_tag(:li, image_tag(image_url("product_wine_tour", @product.image_2, :jpg))) if @product.image_2 %>
+          <%= content_tag(:li, image_tag(image_url("product_wine_tour", @product.image_3, :jpg))) if @product.image_3 %>
         </ul>
-      </td> -->
-      <%#- end -%>
+      </td>
+      <%- end -%>
       <td valign="top">
         <div style="padding-left:10px;">
           <%= @product.description.gsub("\n","<br />") rescue "Product has no description" %>
