@@ -1,6 +1,6 @@
 Hi,
 
-	<%=@user.name.titleize %> <%= @user.surname.titleize %> wrote a new review on <%= @product.name %>:
+	<%=@user.name.titleize %> <%= @user.surname.titleize unless @user.surname.blank? %> wrote a new review on <%= @product.name %>:
 
 <%= @review.name %>
 Description : <%= @review.description %>
