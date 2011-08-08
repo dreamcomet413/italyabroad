@@ -6,7 +6,7 @@
     <%- products.each do |product| -%>
     <li style="margin-bottom:10px;">
       <span id = "upcomming_tours_date"><%= product.date.strftime("%d %B %Y at %H:%M") if product.date %></span><br />
-  	  <%= link_to product.name, "/wine-events/#{product.friendly_identifier}", :style => "font-size:14px;color:#9b0707" %>
+  	  <%= link_to product.name, "/wine-events/#{product.friendly_identifier}", :style => "font-size:14px;" ,:class=>'a_hover_class'%>
     </li>
     <%- end -%>
   </ul>
