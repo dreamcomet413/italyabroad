@@ -82,7 +82,9 @@ img {
 
 
 td a:hover{
-    color:#9b0707;
+    /*color:#9b0707;*/
+    color: black;
+    text-decoration:underline;
 }
 
 #logIn{
@@ -705,6 +707,8 @@ a {
 #box_about_us ul li a:hover {
     font-size:14px;
 }
+
+
 
 #box_help h3,
 #box_about_us h3 {
@@ -2626,4 +2630,19 @@ a.linkInDescription:hover  {
     color:black;
     text-decoration:underline;
     }
+
+#box_help ul li a:hover,#box_about_us ul li a:hover {
+color:black;
+text-decoration:underline;
+}
+
+div#rightColumn a:hover {
+color:black;
+text-decoration:underline;
+}
+
+div#leftColumnContent a:hover{
+    color:black;
+    text-decoration:underline;
+}
 
