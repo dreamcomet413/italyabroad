@@ -2622,4 +2622,8 @@ a:hover.data{
  text-decoration:underline;
 
 }
+a.linkInDescription:hover  {
+    color:black;
+    text-decoration:underline;
+    }
 
