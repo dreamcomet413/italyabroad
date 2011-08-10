@@ -1146,7 +1146,8 @@ a {
 #featured_wine_tours h3 {
     text-align:center;
     border:none;
-    color:#666666;
+   /* color:#666666;*/
+   color:#9b0707;
 }
 
 #topSellingWine {
@@ -2576,7 +2577,8 @@ ul.my-account-links li a {
 }
 
 #box_event_reviews.block table tbody tr td a {
- color:#726969;
+/*color:#726969;*/
+color:black;
 }
 
 

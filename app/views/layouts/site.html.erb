@@ -79,8 +79,14 @@
           <ul class="nav1">
             <!--<li id="link-to-home" class="first<%#= " active" if active_uri == "/"%>"><%#= link_to "Home", root_path %></li>-->
             <% for category in Category.find(:all, :conditions => ["parent_id is ? AND show_in_menu = ?", nil, true] ) do %>
-                <li id="link-to-<%= category.friendly_identifier %>" <%= 'class="active"' if active_uri == "/#{category.friendly_identifier}" %>>
-                  <%= link_to category.name, "/#{category.friendly_identifier == "events" ? "wine-events" : category.friendly_identifier}" %>
+
+                <li id="link-to-<%= category.friendly_identifier %>" <%= 'class="active"' if active_uri == "/#{category.friendly_identifier}"   %>>
+
+
+
+                  <%#= link_to category.name, "/#{category.friendly_identifier == "events" ? "wine-events" : category.friendly_identifier}" %>
+                   <%= link_to category.name, "/#{category.friendly_identifier}" %>
+
                   <%- unless category.children.blank? -%>
                     <ul>
                       <%- for child in category.children -%>
@@ -94,7 +100,7 @@
               <%- end -%>
 
                     <!--<li class="<%#= " active" if active_uri == "/wine-club" %>"><%#= link_to "Wine Club", :action=>"wine_club", :controller=>"site/base" %></li>-->
-              <li id="link-to-forum" <%= 'class="active"' if active_uri == "/forums" %>><%= link_to "Community", wine_community_path %></li>
+              <li id="link-to-forum" <%= 'class="active"' if active_uri == "/wine-community" %>><%= link_to "Community", wine_community_path %></li><!-- earlier it was if active_uri == "/forums" problem when mouser hover in this case -->
               <li id="link-to-recipes" <%= 'class="active"' if active_uri == "/recipes" %>><%= link_to "Recipes", recipes_path  %>
                </li>
               <li id="link-to-blog" class="last<%= " active" if active_uri == "/blog" %>"><%= link_to "Blog", blog_index_path %></li>
