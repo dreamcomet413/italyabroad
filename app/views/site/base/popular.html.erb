@@ -3,7 +3,9 @@
 <div id="header">Most Popular</div>
 
 <div style="padding:20px;text-align:center;color:#003300;">
-  <div style="text-align:left;">Browse through our customers' favourite Italian produce with our brand new Search Cloud.</div>
+  <div style="text-align:left;">
+  Browse through our customers' favourite Italian produce with our Search Cloud.
+  </div>
   <br />
   <% @popular_searches = SearchQuery.popular_searches(50) %>
   <%
