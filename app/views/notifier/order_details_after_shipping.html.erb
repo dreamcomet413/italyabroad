@@ -15,10 +15,10 @@ Your order No: <%= @order.id %> with following items have been shipped to the fo
 Product :<%= order_item.name %>
 Quantity : <%= order_item.quantity %>|
 Rate : <%= order_item.rate %>
-Price:<%= number_to_currency order_item.price %>
-Total:<%= number_to_currency order_item.total %>
+Price:<%= number_to_currency order_item.price , :unit => "&pound;"%>
+Total:<%= number_to_currency order_item.total, :unit => "&pound;" %>
 <% end %>
-Total Amount : <%= number_to_currency(@order.total) %>
+Total Amount : <%= number_to_currency @order.total,:unit => "&pound;" %>
 
 Shipped by:
 <%= @order.shipping_agency.name %>

@@ -6,7 +6,7 @@ total_points_used = current_user.orders.sum('points_used')
     %>
 
 <div id="header"><%= render :partial => 'site/shared/box_login' %></div>
-<h4 class="account-title">Your recent orders <% if total_points - total_points_used > 0 %>  (You have <%= (total_points - total_points_used).to_i %> points in your credit.  This is equivalent to <%= number_to_currency ((total_points - total_points_used)* Setting.find(:first).points_to_pound.to_i, :unit => "&pound;") %>)<% end %></h4>
+<h4 class="account-title">Your recent orders <% if total_points - total_points_used > 0 %>  (You have <%= (total_points - total_points_used).to_i %> points in your credit.  This is equivalent to <%= number_to_currency ((total_points - total_points_used)* Setting.find(:first).points_to_pound.to_f, :unit => "&pound;") %>)<% end %></h4>
 <br />
 <table width="99%" align="center" style="text-align:center;" cellspacing="0" cellpadding="0" border="0">
 	<tr>
