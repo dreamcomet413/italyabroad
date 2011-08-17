@@ -626,7 +626,8 @@ a {
 }
 .box_producer_description {
 
-    width: 250px;
+  /*  width: 250px;*/
+  width: 235px;*
 /*    height: 250px;*/
     overflow:hidden;
     word-wrap: break-word;
@@ -1227,11 +1228,13 @@ a {
 
 .wineList a {
     font-size:18px;
-    color:#003300;
+   /* color:#003300;*/
+   color:black;
 }
 
 .wineList a:hover {
-    color:#9b0707;
+   /* color:#9b0707;*/
+   color:black;
 }
 
 .wineList img {
@@ -2661,6 +2664,9 @@ li#link-to-food ul li a:hover{
    color:black;
 }
 li#link-to-hampers ul li a:hover{
+    color:black;
+}
+#blog_container ul li h2 a{
     color:black;
 }
 

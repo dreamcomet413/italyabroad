@@ -34,7 +34,7 @@
           <tr>
             <td>
               <div id="box_producer">
-                <h1 style="color:#9b0707;font-size:16px;">Get to know our producers</h1>
+               <h1 style="color:#9b0707;font-size:16px;">Get to know our producers</h1>
                 <%- producers = Producer.find(:all, :limit => 1, :order => "RAND()") %>
                 <%# producers = Producer.find(:all, :limit => 1, :conditions => "id=39") %>
                 <%- for producer in producers -%>
@@ -52,7 +52,7 @@
 
                       </div>
 
-                      <div class = "box_producer_description">
+                      <div class = "box_producer_description" >
                       <%- if producer.description
                             if producer.description.length > @enough_chars -%>
                               <%= producer.description[0..@enough_chars] + "... &nbsp;" + link_to('(Continue Reading)',producer_path(producer)) %>
@@ -69,7 +69,7 @@
 
               </div>
               <br /><br />
-              <div id="box_latest_blog" style="background-color:#f8f7ef;padding:5px 10px;margin-right:10px;">
+              <div id="box_latest_blog"  style="background-color:#f8f7ef;padding:5px 10px;margin-right:10px;">
                 <% blog = Post.last %>
                 <h1 style="color:#9b0707;font-size:16px;text-align:center;">Blog</h1>
                 <%= link_to "Latest Entry", blog_index_path %><br /><br />
