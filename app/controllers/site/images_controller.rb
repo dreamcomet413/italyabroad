@@ -13,7 +13,9 @@ class Site::ImagesController < ApplicationController
 
             #IMPORTANT THESE TYPES DEFINED SHOULD BE MENTIONED IN THE FUNCTION DEFINED IN THE BOTTOM ..
             #image.resize '60x128', :crop => true if image_type == :wine_category
-            image.resize '80x150' if image_type == :wine_category
+            #image.resize '80x150' if image_type == :wine_category
+            #image.resize '80x150', :crop => true if image_type == :wine_category
+            image.resize '80x150', :crop => true if image_type == :wine_category
 
             # added by indu on august 2001, according to mail July 29, 2011, 12:44 PM subject - RE: Important - need your help
             image.resize '120x150 ' if image_type == :food_category
