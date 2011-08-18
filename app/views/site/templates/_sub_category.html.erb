@@ -42,10 +42,10 @@
         <ul>
           <li class="price_info">
     				<% if product.discounted? %>
-    					<div style="font-size:14px;color:#003300;">Was <span style="text-decoration: line-through;"><%= number_to_currency product.price, :unit => "&pound;" %></span></div>
+    					<div style="font-size:14px;color:black;">Was <span style="text-decoration: line-through;"><%= number_to_currency product.price, :unit => "&pound;" %></span></div>
     					<span class="price red" style="color:#003300;">Now&nbsp;<span style="color:red;"><%= number_to_currency product.price_discounted, :unit => "&pound;" %></span></span>
     				<% else %>
-    					<span class="price" style="color:#003300;"><%= number_to_currency product.price, :unit => "&pound;" %></span>
+    					<span class="price" style="color:black;"><%= number_to_currency product.price, :unit => "&pound;" %></span>
     				<% end %>
   				</li>
 

@@ -91,7 +91,7 @@
               <span class="price red" style="color:#003300;">Now&nbsp;<span style="color:red;"><%= number_to_currency @product.price_discounted, :unit => "&pound;" %></span></span>
                                   (save <span style="color:red;"><%= number_to_currency (@product.price * @product.discount / 100), :unit => "&pound;" %></span>)
             <% else %>
-              <span class="price" style="color:#003300;"><%= number_to_currency @product.price, :unit => "&pound;" %></span>
+              <span class="price" style="color:black;"><%= number_to_currency @product.price, :unit => "&pound;" %></span>
             <% end %>
           </li>
           <% if @product.from_quantity > 0 && @product.from_quantity_price > 0 %>
