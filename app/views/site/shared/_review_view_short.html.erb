@@ -1,4 +1,3 @@
-<%#= reviewer.reviews.size %>
 <% @reviews = reviewer.reviews.all(:conditions=>['publish = ?',true]) %>
 <% if @reviews.size > 0 %>
   <ul>
@@ -38,9 +37,9 @@
 	  <%- end -%>
 	</ul>
 <%- else -%>
-  <ul>
-	  <li>No reviews have been written yet for this product, be the first to write one and <span> you will receive a £10.00 voucher</span></li>
-	</ul>
+    <ul>
+	    <li>No reviews have been written yet for this <%= reviewer.type.to_s.downcase %> , be the first to write one and you will receive a 100 points</span></li>
+	  </ul>
 <%- end -%>
 <h3>&nbsp;</h3>
 
