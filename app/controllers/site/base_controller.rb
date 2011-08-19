@@ -99,7 +99,8 @@ class Site::BaseController < ApplicationController
       redirect_to subscription_complete_path
     else
       flash[:title] = "Sorry"
-      flash[:message] = "Your subscription couldn't be submitted because"
+     # flash[:message] = "Your subscription couldn't be submitted because already subscribed using this email"
+     flash[:message] = @subscription.show_errors
       render :action => :subscribe
     end
   end
