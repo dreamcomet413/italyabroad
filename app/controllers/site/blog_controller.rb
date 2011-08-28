@@ -45,6 +45,7 @@ class Site::BlogController < ApplicationController
     @comment.email = current_user.email
     @comment.user_id = current_user.id
     if @comment.save_with_captcha
+      Notifier.deliver_comment(@comment,current_user)
       check_mail_list(@post, current_user)
       flash[:notice] = "comment is successfully posted"
       redirect_to blog_path(:id => @post.id)
