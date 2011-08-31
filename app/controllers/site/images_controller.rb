@@ -15,7 +15,14 @@ class Site::ImagesController < ApplicationController
             #image.resize '60x128', :crop => true if image_type == :wine_category
             #image.resize '80x150' if image_type == :wine_category
             #image.resize '80x150', :crop => true if image_type == :wine_category
-            image.resize '80x150', :crop => true if image_type == :wine_category
+
+
+            #image.resize '80x150', :crop => true if image_type == :wine_category
+            image.resize '100' if image_type == :wine_category
+
+
+
+
             image.resize '80x150' if image_type == :wine_category_producers_page
 
 
