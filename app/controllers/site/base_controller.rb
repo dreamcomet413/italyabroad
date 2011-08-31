@@ -101,7 +101,8 @@ class Site::BaseController < ApplicationController
       flash[:title] = "Sorry"
      # flash[:message] = "Your subscription couldn't be submitted because already subscribed using this email"
     # flash[:message] = @subscription.show_errors
-    flash[:message] = "Your request couldn't be submitted because<p>#{@subscription.show_errors}</p>"
+   # flash[:message] = "Your request couldn't be submitted because<p>#{@subscription.show_errors}</p>"
+    flash[:message] = "You are already subscribed to our newsletter"
       render :action => :subscribe
     end
   end
