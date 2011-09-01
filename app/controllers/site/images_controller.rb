@@ -79,7 +79,8 @@ class Site::ImagesController < ApplicationController
             image.resize '300x300',:crop=>true if image_type == :producer_thumb
             image.resize '300x300',:crop=>true if image_type == :region_thumb
             image.resize '100x100',:crop=>true if image_type == :region_thumb_small
-            image.resize '300x300',:crop=>true if image_type == :about_thumb
+            #image.resize '300x300',:crop=>true if image_type == :about_thumb
+            image.resize '723x284',:crop=>true if image_type == :about_thumb
             image.resize '723x284',:crop=>true if image_type == :region_card
            # image.resize '98x98',:crop=>true if image_type == :community_producer_thumb
             image.resize '210x79',:crop=>true if image_type == :community_producer_thumb
