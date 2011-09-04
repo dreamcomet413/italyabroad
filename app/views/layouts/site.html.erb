@@ -78,7 +78,7 @@
           <%- active_uri = request.request_uri -%>
           <ul class="nav1">
             <!--<li id="link-to-home" class="first<%#= " active" if active_uri == "/"%>"><%#= link_to "Home", root_path %></li>-->
-            <% for category in Category.find(:all, :conditions => ["parent_id is ? AND show_in_menu = ?", nil, true] ) do %>
+            <% for category in Category.find(:all, :conditions => ["parent_id is ? AND show_in_menu = ?", nil, true], :order => "menu_order asc" ) do %>
 
                 <li id="link-to-<%= category.friendly_identifier %>" <%= 'class="active"' if active_uri == "/#{category.friendly_identifier}"   %>>
 

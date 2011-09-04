@@ -29,7 +29,8 @@ class Site::ImagesController < ApplicationController
             # added by indu on august 2001, according to mail July 29, 2011, 12:44 PM subject - RE: Important - need your help
             image.resize '120x150 ' if image_type == :food_category
             image.resize '120x150 ' if image_type == :food_sub_category
-            image.resize '120x150 ' if image_type == :hamper_category
+#            image.resize '120x150 ' if image_type == :hamper_category
+            image.resize '80' if image_type == :hamper_category
             image.resize '120x150 ' if image_type == :hamper_sub_category
             image.resize '80x150', :crop => true if image_type == :wine_sub_category
 
@@ -47,7 +48,8 @@ class Site::ImagesController < ApplicationController
             image.resize '800x600' if image_type == :product_display
             image.resize '60x128' if image_type == :product_wine
             #image.resize '60x128' if image_type == :product_food
-            image.resize '80x150', :crop => true if image_type == :product_food
+            #image.resize '80x150', :crop => true if image_type == :product_food
+            image.resize '100' if image_type == :product_food
             #commented by indu to change the hamper image size as his request on July 26, 2011 by mail subject-sitemap
            # image.resize '70x90', :crop => true if image_type == :product_hamper
             image.resize '120x120', :crop => true if image_type == :product_hamper_big
