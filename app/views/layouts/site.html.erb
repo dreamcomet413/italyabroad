@@ -21,6 +21,11 @@
     <!--[if gte IE 5.5]>
     <%= javascript_include_tag "menu" %>
 	<![endif]-->
+
+<!-- Place this tag in your head or just before your close body tag -->
+<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+
+
   </head>
   <body <%= @paypal_redirect %> <%= "id='#{@page_id}'" if @page_id %> class="<%= @current_controller %><%= " #{@class}" if @class %>" <%= "onload='#{@onload}'" if @onload %>>
     <div id="content">
@@ -140,13 +145,27 @@
               </script>
           <% end %>
           <%= content_tag(:div, (yield :right), :id => "rightColumn") if @content_for_right -%>
-          <div id="leftColumnContent" <%= "class=\"widescreen\"" unless @content_for_right %>>
+
+         <div id="leftColumnContent" <%= "class=\"widescreen\"" unless @content_for_right %>>
+
+
+
 
             <%= yield %>
 
+
+
           </div>
-        </div>
+
+
+
+          </div>
+
         <%= render :partial => 'site/shared/footer' %>
+      </div>
+
+      <div style="left:900px;top:90px;position:absolute;">
+      <!-- Place this tag where you want the +1 button to render --><g:plusone></g:plusone>
       </div>
       <%- if RAILS_ENV == "production" -%>
         <script src="https://ssl.google-analytics.com/urchin.js" type="text/javascript">

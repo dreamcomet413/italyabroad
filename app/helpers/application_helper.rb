@@ -117,9 +117,9 @@ module ApplicationHelper
 
     elsif image_type
       #return image_tag("no_images/#{image_type}.jpg", :size => "100x120", :alt => image_alt)
-      return image_tag("no_images/#{image_type}.jpg", :alt => image_alt)
+      return image_tag("no_images/#{image_type}.jpg", {:alt => image_alt, :width => "80"})
     else
-      return image_tag("no_images/noimage.png", :alt => image_alt)
+      return image_tag("no_images/noimage.png", :alt => image_alt, :size => "80")
     end
   end
 
@@ -156,7 +156,7 @@ module ApplicationHelper
   def show_ratings(product, score = nil)
     ratings_icon = "ratings_icon.png"
     ratings_icon = "ratings_recipe_icon.png" if product.class.to_s == "Recipe"
-     if product.class.to_s != "Recipe"
+     if product.class.to_s != "Recipe" and  product.categories.root
     ratings_icon = "ratings_stars.png" if product.categories.root.name.downcase == "food" or product.categories.root.name.downcase == "hampers"
   end
     return %Q(<span class="ratings" style="#{"background:transparent url(/images/#{ratings_icon}) no-repeat -#{(86 - (product.average_rating.to_f/5.to_f * 86)).round}px center;" if product.average_rating > 0}">&nbsp;</span>) if score.nil?
