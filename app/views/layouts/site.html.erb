@@ -32,7 +32,14 @@
       <div id="topContent">
         <%= link_to image_tag('logo.png', :alt => "Italian wine and food", :title => "Italian wine and food"), root_path, :id => "logo" %>
         <div id="cartLogin">
+
+
           <div id="cart"><%= render :partial => "/site/shared/cart" %></div>
+          <div id="googleplus_lg">
+              <!-- Place this tag where you want the +1 button to render --><g:plusone></g:plusone>
+          </div>
+
+
           <div id="logIn">
 
             <!-- Remove this line and uncomment the other lines when u go live -->
@@ -72,6 +79,8 @@
                   </td>
                   <td>
                     <%= image_submit_tag("searchButton.gif", :name => nil, :alt => "search") %>
+
+
                   </td>
                 </tr>
               </table>
@@ -164,9 +173,6 @@
         <%= render :partial => 'site/shared/footer' %>
       </div>
 
-      <div style="left:900px;top:90px;position:absolute;">
-      <!-- Place this tag where you want the +1 button to render --><g:plusone></g:plusone>
-      </div>
       <%- if RAILS_ENV == "production" -%>
         <script src="https://ssl.google-analytics.com/urchin.js" type="text/javascript">
         </script>

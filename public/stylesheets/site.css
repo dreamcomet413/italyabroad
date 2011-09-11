@@ -1151,6 +1151,10 @@ a {
    color:#9b0707;
 }
 
+#featured_events ul li h1 {
+    font-weight:bold;
+}
+
 #topSellingWine {
     width:260px;
     float:left;
@@ -2668,5 +2672,8 @@ li#link-to-hampers ul li a:hover{
 }
 #blog_container ul li h2 a{
     color:black;
+}
+#googleplus {
+    float:left;
 }
 

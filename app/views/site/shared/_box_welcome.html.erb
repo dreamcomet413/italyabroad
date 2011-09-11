@@ -12,7 +12,7 @@
           <% else %>
             <%= image_tag "default.jpg" %>
           <% end %>
-          "<%= testimonial.description %>"
+          "<%= testimonial.description[0..80] %>..."
       </tr>
     <% end %>
     <tr>

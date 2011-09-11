@@ -93,8 +93,9 @@
 <div id="featured_wine_tours" style="margin:10px;">
   <ul>
   <% @testimonials.each do |testimonial| %>
-    <li><h1><%= testimonial.title %></h1>
+    <li>
         <div><%= testimonial.description %></div>
+        <div style="width:100%;text-align:right;right-margin:10px;left-margin:auto;"><h1><%= testimonial.title %></h1></div>
     </li>
   <% end %>
   </ul>
