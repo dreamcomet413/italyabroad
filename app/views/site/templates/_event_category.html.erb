@@ -36,7 +36,13 @@
 <div style="margin:8px;float:left;margin-right:30px;">
     <%= render :partial => "/site/shared/box_upcoming_events" -%>
 </div>
-      <h3 align="center" style="border:none;" ><%= @category.page_heading ?  @category.page_heading : 'Wine Courses &amp; Events' %></h3>
+      <h3 align="center" style="border:none;" >
+      <% unless @category.page_heading.blank? %>
+      <%= @category.page_heading %>
+      <% else %>
+        Wine Courses &amp; Events
+      <% end %>
+      </h3>
       <div style="text-align:justify;margin:20px;">
       <%= @category.description %>
       </div>

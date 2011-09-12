@@ -182,9 +182,13 @@ p params[:product]
   def included_products
 
     @product = Product.find(params[:id])
-    @products = Product.find(:all, :include=>'categories',:conditions => ["products.id NOT IN (?) AND LOWER(categories.name) = ?", @product.id,'wine'])
+    if !params[:search_name].blank?
+    @products = Product.find(:all, :include=>'categories',:conditions => ["products.id NOT IN (?) AND LOWER(categories.name) = ? AND quantity > ? AND active = ? AND products.name LIKE ? ", @product.id,'wine',0,true,"%#{params[:search_name]}%"])
     # @products = Product.find(:all,:conditions => ["products.id NOT IN (?)", @product.id])
+    else
+      @products = Product.find(:all, :include=>'categories',:conditions => ["products.id NOT IN (?) AND LOWER(categories.name) = ? AND quantity > ? AND active = ?", @product.id,'wine',0,true])
 
+    end
 
     respond_to do |format|
       format.html

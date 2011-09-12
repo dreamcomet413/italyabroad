@@ -4,7 +4,7 @@
 <div id="wineBanner">
   <span class="community_home_title">
      <%#= @about.title rescue "About us"%>
-     <% unless @about.title.blank? %>
+   <% unless @about.title.blank? %>
   <div style="color:white;width:330px;height:100px;background:black;opacity: 0.6;filter:alpha(opacity=40);text-align:left">
     <%= @about.title if @about %>
    </div>
