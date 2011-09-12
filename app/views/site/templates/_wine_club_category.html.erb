@@ -31,7 +31,13 @@
   <%= render :partial => '/site/shared/box_upcoming_events' -%>
 </div>
 
-  <h3 style="border:none;" align="center"><%= @category.page_heading ?  @category.page_heading : @category.name %></h3>
+  <h3 style="border:none;" align="center">
+    <% unless @category.page_heading.blank? %>
+      <%= @category.page_heading %>
+     <% else %>
+      <%= @category.name %>
+     <% end %>
+  </h3>
   <p style="text-align:justify;margin:20px;">
     <%= @category.description %>
     <!--Need content to change this static description.-->

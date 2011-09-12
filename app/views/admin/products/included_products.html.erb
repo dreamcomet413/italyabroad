@@ -4,6 +4,20 @@
 <div class="inner_content products" id="admin_products_edit_correlation">
   <h2><%= @title %></h2>
   <br />
+  <table>
+    <tr>
+      <% form_tag included_products_path(@product), :method=>:get do  %>
+      <td>
+      <strong>Search</strong><%= text_field_tag 'search_name',params[:search_name]%>
+
+        <%= submit_tag 'Search' %>
+
+      </td>
+<% end %>
+    </tr>
+  </table>
+
+
   <%= render :partial => 'product_links', :locals => {:active => 'included_products'} %>
   <% form_for :product, :url => admin_product_path(@product), :html => {:method => :put} do %>
     <fieldset id="correlation_information">
