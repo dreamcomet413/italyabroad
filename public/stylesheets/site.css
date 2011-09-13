@@ -2673,8 +2673,11 @@ li#link-to-hampers ul li a:hover{
 #blog_container ul li h2 a{
     color:black;
 }
-#googleplus {
-    float:left;
+#googleplus_lg {
+    float:right;
+    margin-left:15px;
+    margin-right:0px;
+    padding:0px;
 }
 
 #bold_text {
