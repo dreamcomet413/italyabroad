@@ -1,5 +1,5 @@
 <%- @testimonials = Testimonial.find(:all,:conditions=>['UPPER(page_to_display) = ?','WINE TOUR'],:order=>'id DESC',:limit=>2) -%>
-<% unless @testimonials.blank? %>
+<%# unless @testimonials.blank? %>
 <div class="block" id="box_event_reviews">
   <h1>Wine Tour Testimonials</h1>
   <br />
@@ -18,10 +18,10 @@
     <%- end -%>
   <%- else -%>
     <tr>
-      <td>No Testimonial for Wine Tour%></td>
+      <td>No Testimonial for Wine Tour</td>
     </tr>
   <%- end -%>
   </table>
 </div>
-<% end %>
+<%# end %>
 

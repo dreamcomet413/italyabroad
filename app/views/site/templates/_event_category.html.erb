@@ -33,24 +33,32 @@
              <%= link_to image_tag("events.jpg"), search_index_path(:id => @category)%>
           </div>
 <% end %>
-<div style="margin:8px;float:left;margin-right:30px;">
-    <%= render :partial => "/site/shared/box_upcoming_events" -%>
-</div>
-      <h3 align="center" style="border:none;" >
+  <h3 align="center" style="border:none;" >
       <% unless @category.page_heading.blank? %>
       <%= @category.page_heading %>
       <% else %>
         Wine Courses &amp; Events
       <% end %>
       </h3>
-      <div style="text-align:justify;margin:20px;">
+<div style="margin:5px;float:left;margin-right:20px;">
+    <%= render :partial => "/site/shared/box_upcoming_events" -%>
+</div>
+<!-- moved this portion above just to span the title according to his mail Thursday, September 8, 2011 10:19 PM -->
+<!--<h3 align="center" style="border:none;" >
+      <%# unless @category.page_heading.blank? %>
+      <%#= @category.page_heading %>
+      <%# else %>
+        Wine Courses &amp; Events
+      <%# end %>
+      </h3>-->
+      <div style="margin:5px;text-align:justify;margin-right:20px;">
       <%= @category.description %>
       </div>
 
 <div style="clear:both;">
 </div>
 <% products = @category.products.find(:all, :conditions => ["active = ? AND DATE(date) >= ?", true, Date.today], :order => "date").paginate(:page => params[:page], :per_page => 4) %>
-<div id="featured_events">
+<div id="featured_events"  style="text-align:justify;margin-right:20px;">
         <br />
         <h3>Coming Events</h3>
         <ul>
