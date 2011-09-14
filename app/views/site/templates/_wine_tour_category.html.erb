@@ -35,7 +35,7 @@
       <%= @category.name %>
      <% end %>
   </h3>
-<div style="margin:5px;float:left;margin-right:20px;">
+<div style="margin:6px;float:left;margin-right:20px;">
   <%= render :partial => '/site/shared/box_upcoming_wine_tours' %>
   <!-- before changing the following div has this id="wine_tours_introduction" -->
 </div>
@@ -48,7 +48,7 @@
       <%#= @category.name %>
      <%# end %>
   </h3>-->
-  <p style="margin:5px;text-align:justify;margin-right:20px;">
+  <p style="margin:6px;text-align:justify;margin-right:20px;">
   <%= @category.description %>
   <!--Make your own wine, live the harvesting in one of the most beautiful area of Tuscany-->
   </p>
@@ -60,7 +60,7 @@
 <%- unless products.blank? -%>
 
 
-  <div id="featured_wine_tours">
+  <div id="featured_wine_tours" style="margin:6px;text-align:justify;margin-right:20px;">
     <br />
     <h3>More Tours</h3>
     <ul>
@@ -69,7 +69,7 @@
         <%= product.date.strftime("%d %B %Y") if product.date %>
         <h1><%= link_to product.name, nested_products_uri(product), :style => "color:black;" %></h1>
         <%#= product.date.strftime("%d %B %Y") if product.date %><!--<br /><br />-->
-        <div style="text-align:justify;margin-right:20px;"><%= product.description_short %></div>
+        <div><%= product.description_short %></div>
       </li>
       <%- end -%>
     </ul>
