@@ -30,10 +30,9 @@
   <body <%= @paypal_redirect %> <%= "id='#{@page_id}'" if @page_id %> class="<%= @current_controller %><%= " #{@class}" if @class %>" <%= "onload='#{@onload}'" if @onload %>>
     <div id="content">
       <div id="topContent">
-        <%= link_to image_tag('logo.png', :alt => "Italian wine and food", :title => "Italian wine and food"), root_path, :id => "logo" %>
+        <%#= link_to image_tag('logo.png', :alt => "Italian wine and food", :title => "Italian wine and food"), root_path, :id => "logo" %>
+        <%= link_to image_tag('logo_hi_res.gif', :alt => "Italian wine and food", :title => "Italian wine and food"), root_path, :id => "logo" %>
         <div id="cartLogin">
-
-
 
           <div id="googleplus_lg">
               <!-- Place this tag where you want the +1 button to render --><g:plusone></g:plusone>

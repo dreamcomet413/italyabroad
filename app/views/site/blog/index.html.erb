@@ -35,13 +35,13 @@
   <% if @posts && @posts.size > 0 %>
 	<ul>
 	<% for post in @posts %>
-	  <li>
-      <h2><%= link_to post.name, post.friendly_identifier.blank? ? "blog/#{post.id}" : "blog/#{post.friendly_identifier}" %></h2>
+	  <li class="product_listing">
+      <h1><%= link_to post.name, post.friendly_identifier.blank? ? "blog/#{post.id}" : "blog/#{post.friendly_identifier}", :class => "product_title" %></h1>
       <div><%= post.description_short_cleared %></div>
-      <table width="100%"  class="foot">
+      <table width="100%">
         <tr>
           <td>
-            <strong>Tags:</strong>&nbsp;<%= post.tag_names %>
+            <strong>Tags:</strong>&nbsp;<%= post.tag_names %><br /><br />
           </td>
           <td align="right">
             <%= link_to "view comments (#{post.comments.size})", blog_path(:id => post.id) %> - <%= link_to "read more", blog_path(:id => post.id) %>

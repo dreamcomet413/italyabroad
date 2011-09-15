@@ -58,8 +58,8 @@
     <h3>Wine Club Options</h3>
     <ul>
       <%- products.each do |product| -%>
-      <li>
-        <h1><%= link_to product.name, nested_products_uri(product), :style => "color:black;" %></h1>
+      <li class="product_listing">
+        <h1><%= link_to product.name, nested_products_uri(product), :class => "product_title" %></h1>
         <div><%= product.description_short %></div>
       </li>
       <%- end -%>

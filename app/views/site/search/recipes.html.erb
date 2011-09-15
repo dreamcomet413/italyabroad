@@ -22,14 +22,15 @@
 <div>
   <ul style="margin:0;list-style:none;padding-left:20px;">
   <%- for recipe in @recipes -%>
-    <li>
-      <h1><%= link_to recipe.name, recipe_path(recipe) %></h1><br /><!--, :style => "font-size:17px;color:#003300;"-->
-      <%= recipe.ingredients %>
-    </li><br />
-    <br /><br />
+    <li class="product_listing">
+      <h1><%= link_to recipe.name, recipe_path(recipe), :class => "product_title" %></h1><!--, :style => "font-size:17px;color:#003300;"-->
+      Preparation Time: <%= recipe.preparation_time %>min, Difficulty: <%= recipe.recipe_level.name %><br /><br />
+      <%= recipe.preparation %><br /><br />
+
+    </li>
   <%- end -%>
   </ul>
-  <br /><br />
+  <br />
 </div>
 <%= content_tag(:div, will_paginate(@recipes), :style => "padding:5px;text-align:right;background-color:#F3F8DA") unless will_paginate(@recipes).blank? %>
 <br />

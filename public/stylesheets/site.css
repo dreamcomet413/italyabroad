@@ -1109,6 +1109,9 @@ a {
 }
 
 #blog_container .foot {
+    /* I think this  is not used but retaining incase some where else it is used */
+
+
     padding:0 0 10px 0;
     margin:10px 0;
   /*  border-bottom:2px solid #bfd923; */
@@ -1142,6 +1145,17 @@ a {
     padding-bottom:20px;
     border-bottom:1px solid #CCCCCC;
 }
+#featured_wine_tours ul li h1 {
+    font-weight:bold;
+    text-decoration:none;
+}
+
+#featured_wine_tours ul li h1 a {
+    font-weight:bold;
+    text-decoration:underline;
+}
+
+
 
 #featured_events h3,
 #featured_wine_tours h3 {
@@ -1154,7 +1168,34 @@ a {
 #featured_events ul li h1 {
     font-weight:bold;
 }
+#featured_wine_tours ul li.product_listing h1 a.product_title {
+    color:black;
+    font-weight:bold;
+    text-decoration:none;
+}
 
+#featured_wine_tours ul li.product_listing h1 a.product_title:hover {
+    color:black;
+    font-weight:bold;
+    text-decoration:underline;
+}
+
+ul li.product_listing {
+    margin-top:10px;
+    padding-top:0px;
+    margin-bottom:10px;
+    padding-bottom:0px;
+    border-bottom:1px solid #CCCCCC;
+}
+ul li.product_listing h1 a.product_title{
+    color:black;
+    font-weight:bold;
+    text-decoration:none;
+}
+ul li.product_listing h1 a.product_title:hover{
+     font-weight:bold;
+     text-decoration:underline;
+}
 #topSellingWine {
     width:260px;
     float:left;
@@ -2675,7 +2716,7 @@ li#link-to-hampers ul li a:hover{
 }
 #googleplus_lg {
     float:right;
-    margin-left:15px;
+    margin-left:5px;
     margin-right:0px;
     padding:0px;
 }

@@ -32,7 +32,7 @@
   <div id="box_wines_of_the_night" class="block" style="margin-top:30px;">
     <h1>Wines of the Tasting</h1>
     <ul>
-      <% for included_product in @product.included_products.find(:all,:order=>'name asc') %>
+      <% for included_product in @product.included_products.find(:all,:order=>'name asc', :conditions => "active = true") %>
        <li><%= link_to included_product.name, "/wine-events/#{included_product.friendly_identifier}", :style => "color:#9b0707;" %></li>
       <%- end -%>
     </ul>
