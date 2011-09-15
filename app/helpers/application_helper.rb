@@ -117,9 +117,11 @@ module ApplicationHelper
 
     elsif image_type
       #return image_tag("no_images/#{image_type}.jpg", :size => "100x120", :alt => image_alt)
-      return image_tag("no_images/#{image_type}.jpg", :alt => image_alt, :width => "80")
+      #return image_tag("no_images/#{image_type}.jpg", :alt => image_alt, :width => "80")
+      return image_tag("no_images/#{image_type}.jpg", :alt => image_alt)
     else
-      return image_tag("no_images/noimage.png", :alt => image_alt, :width => "80")
+      #return image_tag("no_images/noimage.png", :alt => image_alt, :width => "80")
+      return image_tag("no_images/noimage.png", :alt => image_alt)
     end
   end
 
