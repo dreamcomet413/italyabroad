@@ -51,7 +51,7 @@
   </p><div id="wine_tour_description">
 </div>
   <div style="clear:both;"></div>
-  <% products = @category.products.find(:all, :conditions => ["active = ?", true], :order => "created_at DESC").paginate(:page => params[:page], :per_page => 3) %>
+  <% products = @category.products.find(:all, :conditions => ["active = ?", true], :order => "date ").paginate(:page => params[:page], :per_page => 3) %>
   <%- unless products.blank? -%>
   <div id="featured_wine_tours" style="margin:6px;text-align:justify;margin-right:20px;">
     <br />
@@ -61,6 +61,9 @@
       <li class="product_listing">
         <h1><%= link_to product.name, nested_products_uri(product), :class => "product_title" %></h1>
         <div><%= product.description_short %></div>
+        <div align="right">
+        Price:&nbsp;<%= number_to_currency product.price, :unit => "&pound;" %><br />
+        <%= link_to_remote image_tag("buttons/buy_button_new.png"), :url => product_cart_index_path(product), :html => {:method => 'post'} %></div>
       </li>
       <%- end -%>
     </ul>
