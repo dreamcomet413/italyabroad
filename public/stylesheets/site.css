@@ -1196,6 +1196,23 @@ ul li.product_listing h1 a.product_title:hover{
      font-weight:bold;
      text-decoration:underline;
 }
+
+
+
+
+
+ul li.product_listing h1 a.recipe_title {
+    color:black;
+    font-weight:normal;
+    text-decoration:none;
+}
+ul li.product_listing h1 a.recipe_title:hover {
+     font-weight:normal;
+     text-decoration:underline;
+}
+
+
+
 #topSellingWine {
     width:260px;
     float:left;
@@ -2722,6 +2739,11 @@ li#link-to-hampers ul li a:hover{
 }
 
 #bold_text {
+ font-weight:bold;
+}
+
+#recipe_caption {
+ font-size:10px;
  font-weight:bold;
 }
 

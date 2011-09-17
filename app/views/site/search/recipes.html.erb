@@ -23,8 +23,9 @@
   <ul style="margin:0;list-style:none;padding-left:20px;">
   <%- for recipe in @recipes -%>
     <li class="product_listing">
-      <h1><%= link_to recipe.name, recipe_path(recipe), :class => "product_title" %></h1><!--, :style => "font-size:17px;color:#003300;"-->
-      Preparation Time: <%= recipe.preparation_time %>min, Difficulty: <%= recipe.recipe_level.name %><br /><br />
+      <h1><%= link_to recipe.name, recipe_path(recipe), :class => "recipe_title" %></h1><!--, :style => "font-size:17px;color:#003300;"-->
+      <span id="recipe_caption">Preparation Time: <%= recipe.preparation_time %>min,</span><br />
+      <span id="recipe_caption">Difficulty: <%= recipe.recipe_level.name %></span><br /><br />
       <%= recipe.preparation %><br /><br />
 
     </li>
