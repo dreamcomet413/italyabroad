@@ -173,7 +173,7 @@
     <% inc_product = Product.find(include.included_product_id) %>
   <li style="float:left;width:140px;text-align:center;margin:0 0 10px 0; height: 210px;">
     <table>
-      <tr><td valign="bottom" style="height: 150px;"><%= link_to show_image_tag(inc_product.layout_image, inc_product.image_1, :jpg), nested_products_uri(inc_product) %>
+      <tr><td valign="bottom" style="height: 150px;"><%= link_to show_image_tag(inc_product.layout_image, inc_product.image_1, :jpg,inc_product.name), nested_products_uri(inc_product) %>
               <%#= image_tag(image_url(image.layout_image, image.image_1, "jpg")) %>
         </td></tr>
       <tr>
@@ -205,7 +205,7 @@
         <li style="width:<%= 100/column_width %>%;text-align:center">
             <table>
             <tr>
-            <td style="height:150px;vertical-align:bottom"><%= link_to show_image_tag(related_product.layout_image, related_product.image_1, :jpg), nested_products_uri(related_product) %></td>
+            <td style="height:150px;vertical-align:bottom"><%= link_to show_image_tag(related_product.layout_image, related_product.image_1, :jpg,related_product.name), nested_products_uri(related_product) %></td>
             </tr>
             <tr>
             <td><%= link_to related_product.name, nested_products_uri(related_product) %></td>

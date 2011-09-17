@@ -5,11 +5,11 @@
    <span class="title_wine_tours">
     <%#= @category.text_on_image %>
     </span>
-	<%= link_to image_tag(image_url('home_image', @category.image, :jpg)), search_index_path(@category)%>
+	<%= link_to image_tag(image_url('home_image', @category.image, :jpg),:alt=>@category.name), search_index_path(:id=>@category)%>
 	</div>
 <% else %>
   <div id="wineBanner">
-	<%= link_to image_tag("flashContent.jpg"), search_index_path(@category) %>
+	<%= link_to image_tag("flashContent.jpg",:alt=>@category.name), search_index_path(:id=>@category) %>
 	</div>
 <% end %>
 
@@ -23,7 +23,7 @@
     <tr>
       <td style="padding:0;width:100px;height:100px;text-align:center;">
       <%#= product.layout_image %>
- <%= link_to show_image_tag(product.layout_image, product.image_1, :jpg),nested_products_uri(product)  %>
+ <%= link_to show_image_tag(product.layout_image, product.image_1, :jpg,product.name),nested_products_uri(product)  %>
       </td> <!--nested_products_path(product.root_category_id, product.sub_category_id, product) -->
       <td valign="top" style="padding:0;width:630px;">
        <!-- <table>

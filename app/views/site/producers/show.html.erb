@@ -43,7 +43,7 @@
           if index == 0
             food += "<tr>"
           end
-          food += "<td valign='top' class='product_cell' >#{link_to show_image_tag(product.layout_image, product.image_1, :jpg), nested_products_uri(product)} <br /> <br /> #{link_to product.name, nested_products_uri(product)}</td>"
+          food += "<td valign='top' class='product_cell' >#{link_to show_image_tag(product.layout_image, product.image_1, :jpg,product.name), nested_products_uri(product)} <br /> <br /> #{link_to product.name, nested_products_uri(product)}</td>"
           index = index + 1
           if index == 4
             food += "</tr>"
@@ -56,7 +56,7 @@
          if wine_index == 0
           wine += "<tr>"
          end
-         wine += "<td valign='top'   class='product_cell' >#{link_to show_image_tag("wine_category_producers_page", product.image_1, :jpg), nested_products_uri(product)} <br /><br /> #{link_to product.name, nested_products_uri(product)}</td>"
+         wine += "<td valign='top'   class='product_cell' >#{link_to show_image_tag("wine_category_producers_page", product.image_1, :jpg,product.name), nested_products_uri(product)} <br /><br /> #{link_to product.name, nested_products_uri(product)}</td>"
         wine_index = wine_index + 1
          if wine_index == 4
           wine += "</tr>"

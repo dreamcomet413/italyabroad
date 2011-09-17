@@ -9,7 +9,7 @@
     </div> -->
     <%# end %>
   </span>
-	  <%= link_to image_tag(image_url('home_image', @category.image, :jpg)), search_index_path(:id => @category.friendly_identifier) %>
+	  <%= link_to image_tag(image_url('home_image', @category.image, :jpg),:alt=>@category.name), search_index_path(:id => @category.friendly_identifier) %>
 	</div>
 <% else %>
   <div id="wineBanner">
@@ -23,7 +23,7 @@
   <%# if  @about and !@about.image_id.nil? %>
 	  <%#= link_to image_tag(image_url(:about_thumb, @about.image, :jpg)) , search_index_path(:id => @category.friendly_identifier)  unless @about.blank?  %>
 	  <%# else %>
-	  <%= link_to image_tag("wine_tours_home.jpg"), search_index_path(:id => @category.friendly_identifier) %>
+	  <%= link_to image_tag("wine_tours_home.jpg",:alt=>@category.name), search_index_path(:id => @category.friendly_identifier) %>
 	  <%# end %>
 	</div>
 <% end %>

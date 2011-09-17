@@ -13,9 +13,9 @@
     <strong style="font-size:24px;">tasting notes</strong> and get <strong style="font-size:24px;">recommendations</strong> -->
   </span>
   <% if  @about and !@about.image_id.nil? %>
-  <%=  image_tag(image_url(:about_thumb, @about.image, :jpg))   unless @about.blank? %>
+  <%=  image_tag(image_url(:about_thumb, @about.image, :jpg),:alt=>@about.title)   unless @about.blank? %>
   <% else %>
-  <%= image_tag("forum_home.jpg") if @about.blank? %>
+  <%= image_tag("forum_home.jpg",:alt=>'Community') if @about.blank? %>
   <% end %>
 </div>
 <div style="margin:10px;" id="forum-container-new">
@@ -49,9 +49,9 @@
                       <%#= avatar_for_user(producer, "small") %>
                       <%#= show_producer_image(producer) %>
                       <% if producer.image %>
-                       <%=  image_tag(image_url('community_producer_thumb', producer.image, :jpg)) %>
+                       <%=  image_tag(image_url('community_producer_thumb', producer.image, :jpg),:alt=>producer.name) %>
                       <% else %>
-                      <%= image_tag("default.jpg",:size => "100x120") %>
+                      <%= image_tag("default.jpg",:size => "100x120",:alt=>producer.name) %>
                       <% end %>
                       <br />
 
@@ -173,7 +173,7 @@
           <%#- grapes = Grape.find(:all, :limit => 1, :conditions => "id = 1") -%>
           <%- for grape in grapes -%>
           <div style="padding-bottom:10px;color:#7f2d54;"><%= link_to grape.name, grape_path(grape) %>&nbsp;<%= link_to "(more grapes)", grape_guide_path %></div>
-          <%= image_tag("grape_guide_small.png") %>
+          <%= image_tag("grape_guide_small.png",:alt=>'Grape guide') %>
 
                   <%#= grape.description %>
                   <%=
@@ -199,7 +199,7 @@
           <%#- regions = Region.find(:all, :limit => 1, :conditions => "id = 15") -%>
           <%- for region in regions -%>
           <div style="padding-bottom:10px;color:#7f2d54;"><%= link_to region.name, region_path(region) %>&nbsp;<%= link_to "(more regions)", regions_path %></div>
-          <%= image_tag("get_to_know_italy.png") %>
+          <%= image_tag("get_to_know_italy.png",:alt=>'Regions') %>
           <%#= region.description %>
                    <%=
                   if region.description and !region.description.empty? and !region.description.nil?

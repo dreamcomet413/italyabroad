@@ -1,6 +1,6 @@
 <%- @class = "wine_club"; @breadcrumbs = "#{link_to("Home", root_url)} &raquo; #{link_to("Wine club", "/wine-club")} &raquo; #{@product.name + '...'}" -%>
 
-<div id="wineBanner" style="padding-top:5px;"><%= image_tag(image_url("product_wine_club", @product.image_1, :jpg)) if @product.image_1 %></div>
+<div id="wineBanner" style="padding-top:5px;"><%= image_tag(image_url("product_wine_club", @product.image_1, :jpg),:alt=>@product.name) if @product.image_1 %></div>
 <div id="wine_tours_content">
 <!--<h2 style="color:#9b0707;"><%#= @product.name %></h2>-->
   <h1 align="center" style="padding-top:0px;color:#9b0707;margin-top:0px;"><%= @product.name %></h1>

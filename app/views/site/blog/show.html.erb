@@ -9,7 +9,7 @@
 
 
 <div id="blog_show_container">
-  <div style="text-align:center;"><%= image_tag(image_url('blog_view', (@post.image_1 or @post.image_2 or @post.image_3), :jpg)) if @post.image_1 or @post.image_2 or @post.image_3 %></div>
+  <div style="text-align:center;"><%= image_tag(image_url('blog_view', (@post.image_1 or @post.image_2 or @post.image_3), :jpg),:alt=>@post.name) if @post.image_1 or @post.image_2 or @post.image_3 %></div>
   <br />
 
   <div class="comment_icon"><%= @post.comments.size %> comments</div>

@@ -4,10 +4,10 @@
 <td class="image" style ="padding:0 10px 0 0">
       <% if !(@product.image_1).blank? %>
       <%#= show_image_tag('product', @product.image_1, :jpg) %>
-      <%= link_to show_image_tag('product', @product.image_1, :jpg), image_url('product_display', @product.image_1, :jpg),{:rel => "lightbox", :title => @product.name}  %>
+      <%= link_to show_image_tag('product', @product.image_1, :jpg,@product.name), image_url('product_display', @product.image_1, :jpg),{:rel => "lightbox", :title => @product.name}  %>
       <% else %>
 
-      <%= image_tag("no_images/product_wine.jpg",:size => "230x250") %>
+      <%= image_tag("no_images/product_wine.jpg",:size => "230x250",:alt=>@product.name) %>
 
       <% end %>
     </td>
@@ -145,7 +145,7 @@
         <li style="width:<%= 100/column_width %>%;text-align:center">
             <table>
             <tr>
-            <td style="height:150px;vertical-align:bottom"><%= link_to show_image_tag(related_product.layout_image, related_product.image_1, :jpg), nested_products_uri(related_product) %></td>
+            <td style="height:150px;vertical-align:bottom"><%= link_to show_image_tag(related_product.layout_image, related_product.image_1, :jpg,related_product.name), nested_products_uri(related_product) %></td>
             </tr>
             <tr>
             <td><%= link_to related_product.name, nested_products_uri(related_product) %></td>

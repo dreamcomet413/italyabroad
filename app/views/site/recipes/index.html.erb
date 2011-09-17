@@ -13,9 +13,9 @@
 
   </span>
   <% if  @about and !@about.image_id.nil? %>
-  <%= link_to image_tag(image_url(:about_thumb, @about.image, :jpg)) , search_index_path(:id => "recipe") unless @about.blank? %>
+  <%= link_to image_tag(image_url(:about_thumb, @about.image, :jpg),:alt=>@about.title) , search_index_path(:id => "recipe") unless @about.blank? %>
   <% else %>
-  <%= link_to image_tag("recipes.jpg"), search_index_path(:id => "recipe") %>
+  <%= link_to image_tag("recipes.jpg",:alt=>'Recipes'), search_index_path(:id => "recipe") %>
   <% end %>
 </div>
 <br/>
@@ -23,7 +23,7 @@
 
 <div id="recipes_introduction">
   <h3>About Italian food</h3>
-  <%= image_tag("aboutItalianFood.png", :style => "float:left;") %>
+  <%= image_tag("aboutItalianFood.png", :style => "float:left;",:alt=>'About Italian Food') %>
   <%= @about.description if @about %>
 </div>
 <div style="clear:both;"></div>
@@ -53,9 +53,9 @@
             </td>
             <td align="right">
               <% if !recipe.image_1.blank? %>
-              <%= link_to image_tag(image_url('recipe_thumb', recipe.image_1, :jpg)), recipe_path(recipe) %>
+              <%= link_to image_tag(image_url('recipe_thumb', recipe.image_1, :jpg),:alt=>recipe.name), recipe_path(recipe) %>
               <% else %>
-              <%= link_to image_tag("no_images/PastaRecipe.jpg",:size => "100x75"), recipe_path(recipe) %>
+              <%= link_to image_tag("no_images/PastaRecipe.jpg",:size => "100x75",:alt=>recipe.name), recipe_path(recipe) %>
               <% end %>
 
             </td>

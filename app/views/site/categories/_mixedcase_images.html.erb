@@ -1,10 +1,10 @@
 
 <% @products.each do |product| %>
   <div class="product_dis">
-    <%= link_to show_image_tag(product.layout_image, product.image_1, :jpg), nested_products_uri(product) %>&nbsp;&nbsp;
+    <%= link_to show_image_tag(product.layout_image, product.image_1, :jpg,product.name), nested_products_uri(product) %>&nbsp;&nbsp;
     <%#= link_to show_image_tag(product.layout_image, product.image_2, :jpg), nested_products_uri(product) %>&nbsp;&nbsp;
     <%#= link_to show_image_tag(product.layout_image, product.image_3  , :jpg), nested_products_uri(product) %>
 </div>
 
   <% end %>
-  
+

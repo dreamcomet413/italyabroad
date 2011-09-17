@@ -33,7 +33,7 @@
     <% @products.each do |product| %>
       <tr>
         <td style="width:80px;padding:5px 10px;">
-          <%= link_to show_image_tag(product.layout_image, product.image_1, :jpg), nested_products_uri(product) %>
+          <%= link_to show_image_tag(product.layout_image, product.image_1, :jpg,product.name), nested_products_uri(product) %>
         </td>
         <td style="width:490px;" valign="top">
           <h2 style="margin:0;padding:20px 0 0 0;"><%= link_to product.name, nested_products_uri(product), :style => "font-size:17px;color:#003300;" %></h2>

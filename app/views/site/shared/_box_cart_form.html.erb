@@ -9,7 +9,7 @@
 	<% product = Product.find(cart_item.product.id) %>
 	<tr>
 	  <td style="width:30px;">
-	    <%= show_image_tag(:product_thumb_cart, product.image_1) %>
+	    <%= show_image_tag(:product_thumb_cart, product.image_1,:jpg,product.name) %>
 	  </td>
 		<td>
 			<%= hidden_field_tag "cart[][id]", nil, :value => cart_item.product.id %>

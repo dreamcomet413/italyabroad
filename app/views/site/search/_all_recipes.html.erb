@@ -20,9 +20,9 @@
             </td>
             <td align="right">
               <% if !recipe.image_1.blank? %>
-              <%= link_to image_tag(image_url('recipe_thumb', recipe.image_1, :jpg)), recipe_path(recipe) %>
+              <%= link_to image_tag(image_url('recipe_thumb', recipe.image_1, :jpg),:alt=>recipe.name), recipe_path(recipe) %>
               <% else %>
-              <%= link_to image_tag("no_images/PastaRecipe.jpg",:size => "100x75"), recipe_path(recipe) %>
+              <%= link_to image_tag("no_images/PastaRecipe.jpg",:size => "100x75",:alt=>recipe.name), recipe_path(recipe) %>
               <% end %>
 
             </td>

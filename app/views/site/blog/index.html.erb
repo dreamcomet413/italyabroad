@@ -12,9 +12,9 @@
     and our <strong style="font-size:30px;">views</strong> on Italian wine-->
   </div>
    <% if  @about and !@about.image_id.nil? %>
-   <%=  image_tag(image_url(:about_thumb, @about.image, :jpg))   unless @about.blank?  %>
+   <%=  image_tag(image_url(:about_thumb, @about.image, :jpg),:alt=>@about.title[0..150])   unless @about.blank?  %>
    <% else %>
-  <%= image_tag("blog_home.jpg") %>
+  <%= image_tag("blog_home.jpg",:alt=>@about.title[0..150]) %>
   <% end %>
 </div>
 <div id="blog_container">

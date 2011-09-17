@@ -11,9 +11,9 @@
       </td>
       <td valign="top" style="padding-left:80px;">
         <% if !@recipe.image_1.blank? %>
-              <%= image_tag image_url(:original, @recipe.image_1) %>
+              <%= image_tag (image_url(:original, @recipe.image_1),:alt=>@recipe.name) %>
               <% else %>
-              <%= image_tag("no_images/PastaRecipe.jpg",:size => "150x150") %>
+              <%= image_tag("no_images/PastaRecipe.jpg",:size => "150x150",:alt=>@recipe.name) %>
               <% end %>
         <div>
           <% if @recipe.correlations.size > 0 %>
