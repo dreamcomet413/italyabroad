@@ -57,7 +57,7 @@
       		Now <span class="red"><%= number_to_currency (@product.price - (@product.price * @product.discount / 100)), :unit => "&pound;" %></span>
       		(save <span class="red"><%= number_to_currency (@product.price * @product.discount / 100), :unit => "&pound;" %></span>)
       	<% else %>
-      		Price: <span class="red"><%= number_to_currency @product.price, :unit => "&pound;" %></span>
+      		<!--Price:--> <span style="font-size:18px;color:#9b0707;text-align:right;" class="red"><%= number_to_currency @product.price, :unit => "&pound;" %></span>
       	<% end %>
       </li>
 

@@ -49,7 +49,7 @@ class Search
     conditions = []
     conditions << "recipes.name LIKE '%#{text}%'"
     conditions << "active = #{true}"
-    conditions << "preparation_time #{@preparation_time}" unless @preparation_time.blank?
+    conditions << "preparation_time = #{@preparation_time}" unless @preparation_time.blank?
     conditions << "recipe_type_id = #{@recipe_type}" unless @recipe_type.blank?
     conditions << "recipe_level_id = #{@difficulty}" unless @difficulty.blank?
     conditions << "user_id = #{@user_id}" unless @user_id.blank?

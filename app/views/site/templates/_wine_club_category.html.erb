@@ -61,8 +61,8 @@
       <li class="product_listing">
         <h1><%= link_to product.name, nested_products_uri(product), :class => "product_title" %></h1>
         <div><%= product.description_short %></div>
-        <div align="right">
-        Price:&nbsp;<%= number_to_currency product.price, :unit => "&pound;" %><br />
+        <div style="font-size:18px;color:#9b0707;text-align:right;">
+       <!-- Price:&nbsp;--><%= number_to_currency product.price, :unit => "&pound;" %>
         <%= link_to_remote image_tag("buttons/buy_button_new.png"), :url => product_cart_index_path(product), :html => {:method => 'post'} %></div>
       </li>
       <%- end -%>
