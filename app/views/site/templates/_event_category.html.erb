@@ -40,7 +40,7 @@
         Wine Courses &amp; Events
       <% end %>
       </h3>
-<div style="margin:5px;float:left;margin-right:20px;">
+<div style="margin:5px;float:left;margin-right:15px;">
     <%= render :partial => "/site/shared/box_upcoming_events" -%>
 </div>
 <!-- moved this portion above just to span the title according to his mail Thursday, September 8, 2011 10:19 PM -->
@@ -51,14 +51,14 @@
         Wine Courses &amp; Events
       <%# end %>
       </h3>-->
-      <div style="margin:5px;text-align:justify;margin-right:20px;">
+      <div style="margin:5px;text-align:justify;margin-right:15px;">
       <%= @category.description %>
       </div>
 
 <div style="clear:both;">
 </div>
 <% products = @category.products.find(:all, :conditions => ["active = ? AND DATE(date) >= ?", true, Date.today], :order => "date").paginate(:page => params[:page], :per_page => 4) %>
-<div id="featured_events"  style="text-align:justify;margin-right:20px;">
+<div id="featured_events"  style="text-align:justify;margin-right:15px;">
         <br />
         <h3>Coming Events</h3>
         <ul>
@@ -71,7 +71,7 @@
                          <!-- <br /><br />-->
                           <%= product.description_short %>
                           <div style="font-size:18px;color:#9b0707;text-align:right;">
-        <!--Price:&nbsp;--><%= number_to_currency product.price, :unit => "&pound;" %>
+        <!--Price:&nbsp;--><%= number_to_currency product.price, :unit => "&pound;" %><br />
         <%= link_to_remote image_tag("buttons/buy_button_new.png"), :url => product_cart_index_path(product), :html => {:method => 'post'} %></div>
 
                 </li>

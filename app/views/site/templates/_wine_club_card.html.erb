@@ -22,6 +22,8 @@
           <table align="right">
             <tr>
               <td style="font-size:18px;color:#9b0707;text-align:right;"><!--Price:&nbsp;--><%= number_to_currency @product.price, :unit => "&pound;" %></td>
+             </tr>
+             <tr>
               <td><%= link_to_remote image_tag("buttons/buy_button_new.png"), :url => product_cart_index_path(@product), :html => {:method => 'post'} %></td>
             </tr>
           </table>
