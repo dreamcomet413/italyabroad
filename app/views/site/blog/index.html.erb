@@ -44,12 +44,12 @@
             <br /><br />
             <strong>Tags:</strong><%#= link_to post.tag_names, "/blog/#{post.friendly_identifier}" %>
 
-            <% @tag_list ="&nbsp;" %>
-            <% post.tag_names.split(",").each do |p| %>
-              <% @tag_list = "&nbsp;" + @tag_list + link_to( p, "/blog/#{post.friendly_identifier}" ) + ","%>
-            <%- end -%>
-            <%= @tag_list.chop! if @tag_list %>
-
+            <%
+            @tag_list ="&nbsp;" %>
+            <% post.tags.each do |p| %>
+            <% @tag_list = "&nbsp;" + @tag_list + link_to (p.name, blog_index_path(:tag_id=>p.id)) + ","%>&nbsp;
+            <% end %>
+             <%= @tag_list.chop! if @tag_list %>
           </td>
           <td align="right">
             <%= link_to "view comments (#{post.comments.size})", blog_path(:id => post.id) %> - <%= link_to "read more", blog_path(:id => post.id) %>
