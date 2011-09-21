@@ -19,6 +19,7 @@
 <% products = Product.find(:all, :limit => 3, :order => "created_at DESC", :conditions => "id IN (#{@category.all_products_ids.join(',')}) AND quantity > 0") %>
 <%- products.each do |product| -%>
 <div class="wineList">
+  <br />
   <table width="100%">
     <tr>
       <td style="padding:0;width:100px;height:100px;text-align:center;">
@@ -35,7 +36,7 @@
         </table>  <br />-->
 
         <br />
-        <%= product.description_short %>
+        <%= product.description_short[1..240] %>
       </td>
       <td valign="top" style="padding:10px 0;width:100px;">
         <div style="font-size:18px;color:#9b0707;text-align:right;">
@@ -51,6 +52,7 @@
     </tr>
   </table>
 </div>
+<br />
 <%- end -%>
 
 <% content_for :right do %>
