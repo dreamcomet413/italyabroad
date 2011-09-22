@@ -159,7 +159,7 @@
 
   <div style="font-size:14px;font-weight:bold;color:#003400;text-align:left;">Other products you may be interested in</div><br /><br />
 <%#- products = Product.find(:all, :include => :categories, :conditions => ["categories.friendly_identifier = ? or categories.friendly_identifier = ? or categories.friendly_identifier = ?", "wine", "food", "hampers"], :limit => 5) -%>
-  <%- products = Product.find(:all, :limit => 5, :order => "RAND()") -%>
+  <%- products = Product.find(:all, :limit => 5, :conditions=>['active = true'],:order => "RAND()") -%>
  <!-- <ul style="list-style:none;margin:0;padding:0;float:left:margin-left:10px;">-->
     <%#- for product in products -%>
     <!--  <li style="float:left;v-align:center;">-->
@@ -171,10 +171,11 @@
   <table align="center">
   <tr>
    <%- for product in products -%>
-
+      <% if product.root_category.upcase == 'WINE' or product.root_category.upcase == 'FOOD' or product.root_category.upcase == 'HAMPERS' %>
       <td valign="top"><%= link_to show_image_tag(:product_thumb_carta, product.image_1, :jpg,product.name), nested_products_uri(product) %><br />
      <%= link_to product.name, nested_products_uri(product) %>
      </td>
+     <% end %>
    <% end %>
    </tr>
   </table>
