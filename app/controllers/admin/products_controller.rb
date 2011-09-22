@@ -136,10 +136,12 @@ class Admin::ProductsController < ApplicationController
     params[:product] ||= {}
 
     params[:product][:category_ids] = params[:category_ids] if params[:category_ids]
-    params[:product][:correlation_ids] = params[:correlation_ids] if params[:correlation_ids]
+    params[:product][:correlation_ids] = params[:correlation_ids]
+    #if params[:correlation_ids]
     params[:product][:ideal_with_id] = params[:ideal_with_id] if params[:ideal_with_id]
     params[:product][:how_to_cook_id] = params[:how_to_cook_id] if params[:how_to_cook_id]
-    params[:product][:included_product_ids] = params[:included_product_ids] if params[:included_product_ids]
+    params[:product][:included_product_ids] = params[:included_product_ids]
+    #if params[:included_product_ids]
     @product = Product.find(params[:id])
 
     @product.image_1.destroy if @product.image_1 && !params[:image_1].blank?
