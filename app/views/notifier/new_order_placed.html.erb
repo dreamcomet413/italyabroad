@@ -6,7 +6,7 @@ Product Details -
 <% for order_item in @order.order_items %>
   Item :<%= order_item.name %>
   Quantity : <%= order_item.quantity %>
-  Total:<%= number_to_currency order_item.totalm, :unit => "&pound;" %>
+  Total:<%= number_to_currency order_item.total, :unit => "&pound;" %>
 <% end %>
 
 ---------------------------------------------------
