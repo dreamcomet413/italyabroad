@@ -39,7 +39,18 @@
         <td valign="top" style="width:200px;"><%= producer.name %></td>
        <!-- <td valign="top"><%#= producer.description %></td> -->
         <td valign="top"><%= producer.region.name rescue "no region" %></td>
-        <td valign="top"><%= show_producer_image(producer) %></td>
+        <td valign="top">
+
+        <% if producer && producer.image %>
+
+        <%= image_tag(image_url('grape_thumb', producer.image, :jpg)) %>
+        <% else %>
+        <%= image_tag("default.jpg",:size => "100x120") %>
+        <!--#show_producer_image(producer) -->
+        <% end %>
+
+
+         </td>
        <!-- <td valign="top"><%#= producer.grapes.collect(&:name).join(", ") %></td> -->
         <td valign="top" style="width:100px;"><%= link_to "Edit", edit_admin_producer_path(producer) %> | <%= link_to "Destroy", admin_producer_path(producer), :method => :delete, :confirm => "Are you sure want to delete this producer?" %></td>
       </tr>

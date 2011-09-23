@@ -31,7 +31,8 @@
   <br /><br />
   <h3 style="font-size:16px;color:#013300;border:none;">Wines made with this grape</h3>
   <ul style="list-style:none;margin:0;padding:0;text-align:center;">
-    <%- @grape.products.each do |product| -%>
+  <% @grape_products = @grape.products.find(:all,:conditions=>['active = ? and quantity > ?',true,0])%>
+    <%- @grape_products.each do |product| -%>
     <li style="float:left;width:100px;margin-left:10px;margin-bottom:10px;">
       <%= link_to show_image_tag(product.layout_image, product.image_1, :jpg,product.name), nested_products_uri(product) %><br />
       <%= link_to product.name, nested_products_uri(product) %>

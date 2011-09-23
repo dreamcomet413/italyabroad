@@ -4,7 +4,7 @@
 <div class="inner_content regions" id="admin_regions_new">
   <h2><%= @title %></h2>
   <br />
-  <% form_for :region, :url => admin_regions_path, :html => {:multipart => true} do %>
+  <% form_for :region, :url => admin_regions_path(@region), :html => {:multipart => true} do %>
     <%= render :partial => 'form' %>
     <p><%= submit_tag "Save" %> or <%= link_to "Cancel", admin_regions_path %></p>
   <% end %>

@@ -14,12 +14,16 @@
     <tr>
     <td>Image</td>
     <% fields_for :image do %>
-    <td><%= file_field :image,:image_file %></td>
+    <td><%= file_field :image,:image_file %>
+    <%= image_tag(image_url('product_thumb', @region.image, :jpg)) if @region && @region.image %>
+    <%= link_to "Destroy", admin_region_image_url(@region, @region.image), :confirm => "Are you sure?", :method => :delete if @region && @region.image %>
+
+    </td>
      <% end %>
   </tr>
   <tr>
     <td valign="top">Producers in this region</td>
-    <td><%= select :region, :producer_ids, Producer.all.collect { |p| [p.name, p.id] }, {}, {:multiple => true} %></td>
+    <td><%= select :region, :producer_ids, Producer.find(:all,:order=>'name').collect { |p| [p.name, p.id] }, {}, {:multiple => true} %></td>
   </tr>
 </table>
 

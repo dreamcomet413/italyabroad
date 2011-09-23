@@ -109,9 +109,15 @@ map.eval_xml_g_comptible 'admin/xml/eval_xml_g_comptible', :controller => 'admin
     admin.resources :shipping_agencies
     admin.resources :occasions
     admin.resources :about_us
-    admin.resources :regions
-    admin.resources :producers
-    admin.resources :grapes
+    admin.resources :regions do |region|
+      region.resources :images, :only => [:destroy]
+    end
+    admin.resources :producers do |producer|
+      producer.resources :images, :only => [:destroy]
+    end
+    admin.resources :grapes do |grape|
+      grape.resources :images, :only => [:destroy]
+    end
     admin.resources :forums
     admin.resources :categories
     admin.resources :deliveries

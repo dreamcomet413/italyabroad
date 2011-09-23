@@ -25,12 +25,12 @@
   <% if @producer.grapes.count > 0 %>
   <h3 style="font-size:16px;color:#013300;border:none;">Grapes grown by this producer</h3>
   <%- end -%>
-  <ul>
+  <ul  style="list-style:none;font-size:14px;">
   <%- @producer.grapes.each do |grape| -%>
     <li><%= link_to grape.name, grape_path(grape) %></li>
   <%- end -%>
   </ul>
-
+<br />
     <%-
       wine = ""
       food = ""
@@ -38,7 +38,9 @@
       final_wine = ""
       index = 0
       wine_index = 0
-      @producer.products.each do |product|
+      @producer_products = @producer.products.find(:all,:conditions=>['active = ? and quantity > ?',true,0])
+
+      @producer_products.each do |product|
         if product.categories.root.root.name == "Food"
           if index == 0
             food += "<tr>"

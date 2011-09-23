@@ -14,7 +14,11 @@
   <tr>
     <td>Image</td>
     <% fields_for :image do %>
-    <td><%= file_field :image,:image_file %></td>
+    <td><%= file_field :image,:image_file %>
+    <%= image_tag(image_url('product_thumb', @grape.image, :jpg)) if @grape && @grape.image %>
+    <%= link_to "Destroy", admin_grape_image_url(@grape, @grape.image), :confirm => "Are you sure?", :method => :delete if @grape && @grape.image %>
+
+    </td>
      <% end %>
   </tr>
   <tr>

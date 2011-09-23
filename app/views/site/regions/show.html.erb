@@ -24,23 +24,27 @@
   <%#= @region.description || "No Description" %>
   <span id="region_description"><%= @region.description || "Have a look at " %></span>
   <br /><br />
+  <% unless @region.producers.blank? %>
   <h3 style="font-size:16px;color:#013300;border:none;">Our producers from <%= @region.name %></h3>
+  <% end %>
   <ul>
   <%- @region.producers.each do |p| -%>
     <li><%= link_to p.name,producer_path(p) %></li>
   <%- end -%>
   </ul>
  <!-- <h3 style="font-size:16px;color:#013300;border:none;">Wine and Food from <%#= @region.name %></h3> -->
+ <% unless  @region.products.find(:all,:conditions=>['active = ? and quantity > ?',true,0]).blank? %>
  <h3 style="font-size:16px;color:#013300;border:none;">Produce from the region <%= @region.name %></h3>
+ <% end %>
       <%-
       region_products = ""
       final_region_products = ""
       index = 0
-     @region.products.each do |product|
+     @region.products.find(:all,:conditions=>['active = ? and quantity > ?',true,0]).each do |product|
           if index == 0
             region_products += "<tr>"
           end
-          region_products += "<td valign='top' class='product_cell' >#{link_to show_image_tag(:region_thumb_small, product.image_1, :jpg,product.name), nested_products_uri(product)} <br /> <br /> #{link_to product.name, nested_products_uri(product)}</td>"
+          region_products += "<td valign='top' class='product_cell' >#{link_to show_image_tag(product.layout_image, product.image_1, :jpg,product.name), nested_products_uri(product)} <br /> <br /> #{link_to product.name, nested_products_uri(product)}</td>"
           index = index + 1
           if index == 5
             region_products += "</tr>"
