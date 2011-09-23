@@ -19,8 +19,10 @@
 </div>
 <h3 style="border:none;"  align="center">Italian grapes and wines</h3>
 
-<div id="blog_container">
-   <%= @about.description rescue 'The wine and grape details ...' %> <br />
+<div id="blog_container"  style="text-align:justify;">
+    <p style="text-align:justify;">
+    <%= @about.description rescue 'The wine and grape details ...' %> <br />
+    </p>
    <div style="float:right;">
   <%- form_tag grapes_path, :method => :get do -%>
     <strong>Grape Search</strong><%= text_field_tag 'search_by_name',params[:search_by_name] %>

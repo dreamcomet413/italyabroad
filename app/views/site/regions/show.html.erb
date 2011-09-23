@@ -19,22 +19,20 @@
 
 
 <br />
-<div style="margin:0 40px;">
- <!-- <h3 style="text-align:center;border:none;color:#666666;">Region Information</h3> -->
-  <%#= @region.description || "No Description" %>
-  <span id="region_description"><%= @region.description || "Have a look at " %></span>
+<div style="margin-left:5px;margin-right:0px;">
+  <p id="region_description" style="margin-left:10px;text-indent:0px;text-align:justify;"><%= @region.description || "Have a look at " %></p>
   <br /><br />
   <% unless @region.producers.blank? %>
-  <h3 style="font-size:16px;color:#013300;border:none;">Our producers from <%= @region.name %></h3>
+  <h3 style="font-size:16px;color:#013300;border:none;margin-left:13px;">Our producers from <%= @region.name %></h3>
   <% end %>
   <ul>
   <%- @region.producers.each do |p| -%>
-    <li><%= link_to p.name,producer_path(p) %></li>
+    <li style="list-style:none;"><%= link_to p.name,producer_path(p) %></li>
   <%- end -%>
   </ul>
  <!-- <h3 style="font-size:16px;color:#013300;border:none;">Wine and Food from <%#= @region.name %></h3> -->
  <% unless  @region.products.find(:all,:conditions=>['active = ? and quantity > ?',true,0]).blank? %>
- <h3 style="font-size:16px;color:#013300;border:none;">Produce from the region <%= @region.name %></h3>
+ <h3 style="font-size:16px;color:#013300;border:none;margin-left:13px;">Produce from the region <%= @region.name %></h3>
  <% end %>
       <%-
       region_products = ""

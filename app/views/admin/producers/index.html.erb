@@ -43,9 +43,9 @@
 
         <% if producer && producer.image %>
 
-        <%= image_tag(image_url('grape_thumb', producer.image, :jpg)) %>
+        <%= image_tag(image_url('grape_thumb', producer.image, :jpg, :width=>"100px;")) %>
         <% else %>
-        <%= image_tag("default.jpg",:size => "100x120") %>
+        <%= image_tag("default.jpg",:width => "100px;") %>
         <!--#show_producer_image(producer) -->
         <% end %>
 

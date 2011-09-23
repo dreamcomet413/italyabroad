@@ -16,22 +16,26 @@
 </div>
 
 <!--<div style="text-align:center;padding-top:10px;"><%#= image_tag("guide_home_image.jpg") %></div> -->
-<div style="margin:20px 40px;">
+<div style="margin-left:10px;margin-right:10px;">
  <!-- <h1 style="text-align:center;font-size:18px;font-weight:bold;color:#666666;margin-bottom:30px">Grape Information</h1> -->
-  <div style="float:left;margin-right:20px;"><%#= show_grape_image(@grape) %></div>
-  <%= @grape.description || "No Description" %>
+  <div style="float:left;margin-right:20px;"><%#= show_grape_image(@grape) %></div><br />
+  <p style="text-align:justify;margin-left:10px;margin-right:10px;"><%= @grape.description || "No Description" %></p>
   <div style="clear:both;"></div>
-  <br /><br />
-  <h3 style="font-size:16px;color:#013300;border:none;">Producers that grow this grape</h3>
+  <br />
+  <%- if @grape.producers.size >0 -%>
+  <br /><h3 style="font-size:16px;color:#013300;border:none;">Producers that grow this grape</h3>
+  <%-end-%>
   <ul style="list-style:none;margin:0;padding:0;">
     <%- @grape.producers.each do |producer| -%>
     <li><%= link_to producer.name, producer_path(producer) %></li>
     <%- end -%>
   </ul>
-  <br /><br />
-  <h3 style="font-size:16px;color:#013300;border:none;">Wines made with this grape</h3>
-  <ul style="list-style:none;margin:0;padding:0;text-align:center;">
+  <br />
   <% @grape_products = @grape.products.find(:all,:conditions=>['active = ? and quantity > ?',true,0])%>
+  <%- if  @grape_products.size>0 -%>
+  <br /><h3 style="font-size:16px;color:#013300;border:none;">&nbsp;&nbsp;&nbsp;Wines made with this grape</h3>
+  <%- end -%>
+  <ul style="list-style:none;margin:0;padding:0;text-align:center;">
     <%- @grape_products.each do |product| -%>
     <li style="float:left;width:100px;margin-left:10px;margin-bottom:10px;">
       <%= link_to show_image_tag(product.layout_image, product.image_1, :jpg,product.name), nested_products_uri(product) %><br />

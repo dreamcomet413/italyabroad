@@ -1043,7 +1043,7 @@ a {
     text-align:justify;
 }
 #region_description {
-    /*margin:10px;*/
+    margin:10px;
     width:710px;
     text-align:justify;
     font-size: 13px;
@@ -1090,7 +1090,7 @@ a {
 }
 
 #blog_container {
-    margin:0 17px;
+    margin:0 17px 10px 10px;
     color:black;
     padding-bottom:25px;
 }
@@ -2614,7 +2614,7 @@ ul.my-account-links li a {
 
 .product_cell {
     text-align:center;
-    padding:20px;
+    padding:10px;
 }
 #highlight {
     font-weight:bold;
