@@ -5,7 +5,16 @@
 <div>
   <table id="producers_banner">
 
-   <tr><td width="50%" ><%= show_grape_image(@grape) -%></td>
+   <tr><td width="50%" ><%#= show_grape_image(@grape) -%>
+    <% if @grape && @grape.image %>
+
+        <%= image_tag(image_url('recipe', @grape.image, :jpg),:alt=>@grape.name) %>
+        <% else %>
+        <%= image_tag("grape_default.png",:alt=>@grape.name) %>
+        <% end %>
+
+
+   </td>
 
    <td width="50%" style="font-size:20px;font-weight:lighter"> <%= @grape.grape_quote %></td>
     <!--A <strong style="font-size:30px;">blog</strong> dedicated entirely to<br />
