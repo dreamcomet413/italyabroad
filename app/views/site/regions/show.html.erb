@@ -7,12 +7,13 @@
 <div>
   <table id="producers_banner">
 
-   <tr><td width="50%" ><%#= show_region_image(@region) -%>
+   <!-- tr><td width="50%" --><%#= show_region_image(@region) -%>
+   <tr><td style="width:300px;height:300px;overflow:hidden;" ><%#= show_region_image(@region) -%>
       <% if @region && @region.image %>
 
-        <%= image_tag(image_url('recipe', @region.image, :jpg),:alt=>@region.name) %>
+        <%= image_tag(image_url('recipe', @region.image, :jpg),:alt=>@region.name, :width=> "300px") %>
         <% else %>
-        <%= image_tag("region-home-image.jpg",:size => "400x300",:alt=>@region.name) %>
+        <%= image_tag("region-home-image.jpg",:size => "400x300",:alt=>@region.name, :width=> "300px") %>
         <% end %>
 
 

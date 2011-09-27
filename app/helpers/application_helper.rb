@@ -178,15 +178,20 @@ module ApplicationHelper
 
 
   def show_grape_image(grape)
-    return image_tag(image_url(:grape_thumb, grape.image, :jpg)) if grape.image
+    return image_tag(image_url(:grape_original, grape.image, :jpg)) if grape.image
     return image_tag("grape_default.png")
   end
 
   def show_region_image(region)
-    return image_tag(image_url(:region_card, region.image, :jpg)) if region.image #,:size => "100x120"
-    return image_tag("region-home-image.jpg",:size => "100x120")
+    if region.image #,:size => "100x120"
+      return "<div style='height:284;width:367';overflow:hidden;>" + image_tag(image_url(:region_original, region.image, :jpg), :height => "284" ) + "</div>"
+    else
+      return "<div style='height:284;width:367';overflow:hidden;>" + image_tag("region-home-image.jpg",:height => "284")+ "</div>"
+    end
+
    # return image_tag("region_default.png",:size => "100x120")
   end
+
    def show_producer_image(producer)
     return image_tag(image_url(:producer_thumb, producer.image, :jpg)) if producer.image
    # return image_tag("region_default.png",:size => "100x120")
