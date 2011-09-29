@@ -117,7 +117,7 @@
        <%- end -%>
       </div>
       <div>
-      <% unless region.producers.blank? %>
+      <% unless region.producers(:conditions=>['active = ?',true]).blank? %>
       Producers in this region : <%- region.producers.each do |p| -%>
             <%= p.name %>
           <%- end -%>

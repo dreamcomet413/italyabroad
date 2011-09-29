@@ -12,6 +12,10 @@
       <td><%= text_field :producer, :producer_quote %></td>
     </tr>
   <tr>
+		  <td >Active:</td>
+		  <td><%= check_box :producer, :active %>
+    </tr>
+  <tr>
     <td valign="top">Image</td>
     <% fields_for :image do %>
     <td><%= file_field :image,:image_file %>

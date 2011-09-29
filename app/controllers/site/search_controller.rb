@@ -42,7 +42,7 @@ class Site::SearchController < ApplicationController
 
       @users = User.find(:all, :conditions => ["name LIKE ?", "%#{params[:text]}%"])
 
-      @producers = Producer.find(:all, :conditions => ["name LIKE ?", "%#{params[:text]}%"])
+      @producers = Producer.find(:all, :conditions => ["name LIKE ? AND active = ?", "%#{params[:text]}%",true])
       respond_to do |format|
         format.html { render :action => :all }
       end
@@ -74,7 +74,7 @@ class Site::SearchController < ApplicationController
     end
   end
   def find_producers
-      @producers = Producer.find(:all, :conditions => ["name LIKE ?", "%#{params[:text]}%"])
+      @producers = Producer.find(:all, :conditions => ["name LIKE ? and active = ?", "%#{params[:text]}%",true])
 
     respond_to do |format|
       format.html{ render :update do |page|

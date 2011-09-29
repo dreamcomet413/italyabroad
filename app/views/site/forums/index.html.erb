@@ -40,7 +40,7 @@
             <td>
               <div id="box_producer">
                <h1 style="color:#9b0707;font-size:16px;">Get to know our producers</h1>
-                <%- producers = Producer.find(:all, :limit => 1, :order => "RAND()") %>
+                <%- producers = Producer.find(:all, :limit => 1,:conditions=>['active = ?',true] ,:order => "RAND()") %>
                 <%# producers = Producer.find(:all, :limit => 1, :conditions => "id=39") %>
                 <%- for producer in producers -%>
                       <div id="get_to_know_our_producers_avatar">
@@ -195,7 +195,7 @@
         </div>
         <div id="box_get_to_know_italy"><br /><br />
           <h1 style="color:#9b0707;font-size:16px;">Get to know italy</h1>
-          <%- regions = Region.find(:all, :limit => 1, :order => "RAND()") -%>
+          <%- regions = Region.find(:all,:conditions=>['active = ?',true] :limit => 1, :order => "RAND()") -%>
           <%#- regions = Region.find(:all, :limit => 1, :conditions => "id = 15") -%>
           <%- for region in regions -%>
           <div style="padding-bottom:10px;color:#7f2d54;"><%= link_to region.name, region_path(region) %>&nbsp;<%= link_to "(more regions)", regions_path %></div>

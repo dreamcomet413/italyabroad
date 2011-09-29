@@ -27,7 +27,7 @@
 <div style="margin-left:5px;margin-right:0px;">
   <p id="region_description" style="margin-left:10px;text-indent:0px;text-align:justify;"><%= @region.description || "Have a look at " %></p>
   <br /><br />
-  <% unless @region.producers.blank? %>
+  <% unless @region.producers(:conditions=>['active = ?',true]).blank? %>
   <h3 style="font-size:16px;color:#013300;border:none;margin-left:13px;">Our producers from <%= @region.name %></h3>
   <% end %>
   <ul>

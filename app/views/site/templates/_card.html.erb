@@ -48,7 +48,16 @@
           <%- if @product.is_wine? || @product.is_food? -%>
             <tr>
               <td valign="top">Region:</td>
-              <td class="data"><%= link_to (@product.region.name, region_path(@product.region)) rescue "No region" %></td>
+              <td class="data">
+              <% if @product.region %>
+              <% if @product.region.active %>
+              <%= link_to (@product.region.name, region_path(@product.region))   %>
+              <% else %>
+               "No region"
+              <% end  else %>
+              "No region"
+              <% end %>
+              </td>
             </tr>
           <%- end -%>
           <%- if @product.is_wine? -%>
@@ -61,7 +70,16 @@
           <%- end -%>
           <tr>
             <td valign="top">Producer:</td>
-            <td class="data"><%= link_to(@product.producer.name, producer_path(@product.producer)) rescue "No producer" %></td>
+            <td class="data">
+           <% if @product.producer %>
+            <% if @product.producer.active %>
+            <%= link_to(@product.producer.name, producer_path(@product.producer))  %>
+            <% else %>
+             No producer
+             <%  end %>
+             <% else %>
+             No producer
+             <%  end %></td>
           </tr>
           <%- if @product.is_wine? -%>
             <tr>
@@ -145,7 +163,15 @@
 <div id="wineProducer">
   <br />
   <h3>Producer</h3>
-  <%= @product.producer.description.gsub("\n","<br />") rescue "Product has no producer description" %>
+  <%  if @product.producer
+   if @product.producer.active %>
+  <%= @product.producer.description.gsub("\n","<br />") %>
+  <% else %>
+  Product has no producer description
+  <% end %>
+  <% else %>
+  Product has no producer description
+  <% end %>
 </div>
 <div id="wineReview">
   <br />

@@ -11,6 +11,10 @@
       <td>Quote on Region: </td>
       <td><%= text_field :region, :region_quote %></td>
     </tr>
+   <tr>
+		  <td >Active:</td>
+		  <td><%= check_box :region, :active %>
+    </tr>
     <tr>
     <td>Image</td>
     <% fields_for :image do %>

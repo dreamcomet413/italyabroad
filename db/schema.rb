@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110726091852) do
+ActiveRecord::Schema.define(:version => 20110929051448) do
 
   create_table "about_us", :force => true do |t|
     t.string   "title"
@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(:version => 20110726091852) do
     t.string  "friendly_identifier"
     t.string  "text_on_image"
     t.string  "page_heading"
+    t.integer "menu_order",                            :null => false
   end
 
   create_table "categorizations", :force => true do |t|
@@ -338,6 +339,7 @@ ActiveRecord::Schema.define(:version => 20110726091852) do
     t.string   "friendly_identifier"
     t.integer  "image_id"
     t.string   "producer_quote"
+    t.boolean  "active",              :default => true
   end
 
   create_table "producers_products", :force => true do |t|
@@ -471,6 +473,7 @@ ActiveRecord::Schema.define(:version => 20110726091852) do
     t.string   "friendly_identifier"
     t.integer  "image_id"
     t.string   "region_quote"
+    t.boolean  "active",              :default => true
   end
 
   create_table "reservations", :force => true do |t|
