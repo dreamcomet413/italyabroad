@@ -4,28 +4,23 @@
 <div id="header"><%= @region.name %></div>
 <br />
 <!--<div style="text-align:center;margin-top:15px;"><%#= image_tag("region-home-image.jpg") %></div> -->
-<div>
-  <table id="producers_banner">
 
-   <!-- tr><td width="50%" --><%#= show_region_image(@region) -%>
-   <tr><td style="width:300px;height:300px;overflow:hidden;" ><%#= show_region_image(@region) -%>
-      <% if @region && @region.image %>
+<div id="page_banners">
 
-        <%= image_tag(image_url('recipe', @region.image, :jpg),:alt=>@region.name, :width=> "300px") %>
-        <% else %>
-        <%= image_tag("region-home-image.jpg",:size => "400x300",:alt=>@region.name, :width=> "300px") %>
-        <% end %>
+  <div class="banner-left">
+    <% if @region && @region.image %>
+      <%= image_tag(image_url('recipe', @region.image, :jpg),:alt=>@region.name, :height=> "300px") if @region && @region.image %>
+    <% else %>
+      <%= image_tag("region-home-image.jpg", :alt=>@region.name, :height=> "300px") %>
+    <%- end -%>
 
+  </div>
+  <div class="banner-right"><%=@region.region_quote %></div>
 
-   </td>
-
-   <td width="50%" style="font-size:20px;font-weight:lighter;"> <%= @region.region_quote %></td>
-    <!--A <strong style="font-size:30px;">blog</strong> dedicated entirely to<br />
-    <strong style="font-size:30px;">Italian wine,</strong> follow us in our<br />
-    discovery journey, <strong style="font-size:30px;">read news</strong><br />
-    and our <strong style="font-size:30px;">views</strong> on Italian wine-->
-</tr></table>
 </div>
+
+
+
 
 
 <br />

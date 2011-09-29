@@ -2753,4 +2753,42 @@ li#link-to-hampers ul li a:hover{
     font-size: 15px;
 
 }
+.banner-left {
+    float:left;
+    height:300px;
+    width:300px;
+    overflow:hidden;
+    padding:0px;
+    margin:0px;
+}
+.banner-right {
+    float:left;
+    height:300px;
+    width:422px;
+    font-size:20px;
+    font-weight:lighter;
+    text-align:center;
+    padding-top:80px;
+}
+#page_banners {
+    position:relative;
+    text-align:center;
+    margin:auto;
+    margin-top:0px;
+    margin-bottom:auto;
+    width:723px;
+    height:300px;
+    overflow :hidden;
+    background:transparent url(images/loading.gif) center center;
+    border-style:solid;
+    border-width:1px;
+    border-color:#ccc;
+    /*padding:5px 5px 5px 5px;*/
+    padding:0px 0px 0px 0px;
+    overflow:hidden;
+}
+#page_banners div.banner-left img {
+    padding:0px;
+    margin:0px;
+}
 

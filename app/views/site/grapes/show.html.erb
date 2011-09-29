@@ -2,28 +2,20 @@
 
 <div id="header"><%= @grape.name %></div>
 <br />
-<div>
-  <table id="producers_banner">
 
-   <!-- tr><td width="50%" --><%#= show_grape_image(@grape) -%>
-   <tr><td style="width:300px;height:300px;overflow:hidden;" ><%#= show_region_image(@region) -%>
-    <% if @grape && @grape.image %>
+<div id="page_banners">
 
-        <%= image_tag(image_url('recipe', @grape.image, :jpg),:alt=>@grape.name, :width=> "300px") %>
-        <% else %>
-        <%= image_tag("grape_default.png",:alt=>@grape.name, :width=> "300px") %>
-        <% end %>
+  <div class="banner-left">
+      <% if @grape && @grape.image %>
+      <%= image_tag(image_url('recipe', @grape.image, :jpg),:alt=>@grape.name, :height=> "300px") %>
+      <% else %>
+      <%= image_tag("grape_default.png",:alt=>@grape.name, :height=> "300px") %>
+      <% end %>
+  </div>
+  <div class="banner-right"><%=@grape.grape_quote %></div>
 
-
-   </td>
-
-   <td width="50%" style="font-size:20px;font-weight:lighter"> <%= @grape.grape_quote %></td>
-    <!--A <strong style="font-size:30px;">blog</strong> dedicated entirely to<br />
-    <strong style="font-size:30px;">Italian wine,</strong> follow us in our<br />
-    discovery journey, <strong style="font-size:30px;">read news</strong><br />
-    and our <strong style="font-size:30px;">views</strong> on Italian wine-->
-</tr></table>
 </div>
+
 
 <!--<div style="text-align:center;padding-top:10px;"><%#= image_tag("guide_home_image.jpg") %></div> -->
 <div style="margin-left:10px;margin-right:10px;">
