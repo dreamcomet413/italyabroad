@@ -2791,7 +2791,7 @@ li#link-to-hampers ul li a:hover{
     padding:0px;
     margin:0px;
 }
-#box_food_search.block {
+#box_food_search.block, #box_hamper_search.block {
     width:225px;
 }
 
