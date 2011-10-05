@@ -1,47 +1,49 @@
 <% @title = "Search #{params[:text]}"; %>
 <%- @breadcrumbs = "#{link_to "Home", root_url} &raquo; Search &raquo; All Site" -%>
+<% if @users.blank? and  @producers.blank? and @wines.blank? and @recipes.blank? %>
+<div id="header">Your search returned no results:</div><br />
+ Sorry the search has not given any result, please check the spelling or <%= mail_to "info@italyabroad.com", "get in touch" %> and will find it for you
 
-
-<div id="header">The search string you entered appears in the following users:</div>
+<% else %>
   <% unless @users.blank? %>
+  <div id="header">Your search has found the following users:</div>
  <%= link_to_remote @users.count.to_s + 'Users', :url => { :action => "find_users",:text=>params[:text]} %>
-  <% else %>
-  0 Users
-  <% end %> <br /><br /><br />
-<div id="all_users"></div><br /><br /><br />
+ <div id="all_users"></div><br /><br /><br />
+  <% end %>
 
-<div id="header">The search string you entered appears in the following producers:</div>
+
+
   <% unless @producers.blank? %>
+  <div id="header">Your search has found the following producers:</div>
  <%= link_to_remote @producers.count.to_s + 'Producers', :url => { :action => "find_producers",:text=>params[:text]} %>
-  <% else %>
-  0 Producers
-  <% end %> <br /><br /><br />
-<div id="all_producers"></div><br /><br /><br />
+ <div id="all_producers"></div><br /><br /><br />
 
 
-<div id="header">The search string you entered appears in the following wines:</div>
+<% end %>
+
+
   <% unless @wines.blank? %>
-  <%= link_to_remote @wines.count.to_s + 'Wines' , :url => { :action => "find_wines",:text=>params[:text]} %>
-  <% else %>
-  0 Wines
-  <% end %> <br /><br /><br />
- <div id="all_wines"></div><br /><br />
+  <div id="header">Your search has found the following wines:</div>
+  <%= link_to_remote @wines.count.to_s + 'Wines' , :url => { :action => "find_wines",:text=>params[:text]} %> <div id="all_wines"></div> <br /><br /><br />
 
-<div id="header">The search string you entered appears in the following Recipes:</div>
+
+<% end %>
+
   <% unless @recipes.blank? %>
+  <div id="header">Your search has found the following Recipes:</div>
   <%= link_to_remote @recipes.count.to_s + 'Recipes', :url => { :action => "find_recipes",:text=>params[:text]} %>
-  <% else %>
-  0 Recipes
-  <% end %> <br /><br /><br />
-<div id="all_recipes"></div>
- <div id="header">The search string you entered appears in the following Foods:</div>
-  <% unless @foods.blank? %>
- <%= link_to_remote @foods.count.to_s + 'Foods', :url => { :action => "find_foods",:text=>params[:text]} %>
-  <% else %>
-  0 Foods
-  <% end %><br /><br /><br />
-<div id="all_foods"></div><br /><br /><br />
+  <div id="all_recipes"></div><br /><br /><br />
 
+  <% end %>
+
+
+  <% unless @foods.blank? %>
+  <div id="header">Your search has found the following Foods:</div>
+ <%= link_to_remote @foods.count.to_s + 'Foods', :url => { :action => "find_foods",:text=>params[:text]} %>
+ <div id="all_foods"></div><br /><br /><br />
+  <% end %>
+
+<% end %>
 <% content_for :right do %>
   <%= render :partial => 'site/shared/box_search_recipes_new' %>
   <br />
