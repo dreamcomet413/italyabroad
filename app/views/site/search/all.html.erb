@@ -2,11 +2,15 @@
 <%- @breadcrumbs = "#{link_to "Home", root_url} &raquo; Search &raquo; All Site" -%>
 <% if @users.blank? and  @producers.blank? and @wines.blank? and @recipes.blank? %>
 <div id="header">Your search returned no results:</div><br />
- Sorry the search has not given any result, please check the spelling or <%= mail_to "info@italyabroad.com", "get in touch" %> and will find it for you
+ Sorry the search has not given any result, please check the spelling or <%= mail_to "info@italyabroad.com", "get in touch" %> and will find it for you.
+
 
 <% else %>
+<div id="header">Your search has found the following </div>
+<% end %>
   <% unless @users.blank? %>
-  <div id="header">Your search has found the following users:</div>
+  <!--<div id="header">Your search has found the following users:</div>-->
+  <h1>Users</h1>
  <%= link_to_remote @users.count.to_s + 'Users', :url => { :action => "find_users",:text=>params[:text]} %>
  <div id="all_users"></div><br /><br /><br />
   <% end %>
@@ -14,7 +18,8 @@
 
 
   <% unless @producers.blank? %>
-  <div id="header">Your search has found the following producers:</div>
+  <!--<div id="header">Your search has found the following producers:</div>-->
+  <h1>Producers</h1>
  <%= link_to_remote @producers.count.to_s + 'Producers', :url => { :action => "find_producers",:text=>params[:text]} %>
  <div id="all_producers"></div><br /><br /><br />
 
@@ -23,14 +28,16 @@
 
 
   <% unless @wines.blank? %>
-  <div id="header">Your search has found the following wines:</div>
+  <!--<div id="header">Your search has found the following wines:</div>-->
+  <h1>Wines</h1>
   <%= link_to_remote @wines.count.to_s + 'Wines' , :url => { :action => "find_wines",:text=>params[:text]} %> <div id="all_wines"></div> <br /><br /><br />
 
 
 <% end %>
 
   <% unless @recipes.blank? %>
-  <div id="header">Your search has found the following Recipes:</div>
+ <!--<div id="header">Your search has found the following Recipes:</div>-->
+  <h1>Recipes</h1>
   <%= link_to_remote @recipes.count.to_s + 'Recipes', :url => { :action => "find_recipes",:text=>params[:text]} %>
   <div id="all_recipes"></div><br /><br /><br />
 
@@ -38,12 +45,13 @@
 
 
   <% unless @foods.blank? %>
-  <div id="header">Your search has found the following Foods:</div>
+  <!--<div id="header">Your search has found the following Foods:</div>-->
+  <h1>Foods</h1>
  <%= link_to_remote @foods.count.to_s + 'Foods', :url => { :action => "find_foods",:text=>params[:text]} %>
  <div id="all_foods"></div><br /><br /><br />
   <% end %>
 
-<% end %>
+
 <% content_for :right do %>
   <%#= render :partial => 'site/shared/box_search_recipes_new' %>
 
