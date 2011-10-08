@@ -188,8 +188,8 @@ module ApplicationHelper
   end
 
    def show_producer_image(producer)
-    return image_tag(image_url(:producer_thumb, producer.image, :jpg), :width => "300px") if producer.image
-    return image_tag("default.jpg",:width => "300px")
+    return image_tag(image_url(:producer_thumb, producer.image, :jpg), :width => "98px") if producer.image
+    return image_tag("default.jpg", :width => "98px")
   end
 
   def will_paginate_(object)
