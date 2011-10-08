@@ -1,10 +1,11 @@
 <%- @title = "Community search result"; @class = "people"; @breadcrumbs = "#{link_to("Home", root_url)} &raquo; Search &raquo; People" -%>
+<% unless @users.blank? %>
 <div id="header">Community search result</div>
 <div>
- <%= will_paginate(@users) %>
-  <ul style="list-style:none;padding-left:20px;">
+ <div align="right"><%= will_paginate(@users) %></div>
+  <ul style="margin:0;list-style:none;padding-left:0px;">
     <%- for people in @users -%>
-    <li>
+    <li class="product_listing" style="margin:0;padding-left:20px;margin-top:10px;">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
           <td width="98px;">
@@ -21,34 +22,58 @@
                 <td><%= people.city %></td>
               </tr>
               <tr>
-                <td colspan="2">My favorite wines is ...</td>
+                <td colspan="2">My favorite wines is <%= people.fav_wine %></td>
               </tr>
+              <tr>
+                <td colspan="2"><%= people.chef_bio %></td>
+              </tr>
+
             </table>
           </td>
-        </tr>
-      </table>
-      <br />
-      <%= people.name %>'s latest comments
-      <ul>
-        <%- for comment in people.comments.all(:order => "created_at DESC") -%>
-        <li><%= comment.name %></li>
-        <%- end -%>
-      </ul>
-      <br />
-      <% unless people == current_user %>
+          <td valign="top">
+             <% unless people == current_user %>
+      <div align="right">
       <%- if people.followed_by?(current_user) -%>
       <%= link_to image_tag("buttons/unfollow.png"), unfollow_path(people) %>
       <%- else -%>
       <%= link_to image_tag("buttons/follow.png"), follow_path(people) %>
       <%- end -%>
+      </div>
       <% end %>
+          </td>
+        </tr>
+      </table>
+      <br />
+      <% if people.type_id != 4 %>
+      <%= people.name %>'s latest comments
+      <ul>
+        <%- for comment in people.comments.all(:order => "created_at DESC") -%>
+        <li><%= comment.name %></li>
+        <%- end -%>
+
+      </ul>
+      <% end %>
+      <% if people.type_id == 4 %>
+      <% unless people.recipes.last.nil?%>  <%= people.name %>'s latest Recipe :
+       <%= link_to people.recipes.last.name,recipe_path(people.recipes.last.id)  %>
+      <% end %>
+      <% end %>
+
+
+      <br />
+
     </li>
     <%- end -%>
   </ul>
-  <%= will_paginate(@users) %>
+  <div align="right"><%= will_paginate(@users) %></div>
 </div>
-
+<% else %>
+<div id="header">Your search returned no results:</div><br />
+ Sorry no community member has been found , please check the spelling or <%= mail_to "info@italyabroad.com", "get in touch" %> and will find it for you.
+<% end %>
 <% content_for :right do %>
+<%= render :partial => 'site/shared/box_search_people_by_city' %>
+  <br />
 	<%= render :partial => '/site/shared/box_popular' %>
 	<br />
 	<%= render :partial => '/site/shared/box_grape_guide' %>

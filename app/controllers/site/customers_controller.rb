@@ -77,6 +77,10 @@ class Site::CustomersController < ApplicationController
             if @user.type_id != 4
               self.current_user = User.authenticate(@user.login, @user.password_clean)
               #redirect_back_or_default(:action => :messages)
+            elsif @user.type_id == 4
+              flash[:alert] = "The profile will be reviewed by a member of our team before being published"
+              #  flash[:notice] = "The profile will be reviewed by a member of our team before being published"
+
             end
             redirect_back_or_default(root_url)
           else

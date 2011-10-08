@@ -1,7 +1,8 @@
 <% @title = "Search #{params[:text]}"; %>
 <%- @breadcrumbs = "#{link_to "Home", root_url} &raquo; Search &raquo; Recipes" -%>
-
+<% unless @recipes.blank? %>
 <div id="header">Your search result has found the following products:</div>
+
 <div style="margin:10px 0px;padding:5px;background-color:#F3F8DA;">
   <table style="width:100%;" cellpadding="0" cellspacing="0" border="0">
     <tr>
@@ -20,13 +21,13 @@
   </table>
 </div>
 <div>
-  <ul style="margin:0;list-style:none;padding-left:20px;">
+  <ul style="margin:0;list-style:none;padding-left:0px;">
   <%- for recipe in @recipes -%>
-    <li class="product_listing">
+    <li class="product_listing" style="margin:0;padding-left:20px;">
       <h1><%= link_to recipe.name, recipe_path(recipe), :class => "recipe_title" %></h1><!--, :style => "font-size:17px;color:#003300;"-->
       <span id="recipe_caption"><%= link_to "Preparation Time:#{recipe.preparation_time} min"  ,{:category=>'recipe',:preparation_time => recipe.preparation_time,:text=>params[:text]},:style=>"color:black;" %></span><br />
       <span id="recipe_caption"><%= link_to "Difficulty: #{recipe.recipe_level.name}",{:category=>'recipe',:difficulty => recipe.recipe_level_id,:text=>params[:text]},:style=>"color:black;" %></span><br /><br />
-      <%= recipe.preparation %><br /><br />
+      <%= recipe.preparation[0..360] %><br /><br />
 
     </li>
   <%- end -%>
@@ -34,6 +35,10 @@
   <br />
 </div>
 <%= content_tag(:div, will_paginate(@recipes), :style => "padding:5px;text-align:right;background-color:#F3F8DA") unless will_paginate(@recipes).blank? %>
+<% else %>
+<div id="header">Your search returned no results:</div><br />
+ Sorry the search has not given any result, please check the spelling or <%= mail_to "info@italyabroad.com", "get in touch" %> and will find it for you.
+<% end %>
 <br />
 <br />
 <% content_for :right do %>

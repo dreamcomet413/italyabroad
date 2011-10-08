@@ -14,7 +14,7 @@ class Site::SearchController < ApplicationController
       end
     elsif params[:category] == "people"
     #  if @searched_text.length > 3
-        @users = User.find(:all, :conditions => ["name LIKE ?", "%#{params[:text]}%"]).paginate(:page => params[:page], :per_page => 10)
+        @users = User.find(:all, :conditions => ["name LIKE ? AND city LIKE ?", "%#{params[:text]}%","%#{params[:city_text]}%"]).paginate(:page => params[:page], :per_page => 10)
     #  end
 
       respond_to do |format|
