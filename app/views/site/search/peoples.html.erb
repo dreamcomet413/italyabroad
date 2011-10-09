@@ -34,7 +34,7 @@
           </td>
           <td valign="top" >
              <% unless people == current_user %>
-      <div align="right" style="margin-top:90px;">
+      <div align="right" style="margin:0 0 0 0px;margin-top:90px;margin-right:15px;">
       <%- if people.followed_by?(current_user) -%>
       <%= link_to image_tag("buttons/unfollow.png"), unfollow_path(people) %>
       <%- else -%>
@@ -71,7 +71,7 @@
 </div>
 <% else %>
 <div id="header">Your search returned no results:</div><br />
- Sorry no community member has been found , please check the spelling or <%= mail_to "info@italyabroad.com", "get in touch" %> and will find it for you.
+<span style="font-size:14px;"> &nbsp;&nbsp;&nbsp;&nbsp;Sorry no community member has been found.</span>
 <% end %>
 <% content_for :right do %>
 <%= render :partial => 'site/shared/box_search_people_by_city' %>
