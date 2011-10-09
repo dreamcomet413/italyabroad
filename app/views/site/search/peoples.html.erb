@@ -9,14 +9,14 @@
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
           <td width="98px;">
-           <%= image_tag 'chef_icon.png' if people.type_id == 4 %>
+
             <%= link_to avatar_for_user(people), customer_path(people) %>
           </td>
           <td valign="top">
             <table cellspacing="5">
               <tr>
-                <td>Name:</td
-                <td><%= people.name %></td>
+                <td>Name:</td>
+                <td><%= people.name %>&nbsp;&nbsp; <%= image_tag 'chef_icon.png' if people.type_id == 4 %></td>
               </tr>
               <tr>
                 <td>City:</td>
@@ -26,14 +26,15 @@
                 <td colspan="2">My favorite wines is <%= people.fav_wine %></td>
               </tr>
               <tr>
-                <td colspan="2"><%= people.chef_bio %></td>
+              <td>Biography:</td>
+                <td><%= people.chef_bio %></td>
               </tr>
 
             </table>
           </td>
-          <td valign="top" style="padding:10px;">
+          <td valign="top" >
              <% unless people == current_user %>
-      <div align="right">
+      <div align="right" style="margin-top:90px;">
       <%- if people.followed_by?(current_user) -%>
       <%= link_to image_tag("buttons/unfollow.png"), unfollow_path(people) %>
       <%- else -%>
