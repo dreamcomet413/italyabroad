@@ -1,7 +1,7 @@
 <div id="header">Your search has found the following Recipes</div>
-<div align="right"><%= will_paginate(@recipes) %></div>
+<div align="right" class="pagination_div"><%= will_paginate(@recipes) %></div>
 <% for recipe in @recipes %>
-<table style="padding-bottom:20px;width:100%;" cellpadding="0" border="0" cellspacing="0">
+<table style="padding:0 0 0 0px;padding-bottom:20px;padding-left:10px;padding-right:10px;width:100%;" cellpadding="0" border="0" cellspacing="0">
           <tr>
             <td width="60%">
               <strong><%= link_to recipe.name,recipe_path(recipe), :style => "font-size:14px;color:#003300;;" %></strong>

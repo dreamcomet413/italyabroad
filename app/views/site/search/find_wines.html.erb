@@ -3,14 +3,17 @@
 	<table style="margin:0 0 0 0px; margin-left:15px; margin-right:15px; padding-left:15px; padding-right:15px;width:100%;" cellpadding="0" border="0" cellspacing="0">
 		<tr>
 
-			<td style="width:100px;">
+			<td style="width:160px;">
         <%= link_to show_image_tag(product.layout_image, product.image_1, :jpg,product.name),nested_products_uri(product)  %>
 			</td>
 
 
-			<td style="margin:0 0 0 0px; margin-left:10px; margin-right:10px; padding: 10 10 10 10px;width:400px;">
-          <h1><%= link_to product.name, nested_products_uri(product), :style => "font-size:17px;color:black;" %></h1>
+			<td style="width:450px;">
+			<div style="margin:0 0 0 0px;margin-left:10px;">
+          <%= link_to product.name, nested_products_uri(product), :style => "font-size:17px;color:black;" %><br />
+          <%= show_ratings(product) %>
           <%= product.description_short %>
+			</div>
 			</td>
 
 
@@ -27,9 +30,7 @@
       					<span class="price" style="color:black;"><%= number_to_currency product.price, :unit => "&pound;" %></span>
       				<% end %>
     				</li>
-    				<li style="margin-bottom:5px;">
-    				  <%= link_to_remote image_tag("add_to_wish_list.png"), :url => product_wish_list_index_path(product), :html => {:style => "color:#464646;", :method => :post} %>
-    				</li>
+
   			    <li>
   			      <%- if product.out_of_stock? -%>
   			        <%= image_tag('out_of_stock.png') %>
@@ -37,6 +38,18 @@
   			        <%= link_to_remote image_tag("buttons/add_to_cart_button.png"), :url => product_cart_index_path(product), :html => {:method => 'post'} %>
   			      <%- end -%>
   			    </li>
+
+    				<li style="margin-bottom:5px;">
+    				  <%= link_to_remote image_tag("add_to_wish_list.png"), :url => product_wish_list_index_path(product), :html => {:style => "color:#464646;", :method => :post} %>
+    				</li>
+
+
+    				<li style="margin-bottom:5px;">
+    				  <%= link_to_remote image_tag("WINE_LIST.jpg"), :url => product_wine_list_index_path(@product), :html => {:style => "color:#464646;", :method => :post} %>
+    				</li>
+
+
+
   				</ul>
         </div>
 

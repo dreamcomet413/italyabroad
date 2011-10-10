@@ -25,18 +25,18 @@
 
 	<% for product in @products %>
 	<%- product = Product.find(product.id) -%>
-	<table style="padding-bottom:20px;width:100%;" cellpadding="0" border="0" cellspacing="0">
+	<table style="width:100%;" cellpadding="0" border="0" cellspacing="0">
 		<tr>
-			<td style="width: 80px; padding: 5px 10px;">
+			<td style="width: 80px;margin:0 0 0 0px;margin-left:15px;margin-right:15px;padding:0 0 0 0px;padding-left:10px;padding-right:10px;">
 				<%= link_to show_image_tag(product.layout_image, product.image_1, :jpg,product.name), nested_products_uri(product) %>
 			</td>
-			<td style="width: 490px;">
-
-				<h1><%= link_to product.name, nested_products_uri(product), :style => "font-size:17px;color:black;" %></h1>
+			<td style="width: 490px;vertical-align:top;margin:0 0 0 0px;">
+        <br /><br /><br />
+				<%= link_to product.name, nested_products_uri(product), :style => "font-size:17px;color:black;" %>
 				<br />
 				<div style="padding-top:10px"><%= product.description_short %></div>
 			</td>
-			<td style="padding: 20px 10px 5px;">
+			<td style="padding: 20px 10px 5px;vertical-align:top;margin:0 0 0 0px;">
         <div class="box_price_product">
           <ul>
             <li class="price_info">
@@ -47,9 +47,7 @@
       					<span class="price" style="color:black;"><%= number_to_currency product.price, :unit => "&pound;" %></span>
       				<% end %>
     				</li>
-    				<li style="margin-bottom:10px;">
-    				  <%= link_to_remote image_tag("add_to_wish_list.png"), :url => product_wish_list_index_path(product), :html => {:style => "color:#464646;", :method => :post} %>
-    				</li>
+
   			    <li>
   			      <%- if product.out_of_stock? -%>
   			        <%= image_tag('out_of_stock.png') %>
@@ -57,6 +55,18 @@
   			        <%= link_to_remote image_tag("buttons/add_to_cart_button.png"), :url => product_cart_index_path(product), :html => {:method => 'post'} %>
   			      <%- end -%>
   			    </li>
+
+    				<li style="margin-bottom:10px;">
+    				  <%= link_to_remote image_tag("add_to_wish_list.png"), :url => product_wish_list_index_path(product), :html => {:style => "color:#464646;", :method => :post} %>
+    				</li>
+
+
+            <% if  product.categories.root.name.downcase == 'wine' %>
+    				<li style="margin-bottom:10px;">
+    				  <%= link_to_remote image_tag("WINE_LIST.jpg"), :url => product_wine_list_index_path(@product), :html => {:style => "color:#464646;", :method => :post} %>
+    				</li>
+            <%- end -%>
+
   				</ul>
         </div>
 			</td>
