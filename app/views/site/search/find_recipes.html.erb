@@ -1,0 +1,48 @@
+<div id="header">Your search has found the following Recipes</div>
+<div align="right"><%= will_paginate(@recipes) %></div>
+<% for recipe in @recipes %>
+<table style="padding-bottom:20px;width:100%;" cellpadding="0" border="0" cellspacing="0">
+          <tr>
+            <td width="60%">
+              <strong><%= link_to recipe.name,recipe_path(recipe), :style => "font-size:14px;color:#003300;;" %></strong>
+              <%= show_ratings(recipe, recipe.average_rating_round) if recipe.average_rating_round %>
+              <strong>Course:</strong> <%= recipe.recipe_type.name %><br />
+              <strong>Difficulty:</strong> <%= recipe.recipe_level.name %><br />
+              <strong>Prep time:</strong> <%= recipe.preparation_time %> min<br/>
+              <strong>Added by:</strong>
+              <% if recipe.user_id == 3 %>
+                Guest
+              <%else%>
+                <%= (recipe.user.name).capitalize rescue "Admin" %>
+               &nbsp;&nbsp;&nbsp;
+               <% if !recipe.user.nil? %>
+               <%= link_to recipe.user.establishment_link %>
+               <% end %>
+                <% end %>
+            </td>
+            <td align="right">
+              <% if !recipe.image_1.blank? %>
+              <%= link_to image_tag(image_url('recipe_thumb', recipe.image_1, :jpg),:alt=>recipe.name), recipe_path(recipe) %>
+              <% else %>
+              <%= link_to image_tag("no_images/PastaRecipe.jpg",:size => "100x75",:alt=>recipe.name), recipe_path(recipe) %>
+              <% end %>
+
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2" align="right"><%= link_to "Ingredients and cooking instructions", recipe_path(recipe) %></td>
+          </tr>
+
+        </table>
+        <hr />
+          <% end %>
+<% content_for :right do %>
+	<%= render :partial => 'site/shared/box_products_on_offer' %>
+	<br />
+	<%= render :partial => '/site/shared/box_event' %>
+	<br />
+	<%= render :partial => '/site/shared/box_subscriptions' %>
+	<br />
+	<%= render :partial => '/site/shared/box_grape_guide' %>
+<% end %>
+

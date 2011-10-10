@@ -64,58 +64,28 @@ class Site::SearchController < ApplicationController
     end
   end
   def find_users
-      @users = User.find(:all, :conditions => ["name LIKE ?", "%#{params[:text]}%"])
+      @users = User.find(:all, :conditions => ["name LIKE ?", "%#{params[:text]}%"]).paginate(:page => params[:page], :per_page => 10)
 
-    respond_to do |format|
-      format.html{ render :update do |page|
-        page.replace_html 'all_users',:partial=>'people',:object=>@users
-      end
-      }
-    end
   end
   def find_producers
-      @producers = Producer.find(:all, :conditions => ["name LIKE ? and active = ?", "%#{params[:text]}%",true])
+      @producers = Producer.find(:all, :conditions => ["name LIKE ? and active = ?", "%#{params[:text]}%",true]).paginate(:page => params[:page], :per_page => 10)
 
-    respond_to do |format|
-      format.html{ render :update do |page|
-        page.replace_html 'all_producers',:partial=>'producer',:object=>@producers
-      end
-      }
-    end
+
   end
 
 
   def find_wines
-    @search = Search.new(params || Hash.new)
-     @wines = Product.find(:all, :include => [:categories, :grapes] ,:conditions => @search.conditions)
-
-     respond_to do |format|
-      format.html{ render :update do |page|
-        page.replace_html 'all_wines',:partial=>'wine',:object=>@wines
-      end
-      }
-    end
+   # @search = Search.new(params || Hash.new)
+     @wines = Product.find(:all, :include => [:categories,:grapes] ,:conditions => ['products.name LIKE ? AND upper(categories.name) LIKE ?',"%#{params[:text]}%",'WINE']).paginate(:page => params[:page], :per_page => 10)
   end
 
   def find_foods
-       @foods = Product.find(:all, :include => [:categories,:grapes] ,:conditions => ['upper(categories.name) LIKE ? AND products.name LIKE ?','FOOD',"%#{params[:text]}%"])
-     respond_to do |format|
-      format.html{ render :update do |page|
-        page.replace_html 'all_foods',:partial=>'all_foods',:object=>@foods
-      end
-      }
-    end
+       @foods = Product.find(:all, :include => [:categories,:grapes] ,:conditions => ['upper(categories.name) LIKE ? AND products.name LIKE ?','FOOD',"%#{params[:text]}%"]).paginate(:page => params[:page], :per_page => 10)
+
   end
   def find_recipes
-      @search = Search.new(params || {})
-
-      @recipes = Recipe.find(:all, :conditions =>     @search.conditions_for_recipes)
-     respond_to do |format|
-      format.html{ render :update do |page|
-        page.replace_html 'all_recipes',:partial=>'all_recipes',:object=>@recipes
-      end
-      }
-    end
+    #  @search = Search.new(params || {})
+      @recipes = Recipe.find(:all, :conditions => ['name LIKE ? AND active = ?',"%#{params[:text]}%",true]).paginate(:page => params[:page], :per_page => 10)
   end
 
 
