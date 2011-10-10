@@ -37,7 +37,7 @@
 <%= content_tag(:div, will_paginate(@recipes), :style => "padding:5px;text-align:right;background-color:#F3F8DA") unless will_paginate(@recipes).blank? %>
 <% else %>
 <div id="header">Your search returned no results:</div><br />
- Sorry the search has not given any result, please check the spelling or <%= mail_to "info@italyabroad.com", "get in touch" %> and will find it for you.
+ <div class ="search_result">Sorry the search has not given any result, please check the spelling or <%= mail_to "info@italyabroad.com", "get in touch" %> and will find it for you.</div>
 <% end %>
 <br />
 <br />

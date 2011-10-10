@@ -7,19 +7,22 @@
     <table style="width:100%;" cellpadding="0" cellspacing="0" border="0">
       <tr>
         <%- unless will_paginate(@products).blank? -%>
-        <td><%= will_paginate(@products) %></td>
+        <td class="pagination_div"><%= will_paginate(@products) %></td>
         <%- end -%>
         <td align="right">
           <%- form_tag search_index_path, :method => :get, :id => "sort_by_form" do -%>
-          <%= hidden_field_tag :page, (params[:page] || 1) %>
-          <%= hidden_field_tag :text, params[:text] %>
-          <%= hidden_field_tag :id, params[:id] %>
-          <strong>Sort by:</strong>&nbsp;<%= select_tag("sort_by", options_for_select([["Price: High to low", "price desc"], ["Price: Low to high", "price asc"], ["Name", "name"], ["Region", "region_id"]], @sort_by), :onchange => "$('sort_by_form').submit()") %>
+              <%= hidden_field_tag :page, (params[:page] || 1) %>
+              <%= hidden_field_tag :text, params[:text] %>
+              <%= hidden_field_tag :id, params[:id] %>
+              <strong>Sort by:</strong>&nbsp;<%= select_tag("sort_by", options_for_select([["Price: High to low", "price desc"], ["Price: Low to high", "price asc"], ["Name", "name"], ["Region", "region_id"]], @sort_by), :onchange => "$('sort_by_form').submit()") %>
           <%- end -%>
         </td>
       </tr>
     </table>
   </div>
+
+
+
 	<% for product in @products %>
 	<%- product = Product.find(product.id) -%>
 	<table style="padding-bottom:20px;width:100%;" cellpadding="0" border="0" cellspacing="0">
@@ -63,14 +66,15 @@
     </tr>
 	</table>
 	<% end %>
-	<%= content_tag(:div, will_paginate(@products), :style => "padding:5px;text-align:right;background-color:#F3F8DA") unless will_paginate(@products).blank? %>
-	<br /><br />
-<% else %>
-	<div id="header">Your search returned no result</div>
-	<div style="margin:20px;font-size:14px;">
-		Please check the spelling or in case you did not find what you wanted <%= mail_to "info@italyabroad.com", "get in touch" %> and will find it for you
-	</div>
-<% end %>
+
+  <%= content_tag(:div, will_paginate(@products), :style => "padding:5px;text-align:right;background-color:#F3F8DA") unless will_paginate(@products).blank? %>
+  <br /><br />
+  <% else %>
+  <div id="header">Your search returned no result</div>
+  <div style="margin:20px;font-size:14px;">
+  Please check the spelling or in case you did not find what you wanted <%= mail_to "info@italyabroad.com", "get in touch" %> and will find it for you
+  </div>
+  <% end %>
 
 
 <% content_for :right do %>
@@ -81,7 +85,8 @@
     <% elsif params[:id].upcase == 'FOOD' %>
       <%= render :partial => 'site/shared/box_food_search' %>
       <br />
-   <%end else %>
+   <%end
+   else %>
     <%= render :partial => 'site/shared/box_wine_search', :locals => {:search_url => search_index_path} %>
     <br />
   <% end %>
