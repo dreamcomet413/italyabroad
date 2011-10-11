@@ -11,11 +11,11 @@
             <table cellspacing="5">
               <tr>
                 <td>
-                 <h1><%= link_to producer.name, producer_path(producer) %></h1></td>
+                 <h1><%= link_to producer.name, producer_path(producer) %></h1>
+                </td>
               </tr>
               <tr><td><%= producer.description[0..400] %></td></tr>
               <tr><td>Region:<%= producer.region.name rescue "No region" %></td></tr>
-
             </table>
           </td>
         </tr>
@@ -23,7 +23,6 @@
       <h3>&nbsp;</h3>
   <% end %>
   </ul>
-</div>
 
 <% content_for :right do %>
 	<%= render :partial => '/site/shared/box_popular' %>
