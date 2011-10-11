@@ -84,8 +84,9 @@ class Site::SearchController < ApplicationController
 
   end
   def find_recipes
-    #  @search = Search.new(params || {})
-      @recipes = Recipe.find(:all, :conditions => ['name LIKE ? AND active = ?',"%#{params[:text]}%",true]).paginate(:page => params[:page], :per_page => 10)
+    #  @recipes = Recipe.find(:all, :conditions => ['name LIKE ? AND active = ?',"%#{params[:text]}%",true]).paginate(:page => params[:page], :per_page => 10)
+     @search = Search.new(params || Hash.new)
+        @recipes = Recipe.find(:all, :conditions =>@search.conditions_for_recipes).paginate(:page => params[:page], :per_page => 10)
   end
 
 
