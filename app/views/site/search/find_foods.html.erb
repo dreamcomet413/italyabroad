@@ -1,17 +1,24 @@
 <div id="header">Your search has found the following Foods</div>
-<div align="right"><%= will_paginate(@foods) %></div>
-	<% for product in @foods %>
-  <table style="padding-bottom:20px;width:100%;" cellpadding="0" border="0" cellspacing="0">
-		<tr>
+<div align="right" class="pagination_div"><%= will_paginate(@foods) %></div>
+	<% for product in @foods %><br />
+    <div class="wineList">
+      <table width="100%">
+        <tr>
+          <td style="padding:0;width:100px;height:100px;text-align:center;"><br />
+            <%= link_to show_image_tag(product.layout_image, product.image_1, :jpg,:alt=>product.name), nested_products_uri(product) %><br /><br />
+          </td>
+          <td valign="top" style="padding:0;width:630px;padding-top:15px;">
 
-			<td style="width: 490px;">
+                <%= link_to product.name, nested_products_uri(product), :style => "font-size:15px;" %><br />
+                <%= show_review_ratings(product) %>
+                <%= product.description_short %>
 
-				<h1><%= link_to product.name, nested_products_uri(product), :style => "font-size:17px;color:black;" %></h1>
-				<br />
-				<div style="padding-top:10px"><%= product.description_short %></div>
-			</td>
-			<td style="padding: 20px 10px 5px;">
-        <div class="box_price_product">
+
+          </td>
+          <td style="width:100px;vertical-align:top;padding-top:15px;">
+
+
+        <div class="box_price_product" style="float:left;">
           <ul>
             <li class="price_info">
       				<% if product.discounted? %>
@@ -21,9 +28,7 @@
       					<span class="price" style="color:black;"><%= number_to_currency product.price, :unit => "&pound;" %></span>
       				<% end %>
     				</li>
-    				<li style="margin-bottom:10px;">
-    				  <%= link_to_remote image_tag("add_to_wish_list.png"), :url => product_wish_list_index_path(product), :html => {:style => "color:#464646;", :method => :post} %>
-    				</li>
+
   			    <li>
   			      <%- if product.out_of_stock? -%>
   			        <%= image_tag('out_of_stock.png') %>
@@ -31,14 +36,23 @@
   			        <%= link_to_remote image_tag("buttons/add_to_cart_button.png"), :url => product_cart_index_path(product), :html => {:method => 'post'} %>
   			      <%- end -%>
   			    </li>
+
+    				<li style="margin-bottom:5px;">
+    				  <%= link_to_remote image_tag("add_to_wish_list.png"), :url => product_wish_list_index_path(product), :html => {:style => "color:#464646;", :method => :post} %>
+    				</li>
+
+
   				</ul>
         </div>
-			</td>
-		</tr>
-    <tr>
-      <td colspan="3" style="border-bottom:1px solid #CCCCCC;">&nbsp;</td>
-    </tr>
-	</table>
+
+
+
+
+
+         </td>
+        </tr>
+      </table><br />
+    </div><br />
 
 	<% end %>
 
