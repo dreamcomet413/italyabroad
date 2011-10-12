@@ -16,7 +16,7 @@
                 </td>
               </tr>
 
-              <tr><td><%= producer.description[0..400] %></td></tr>
+              <tr><td><%= producer.description[0..400] rescue "" %></td></tr>
             </table>
           </td>
         </tr>
