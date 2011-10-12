@@ -191,6 +191,10 @@ module ApplicationHelper
     return image_tag(image_url(:producer_thumb, producer.image, :jpg), :width => "98px") if producer.image
     return image_tag("default.jpg", :width => "98px")
   end
+ def show_producer_image1(producer)
+    return image_tag(image_url(:producer_thumb, producer.image, :jpg)) if producer.image
+    return image_tag("default.jpg", :width => "98px")
+  end
 
   def will_paginate_(object)
     "<table style=\"width:auto;\"><tr><td style=\"width:32px;\"><strong>Page:</strong></td><td>#{will_paginate(object, :previous_label => "&laquo;", :next_label => "&raquo;")}</td></tr></table>" unless will_paginate(object).blank?

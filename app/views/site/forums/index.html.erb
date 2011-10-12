@@ -49,7 +49,7 @@
                       <%#= avatar_for_user(producer, "small") %>
                       <%#= show_producer_image(producer) %>
                       <% if producer.image %>
-                       <%=  image_tag(image_url('community_producer_thumb', producer.image, :jpg),:alt=>producer.name) %>
+                       <%=  image_tag(image_url('community_producer_thumb', producer.image, :jpg),:alt=>producer.name, :width=>"200px;") %>
                       <% else %>
                       <%= image_tag("default.jpg",:size => "100x120",:alt=>producer.name) %>
                       <% end %>
@@ -173,7 +173,12 @@
           <%#- grapes = Grape.find(:all, :limit => 1, :conditions => "id = 1") -%>
           <%- for grape in grapes -%>
           <div style="padding-bottom:10px;color:#7f2d54;"><%= link_to grape.name, grape_path(grape) %>&nbsp;<%= link_to "(more grapes)", grape_guide_path %></div>
-          <%= image_tag("grape_guide_small.png",:alt=>'Grape guide') %>
+          <%#= image_tag("grape_guide_small.png",:alt=>'Grape guide') %>
+          <% if grape && grape.image %>
+            <%= image_tag(image_url('recipe', grape.image, :jpg),:alt=>grape.name, :width => "200px;") if grape && grape.image %>
+          <% else %>
+            <%= image_tag("grape_guide_small.png", :alt=>grape.name, :width=> "200px") %>
+          <%- end -%>
 
                   <%#= grape.description %>
                   <%=
@@ -199,7 +204,17 @@
           <%#- regions = Region.find(:all, :limit => 1, :conditions => "id = 15") -%>
           <%- for region in regions -%>
           <div style="padding-bottom:10px;color:#7f2d54;"><%= link_to region.name, region_path(region) %>&nbsp;<%= link_to "(more regions)", regions_path %></div>
-          <%= image_tag("get_to_know_italy.png",:alt=>'Regions') %>
+
+
+
+          <%#= image_tag("get_to_know_italy.png",:alt=>'Regions') %>
+          <% if region && region.image %>
+            <%= image_tag(image_url("region", region.image, :jpg), :alt=>region.name, :height=> "140px") if region && region.image %>
+          <% else %>
+            <%= image_tag("get_to_know_italy.png", :alt=>region.name, :height=> "140px") %>
+          <%- end -%>
+
+
           <%#= region.description %>
                    <%=
                   if region.description and !region.description.empty? and !region.description.nil?
