@@ -37,7 +37,7 @@ class Site::SearchController < ApplicationController
       @search = Search.new(params || Hash.new)
       @wines = Product.find(:all, :include => [:categories, :grapes] ,:conditions => @search.conditions)
 
-     @foods = Product.find(:all, :include => [:categories] ,:conditions => ['upper(categories.name) LIKE ? AND products.name LIKE ?','FOOD',"%#{params[:text]}%"])
+     @foods = Product.find(:all, :include => [:categories] ,:conditions => ['upper(categories.name) LIKE ? AND products.name LIKE ? AND products.active = ? AND quantity > ? ','FOOD',"%#{params[:text]}%",true,0])
     SearchQuery.create(:query => @search.text) unless (@wines.blank? or @foods.blank?)
 
       @users = User.find(:all, :conditions => ["name LIKE ?", "%#{params[:text]}%"])
@@ -76,17 +76,17 @@ class Site::SearchController < ApplicationController
 
   def find_wines
    # @search = Search.new(params || Hash.new)
-     @wines = Product.find(:all, :include => [:categories,:grapes] ,:conditions => ['products.name LIKE ? AND upper(categories.name) LIKE ?',"%#{params[:text]}%",'WINE']).paginate(:page => params[:page], :per_page => 10)
+     @wines = Product.find(:all, :include => [:categories,:grapes] ,:conditions => ['products.name LIKE ? AND upper(categories.name) LIKE ? AND products.active = ? AND quantity > ?',"%#{params[:text]}%",'WINE',true,0]).paginate(:page => params[:page], :per_page => 10)
   end
 
   def find_foods
-       @foods = Product.find(:all, :include => [:categories,:grapes] ,:conditions => ['upper(categories.name) LIKE ? AND products.name LIKE ?','FOOD',"%#{params[:text]}%"]).paginate(:page => params[:page], :per_page => 10)
+       @foods = Product.find(:all, :include => [:categories,:grapes] ,:conditions => ['upper(categories.name) LIKE ? AND products.name LIKE ? AND products.active = ? AND products.quantity > ?','FOOD',"%#{params[:text]}%",true,0]).paginate(:page => params[:page], :per_page => 10)
 
   end
   def find_recipes
     #  @recipes = Recipe.find(:all, :conditions => ['name LIKE ? AND active = ?',"%#{params[:text]}%",true]).paginate(:page => params[:page], :per_page => 10)
      @search = Search.new(params || Hash.new)
-        @recipes = Recipe.find(:all, :conditions =>@search.conditions_for_recipes).paginate(:page => params[:page], :per_page => 10)
+        @recipes = Recipe.find(:all, :conditions =>@search.conditions_for_recipes,:order=>params[:sort_by]).paginate(:page => params[:page], :per_page => 10)
   end
 
 
