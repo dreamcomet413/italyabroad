@@ -20,7 +20,8 @@
         <th>ID</th>
         <th>Name</th>
        <!-- <th>Description</th> -->
-       <!-- <th>Producers</th>-->
+        <th>Producers</th>
+        <th>Wines</th>
         <th class="nosort">Image</th>
         <th class="nosort"></th>
       </tr>
@@ -37,13 +38,25 @@
         <td valign="top"><%= grape.id %></td>
         <td valign="top"><%= grape.name %></td>
        <!-- <td valign="top"><%#= grape.description %></td> -->
-      <!--  <td valign="top">
+       <td valign="top">
           <ol style="padding-left:20px;">
-          <%#- grape.producers.each do |p| -%>
-            <li><%#= link_to p.name, admin_producer_path(p) %></li>
-          <%#- end -%>
+          <%- grape.producers.each do |p| -%>
+            <li><%= link_to p.name, admin_producer_path(p) %></li>
+          <%- end -%>
           </ol>
-        </td> -->
+        </td>
+
+
+       <td valign="top">
+          <ol style="padding-left:20px;">
+          <%- grape.products.find(:all,:include=>:categories,:conditions=>['upper(categories.name)=?','WINE']).each do |p| -%>
+
+            <li><%= link_to p.name, admin_product_path(p) %></li>
+          <%- end -%>
+          </ol>
+        </td>
+
+
         <td valign="top"><%#= show_grape_image(grape) %>
          <% if grape && grape.image %>
 
