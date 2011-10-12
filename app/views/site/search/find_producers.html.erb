@@ -11,10 +11,11 @@
             <table cellspacing="5">
               <tr>
                 <td>
-                 <h1><%= link_to producer.name, producer_path(producer) %></h1>
+                 <h1><%= link_to producer.name, producer_path(producer) %><br /><span style="font-size:10px;font-weight:bold;">Region:&nbsp;&nbsp;<%= producer.region.name rescue "No region" %><span></h1>
+
                 </td>
               </tr>
-              <tr><td><span style="font-size:10px;font-weight:bold;">Region:&nbsp;&nbsp;<%= producer.region.name rescue "No region" %><span></td></tr>
+
               <tr><td><%= producer.description[0..400] %></td></tr>
             </table>
           </td>
