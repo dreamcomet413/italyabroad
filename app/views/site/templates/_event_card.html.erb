@@ -3,35 +3,20 @@
   @breadcrumbs += "#{@product.unique_categories.collect {|c| link_to(c.name, "#{"/" + c.root.friendly_identifier unless c.is_root?}/#{c.friendly_identifier}")}.join(" &raquo; ")}"
   @breadcrumbs += " &raquo; #{@product.name[0..25]+ '...'}"
 %>
-
-<%- @class = "events" -%>
-<div style="text-align:center;margin-top:5px;">
-  <%#= image_tag image_url('original', @product.image_1, :jpg) if @product && @product.image_1 %>
-  <%= image_tag image_url('region_card', @product.image_1, :jpg),:alt=>@product.name if @product && @product.image_1 %>
+<%- @class = "wine_tours" -%>
+<div id="wineBanner" style="padding-top:5px;"><%#= image_tag("wine_tours_card_home.jpg") %>
+ <%= image_tag image_url('region_card', @product.image_1, :jpg),:alt=>@product.name if @product && @product.image_1 %>
 </div>
 
-<div style="padding:0 10px;">
-
-
-  <!-- h1 style="padding-left:255px;"><%= @product.name %></h1
-  <br /><br /><br /> -->
-
-  <br />
-  <!-- h1 style="padding-left:255px;"><%= @product.name %></h1 -->
-
-
- <!-- <div id="box_wines_of_the_night" class="block">
-    <h1>Wines of the night</h1>
-    <ul>
-      <%#- category = Category.find('events') -%>
-      <%#- category.products.at_the_night.each do |product| -%>
-      <li><%#= link_to product.name, "/wine-events/#{product.friendly_identifier}", :style => "color:#9b0707;" %></li>
-      <%#- end -%>
-    </ul>
-  </div> --><h1 align="center" style="padding-top:0px;color:#9b0707;"><%= @product.name %></h1>
-  <% included_products = @product.included_products.find(:all,:order=>'name asc', :conditions => "active = true") %>
+<div id="wine_tours_content">
+  <!--<h2 style="font-size:18px;color:#666666;"><%#= @product.name.upcase %></h2> -->
+   <h1 align="center" style="padding-top:0px;color:#9b0707;"><%= @product.name %></h1>
+  <table width="100%">
+    <tr>
+    <% included_products = @product.included_products.find(:all,:order=>'name asc', :conditions => "active = true") %>
    <% unless included_products.blank? %>
-  <div id="box_wines_of_the_night" class="block" style="margin-top:30px;">
+   <td valign="top" width="35%">
+     <div id="box_wines_of_the_night" class="block" >
 
     <h1>Wines of the Tasting</h1>
     <ul>
@@ -41,20 +26,14 @@
     </ul>
 
   </div>
-   <% end %>
-  <div style="float:left;width:430px;margin:20px;margin-top:0px;padding-top:0px;">
+     </td> <%- end -%>
+      <td valign="top" width="60%">
 
-    <%= @product.description.gsub("\n","<br />") rescue "No description" %>
-    <br /><br />
-    <div style="clear:both;"></div>
-    <!--<div align="center"><h4><%#= @product.included_products.count > 0 ? "Wine List" : "" %></h4>
-    <%# for included_product in @product.included_products %>
-
-      <%#= link_to included_product.name, "/wine-events/#{included_product.friendly_identifier}", :style => "color:#9b0707;" %> <br />
-    <%#end %>
-    <br />
-    </div> -->
-    <ul style="list-style:none;margin:0;padding:0;float:right;font-size:14px;">
+        <div style="padding-left:10px;">
+          <%= @product.description.gsub("\n","<br />") rescue "Product has no description" %>
+          <br /><br />
+          <div style="float:right;">
+           <ul style="list-style:none;margin:0;padding:0;float:right;font-size:14px;">
       <li style="margin-bottom:10px;text-align:right;">
       	<% if @product.discount > 0 %>
       		Was <span style="text-decoration: line-through;"><%= number_to_currency @product.price, :unit => "&pound;" %></span><br />
@@ -66,8 +45,10 @@
       </li>
 
       <li style="text-align:right;">
+      <% if @product.quantity > 0 %>
       	<%- form_remote_for :cart, :url => product_cart_index_path(@product), :html => {:method => :post} do  -%>
       	  <table cellspacing="0" border="0">
+
       	    <tr>
       		    <td>Ticket qty: </td>
       		    <td><%= text_field :cart, :quantity, :size => 2, :value => 1 %></td>
@@ -75,28 +56,20 @@
       		  </tr>
       		</table>
       	<% end %>
+      	<% else %>
+      	<span style="color:red;">Sorry no places left, see other dates</span>
+      	<% end %>
     	</li>
   	</ul>
-  	<div style="clear:both;"></div>
-  </div>
-  <div style="clear:both;"></div>
+          </div>
 
- <!--  <div class="add_new_review">
-<h3>Reviews <%#= link_to("(Add Review)", login_path, :style => "font-size:12px;") unless logged_in?  %></h3>
- <%#= render :partial => 'site/shared/review_view_short', :locals => {:reviewer => @product} %>
- <%#- if logged_in? -%><%#= link_to 'Add Review',"#",:onclick=>"document.getElementById('add_review').style.display='block';return false;" %>
-    <div id="add_review" style="display:none;"><h3>Leave your review</h3>
-    <%#= render(:partial => 'site/reviews/new', :locals => {:create_url => product_reviews_path(@product, :return_to => nested_products_uri(@product))}) %>
-  <%#- end -%></div> -->
+        </div>
+      </td>
+    </tr>
+  </table>
 
 
 
-<!--<h3>Reviews <%#= link_to("(Add Review)", login_path, :style => "font-size:12px;") unless logged_in?  %></h3>
-   <%#= render :partial => 'site/shared/review_view_short', :locals => {:reviewer => @product} %>
-   <%#- if logged_in? -%>
-    <h3>Leave your review</h3>
-    <%#= render(:partial => 'site/reviews/new', :locals => {:create_url => product_reviews_path(@product, :return_to => nested_products_uri(@product))}) %>
-  <%#- end -%> -->
 </div>
 
 <% content_for :right do %>

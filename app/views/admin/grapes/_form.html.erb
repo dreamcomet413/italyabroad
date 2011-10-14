@@ -23,7 +23,7 @@
   </tr>
   <tr>
     <td valign="top">Producers</td>
-    <td valign="top"><%= select :grape, :producer_ids, Producer.all.collect {|p| [p.name, p.id]}, {}, {:multiple => true} %></td>
+    <td valign="top"><%= select :grape, :producer_ids, Producer.find(:all,:order=>'name').collect {|p| [p.name, p.id]}, {}, {:multiple => true} %></td>
   </tr>
 </table>
 
