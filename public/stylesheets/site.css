@@ -2801,6 +2801,10 @@ li#link-to-hampers ul li a:hover{
     margin: 0 0 0 0px;
     margin-bottom:15px;
     width:233px;
+    width:247px;
+}
+#categories_show.categories div#content div#mainContent div#leftColumnContent div#box_hamper_search.block {
+    width:160px;
 }
 
 .search_result {

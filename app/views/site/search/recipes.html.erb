@@ -29,8 +29,7 @@
       <span id="recipe_caption"><%= link_to "Difficulty: #{recipe.recipe_level.name}",{:category=>'recipe',:difficulty => recipe.recipe_level_id,:text=>params[:text]},:style=>"color:black;" %></span><br />
       <%= recipe.user.name if recipe.user %>
       <br /><br />
-      <%= recipe.preparation[0..360] %><br /><br />
-
+      <%= recipe.preparation[0..360] if recipe.preparation %><br /><br />
     </li>
   <%- end -%>
   </ul>
