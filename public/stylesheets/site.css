@@ -2803,7 +2803,7 @@ li#link-to-hampers ul li a:hover{
     width:233px;
     width:247px;
 }
-#categories_show.categories div#content div#mainContent div#leftColumnContent div#box_hamper_search.block {
+#categories_show.categories div#content div#mainContent div#leftColumnContent div#box_food_search.block, #categories_show.categories div#content div#mainContent div#leftColumnContent div#box_hamper_search.block {
     width:160px;
 }
 
