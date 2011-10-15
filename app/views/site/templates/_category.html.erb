@@ -16,7 +16,7 @@
 %>
   <ul>
     <%- products.each do |product| -%>
-    <li><%= link_to product.name, nested_products_uri(product) if product.categories.root.name.upcase != 'WINE TOUR'%></li>
+    <li><%= link_to product.name, nested_products_uri(product) if product.categories.root.name.upcase != 'WINE TOURS'%></li>
     <%- end -%>
   </ul>
 </div>
@@ -41,7 +41,7 @@
  %>
   <ul>
     <%- products.each do |product| -%>
-    <li><%= link_to product.name, nested_products_uri(product) if product.categories.root.name.upcase != 'WINE TOUR'%></li>
+    <li><%= link_to product.name, nested_products_uri(product) if product.categories.root.name.upcase != 'WINE TOURS'%></li>
     <%- end -%>
   </ul>
 </div>

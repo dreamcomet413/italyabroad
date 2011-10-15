@@ -3,7 +3,7 @@
     <% if @users.blank? and  @producers.blank? and @wines.blank? and @recipes.blank? %>
         <div id="header">Your search returned no results:</div><br />
 
-        Sorry the search has not given any result, please check the spelling or <%= mail_to "info@italyabroad.com", "get in touch" %> and will find it for you.
+        <div class="search_result" >Sorry the search has not given any result, please check the spelling or <%= mail_to "info@italyabroad.com", "get in touch" %> and will find it for you.</div>
 
 
     <% else %>

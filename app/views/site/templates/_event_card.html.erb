@@ -3,16 +3,16 @@
   @breadcrumbs += "#{@product.unique_categories.collect {|c| link_to(c.name, "#{"/" + c.root.friendly_identifier unless c.is_root?}/#{c.friendly_identifier}")}.join(" &raquo; ")}"
   @breadcrumbs += " &raquo; #{@product.name[0..25]+ '...'}"
 %>
-<!--%- @class = "wine_tours" -%>
-<div id="wineBanner" style="padding-top:5px;"><%#= image_tag("wine_tours_card_home.jpg") %>
+<%- @class = "wine_tours" -%>
+<div id="wineBanner" style="padding:5px;"><%#= image_tag("wine_tours_card_home.jpg") %>
  <%= image_tag image_url('region_card', @product.image_1, :jpg),:alt=>@product.name if @product && @product.image_1 %>
-</div-->
+</div>
 
-<div id="wineBanner" style="padding-top:5px;"><%#= image_tag("wine_tours_card_home.jpg") %>
+<!-- div id="wineBanner" style="padding-top:5px;"><%#= image_tag("wine_tours_card_home.jpg") %>
  <%- if @product.image_1 or @product.image_2 or @product.image_3 -%>
     <%= image_tag(image_url("region_card", @product.image_1, :jpg),:alt=>@product.name) if @product.image_1 %>
        <%- end -%>
-</div>
+</div-->
 
 
 
