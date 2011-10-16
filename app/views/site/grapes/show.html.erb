@@ -24,6 +24,8 @@
   <p style="text-align:justify;margin-left:10px;margin-right:10px;"><%= @grape.description || "No Description" %></p>
   <div style="clear:both;"></div>
   <br />
+
+<div style="text-align:justify;margin-left:10px;margin-right:10px;">
   <%- if @grape.producers.find(:all,:conditions=>['active = ?',true]).size >0 -%>
   <br /><h3 style="font-size:16px;color:#013300;border:none;">Producers that grow this grape</h3>
   <%-end-%>
@@ -45,6 +47,9 @@
     </li>
     <%- end -%>
   </ul>
+</div>
+
+
 </div>
 
 <%- content_for :right do -%>

@@ -622,9 +622,13 @@ a {
 
 #box_producer {
     width: 200px;
-
-
 }
+
+.box_grape_guide {
+    margin:auto;
+    text-align:center;
+}
+
 .box_producer_description {
 
   /*  width: 250px;*/
@@ -632,7 +636,7 @@ a {
 /*    height: 250px;*/
     overflow:hidden;
     word-wrap: break-word;
-   /* text-align:justify;*/
+   text-align:justify;
 }
 
 #box_producer div#get_to_know_our_producers_avatar{

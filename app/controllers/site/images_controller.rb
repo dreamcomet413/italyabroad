@@ -69,7 +69,7 @@ class Site::ImagesController < ApplicationController
 
             image.resize '237x180' if image_type == :wine_tour_category
             image.resize '300x300' if image_type == :product_show
-            image.resize '480x450' if image_type == :recipe
+            #image.resize '480x450' if image_type == :recipe
             image.resize '100x75', :stretch => true, :upsample => true if image_type == :recipe_thumb
 
             image.resize '100x75', :crop => true if image_type == :post_thumb
@@ -78,7 +78,8 @@ class Site::ImagesController < ApplicationController
             image.resize '100x75', :stretch => true, :upsample => true if image_type == :restaurant_thumb
             image.resize '250x200' if image_type == :restaurant_thumb_site
 
-            image.resize '480x450' if image_type == :recipe
+            #image.resize '480x450' if image_type == :recipe
+            image.resize '150x150' if image_type == :recipe
             image.resize '100x75', :stretch => true, :upsample => true if image_type == :recipe_thumb
 
             image.resize '100x75' if image_type == :review_thumb
@@ -91,7 +92,8 @@ class Site::ImagesController < ApplicationController
             image.resize '723x284',:crop=>true if image_type == :about_thumb
             image.resize '723x284',:crop=>true if image_type == :region_card
            # image.resize '98x98',:crop=>true if image_type == :community_producer_thumb
-            image.resize '210x79',:crop=>true if image_type == :community_producer_thumb
+           # image.resize '210x79',:crop=>true if image_type == :community_producer_thumb
+            image.resize '150x150',:crop=>true if image_type == :community_producer_thumb
 
 
 
