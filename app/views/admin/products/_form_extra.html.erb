@@ -2,11 +2,11 @@
 	<table border="0" cellspacing="5" cellpadding="5">
 		<tr>
 		  <td style="text-align:right;width:150px;">Region:</td>
-		  <td><%= select :product, :region_id, Region.all.inject([["No region", ""]]) { |rs, r| rs << [r.name, r.id] } %></td>
+		  <td><%= select :product, :region_id, Region.find(:all,:order=>'name').inject([["No Region", ""]]) { |rs, r| rs << [r.name, r.id] } %></td>
     </tr>
 		<tr>
 		  <td style="text-align:right" valign="top">Grapes:</td>
-		  <td><%= select :product, :grape_ids, Grape.all.inject([]) { |gs, g| gs << [g.name, g.id] }, {}, {:multiple => true} %></td>
+		  <td><%= select :product, :grape_ids, Grape.find(:all,:order=>'name').inject([]) { |gs, g| gs << [g.name, g.id] }, {}, {:multiple => true} %></td>
     </tr>
 		<tr>
 		  <td style="text-align:right">Color:</td>

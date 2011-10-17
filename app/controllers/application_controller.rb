@@ -20,7 +20,8 @@ class ApplicationController < ActionController::Base
   rescue_from ActionController::UnknownController, :with => :render_record_not_found
   rescue_from ActionController::UnknownAction, :with => :render_record_not_found
   rescue_from ActionController::MethodNotAllowed, :with => :render_record_not_found
-
+  rescue_from ActionController::MethodNotAllowed, :with => :render_record_not_found
+  rescue_from Exception, :with => :render_record_not_found
 
 
   protected
@@ -34,10 +35,10 @@ class ApplicationController < ActionController::Base
 
   def render_record_not_found
     flash[:notice] = "Error cannot proceed"
+    logger.info {"#{@current_controller}" }
+    logger.info "Exception, redirecting: #{exception.message}" if exception
     redirect_to root_url
  end
-
-
 
 
   private

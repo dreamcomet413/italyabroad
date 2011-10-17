@@ -25,7 +25,7 @@ class Admin::GrapesController < ApplicationController
   def edit
     @grape = Grape.find(params[:id])
 
-    respond_to do |format|
+   respond_to do |format|
       format.html
     end
   end

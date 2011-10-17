@@ -56,10 +56,7 @@
               <% if @product.region %>
               <% if @product.region.active %>
               <%= link_to (@product.region.name, region_path(@product.region))   %>
-              <% else %>
-               "No region"
-              <% end  else %>
-              "No region"
+              <% end   %>
               <% end %>
               </td>
             </tr>
