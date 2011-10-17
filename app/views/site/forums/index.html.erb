@@ -43,7 +43,7 @@
                 <%- producers = Producer.find(:all, :limit => 1,:conditions=>['active = ?',true] ,:order => "RAND()") %>
                 <%# producers = Producer.find(:all, :limit => 1, :conditions => "id=39") %>
                 <%- for producer in producers -%>
-                      <div id="get_to_know_our_producers_avatar">
+                      <div id="get_to_know_our_producers_avatar" style="padding:25px;">
                       <%= link_to producer.name, producer_path(producer) %>
                       <%= link_to "(more producers)", producers_path %><br /><br />
                       <%#= avatar_for_user(producer, "small") %>
