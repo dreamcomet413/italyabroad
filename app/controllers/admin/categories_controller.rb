@@ -24,7 +24,9 @@ class Admin::CategoriesController < ApplicationController
       @category.image_url = params[:image][:image_file]
     end
     if @category.save
-
+      unless params[:category][:parent_id].blank?
+       @category.move_to_child_of(params[:category][:parent_id])
+      end
       flash[:notice] = "Category is created successfully"
       redirect_to :action => :index
     else
@@ -43,6 +45,7 @@ class Admin::CategoriesController < ApplicationController
 
   def update
     @category = Category.find(params[:id])
+
     if @category.valid? and  !params[:image].nil?
       @category.image.destroy unless @category.image.nil?
       @image = Image.new(params[:image])
@@ -51,6 +54,9 @@ class Admin::CategoriesController < ApplicationController
       @category.image_url = params[:image][:image_file]
      end
     if @category.update_attributes(params[:category])
+      unless params[:category][:parent_id].blank?
+         @category.move_to_child_of(params[:category][:parent_id])
+      end
       flash[:notice] = "Category is updated successfully"
     else
       flash[:notice] = "There are something wrong"
@@ -128,22 +134,22 @@ class Admin::CategoriesController < ApplicationController
     render :text=>return_data.to_json, :layout=>false
   end
 
-  def get_tree(categories, parent)  
-    data = Array.new  
-    categories.each { |category|  
-      if !category.leaf?  
-        if data.empty?  
-          data =   [{"text"  =>  category.name, "id"  => category.id, "leaf"  => false,  
-                     "children" => get_tree(category.children,category) }]   
-        else  
-          data.concat([{"text"  =>  category.name, "id"  => category.id, "leaf"  => false,  
-                         "children" => get_tree(category.children,category)}])  
-        end  
-      else  
-        data.concat([{"text" => category.name, "id" => category.id, "cls" => "folder", "leaf" => false, "children" => []}])   
-      end  
-    }  
-    return data  
+  def get_tree(categories, parent)
+    data = Array.new
+    categories.each { |category|
+      if !category.leaf?
+        if data.empty?
+          data =   [{"text"  =>  category.name, "id"  => category.id, "leaf"  => false,
+                     "children" => get_tree(category.children,category) }]
+        else
+          data.concat([{"text"  =>  category.name, "id"  => category.id, "leaf"  => false,
+                         "children" => get_tree(category.children,category)}])
+        end
+      else
+        data.concat([{"text" => category.name, "id" => category.id, "cls" => "folder", "leaf" => false, "children" => []}])
+      end
+    }
+    return data
   end
 
   def destroy

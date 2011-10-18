@@ -37,7 +37,14 @@
   </tr>
   <tr>
     <td>Parent category</td>
-    <td><%= select :category, :parent_id, Category.all.inject([]) {|categories, category| categories << [category.name, category.id] }, { :include_blank => true } %> <em style="font-size:85%">blank is root</em></td>
+    <td>
+    <% if @category.new_record? %>
+    <%= select :category, :parent_id, Category.find(:all,:conditions=>['upper(name) = ? OR upper(name) = ? OR upper(name) = ?' ,'WINE','FOOD','HAMPERS']).inject([]) {|categories, category| categories << [category.name, category.id] } %><!--, { :include_blank => true }-->
+    <% else %>
+     <%= select :category, :parent_id, Category.find(:all,:conditions=>['upper(name) = ? OR upper(name) = ? OR upper(name) = ?' ,'WINE','FOOD','HAMPERS']).inject([]) {|categories, category| categories << [category.name, category.id] } ,{ :include_blank => true } %><em style="font-size:85%">blank is root</em>
+    <% end %>
+
+    </td>
   </tr>
 	<tr>
 	  <td>Layout</td>
