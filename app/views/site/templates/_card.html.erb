@@ -189,7 +189,7 @@
 
 <br /></div>
 <% if @product.categories.root.name.downcase == "wine"  %>
-<% @includes = @product.product_includeds.all(:limit => 3) %>
+<% @includes = @product.product_includeds.all(:limit => 5) %>
     <% if !@includes.blank? %>
 <div id="wineRelated">
   <br/>
