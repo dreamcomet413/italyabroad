@@ -19,7 +19,7 @@
 
 
   <%= render :partial => 'product_links', :locals => {:active => 'included_products'} %>
-  <% form_for :product, :url => admin_product_path(@product), :html => {:method => :put} do %>
+  <% form_for :product,  :url => admin_product_path(@product), :html => {:method => :put} do %>
     <fieldset id="correlation_information">
       <table class="list">
         <tr>
@@ -43,3 +43,4 @@
     </p>
   <% end %>
 </div>
+

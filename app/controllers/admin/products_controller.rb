@@ -1,6 +1,6 @@
 class Admin::ProductsController < ApplicationController
   before_filter :admin_login_required
-  before_filter :store_location, :only => [:edit, :meta, :categories, :extra, :ideal_with, :how_to_cook, :correlation, :images, :files]
+  before_filter :store_location, :only => [:edit, :meta, :categories, :extra, :ideal_with, :how_to_cook, :correlation, :images, :files,:included_products]
 
   layout "admin"
 
