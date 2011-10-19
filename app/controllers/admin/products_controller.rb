@@ -136,6 +136,14 @@ class Admin::ProductsController < ApplicationController
     params[:product] ||= {}
 
     params[:product][:category_ids] = params[:category_ids] if params[:category_ids]
+    if params[:category_ids]
+      params[:category_ids].each do |cat_id|
+        @c = Category.find(cat_id)
+           unless params[:category_ids].include?(@c.root.id)
+             params[:product][:category_ids].push(@c.root.id)
+           end
+      end
+    end
     params[:product][:correlation_ids] = params[:correlation_ids]
     #if params[:correlation_ids]
     params[:product][:ideal_with_id] = params[:ideal_with_id] if params[:ideal_with_id]
