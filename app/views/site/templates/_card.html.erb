@@ -229,13 +229,14 @@
     <h3>People who bought this also bought..</h3>
     <ul>
       <% for related_product in related_products %>
-        <li style="width:<%= 100/column_width %>%;text-align:center">
+        <li style="width:<%= (100/column_width)%>%;text-align:center">  <!-- width:<%= 100/column_width %>%; -->
             <table>
             <tr>
             <td style="height:150px;vertical-align:bottom"><%= link_to show_image_tag(related_product.layout_image, related_product.image_1, :jpg,related_product.name), nested_products_uri(related_product) %></td>
             </tr>
             <tr>
-            <td><%= link_to related_product.name, nested_products_uri(related_product) %></td>
+            <td style="height:60px;"><%= link_to related_product.name, nested_products_uri(related_product) %>
+            </td>
             </tr>
             <tr>
             <td><%= number_to_currency related_product.price, :unit => "&pound;" %></td>
