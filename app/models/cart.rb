@@ -18,7 +18,8 @@ class Cart
     current_item ||= CartItem.new(product, quantity)
 
     if quantity.to_i > current_item.product.quantity
-      @show_warnings = "Sorry, only #{current_item.product.quantity} left. Will inform you when more will become available."
+    #  @show_warnings = "Sorry, only #{current_item.product.quantity} left. Will inform you when more will become available."
+      @show_warnings = "Sorry, none left, please drop us an email and we will inform you when more will become available"
       return false
     else
       if @items.include?(current_item)
@@ -164,3 +165,4 @@ class Cart
     discount
   end
 end
+
