@@ -52,8 +52,8 @@ end
 
   def print_invoice
     @order = Order.find(params[:id])
-    send_data(generate_pdf(@order), :filename => "Invoice of Order# #{@order.id}.pdf", :type => "application/pdf")
-  #  render :layout => "print"
+ #   send_data(generate_pdf(@order), :filename => "Invoice of Order# #{@order.id}.pdf", :type => "application/pdf")
+    render :layout => "print"
 
 
  #    make_and_send_pdf("/admin/orders/#{@order.id}/print_invoice", "Italyabroad_Invoice_#{@order.id}.pdf")
@@ -127,7 +127,7 @@ end
         ]
         end
         pdf.move_down 10
-        pdf.table items
+        pdf.table (items)
 
 
       #  end

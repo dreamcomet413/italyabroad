@@ -35,12 +35,12 @@
         <table width="100%">
           <tr>
             <td width="60%" valign="top">
-              <strong><%= link_to recipe.name, recipe_path(recipe), :style => "font-size:14px;color:black;" %></strong>
+              <%= link_to recipe.name, recipe_path(recipe), :style => "font-size:14px;color:black;font-weight:bold;" %>
               <%= show_ratings(recipe, recipe.average_rating_round) if recipe.average_rating_round %><br />
-              <strong>Course:</strong> <%= recipe.recipe_type.name %><br />
-              <strong>Difficulty:</strong> <%= recipe.recipe_level.name %><br />
-              <strong>Prep time:</strong> <%= recipe.preparation_time %> min<br/>
-              <strong>Added by:</strong>
+              Course: <%= recipe.recipe_type.name %><br />
+              Difficulty: <%= recipe.recipe_level.name %><br />
+              Prep time: <%= recipe.preparation_time %> min<br/>
+              Added by:
               <% if recipe.user_id == 3 %>
                 Guest
               <%else%>
@@ -77,12 +77,12 @@
         <table width="100%">
           <tr>
             <td width="60%" valign="top">
-              <strong><%= link_to recipe.name, recipe_path(recipe), :style => "font-size:14px;color:black;" %></strong>
+              <%= link_to recipe.name, recipe_path(recipe), :style => "font-size:14px;font-weight:bold;color:black;" %>
               <%= show_ratings(recipe, recipe.average_rating_round) %><br />
-              <strong>Course:</strong> <%= recipe.recipe_type.name %><br />
-              <strong>Difficulty:</strong> <%= recipe.recipe_level.name %><br />
-              <strong>Prep time:</strong> <%= recipe.preparation_time %> min<br/>
-              <strong>Added by:</strong>
+              Course: <%= recipe.recipe_type.name %><br />
+              Difficulty: <%= recipe.recipe_level.name %><br />
+              Prep time: <%= recipe.preparation_time %> min<br/>
+              Added by:
               <% if recipe.user_id == 3 %>
                 Guest
               <%else%><%#= link_to recipe.user.name,customer_path(recipe.user.id) rescue "Admin" %><% end %>

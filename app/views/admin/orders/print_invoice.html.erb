@@ -1,10 +1,6 @@
 <div style="width:800px;font: normal 12px Arial;text-align:left">
   <%= image_tag('pdf_header.jpg') %><br/><br/><br/><br/>
-  <!--<div style="padding:40px 5px 10px 40px;float:left"> -->
-		&nbsp;&nbsp;Order Number:  <%= @order.id %><br />
-		&nbsp;&nbsp;Order Date:  <%= @order.created_at.strftime("%d/%m/%Y") %><br />
-		&nbsp;&nbsp;Invoice Date:  <%= Time.now.strftime("%d/%m/%Y") %>
-	<!--</div>-->
+
 	<div style="padding:10px 5px 10px 5px">
 
 		<div style="float:left;width:300px">
@@ -40,7 +36,11 @@
 			<%= "<br />" + @order.user.country unless @order.user.country .blank?%>
 		</div>
 		<% end %>
-
+     <div style="padding:40px 5px 10px 40px;float:left">
+		&nbsp;&nbsp;Order Number:  <%= @order.id %><br />
+		&nbsp;&nbsp;Order Date:  <%= @order.created_at.strftime("%d/%m/%Y") %><br />
+		&nbsp;&nbsp;Invoice Date:  <%= Time.now.strftime("%d/%m/%Y") %>
+	</div>
 		<br style="clear:both" />
 	</div>
 

@@ -63,6 +63,7 @@
         <td><%= order.created_at.strftime("%d/%m/%y") %></td>
         <td><%= order.updated_at.strftime("%d/%m/%y") %></td>
         <td>
+         <!-- <span ><%#= link_to "Download Invoice (PDF)", print_invoice_admin_order_path(order, :format => "pdf") %></span> -->
           <span ><%= link_to "Preview", admin_order_path(order) %>&nbsp;|&nbsp;</span>
           <span><%= link_to "Cancel", admin_order_path(order), :method => :delete, :confirm => "Are you sure want to delete this order?" %>&nbsp;|&nbsp;</span>
           <span>
@@ -71,13 +72,13 @@
              <!--   <%= link_to "Print", print_invoice_admin_order_path(order),:target => '_blank'%>&nbsp;|&nbsp; -->
                  <!-- <ul>
                     <li> -->
-                    <%= link_to "Invoice", print_invoice_admin_order_path(order) %><!--, :format => "pdf">--> <!--</li>--><!--,:target =>'_blank' -->&nbsp;|&nbsp;
+                    <%= link_to "Invoice", print_invoice_admin_order_path(order,:format => "pdf") %><!--, :format => "pdf">--> <!--</li>--><!--,:target =>'_blank' -->&nbsp;|&nbsp;
                     <!--<li>-->
                <%= link_to "Tasting Notes", print_tasting_admin_order_path(order),:target =>'_blank' %>&nbsp;|&nbsp;
                     <!--, :format => "pdf">-->
                     <!--</li>-->
                     <!--<li>-->
-                   <%= link_to "Picking List", print_picking_list_admin_order_path(order),:target=> '_blank' %> &nbsp;|&nbsp;
+                   <%= link_to "Picking List", print_picking_list_admin_order_path(order,:format => "pdf") %> &nbsp;|&nbsp;
                     <!--</li>-->
       <!--, :format => "pdf">-->
                  <!-- </ul>-->
