@@ -27,7 +27,7 @@ class Site::ShipAddressesController < ApplicationController
 
     if @ship_address.save
       session[:ship_address] = @ship_address
-      flash[:notice] = "Address is created successfully"
+      flash[:notice] = "The new address has been created successfully."
     else
       flash[:notice] = @ship_address.show_errors
     end
@@ -37,3 +37,4 @@ class Site::ShipAddressesController < ApplicationController
     end
   end
 end
+

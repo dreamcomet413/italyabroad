@@ -1,5 +1,9 @@
 <div style="width:790px;font: normal 12px Arial;text-align:left">
   <%= image_tag('pdf_header.jpg') %><br/><br/><br/><br/>
+     <div>
+		Order Number: <%= @order.id %><br />
+		Order Date: <%= @order.created_at.strftime("%d/%m/%Y") %>
+	</div>
 
 	<div style="padding:10px 5px 10px 5px">
 		<div style="float:left;width:300px">
@@ -36,18 +40,15 @@
 			<%= "<br />Tel. " + @order.user.telephone unless @order.user.telephone.blank? %>
 		</div>
 		<% end %>
-                <div style="padding:40px 5px 10px 40px">
-		Order Number: <%= @order.id %><br />
-		Order Date: <%= @order.created_at.strftime("%d/%m/%Y") %>
-	</div>
+
 		<br style="clear:both" />
 	</div>
-	
+
 	<div style="padding:40px 5px 10px 5px">
-		<table id="table" border="0" cellspacing="0" cellpadding="5" class="formatTable" style="border-top:3px solid black;width:780px">
-			<tr><th style="border-bottom: 3px solid black;text-align:left;width:100px">Code</th>
-                           <th style="border-bottom: 3px solid black;text-align:left">Product</th>
-                           <th style="border-bottom: 3px solid black;width:100px;text-align:center">Quantity</th></tr>
+		<table id="table" border="0" cellspacing="0" cellpadding="5" class="formatTable" style="border-top:1px solid black;width:780px">
+			<tr><th style="border-bottom: 1px solid black;text-align:left;width:100px">Code</th>
+                           <th style="border-bottom: 1px solid black;text-align:left">Product</th>
+                           <th style="border-bottom: 1px solid black;width:100px;text-align:center">Quantity</th></tr>
 			<% for order_item in @order.order_items %>
 				<% fields_for "order_item", order_item do |f| %>
 					<tr>
@@ -81,3 +82,4 @@
 		</div>
 	</div>
 </div>
+

@@ -22,6 +22,12 @@
     <%= javascript_include_tag "menu" %>
 	<![endif]-->
 
+	<%= stylesheet_link_tag "default" ,"alphacube"%>
+  <%= javascript_include_tag  "window" %>
+
+
+
+
 <!-- Place this tag in your head or just before your close body tag -->
 <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
 
@@ -154,15 +160,17 @@
               setTimeout("new Effect.Fade('notice');", 12000)
             </script>
           <%# end %> -->
-          <%
+          <%#
           if !cookies[:display]
             cookies[:display] = {:value => 'true',
    :expires => 1.days.from_now }
           %>
-           <script type="text/javascript">
+         <!--  <script type="text/javascript">
            alert("We have just relaunched our website adding plenty of new functionality, we have done all tests and everything seems to be working fine, however, we ask you to be patience in case something does not work the way it is supposed to and please let us know so we can give it our immediate attention.");
-           </script>
-           <%end%>
+           </script> -->
+           <%#end%>
+
+
 
 
           <% if flash[:alert] %>
