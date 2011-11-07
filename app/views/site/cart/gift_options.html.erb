@@ -1,11 +1,10 @@
 <% @title = "Order Confirmation"; %>
-
 <% form_tag( {:action => :update_gift}, :id => "form_submit" ) do %>
-	<div>
-		<div style="padding-bottom:3px"><h6>Gift Option</h6></div>
-<div style="border-bottom:1px solid #c1d830;margin-bottom:10px"></div>
+
+		<div id="header">Gift Option</div>
+<div style="margin:10px 20px;"><br />
 		<div>Create a fantastic hamper or the perfect gift by simply choosing from the gift options below and don’t forget to write the message for the card.</div>
-		<table border="0" cellspacing="5" cellpadding="5" style="font-size:12px;margin-top:15px">
+		<table border="0" cellspacing="5" cellpadding="5" style="font-size:12px;margin-top:15px" >
 			<% for gift_option in GiftOption.find(:all) %>
 			<tr>
 				<td><%= radio_button :gift, :gift_option_id, gift_option.id %></td>
@@ -15,6 +14,7 @@
 						<% if gift_option.price > 0  %>
 						(<span style="color:red"><%= number_to_currency gift_option.price %></span>)
 						<% end %>
+						<%#= hidden_field :gift,:price ,:value=>gift_option.price %>
 					</div>
 					<div style="font-size:11px"><%= gift_option.description %></div>
 				</td>
@@ -23,18 +23,22 @@
 		</table>
 		<div style="margin-top:40px;margin-bottom:10px">Write your <b>free</b> gift note here:</div>
 		<div><%= text_area :gift, :note, :style => "width:90%", :rows => 5 %></div>
-	</div>
 	<div style="text-align:right;font-size:10px;padding-top:40px;">
-		<%= submit_tag("BACK", :onclick => "window.location = '#{url_for(:action => :check_out)}';return false") %>
-	  <%= submit_tag "CONTINUE" %>
+		<%#= submit_tag("BACK", :onclick => "window.location = '#{url_for(:action => :check_out)}';return false") %>
+		<%#= submit_tag("BACK") %>
+		<%= link_to image_tag("buttons/continue_shopping_button.png"), continue_shopping_cart_path %>
+	  <%= image_submit_tag("buttons/continue_button.png") %>
 	</div>
+<% end %>
+<% content_for :right do %>
+<%= render :partial => '/site/shared/box_subscriptions' %>
+  <br />
+  <%= render :partial => '/site/shared/box_popular' %>
+	<%#= render :partial => '/site/shared/box_login' %>
+	<%#= render :partial => '/site/shared/box_wine_club' %>
+	<%#= render :partial => '/site/shared/box_top_mixed' %>
+	<%#= render :partial => '/site/shared/box_fast_track' %>
+	<%#= render :partial => '/site/shared/box_subscriptions' %>
+	<%#= render :partial => '/site/shared/box_grape_guide' %>
 <% end %>
 
-<% content_for :right do %>
-	<%= render :partial => '/site/shared/box_login' %>
-	<%= render :partial => '/site/shared/box_wine_club' %>
-	<%= render :partial => '/site/shared/box_top_mixed' %>
-	<%= render :partial => '/site/shared/box_fast_track' %>
-	<%= render :partial => '/site/shared/box_subscriptions' %>
-	<%= render :partial => '/site/shared/box_grape_guide' %>
-<% end %>

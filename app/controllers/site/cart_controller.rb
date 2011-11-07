@@ -4,7 +4,9 @@ class Site::CartController < ApplicationController
   def index
     @cupon = @cart.cupon
     @delivery = @cart.delivery
+    @cart.gift = ""
     @buy_together_discount = @cart.buy_together_discount
+
   end
 
   def create
@@ -68,8 +70,15 @@ class Site::CartController < ApplicationController
     redirect_to :action => :index
   end
 
-  private
+  def gift_options
+  end
 
+  def update_gift
+      @cart.gift = params[:gift]
+      redirect_to checkouts_url
+  end
+
+  private
   def quantity
     return params[:cart][:quantity] if params[:cart] && params[:cart][:quantity]
     return 1

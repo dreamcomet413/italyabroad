@@ -5,7 +5,7 @@ class Cart
   def initialize
     @items = []
     @delivery = Delivery.find(:first)
-    @gift = GiftItem.new
+   # @gift = GiftItem.new
   end
 
   def create(product, quantity = 1)
@@ -138,7 +138,11 @@ class Cart
   def total
     total  = sub_total
     total += total < Setting.order_delivery_amount && @delivery ? @delivery.price : 0
-    total += @gift.price if @gift
+   # total += @gift.price if @gift
+    unless self.gift[:gift_option_id].blank?
+    total += GiftOption.find(self.gift[:gift_option_id]).price
+  #total += 10
+  end
     return total
   end
 

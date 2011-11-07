@@ -1,9 +1,9 @@
 <% @title = "Order Confirmation"; %>
 
-	<div style="padding-bottom:3px"><h6>Order Confirmation</h6></div>
+	<div id="header">Order Confirmation</div>
 	<div style="border-bottom:1px solid #c1d830;margin-bottom:10px"></div>
 	<% if flash[:notice] %>
-		<div style="text-align:center;margin:10px 0px 10px 0px;border:1px solid red;padding:5px;font-size:12px">
+		<div style="text-align:center;margin:10px 0px 10px 0px;padding:5px;font-size:12px;color:red;">
 			<%= flash[:notice] %>
 		</div>
 	<% end %>
@@ -19,7 +19,7 @@
 			<%= "<br />Tel. " + session[:ship_address].telephone.to_s unless session[:ship_address].telephone.blank? %>
 			<%= "<br />" + mail_to(current_user.email) unless current_user.email.blank? %>
 		</div>
-		<% if @order.different_shipping_address %>
+		<% if session[:ship_address].is_new %>
 		<div style="float:left;">
 			<b>SHIP TO:</b>
 			<%= "<br />" + session[:ship_address].name unless session[:ship_address].blank? %>
@@ -77,14 +77,14 @@
 			</tr>
 		</table>
 		<br style="clear:both"/>
-
+		<% unless @cart.gift.blank? %>
 		<% unless @cart.gift[:note].blank? %>
 		<div style="padding:10px 5px 10px 5px;">
 			<b>Customer Comment:</b><br />
 			<%= @cart.gift[:note].gsub("\n","<br />") %>
 		</div>
 		<% end %>
-
+		<% end %>
 	</div>
 
 	<% form_tag( {:action => :order_confirmation}, :id => "form_submit" ) do %>
@@ -97,7 +97,8 @@
 <br /><br />
         <%= link_to image_tag("buttons/continue_shopping_button.png"), continue_shopping_cart_path %>&nbsp;
 				<%#= submit_tag("BACK", :onclick => "window.location = '#{url_for(:action => :gift_options)}';return false") %>
-				<%= submit_tag "SUBMIT ORDER" %>
+				<%#= submit_tag "SUBMIT ORDER" %>
+				<%= image_submit_tag("buttons/continue_button.png") %>
 			</div>
 		</div>
 	<% end %>

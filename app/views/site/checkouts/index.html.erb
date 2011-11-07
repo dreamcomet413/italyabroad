@@ -43,7 +43,8 @@
   <%= render :partial => 'site/shared/box_cart_form' %>
   <p style="text-align:right;margin:10px;">
     <%= link_to image_tag("buttons/continue_shopping_button.png"), continue_shopping_cart_path %>&nbsp;
-  	<%= image_submit_tag("buttons/continue_button.png", :id => "ship_address_form_continue") %>
+  	<%#= image_submit_tag("buttons/continue_button.png", :id => "ship_address_form_continue") %>
+  	<%= link_to image_tag("buttons/continue_button.png"), :controller=>'checkouts',:action=>'order_confirmation' %>
    	<%= javascript_tag "document.observe('dom:loaded', function(e){ RemoteAddressFrom.setup('#{confirm_address_checkouts_path}') });" %>
    	<%#= link_to image_tag("buttons/continue_shopping_button.png"),:controller=>'cart',:action=>'index' %>
   </p>

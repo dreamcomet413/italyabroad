@@ -48,12 +48,24 @@
       <%#= link_to image_tag("buttons/continue_shopping_button.png"), continue_shopping_cart_path %>
     </td>
 	</tr>
+	<tr>
+	<td>&nbsp;</td>
+<td><% unless @cart.gift[:gift_option_id].blank?
+	@gift_option = GiftOption.find(@cart.gift[:gift_option_id]) %>
+	      Your Gift Option is <%= @gift_option.name %>
+	      <td>
+		  <%= number_to_currency(@gift_option.price.to_f,:unit=>"&pound;") %>
+    </td>
+
+	        <% end %></td></tr>
 	<%- unless @cart.items.blank? -%>
 	<tr>
+
     <td colspan="5" align="right">
       <span style="font-size:14px;"><strong>Total:</strong> <%= number_to_currency(@cart.total, :unit => "&pound;") %></span>
     </td>
 	</tr>
+
 	<%- end -%>
   <tr>
     <td colspan="5" style="border-bottom:1px solid #cccccc;"></td>
