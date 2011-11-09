@@ -26,7 +26,7 @@ class Site::CheckoutsController < ApplicationController
   end
 
   def payment
-    flash[:notice] = ""
+
     @payment_method = 2 #set default payment method to credit card
   end
 

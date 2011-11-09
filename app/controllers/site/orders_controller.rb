@@ -37,6 +37,8 @@ class Site::OrdersController < ApplicationController
   end
 
   def create
+    
+   unless params[:accept].blank?
     @payment_method = PaymentMethod.find(params[:payment_method])
      if @payment_method && !@payment_method.external
       production = RAILS_ENV == "production"
@@ -112,6 +114,14 @@ class Site::OrdersController < ApplicationController
       end
       redirect_to paypal_checkouts_path(:id => new_order.id)
     end
+  # else of accept terms and conditions
+  else
+
+    flash[:notice] = 'Please accept terms and conditions'
+    redirect_to :controller=>'checkouts',:action=>'payment'
+
+  end
+
   end
 
   def invoice
