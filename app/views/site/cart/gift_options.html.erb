@@ -31,14 +31,15 @@
 		<div style="margin-top:40px;margin-bottom:10px">Write your <b>free</b> gift note here:</div>
 		<div><%= text_area :gift, :note, :style => "width:90%", :rows => 5 %></div>
 
-		<div style="text-align:center;margin-top:40px;"><%= image_tag("cart_step_2.png") %></div>
+		<div style="text-align:center;margin-top:40px;"><%= image_tag("cart_step_1.png") %></div>
   <%= render :partial => 'site/shared/box_cart_form' %>
 	<div style="text-align:right;font-size:10px;padding-top:40px;">
 		<%#= submit_tag("BACK", :onclick => "window.location = '#{url_for(:action => :check_out)}';return false") %>
 		<%#= submit_tag("BACK") %>
 		<%#= link_to image_tag("buttons/continue_shopping_button.png"), continue_shopping_cart_path %>
+		<%= link_to image_tag("buttons/back_button.png"), :controller=>'cart',:action=>'index' %>
 	  <%= image_submit_tag("buttons/continue_button.png") %>
-	  <%= link_to image_tag("buttons/back_button.png"), :controller=>'cart',:action=>'index' %>
+
 	</div>
 <% end %>
 <% content_for :right do %>

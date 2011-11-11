@@ -52,12 +52,13 @@
 	<td>&nbsp;</td>
 <td><% unless @cart.gift[:gift_option_id].blank?
 	@gift_option = GiftOption.find(@cart.gift[:gift_option_id]) %>
+	<% if @gift_option.price > 0 %>
 	      Your Gift Option is <%= @gift_option.name %>
 	      <td>
 		  <%= number_to_currency(@gift_option.price.to_f,:unit=>"&pound;") %>
     </td>
 
-	        <% end %></td></tr>
+	        <% end end %></td></tr>
 	<%- unless @cart.items.blank? -%>
 	<tr>
 

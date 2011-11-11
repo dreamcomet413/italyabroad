@@ -2,7 +2,7 @@
 <script type="text/javascript">
 function win1()
 {
-  var win = new Window({id: "win1", className: "alphacube",title:'Italyabroad.com', width:360, height:150, top:0, left: 0, parent:$('container')});
+  var win = new Window({id: "win1", className: "alphacube",title:'Italyabroad.com', width:360, height:150, top:0, left: 1, parent:$('container')});
   win.getContent().innerHTML = "<p>We have just relaunched our website adding plenty of new functionality, we have done all tests and everything seems to be working fine, however, we ask you to be patient in case something does not work the way it is supposed to and please let us know so we can give it our immediate attention.</p>";
 
   win.setDestroyOnClose();
@@ -20,13 +20,10 @@ function win1()
 
 #container {
   position:absolute;
-  top:25px;
+  top:120px;
   left:620px;
   width:480px;
-  height:300px;
-  overflow:hidden;
-  z-index:0;
-
+  height:100px;
 }
 </style>
  <div id="container"></div>

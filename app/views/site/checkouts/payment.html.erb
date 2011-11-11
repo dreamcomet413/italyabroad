@@ -49,8 +49,9 @@ total_points_used = current_user.orders.sum('points_used')
       <%= render :partial => 'site/orders/cc_form' %>
     </div>
     <p style="text-align:right;">
+    	<%= link_to image_tag("buttons/back_button.png"),:controller=>'checkouts',:action=>'index' %>&nbsp;
       <%= image_submit_tag "buttons/pay_now_btn.png" %>
-      	<%= link_to image_tag("buttons/back_button.png"),:controller=>'checkouts',:action=>'index' %>
+
   		<%#= image_submit_tag "buttons/checkout.png" %><!--&nbsp;&nbsp;--><%#= link_to image_tag("buttons/continue_shopping_button.png"), continue_shopping_cart_path %>
   	</p>
 
