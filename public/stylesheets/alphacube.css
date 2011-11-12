@@ -88,19 +88,19 @@
 
 .alphacube_title {
 	float:left;
-	height:14px;
-	font:18px sans-serif;;
+	height:16px;
+	font:16px sans-serif;;
 	font-family: sans-serif,Tahoma, Arial ;
 	text-align:center;
 	margin-top:2px;
 	width:340px;
-	color:#00B2EE;
+	color:#003300;
 	background:	#FFFFFF;
 }
 
 .alphacube_content {
 	overflow:auto;
-	color:#00B2EE;
+	color:#003300;
 	font-family: sans-serif,Tahoma, Arial ;
     font: 14px sans-serif;
 	/*background:#FDFDFD;*/
