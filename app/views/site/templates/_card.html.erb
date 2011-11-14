@@ -168,7 +168,14 @@
     <% if !@includes.blank? %>
 <div id="wineRelated">
   <br/>
-  <h3>Other included products</h3>
+
+  <%if @product.root_category == 'Hampers'%>
+    <h3>Included in the hamper</h3>
+  <%elsif @product.sub_categories.include?('Mixed case') %>
+    <h3>Included in the case</h3>
+  <% end %>
+
+
   <ul style="margin-bottom: 25px;">
 
   <% for include in @includes %>
@@ -232,7 +239,8 @@
   <div style="clear:both;"></div>
 
 <br /></div>
-<% if @product.categories.root.name.downcase == "wine" and !@product.sub_categories.include?('Mixed case') %>
+<%# if @product.categories.root.name.downcase == "wine" and !@product.sub_categories.include?('Mixed case') %>
+<% if @product.categories.root.name.downcase == "wine" %>
 <% @includes = @product.product_includeds.all(:limit => 5) %>
     <% if !@includes.blank? %>
 <div id="wineRelated">
