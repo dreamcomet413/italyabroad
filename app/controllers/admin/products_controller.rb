@@ -193,7 +193,12 @@ p params[:product]
     p_ids = []
     @product = Product.find(params[:id])
     if !params[:search_name].blank?
-    @products = Product.find(:all, :include=>['categories'],:conditions => ["products.id NOT IN (?) AND LOWER(categories.name) = ? AND quantity > ? AND active = ? AND products.name LIKE ? ", @product.id,'wine',0,true,"%#{params[:search_name]}%"])
+      if @product.root_category == 'Hampers' || @product.sub_categories.include?('Mixed case')
+        @products = Product.find(:all, :conditions => ["products.id NOT IN (?)  AND quantity > ? AND active = ? AND products.name LIKE ? ", @product.id,0,true,"%#{params[:search_name]}%"])
+      else
+        @products = Product.find(:all, :include=>['categories'],:conditions => ["products.id NOT IN (?) AND LOWER(categories.name) = ? AND quantity > ? AND active = ? AND products.name LIKE ? ", @product.id,'wine',0,true,"%#{params[:search_name]}%"])
+      end
+
     @products.each do |p|
       p_ids.push(p.id)
     end
@@ -207,7 +212,12 @@ p params[:product]
 
     # @products = Product.find(:all,:conditions => ["products.id NOT IN (?)", @product.id])
     else
-      @products = Product.find(:all, :include=>'categories',:conditions => ["products.id NOT IN (?) AND LOWER(categories.name) = ? AND quantity > ? AND active = ?", @product.id,'wine',0,true])
+      if @product.root_category == 'Hampers' || @product.sub_categories.include?('Mixed case')
+         @products = Product.find(:all,:conditions => ["products.id NOT IN (?) AND quantity > ? AND active = ?", @product.id,0,true])
+      else
+         @products = Product.find(:all, :include=>'categories',:conditions => ["products.id NOT IN (?) AND LOWER(categories.name) = ? AND quantity > ? AND active = ?", @product.id,'wine',0,true])
+      end
+
 
     end
 
