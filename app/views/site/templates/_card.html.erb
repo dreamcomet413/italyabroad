@@ -239,8 +239,8 @@
   <div style="clear:both;"></div>
 
 <br /></div>
-<%# if @product.categories.root.name.downcase == "wine" and !@product.sub_categories.include?('Mixed case') %>
-<% if @product.categories.root.name.downcase == "wine" %>
+<% if @product.categories.root.name.downcase == "wine" and !@product.sub_categories.include?('Mixed case') %>
+<%# if @product.categories.root.name.downcase == "wine" %>
 <% @includes = @product.product_includeds.all(:limit => 5) %>
     <% if !@includes.blank? %>
 <div id="wineRelated">
