@@ -110,5 +110,9 @@
 	  <td><%= check_box :user, :active, :checked=>@user.active %>
 	  <%#= hidden_field :user, :type_id, :value => 2 %></td>
 	</tr>
+	<tr>
+	  <td>Select Type of User</td>
+	  <td><%= select :user, :type_id, Type.find(:all,:order=>'id desc').collect {|type| [ type.name, type.id ] } %></td>
+	</tr>
 </table>
 

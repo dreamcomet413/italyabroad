@@ -9,6 +9,12 @@
 		<%= render :partial => "form_correlation" %>
   	<p>
   	 <%= submit_tag "Save" %> or <%= link_to "Cancel", admin_products_path %>
+  	 	<%#= link_to_remote image_tag('buttons/submit.png',:style=>'border:none;'),
+    :url => { :action => "remove_all_correlations",:id=>@product.id} %>
+
   	</p>
+  <%= hidden_field_tag 'h_corelation',1%>
   <% end %>
+
 </div>
+

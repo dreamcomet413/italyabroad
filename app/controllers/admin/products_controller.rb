@@ -133,6 +133,7 @@ class Admin::ProductsController < ApplicationController
   end
 
   def update
+    @product = Product.find(params[:id])
     params[:product] ||= {}
 
     params[:product][:category_ids] = params[:category_ids] if params[:category_ids]
@@ -144,13 +145,19 @@ class Admin::ProductsController < ApplicationController
            end
       end
     end
-    params[:product][:correlation_ids] = params[:correlation_ids]
-    #if params[:correlation_ids]
+  # params[:product][:correlation_ids] = params[:correlation_ids] if params[:correlation_ids]
+
+  # this is not restful. if params[:h_corelation] condition added to avoid deletion of inlcuded product_ids while updating correlation or any other attribute of product throught his interface
+  params[:product][:correlation_ids] = params[:correlation_ids] if params[:h_corelation]
+
+
     params[:product][:ideal_with_id] = params[:ideal_with_id] if params[:ideal_with_id]
     params[:product][:how_to_cook_id] = params[:how_to_cook_id] if params[:how_to_cook_id]
-    params[:product][:included_product_ids] = params[:included_product_ids]
-    #if params[:included_product_ids]
-    @product = Product.find(params[:id])
+ #  params[:product][:included_product_ids] = params[:included_product_ids] if params[:included_product_ids]
+
+  # this is not restful. if params[:h_inc_products] condition added to avoid deletion of correlation_ids while updating included products or any other attribute of product throught his interface
+    params[:product][:included_product_ids] = params[:included_product_ids] if params[:h_inc_products]
+
 
     @product.image_1.destroy if @product.image_1 && !params[:image_1].blank?
     @product.build_image_1(:image_file => params[:image_1]) unless params[:image_1].blank?
@@ -300,6 +307,15 @@ p params[:product]
      end
   end
 
-
+  def remove_all_correlations
+    @product = Product.find(params[:id])
+    unless @product.correlation_ids.nil?
+      @product.correlation_ids.each do |inc_id|
+        @relation = ProductCorrelation.find_by_correlation_id_and_product_id(inc_id,@product.id)
+        @relation.delete
+      end
+    end
+    redirect_to product_correlation_path(@product)
+  end
  end
 

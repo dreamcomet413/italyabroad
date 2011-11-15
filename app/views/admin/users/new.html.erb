@@ -4,7 +4,9 @@
 <div class="inner_content">
   <h2><%= @title %></h2>
   <br />
-  <% form_for :user, :url => admin_users_path do %>
+  <% form_for :user, :url => admin_users_path do |f| %>
+  <%= show_messages(flash[:notice]) %>
   	<%= render :partial => "form" %>
   <% end %>
 </div>
+
