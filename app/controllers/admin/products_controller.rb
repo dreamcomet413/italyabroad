@@ -116,6 +116,8 @@ class Admin::ProductsController < ApplicationController
     end
   end
 
+ 
+
   def images
     @product = Product.find(params[:id])
 

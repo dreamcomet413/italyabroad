@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(:version => 20110929051448) do
     t.string  "friendly_identifier"
     t.string  "text_on_image"
     t.string  "page_heading"
-    t.integer "menu_order",                            :null => false
+    t.integer "menu_order"
   end
 
   create_table "categorizations", :force => true do |t|
@@ -167,6 +167,13 @@ ActiveRecord::Schema.define(:version => 20110929051448) do
   create_table "grapes_producers", :id => false, :force => true do |t|
     t.integer "grape_id"
     t.integer "producer_id"
+  end
+
+  create_table "hampermixedcase_included_products", :force => true do |t|
+    t.integer  "product_id"
+    t.integer  "hampermixedcase_included_product_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "images", :force => true do |t|
@@ -591,9 +598,6 @@ ActiveRecord::Schema.define(:version => 20110929051448) do
     t.float   "points_to_pound",                                     :default => 0.0,     :null => false
     t.string  "desc_wine_of_the_week"
     t.string  "desc_food_of_the_week"
-    t.string  "producer_page_quote"
-    t.string  "grape_page_quote"
-    t.string  "region_page_quote"
   end
 
   create_table "ship_addresses", :force => true do |t|
