@@ -64,20 +64,24 @@ class Site::OrdersController < ApplicationController
              total_amount = @cart.total
            end
            Notifier.deliver_new_order_placed(@order,current_user,AppConfig.admin_email)
-          if production
-            gateway = ActiveMerchant::Billing::SagePayGateway.new(:login => @payment_method.vendor)
+        #  if production
+         #   gateway = ActiveMerchant::Billing::SagePayGateway.new(:login => @payment_method.vendor)
+         gateway = ActiveMerchant::Billing::SagePayGateway.new(:login =>'sujith',:password=>'sujithitaly')
 
          #   response = gateway.purchase(@cart.total*100, @credit_card, :order_id => "#{order.id}", :address => { :address1 => current_user.address, :zip => current_user.cap })
           # modified for loyalty system
 
 
-         response = gateway.purchase(total_amount, @credit_card, :order_id => "#{order.id}", :address => { :address1 => current_user.address, :zip => current_user.cap })
+         response = gateway.purchase(total_amount, @credit_card, :order_id => "#{@order.id}", :address => { :address1 => current_user.address, :zip => current_user.cap })
 
-          end
-
+      #    end
+          logger.info "Response from sage pay Gateway is ------ #{response}"
+          logger.info "Response from sage pay Gateway is ------ #{response.success?}"
           if (!response.nil? && response.success?) or !production
            # new_order.update_attributes(:paid => true)
           #  new_order.update_attributes(:points_used => points_used)
+          session[:response]= "Response from sage pay Gateway is ------ #{response}"
+          session[:response_success] =  "Response from sage pay Gateway is ------ #{response.success?}"
            @order.update_attributes(:paid => true,:points_used => points_used)
             redirect_to confirmed_checkouts_path
           else

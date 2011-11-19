@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   validates_confirmation_of :password,                   :if => :password_required?
   validates_presence_of     :address,                    :if => :customer?
   #validates_presence_of     :cap,                        :if => :customer?
-  validates_presence_of     :city,                       :if => :customer?,:message=>"/ Town can't be blank"
+  validates_presence_of     :city,                       :if => :customer?
   validates_length_of       :login,                      :within => 3..40
   validates_length_of       :email,                      :within => 3..100
   validates_uniqueness_of   :login,  :case_sensitive => false
