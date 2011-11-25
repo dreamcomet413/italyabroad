@@ -1,7 +1,26 @@
 class Site::CheckoutsController < ApplicationController
+
+
+
   before_filter :site_login_required
   before_filter :store_location
   after_filter :reset_session, :only => [:confirmed]
+
+
+
+  ssl_required :all
+
+  # UnComment this when site goes live
+  # I think this is not working when the site is held as a sub domain of LegreenSolutions
+
+  #Comment 2nd when we go Live
+  #Now we are using this becuase https redirection is not working when site is sub domain of legreensolutions
+    #ssl_allowed
+    #ssl_required :all
+
+    #ssl_allowed
+    #ssl_required
+
 
   layout "site"
 
@@ -17,16 +36,15 @@ class Site::CheckoutsController < ApplicationController
   def confirm_address
     @ship_address = session[:ship_address] ||= current_user.ship_addresses.new(params[:ship_address])
 
-    if @ship_address.valid?
-      redirect_to payment_checkouts_path
-    else
-      flash[:notice] = @ship_address.show_errors
-      redirect_to checkouts_path
-    end
+#    if @ship_address.valid?
+       redirect_to payment_checkouts_path
+#    else
+#      flash[:notice] = @ship_address.show_errors
+#      redirect_to checkouts_path
+#    end
   end
 
   def payment
-
     @payment_method = 2 #set default payment method to credit card
   end
 
@@ -45,7 +63,7 @@ class Site::CheckoutsController < ApplicationController
       #flash[:alert] = "Please accept terms and conditions"
       #redirect_to :controller=>'checkouts',:action=>'payment'
     end
- end
+   end
   end
 
   private

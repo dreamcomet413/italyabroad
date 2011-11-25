@@ -1,6 +1,7 @@
 class Site::BaseController < ApplicationController
   layout "site"
 
+
   def index
     @setting = Setting.first
   end

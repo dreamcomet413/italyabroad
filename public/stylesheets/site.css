@@ -2835,3 +2835,9 @@ li#link-to-hampers ul li a:hover{
     height:20px;
 }
 
+html body#search_index.search div#content div#mainContent div#rightColumn div#box_food_search.block {
+    margin: 0 0 0 0px;
+    margin-bottom:13px;
+    width:233px;
+}
+

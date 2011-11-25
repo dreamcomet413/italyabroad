@@ -2,7 +2,9 @@ class Site::OrdersController < ApplicationController
   before_filter :site_login_required
   before_filter :store_location, :only => [:show]
 
-  ssl_required :create if RAILS_ENV == "production"
+
+  #Uncomment the IF part when we go for production
+  ssl_required :create #if RAILS_ENV == "production"
   ssl_allowed
   require "prawn"
 
@@ -37,12 +39,15 @@ class Site::OrdersController < ApplicationController
   end
 
   def create
-    
+
    unless params[:accept].blank?
     @payment_method = PaymentMethod.find(params[:payment_method])
      if @payment_method && !@payment_method.external
       production = RAILS_ENV == "production"
       @credit_card = ActiveMerchant::Billing::CreditCard.new(params[:credit_card])
+
+
+      logger.info "Card first naame is #{params[:credit_card][:first_name]}"
       if @credit_card.valid? or !production
         new_order
         saved = @order.save
@@ -66,22 +71,40 @@ class Site::OrdersController < ApplicationController
            Notifier.deliver_new_order_placed(@order,current_user,AppConfig.admin_email)
         #  if production
          #   gateway = ActiveMerchant::Billing::SagePayGateway.new(:login => @payment_method.vendor)
-         gateway = ActiveMerchant::Billing::SagePayGateway.new(:login =>'sujith',:password=>'sujithitaly')
+         gateway = ActiveMerchant::Billing::SagePayGateway.new(:login =>'italyabroad')
 
          #   response = gateway.purchase(@cart.total*100, @credit_card, :order_id => "#{order.id}", :address => { :address1 => current_user.address, :zip => current_user.cap })
           # modified for loyalty system
 
+       if @order.different_shipping_address
+        shipping_address = {"name"=>@order.ship_name,
+                            "address1"=>@order.ship_address,
+                             "city"=>@order.ship_city,
+                             "state"=>@order.ship_cap,
+                             "country"=>@order.ship_country,
+                             "zip"=>"123456"
 
-         response = gateway.purchase(total_amount, @credit_card, :order_id => "#{@order.id}", :address => { :address1 => current_user.address, :zip => current_user.cap })
+        }
+       else
+         shipping_address = {"name"=>current_user.name.to_s + current_user.surname.to_s,
+                            "address1"=>current_user.address,
+                             "city"=>current_user.city,
+                             "state"=>current_user.province,
+                             "country"=>current_user.country,
+                             "zip"=>"123456"
+                             }
+       end
+
+       response = gateway.purchase(total_amount*100, @credit_card,:order_id =>"#{@order.id}",:options=>{:billing_address=>{:address1=>current_user.address,:city=>current_user.city,:state=>current_user.province,:country=>current_user.country},:shipping_address=>{:name=>shipping_address["name"],:address1=>shipping_address["address1"],:city=>shipping_address["city"],:state=>shipping_address["state"],:country=>shipping_address["country"],:zip=>shipping_address["zip"]}})
 
       #    end
           logger.info "Response from sage pay Gateway is ------ #{response}"
-          logger.info "Response from sage pay Gateway is ------ #{response.success?}"
-          if (!response.nil? && response.success?) or !production
+          logger.info "Response -params ------ #{response.message}"
+          logger.info "Success or Failure ------ #{response.success?}"
+          if (!response.nil? && response.success?) #or !production
            # new_order.update_attributes(:paid => true)
           #  new_order.update_attributes(:points_used => points_used)
-          session[:response]= "Response from sage pay Gateway is ------ #{response}"
-          session[:response_success] =  "Response from sage pay Gateway is ------ #{response.success?}"
+
            @order.update_attributes(:paid => true,:points_used => points_used)
             redirect_to confirmed_checkouts_path
           else
@@ -205,6 +228,9 @@ class Site::OrdersController < ApplicationController
       :payment_method_id          => @payment_method.id
     )
   end
+
+#      :surname                    => session[:ship_address].surname,
+
 
   def generate_pdf(order)
     Prawn::Document.new do |pdf|

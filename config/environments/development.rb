@@ -18,3 +18,4 @@ config.action_mailer.raise_delivery_errors = false
 
 ActiveMerchant::Billing::Base.mode = :test
 # ActiveMerchant::Billing::SagePayGateway.simulate = true
+
