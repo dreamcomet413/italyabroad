@@ -36,12 +36,12 @@ class Site::CheckoutsController < ApplicationController
   def confirm_address
     @ship_address = session[:ship_address] ||= current_user.ship_addresses.new(params[:ship_address])
 
-#    if @ship_address.valid?
+    if @ship_address.valid?
        redirect_to payment_checkouts_path
-#    else
-#      flash[:notice] = @ship_address.show_errors
-#      redirect_to checkouts_path
-#    end
+    else
+      flash[:notice] = @ship_address.show_errors
+      redirect_to checkouts_path
+   end
   end
 
   def payment

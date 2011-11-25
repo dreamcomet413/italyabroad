@@ -126,7 +126,7 @@ var RemoteForm = {
 var RemoteAddressFrom = {
   setup: function(path) {
     $('ship_address_form_continue').observe('click', function(event) {
-      $('ship_address_form').action = path;
+     $('ship_address_form').action = path;
     })
   }
 }
@@ -156,3 +156,4 @@ function display_chef_details(){
 
 
 }
+

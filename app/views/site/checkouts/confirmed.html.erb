@@ -1,8 +1,9 @@
 <% @title = "Complete Order" %>
 <%- @breadcrumbs = "#{link_to "Home", root_url} &raquo; Checkout &raquo; Complete Order" -%>
 <% @class = "no-padding" %>
-Response - <%= session[:response] %><br />
-Success or failure - <%= session[:response_success] %>
+<!--Response - <%#= session[:response] %><br />
+Success or failure - <%#= session[:response_success] %>
+Response Params is <%#= session[:response_params] %>-->
 
 <div id="header">Payment Information</div>
 <div style="text-align:center;margin-top:40px;"><%= image_tag("cart_step_4.png") %></div>

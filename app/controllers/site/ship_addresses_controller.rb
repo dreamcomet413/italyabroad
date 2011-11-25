@@ -21,7 +21,7 @@ class Site::ShipAddressesController < ApplicationController
       format.html { redirect_to checkouts_path }
     end
   end
-  
+
   def create
     @ship_address = current_user.ship_addresses.new(params[:ship_address])
 

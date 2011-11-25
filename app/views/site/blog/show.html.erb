@@ -17,16 +17,18 @@
   <div><%= @post.description_cleared %></div><br /><br />
   <table width="100%">
     <tr>
-      <td><strong>Tags:</strong> <%#= @post.tag_names %>
+      <td width="50%"><strong>Tags:</strong> <%#= @post.tag_names %>
 
-            <% @tag_list ="&nbsp;" %>
+            <% @tag_list ="" %>
             <% @post.tags.each do |p| %>
-              <% @tag_list = "&nbsp;" + @tag_list + link_to (p.name, blog_index_path(:tag_id=>p.id)) + ","%>&nbsp;
+              <% @tag_list =  @tag_list + link_to (p.name, blog_index_path(:tag_id=>p.id)) + ", "%>
             <% end %>
-             <%= @tag_list.chop! if @tag_list %>
+             <%= @tag_list.chop![0..-2] if @tag_list %>
 
       </td>
-      <td align="right"><%= render :partial => '/site/shared/social_bookmarks'%></td>
+      <td align="right" width="50%">
+      <%= render :partial => '/site/shared/social_bookmarks'%>
+      </td>
     </tr>
   </table>
   <div style="border-bottom:1px solid #CCCCCC;margin-top:20px;"></div>

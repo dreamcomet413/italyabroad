@@ -16,21 +16,21 @@ class Admin::GiftOptionsController < ApplicationController
 
   def edit
     @gift_option = GiftOption.find(params[:id])
-    
+
     respond_to do |format|
       format.html
     end
   end
-  
+
   def create
     gift_option = GiftOption.new(params[:gift_option])
-    
+
     if gift_option.save
       flash[:notice] = "Gift options is created successfully"
     else
       flash[:notice] = gift_option.show_errors
     end
-    
+
     redirect_to :action => :index
   end
 
@@ -52,3 +52,4 @@ class Admin::GiftOptionsController < ApplicationController
     redirect_to :action => :index
   end
 end
+
