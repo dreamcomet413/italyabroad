@@ -34,9 +34,13 @@
       <%= @category.name %>
      <% end %>
   </h3>
-<div style="margin:6px;float:left;margin-right:20px;">
-  <%= render :partial => '/site/shared/box_upcoming_events' -%>
-</div>
+
+<% products = Product.find(:all, :limit => 2, :include => {:categorizations => :category}, :conditions => ["categories.name LIKE ? AND DATE(date) > ? AND active" ,'Events',Date.today],:order =>'date') %>
+<% unless products.blank? -%>
+          <div style="margin:6px;float:left;margin-right:20px;">
+            <%= render :partial => '/site/shared/box_upcoming_events' -%>
+          </div>
+<% end %>
 
  <!-- <h3 style="border:none;" align="center">
     <%# unless @category.page_heading.blank? %>

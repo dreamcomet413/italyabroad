@@ -3,7 +3,7 @@ class Site::CustomersController < ApplicationController
 
   layout "site"
 
-  ssl_required :new, :create, :account, :order if RAILS_ENV == "production"
+  ssl_required :new, :create, :account, :order # if RAILS_ENV == "production"
 
   def new
     @user = User.new

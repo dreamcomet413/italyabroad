@@ -7,7 +7,7 @@ class Site::CheckoutsController < ApplicationController
   after_filter :reset_session, :only => [:confirmed]
 
 
-
+  #ssl_required :payment
   ssl_required :all
 
   # UnComment this when site goes live

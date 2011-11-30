@@ -16,8 +16,8 @@ class Site::CartController < ApplicationController
     if created
          @setting = Setting.find(:first)
           if product.quantity.to_i - quantity.to_i < @setting.reorder_quantity
-
-            Notifier.deliver_reorder_quantity_notification(product,AppConfig.admin_email)
+            # Commented by Sujith since UserName and Password of SMTP is not correct now
+            #Notifier.deliver_reorder_quantity_notification(product,AppConfig.admin_email)
           end
 
       status = "#{product.name.gsub("'", "\\'")} correctly added to your cart."
@@ -51,7 +51,8 @@ class Site::CartController < ApplicationController
     @setting = Setting.find(:first)
    for cart_item in @cart.items
           if cart_item.quantity < @setting.reorder_quantity
-            Notifier.deliver_reorder_quantity_notification(cart_item.product,AppConfig.admin_email)
+            # Commented by Sujith since UserName and Password of SMTP is not correct now
+            #Notifier.deliver_reorder_quantity_notification(cart_item.product,AppConfig.admin_email)
         end
    end
     redirect_to :action => :index

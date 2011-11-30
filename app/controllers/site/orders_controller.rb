@@ -4,8 +4,12 @@ class Site::OrdersController < ApplicationController
 
 
   #Uncomment the IF part when we go for production
-  ssl_required :create if RAILS_ENV == "production"
-  ssl_allowed
+  #ssl_required :create if RAILS_ENV == "production"
+  #ssl_allowed
+
+  # Since this is being done through /etc/httpd/conf/extra/virtual.conf
+  # Now ssl_required is not used
+
   require "prawn"
 
   def index
@@ -38,118 +42,139 @@ class Site::OrdersController < ApplicationController
     end
   end
 
-  def create
+def create
 
-   unless params[:accept].blank?
+  unless params[:accept].blank?
     @payment_method = PaymentMethod.find(params[:payment_method])
-     if @payment_method && !@payment_method.external
+
+    if @payment_method && !@payment_method.external
       production = RAILS_ENV == "production"
       @credit_card = ActiveMerchant::Billing::CreditCard.new(params[:credit_card])
 
-
-      logger.info "Card first naame is #{params[:credit_card][:first_name]}"
       if @credit_card.valid? or !production
         new_order
         saved = @order.save
+
         if saved
           create_order_items
           points_used = 0
+
           unless params[:points_to_be_used].nil?
-            if params[:total_points].to_f > params[:points_to_be_used].to_f and  (@cart.total - (params[:points_to_be_used].to_f * Setting.find(:first).points_to_pound) >= 0)
-                total_amount = (@cart.total) - (params[:points_to_be_used].to_f * Setting.find(:first).points_to_pound)
-             points_used = params[:points_to_be_used]
-            # new_order.update_attributes(:points_used => params[:points_to_be_used])
-            else
-              points_used = (@cart.total)/ Setting.find(:first).points_to_pound
-             # new_order.update_attributes(:points_used =>(@cart.total)/ Setting.find(:first).points_to_pound )
-             total_amount = 0
-            end
+                    if params[:total_points].to_f > params[:points_to_be_used].to_f and  (@cart.total - (params[:points_to_be_used].to_f * Setting.find(:first).points_to_pound) >= 0)
+                      total_amount = (@cart.total) - (params[:points_to_be_used].to_f * Setting.find(:first).points_to_pound)
+                      points_used = params[:points_to_be_used]
+                    else
+                      points_used = (@cart.total)/ Setting.find(:first).points_to_pound
+                      total_amount = 0
+                    end
            else
 
              total_amount = @cart.total
            end
+
+           # Commented by Sujith - put correct values below
            Notifier.deliver_new_order_placed(@order,current_user,AppConfig.admin_email)
-        #  if production
-         #   gateway = ActiveMerchant::Billing::SagePayGateway.new(:login => @payment_method.vendor)
-         gateway = ActiveMerchant::Billing::SagePayGateway.new(:login =>'italyabroad')
 
-         #   response = gateway.purchase(@cart.total*100, @credit_card, :order_id => "#{order.id}", :address => { :address1 => current_user.address, :zip => current_user.cap })
-          # modified for loyalty system
 
-       if @order.different_shipping_address
-        shipping_address = {"name"=>@order.ship_name,
-                            "address1"=>@order.ship_address,
-                             "city"=>@order.ship_city,
-                             "state"=>@order.ship_cap,
-                             "country"=>@order.ship_country,
-                             "zip"=>"123456"
+            # Earlier it was if production
+            # Now commented for production it was not properly coded for development and production modes
+            if true #if production
+                gateway = ActiveMerchant::Billing::SagePayGateway.new(:login =>'italyabroad')
 
-        }
-       else
-         shipping_address = {"name"=>current_user.name.to_s + current_user.surname.to_s,
-                            "address1"=>current_user.address,
-                             "city"=>current_user.city,
-                             "state"=>current_user.province,
-                             "country"=>current_user.country,
-                             "zip"=>"123456"
-                             }
-       end
+                # modified for loyalty system
 
-       response = gateway.purchase(total_amount*100, @credit_card,:order_id =>"#{@order.id}",:options=>{:billing_address=>{:address1=>current_user.address,:city=>current_user.city,:state=>current_user.province,:country=>current_user.country},:shipping_address=>{:name=>shipping_address["name"],:address1=>shipping_address["address1"],:city=>shipping_address["city"],:state=>shipping_address["state"],:country=>shipping_address["country"],:zip=>shipping_address["zip"]}})
 
-      #    end
-          logger.info "Response from sage pay Gateway is ------ #{response}"
-          logger.info "Response -params ------ #{response.message}"
-          logger.info "Success or Failure ------ #{response.success?}"
-          if (!response.nil? && response.success?) #or !production
-           # new_order.update_attributes(:paid => true)
-          #  new_order.update_attributes(:points_used => points_used)
+                              # Sujith correct ZIP code since it is mandatory
+                             if @order.different_shipping_address
+                                    shipping_address = {"name"=>@order.ship_name,
+                                                        "address1"=>@order.ship_address,
+                                                         "city"=>@order.ship_city,
+                                                         "state"=>@order.ship_cap,
+                                                         "country"=>@order.ship_country,
+                                                         "zip"=>"412"
+                                    }
+                             else
+                                     shipping_address = {"name"=>current_user.name.to_s + current_user.surname.to_s,
+                                                        "address1"=>current_user.address,
+                                                         "city"=>current_user.city,
+                                                         "state"=>current_user.province,
+                                                         "country"=>current_user.country,
+                                                         "zip"=>"412"
+                                                         }
+                             end
+              response = gateway.purchase(total_amount*100, @credit_card,:order_id =>"#{@order.id}",:options=>{:billing_address=>{:address1=>current_user.address,:city=>current_user.city,:state=>current_user.province,:country=>current_user.country},:shipping_address=>{:name=>shipping_address["name"],:address1=>shipping_address["address1"],:city=>shipping_address["city"],:state=>shipping_address["state"],:country=>shipping_address["country"],:zip=>shipping_address["zip"]}})
 
-           @order.update_attributes(:paid => true,:points_used => points_used)
-            redirect_to confirmed_checkouts_path
-          else
-            flash[:notice] = response.message
-            redirect_to payment_checkouts_path
-          end
+              end  #END OF IF PRODUCTION
+              logger.info "TESTING_SITE__  RESULT #{response.success?}"
+              logger.info "TESTING_SITE__  MESSAGE #{response.message}"
+              logger.info "TESTING_SITE__  OBJECT #{response}"
+
+              if (!response.nil? && response.success?) #or !production
+                  @order.update_attributes(:paid => true,:points_used => points_used)
+                  redirect_to confirmed_checkouts_path
+              else
+                  flash[:notice] = response.message
+                  redirect_to payment_checkouts_path
+              end
+
         else
-          flash[:notice] = @order.errors
-        end
+        #Unable to save Order
+            logger.info "Unable to save order"
+            flash[:notice] = @order.errors
+
+        end   #End of if order.save
+
+
       else
+        # END OF IF @credit_card.valid? or !production
+        # Invalid Credit Card
+        logger.info " CREDIT CARD NOT VALID "
         flash[:notice] = @credit_card.errors
         redirect_to payment_checkouts_path
       end
+
+
     else
+
+      #ELSE of if @payment_method && !@payment_method.external
+      # Payment is outside site/not online.
       new_order
       saved = @order.save
 
       if saved
         create_order_items
+
         unless params[:points_to_be_used].nil?
+
             if params[:total_points].to_f > params[:points_to_be_used].to_f and  (@cart.total - (params[:points_to_be_used].to_f * Setting.find(:first).points_to_pound) >= 0)
                 total_amount = (@cart.total) - (params[:points_to_be_used].to_f * Setting.find(:first).points_to_pound)
              points_used = params[:points_to_be_used]
-            # new_order.update_attributes(:points_used => params[:points_to_be_used])
             else
               points_used = (@cart.total)/ Setting.find(:first).points_to_pound
-             # new_order.update_attributes(:points_used =>(@cart.total)/ Setting.find(:first).points_to_pound )
              total_amount = 0
-            end
-           else
-             total_amount = @cart.total
-           end
-        Notifier.deliver_new_order_placed(@order,current_user,AppConfig.admin_email)
-      end
-      redirect_to paypal_checkouts_path(:id => new_order.id)
-    end
-  # else of accept terms and conditions
-  else
+            end   # END OF POINTs?
 
+         else
+             total_amount = @cart.total
+         end  # END OF unless params[:points_to_be_used].nil?
+
+        # Sujith Enter correct values
+        Notifier.deliver_new_order_placed(@order,current_user,AppConfig.admin_email)
+      end # END OF if saved
+
+      # what is this Sujith??
+      # redirect_to paypal_checkouts_path(:id => new_order.id)
+    end
+
+
+  else
+    # else of accept terms and conditions
     flash[:notice] = 'Please accept terms and conditions'
     redirect_to :controller=>'checkouts',:action=>'payment'
 
   end
 
-  end
+end
 
   def invoice
     @order = current_user.orders.find(params[:id])

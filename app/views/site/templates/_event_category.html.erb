@@ -60,7 +60,11 @@
 <% products = @category.products.find(:all, :conditions => ["active = ? AND DATE(date) >= ?", true, Date.today], :order => "date").paginate(:page => params[:page], :per_page => 4) %>
 <div id="featured_events"  style="text-align:justify;margin-right:15px;">
         <br />
+
+        <% if products.size > 0  -%>
         <h3>Coming Events</h3>
+        <% end  %>
+
         <ul>
                 <% for product in products %>
                 <li>
