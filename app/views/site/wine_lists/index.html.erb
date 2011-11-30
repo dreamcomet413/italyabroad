@@ -12,7 +12,9 @@
 		  <td>You haven’t added any wine yet to your wine list, why not let our other members know your favourite wines?</td>
     </tr>
 	<% else %>
+	<%= product_id = "" %>
   <% for wine_list in @wine_lists  %>
+   <% if product_id.to_i != wine_list.product_id %>
   <% product = wine_list.product %>
 	<tr>
 	  <td>
@@ -36,8 +38,9 @@
 			</div>
 		</td>
 	</tr>
-	<% end %>
-
+	<%  product_id = wish_list.product_id
+	end %>
+  <% end %>
 	<% end %>
 </table>
 

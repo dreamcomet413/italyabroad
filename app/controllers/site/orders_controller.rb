@@ -4,7 +4,7 @@ class Site::OrdersController < ApplicationController
 
 
   #Uncomment the IF part when we go for production
-  ssl_required :create #if RAILS_ENV == "production"
+  ssl_required :create if RAILS_ENV == "production"
   ssl_allowed
   require "prawn"
 

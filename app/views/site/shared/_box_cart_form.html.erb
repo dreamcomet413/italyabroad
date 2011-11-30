@@ -28,7 +28,7 @@
 		  <%= number_to_currency cart_item.price, :unit => "&pound;" %>
     </td>
 		<td>
-		  <%= text_field_tag "cart[][quantity]", nil, :value => cart_item.quantity, :size => 2, :maxlength => 2, :style => "text-align:center" %>
+		  <%= text_field_tag "cart[][quantity]", nil, :value => cart_item.quantity, :size => 2, :maxlength => 2, :style => "text-align:center",:disabled=>true %>
     </td>
 		<td align="right">
 		  <%= number_to_currency cart_item.total, :unit => "&pound;" %>

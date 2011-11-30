@@ -10,7 +10,9 @@
 		  <td>You don't have any products in your wish list.</td>
     </tr>
 	<% else %>
+	<%= product_id = "" %>
   <% for wish_list in @wish_lists  %>
+  <% if product_id.to_i != wish_list.product_id %>
   <% product = wish_list.product %>
 	<tr>
 	  <td>
@@ -37,8 +39,9 @@
 			</div>
 		</td>
 	</tr>
-	<% end %>
-
+	<%  product_id = wish_list.product_id
+	end %>
+  <% end %>
 	<% end %>
 </table>
 
