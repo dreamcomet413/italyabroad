@@ -82,8 +82,10 @@
 </div>
 
 <% content_for :right do %>
+<% unless Product.other_events(@product).blank? %>
 	<%= render :partial => "/site/shared/box_event_others" %>
 	<br />
+<% end %>
 	<%= render :partial => '/site/shared/box_subscriptions' %>
 	<br />
 	<%= render :partial => '/site/shared/box_wine_tours' %>
