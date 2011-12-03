@@ -45,13 +45,20 @@ class Site::CheckoutsController < ApplicationController
   end
 
   def payment
+    if @cart.items.size == 0
+      redirect_to cart_index_path
+    end
     @payment_method = 2 #set default payment method to credit card
+
   end
 
   def paypal
   end
 
   def confirmed
+    if @cart.items.size == 0
+      redirect_to cart_index_path
+    end
   end
 
   def order_confirmation
