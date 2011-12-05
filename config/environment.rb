@@ -56,7 +56,7 @@ Rails::Initializer.run do |config|
 
 end
 
-
+=begin
 ActionMailer::Base.delivery_method = :smtp
 ActionMailer::Base.smtp_settings = {
   :tls => true,
@@ -66,6 +66,31 @@ ActionMailer::Base.smtp_settings = {
   :authentication => :plain,
   :user_name => "mail@ejubel.com",
   :password => "server123"
+}
+=end
+
+=begin WORKING
+ActionMailer::Base.delivery_method = :smtp
+ActionMailer::Base.smtp_settings = {
+  :tls => true,
+  :address => "smtp.gmail.com",
+  :port => "587",
+  :domain => "gmail.com",
+  :authentication => :plain,
+  :user_name => "surendran.nair.suvas@gmail.com",
+  :password => "123456go"
+}
+=end
+
+
+ActionMailer::Base.delivery_method = :smtp
+ActionMailer::Base.smtp_settings = {
+   :address => "smtp.italyabroad.com",
+   :port => 25,
+   :domain => "www.italyabroad.com",
+   :authentication => :login,
+   :user_name => "info@italyabroad.com",
+   :password => "info"
 }
 
 
