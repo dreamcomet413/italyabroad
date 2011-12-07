@@ -56,22 +56,25 @@ def create
 
         if saved
           create_order_items
-          points_used = 0
+          points_used = 0.00
 
           unless params[:points_to_be_used].nil?
                     if params[:total_points].to_f > params[:points_to_be_used].to_f and  (@cart.total - (params[:points_to_be_used].to_f * Setting.find(:first).points_to_pound) >= 0)
                       total_amount = (@cart.total) - (params[:points_to_be_used].to_f * Setting.find(:first).points_to_pound)
                       points_used = params[:points_to_be_used]
+
                     else
-                      points_used = (@cart.total)/ Setting.find(:first).points_to_pound
-                      total_amount = 0
+                    #  points_used = (@cart.total)/ Setting.find(:first).points_to_pound
+                    points_used = current_user.find_total_points(current_user).to_f - current_user.orders.sum('points_used')
+                     # total_amount = 0
+                     total_amount = (@cart.total) - (points_used.to_f * Setting.find(:first).points_to_pound)
+
                     end
            else
 
              total_amount = @cart.total
            end
-
-           # Commented by Sujith - put correct values below
+            # Commented by Sujith - put correct values below
            Notifier.deliver_new_order_placed(@order,current_user,AppConfig.admin_email)
 
 
@@ -184,15 +187,18 @@ def create
 
       if saved
         create_order_items
-
+        points_used = 0.00
         unless params[:points_to_be_used].nil?
 
             if params[:total_points].to_f > params[:points_to_be_used].to_f and  (@cart.total - (params[:points_to_be_used].to_f * Setting.find(:first).points_to_pound) >= 0)
                 total_amount = (@cart.total) - (params[:points_to_be_used].to_f * Setting.find(:first).points_to_pound)
              points_used = params[:points_to_be_used]
             else
-              points_used = (@cart.total)/ Setting.find(:first).points_to_pound
-             total_amount = 0
+            #  points_used = (@cart.total)/ Setting.find(:first).points_to_pound
+            points_used = current_user.find_total_points(current_user).to_f
+            # total_amount = 0
+            total_amount = (@cart.total) - (points_used.to_f * Setting.find(:first).points_to_pound)
+
             end   # END OF POINTs?
 
          else

@@ -15,7 +15,10 @@ class Order < ActiveRecord::Base
 
   def customer
     if user
-      return user.name + " " + user.surname
+      fullname = user.name
+      fullname = fullname + " " + user.surname if user.surname
+     # return user.name + " " + user.surname
+     return fullname
     else
       return "*Customer deleted*"
     end
