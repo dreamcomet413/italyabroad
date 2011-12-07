@@ -39,6 +39,8 @@ window.focus();
         <h3>Welcome to the Italyabroad.com live chat</h3>
       <% else %>
         <%  if session[:chat_user_name] == @support_user %>
+            <!-- Sujith-->
+            UserName<%= session[:chat_user_name] %> Support User<%=@support_user%>
           <h3>Welcome to the Italyabroad.com live chat</h3>
         <% else %>
           <h3>Sorry, Chat not available now.</h3>

@@ -61,8 +61,11 @@ module ActiveMerchant #:nodoc:
 
       def purchase(money, credit_card, options = {})
         requires!(options, :order_id)
-
         post = {}
+
+        Rails.logger.info "Start - sujith0001"
+        Rails.logger.info response
+        Rails.logger.info "End - sujith0001"
 
         add_amount(post, money, options)
         add_invoice(post, options)
@@ -90,6 +93,7 @@ module ActiveMerchant #:nodoc:
       # You can only capture a transaction once, even if you didn't capture the full amount the first time.
       def capture(money, identification, options = {})
         post = {}
+
 
         add_reference(post, identification)
         add_release_amount(post, money, options)
@@ -229,6 +233,8 @@ module ActiveMerchant #:nodoc:
 
       def commit(action, parameters)
         response = parse( ssl_post(url_for(action), post_data(action, parameters)) )
+
+        Rails.logger.info response
 
         Response.new(response["Status"] == APPROVED, message_from(response), response,
           :test => test?,

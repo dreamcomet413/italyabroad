@@ -43,7 +43,6 @@ class Site::OrdersController < ApplicationController
   end
 
 def create
-
   unless params[:accept].blank?
     @payment_method = PaymentMethod.find(params[:payment_method])
 
@@ -51,7 +50,7 @@ def create
       production = RAILS_ENV == "production"
       @credit_card = ActiveMerchant::Billing::CreditCard.new(params[:credit_card])
 
-      if @credit_card.valid? or !production
+      if @credit_card.valid? or !production #or production
         new_order
         saved = @order.save
 
@@ -76,7 +75,7 @@ def create
            Notifier.deliver_new_order_placed(@order,current_user,AppConfig.admin_email)
 
 
-            # Earlier it was if production
+            # Earlier it was          if production
             # Now commented for production it was not properly coded for development and production modes
             if true #if production
                 gateway = ActiveMerchant::Billing::SagePayGateway.new(:login =>'italyabroad')
@@ -102,7 +101,49 @@ def create
                                                          "zip"=>"412"
                                                          }
                              end
-              response = gateway.purchase(total_amount*100, @credit_card,:order_id =>"#{@order.id}",:options=>{:billing_address=>{:address1=>current_user.address,:city=>current_user.city,:state=>current_user.province,:country=>current_user.country},:shipping_address=>{:name=>shipping_address["name"],:address1=>shipping_address["address1"],:city=>shipping_address["city"],:state=>shipping_address["state"],:country=>shipping_address["country"],:zip=>shipping_address["zip"]}})
+#              response = gateway.purchase(total_amount*100, @credit_card,:order_id =>"#{@order.id}",:options=>{:billing_address=>{:address1=>current_user.address,:city=>current_user.city,:state=>current_user.province,:country=>current_user.country},:shipping_address=>{:name=>shipping_address["name"],:address1=>shipping_address["address1"],:city=>shipping_address["city"],:state=>shipping_address["state"],:country=>shipping_address["country"],:zip=>shipping_address["zip"]}})
+
+
+
+              response = gateway.purchase(total_amount*100, @credit_card, :order_id=>"#{@order.id}",
+              :billing_address => {
+                :name=>current_user.name.to_s + " " + current_user.surname.to_s,
+                :address1=>current_user.address,
+                :city=>current_user.city,
+                :state=>current_user.province,
+                :country=>current_user.country,
+                :zip=>current_user.cap},
+              :shipping_address=>{
+                :name=>shipping_address["name"].to_s + " " + shipping_address["name"].to_s,
+                :address1=>shipping_address["address1"],
+                :city=>shipping_address["city"],
+                :state=>shipping_address["state"],
+                :country=>shipping_address["country"],
+                :zip=>shipping_address["zip"]}
+
+               )
+
+
+
+=begin
+              response = gateway.purchase(total_amount*100, @credit_card,  :order_id=>"#{@order.id}",
+              :billing_address=>{
+                :name=>"xyz",
+                :address1=>"Test",
+                :city=>"Test",
+                :state=>"Test",
+                :country=>"GB",
+                :zip=>"1234"},
+              :shipping_address=>{
+                :name=>shipping_address["name"],
+                :address1=>"Test",
+                :city=>"Test",
+                :state=>"Test",
+                :country=>"GB",
+                :zip=>"1234"}
+              )
+
+=end
 
               end  #END OF IF PRODUCTION
               logger.info "TESTING_SITE__  RESULT #{response.success?}"
@@ -119,7 +160,7 @@ def create
 
         else
         #Unable to save Order
-            logger.info "Unable to save order"
+            logger.info "Unable to save order##########################################################"
             flash[:notice] = @order.errors
 
         end   #End of if order.save
@@ -128,7 +169,7 @@ def create
       else
         # END OF IF @credit_card.valid? or !production
         # Invalid Credit Card
-        logger.info " CREDIT CARD NOT VALID "
+        logger.info " CREDIT CARD NOT VALID ##########################################################"
         flash[:notice] = @credit_card.errors
         redirect_to payment_checkouts_path
       end
