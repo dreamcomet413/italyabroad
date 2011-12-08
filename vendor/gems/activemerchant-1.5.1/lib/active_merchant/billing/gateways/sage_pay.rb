@@ -64,7 +64,7 @@ module ActiveMerchant #:nodoc:
         post = {}
 
         Rails.logger.info "Start - sujith0001"
-        Rails.logger.info response
+        Rails.logger.info options
         Rails.logger.info "End - sujith0001"
 
         add_amount(post, money, options)

@@ -8,7 +8,7 @@ class Site::CheckoutsController < ApplicationController
 
 
   #ssl_required :payment
-  ssl_required :all
+  #ssl_required :all
 
   # UnComment this when site goes live
   # I think this is not working when the site is held as a sub domain of LegreenSolutions
