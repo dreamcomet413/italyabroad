@@ -8,11 +8,11 @@
   </tr>
 	<tr>
 	  <td style="text-align:right">First Name:</td>
-	  <td><%= text_field :credit_card, :first_name %></td>
+	  <td><%= text_field :credit_card, :first_name , :value=>session[:card_first_name]%></td>
   </tr>
 	<tr>
 	  <td style="text-align:right">Last Name:</td>
-	  <td><%= text_field :credit_card, :last_name %></td>
+	  <td><%= text_field :credit_card, :last_name, :value=>session[:card_last_name] %></td>
   </tr>
 	<tr>
 	  <td style="text-align:right">Card Number:</td>

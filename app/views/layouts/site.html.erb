@@ -133,7 +133,6 @@
                </li>
               <li id="link-to-blog" class="last<%= " active" if active_uri == "/blog" %>"><%= link_to "Blog", blog_index_path %></li>
 
-
             </ul>
             <div style="clear:both;"></div>
             <%= content_tag(:div, @breadcrumbs, :class => "breadcrumbs") if @breadcrumbs %>
@@ -171,8 +170,6 @@
            <%#end%>
 
 
-
-
           <% if flash[:alert] %>
               <script type="text/javascript">
                 document.observe('dom:loaded', function() {
@@ -186,14 +183,9 @@
 
 
 
-
             <%= yield %>
 
-
-
           </div>
-
-
 
           </div>
 

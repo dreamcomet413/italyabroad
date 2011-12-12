@@ -43,6 +43,8 @@ class Site::OrdersController < ApplicationController
   end
 
 def create
+  session[:card_first_name] = params[:credit_card][:first_name]
+  session[:card_last_name] = params[:credit_card][:last_name]
   unless params[:accept].blank?
     @payment_method = PaymentMethod.find(params[:payment_method])
 
@@ -155,6 +157,7 @@ def create
 
               if (!response.nil? && response.success?) #or !production
                   @order.update_attributes(:paid => true,:points_used => points_used)
+                  session[:card_last_name] = ""
                   redirect_to confirmed_checkouts_path
               else
                   flash[:notice] = response.message
