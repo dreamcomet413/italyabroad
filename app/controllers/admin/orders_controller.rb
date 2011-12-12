@@ -6,9 +6,9 @@ class Admin::OrdersController < ApplicationController
      if params[:search]
       date=Date.new(params[:order_date]['(1i)'].to_i,params[:order_date]['(2i)'].to_i, params[:order_date]['(3i)'].to_i)
        @orders = Order.find(:all,:conditions=>['status_order_id LIKE ? AND (users.name  like ? OR users.login like ?)AND DATE(orders.created_at) <= ?',"%#{params[:status]}%","%#{params[:search_text]}%","%#{params[:search_text]}%",
-       "#{date}"], :include => [:user, :status_order, :gift_option, :payment_method, :order_items], :order => "orders.created_at DESC").paginate(:page => params[:page], :per_page => 10)
+       "#{date}"], :include => [:user, :status_order, :gift_option, :payment_method, :order_items], :order => "orders.created_at DESC").paginate(:page => params[:page], :per_page => 20)
   else
-    @orders = Order.find(:all,:include => [:user, :status_order, :gift_option, :payment_method, :order_items], :order => "orders.created_at DESC").paginate(:page => params[:page], :per_page => 10)
+    @orders = Order.find(:all,:include => [:user, :status_order, :gift_option, :payment_method, :order_items], :order => "orders.created_at DESC").paginate(:page => params[:page], :per_page => 20)
 end
 
   end

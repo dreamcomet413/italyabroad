@@ -82,7 +82,16 @@
   <% else %>
   <div id="header">Your search returned no result</div>
   <div style="margin:20px;font-size:14px;">
-  Please check the spelling or in case you did not find what you wanted <%= mail_to "info@italyabroad.com", "get in touch" %> and will find it for you
+  <!--Please check the spelling or in case you did not find what you wanted <%= mail_to "info@italyabroad.com", "get in touch" %> and will find it for you -->
+  <p><strong style="font-weight:bold;">Sorry - no results match your search. Please try again and see what gems you may find. </strong> </p>
+  <p>To help you find what you’re looking for try one of these tips:</p>
+  <p><strong style="font-weight:bold;">Is it the right word?</strong><br />
+  Check the spelling of the word(s) you've just tried to search with.
+  </p>
+<p><strong style="font-weight:bold;">Try shortening the word</strong><br />
+  Maybe the spelling of the product you are looking for is different from the pronunciation, entering only the first 3 caracthers will give you more results. </p>
+ <p><strong style="font-weight:bold;"> Why not browse the categories?</strong><br />
+If you're looking for something specific try looking through our categories.</p>
   </div>
   <% end %>
 
@@ -94,6 +103,8 @@
       <br />
     <% elsif params[:id].upcase == 'FOOD' %>
       <%= render :partial => 'site/shared/box_food_search' %>
+    <% elsif params[:id].upcase == 'WINE' %>
+      <%= render :partial => 'site/shared/box_wine_search' %>
       <br />
    <%end
    else %>
@@ -102,6 +113,7 @@
   <% end %>
 
 	<%= render :partial => 'site/shared/box_products_on_offer' %>
+	<br />
 	<%= render :partial => '/site/shared/box_event' %>
 	<br />
 	<%= render :partial => '/site/shared/box_subscriptions' %>

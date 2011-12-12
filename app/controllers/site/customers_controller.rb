@@ -147,31 +147,35 @@ class Site::CustomersController < ApplicationController
   end
 
   def update
-     @user = current_user
+    @user = current_user
     old_mail = @user.email
-     unless params[:photo].nil?
-    @photo = Photo.new(params[:photo])
-     @photo.save
-    @user.photo_id = @photo.id
-    @user.photo_default = ""
-  else
-    set_photo_from_default(params[:kind],@user)
-  end
+    unless params[:photo].nil?
+      @photo = Photo.new(params[:photo])
+      @photo.save
+      @user.photo_id = @photo.id
+      @user.photo_default = ""
+    else
+      set_photo_from_default(params[:kind],@user)
+    end
+
   if params[:chef].to_i == 4
       @user.type_id = 4
       @user.active = false
-   else
-       @user.type_id = 2
+  elsif (params[:chef].to_i != 4 and @user.type_id.to_i != 1)
+      @user.type_id = 2
       @user.active = true
   end
+
+
+
    # @user.set_photo_from_upload(params[:photo])
     if @user.update_attributes(params[:user])
         Notifier.deliver_account_data(User.find(@user.id))
         flash[:title] = "Congratulations"
         flash[:message] = "Your account has been update, you will now receive an email"
-   #   render :action => :messages
-     redirect_to customer_path(@user.id)
-     #  redirect_to root_url
+        #   render :action => :messages
+        redirect_to customer_path(@user.id)
+        #  redirect_to root_url
     else
 
       flash[:notice] = @user.show_errors

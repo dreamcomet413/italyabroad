@@ -13,9 +13,19 @@
 		  <td>Region:</td>
 		  <td><%= select_tag :region_id, options_for_select(@category.products.regions.inject([["Any", ""]]) { |rs, r| rs << [r.name, r.id] }, params[:region_id].to_i), :id => "search_region" %></td>
     </tr>
+    <% @producers =[]
+    producer_ids = []
+     products = @category.products.find(:all,:conditions=>['active = true'])
+    products.each do |p|
+    producer_ids << p.producer_id if p.producer_id and !producer_ids.include?(p.producer_id)
+    end
+    producer_ids.each do |producer_id|
+     @producers << Producer.find(producer_id)
+    end
+    %>
 		<tr>
 		  <td>Producer:</td>
-		  <td><%= select_tag :producer_id, options_for_select(@category.products.producers.inject([["Any", ""]]) { |ps, p| ps << [p.name, p.id] }, params[:producer_id].to_i), :id => "search_producer_name" %></td>
+		  <td><%= select_tag :producer_id, options_for_select( @producers.inject([["Any", ""]]) { |ps, p| ps << [p.name, p.id] }, params[:producer_id].to_i), :id => "search_producer_name" %></td>
     </tr>
 		<tr>
 		  <td colspan="2"></td>
