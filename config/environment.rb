@@ -69,7 +69,7 @@ ActionMailer::Base.smtp_settings = {
 }
 =end
 
-=begin WORKING
+
 ActionMailer::Base.delivery_method = :smtp
 ActionMailer::Base.smtp_settings = {
   :tls => true,
@@ -80,9 +80,8 @@ ActionMailer::Base.smtp_settings = {
   :user_name => "surendran.nair.suvas@gmail.com",
   :password => "123456go"
 }
-=end
 
-
+=begin
 ActionMailer::Base.delivery_method = :smtp
 ActionMailer::Base.smtp_settings = {
    :address => "smtp.italyabroad.com",
@@ -93,7 +92,7 @@ ActionMailer::Base.smtp_settings = {
    :password => "info"
 }
 
-
+=end
 =begin
 ActionMailer::Base.delivery_method = :smtp
 ActionMailer::Base.smtp_settings = {
