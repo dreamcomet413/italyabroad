@@ -22,7 +22,8 @@ class Search
   def conditions(products=true)
     text   = @text.gsub("'","''")
     text.strip!
-    color  = @color.gsub("'","''")
+    color  = @color.gsub("'","")
+    color.upcase if color
     color.strip!
 
     conditions  = []
@@ -32,7 +33,7 @@ class Search
     conditions << "products.name LIKE '%#{text}%'" if !text.blank? && products
     conditions << "vegetarian = 1" if !@vegetarian.blank? && @vegetarian == "1"
     conditions << "organic = 1" if !@organic.blank? && @organic == "1"
-    conditions << "color LIKE '#{color}'" unless color.blank?
+    conditions << "upper(color) LIKE '%#{color}%'" unless color.blank?
     conditions << "region_id = #{@region}" unless @region.blank?
     conditions << "producer_id = #{@producer}" unless @producer.blank?
     conditions << "price #{price}" unless price.blank?

@@ -23,7 +23,7 @@ end %>
     </tr>
     <tr>
       <td>Colour:</td>
-      <td><%= select_tag :color, options_for_select(Product.colors(@category, @search), params[:color]), :id => "search_color" %></td>
+      <td><%= select_tag :color, options_for_select(Product.colors(@category), params[:color]), :id => "search_color" %></td>
     </tr>
 
     <tr>
