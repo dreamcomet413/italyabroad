@@ -99,7 +99,11 @@ class Product < ActiveRecord::Base
     conditions += search.conditions if search && !search.conditions.blank?
 
     self.find(:all, :include => [:categories, :grapes], :conditions => conditions ).group_by(&:color).each do |t,  product|
+ # self.find(:all, :include => [:categories, :grapes], :conditions => conditions ).group_by(&:color).each do |t,  product|
+
       color = t.strip if !t.blank?
+      color = color.gsub("'","") if color
+      color = color.capitalize if color
       colors  << [color, color] if !color.blank? && !colors.include?([color, color])
     end
     return colors.sort

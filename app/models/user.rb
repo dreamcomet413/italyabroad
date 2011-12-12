@@ -67,7 +67,7 @@ class User < ActiveRecord::Base
   end
 
   named_scope :admins, :conditions => {:type_id => 1}, :order => "created_at DESC"
-named_scope :regulars, :conditions => ['type_id = ? or type_id = ?', 2,4], :order => "created_at DESC"
+named_scope :regulars, :conditions => ['type_id = ? or type_id = ? or type_id = ?', 2,4,3], :order => "created_at DESC"
 
   def full_name
     str = ""

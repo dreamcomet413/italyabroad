@@ -67,6 +67,7 @@ module ActiveMerchant #:nodoc:
         add_amount(post, money, options)
         add_invoice(post, options)
         add_credit_card(post, credit_card)
+
         add_address(post, options)
         add_customer_data(post, options)
 
