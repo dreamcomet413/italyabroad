@@ -56,6 +56,7 @@ class Admin::ProductsController < ApplicationController
   def create
     @product = Product.new(params[:product])
 
+
     if @product.save
       redirect_to edit_admin_product_path(@product)
     else
@@ -116,7 +117,7 @@ class Admin::ProductsController < ApplicationController
     end
   end
 
- 
+
 
   def images
     @product = Product.find(params[:id])
@@ -178,10 +179,15 @@ class Admin::ProductsController < ApplicationController
 
     @product.resource_3.destroy if @product.resource_3 && !params[:resource_3].blank?
     @product.build_resource_3(params[:resource_3]) unless params[:resource_3].blank?
-    p ("===============")
-p params[:product]
+   # p ("===============")
+#p params[:product]
 
     if @product.update_attributes(params[:product])
+       color = params[:product][:color]
+      color = color.gsub(/[\W]/,' ')
+      color = color.strip
+      color = color.capitalize
+      @product.update_attribute('color',"#{color}")
       flash.now[:notice] = "Product is updated successfully"
       redirect_back_or_default(admin_products_path)
     else
