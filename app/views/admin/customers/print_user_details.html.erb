@@ -1,0 +1,30 @@
+<div style="width:800px;font: normal 12px Arial;text-align:left">
+  <%= image_tag('pdf_header.jpg') %><br/><br/><br/><br/>
+</div>
+<table id="user-list" class="list sortable">
+    <thead>
+      <tr>
+        <th class="sortfirstdec">ID</th>
+        <th>Login</th>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Know Through</th>
+        <th>DOB</th>
+        <th class="nosort"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%- @users.each do |user| -%>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= user.login %></td>
+        <td><%= user.name %></td>
+        <td><%= user.surname %></td>
+         <td><%= user.know_through %></td>
+        <td><%= user.dob.strftime("%d/%m/%y") unless user.dob.nil? %></td>
+      </tr>
+      <%- end -%>
+    </tbody>
+  </table>
+

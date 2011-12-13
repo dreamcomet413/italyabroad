@@ -47,5 +47,18 @@ class Admin::CustomersController < ApplicationController
     User.regulars.find(params[:id]).destroy
     redirect_to :action => :index
   end
+
+  def print_user_details
+     if params[:search] and !params[:field_text].blank?
+    @users = User.find(:all,:conditions=>"(#{params[:field_text]} LIKE '%#{params[:search_text]}%') AND type_id = '#{params[:user_type]}'",:order=>'id desc')
+    elsif params[:search] and params[:field_text].blank?
+    @users = User.find(:all,:conditions=>"(name LIKE '%#{params[:search_text]}%' OR login LIKE '%#{params[:search_text]}%' OR surname LIKE '%#{params[:search_text]}%')AND type_id = '#{params[:user_type]}'",:order=>'id desc')
+    elsif params[:search] and !params[:user_type].blank?
+       @users = User.find(:all,:conditions=>['type_id =?',"#{params[:user_type]}"],:order=>'id desc')
+     else
+      @users = User.regulars(:all,:order=>'id desc')
+    end
+    render :layout => "print"
+  end
 end
 

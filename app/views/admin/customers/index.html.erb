@@ -1,8 +1,8 @@
 <%- @title = "Administration - Customers"; @page_id = "Administration" -%>
 <%- @breadcrumbs = "Administration &raquo; #{link_to "Customers", admin_customers_path}" -%>
 
-<div class="inner_content customers" id="admin_customers_index">
-  <h2>Customers</h2>
+<div class="inner_content customers" id="admin_customers_index"><% %>
+  <h2>Customers </h2>
   <br />
   <table>
     <tr>
@@ -19,7 +19,8 @@
         <%= set_focus_to 'search' %>
         <%- end -%>
       </td>
-      <td align="right"><%= link_to "New Customer", new_admin_customer_path %></td>
+      <td align="right"><%= link_to "Customers", :controller=>'admin/customers',:action=>"print_user_details",:search_text=>params[:search_text],:field_text=>params[:field_text],:user_type=>params[:user_type],:search=>params[:search],:format => "pdf" %> &nbsp;&nbsp;
+      <%= link_to "New Customer", new_admin_customer_path %></td>
     </tr>
   </table>
   <table id="user-list" class="list sortable">
@@ -29,6 +30,7 @@
         <th>Login</th>
         <th>Name</th>
         <th>Surname</th>
+        <th>Dob</th>
         <th>Know Through</th>
         <th>Active</th>
         <th>Created at</th>
@@ -48,6 +50,7 @@
         <td><%= user.login %></td>
         <td><%= user.name %></td>
         <td><%= user.surname %></td>
+        <td><%= user.dob.strftime("%d/%m/%y") unless user.dob.nil? %></td>
         <td><%= user.know_through %></td>
         <td><%= user.active %></td>
         <td><%= user.created_at.strftime("%d/%m/%y") unless user.created_at.nil? %></td>

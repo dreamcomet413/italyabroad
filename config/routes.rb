@@ -131,7 +131,7 @@ map.eval_xml_g_comptible 'admin/xml/eval_xml_g_comptible', :controller => 'admin
     admin.resources :reviews
     admin.resources :orders, :only => [:index, :show, :destroy], :member => {:print_tasting => :get, :print_invoice => :get, :print_picking_list => :get,:delivery_details=>:get}
     admin.resources :users
-    admin.resources :customers
+    admin.resources :customers,:collection=>{:print_user_details=>:get}
     admin.resources :gift_options
     admin.resources :subscriptions
     admin.resources :news_letters do |news_letters|
