@@ -140,15 +140,16 @@
 
                 <table cellpadding="0" cellspacing="0">
                   <tr>
-                    <td style="width:5px;text-align:center;">
+                    <td style="width:5px;">
                       <%= link_to avatar_for_user(latest_review.user, 'small'), customer_path(latest_review.user.id)%>
+                      <%= link_to latest_review.user.name, customer_path(latest_review.user.id), :class=>'data', :id => 'latest_review_name'%>
                     </td>
                     <td valign="top"><% unless latest_review.description.blank? %> &nbsp;&nbsp;
                     <%#= link_to latest_review.description,review_path(latest_review),:class=>'data' %>
                    <% if latest_review.reviewer_type == 'Product' %>
-                    "<%= link_to latest_review.description, nested_products_uri(Product.find(latest_review.reviewer_id)  ),:class=>'data' %>"
+                    "<%= link_to latest_review.description[0..150], nested_products_uri(Product.find(latest_review.reviewer_id)  ),:class=>'data' %>"
                     <% elsif latest_review.reviewer_type == 'Recipe' %>
-                    "<%= link_to latest_review.description, recipe_path(Recipe.find(latest_review.reviewer_id)  ),:class=>'data' %>"
+                    "<%= link_to latest_review.description[0..150], recipe_path(Recipe.find(latest_review.reviewer_id)  ),:class=>'data' %>"
                     <% end %>
                      <% else %>
                        "<%= 'Added a new review' %>"
@@ -157,7 +158,7 @@
                     </tr>
                     <tr>
                     <td>
-                      <%= link_to latest_review.user.name, customer_path(latest_review.user.id), :class=>'data', :id => 'latest_review_name'%>
+                      <%#= link_to latest_review.user.name, customer_path(latest_review.user.id), :class=>'data', :id => 'latest_review_name'%>
                     </td>
                     <td></td>
                   </tr>
