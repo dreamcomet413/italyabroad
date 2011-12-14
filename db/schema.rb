@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111115093937) do
+ActiveRecord::Schema.define(:version => 20111214100325) do
 
   create_table "about_us", :force => true do |t|
     t.string   "title"
@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(:version => 20111115093937) do
     t.string  "friendly_identifier"
     t.string  "text_on_image"
     t.string  "page_heading"
+    t.integer "menu_order"
   end
 
   create_table "categorizations", :force => true do |t|
@@ -293,6 +294,7 @@ ActiveRecord::Schema.define(:version => 20111115093937) do
     t.integer  "shipping_agency_id"
     t.string   "consignment_no"
     t.float    "points_used",                                              :default => 0.0,   :null => false
+    t.string   "surname"
   end
 
   create_table "payment_methods", :force => true do |t|
@@ -504,7 +506,7 @@ ActiveRecord::Schema.define(:version => 20111115093937) do
     t.string   "weekend_lunch"
     t.string   "weekend_dinner"
     t.string   "reservation"
-    t.integer  "cost",               :limit => 10, :precision => 10, :scale => 0, :default => 0
+    t.integer  "cost",               :default => 0
     t.string   "closed"
     t.text     "happy_hour"
     t.text     "regional_cuisine"
@@ -528,12 +530,12 @@ ActiveRecord::Schema.define(:version => 20111115093937) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "google_map_link"
-    t.boolean  "raccomanded",                                                     :default => false
+    t.boolean  "raccomanded",        :default => false
     t.integer  "rating"
     t.string   "city"
     t.string   "cap"
     t.string   "style"
-    t.boolean  "active",                                                          :default => false
+    t.boolean  "active",             :default => false
   end
 
   create_table "reviews", :force => true do |t|
@@ -590,8 +592,8 @@ ActiveRecord::Schema.define(:version => 20111115093937) do
     t.string  "home_image_5_title"
     t.string  "home_image_5_url"
     t.string  "promotion"
-    t.integer "reorder_quantity",                                    :default => 10
-    t.string  "vat_rate",                                            :default => "0.0"
+    t.integer "reorder_quantity"
+    t.string  "vat_rate",                                            :default => "0.00"
     t.string  "support",                                             :default => "admin"
     t.float   "points_per_pound",                                    :default => 0.0,     :null => false
     t.float   "points_to_pound",                                     :default => 0.0,     :null => false
@@ -610,6 +612,7 @@ ActiveRecord::Schema.define(:version => 20111115093937) do
     t.string  "country"
     t.text    "note"
     t.integer "user_id"
+    t.string  "surname"
   end
 
   create_table "shipping_agencies", :force => true do |t|
@@ -740,6 +743,7 @@ ActiveRecord::Schema.define(:version => 20111115093937) do
     t.string   "establishment_link"
     t.string   "fav_meals",                 :limit => 100
     t.string   "fav_wine",                  :limit => 100
+    t.integer  "points",                                   :default => 0,          :null => false
   end
 
   create_table "week_products", :force => true do |t|

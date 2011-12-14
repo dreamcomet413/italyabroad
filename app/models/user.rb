@@ -223,7 +223,8 @@ named_scope :regulars, :conditions => ['type_id = ? or type_id = ? or type_id = 
   end
 
   def find_total_points(user)
-    return user.orders.map {|o| o.total}.sum.to_f * Setting.find(:first).points_per_pound
+    total_points = user.orders.map {|o| o.total}.sum.to_f * Setting.find(:first).points_per_pound
+    total_points = total_points + user.points
   end
 
   protected

@@ -114,5 +114,9 @@
 	  <td>Select Type of User</td>
 	  <td><%= select :user, :type_id, Type.find(:all,:order=>'id desc').collect {|type| [ type.name, type.id ] } %></td>
 	</tr>
+	<tr>
+	  <td>Points</td>
+	  <td><%= text_field :user, :points %></td>
+	</tr>
 </table>
 
