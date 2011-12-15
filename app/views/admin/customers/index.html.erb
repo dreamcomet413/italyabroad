@@ -19,7 +19,7 @@
         <%= set_focus_to 'search' %>
         <%- end -%>
       </td>
-      <td align="right"><%= link_to "Customers", :controller=>'admin/customers',:action=>"print_user_details",:search_text=>params[:search_text],:field_text=>params[:field_text],:user_type=>params[:user_type],:search=>params[:search],:format => "pdf" %> &nbsp;&nbsp;
+      <td align="right"><%= link_to "Customers by DOB", :controller=>'admin/customers',:action=>"print_user_details",:search_text=>params[:search_text],:field_text=>params[:field_text],:user_type=>params[:user_type],:search=>params[:search],:format => "pdf" %> &nbsp;&nbsp;
       <%= link_to "New Customer", new_admin_customer_path %></td>
     </tr>
   </table>

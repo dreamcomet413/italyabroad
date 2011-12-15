@@ -147,9 +147,9 @@
                     <td valign="top"><% unless latest_review.description.blank? %> &nbsp;&nbsp;
                     <%#= link_to latest_review.description,review_path(latest_review),:class=>'data' %>
                    <% if latest_review.reviewer_type == 'Product' %>
-                    "<%= link_to latest_review.description[0..150], nested_products_uri(Product.find(latest_review.reviewer_id)  ),:class=>'data' %>"
+                    "<%= link_to latest_review.description[0..150] + "...(Continue reading)", nested_products_uri(Product.find(latest_review.reviewer_id)  ),:class=>'data' %>"
                     <% elsif latest_review.reviewer_type == 'Recipe' %>
-                    "<%= link_to latest_review.description[0..150], recipe_path(Recipe.find(latest_review.reviewer_id)  ),:class=>'data' %>"
+                    "<%= link_to latest_review.description[0..150] + "...(Continue reading)", recipe_path(Recipe.find(latest_review.reviewer_id)  ),:class=>'data' %>"
                     <% end %>
                      <% else %>
                        "<%= 'Added a new review' %>"
@@ -168,7 +168,9 @@
             <%- end -%>
 
         </div>
-        <div id="box_grape_guide_forum"><br /><br /><br /><br /><br /><br /><br />
+
+        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+        <div id="box_grape_guide_forum">
           <h1 style="color:#9b0707;font-size:16px;">Grape Guide</h1>
           <%- grapes = Grape.find(:all, :limit => 1, :order => "RAND()") -%>
           <%#- grapes = Grape.find(:all, :limit => 1, :conditions => "id = 1") -%>
