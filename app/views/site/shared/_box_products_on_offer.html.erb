@@ -14,7 +14,7 @@
   <ul style="list-style:none;margin:0;padding:0;">
   <%- product_on_offers.each do |product| -%>
     <li style="margin-bottom:5px;">
-<%= link_to product.name, nested_products_uri(product),:class=>'data' %><br /></li>
+<%= link_to product.name, nested_products_uri(product),:class=>'data' %></li>
   <%- end -%>
   </ul>
   <%- else -%>
