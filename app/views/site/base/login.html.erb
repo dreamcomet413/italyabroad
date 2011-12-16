@@ -43,7 +43,9 @@
         <p><%= text_field_tag :name, nil %></p>
         <p>Email</p>
         <p><%=text_field_tag :email, nil %></p>
-        <p style="font:normal 15px Arial"><%#= link_to "Guest Login",{:controller => 'site/recipes', :action => 'new',:user => "guest"} %>
+        <p style="font:normal 15px Arial">
+        <%= show_simple_captcha(:label=>"(type the code from the image. <br />it is case sensitive.)") %><br />
+        <%#= link_to "Guest Login",{:controller => 'site/recipes', :action => 'new',:user => "guest"} %>
           <%= image_submit_tag("buttons/guest_login_button.png") %></p>
         <% end %>
     </td>

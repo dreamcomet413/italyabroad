@@ -33,6 +33,7 @@ class Site::BaseController < ApplicationController
   def guest_login
     params[:user_type] = "Guest"
 
+
     reg = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
     if (!params[:name].blank? && !params[:email].blank?)
       @user = User.find_by_name_and_email(params[:name],params[:email])
@@ -50,19 +51,28 @@ class Site::BaseController < ApplicationController
       else
         if !(reg.match(params[:email])).nil?
           @user= User.new(:name => params[:name], :email => params[:email], :type_id => 3, :photo_default=>"default",  :login => params[:email] )
-            @user.save(false)
+
+          if simple_captcha_valid?
+           @user.save(false)
             self.current_user = @user
             flash[:notice] = "Successfully logged in"
             redirect_back_or_default(root_url)
+          # else part of captcha
+          else
+            flash[:guest_login] = " invalid captcha"
+            render :action => "login"
+          end
         else
         flash[:guest_login] = "Email is invalid"
         render :action => "login"
         end
       end
+    #else part if there is no user
     else
       flash[:guest_login] = "Please provide Name and Email to login as guest."
       redirect_to :back
     end
+
   end
 
   def contact
