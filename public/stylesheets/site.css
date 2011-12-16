@@ -2848,4 +2848,9 @@ html body#categories_show.categories div#content div#mainContent div#leftColumnC
     /*margin-top:10px;
     width:50px;*/
 }
+#rightColumn div#box_products_on_offer.block ul li a.data {
+    padding-bottom:5px;
+    padding-top:5px;
+
+    }
 

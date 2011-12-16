@@ -64,13 +64,19 @@ class Admin::ProducersController < ApplicationController
   end
 
   def destroy
-    @producer = Producer.find(params[:id])
+      @producer = Producer.find(params[:id])
 
-    if @producer.destroy
-      flash[:notice] = "Producer is deleted!"
-    end
+      if @producer.products.nil?
+          if @producer.destroy
+          flash[:alert] = "Producer is deleted!"
+          end
+      else
+          flash[:alert] = "We have products from this producer displayed in the site, So this producer cannot be deleted!"
+      end
 
-    respond_to do |format|
+
+
+      respond_to do |format|
       format.html { redirect_to :action => :index }
     end
   end

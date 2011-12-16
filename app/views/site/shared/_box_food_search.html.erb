@@ -20,7 +20,12 @@
     producer_ids << p.producer_id if p.producer_id and !producer_ids.include?(p.producer_id)
     end
     producer_ids.each do |producer_id|
-     @producers << Producer.find(producer_id)
+
+        producer=Producer.find_by_id(producer_id)
+        if producer
+        @producers << producer
+        end
+
     end
     %>
 		<tr>

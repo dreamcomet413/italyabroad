@@ -48,7 +48,7 @@
             <% post.tags.each do |p| %>
             <% @tag_list =  @tag_list + link_to (p.name, blog_index_path(:tag_id=>p.id)) + ", "%>
             <% end %>
-             <%= @tag_list.chop![0..-2] if @tag_list %>
+             <%= @tag_list.chop![0..-2] if !@tag_list.empty? %>
           </td>
           <td align="right">
             <%= link_to "view comments (#{post.comments.find(:all,:conditions=>['public=?',true]).size})", blog_path(:id => post.id) %> - <%= link_to "read more", blog_path(:id => post.id) %>

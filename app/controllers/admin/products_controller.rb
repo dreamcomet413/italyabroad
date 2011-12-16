@@ -183,10 +183,13 @@ class Admin::ProductsController < ApplicationController
 #p params[:product]
 
     if @product.update_attributes(params[:product])
-       color = params[:product][:color]
-      color = color.gsub(/[\W]/,' ')
-      color = color.strip
-      color = color.capitalize
+      color = params[:product][:color]
+      if color
+        color = color.gsub(/[\W]/,' ')
+        color = color.strip
+        color = color.capitalize
+      end
+
       @product.update_attribute('color',"#{color}")
       flash.now[:notice] = "Product is updated successfully"
       redirect_back_or_default(admin_products_path)
