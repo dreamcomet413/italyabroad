@@ -1,10 +1,11 @@
 <div class="block" id="box_suggested_wines">
-  <h3>Suggested Wines</h3><br />
+  <h1  style="color:#9b0707;padding-top:8px;">Suggested Wines</h1><br />
   <% category_wine = Category.find(:first, :conditions => ["name like (?) AND parent_id is ?","%wine%", nil]) %>
   <% products = Product.find(:all, :limit => 5, :order => "RAND()", :conditions => "id IN (#{category_wine.all_products_ids.join(',')}) AND raccomanded = true AND active = true") %>
   <ul>
     <%- for product in products do -%>
-    <li><%= link_to product.name, nested_products_uri(product) %><br /></li>
+    <li><%= link_to product.name, nested_products_uri(product) %><br /><br /></li>
     <%- end -%>
   </ul>
+
 </div>

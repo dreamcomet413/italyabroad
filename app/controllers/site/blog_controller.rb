@@ -32,7 +32,7 @@ class Site::BlogController < ApplicationController
       redirect_to "/blog"
     else
       @post.count_view if @post
-      @comments = (@post.comments).paginate(:page => params[:page], :per_page => 5, :offset => 5,:order => "created_at DESC")
+      @comments = (@post.comments.find(:all,:conditions=>['public=?',true])).paginate(:page => params[:page], :per_page => 5, :offset => 5,:order => "created_at DESC")
     end
 
   end
@@ -60,6 +60,8 @@ class Site::BlogController < ApplicationController
      # render :action => :show
     end
   end
+
+
 
   protected
   def store_comment

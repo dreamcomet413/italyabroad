@@ -51,7 +51,7 @@
              <%= @tag_list.chop![0..-2] if @tag_list %>
           </td>
           <td align="right">
-            <%= link_to "view comments (#{post.comments.size})", blog_path(:id => post.id) %> - <%= link_to "read more", blog_path(:id => post.id) %>
+            <%= link_to "view comments (#{post.comments.find(:all,:conditions=>['public=?',true]).size})", blog_path(:id => post.id) %> - <%= link_to "read more", blog_path(:id => post.id) %>
           </td>
         </tr>
       </table>

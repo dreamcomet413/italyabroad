@@ -8,7 +8,7 @@
 	<div style="padding:10px 5px 10px 5px">
 		<div style="float:left;width:300px">
 			<b>SOLD TO:</b>
-			<%= "<br />" + @order.user.name + " " + @order.user.surname %>
+			<%= "<br />" + @order.customer %>
 			<%= "<br />" + @order.user.address unless @order.user.address.blank? %>
 			<%= "<br />" + @order.user.address_2 unless @order.user.address_2.blank?  %>
 			<%= "<br />" + @order.user.city unless @order.user.city.blank? %>

@@ -10,5 +10,17 @@ class Admin::CommentsController < ApplicationController
     Comment.find(params[:id]).destroy
     redirect_to :action => :index
   end
+
+  def approve_comment
+    if params[:id] and request.xhr?
+       @comment = Comment.find(params[:id])
+       @comment.update_attribute('public',true)
+       render :update do |page|
+         page.alert("Approved successully")
+          page.reload()
+       end
+     end
+
+  end
 end
 

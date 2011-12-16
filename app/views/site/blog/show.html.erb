@@ -12,7 +12,7 @@
   <div style="text-align:center;"><%= image_tag(image_url('blog_view', (@post.image_1 or @post.image_2 or @post.image_3), :jpg),:alt=>@post.name) if @post.image_1 or @post.image_2 or @post.image_3 %></div>
   <br />
 
-  <div class="comment_icon"><%= @post.comments.size %> comments</div>
+  <div class="comment_icon"><%= @post.comments.find(:all,:conditions=>['public=?',true]).size %> comments</div>
   <br /><br />
   <div><%= @post.description_cleared %></div><br /><br />
   <table width="100%">
@@ -73,7 +73,7 @@
     <% end %>
 
     <div style="padding-bottom:16px; border-bottom:1px solid #CCCCCC;margin-top:8px;font:normal 14px Arial;">
-      Showing <%= @comments.blank? ? "0" : (@comments.offset) +1 %>--<%= (@comments.offset)+(@comments.length) %> of <%= @post.comments.length %> comments.</div>
+      Showing <%= @comments.blank? ? "0" : (@comments.offset) +1 %>--<%= (@comments.offset)+(@comments.length) %> of <%= @post.comments.find(:all,:conditions=>['public=?',true]).length %> comments.</div>
     <div id="recipe_comments">
       <!--<h3 style="border:none;">Your Comments <%= link_to("(Add comment)", login_path, :style => "font-size:12px;") unless logged_in? %></h3>-->
 

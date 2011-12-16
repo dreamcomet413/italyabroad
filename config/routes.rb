@@ -128,6 +128,7 @@ map.eval_xml_g_comptible 'admin/xml/eval_xml_g_comptible', :controller => 'admin
     admin.resources :forums
     admin.resources :posts
     admin.resources :comments
+    map.connect 'admin/comments/approve_comment', :controller => '/admin/comments', :action => 'approve_comment'
     admin.resources :reviews
     admin.resources :orders, :only => [:index, :show, :destroy], :member => {:print_tasting => :get, :print_invoice => :get, :print_picking_list => :get,:delivery_details=>:get}
     admin.resources :users
