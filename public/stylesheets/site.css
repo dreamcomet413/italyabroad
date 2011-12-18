@@ -798,6 +798,14 @@ a {
     margin-bottom:10px;
     color:#000;
 }
+#box_most_read_blog.block {
+    padding-bottom:0px;
+}
+
+#box_most_read_blog.block ul {
+    padding-top:3px;
+}
+
 #box_find_your_perfect_wines {
     border:none;
     padding:0;

@@ -3,7 +3,7 @@
   <h1>Most read blog posts</h1>
   <ul>
     <%- posts.each do |post| -%>
-    <li><%= link_to post.name, blog_path(post.id) %></li><br />
+    <li style="margin-bottom:0px;margin-top:0px;padding-top:13px;padding-bottom:0px;"><%= link_to post.name, blog_path(post.id) %></li>
     <%- end -%>
   </ul>
 </div>

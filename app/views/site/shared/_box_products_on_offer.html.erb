@@ -13,7 +13,7 @@
   <%- if product_on_offers.size > 0 -%>
   <ul style="list-style:none;margin:0;padding:0;">
   <%- product_on_offers.each do |product| -%>
-    <li style="margin-bottom:3px;padding-top:3px;padding-bottom:3px;">
+    <li style="margin-bottom:3px;padding-top:6px;padding-bottom:6px;">
     <%= link_to product.name, nested_products_uri(product),:class=>'data' %></li>
   <%- end -%>
   </ul>
