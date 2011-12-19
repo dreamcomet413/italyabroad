@@ -34,6 +34,11 @@
         <br /><br /><br />
 				<%= link_to product.name, nested_products_uri(product), :style => "font-size:17px;color:black;" %>
 				<br />
+				 <% if product.categories.root.name.downcase == "food" || product.categories.root.name.downcase == "hampers"  %>
+				  <%= show_review_ratings(product, product.average_rating_round) %>
+				  <% else %>
+				  <%= show_ratings(product, product.average_rating_round) %>
+				 <% end %>
 				<div style="padding-top:10px"><%= product.description_short %></div>
 			</td>
 			<td style="padding: 20px 10px 5px;vertical-align:top;margin:0 0 0 0px;">
