@@ -17,6 +17,7 @@
         <th>Review</th>
         <th>Product</th>
         <th>Publish</th>
+        <th></th>
       </tr>
     </thead>
     <tfoot>
@@ -28,8 +29,9 @@
     <tbody>
     <% form_tag admin_reviews_path, :method=>:get do  %>
       <%- for review in @reviews -%>
-        <% unless Product.find_by_id(review.reviewer_id).nil? -%>
-            <tr>
+      <tr>
+            <% if !Product.find_by_id(review.reviewer_id).nil? and review.reviewer_type.upcase == 'PRODUCT'-%>
+
 
               <td><%= review.user.name rescue "Anonymous" %></td>
               <td><%= review.name %></td>
@@ -41,11 +43,11 @@
               <td><%# = review.reviewer_type %></td>
               <td><%# = check_box_tag 'publish[]',review.id,review.publish %></td -->
 
-            </tr>
+       
              <% end -%>
 
-             <% unless Recipe.find_by_id(review.reviewer_id).nil? -%>
-            <tr>
+               <% if !Recipe.find_by_id(review.reviewer_id).nil? and review.reviewer_type.upcase == 'RECIPE' -%>
+
 
               <td><%= review.user.name rescue "Anonymous" %></td>
               <td><%= review.name %></td>
@@ -54,11 +56,16 @@
 
 
 
-            </tr>
+
+
         <% end -%>
+      <td> <%= link_to "Delete", admin_review_path(review), :method => :delete, :confirm => "Are you sure want to delete this review?" %></td>
+       </tr>
       <%- end -%>
+
       <%= submit_tag 'Approve',:name=>'approve' %>
       <% end %>
+
     </tbody>
 
   </table>
