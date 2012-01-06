@@ -5,7 +5,8 @@
 
 <%= javascript_tag "document.observe('dom:loaded', function(e){ RemotePaymentMethodForm.setup() });" %>
 
-<div id="header">Payment Information</div>
+<div id="header">Payment Information </div>
+
 <% if flash[:notice] %>
 		<div style="text-align:center;margin:10px 0px 10px 0px;padding:5px;font-size:12px;color:red;">
 			<%= flash[:notice] %>

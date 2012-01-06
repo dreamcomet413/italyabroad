@@ -156,6 +156,10 @@ def create
               logger.info "TESTING_SITE__  OBJECT #{response}"
 
               if (!response.nil? && response.success?) #or !production
+                 if  @cart.cupon
+                   @cupon = Cupon.find_by_code(@cart.cupon.code)
+                   @cupon.update_attribute('active',false)
+                 end
                   @order.update_attributes(:paid => true,:points_used => points_used)
                   session[:card_last_name] = ""
                   redirect_to confirmed_checkouts_path

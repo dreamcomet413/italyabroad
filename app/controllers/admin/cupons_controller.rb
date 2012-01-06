@@ -4,7 +4,7 @@ class Admin::CuponsController < ApplicationController
   layout "admin"
 
   def index
-    @cupons = Cupon.all.paginate(:page => params[:page], :per_page => 10)
+    @cupons = Cupon.all.paginate(:page => params[:page], :per_page => 10,:order=>'id desc')
   end
 
   def new

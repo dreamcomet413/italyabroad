@@ -109,6 +109,8 @@ class Cart
     @items.each { |t| total += t.total }
     total -= buy_together_discount
     if @cupon && @cupon.active
+
+
       unless @cupon.products.nil? or @cupon.products.empty?
         coupon_product_ids = @cupon.products.map {|i| i.id }
         coupon_products_subtotal = 0
@@ -127,12 +129,15 @@ class Cart
       else
         if @cupon.cupon_type != "percentage"
           total -= @cupon.price
+
         else
           total -= (total*(@cupon.price))/100
+
         end
       end
+
     end
-    return total
+     return total
   end
 
   def total

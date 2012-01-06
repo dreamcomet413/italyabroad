@@ -43,7 +43,9 @@ class Site::CartController < ApplicationController
   end
 
   def update
+
     if @cart.update(params[:cart], params[:cupon][:code], params[:delivery][:id])
+
       flash[:notice] = @cart.show_warnings
     else
       flash[:notice] = @cart.show_errors
