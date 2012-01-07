@@ -108,7 +108,7 @@ class Cart
     disc = 0
     @items.each { |t| total += t.total }
     total -= buy_together_discount
-    if @cupon && @cupon.active
+    if @cupon && @cupon.active  and (@cupon.created_at + 30.days) >= Date.today
 
 
       unless @cupon.products.nil? or @cupon.products.empty?

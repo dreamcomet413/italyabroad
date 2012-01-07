@@ -39,6 +39,7 @@ class Search
     conditions << "price #{price}" unless price.blank?
     conditions << "grapes.id = #{@grape}" unless grape.blank?
     conditions << "occasion_id = #{@occasion}" unless @occasion.blank?
+    conditions << "products.quantity > 0"
     conditions = conditions.join(" AND ")
     conditions = nil if conditions.blank?
     return conditions

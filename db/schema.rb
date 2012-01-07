@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111216045214) do
+ActiveRecord::Schema.define(:version => 20120106084629) do
 
   create_table "about_us", :force => true do |t|
     t.string   "title"
@@ -90,6 +90,7 @@ ActiveRecord::Schema.define(:version => 20111216045214) do
     t.integer "product_id"
     t.boolean "public"
     t.string  "cupon_type", :default => "price"
+    t.date    "created_at", :default => '2012-01-06'
   end
 
   create_table "cupons_products", :force => true do |t|

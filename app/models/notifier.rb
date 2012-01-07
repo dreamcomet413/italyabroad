@@ -208,6 +208,7 @@ class Notifier < ActionMailer::Base
 
     recipients "#{user.email}"
     from AppConfig.admin_email
+    cc       ["info@italyabroad.com"]
     subject  "First review of " + product.name + " added"
     body      :product  => product,
               :user=>user,
