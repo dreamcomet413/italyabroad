@@ -82,7 +82,8 @@ def create
 
             # Earlier it was          if production
             # Now commented for production it was not properly coded for development and production modes
-            if true #if production
+           # if true
+           if production
                 gateway = ActiveMerchant::Billing::SagePayGateway.new(:login =>'italyabroad')
 
                 # modified for loyalty system
@@ -93,9 +94,9 @@ def create
                                     shipping_address = {"name"=>@order.ship_name,
                                                         "address1"=>@order.ship_address,
                                                          "city"=>@order.ship_city,
-                                                         "state"=>@order.ship_cap,
+                                                         #"state"=>@order.ship_cap,
                                                          "country"=>@order.ship_country,
-                                                         "zip"=>"412"
+                                                         "zip"=>@order.ship_cap
                                     }
                              else
                                      shipping_address = {"name"=>current_user.name.to_s + current_user.surname.to_s,
@@ -103,7 +104,7 @@ def create
                                                          "city"=>current_user.city,
                                                          "state"=>current_user.province,
                                                          "country"=>current_user.country,
-                                                         "zip"=>"412"
+                                                         "zip"=>current_user.cap
                                                          }
                              end
 #              response = gateway.purchase(total_amount*100, @credit_card,:order_id =>"#{@order.id}",:options=>{:billing_address=>{:address1=>current_user.address,:city=>current_user.city,:state=>current_user.province,:country=>current_user.country},:shipping_address=>{:name=>shipping_address["name"],:address1=>shipping_address["address1"],:city=>shipping_address["city"],:state=>shipping_address["state"],:country=>shipping_address["country"],:zip=>shipping_address["zip"]}})
@@ -130,25 +131,7 @@ def create
 
 
 
-=begin
-              response = gateway.purchase(total_amount*100, @credit_card,  :order_id=>"#{@order.id}",
-              :billing_address=>{
-                :name=>"xyz",
-                :address1=>"Test",
-                :city=>"Test",
-                :state=>"Test",
-                :country=>"GB",
-                :zip=>"1234"},
-              :shipping_address=>{
-                :name=>shipping_address["name"],
-                :address1=>"Test",
-                :city=>"Test",
-                :state=>"Test",
-                :country=>"GB",
-                :zip=>"1234"}
-              )
 
-=end
 
               end  #END OF IF PRODUCTION
               logger.info "TESTING_SITE__  RESULT #{response.success?}"
