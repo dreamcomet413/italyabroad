@@ -139,9 +139,16 @@ def create
               logger.info "TESTING_SITE__  OBJECT #{response}"
 
               if (!response.nil? && response.success?) #or !production
-                 if  @cart.cupon
-                   @cupon = Cupon.find_by_code(@cart.cupon.code)
-                   @cupon.update_attribute('active',false)
+                if  @cart.cupon
+                    @cupon = Cupon.find_by_code(@cart.cupon.code)
+                    if @cupon.created_by_admin
+                      @cupon.no_of_times_used =  @cupon.no_of_times_used + 1
+                      if  @cupon.no_of_times == @cupon.no_of_times_used
+                        @cupon.update_attribute('active',false)
+                      end
+                    else
+                      @cupon.update_attribute('active',false)
+                    end
                  end
                   @order.update_attributes(:paid => true,:points_used => points_used)
                   session[:card_last_name] = ""

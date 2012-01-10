@@ -36,7 +36,16 @@ end
     <td>Min Order: </td>
     <td><%= text_field :cupon, :min_order, :size => 10, :maxlength => 10 %> <em>(Min Order before cupon is valid)</em></td>
   </tr>
-
+  <tr>
+    <td>Expiry Date: </td>
+    <td><%= date_select :cupon, :expiry_date %> </td>
+  </tr>
+  <tr>
+    <td>No of times can be used: </td>
+    <td>
+      <%= select( "cupon", "no_of_times", { 1 => 1, 2 => 2,3 => 3,4 => 4}) %>
+    </td>
+  </tr>
 
   <tr>
     <td valign="top">Limit to product: </td>

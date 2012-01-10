@@ -28,7 +28,7 @@ class Search
 
     conditions  = []
     conditions << "categories.name <> 'Events' AND categories.name <> 'Wine club'" if products
-    conditions << "active = #{true}"
+    conditions << "active = true"
     conditions << "categories.id = #{@category.id}" unless @category.blank?
     conditions << "products.name LIKE '%#{text}%'" if !text.blank? && products
     conditions << "vegetarian = 1" if !@vegetarian.blank? && @vegetarian == "1"

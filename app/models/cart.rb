@@ -108,7 +108,16 @@ class Cart
     disc = 0
     @items.each { |t| total += t.total }
     total -= buy_together_discount
-    if @cupon && @cupon.active  and (@cupon.created_at + 30.days) >= Date.today
+    cupon_is_active = false
+    if (@cupon and @cupon.active and @cupon.created_by_admin and @cupon.expiry_date >= Date.today and @cupon.no_of_times > @cupon.no_of_times_used )
+      cupon_is_active = true
+  elsif (@cupon and @cupon.active and (@cupon.created_at + 30.days) >= Date.today)
+       cupon_is_active = true
+    end
+
+
+   # if @cupon && @cupon.active  and (@cupon.created_at + 30.days) >= Date.today
+   if cupon_is_active
 
 
       unless @cupon.products.nil? or @cupon.products.empty?

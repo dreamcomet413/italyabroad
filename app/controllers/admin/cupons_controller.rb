@@ -4,7 +4,7 @@ class Admin::CuponsController < ApplicationController
   layout "admin"
 
   def index
-    @cupons = Cupon.all.paginate(:page => params[:page], :per_page => 10,:order=>'id desc')
+     @cupons = Cupon.paginate(:order=>'id desc',:page => params[:page], :per_page => 10)
   end
 
   def new
@@ -31,6 +31,7 @@ class Admin::CuponsController < ApplicationController
 
   def create
     @cupon = Cupon.new(params[:cupon])
+    @cupon.created_by_admin = true
     if @cupon.save
       flash[:alert] = "Cupon is created successfully"
     else
