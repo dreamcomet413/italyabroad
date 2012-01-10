@@ -1,6 +1,6 @@
 <% @title = "Italian Wines & Italian Food made by Small Producers"; @description = "Italian Food and Italian Wine made by Passionate Small Producers in the UK,Fantastic Italian Wine and Italian Food,High Quality Italian Wine and Food"; @keys = "Italian Wines,Fine Italian Wines,Italian Red and White Wines, Italian Food, Wine Tasting, Wine Expert,Italian Wine Blog,Italy,Food,Wines,Barolo,Amarone,Brunello" %>
-<script type="text/javascript">
-function win1()
+<!--<script type="text/javascript">
+/*function win1()
 {
   var win = new Window({id: "win1", className: "alphacube",title:'Welcome to the new Italyabroad.com', width:380, height:150, top:0, left: 1, parent:$('container')});
   win.getContent().innerHTML = "<p>We have just relaunched our website adding plenty of new functionalities, we have done all tests and everything seems to be working fine, however, we ask you to be patient in case something does not work the way it is supposed to and please let us know so we can give it our immediate attention.</p>";
@@ -10,11 +10,11 @@ function win1()
   win.setConstraint(true, {left:10, right:20})
   win.toFront();
 }
+*/
 
 
 
-
-</script>
+</script> -->
 <style>
 
 
@@ -27,15 +27,15 @@ function win1()
   z-index:auto;
 }
 </style>
- <div id="container"></div>
-<%if !cookies[:display]
+<!-- <div id="container"></div> -->
+<%#if !cookies[:display]
             cookies[:display] = {:value => 'true',
    :expires => 1.days.from_now }
           %>
-<script>
- win1();
-</script>
-<%end%>
+<!--<script>
+// win1();
+</script> -->
+<%#end%>
 
 
 <%- @breadcrumbs = "Welcome to Italyabroad.com" -%><br />

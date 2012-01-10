@@ -20,7 +20,7 @@
         <th>Limit to product</th>
         <th>Active</th>
         <th>Public</th>
-        <th>Creted by</th>
+        <th>Created by</th>
         <th class="nosort"></th>
       </tr>
     </thead>
@@ -41,7 +41,7 @@
         <%= Product.find(p).name %><br/><% end %></td>
         <td><%= cupon.active %></td>
         <td><%= cupon.public %></td>
-        <td><%= cupon.created_by_admin ? 'Admin':'Automatic' %></td>
+        <td><%= cupon.created_by_admin ? 'Admin':'System' %></td>
         <td>
           <%= link_to "Edit", edit_admin_cupon_path(cupon.id) %> |
           <%= link_to "Delete", admin_cupon_path(cupon.id), :method => :delete, :confirm => "Are you sure want to delete this cupon?" %>
