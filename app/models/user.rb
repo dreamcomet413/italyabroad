@@ -22,6 +22,15 @@ class User < ActiveRecord::Base
   validates_format_of       :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
 
  # validate :validate_phone_number,:on=>:create
+
+  HUMANIZED_ATTRIBUTES = {
+    :cap => "Post Code"
+  }
+
+  def self.human_attribute_name(attr)
+    HUMANIZED_ATTRIBUTES[attr.to_sym] || super
+  end
+
   def validate_on_create
     if self.telephone.blank?
       errors.add_to_base("Please supply a phone number so we can call if there are any problems using this address")

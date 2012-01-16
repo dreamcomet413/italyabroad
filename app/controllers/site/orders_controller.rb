@@ -83,18 +83,19 @@ def create
             # Earlier it was          if production
             # Now commented for production it was not properly coded for development and production modes
            # if true
+          # Sujith
            if production
                 gateway = ActiveMerchant::Billing::SagePayGateway.new(:login =>'italyabroad')
 
                 # modified for loyalty system
 
 
-                              # Sujith correct ZIP code since it is mandatory
+                             # Sujith - state is assigned to zip code because the zip was not being captured
                              if @order.different_shipping_address
                                     shipping_address = {"name"=>@order.ship_name,
                                                         "address1"=>@order.ship_address,
                                                          "city"=>@order.ship_city,
-                                                         #"state"=>@order.ship_cap,
+                                                         "state"=>@order.ship_cap,
                                                          "country"=>@order.ship_country,
                                                          "zip"=>@order.ship_cap
                                     }

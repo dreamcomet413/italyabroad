@@ -4,7 +4,7 @@
     end
 %>
 <% unless @category.blank? %>
-<%- product_on_offers = @category.products.on_offer || Product.on_offers -%>
+<%- product_on_offers = @category.products.on_offer || Product.on_offer -%>
 <% unless product_on_offers.blank? %>
 
 <div id="box_products_on_offer" class="block">
