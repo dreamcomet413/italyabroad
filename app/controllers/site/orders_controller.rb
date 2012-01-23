@@ -135,9 +135,9 @@ def create
 
 
               end  #END OF IF PRODUCTION
-              logger.info "TESTING_SITE__  RESULT #{response.success?}"
-              logger.info "TESTING_SITE__  MESSAGE #{response.message}"
-              logger.info "TESTING_SITE__  OBJECT #{response}"
+              #logger.info "TESTING_SITE__  RESULT #{response.success?}"
+              #logger.info "TESTING_SITE__  MESSAGE #{response.message}"
+              #logger.info "TESTING_SITE__  OBJECT #{response}"
 
               if (!response.nil? && response.success?) #or !production
                 if  @cart.cupon
@@ -204,6 +204,7 @@ def create
          end  # END OF unless params[:points_to_be_used].nil?
 
         # Sujith Enter correct values
+        Notifier.deliver_new_order(@order)
         Notifier.deliver_new_order_placed(@order,current_user,AppConfig.admin_email)
       end # END OF if saved
 

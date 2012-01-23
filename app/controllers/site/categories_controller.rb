@@ -22,27 +22,28 @@ class Site::CategoriesController < ApplicationController
 
     if params[:parent].blank? || params[:category].blank?
       redirect_to root_url and return
-  else
+    else
 
-      #@sort_by = available_sorting.include?(params[:sort_by]) ? params[:sort_by] : "products.price DESC"
-      @sort_by = available_sorting.include?(params[:sort_by]) ? params[:sort_by] : "products.price ASC"
-       if @sort_by.to_s.upcase == 'NAME'
-        @sort_by = 'products.name'
-       end
-      @category = Category.find(params[:category])
-      unless @category.blank?
-       @search = Search.new(params || Hash.new)
-        @products = @category.blank? ? [] : @category.products.find(:all, :order => @sort_by, :include => [:categories, :grapes], :conditions => @search.conditions).paginate(:page => (params[:page] ||=1), :per_page => 10)
-        SearchQuery.create(:query => @search.text) unless @search.text.blank?
-      else
-        @product = Product.find(:first,:conditions=>['friendly_identifier = ?',params[:category]])
-        unless @product.blank?
-          redirect_to product_path(@product.friendly_identifier)
-        else
-          redirect_to root_url and return
-        end
+        #@sort_by = available_sorting.include?(params[:sort_by]) ? params[:sort_by] : "products.price DESC"
+        @sort_by = available_sorting.include?(params[:sort_by]) ? params[:sort_by] : "products.price ASC"
+          if @sort_by.to_s.upcase == 'NAME'
+          @sort_by = 'products.name'
+          end
+          @category = Category.find(params[:category])
+
+          unless @category.blank?
+              @search = Search.new(params || Hash.new)
+              @products = @category.blank? ? [] : @category.products.find(:all, :order => @sort_by, :include => [:categories, :grapes], :conditions => @search.conditions).paginate(:page => (params[:page] ||=1), :per_page => 10)
+              SearchQuery.create(:query => @search.text) unless @search.text.blank?
+          else
+              @product = Product.find(:first,:conditions=>['friendly_identifier = ?',params[:category]])
+              unless @product.blank?
+              redirect_to product_path(@product.friendly_identifier)
+              else
+              redirect_to root_url and return
+              end
+          end
       end
-    end
     else
 
       #@sort_by = available_sorting.include?(params[:sort_by]) ? params[:sort_by] : "products.price DESC"

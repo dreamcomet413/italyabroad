@@ -5,9 +5,11 @@
 end %>
 <%- @parent = Category.find(params[:parent] || "wine") -%>
 <%- search_url ||= @category == @parent ? search_index_path(:id => @parent) : nested_categories_url(@parent, @category) -%>
+
 <div class="block center" id="box_wine_search">
   <h3>Wine Search</h3>
   <% form_tag search_url, :method => :get do %>
+  <%= hidden_field_tag :id,@category.name.downcase %>
   <table border="0">
     <tr>
       <td>Text:</td>
