@@ -31,10 +31,17 @@
         <td><%= delivery.id %></td>
         <td><%= delivery.name %></td>
         <td><%= number_to_currency(delivery.price, :unit => "&pound;") %></td>
-        <td><%= link_to "Edit", edit_admin_delivery_path(delivery) %> | <%= link_to "Delete", admin_delivery_path(delivery), :method => :delete, :confirm => "Are you sure want to delete this item?" %></td>
+        <td>
+          <% if delivery.name != "Collection at our warehouse" %>
+            <%= link_to "Edit", edit_admin_delivery_path(delivery) %> | <%= link_to "Delete", admin_delivery_path(delivery), :method => :delete, :confirm => "Are you sure want to delete this item?" %>
+            <% else %>
+              Non- Editable
+          <% end %>
+        </td>
       </tr>
       <%- end -%>
     </tbody>
   </table>
   <%= will_paginate(@deliveries) %>
 </div>
+

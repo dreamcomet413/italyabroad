@@ -20,8 +20,13 @@ Total:<%= number_to_currency order_item.total, :unit => "&pound;" %>
 <% end %>
 Total Amount : <%= number_to_currency @order.total,:unit => "&pound;" %>
 
-Shipped by:
-<%= @order.shipping_agency.name %>
+<% if @order.delivery_name == "Collection at our warehouse" %>
+  Your order is ready to be collected, please let us know when you are thinking of coming.
+<% else %>
+  Shipped by:
+  <%= @order.shipping_agency.name %>
+  Consignment No: <%= @order.consignment_no%>
+<% end %>
 
 Thanks and regards,
 Italyabroad.com

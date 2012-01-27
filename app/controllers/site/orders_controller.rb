@@ -78,7 +78,7 @@ def create
            end
             # Commented by Sujith - put correct values below
            Notifier.deliver_new_order_placed(@order,current_user,AppConfig.admin_email)
-
+           Notifier.deliver_new_order(@order)
 
             # Earlier it was          if production
             # Now commented for production it was not properly coded for development and production modes
@@ -151,12 +151,22 @@ def create
                       @cupon.update_attribute('active',false)
                     end
                  end
-                  @order.update_attributes(:paid => true,:points_used => points_used)
+                  @order.update_attributes(:paid => true, :points_used => points_used, :status_order_id => 3)
+                  # => :status_order_id => 3 ORDER COMPLETED
                   session[:card_last_name] = ""
                   redirect_to confirmed_checkouts_path
               else
-                  flash[:notice] = response.message
+
+                  if request.remote_ip != "127.0.0.1"
+                    flash[:notice] = response.message
+                    logger.info request.remote_ip
+                  else
+                    flash[:notice] = "Payment not complete"
+                  end
+
                   redirect_to payment_checkouts_path
+
+
               end
 
         else
@@ -204,7 +214,7 @@ def create
          end  # END OF unless params[:points_to_be_used].nil?
 
         # Sujith Enter correct values
-        Notifier.deliver_new_order(@order)
+
         Notifier.deliver_new_order_placed(@order,current_user,AppConfig.admin_email)
       end # END OF if saved
 

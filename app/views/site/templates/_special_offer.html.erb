@@ -15,7 +15,7 @@
         <td align="right">
           <%- form_tag nested_categories_path(params[:parent], params[:category]), :method => :get, :id => "sort_by_form" do -%>
             <%= hidden_field_tag :page, (params[:page] || 1) %>
-            <strong>Sort by:</strong>&nbsp;<%= select_tag("sort_by", options_for_select([["Price: High to low", "price desc"], ["Price: Low to high", "price asc"], ["Name", "name"], ["Region", "region_id"]], @sort_by), :onchange => "$('sort_by_form').submit()") %>
+            <strong>Sort by:</strong>&nbsp;<%= select_tag("sort_by", options_for_select([["Price: Low to high", "price asc"], ["Price: High to low", "price desc"],  ["Name", "name"], ["Region", "region_id"]], @sort_by), :onchange => "$('sort_by_form').submit()") %>
           <%- end -%>
         </td>
       </tr>
