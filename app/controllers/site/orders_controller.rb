@@ -320,11 +320,12 @@ end
       #  if (product = Product.find_by_name(order_item.name)) && product.is_wine?
           pdf.image  "#{RAILS_ROOT}/public/images/pdf_tasting_header.png",:width => 550, :height => 108
           pdf.bounding_box([0, 510], :width => 300, :height => 100) do
-            pdt.text 'Sold To \n' +
-            order.user.name + " " + order.user.surname  + "\n" +
-              order.user.address  + "\n" +
-              order.user.address_2 + "\n" +
-              order.user.city  + "\n"
+            #pdt.text 'Sold To \n' +
+            pdf.text 'Sold To \n' +
+            order.user.name.to_s + " " + order.user.surname.to_s  + "\n" +
+              order.user.address.to_s  + "\n" +
+              order.user.address_2.to_s + "\n" +
+              order.user.city.to_s  + "\n"
           end
           if order.different_shipping_address
               pdf.bounding_box([200, 510], :width => 300, :height => 100) do
@@ -337,12 +338,12 @@ end
               end
           else
               pdf.bounding_box([200, 510], :width => 300, :height => 100) do
-                pdf.text order.user.name + " " + order.user.surname  + "\n" +
-                order.user.address  + "\n" +
-                order.user.address_2 + "\n" +
-                order.user.city  + "\n"
-                order.user.cap + "\n" +
-                order.user.country + "\n"
+                pdf.text order.user.name.to_s + " " + order.user.surname.to_s  + "\n" +
+                order.user.address.to_s  + "\n" +
+                order.user.address_2.to_s + "\n" +
+                order.user.city.to_s  + "\n"
+                order.user.cap.to_s + "\n" +
+                order.user.country.to_s + "\n"
             end
           end
         pdf.text "Order Number: #{ @order.id}"  + "\n"

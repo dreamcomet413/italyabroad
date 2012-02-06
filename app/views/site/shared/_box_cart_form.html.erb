@@ -16,11 +16,19 @@
 			<%= cart_item.product.name %>&nbsp;&nbsp;&nbsp;&nbsp;<%#= link_to image_tag("icon-cancel.png", :alt => "Delete Item", :style => "vertical-align:bottom"), product_cart_path(cart_item.product.id, @cart.object_id), :confirm => "Are you sure want to delete this product?", :method => :delete  %>
 			<% if product.from_quantity > 0 && product.from_quantity_price > 0 && cart_item.quantity < product.from_quantity %>
 				<div style="color:red">
-					<% if product.categories.root.name == "Wine" %>
+
+          <!-- ######################################################## -->
+          <!-- THIS HAS BEEN DISABLED BY CLIENT REQUEST   ADDING A false to the condition may require in future -->
+					<% if product.categories.root.name == "Wine" and false %>
 						(Buy a case of <%= product.from_quantity %> and save <%= number_to_currency product.from_quantity_price, :unit => "&pound;" %>)
-					<% elsif product.categories.root.name == "Food" %>
+					<% elsif product.categories.root.name == "Food" and false %>
 						(Buy <%= product.from_quantity %> and save <%= number_to_currency product.from_quantity_price, :unit => "&pound;" %>)
 					<% end %>
+          <!-- THIS HAS BEEN DISABLED BY CLIENT REQUEST-->
+          <!-- ######################################################## -->
+
+
+
 				</div>
 			<% end %>
 		</td>
@@ -35,12 +43,18 @@
     </td>
 	</tr>
 	<% end %>
+
 	<%- unless @cart.items.blank? -%>
-	<tr>
-	  <td>&nbsp;</td>
-	  <td><%= @cart.delivery.name %></td>
-	  <td colspan="3"><%= number_to_currency @cart.delivery.price, :unit => "&pound;" %></td>
-	</tr>
+  <% if @cart.delivery.bulk_order_price == 0 and cart_item.total > Setting.find(:first).order_delivery_amount %>
+  <% else %>
+	        <tr>
+	          <td>&nbsp;</td>
+	          <td><%= @cart.delivery.name %></td>
+	          <td colspan="3"><%= number_to_currency @cart.delivery.price, :unit => "&pound;" %></td>
+	        </tr>
+
+
+  <% end %>
 	<%- end -%>
 	<tr>
     <td colspan="5" align="right">

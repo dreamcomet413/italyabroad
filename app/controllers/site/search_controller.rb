@@ -31,39 +31,39 @@ class Site::SearchController < ApplicationController
           format.html { render :action => :peoples }
         end
        elsif params[:category] == "all"
-         @search = Search.new(params || Hash.new)
-        @recipes = Recipe.find(:all, :conditions =>     @search.conditions_for_recipes)
+          @search = Search.new(params || Hash.new)
+          @recipes = Recipe.find(:all, :conditions =>     @search.conditions_for_recipes)
 
-      @search = Search.new(params || Hash.new)
-      @wines = Product.find(:all, :include => [:categories, :grapes] ,:conditions => @search.conditions)
+          @search = Search.new(params || Hash.new)
+          @wines = Product.find(:all, :include => [:categories, :grapes] ,:conditions => @search.conditions)
 
-     @foods = Product.find(:all, :include => [:categories] ,:conditions => ['upper(categories.name) LIKE ? AND products.name LIKE ? AND products.active = ? AND quantity > ? ','FOOD',"%#{params[:text]}%",true,0])
-    SearchQuery.create(:query => @search.text) unless (@wines.blank? or @foods.blank?)
+          @foods = Product.find(:all, :include => [:categories] ,:conditions => ['upper(categories.name) LIKE ? AND products.name LIKE ? AND products.active = ? AND quantity > ? ','FOOD',"%#{params[:text]}%",true,0])
+          SearchQuery.create(:query => @search.text) unless (@wines.blank? or @foods.blank?)
 
-      @users = User.find(:all, :conditions => ["name LIKE ?", "%#{params[:text]}%"])
+          @users = User.find(:all, :conditions => ["name LIKE ?", "%#{params[:text]}%"])
 
-      @producers = Producer.find(:all, :conditions => ["name LIKE ? AND active = ?", "%#{params[:text]}%",true])
-      respond_to do |format|
-        format.html { render :action => :all }
-      end
+          @producers = Producer.find(:all, :conditions => ["name LIKE ? AND active = ?", "%#{params[:text]}%",true])
+          respond_to do |format|
+          format.html { render :action => :all }
+          end
 
     else
       #@sort_by = available_sorting.include?(params[:sort_by]) ? params[:sort_by] : "products.price DESC"
       @sort_by = available_sorting.include?(params[:sort_by]) ? params[:sort_by] : "products.price ASC"
-       if @sort_by.to_s.upcase == 'NAME'
+      if @sort_by.to_s.upcase == 'NAME'
         @sort_by = 'products.name'
-       end
+      end
       @search = Search.new(params || Hash.new)
       @category = @search.category
       @products = Product.find(:all, :order => @sort_by, :include => [:categories, :grapes], :conditions => @search.conditions).paginate(:page => params[:page], :per_page => 10)
       SearchQuery.create(:query => @search.text) unless @products.blank?
 
-     respond_to do |format|
-
+      respond_to do |format|
        format.html
-    end
+      end
     end
   end
+
   def find_users
       @users = User.find(:all, :conditions => ["name LIKE ?", "%#{params[:text]}%"]).paginate(:page => params[:page], :per_page => 10)
 

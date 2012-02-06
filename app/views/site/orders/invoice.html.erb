@@ -30,7 +30,7 @@
 		<% else %>
 		<div style="float:left;">
 			<b>SHIP TO:</b>
-			<%= "<br />" + @order.user.name + " " + @order.user.surname %>
+			<%= "<br />" + @order.user.name.to_s + " " + @order.user.surname.to_s %>
 			<%= "<br />" + @order.user.address unless @order.user.address.blank? %>
 			<%= "<br />" + @order.user.address_2 unless @order.user.address_2.blank?  %>
 			<%= "<br />" + @order.user.city unless @order.user.city.blank? %>

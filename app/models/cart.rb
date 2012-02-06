@@ -44,6 +44,7 @@ class Cart
 
   def update(items, cupon_code, delivery_id)
     @show_warnings = ""
+    total_amount = 0
     for item in items
       current_item = @items.find { |t| t.product.id == item[:id].to_i }
       if current_item
@@ -55,10 +56,18 @@ class Cart
         else
           current_item.quantity = item[:quantity]
         end
+        total_amount += item[:quantity].to_i * item[:price].to_i
       end
     end
 
     @delivery = Delivery.find_by_id(delivery_id)
+    #if delivery_charge == false and [4,7,10].include?(delivery_id)
+    if total_amount > Setting.find(:first).order_delivery_amount and Delivery.find_by_id(delivery_id).bulk_order_price == 0
+      @delivery.price = 0
+    end
+
+
+
     @cupon = Cupon.find_by_code(cupon_code)
 
     return valid?
@@ -151,7 +160,17 @@ class Cart
 
   def total
     total  = sub_total
-    total += total < Setting.order_delivery_amount && @delivery ? @delivery.price : 0
+
+    #total += total < Setting.order_delivery_amount && @delivery ? @delivery.price : 0
+
+    if total > Setting.find(:first).order_delivery_amount and @delivery.bulk_order_price == 0
+      @delivery.price = 0
+    else
+      total += @delivery.price
+    end
+
+
+
    # total += @gift.price if @gift
     unless self.gift[:gift_option_id].blank?
     total += GiftOption.find(self.gift[:gift_option_id]).price

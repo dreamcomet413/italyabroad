@@ -102,19 +102,23 @@
       <tr>
         <td colspan="6">&nbsp;</td>
       </tr>
-      <% if @cart.sub_total < Setting.order_delivery_amount %>
-        <tr>
-          <td colspan="6" align="right">
-              Select delivery method: <%= collection_select :delivery, :id, Delivery.find(:all), :id, :name_with_price %>
-          </td>
-        </tr>
-      <% else %>
+      <% if @cart.sub_total > Setting.order_delivery_amount and @delivery.bulk_order_price == 0 %>
         <tr>
           <td colspan="6">
             <em>Your order qualifies for free delivery *</em><%= hidden_field :delivery, :id, :value => Delivery.find(:first).id %>
           </td>
         </tr>
+      <% else %>
+        <tr>
+          <td colspan="6" align="right">
+              Select delivery method: <%= collection_select :delivery, :id, Delivery.find(:all), :id, :name_with_price %>
+          </td>
+        </tr>
       <% end %>
+
+
+
+
       <tr>
         <td colspan="6" align="right">
           <span style="font-size:14px;"><strong>Total:</strong> <%= number_to_currency(@cart.total, :unit => "&pound;") %></span>

@@ -57,11 +57,6 @@ class Site::CartController < ApplicationController
           if (cart_item.product.quantity.to_i - cart_item.quantity.to_i) < @setting.reorder_quantity
             Notifier.deliver_reorder_quantity_notification(cart_item.product,AppConfig.admin_email)
           end
-
-
-
-
-
    end
     redirect_to :action => :index
   end

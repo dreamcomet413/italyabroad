@@ -116,10 +116,18 @@ class Notifier < ActionMailer::Base
     bcc           "info@italyabroad.com"
     from          "Italyabroad.com <info@italyabroad.com>"
     subject       "[Order Italyabroad.com] Order Accepted"
+    #body          :order => order,
+    #              :tasting_url => url_for(:host => AppConfig.site_url, :controller => "site/customers", :action => "print_tasting", :id=>order.id),
+    #              :invoice_url => url_for(:host => AppConfig.site_url, :controller => "site/customers", :action => "print_invoice", :id=>order.id),
+    #              :customer_url => url_for(:host => AppConfig.site_url, :controller => "site/customers", :action => "orders")
+
     body          :order => order,
-                  :tasting_url => url_for(:host => AppConfig.site_url, :controller => "site/customers", :action => "print_tasting", :id=>order.id),
-                  :invoice_url => url_for(:host => AppConfig.site_url, :controller => "site/customers", :action => "print_invoice", :id=>order.id),
-                  :customer_url => url_for(:host => AppConfig.site_url, :controller => "site/customers", :action => "orders")
+                  :printing_url => ((AppConfig.site_url.to_s[1..3] == "www" ? AppConfig.site_url.to_s : "www." + AppConfig.site_url.to_s) +  "/orders/download_pdf?id=" + order.id.to_s),
+                  :status_url => ((AppConfig.site_url.to_s[1..3] == "www" ? AppConfig.site_url.to_s : "www." + AppConfig.site_url.to_s) +  "/orders"),
+                  :tasting_url => ((AppConfig.site_url.to_s[1..3] == "www" ? AppConfig.site_url.to_s : "www." + AppConfig.site_url.to_s) +  "/orders/download_pdf?id=" + order.id.to_s)
+
+
+
   end
 
   def status_order(order)
@@ -151,8 +159,10 @@ class Notifier < ActionMailer::Base
     recipients    order.user.email
     bcc           "info@italyabroad.com"
     from          "Italyabroad.com <info@italyabroad.com>"
-    subject       "[Order Italyabroad.com] Order Paid"
+    #subject       "[Order Italyabroad.com] Order Paid"
+    subject       "Italyabroad.com Order shipped"
     body          :order=>order
+    content_type "text/html"
   end
 
   def reorder_quantity_notification(product,admin_email)

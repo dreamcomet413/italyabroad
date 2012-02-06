@@ -118,17 +118,16 @@ named_scope :regulars, :conditions => ['type_id = ? or type_id = ? or type_id = 
   def self.authenticate(login, password)
     u = find_by_login(login.strip) # need to get the salt
     unless u.nil?
-    if  u.type_id.to_i != 4
-      u && u.authenticated?(password.strip) ? u : nil
-    else
-        if u.active == true and u.authenticated?(password.strip)
-        return u
-
+      if  u.type_id.to_i != 4
+        u && u.authenticated?(password.strip) ? u : nil
       else
-        return nil
+          if u.active == true and u.authenticated?(password.strip)
+          return u
+          else
+          return nil
+          end
       end
     end
-  end
   end
 
   def set_last_seen_at
