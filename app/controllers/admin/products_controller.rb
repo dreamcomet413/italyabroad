@@ -36,7 +36,7 @@ class Admin::ProductsController < ApplicationController
 
    if !params[:search_name].blank?
 
-    @products = Product.find(:all, :conditions=>['quantity >= ? ',"#{params[:search_name]}"], :order => "quantity DESC").paginate(:page => params[:page], :per_page => 20)
+    @products = Product.find(:all, :conditions=>['quantity <= ? ',"#{params[:search_name]}"], :order => "quantity DESC").paginate(:page => params[:page], :per_page => 20)
   else
     @products = Product.find(:all, :order => "quantity DESC").paginate(:page => params[:page], :per_page => 20)
   end
