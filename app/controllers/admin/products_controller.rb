@@ -32,6 +32,14 @@ class Admin::ProductsController < ApplicationController
 
  end
 
+ def products_sortby_quantity
+   if !params[:search].blank?
+    @products = Product.find(:all, :conditions=>['quantity >= ? ',"#{params[:search_name]}"], :order => "quantity DESC").paginate(:page => params[:page], :per_page => 20)
+  else
+    @products = Product.find(:all, :order => "quantity DESC").paginate(:page => params[:page], :per_page => 20)
+  end
+ end
+
 
   def new
     @product = Product.new

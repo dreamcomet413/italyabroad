@@ -74,7 +74,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :reviews, :controller => 'site/reviews'
   map.resources :messages, :controller => 'site/messages',:collection=>[:send_reply,:send_message]
    map.resources :comments, :controller => 'site/comments'
-  map.resources :search, :controller => 'site/search', :only => [:index],:collection=>[:find_users,:find_wines,:find_foods,:find_recipes,:find_producers]
+  map.resources :search, :controller => 'site/search', :only => [:index],:collection=>[:find_users,:find_wines,:find_foods,:find_recipes,:find_producers,:find_wine_events]
   map.resources :cart, :controller => 'site/cart', :only => [:index, :update], :collection => {:empty => :get, :continue_shopping => :get}
   map.connect 'site/cart/gift_options',:controller=>'site/cart',:action=>'gift_options'
   map.connect 'site/checkouts/order_confirmation',:controller=>'site/checkouts',:action=>'order_confirmation'
@@ -96,7 +96,7 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'admin/products/products_of_the_week', :controller => '/admin/products', :action => 'products_of_the_week'
   map.connect "admin/products/xml", :controller => '/admin/products', :action => 'xml'
   map.connect "site/orders/show_order_details",:controller => '/site/orders', :action => 'show_order_details'
-
+ map.connect "admin/products/products_sortby_quantity",:controller => '/admin/products',:action =>'products_sortby_quantity'
   map.connect "site/orders/review",:controller => '/site/orders', :action => 'review'
 
   map.connect "admin/recipes/xml", :controller => '/admin/recipes', :action => 'xml'
