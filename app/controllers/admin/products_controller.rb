@@ -4,6 +4,7 @@ class Admin::ProductsController < ApplicationController
 
   layout "admin"
 
+
   def index
      categories = Category.find_by_sql("select * from categories where parent_id is null")
      @categories_data = Admin::CategoriesController.new

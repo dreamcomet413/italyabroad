@@ -1,0 +1,81 @@
+<div id="header">Your search result has found the following events:</div>
+<div align="right" class="pagination_div"><%= will_paginate(@wine_events) %></div>
+	<% for product in @wine_events %>
+	<table style="margin:0 0 0 0px; margin-left:10px; margin-right:10px; padding-left:10px; padding-right:10px;width:98%;" cellpadding="0" border="0" cellspacing="0">
+		<tr>
+
+
+
+
+			<td >
+			<div style="margin:0 0 0 0px;margin-left:10px;">
+          <%= link_to product.name, nested_products_uri(product), :style => "font-size:17px;color:black;" %><br />
+          <%= show_ratings(product) %>
+          <%= product.description_short %>
+			</div>
+			</td>
+
+
+
+      <!-- THIRD COLUMN START (PRICE)-->
+      <td>
+        <div class="box_price_product" style="float:left;">
+          <ul>
+            <li class="price_info">
+      				<% if product.discounted? %>
+      					<div style="font-size:14px">Was <span style="text-decoration: line-through;"><%= number_to_currency product.price, :unit => "&pound;" %></span></div>
+      					<span class="price red" style="color:#003300;">Now&nbsp;<span class="promotion"; style="color:red;"><%= number_to_currency product.price_discounted, :unit => "&pound;" %></span></span>
+      				<% else %>
+      					<span class="price" style="color:black;"><%= number_to_currency product.price, :unit => "&pound;" %></span>
+      				<% end %>
+    				</li>
+
+  			    <li>
+  			      <% if product.quantity > 0 %>
+
+      	  <table cellspacing="0" border="0">
+
+      	    <tr>
+      		    <td>Ticket qty: </td>
+      		    <td><%= text_field :cart, :quantity, :size => 2, :value => 1 %></td>
+      		    <td><%= link_to_remote image_tag("buttons/buy_button_new.png"), :url => product_cart_index_path(product), :html => {:method => 'post'} %>
+      		    </td>
+      		  </tr>
+      		</table>
+
+      	<% else %>
+      	<span style="color:red;">Sorry no places left, see other dates</span>
+      	<% end %>
+  			    </li>
+
+
+
+
+
+
+  				</ul>
+        </div>
+
+
+      </td>
+      <!-- THIRD COLUMN END (PRICE)-->
+
+		</tr>
+
+	</table>
+	<h3>&nbsp;</h3>
+	<% end %>
+
+
+
+<% content_for :right do %>
+
+	<%= render :partial => 'site/shared/box_products_on_offer' %>
+	<br />
+	<%= render :partial => '/site/shared/box_event' %>
+	<br />
+	<%= render :partial => '/site/shared/box_subscriptions' %>
+	<br />
+	<%= render :partial => '/site/shared/box_grape_guide' %>
+<% end %>
+

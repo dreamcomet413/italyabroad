@@ -69,7 +69,20 @@
               <%#= link_to_remote @foods.count.to_s + 'Foods', :url => { :action => "find_foods",:text=>params[:text]} %>
               <%= link_to @foods.count.to_s + '&nbsp;&nbsp; Foods',  :action => "find_foods",:text=>params[:text]%>
               <div id="all_foods"></div><br /><br /><br />
+          </div><h3>&nbsp;</h3>
+          <% end %>
+
+          <!-- added on feb/06/2012 for displyaing events in all search dorp down -->
+
+          <% unless @wine_events.blank? %>
+          <div style="margin:0 0 0 0px; padding-left:15px;">
+              <!--<div id="header">Your search has found the following Foods:</div>-->
+              <h1>Events</h1>
+              <%#= link_to_remote @foods.count.to_s + 'Foods', :url => { :action => "find_foods",:text=>params[:text]} %>
+              <%= link_to @wine_events.count.to_s + '&nbsp;&nbsp; Events',  :action => "find_wine_events",:text=>params[:text]%>
+              <div id="all_events"></div><br /><br /><br />
           </div>
+
           <% end %>
 
 
