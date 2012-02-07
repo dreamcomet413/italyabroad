@@ -1,5 +1,12 @@
 <%- @breadcrumbs = "#{link_to("Home", root_url)} &raquo; #{link_to("Events", '/event')}" -%>
 <% @about = AboutU.find(:first, :conditions => {:link_type => "events"} ) %>
+<% if @category.image_link
+link = @category.image_link
+else
+link = search_index_path(:id=>@category)
+end
+
+%>
 <% if @category.image && !@category.image_url.blank? %>
           <div id="wineBanner">
           <span class="title">
@@ -9,7 +16,7 @@
           </div>-->
            <%# end %>
           </span>
-          <%= link_to image_tag(image_url('home_image', @category.image, :jpg),:alt=>@category.name), search_index_path(:id => @category)%>
+          <%= link_to image_tag(image_url('home_image', @category.image, :jpg),:alt=>@category.name), link%>
           </div>
 <% else %>
           <div id="wineBanner">
@@ -30,7 +37,7 @@
               <%# else %>
                     <%#= link_to image_tag("events.jpg"), search_index_path(:id => @category)%>
               <%# end %>
-             <%= link_to image_tag("events.jpg",:alt=>'Events'), search_index_path(:id => @category)%>
+             <%= link_to image_tag("events.jpg",:alt=>'Events'), link%>
           </div>
 <% end %>
   <h3 align="center" style="border:none;" >

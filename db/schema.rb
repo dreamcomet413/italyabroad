@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120110025806) do
+ActiveRecord::Schema.define(:version => 20120207061728) do
 
   create_table "about_us", :force => true do |t|
     t.string   "title"
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(:version => 20120110025806) do
     t.string  "text_on_image"
     t.string  "page_heading"
     t.integer "menu_order"
+    t.string  "image_link"
   end
 
   create_table "categorizations", :force => true do |t|
