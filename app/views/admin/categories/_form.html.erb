@@ -36,6 +36,10 @@
 	  <td><%= text_area :category, :meta_description, :rows => 5, :style => "width:99%" %></td>
   </tr>
   <tr>
+	  <td>Image Link</td>
+	  <td><%= text_field :category, :image_link,  :style => "width:99%" %></td>
+  </tr>
+  <tr>
     <td>Parent category</td>
     <td>
     <% if @category.new_record? %>
