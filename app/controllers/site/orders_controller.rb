@@ -58,30 +58,25 @@ def create
 
         if saved
           create_order_items
-          points_used = 0.00
 
           unless params[:points_to_be_used].nil?
 
-                      # illogical -ve points
-                      params[:points_to_be_used] = 0 if params[:points_to_be_used].to_f < 0
-                      total_credits = current_user.find_total_points(current_user).to_f - current_user.orders.sum('points_used')
-
                       total_amount = @cart.total
-                      params[:points_to_be_used] = params[:total_points].to_f if params[:total_points].to_f < params[:points_to_be_used].to_f
 
-
-                      equivalent_credit = params[:points_to_be_used].to_f * Setting.find(:first).points_to_pound
-                      if total_amount > equivalent_credit    # normal, available points used
-
+                      #find correct points used even if the user enters -ve and wrong value for points
+                      points_used = find_points_used(params[:points_to_be_used],params[:total_points])
+                      equivalent_credit = points_used.to_f * Setting.find(:first).points_to_pound
+                      # normal, available points used
+                      if total_amount > equivalent_credit
                           total_amount = total_amount - equivalent_credit
-                          points_used = params[:points_to_be_used]
-
-                      else      # too many points in credit
+                         # points_used = params[:points_to_be_used]
+                       # too many points in credit
+                      else
 
                           total_amount = 0    # no need to pay because of previous credits accrued
                           points_used = @cart.total / Setting.find(:first).points_to_pound
                       end
-          else  # no points
+        else  # no points entered
 
              total_amount = @cart.total
 
@@ -89,7 +84,6 @@ def create
 
            Notifier.deliver_new_order_placed(@order,current_user,AppConfig.admin_email)
            Notifier.deliver_new_order(@order)
-
 
            if production and total_amount > 0
                 gateway = ActiveMerchant::Billing::SagePayGateway.new(:login =>'italyabroad')
@@ -204,31 +198,24 @@ def create
       if saved
         logger.info "SAVED ....!"
         create_order_items
-        points_used = 0.00
           unless params[:points_to_be_used].nil?
-                      logger.info "POINTS USED ...!"
-
-                      # illogical -ve points
-                      params[:points_to_be_used] = 0 if params[:points_to_be_used].to_f < 0
-                      total_credits = (current_user.find_total_points(current_user).to_f - current_user.orders.sum('points_used')) * Setting.find(:first).points_to_pound
 
                       total_amount = @cart.total
-                      params[:points_to_be_used] = params[:total_points].to_f if params[:total_points].to_f < params[:points_to_be_used].to_f     #accident or mischief
 
-
-                      equivalent_credit = params[:points_to_be_used].to_f * Setting.find(:first).points_to_pound
-                      if total_amount > equivalent_credit    # normal, available points used
-                          logger.info "total_amount > equivalent_credit ...!"
-
+                      #find correct points used even if the user enters -ve and wrong value for points
+                      points_used = find_points_used(params[:points_to_be_used],params[:total_points])
+                      equivalent_credit = points_used.to_f * Setting.find(:first).points_to_pound
+                      # normal, available points used
+                      if total_amount > equivalent_credit
                           total_amount = total_amount - equivalent_credit
-                          points_used = params[:points_to_be_used]
-
-                      else      # too many points in credit
+                         # points_used = params[:points_to_be_used]
+                       # too many points in credit
+                      else
 
                           total_amount = 0    # no need to pay because of previous credits accrued
                           points_used = @cart.total / Setting.find(:first).points_to_pound
                       end
-          else  # no points
+        else  # no points entered
 
              total_amount = @cart.total
 
@@ -260,10 +247,10 @@ end
   end
 
   def download_pdf
-    puts params[:id]
     @order = Order.find(params[:id])
     @tasting_notes = true
-    send_data(generate_pdf(@order), :filename => "Invoice of Order# #{@order.id}.pdf", :type => "application/pdf")
+    render :layout => "print"
+    # send_data(generate_pdf(@order), :filename => "Invoice of Order# #{@order.id}.pdf", :type => "application/pdf")
   end
 
   def show_order_details
@@ -416,6 +403,10 @@ end
 
   end
 
-
+  def find_points_used(points_to_be_used,total_points)
+    points_to_be_used = 0 if points_to_be_used.to_f < 0
+    points_to_be_used = total_points.to_f if total_points.to_f < points_to_be_used.to_f
+    points_to_be_used
+  end
 end
 

@@ -33,7 +33,7 @@
 
   <p style="text-align:right;width:99%;">
     <%#= link_to(image_tag("buttons/back_to_list.png"), orders_path) %>&nbsp;&nbsp;&nbsp;&nbsp;<%#= link_to(image_tag("buttons/print_invoice.png"), print_invoice_path(@order.id)) %>
-    &nbsp;&nbsp;&nbsp;&nbsp;<%= link_to(image_tag("buttons/download.png"), :action => 'download_pdf',:id => @order.id) %>
+    &nbsp;&nbsp;&nbsp;&nbsp;<%= link_to(image_tag("buttons/download.png"), :action => 'download_pdf',:id => @order.id,:format => "pdf") %>
   </p>
 </div>
 
