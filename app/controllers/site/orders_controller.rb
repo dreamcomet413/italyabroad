@@ -52,7 +52,7 @@ def create
       production = RAILS_ENV == "production"
       @credit_card = ActiveMerchant::Billing::CreditCard.new(params[:credit_card])
 
-      if @credit_card.valid? or !production #or production
+      if @credit_card.valid? or !production
         new_order
         saved = @order.save
 
@@ -61,34 +61,40 @@ def create
           points_used = 0.00
 
           unless params[:points_to_be_used].nil?
-                    if params[:total_points].to_f > params[:points_to_be_used].to_f and  (@cart.total - (params[:points_to_be_used].to_f * Setting.find(:first).points_to_pound) >= 0)
-                      total_amount = (@cart.total) - (params[:points_to_be_used].to_f * Setting.find(:first).points_to_pound)
-                      points_used = params[:points_to_be_used]
 
-                    else
-                    #  points_used = (@cart.total)/ Setting.find(:first).points_to_pound
-                    points_used = current_user.find_total_points(current_user).to_f - current_user.orders.sum('points_used')
-                     # total_amount = 0
-                     total_amount = (@cart.total) - (points_used.to_f * Setting.find(:first).points_to_pound)
+                      # illogical -ve points
+                      params[:points_to_be_used] = 0 if params[:points_to_be_used].to_f < 0
+                      total_credits = current_user.find_total_points(current_user).to_f - current_user.orders.sum('points_used')
 
-                    end
-           else
+                      total_amount = @cart.total
+                      params[:points_to_be_used] = params[:total_points].to_f if params[:total_points].to_f < params[:points_to_be_used].to_f
+
+
+                      equivalent_credit = params[:points_to_be_used].to_f * Setting.find(:first).points_to_pound
+                      if total_amount > equivalent_credit    # normal, available points used
+
+                          total_amount = total_amount - equivalent_credit
+                          points_used = params[:points_to_be_used]
+
+                      else      # too many points in credit
+
+                          total_amount = 0    # no need to pay because of previous credits accrued
+                          points_used = @cart.total / Setting.find(:first).points_to_pound
+                      end
+          else  # no points
 
              total_amount = @cart.total
-           end
-            # Commented by Sujith - put correct values below
+
+          end   # end of points
+
            Notifier.deliver_new_order_placed(@order,current_user,AppConfig.admin_email)
            Notifier.deliver_new_order(@order)
 
-            # Earlier it was          if production
-            # Now commented for production it was not properly coded for development and production modes
-           # if true
-          # Sujith
-           if production
+
+           if production and total_amount > 0
                 gateway = ActiveMerchant::Billing::SagePayGateway.new(:login =>'italyabroad')
 
                 # modified for loyalty system
-
 
                              # Sujith - state is assigned to zip code because the zip was not being captured
                              if @order.different_shipping_address
@@ -108,8 +114,7 @@ def create
                                                          "zip"=>current_user.cap
                                                          }
                              end
-#              response = gateway.purchase(total_amount*100, @credit_card,:order_id =>"#{@order.id}",:options=>{:billing_address=>{:address1=>current_user.address,:city=>current_user.city,:state=>current_user.province,:country=>current_user.country},:shipping_address=>{:name=>shipping_address["name"],:address1=>shipping_address["address1"],:city=>shipping_address["city"],:state=>shipping_address["state"],:country=>shipping_address["country"],:zip=>shipping_address["zip"]}})
-
+#response = gateway.purchase(total_amount*100, @credit_card,:order_id =>"#{@order.id}",:options=>{:billing_address=>{:address1=>current_user.address,:city=>current_user.city,:state=>current_user.province,:country=>current_user.country},:shipping_address=>{:name=>shipping_address["name"],:address1=>shipping_address["address1"],:city=>shipping_address["city"],:state=>shipping_address["state"],:country=>shipping_address["country"],:zip=>shipping_address["zip"]}})
 
 
               response = gateway.purchase(total_amount*100, @credit_card, :order_id=>"#{@order.id}",
@@ -139,7 +144,7 @@ def create
               #logger.info "TESTING_SITE__  MESSAGE #{response.message}"
               #logger.info "TESTING_SITE__  OBJECT #{response}"
 
-              if (!response.nil? && response.success?) #or !production
+              if (!response.nil? && response.success?) or total_amount == 0 or !production
                 if  @cart.cupon
                     @cupon = Cupon.find_by_code(@cart.cupon.code)
                     if @cupon.created_by_admin
@@ -188,32 +193,46 @@ def create
 
     else
 
+      logger.info "NOT CREDIT CARD ...!"
+
+
       #ELSE of if @payment_method && !@payment_method.external
       # Payment is outside site/not online.
       new_order
       saved = @order.save
 
       if saved
+        logger.info "SAVED ....!"
         create_order_items
         points_used = 0.00
-        unless params[:points_to_be_used].nil?
+          unless params[:points_to_be_used].nil?
+                      logger.info "POINTS USED ...!"
 
-            if params[:total_points].to_f > params[:points_to_be_used].to_f and  (@cart.total - (params[:points_to_be_used].to_f * Setting.find(:first).points_to_pound) >= 0)
-                total_amount = (@cart.total) - (params[:points_to_be_used].to_f * Setting.find(:first).points_to_pound)
-             points_used = params[:points_to_be_used]
-            else
-            #  points_used = (@cart.total)/ Setting.find(:first).points_to_pound
-            points_used = current_user.find_total_points(current_user).to_f
-            # total_amount = 0
-            total_amount = (@cart.total) - (points_used.to_f * Setting.find(:first).points_to_pound)
+                      # illogical -ve points
+                      params[:points_to_be_used] = 0 if params[:points_to_be_used].to_f < 0
+                      total_credits = (current_user.find_total_points(current_user).to_f - current_user.orders.sum('points_used')) * Setting.find(:first).points_to_pound
 
-            end   # END OF POINTs?
+                      total_amount = @cart.total
+                      params[:points_to_be_used] = params[:total_points].to_f if params[:total_points].to_f < params[:points_to_be_used].to_f     #accident or mischief
 
-         else
+
+                      equivalent_credit = params[:points_to_be_used].to_f * Setting.find(:first).points_to_pound
+                      if total_amount > equivalent_credit    # normal, available points used
+                          logger.info "total_amount > equivalent_credit ...!"
+
+                          total_amount = total_amount - equivalent_credit
+                          points_used = params[:points_to_be_used]
+
+                      else      # too many points in credit
+
+                          total_amount = 0    # no need to pay because of previous credits accrued
+                          points_used = @cart.total / Setting.find(:first).points_to_pound
+                      end
+          else  # no points
+
              total_amount = @cart.total
-         end  # END OF unless params[:points_to_be_used].nil?
 
-        # Sujith Enter correct values
+          end   # end of points
 
         Notifier.deliver_new_order_placed(@order,current_user,AppConfig.admin_email)
       end # END OF if saved
@@ -377,6 +396,14 @@ end
     if order.gift_option && order.gift_option.price > 0
       pdf.text "Wrapping option: #{order.gift_option.name} : #{order.gift_option.price} \n"
     end
+
+    if @order.points_used > 0
+      pdf.text "Points Used( #{order.points_used}): £#{order.points_used * Setting.find(:first).points_to_pound}"
+    end
+
+
+
+
     total =  order.total - (order.points_used * Setting.find(:first).points_to_pound)
       pdf.text "Total: £#{total} \n"
     pdf.move_down 70

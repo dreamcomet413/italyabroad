@@ -78,9 +78,17 @@
 						<% unless @order.cupon_code.blank? %>
 						<tr><td style="text-align:right">Coupon:</td><td style="color:red">- <%= number_to_currency @order.cupon_price %></em></td></tr>
 						<% end %>
+
 						<% if @order.gift_option && @order.gift_option.price > 0 %>
 						<tr><td style="text-align:right">Wrapping option (<%= @order.gift_option.name %>):</td><td><%= number_to_currency @order.gift_option.price %></td></tr>
 						<% end %>
+
+            <%- if @order.points_used > 0 -%>
+            <tr><td style="text-align:right">Points Used(<%= @order.points_used %>):</td><td>
+				    -<%= number_to_currency (@order.points_used * Setting.find(:first).points_to_pound, :unit => "&pound;") %>
+            <%- end -%>
+
+
 						<tr><td style="text-align:right"><b>Total:</b></td><td></b>
 						<%#= number_to_currency(@order.total) %><%= number_to_currency @order.total - (@order.points_used * Setting.find(:first).points_to_pound), :unit => "&pound;" %></b></td></tr>
 					</table>
