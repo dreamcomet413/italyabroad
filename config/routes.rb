@@ -20,6 +20,7 @@ ActionController::Routing::Routes.draw do |map|
   map.contact_details 'help/contact-details', :controller => 'site/base', :action => 'contact_details'
   map.sitemap 'sitemap', :controller => 'site/base', :action => 'sitemap'
   map.connect "sitemap.xml", :controller => "site/base", :action => "google_sitemap"
+  map.franchise "shop-franchise",:controller => 'site/base', :action => 'franchise'
 #  map.connect "products.xml",:controller=>'site/products',:action=>'index'
 
  # map.testimonial 'testimonial', :controller => 'site/base', :action => 'testimonial'

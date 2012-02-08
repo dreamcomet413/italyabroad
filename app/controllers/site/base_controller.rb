@@ -148,5 +148,9 @@ class Site::BaseController < ApplicationController
   def wine_club
 
   end
+
+  def franchise
+  end
+
 end
 

@@ -1,10 +1,12 @@
+<%= stylesheet_link_tag 'widgEditor' %>
+<%= javascript_include_tag "widgEditor" %>
 <%- @title = "Administration - Setting"; @page_id = "Administration" -%>
 <%- @breadcrumbs = "Administration &raquo; #{link_to "Settings", admin_settings_path}" -%>
 
 <div class="inner_content settings" id="admin_settings_edit">
   <h2>Settings</h2>
   <br />
-  <% form_for :setting, @setting, :url => admin_setting_path(@setting), :html => {:multipart => true, :method => :put} do %>
+  <% form_for :setting, @setting, :url => admin_setting_path(@setting), :html => {:multipart => true, :method => :put} do |form| %>
   <table>
     <tr>
       <td width="290px">Promotion:</td>
@@ -209,6 +211,11 @@
         </table>
       </td>
     </tr>
+    <tr>
+    <td>Shop Franchise Details:</td>
+    <td style="padding-left:50px;"><%= form.text_area :franchise,:size => "35x15", :class=>"widgEditor" %>
+    </td>
+  </tr>
     <tr>
       <td colspan="2"><%= submit_tag "Save" %></td>
     </tr>

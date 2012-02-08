@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120207061728) do
+ActiveRecord::Schema.define(:version => 20120208092415) do
 
   create_table "about_us", :force => true do |t|
     t.string   "title"
@@ -95,7 +95,7 @@ ActiveRecord::Schema.define(:version => 20120207061728) do
     t.date    "expiry_date"
     t.boolean "created_by_admin", :default => false
     t.integer "no_of_times",      :default => 1
-    t.integer "no_of_times_used", :default => 0
+    t.integer "no_of_times_used", :default => 1
   end
 
   create_table "cupons_products", :force => true do |t|
@@ -105,7 +105,8 @@ ActiveRecord::Schema.define(:version => 20120207061728) do
 
   create_table "deliveries", :force => true do |t|
     t.string  "name"
-    t.decimal "price", :precision => 8, :scale => 2, :default => 0.0
+    t.decimal "price",            :precision => 8, :scale => 2, :default => 0.0
+    t.float   "bulk_order_price",                                                :null => false
   end
 
   create_table "faqs", :force => true do |t|
@@ -606,6 +607,7 @@ ActiveRecord::Schema.define(:version => 20120207061728) do
     t.float   "points_to_pound",                                     :default => 0.0,     :null => false
     t.string  "desc_wine_of_the_week"
     t.string  "desc_food_of_the_week"
+    t.text    "franchise"
   end
 
   create_table "ship_addresses", :force => true do |t|
