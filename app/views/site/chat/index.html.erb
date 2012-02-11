@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <%= javascript_include_tag "prototype", :juggernaut %>
-    <%= stylesheet_link_tag "chat", :cache => true %>
+    <%= stylesheet_link_tag "chat", :cache => false %>
     <% unless session[:chat_user_name].blank? %>
     <%= juggernaut(:channels => session[:juggernaut_channels], :client_id => session[:chat_user_name], :debug => false) %>
     <% end -%>

@@ -25,10 +25,26 @@
       </td>
     </tr>
     <%- end -%>
+    <tr>
+      <td colspan="2" style="text-align:right;">Sub Total</td><td></td><td><%= @order.sub_total %></td>
+    </tr>
+
+    <tr>
+      <td colspan="2" style="text-align:right;">Points Used (<%= @order.points_used %>)equivalent to </td><td></td><td><%= number_to_currency(@order.points_used * Setting.find(:first).points_to_pound, :unit => "&pound;" )%></td>
+    </tr>
+
+    <tr>
+      <td colspan="2" style="text-align:right;"><%=@order.delivery_name%> </td><td></td><td><%= @order.delivery_price %></td>
+    </tr>
+
+
+    <tr>
+      <td colspan="2" style="text-align:right;font-weight:bold">Total</td><td></td><td style="text-align:left;font-weight:bold"><%= number_to_currency (@order.total - (@order.points_used * Setting.find(:first).points_to_pound), :unit => "&pound;") %></td>
+    </tr>
+
+
   </table>
 
-  Sub Total = <%= @order.sub_total %><br />
-  Total = <%= @order.total %>
 
 
   <p style="text-align:right;width:99%;">

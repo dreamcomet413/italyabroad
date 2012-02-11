@@ -45,101 +45,55 @@ class Site::OrdersController < ApplicationController
 def create
   session[:card_first_name] = params[:credit_card][:first_name]
   session[:card_last_name] = params[:credit_card][:last_name]
+
   unless params[:accept].blank?
     @payment_method = PaymentMethod.find(params[:payment_method])
 
-    if @payment_method && !@payment_method.external
+
+    total_amount, points_used = find_total_and_points_used(params[:points_to_be_used],
+                                                        @cart.total, params[:points_to_be_used], params[:total_points])
+
+    if (@payment_method && !@payment_method.external) or total_amount == 0
       production = RAILS_ENV == "production"
       @credit_card = ActiveMerchant::Billing::CreditCard.new(params[:credit_card])
+      logger.info "11111"
+      if (@credit_card.valid? or !production) or total_amount == 0
+      logger.info "22222"
 
-      if @credit_card.valid? or !production
         new_order
         saved = @order.save
 
         if saved
           create_order_items
-
-          unless params[:points_to_be_used].nil?
-
-                      total_amount = @cart.total
-
-                      #find correct points used even if the user enters -ve and wrong value for points
-                      points_used = find_points_used(params[:points_to_be_used],params[:total_points])
-                      equivalent_credit = points_used.to_f * Setting.find(:first).points_to_pound
-                      # normal, available points used
-                      if total_amount > equivalent_credit
-                          total_amount = total_amount - equivalent_credit
-                         # points_used = params[:points_to_be_used]
-                       # too many points in credit
-                      else
-
-                          total_amount = 0    # no need to pay because of previous credits accrued
-                          points_used = @cart.total / Setting.find(:first).points_to_pound
-                      end
-        else  # no points entered
-
-             total_amount = @cart.total
-
-          end   # end of points
-
-           Notifier.deliver_new_order_placed(@order,current_user,AppConfig.admin_email)
-           Notifier.deliver_new_order(@order)
+          #total_amount, points_used = find_total_and_points_used(params[:points_to_be_used], @cart.total, params[:points_to_be_used], params[:total_points])
+          Notifier.deliver_new_order_placed(@order,current_user,AppConfig.admin_email)
+          Notifier.deliver_new_order(@order)
 
            if production and total_amount > 0
+                   logger.info "33333"
+
                 gateway = ActiveMerchant::Billing::SagePayGateway.new(:login =>'italyabroad')
+                shipping_address = assign_shipping_address(@order.different_shipping_address, @order, current_user)
 
-                # modified for loyalty system
-
-                             # Sujith - state is assigned to zip code because the zip was not being captured
-                             if @order.different_shipping_address
-                                    shipping_address = {"name"=>@order.ship_name,
-                                                        "address1"=>@order.ship_address,
-                                                         "city"=>@order.ship_city,
-                                                         "state"=>@order.ship_cap,
-                                                         "country"=>@order.ship_country,
-                                                         "zip"=>@order.ship_cap
-                                    }
-                             else
-                                     shipping_address = {"name"=>current_user.name.to_s + current_user.surname.to_s,
-                                                        "address1"=>current_user.address,
-                                                         "city"=>current_user.city,
-                                                         "state"=>current_user.province,
-                                                         "country"=>current_user.country,
-                                                         "zip"=>current_user.cap
-                                                         }
-                             end
-#response = gateway.purchase(total_amount*100, @credit_card,:order_id =>"#{@order.id}",:options=>{:billing_address=>{:address1=>current_user.address,:city=>current_user.city,:state=>current_user.province,:country=>current_user.country},:shipping_address=>{:name=>shipping_address["name"],:address1=>shipping_address["address1"],:city=>shipping_address["city"],:state=>shipping_address["state"],:country=>shipping_address["country"],:zip=>shipping_address["zip"]}})
-
-
-              response = gateway.purchase(total_amount*100, @credit_card, :order_id=>"#{@order.id}",
-              :billing_address => {
-                :name=>current_user.name.to_s + " " + current_user.surname.to_s,
-                :address1=>current_user.address,
-                :city=>current_user.city,
-                :state=>current_user.province,
-                :country=>current_user.country,
-                :zip=>current_user.cap},
-              :shipping_address=>{
-                :name=>shipping_address["name"].to_s + " " + shipping_address["name"].to_s,
-                :address1=>shipping_address["address1"],
-                :city=>shipping_address["city"],
-                :state=>shipping_address["state"],
-                :country=>shipping_address["country"],
-                :zip=>shipping_address["zip"]}
-
-               )
-
-
-
-
+                response = gateway.purchase(total_amount*100, @credit_card, :order_id=>"#{@order.id}",
+                :billing_address => {
+                  :name=>current_user.name.to_s + " " + current_user.surname.to_s,
+                  :address1=>current_user.address,  :city=>current_user.city, :state=>current_user.province,
+                  :country=>current_user.country, :zip=>current_user.cap},
+                :shipping_address=>{
+                  :name=>shipping_address["name"].to_s + " " + shipping_address["name"].to_s,
+                  :address1=>shipping_address["address1"], :city=>shipping_address["city"],
+                  :state=>shipping_address["state"], :country=>shipping_address["country"], :zip=>shipping_address["zip"]}
+                 )
 
               end  #END OF IF PRODUCTION
               #logger.info "TESTING_SITE__  RESULT #{response.success?}"
-              #logger.info "TESTING_SITE__  MESSAGE #{response.message}"
-              #logger.info "TESTING_SITE__  OBJECT #{response}"
 
               if (!response.nil? && response.success?) or total_amount == 0 or !production
+                logger.info "entered response block"
                 if  @cart.cupon
+                    logger.info "44444"
+
                     @cupon = Cupon.find_by_code(@cart.cupon.code)
                     if @cupon.created_by_admin
                       @cupon.no_of_times_used =  @cupon.no_of_times_used + 1
@@ -198,33 +152,9 @@ def create
       if saved
         logger.info "SAVED ....!"
         create_order_items
-          unless params[:points_to_be_used].nil?
-
-                      total_amount = @cart.total
-
-                      #find correct points used even if the user enters -ve and wrong value for points
-                      points_used = find_points_used(params[:points_to_be_used],params[:total_points])
-                      equivalent_credit = points_used.to_f * Setting.find(:first).points_to_pound
-                      # normal, available points used
-                      if total_amount > equivalent_credit
-                          total_amount = total_amount - equivalent_credit
-                         # points_used = params[:points_to_be_used]
-                       # too many points in credit
-                      else
-
-                          total_amount = 0    # no need to pay because of previous credits accrued
-                          points_used = @cart.total / Setting.find(:first).points_to_pound
-                      end
-        else  # no points entered
-
-             total_amount = @cart.total
-
-          end   # end of points
-
+        #total_amount, points_used = find_total_and_points_used(params[:points_to_be_used], @cart.total, params[:points_to_be_used], params[:total_points])
         Notifier.deliver_new_order_placed(@order,current_user,AppConfig.admin_email)
       end # END OF if saved
-
-      # what is this Sujith??
       # redirect_to paypal_checkouts_path(:id => new_order.id)
     end
 
@@ -400,13 +330,66 @@ end
 
 
     end.render
+  end
+
+  def find_total_and_points_used(buy_with_points, cart_total, points_to_be_used, total_points)
+    # finds the total amount based on points and stores the points used(if any) in order
+          unless buy_with_points.nil?
+
+                      total_amount = cart_total
+                      #find correct points used even if the user enters -ve and wrong value for points
+                      points_used = find_points_used(points_to_be_used, total_points)
+
+                      equivalent_credit = points_used.to_f * Setting.find(:first).points_to_pound
+                      # normal, available points used
+                      if total_amount > equivalent_credit
+                          total_amount = total_amount - equivalent_credit
+                      else  # too many points in credit
+                          total_amount = 0    # no need to pay because of previous credits accrued
+                          points_used = cart_total / Setting.find(:first).points_to_pound
+                      end
+          else  # no points entered
+
+             total_amount = cart_total
+
+          end   # end of points
+
+  return total_amount, points_used
 
   end
+
+
+
 
   def find_points_used(points_to_be_used,total_points)
     points_to_be_used = 0 if points_to_be_used.to_f < 0
     points_to_be_used = total_points.to_f if total_points.to_f < points_to_be_used.to_f
     points_to_be_used
   end
+
+
+  def  assign_shipping_address(ship_to_different_location, order, this_user)
+  # modified for loyalty system
+  # Sujith - state is assigned to zip code because the zip was not being captured
+
+     if ship_to_different_location
+            shipping_address = {"name"=>order.ship_name, "address1"=>@order.ship_address,
+                                 "city"=>order.ship_city,
+                                 "state"=>order.ship_cap,
+                                 "country"=>order.ship_country,
+                                 "zip"=>order.ship_cap
+            }
+     else
+             shipping_address = {"name"=>this_user.name.to_s + current_user.surname.to_s,
+                                "address1"=>this_user.address,
+                                 "city"=>this_user.city,
+                                 "state"=>this_user.province,
+                                 "country"=>this_user.country,
+                                 "zip"=>this_user.cap
+                                 }
+     end
+    return shipping_address
+   end
+
 end
 
