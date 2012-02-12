@@ -6,7 +6,12 @@
             <div>
               <div style="margin: 0 5px 5px 0;float:left"><%= avatar_for_user(review.user, "small") %></div>
               <div style="text-align:left;margin: 0 0 5px 15px;float:left">
-                <span style="font:bold 13px Arial"><%= (review.user.name).capitalize %></span><br/>
+                <span style="font:bold 13px Arial">
+                <% unless review.user.nil? %>
+                <%= (review.user.name).capitalize %>
+
+                <% end %>
+                </span><br/>
                   <span style="font:10px Arial"> <%= review.created_at.strftime("%d/%m/%Y") %></span><!-- %H:%M %p"--><br/>
                    <span ><%= show_review_ratings(review.reviewer, review.score) %></span>
               </div>

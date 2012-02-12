@@ -59,6 +59,7 @@ class Site::CheckoutsController < ApplicationController
     if @cart.items.size == 0
       redirect_to cart_index_path
     end
+  @order = Order.find(:last,:conditions=>['user_id=?',current_user.id])
   end
 
   def order_confirmation
