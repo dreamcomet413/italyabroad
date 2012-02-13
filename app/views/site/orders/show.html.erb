@@ -30,12 +30,15 @@
     </tr>
 
     <tr>
-      <td colspan="2" style="text-align:right;">Points Used (<%= @order.points_used %>)equivalent to </td><td></td><td><%= number_to_currency(@order.points_used * Setting.find(:first).points_to_pound, :unit => "&pound;" )%></td>
-    </tr>
-
-    <tr>
       <td colspan="2" style="text-align:right;"><%=@order.delivery_name%> </td><td></td><td><%= @order.delivery_price %></td>
     </tr>
+
+    <%- if @order.points_used > 0 -%>
+    <tr>
+      <td colspan="2" style="text-align:right;">Points Used (<%= @order.points_used %>)equivalent to </td><td></td><td><%= number_to_currency(@order.points_used * Setting.find(:first).points_to_pound, :unit => "&pound;" )%></td>
+    </tr>
+    <%- end -%>
+
 
 
     <tr>
@@ -49,7 +52,7 @@
 
   <p style="text-align:right;width:99%;">
     <%#= link_to(image_tag("buttons/back_to_list.png"), orders_path) %>&nbsp;&nbsp;&nbsp;&nbsp;<%#= link_to(image_tag("buttons/print_invoice.png"), print_invoice_path(@order.id)) %>
-    &nbsp;&nbsp;&nbsp;&nbsp;<%= link_to(image_tag("buttons/download.png"), :action => 'download_pdf',:id => @order.id,:format => "pdf") %>
+    &nbsp;&nbsp;&nbsp;&nbsp;<%= link_to(image_tag("buttons/download_invoice.png"), :action => 'download_pdf',:id => @order.id,:format => "pdf") %>
   </p>
 </div>
 

@@ -50,7 +50,7 @@
             <!-- Remove this line and uncomment the other lines when u go live -->
             <%# support_link = "Closed" -%>
             <%    @support_user = Setting.find(:first).support
-                   @support_status = Juggernaut.show_client(@support_user) ? true : false
+                   @support_status = Juggernaut.show_client(@support_user) ? true : false rescue false
                    if @support_status == true
                       support_link = "available"
                    else
