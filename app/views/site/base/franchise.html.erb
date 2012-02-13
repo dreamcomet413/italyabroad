@@ -1,2 +1,14 @@
-<%= @setting.franchise %>
+<% @title = "Terms and Condition"; @class = "help no-padding"; @breadcrumbs = "#{link_to("Home", root_url)} &raquo; Help &raquo; Terms and Condition" %>
+
+<div id="header"><strong>Italyabroad.com</strong> - Franchise</div>
+
+<div class="help-container">
+
+  <%= @setting.franchise %>
+
+</div>
+
+<% content_for :right do %>
+  <%= render :partial => '/site/shared/box_help' %>
+<% end %>
 

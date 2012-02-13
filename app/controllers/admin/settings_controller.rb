@@ -35,5 +35,15 @@ class Admin::SettingsController < ApplicationController
 
     redirect_to :action => :index
   end
+
+  def update_franchise_details
+    @setting = Setting.find(:first)
+    if params[:franchise]
+
+      @setting.update_attribute(:franchise,params[:franchise])
+
+    end
+  end
+
 end
 

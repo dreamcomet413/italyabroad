@@ -1,5 +1,3 @@
-<%= stylesheet_link_tag 'widgEditor' %>
-<%= javascript_include_tag "widgEditor" %>
 <%- @title = "Administration - Setting"; @page_id = "Administration" -%>
 <%- @breadcrumbs = "Administration &raquo; #{link_to "Settings", admin_settings_path}" -%>
 
@@ -211,12 +209,7 @@
         </table>
       </td>
     </tr>
-    <tr>
-    <td>Shop Franchise Details:</td>
-    <td style="padding-left:50px;"><%= form.text_area :franchise,:size => "35x15", :class=>"widgEditor" %>
-    </td>
-  </tr>
-    <tr>
+     <tr>
       <td colspan="2"><%= submit_tag "Save" %></td>
     </tr>
   </table>

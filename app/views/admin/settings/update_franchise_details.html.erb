@@ -1,0 +1,25 @@
+<%= stylesheet_link_tag 'widgEditor' %>
+<%= javascript_include_tag "widgEditor" %>
+<%- @title = "Administration - Setting"; @page_id = "Administration" -%>
+<%- @breadcrumbs = "Administration &raquo; #{link_to "Settings", admin_settings_path}" -%>
+
+<div class="inner_content settings" id="admin_settings_edit">
+  <h2>Settings - Franchise Details</h2>
+  <br />
+  <% form_tag 'update_franchise_details' do |form| %>
+  <table>
+
+    <tr>
+    <td>Shop Franchise Details:</td>
+    <td style="padding-left:50px;"><%= text_area_tag :franchise,@setting.franchise,:size => "35x15", :class=>"widgEditor" %>
+    </td>
+  </tr>
+    <tr>
+      <td colspan="2">
+        <%= submit_tag "Save",:name=>'save' %>
+      </td>
+    </tr>
+  </table>
+  <% end %>
+</div>
+

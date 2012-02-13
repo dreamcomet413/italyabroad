@@ -154,7 +154,7 @@ map.eval_xml_g_comptible 'admin/xml/eval_xml_g_comptible', :controller => 'admin
       setting.resources :resources, :only => [:destroy]
     end
   end
-
+map.update_franchise_details 'admin/settings/update_franchise_details', :controller => 'admin/settings', :action => 'update_franchise_details'
   map.product_meta 'admin/products/:id/meta', :controller => 'admin/products', :action => 'meta'
   map.product_categories 'admin/products/:id/categories', :controller => 'admin/products', :action => 'categories'
   map.product_extra 'admin/products/:id/extra', :controller => 'admin/products', :action => 'extra'
