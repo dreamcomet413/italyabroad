@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120208092415) do
+ActiveRecord::Schema.define(:version => 20120215052445) do
 
   create_table "about_us", :force => true do |t|
     t.string   "title"
@@ -581,9 +581,9 @@ ActiveRecord::Schema.define(:version => 20120208092415) do
 
   create_table "settings", :force => true do |t|
     t.integer "wine_pdf_id"
-    t.decimal "order_amount",          :precision => 8, :scale => 2, :default => 0.0
-    t.decimal "order_cupon_amount",    :precision => 8, :scale => 2, :default => 0.0
-    t.decimal "order_delivery_amount", :precision => 8, :scale => 2, :default => 0.0
+    t.decimal "order_amount",               :precision => 8, :scale => 2, :default => 0.0
+    t.decimal "order_cupon_amount",         :precision => 8, :scale => 2, :default => 0.0
+    t.decimal "order_delivery_amount",      :precision => 8, :scale => 2, :default => 0.0
     t.integer "home_image_1_id"
     t.string  "home_image_1_url"
     t.integer "home_image_2_id"
@@ -601,13 +601,15 @@ ActiveRecord::Schema.define(:version => 20120208092415) do
     t.string  "home_image_5_url"
     t.string  "promotion"
     t.integer "reorder_quantity"
-    t.string  "vat_rate",                                            :default => "0.00"
-    t.string  "support",                                             :default => "admin"
-    t.float   "points_per_pound",                                    :default => 0.0,     :null => false
-    t.float   "points_to_pound",                                     :default => 0.0,     :null => false
+    t.string  "vat_rate",                                                 :default => "0.00"
+    t.string  "support",                                                  :default => "admin"
+    t.float   "points_per_pound",                                         :default => 0.0,     :null => false
+    t.float   "points_to_pound",                                          :default => 0.0,     :null => false
     t.string  "desc_wine_of_the_week"
     t.string  "desc_food_of_the_week"
     t.text    "franchise"
+    t.string  "home_page_meta_description"
+    t.string  "home_page_meta_key"
   end
 
   create_table "ship_addresses", :force => true do |t|
