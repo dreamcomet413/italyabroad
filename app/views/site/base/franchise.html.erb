@@ -1,0 +1,14 @@
+<% @title = "Shop Franchise"; @class = "help no-padding"; @breadcrumbs = "#{link_to("Home", root_url)} &raquo; Franchise" %>
+
+<div id="header"><strong>Italyabroad.com</strong> - Franchise</div>
+
+<div class="help-container">
+
+  <%= @setting.franchise %>
+
+</div>
+
+<% content_for :right do %>
+  <%= render :partial => '/site/shared/box_about_us' %>
+<% end %>
+
