@@ -2867,4 +2867,12 @@ html body#categories_show.categories div#content div#mainContent div#leftColumnC
     color:#000;
 }
 */
+#mainContent div#rightColumn div#box_event_reviews.block {
+    background-color:#fff;
+}
+
+
+#leftColumnContent div#box_hamper_search.block {
+    margin-left:12px;
+}
 
