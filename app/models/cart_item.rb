@@ -39,8 +39,8 @@ class CartItem
 
 
 
-	  if @product && @product.from_quantity > 0 && @product.from_quantity_price > 0 && quantity >= @product.from_quantity
-  	  return ((@product.price_discounted * @product.from_quantity - @product.from_quantity_price) /  @product.from_quantity).to_f && @product.rate == "0%"
+	  if @product && @product.from_quantity > 0 && @product.from_quantity_price > 0 && quantity >= @product.from_quantity && @product.rate == "0%"
+  	  return ((@product.price_discounted * @product.from_quantity - @product.from_quantity_price) /  @product.from_quantity).to_f
     elsif @product && @product.from_quantity > 0 && @product.from_quantity_price > 0 && quantity >= @product.from_quantity
         return ((@product.price_discounted * @product.from_quantity - @product.from_quantity_price) / @product.from_quantity / ( 1+ (@product.rate.to_f/100) )).to_f
     else
