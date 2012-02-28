@@ -456,7 +456,7 @@ a {
 
 #siteMap ul li.list {
     float:left;
-    width:14.2%;
+    width:14%;
 }
 
 #siteMap ul li a {
@@ -1255,8 +1255,11 @@ ul li.product_listing h1 a.recipe_title:hover {
 
 #andreasWine {
     width:265px;
-    float:left;
+/*    float:left;*/
+    float:right;
     margin-left:8px;
+    margin-right:8px;
+
 }
 
 #wineBanner {
@@ -2873,7 +2876,7 @@ html body#categories_show.categories div#content div#mainContent div#leftColumnC
 
 
 #leftColumnContent div#box_hamper_search.block {
-    margin-left:12px;
+    margin-left:8px;
     width:150px;
 
 }
