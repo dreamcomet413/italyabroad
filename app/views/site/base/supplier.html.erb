@@ -2,8 +2,8 @@
 <% @class = "about-us no-padding" %>
 <% @breadcrumbs = "#{link_to("Home", root_url)} &raquo; About us &raquo; supplier " %>
 
-<div id="header"><strong>Italyabroad.com</strong>-Supplier</div>
-
+<!-- div id="header"><strong>Italyabroad.com</strong>-Supplier</div -->
+<div id="header"><strong>Italyabroad.com</strong>-About us</div>
 
   <% @about = AboutU.find(:first, :conditions => {:link_type => "supplier"} ) %>
     <div style="margin:20px;">

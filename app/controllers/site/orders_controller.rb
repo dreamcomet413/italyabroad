@@ -53,43 +53,40 @@ def create
     total_amount, points_used = find_total_and_points_used(params[:points_to_be_used],
                                                         @cart.total, params[:points_to_be_used], params[:total_points])
 
-    if (@payment_method && !@payment_method.external) or total_amount == 0
+    if (@payment_method && !@payment_method.external) or total_amount == 0      #### 0001
       production = RAILS_ENV == "production"
       @credit_card = ActiveMerchant::Billing::CreditCard.new(params[:credit_card])
-      logger.info "11111"
-      if (@credit_card.valid? or !production) or total_amount == 0
-      logger.info "22222"
+     if (@credit_card.valid? or !production) or total_amount == 0                     #### 0002
 
         new_order
         saved = @order.save
 
-        if saved
+        if saved                                                                            #### 0003
           create_order_items
           #total_amount, points_used = find_total_and_points_used(params[:points_to_be_used], @cart.total, params[:points_to_be_used], params[:total_points])
           Notifier.deliver_new_order_placed(@order,current_user,AppConfig.admin_email)
           Notifier.deliver_new_order(@order)
 
-           if production and total_amount > 0
-                   logger.info "33333"
+          if production and total_amount > 0                                                          #### 0004
 
-                gateway = ActiveMerchant::Billing::SagePayGateway.new(:login =>'italyabroad')
-                shipping_address = assign_shipping_address(@order.different_shipping_address, @order, current_user)
+              gateway = ActiveMerchant::Billing::SagePayGateway.new(:login =>'italyabroad')
+              shipping_address = assign_shipping_address(@order.different_shipping_address, @order, current_user)
 
-                response = gateway.purchase(total_amount*100, @credit_card, :order_id=>"#{@order.id}",
-                :billing_address => {
-                  :name=>current_user.name.to_s + " " + current_user.surname.to_s,
-                  :address1=>current_user.address,  :city=>current_user.city, :state=>current_user.province,
-                  :country=>current_user.country, :zip=>current_user.cap},
-                :shipping_address=>{
-                  :name=>shipping_address["name"].to_s + " " + shipping_address["name"].to_s,
-                  :address1=>shipping_address["address1"], :city=>shipping_address["city"],
-                  :state=>shipping_address["state"], :country=>shipping_address["country"], :zip=>shipping_address["zip"]}
-                 )
+              response = gateway.purchase(total_amount*100, @credit_card, :order_id=>"#{@order.id}",
+              :billing_address => {
+                :name=>current_user.name.to_s + " " + current_user.surname.to_s,
+                :address1=>current_user.address,  :city=>current_user.city, :state=>current_user.province,
+                :country=>current_user.country, :zip=>current_user.cap},
+              :shipping_address=>{
+                :name=>shipping_address["name"].to_s + " " + shipping_address["name"].to_s,
+                :address1=>shipping_address["address1"], :city=>shipping_address["city"],
+                :state=>shipping_address["state"], :country=>shipping_address["country"], :zip=>shipping_address["zip"]}
+               )
 
-              end  #END OF IF PRODUCTION
-              #logger.info "TESTING_SITE__  RESULT #{response.success?}"
+          end   #END OF IF PRODUCTION                                                   #### 0004
+                #logger.info "TESTING_SITE__  RESULT #{response.success?}"
 
-              if (!response.nil? && response.success?) or total_amount == 0 or !production
+          if (!response.nil? && response.success?) or total_amount == 0 or !production
                 logger.info "entered response block"
                 if  @cart.cupon
                     logger.info "44444"
@@ -108,7 +105,7 @@ def create
                   # => :status_order_id => 3 ORDER COMPLETED
                   session[:card_last_name] = ""
                   redirect_to confirmed_checkouts_path
-              else
+            else
 
                   if request.remote_ip != "127.0.0.1"
                     flash[:notice] = response.message
