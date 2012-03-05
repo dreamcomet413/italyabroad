@@ -56,7 +56,10 @@ def create
     if (@payment_method && !@payment_method.external) or total_amount == 0      #### 0001
       production = RAILS_ENV == "production"
       @credit_card = ActiveMerchant::Billing::CreditCard.new(params[:credit_card])
-     if (@credit_card.valid? or !production) or total_amount == 0                     #### 0002
+
+      @sujith=true
+
+     if (@credit_card.valid? or !production) or total_amount == 0               #### 0002
 
         new_order
         saved = @order.save

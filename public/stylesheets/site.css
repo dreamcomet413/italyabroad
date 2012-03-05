@@ -2880,4 +2880,17 @@ html body#categories_show.categories div#content div#mainContent div#leftColumnC
     width:150px;
 
 }
+#leftColumnContent div#box_food_search.block {
+    margin-left:8px;
+    width:150px;
+
+}
+
+#leftColumnContent div div#box_upcoming_wine_tours.block {
+    margin-left:3px;
+}
+
+#leftColumnContent div div#box_upcoming_wine_tours.block {
+    margin-left:3px;
+}
 

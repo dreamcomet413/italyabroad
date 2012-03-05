@@ -17,12 +17,14 @@ Response Params is <%#= session[:response_params] %>-->
 
 <p style="margin: 10px 20px;">
 Order Reference : <strong><%= @order.id %></strong><br /><br />
-Total order Value : <strong><%= number_to_currency (@order.total - (@order.points_used * Setting.find(:first).points_to_pound), :unit => "&pound;") %></strong><br /><br />
+Total order Value : <strong><%= number_to_currency (@order.total - (@order.points_used * Setting.find(:first).points_to_pound), :unit => "&pound;") %></strong>
+( + Points: <%= number_to_currency (@order.points_used * Setting.find(:first).points_to_pound, :unit => "&pound;") %>)<br /><br />
 You will shortly receive an order acknowledgement by email.
 </p><br />
 <div style="margin: 10px 20px;">
 <%= render :partial => 'site/shared/box_cart_form' %>
-</div> <br />
+</div>
+<br />
   <p style="margin: 10px 20px;font-weight:bold;">
   Thank you for shopping at Italyabroad.com
   </p>
