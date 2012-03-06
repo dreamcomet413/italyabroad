@@ -11,15 +11,19 @@ Response Params is <%#= session[:response_params] %>-->
  <p style="margin: 10px 20px">
   Your Order has been successfully received by our processing team!
   </p>
-<div style="margin: 10px 20px;background-color:#E8E8E8;height:30px;padding-top:14px;">
-<strong>Order Details</strong>
+<div style="margin: 10px 20px;font-size:16px;font-weight:bold;">
+Order Details
 </div>
 
 <p style="margin: 10px 20px;">
-Order Reference : <strong><%= @order.id %></strong><br /><br />
-Total order Value : <strong><%= number_to_currency (@order.total - (@order.points_used * Setting.find(:first).points_to_pound), :unit => "&pound;") %></strong>
-( + Points: <%= number_to_currency (@order.points_used * Setting.find(:first).points_to_pound, :unit => "&pound;") %>)<br /><br />
-You will shortly receive an order acknowledgement by email.
+Order Reference : <span style="font-size:16px;font-weight:bold;"><%= @order.id %></span><br /><br />
+<!--Total order Value : <span style="font-size:16px;"><%#= number_to_currency (@order.total - (@order.points_used * Setting.find(:first).points_to_pound), :unit => "&pound;") %></span>
+( + Points: <%#= number_to_currency (@order.points_used * Setting.find(:first).points_to_pound, :unit => "&pound;") %>)
+<br /><br />
+You will shortly receive an order acknowledgement by email.-->
+Payment Method : <span style="font-size:16px;font-weight:bold;"><%= number_to_currency (@order.total - (@order.points_used * @setting.points_to_pound), :unit => "&pound;") %> Credit Card </span>
+( + Points: <%= number_to_currency (@order.points_used * @setting.points_to_pound, :unit => "&pound;") %>)
+<br /><br />
 </p><br />
 <div style="margin: 10px 20px;">
 <%= render :partial => 'site/shared/box_cart_form' %>

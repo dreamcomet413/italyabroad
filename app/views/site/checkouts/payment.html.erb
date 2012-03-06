@@ -43,6 +43,11 @@ total_points_used = current_user.orders.sum('points_used')
     </div>
 <%- end -%>
 <div style="margin: 10px 20px;">
+  <% if ((total_points - total_points_used > 0) and (@cart.total - ((total_points - total_points_used) * @setting.points_to_pound.to_f) > 0)) %>
+    <span style="color:red">Your points are not sufficient to pay for the order, please enter your credit card details.
+
+    </span>
+   <% end %>
   <h2 style="font-weight:normal;">Billing Information</h2>
 
     <div id="form">
