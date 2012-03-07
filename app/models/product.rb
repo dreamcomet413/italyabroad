@@ -276,7 +276,7 @@ class Product < ActiveRecord::Base
   end
 
   def out_of_stock?
-    self.quantity == 0
+    self.quantity == 0 or self.quantity < 0
   end
 
 	# Calculates the average rating. Calculation based on the already given scores.
