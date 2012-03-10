@@ -36,7 +36,9 @@ class Site::SearchController < ApplicationController
         @recipes = Recipe.find(:all, :conditions =>     @search.conditions_for_recipes)
 
       @search = Search.new(params || Hash.new)
-      @wines = Product.find(:all, :include => [:categories, :grapes] ,:conditions => @search.conditions)
+    #  @wines = Product.find(:all, :include => [:categories, :grapes] ,:conditions => @search.conditions)
+    @wines = Product.find(:all, :include => [:categories] ,:conditions => ['upper(categories.name) LIKE ? AND products.name LIKE ? AND products.active = ? AND quantity > ? ','WINE',"%#{params[:text]}%",true,0])
+
 
      @foods = Product.find(:all, :include => [:categories] ,:conditions => ['upper(categories.name) LIKE ? AND products.name LIKE ? AND products.active = ? AND quantity > ? ','FOOD',"%#{params[:text]}%",true,0])
 
