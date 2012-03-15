@@ -58,7 +58,9 @@
         <br />
         <ul class="clean" style="list-style:none;">
           <%- for producer in @producers_all -%>
-          <li><%= link_to truncate (producer.name,50), producer_path(producer) if producer.name.upcase =~ /^[A-G]/ %></li>
+          <%- if producer.name.upcase =~ /^[A-G]/ -%>
+          <li><%= link_to truncate (producer.name,50), producer_path(producer)  %></li>
+          <%- end -%>
           <%- end -%>
         </ul>
       </td>
@@ -67,7 +69,9 @@
         <br />
         <ul class="clean" style="list-style:none;">
           <%- for producer in @producers_all -%>
-          <li><%= link_to truncate (producer.name,50), producer_path(producer) if producer.name.upcase =~ /^[H-L]/ %></li>
+          <%- if producer.name.upcase  =~ /^[H-L]/ -%>
+          <li><%= link_to truncate (producer.name,50), producer_path(producer)  %></li>
+          <%- end -%>
           <%- end -%>
         </ul>
       </td>
@@ -76,7 +80,9 @@
         <br />
         <ul class="clean" style="list-style:none;">
           <%- for producer in @producers_all -%>
-          <li><%= link_to truncate (producer.name,50), producer_path(producer) if producer.name.upcase =~ /^[M-Z]/ %></li>
+          <%- if producer.name.upcase  =~ /^[M-Z]/ -%>
+          <li><%= link_to truncate (producer.name,50), producer_path(producer)  %></li>
+          <%- end -%>
           <%- end -%>
         </ul>
       </td>

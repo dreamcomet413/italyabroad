@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120215052445) do
+ActiveRecord::Schema.define(:version => 20120315070345) do
 
   create_table "about_us", :force => true do |t|
     t.string   "title"
@@ -610,6 +610,7 @@ ActiveRecord::Schema.define(:version => 20120215052445) do
     t.text    "franchise"
     t.string  "home_page_meta_description"
     t.string  "home_page_meta_key"
+    t.boolean "chat_available",                                           :default => false
   end
 
   create_table "ship_addresses", :force => true do |t|

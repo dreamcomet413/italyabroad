@@ -1,4 +1,4 @@
-class Site::BaseController < ApplicationController
+ysclass Site::BaseController < ApplicationController
   layout "site"
 
 
@@ -20,6 +20,9 @@ class Site::BaseController < ApplicationController
       if logged_in
         self.current_user = User.authenticate(params[:login], params[:password])
         current_user.set_last_seen_at
+        if current_user.admin?
+            @setting.update_attribute('chat_available',true)
+        end
         redirect_back_or_default(root_url)
       else
         flash[:notice] = "Wrong password or username " #+ "<br />"
@@ -97,6 +100,9 @@ class Site::BaseController < ApplicationController
 
   def logout
     self.current_user.forget_me if logged_in?
+    if current_user.admin?
+            @setting.update_attribute('chat_available',false)
+    end
     cookies.delete :auth_token
     reset_session
     redirect_back_or_default(root_url)
