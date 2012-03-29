@@ -8,26 +8,26 @@ class Admin::PostsController < ApplicationController
 
   def new
     @post = Post.new
-    
-    respond_to do |format|
-      format.dialog { render :partial => 'new' }
-      format.html
-    end
+
+  #  respond_to do |format|
+   #   format.dialog { render :partial => 'new' }
+    #  format.html
+    #end
   end
 
   def edit
     @post = Post.find(params[:id])
-    
-    respond_to do |format|
-      format.dialog { render :partial => 'edit' }
-      format.html
-    end
+
+   # respond_to do |format|
+    #  format.dialog { render :partial => 'edit' }
+     # format.html
+    #end
   end
 
   def create
     @post = Post.new(params[:post])
     @post.tag_ids = Tag.find_or_create_by_names(params[:tags])
-    
+
     @post.image_1.destroy if @post.image_1 && !params[:image_1].blank?
     @post.build_image_1(:image_file => params[:image_1]) unless params[:image_1].blank?
 
@@ -36,27 +36,27 @@ class Admin::PostsController < ApplicationController
 
     @post.image_3.destroy if @post.image_3 && !params[:image_3].blank?
     @post.build_image_3(:image_file => params[:image_3]) unless params[:image_3].blank?
-    
+
     @post.resource_1.destroy if @post.resource_1 && !params[:resource_1].blank?
     @post.build_resource_1(params[:resource_1]) unless params[:resource_1].blank?
-    
+
     @post.resource_2.destroy if @post.resource_2 && !params[:resource_2].blank?
     @post.build_resource_2(params[:resource_2]) unless params[:resource_2].blank?
-    
+
     @post.resource_3.destroy if @post.resource_3 && !params[:resource_3].blank?
     @post.build_resource_3(params[:resource_3]) unless params[:resource_3].blank?
-    
+
     if @post.save
       redirect_to :action => :index
     else
       @post.image_1 = nil
       @post.image_2 = nil
       @post.image_3 = nil
-      
+
       @post.resource_1 = nil
       @post.resource_2 = nil
       @post.resource_3 = nil
-      
+
       flash[:notice] = @post.show_errors
       render :action => :new
     end
@@ -77,10 +77,10 @@ class Admin::PostsController < ApplicationController
 
     redirect_to :action => :edit, :id => @post
   end
-  
+
   def destroy_resource
     @post = Post.find(params[:id])
-    
+
     case params[:rsc]
     when "1"
       @post.resource_1.destroy
@@ -89,29 +89,29 @@ class Admin::PostsController < ApplicationController
     when "3"
       @post.resource_3.destroy
     end
-    
+
     redirect_to :action => :edit, :id => @post
   end
 
   def update
     @post = Post.find(params[:id])
     @post.tag_ids = Tag.find_or_create_by_names(params[:tags])
-    
+
     @post.image_1.destroy if @post.image_1 && !params[:image_1].blank?
     @post.build_image_1(:image_file => params[:image_1]) unless params[:image_1].blank?
 
     @post.image_2.destroy if @post.image_2 && !params[:image_2].blank?
     @post.build_image_2(:image_file => params[:image_2]) unless params[:image_2].blank?
-    
+
     @post.image_3.destroy if @post.image_3 && !params[:image_3].blank?
     @post.build_image_3(:image_file => params[:image_3]) unless params[:image_3].blank?
-    
+
     @post.resource_1.destroy if @post.resource_1 && !params[:resource_1].blank?
     @post.build_resource_1(params[:resource_1]) unless params[:resource_1].blank?
-    
+
     @post.resource_2.destroy if @post.resource_2 && !params[:resource_2].blank?
     @post.build_resource_2(params[:resource_2]) unless params[:resource_2].blank?
-    
+
     @post.resource_3.destroy if @post.resource_3 && !params[:resource_3].blank?
     @post.build_resource_3(params[:resource_3]) unless params[:resource_3].blank?
 
@@ -121,7 +121,7 @@ class Admin::PostsController < ApplicationController
       @post.image_1 = nil
       @post.image_2 = nil
       @post.image_3 = nil
-      
+
       @post.resource_1 = nil
       @post.resource_2 = nil
       @post.resource_3 = nil
@@ -136,3 +136,4 @@ class Admin::PostsController < ApplicationController
   end
 
 end
+

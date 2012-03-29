@@ -7,6 +7,7 @@ class Admin::BaseController < ApplicationController
     if request.post?
       self.current_user = User.authenticate(params[:login], params[:password])
       if admin?
+        @setting.update_attribute('chat_available',true)
         redirect_back_or_default(:controller => '/admin/base', :action => 'index')
       else
         flash[:notice] = "Invalid login account."
@@ -19,6 +20,9 @@ class Admin::BaseController < ApplicationController
 
   def logout
     self.current_user.forget_me if logged_in?
+    if admin?
+        @setting.update_attribute('chat_available',false)
+    end
     cookies.delete :auth_token
     reset_session
     flash[:notice] = "You have been logout"
