@@ -3,7 +3,7 @@
   <ul>
   <%- Post.archives.each_with_index do |archive, i| -%>
     <li class="collapsible <%= (i==0) ? 'opened' : 'closed' %>">
-      <span><%= link_to(archive[:year], "", :onclick => "if ($(this).parentNode.parentNode.hasClassName('opened')) {$(this).parentNode.parentNode.removeClassName('opened');$(this).parentNode.parentNode.toggleClassName('closed')} else {$(this).parentNode.parentNode.removeClassName('closed');$(this).parentNode.parentNode.toggleClassName('opened')};return false;") %></span>
+      <span><%= link_to(archive[:year], "", :onclick => "if ($($(this).parentNode.parentNode).hasClassName('opened')) {$($(this).parentNode.parentNode).removeClassName('opened');$($(this).parentNode.parentNode).toggleClassName('closed')} else {$($(this).parentNode.parentNode).removeClassName('closed');$($(this).parentNode.parentNode).toggleClassName('opened')};return false;") %></span>
       <ul>
         <%- archive[:months].each do |m| -%>
         <li><%= link_to(Date::MONTHNAMES[m[0]], blog_by_month_page_path(:year => archive[:year], :month => m[0])) %> (<%= m[1] %>)</li>
@@ -13,3 +13,4 @@
   <%- end -%>
   </ul>
 </div>
+
