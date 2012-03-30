@@ -5,19 +5,19 @@
   </p>
 	<table>
 		<tr>
-		  <td>Title:</td>
+		  <td >Title:</td>
 		  <td><%= select :user, :title, ["Mr", "Miss", "Mrs", "Dr"] %></td>
     </tr>
 		<tr>
-		  <td>Name:</td>
+		  <td><span style="color:red;font-size:14px;"> * </span> Name:</td>
 		  <td><%= text_field :user, :name %></td>
     </tr>
 		<tr>
-		  <td>Surname:</td>
+		  <td><span style="color:red;font-size:14px;"> * </span> Surname:</td>
 		  <td><%= text_field :user, :surname %></td>
     </tr>
 		<tr>
-		  <td>Email:</td>
+		  <td> <span style="color:red;font-size:14px;"> * </span> Email:</td>
 		  <td><%= text_field :user, :email %></td>
     </tr>
 		<tr>
@@ -34,17 +34,17 @@
 	</p>
 	<table>
 		<tr>
-		  <td>User Name:</td>
+		  <td><span style="color:red;font-size:14px;"> * </span> User Name:</td>
 		  <td><%= text_field :user, :login, :disabled => (true unless @user.new_record?) %></td>
     </tr>
 		<tr>
-		  <td>Password:</td>
+		  <td><span style="color:red;font-size:14px;"> * </span> Password:</td>
 		  <td><%= password_field :user, :password %><br />
 		  <small style="color:red;font-size:10px;">Password should be at least "6 character long"</small>
 		  </td>
     </tr>
 		<tr>
-		  <td>Password Confirm:</td>
+		  <td> <span style="color:red;font-size:14px;"> * </span> Password Confirm:</td>
 		  <td><%= password_field :user, :password_confirmation %></td>
     </tr>
 	</table>
@@ -62,7 +62,7 @@
   </p>
 	<table>
 		<tr>
-		  <td>Address #1:</td>
+		  <td><span style="color:red;font-size:14px;"> * </span> Address #1:</td>
 		  <td><%= text_field :user, :address %></td>
     </tr>
 		<tr>
@@ -71,11 +71,11 @@
     </tr>
 
 		<tr>
-		  <td>Town:</td>
+		  <td> <span style="color:red;font-size:14px;"> * </span> Town:</td>
 		  <td><%= text_field :user, :city %></td>
     </tr>
 		<tr>
-		  <td>Postcode:</td>
+		  <td><span style="color:red;font-size:14px;"> * </span> Postcode:</td>
 		  <td><%= text_field :user, :cap %></td>
     </tr>
     <tr>
@@ -92,7 +92,7 @@
 	</p>
 	<table>
 		<tr>
-		  <td>Telephone:</td>
+		  <td><span style="color:red;font-size:14px;"> * </span> Telephone:</td>
 		  <td><%= text_field :user, :telephone %><br /><small id="blog_rss">Please supply a phone number so we can call if there are any problems using this address</small></td>
 		</tr>
 		<tr>
