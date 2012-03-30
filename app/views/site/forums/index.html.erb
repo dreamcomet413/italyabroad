@@ -100,10 +100,10 @@
                        <div style="color:#666666;padding:5px 0 10px 0"><%= link_to '<span style="color:black;">Latest Questions</span>',faqs_path %><br />
                         <br />
 
-                        <%= @faq.question %><br /><br />
-                        &nbsp;&nbsp;&nbsp;&nbsp;<%= @faq.answer[0..200] %><br />
+                        <span style="color:#000;"><%= @faq.question %></span<br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;<%#= link_to @faq.answer[0..100], faqs_path %><br />
 
-                       <%= link_to 'Read all',faqs_path %>
+                       <%= link_to 'Read the answer',faqs_path %>
                         </div>
                         </td>
                         <td valign="top" align="right">

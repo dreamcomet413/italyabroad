@@ -300,6 +300,7 @@ a {
     height:284px;
     overflow :hidden;
     background:transparent url(images/loading.gif) center center;
+    z-index:-1;
 }
 
 #flashBanner ul {
@@ -308,9 +309,9 @@ a {
     padding:0;
 }
 
-#flashBanner ul li.home_image {
+#flashBanner ul li, #flashBanner ul, #flashBanner {
+    z-index:0;
 }
-
 
 #producers_banner {
     position:relative;
@@ -1228,9 +1229,9 @@ ul li.product_listing h1 a.recipe_title:hover {
 
 
 #topSellingWine {
-    width:260px;
+    width:258px;
     float:left;
-    margin-left:8px;
+    margin-left:6px;
 }
 
 #topSellingWine ul,
@@ -1255,11 +1256,11 @@ ul li.product_listing h1 a.recipe_title:hover {
 }
 
 #andreasWine {
-    width:265px;
+    width:245px;
 /*    float:left;*/
     float:right;
     margin-left:8px;
-    margin-right:8px;
+    margin-right:28px;
 
 }
 
@@ -2894,4 +2895,13 @@ html body#categories_show.categories div#content div#mainContent div#leftColumnC
 #leftColumnContent div div#box_upcoming_wine_tours.block {
     margin-left:3px;
 }
+#box_forum ul li table tbody tr td div {
+ text-align:justify;
+ color:black;
+}
+#box_forum ul li table tbody tr td div a {
+ color:#9b0707;
+}
+
+/*#box_forum ul li table tbody tr td*/
 
