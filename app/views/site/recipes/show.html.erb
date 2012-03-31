@@ -10,6 +10,7 @@
         <%= @recipe.ingredients.gsub("\n","<br />") %>
       </td>
       <td valign="top" style="padding-left:80px;">
+      <% unless @recipe.region.nil? %>Region : <%= @recipe.region.name %> <br /><br /><% end %>
         <% if !@recipe.image_1.blank? %>
               <%= image_tag (image_url(:original, @recipe.image_1),:alt=>@recipe.name) %>
               <% else %>

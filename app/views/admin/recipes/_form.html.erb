@@ -19,6 +19,10 @@
 		  <td style="width:200px;text-align:right">Difficult:</td>
 		  <td><%= collection_select :recipe, :recipe_level_id, RecipeLevel.find(:all), :id, :name %></td>
     </tr>
+    <tr>
+          <td  style="width:200px;text-align:right">Region:</td>
+          <td><%= collection_select :recipe,:region_id, Region.find(:all), :id, :name %></td>
+        </tr>
      <tr>
           <td style="width:200px;text-align:right">Ingredients:</td>
           <td><%= text_area :recipe,:ingredients, :rows => 10 %></td>

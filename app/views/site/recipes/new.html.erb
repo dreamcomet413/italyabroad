@@ -69,6 +69,10 @@
           <td><%= f.collection_select :recipe_level_id, RecipeLevel.find(:all), :id, :name %></td>
         </tr>
         <tr>
+          <td>Region:</td>
+          <td><%= f.collection_select :region_id, Region.find(:all), :id, :name %></td>
+        </tr>
+        <tr>
           <td valign="top">Ingredients:</td>
           <td><%= f.text_area :ingredients, :rows => 10 %></td>
         </tr>

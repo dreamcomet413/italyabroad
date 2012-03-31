@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120315070345) do
+ActiveRecord::Schema.define(:version => 20120331071705) do
 
   create_table "about_us", :force => true do |t|
     t.string   "title"
@@ -479,6 +479,7 @@ ActiveRecord::Schema.define(:version => 20120315070345) do
     t.integer  "user_id"
     t.string   "serves"
     t.boolean  "vegetarian",          :default => false
+    t.integer  "region_id"
   end
 
   create_table "regions", :force => true do |t|

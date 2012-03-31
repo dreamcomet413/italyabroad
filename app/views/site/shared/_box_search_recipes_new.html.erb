@@ -19,6 +19,11 @@
         <td>Difficulty:</td>
         <td><%= select_tag :difficulty, options_for_select(Recipe.difficulties(@search), params[:difficulty]), :id => "search_recipe_type" %></td>
       </tr>
+      <tr>
+        <td>Region:</td>
+        <td><%= select_tag :region_id, options_for_select(Recipe.regions(@search), params[:region_id]), :id => "search_recipe_type" %></td>
+      </tr>
+
 			<tr>
 			  <td>Preparation time:</td>
 			  <td>

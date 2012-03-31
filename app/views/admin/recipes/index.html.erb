@@ -6,6 +6,21 @@
   <br />
   <table>
     <tr>
+      <td>
+        <%- form_tag admin_recipes_path, :method => :get do -%>
+        <strong>Search:</strong>
+        <%= text_field_tag :search_text,'',:value=>params[:search_text] %>
+
+
+        <%= submit_tag "Search", :name => 'search' %>
+        <%= set_focus_to 'search' %>
+        <%- end -%>
+      </td>
+
+    </tr>
+  </table>
+  <table>
+    <tr>
       <td></td>
       <td align="right"><%= link_to "New Recipe", new_admin_recipe_path %></td>
       <td align="right"><%= link_to "XML", :controller => 'admin/recipes', :action => 'xml' %></td>
