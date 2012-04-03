@@ -1,31 +1,40 @@
-<% @posts = ForumPost.paginate(:per_page => 2, :order => "created_at desc", :limit => 2, :page => params[:page])%>
+<% latest_review = Review.last(:conditions=>['publish = ?',true]) %>
 
-<% @users = User.find(:all, :select => 'distinct *', :conditions => ['id in (?)', @posts.collect(&:user_id).uniq]).index_by(&:id) %>
 <div class="block" id="box_latest_community_comments" style="padding:9px">
-  <h1><%= link_to "Latest Community Comments", "/wine-community" %></h1>
+  <h1><%= link_to "Latest Product Review", "/wine-community" %></h1>
   <br />
-  <% if @posts.blank? %>
-    No communtiy comments for now.
+  <% if latest_review.blank? %>
+    There are no reviews yet, why not write one and get £10 voucher
   <% else %>
   <ul style="list-style:none;padding:0;">
-    <% @posts.each_with_index do |post, i| %>
-    <li id="<%= dom_id post %>">
+
+    <li>
       <table>
         <tr>
-          <td align="center" width="50px"><%= avatar_for_user(post.user, "small") %></td>
+          <td align="center" width="50px">
+          <%= link_to avatar_for_user(latest_review.user, 'small'), customer_path(latest_review.user.id)%>
+                      <%= link_to latest_review.user.name, customer_path(latest_review.user.id), :class=>'data', :id => 'latest_review_name'%>
+
+          </td>
           <td valign="top" style="padding-left:10px;">
-            <%#= "Forum / Topic" %> <%#= link_to h(post.forum_name), forum_path(post.forum_id) %>
-            <%#= link_to h(post.topic_title), forum_topic_path(post.forum_id, post.topic_id) %>
-            "<%= post.body %>"
+           <% unless latest_review.description.blank? %> &nbsp;&nbsp;
+                    <%#= link_to latest_review.description,review_path(latest_review),:class=>'data' %>
+                   <% if latest_review.reviewer_type == 'Product' %>
+                    "<%= link_to latest_review.description[0..120] + "..." ,nested_products_uri(Product.find(latest_review.reviewer_id)  ),:class=>'data' %>"
+                    <%= link_to "(Continue reading)", nested_products_uri(Product.find(latest_review.reviewer_id)  ) %>"
+                    <% elsif latest_review.reviewer_type == 'Recipe' %>
+                    "<%= link_to latest_review.description[0..120] + "...", recipe_path(Recipe.find(latest_review.reviewer_id)  ),:class=>'data' %>"
+                    <%= link_to "(Continue reading)", recipe_path(Recipe.find(latest_review.reviewer_id)  ) %>"
+                    <% end %>
+                     <% else %>
+                       "<%= 'Added a new review' %>"
+                      <% end %>
           </td>
         </tr>
-        <tr>
-          <td align="center" width="50px"><%= link_to truncate(post.user.display_name, 15), customer_path(post.user) %></td>
-          <td style="padding-left:10px;"><%= link_to "View thread", forum_topic_path(post.forum_id, post.topic_id)+"#post-body-#{post.id}" %></td>
-        </tr>
+
       </table>
     </li>
-    <% end %>
-  </ul>  
+  </ul>
   <% end %>
 </div>
+
