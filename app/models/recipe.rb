@@ -8,11 +8,11 @@ class Recipe < ActiveRecord::Base
   belongs_to :image_1, :class_name => "Image", :foreign_key => "image_1_id"
   belongs_to :image_2, :class_name => "Image", :foreign_key => "image_2_id"
   belongs_to :image_3, :class_name => "Image", :foreign_key => "image_3_id"
-  
+
   belongs_to :resource_1, :class_name => "Resource", :foreign_key => "resource_1_id"
   belongs_to :resource_2, :class_name => "Resource", :foreign_key => "resource_2_id"
   belongs_to :resource_3, :class_name => "Resource", :foreign_key => "resource_3_id"
-  
+
   has_many :recipe_correlations
   has_many :correlations, :through => :recipe_correlations
   has_many :reviews, :as => :reviewer, :dependent => :destroy
@@ -21,7 +21,8 @@ class Recipe < ActiveRecord::Base
   belongs_to :recipe_level
   belongs_to :recipe_type
   belongs_to :user
-  
+  belongs_to :region
+
   friendly_identifier :name
 
   named_scope :active, :conditions => {:active => true}
@@ -46,6 +47,17 @@ class Recipe < ActiveRecord::Base
     end
     return users
   end
+  def self.regions(search = nil)
+    conditions = search ? search.conditions_for_recipes : nil
+    regions = [[" Any", ""]]
+    self.find(:all, :include => :region, :conditions => conditions).each do |r|
+      regions << [r.region.name, r.region.id.to_s] if !r.region.nil? && !regions.include?([r.region.name, r.region.id.to_s])
+    end
+    return regions
+  end
+
+
+
 
   def self.difficulties(search = nil)
     conditions = search ? search.conditions_for_recipes : nil
@@ -64,7 +76,7 @@ class Recipe < ActiveRecord::Base
     end
     return recipe_types
   end
-  
+
   def self.preparation_times(search=nil)
     conditions = search ? search.conditions_for_recipes : nil
     preparation_times = [[" Any",""]]
@@ -73,15 +85,15 @@ class Recipe < ActiveRecord::Base
     end
     return preparation_times.sort
   end
-  
+
   def page_title_formatted
     page_title.blank? ? name : page_title
   end
-  
+
   def meta_description_formatted
     meta_description.blank? ? preparation[0..500] : meta_description
   end
-  
+
   def meta_keys_formatted
     if meta_keys.blank?
       keys = []
@@ -95,19 +107,19 @@ class Recipe < ActiveRecord::Base
       return meta_keys
     end
   end
-  
+
   def correlation_ids=(ids)
     ids = [ids] unless ids.kind_of? Array
-    
+
     recipe_correlations.each do |recipe_correlation|
       recipe_correlation.destroy unless ids.include? recipe_correlation.product_id
     end
-    
+
     ids.each do |id|
       self.recipe_correlations.create(:product_id => id) unless recipe_correlations.any? { |d| d.product_id == id }
     end
   end
-  
+
   def correlation_ids
     ids = []
     recipe_correlations.each do |recipe_correlation|
@@ -115,11 +127,11 @@ class Recipe < ActiveRecord::Base
     end
     return ids
   end
-  
+
   def show_errors
     return "- " + self.errors.full_messages.join("<br />- ")
   end
-  
+
   def all_product_with_that_are_related
     Product.find(:all).inject([]) do |products, product|
       products << {:product => product, :checked => self.correlation_ids.include?(product.id)}
@@ -137,3 +149,4 @@ class Recipe < ActiveRecord::Base
 		average_rating.round
 	end
 end
+

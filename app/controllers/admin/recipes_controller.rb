@@ -5,7 +5,11 @@ class Admin::RecipesController < ApplicationController
   layout "admin"
 
   def index
+     if params[:search]
+       @recipes = Recipe.all(:conditions=>['name LIKE ?',"%#{params[:search_text]}%"],:order => "created_at DESC").paginate(:page => params[:page], :per_page => 20)
+     else
     @recipes = Recipe.all(:order => "created_at DESC").paginate(:page => params[:page], :per_page => 20)
+    end
 
     respond_to do |format|
       format.html

@@ -2,7 +2,8 @@
   <h1>Most read recipes</h1>
   <ul>
     <%- Recipe.active.most_viewed.paginate(:page => params[:page], :per_page => 3).each do |recipe| -%>
-    <li><%= link_to recipe.name, recipe_path(recipe) %></li>
+    <li style="padding:0px;"><%= link_to recipe.name, recipe_path(recipe) %></li><li>&nbsp;</li>
     <%- end -%>
   </ul>
 </div>
+
