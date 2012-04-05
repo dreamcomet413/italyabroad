@@ -16,8 +16,8 @@
 	<% for faq in @faqs %>
 	  <li>
       <h2><span style="color:red">Q&nbsp;</span><%=  faq.question %></h2>
-      <div>Asked by : <%= faq.user.name %></div>
-      <h2><span style="color:red">A&nbsp;</span><%= faq.answer %></h2>
+      <div style="font-size:10px;">Asked by : <%= link_to faq.user.name,customer_path(faq.user.id) %></div><br />
+      <span style="color:red;font-size:14px;font-weight:bold;">A&nbsp;</span><%= faq.answer %>
       <!-- h3>&nbsp;</h3 -->
       <!-- table width="100%" class="foot">
         <tr><td></td></tr></table -->
