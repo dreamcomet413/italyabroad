@@ -29,7 +29,7 @@
   <tr>
     <td style="width:80px;padding:5px 10px;">
       <%#= product.image_1 %>
-      <%= link_to show_image_tag(product.layout_image, product.image_1, :jpg, product.name), nested_products_uri(product) %>
+      <%z= link_to show_image_tag(product.layout_image, product.image_1, :jpg, product.name), nested_products_uri(product) %>
     </td>
     <td style="width:490px;" valign="top">
       <h2 style="margin:0;padding:20px 0 0 0;"><%= link_to product.name, nested_products_uri(product), :style => "font-size:17px;color:black;" %></h2>
