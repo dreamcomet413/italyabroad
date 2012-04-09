@@ -1,7 +1,7 @@
 <% latest_review = Review.last(:conditions=>['publish = ?',true]) %>
 
 <div class="block" id="box_latest_community_comments" style="padding:9px">
-  <h1><%= link_to "Latest Product Review", "/wine-community" %></h1>
+  <h1><%= link_to "Latest Review", "/wine-community" %></h1>
   <br />
   <% if latest_review.blank? %>
     There are no reviews yet, why not write one and get £10 voucher
