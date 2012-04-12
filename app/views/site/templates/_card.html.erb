@@ -100,6 +100,10 @@
             <td valign="top">Organic:</td>
             <td class="data"><%= @product.organic ? "YES" : "NO" %></td>
           </tr>
+          <tr>
+            <td valign="top">Tasting video:</td>
+            <td class="data"><%= link_to @product.tasting_video,@product.tasting_video,:target=>'blank'   %></td>
+          </tr>
         </table>
       <% end %>
       <br /><br />
