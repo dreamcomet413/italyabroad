@@ -102,7 +102,11 @@
           </tr>
           <tr>
             <td valign="top">Tasting video:</td>
-            <td class="data"><%= link_to @product.tasting_video,@product.tasting_video,:target=>'blank'   %></td>
+            <td class="data">
+            <% if @product.tasting_video %>
+            <%= link_to @product.tasting_video,@product.tasting_video,:target=>'blank'   %>
+            <% end %>
+            </td>
           </tr>
         </table>
       <% end %>
