@@ -22,7 +22,7 @@ Rails::Initializer.run do |config|
 
   # config.gem "aws-s3", :lib => "aws/s3"
   # config.gem "rmagick"
-  # config.gem "xml-simple", :version => '1.0.12'
+ #  config.gem "xml-simple", :version => '1.0.12'
   # config.gem " mime-types"
   config.gem 'prawn'
   config.gem "activemerchant", :version => ">= 1.5.1", :lib => "active_merchant"

@@ -1,10 +1,11 @@
 <%- posts = Post.most_read -%>
 <div class="block" id="box_most_read_blog">
-  <h1>Most read blog posts</h1>
-  <ul>
+  <h1>Most read blog posts</h1><br />
+  <table>
     <%- posts.each do |post| -%>
-    <li style="margin-bottom:0px;margin-top:0px;padding-top:13px;padding-bottom:0px;text-align:left;"><%= link_to post.name, blog_path(post.id) %></li>
+    <tr><td ><%= link_to post.name, blog_path(post.id),:class=>'data' %></td></tr>
+    <tr><td></td></tr>
     <%- end -%>
-  </ul>
+  </table>
 </div>
 

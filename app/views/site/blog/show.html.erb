@@ -2,8 +2,8 @@
 <% @class = "no-padding"; @breadcrumbs = "#{link_to("Home", root_url)} &raquo; #{link_to ('Community',wine_community_path)} &raquo; #{link_to("Blog", blog_index_path)} &raquo; #{@post.name[0..25] + '...'}" %>
 
 <div id="header">
-  <%= truncate @post.name, :length => 70 %>
-  <span style="float:right;font-size:12px;">Subscribe to our RSS feed <%= link_to image_tag('RSS.png'), blog_index_path(:format   => :xml, :show => :all) %></span>
+  <%= truncate @post.name, :length => 60 %>
+  <div style="float:right;font-size:12px;">Subscribe to our RSS feed <%= link_to image_tag('RSS.png'), blog_index_path(:format   => :xml, :show => :all) %></div>
 </div>
 
 

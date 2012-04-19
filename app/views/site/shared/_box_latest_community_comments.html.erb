@@ -1,22 +1,21 @@
 <% latest_review = Review.last(:conditions=>['publish = ?',true]) %>
 
-<div class="block" id="box_latest_community_comments" style="padding:9px">
+<div class="block" id="box_latest_community_comments" style="padding:9px;">
   <h1><%= link_to "Latest Review", "/wine-community" %></h1>
   <br />
   <% if latest_review.blank? %>
     There are no reviews yet, why not write one and get £10 voucher
   <% else %>
-  <ul style="list-style:none;padding:0;">
+ <table width="100%">
+ <tr>
+ <td>
 
-    <li>
-      <table>
-        <tr>
-          <td align="center" width="50px">
-          <%= link_to avatar_for_user(latest_review.user, 'small'), customer_path(latest_review.user.id)%>
+        <%= link_to avatar_for_user(latest_review.user, 'small'), customer_path(latest_review.user.id)%>
                       <%= link_to latest_review.user.name, customer_path(latest_review.user.id), :class=>'data', :id => 'latest_review_name'%>
+</td>
+<td>
 
-          </td>
-          <td valign="top" style="padding-left:10px;">
+
            <% unless latest_review.description.blank? %> &nbsp;&nbsp;
                     <%#= link_to latest_review.description,review_path(latest_review),:class=>'data' %>
                    <% if latest_review.reviewer_type == 'Product' %>
@@ -29,12 +28,10 @@
                      <% else %>
                        "<%= 'Added a new review' %>"
                       <% end %>
-          </td>
-        </tr>
 
-      </table>
-    </li>
-  </ul>
+   </td>
+   </tr>
+   </table>
   <% end %>
 </div>
 
