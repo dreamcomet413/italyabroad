@@ -738,6 +738,16 @@ a {
     padding:0;
 }
 
+#box_other_events.block ul li div a,
+#box_other_events.block ul li div,
+#box_other_events.block ul li {
+    margin:auto;
+    padding:0px;
+    text-align:center;
+}
+
+
+
 #box_wines_of_the_night {
     float:left;
     width:220px;
@@ -822,7 +832,7 @@ a {
 }
 
 #box_most_read_recipes ul {
-    padding:0 5px 5px 20px;
+    padding:0 5px 5px 0px;
     list-style:none;
 }
 

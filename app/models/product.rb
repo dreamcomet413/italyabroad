@@ -281,7 +281,7 @@ class Product < ActiveRecord::Base
 
 	# Calculates the average rating. Calculation based on the already given scores.
 	def average_rating
-	  reviews = self.reviews.find(:all,:conditions=>['publish = true'])
+	  reviews = self.reviews.find(:all,:conditions=>['publish = true  && score is not null '])
 		return 0 if reviews.empty?
 	#	( self.reviews.inject(0){|total, r| total += r.score.to_f }.to_f / reviews.size )
 	(reviews.inject(0){|total, r| total += r.score.to_f }.to_f / reviews.size )
