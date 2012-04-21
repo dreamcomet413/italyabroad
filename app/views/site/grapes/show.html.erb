@@ -44,9 +44,9 @@
   <%- end -%>
   <ul style="list-style:none;margin:0;padding:0;text-align:center;">
     <%- @grape_products.each do |product| -%>
-    <li style="float:left;width:100px;margin-left:10px;margin-bottom:10px;">
-      <%= link_to show_image_tag(product.layout_image, product.image_1, :jpg,product.name), nested_products_uri(product) %><br />
-      <%= link_to product.name, nested_products_uri(product) %>
+    <li class="wines_made_from_this_wine">
+      <div class="image"><%= link_to show_image_tag(product.layout_image, product.image_1, :jpg,product.name), nested_products_uri(product) %></div>
+      <div class="name"><%= link_to product.name, nested_products_uri(product) %></div>
     </li>
     <%- end -%>
   </ul>

@@ -2915,3 +2915,24 @@ html body#categories_show.categories div#content div#mainContent div#leftColumnC
 
 /*#box_forum ul li table tbody tr td*/
 
+.wines_made_from_this_wine {
+    float:left;
+    margin:5px;
+    padding:15px;
+    height:180px;
+    width:70px;
+}
+.wines_made_from_this_wine div.image {
+    margin:auto;
+    padding:0px;
+    height:128px;
+}
+
+.wines_made_from_this_wine div.name {
+
+    margin:auto;
+    padding:0px;
+    height:35px;
+    text-align:center;
+}
+
