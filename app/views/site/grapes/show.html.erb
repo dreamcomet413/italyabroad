@@ -36,7 +36,10 @@
   </ul>
   <br />
   <% @grape_products = @grape.products.find(:all,:conditions=>['active = ? and quantity > ?',true,0])%>
-  <%- if  @grape_products.size>0 -%>
+  <% if @grape_products.size == 0 %>
+  <% @grape_products = Product.find(:all, :include => [:categories] ,:conditions => ['upper(categories.name) LIKE ?  AND products.active = ? AND quantity > ? ','WINE',true,0],:order=>'RAND()',:limit=>6) %>
+  <% end %>
+  <%- if  @grape_products.size > 0 -%>
   <br /><h3 style="font-size:16px;color:#013300;border:none;">&nbsp;&nbsp;&nbsp;Wines made with this grape</h3>
   <%- end -%>
   <ul style="list-style:none;margin:0;padding:0;text-align:center;">

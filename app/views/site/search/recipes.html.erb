@@ -25,7 +25,14 @@
   <%- for recipe in @recipes -%>
     <li class="product_listing" style="margin:0;padding-left:20px;">
       <h1><%= link_to recipe.name, recipe_path(recipe), :class => "recipe_title" %></h1><!--, :style => "font-size:17px;color:#003300;"-->
-      <%= show_ratings(recipe, recipe.average_rating_round) if recipe.average_rating_round %><br />
+<%if recipe.average_rating_round > 0 %>
+      <%= show_ratings(recipe, recipe.average_rating_round)  %><br />
+      <% end %>
+       <% if !recipe.image_1.blank? %>
+              <%= link_to image_tag(image_url('recipe_thumb', recipe.image_1, :jpg),:alt=>recipe.name), recipe_path(recipe) %>
+              <% else %>
+              <%= link_to image_tag("no_images/PastaRecipe.jpg",:size => "100x75",:alt=>recipe.name), recipe_path(recipe) %>
+              <% end %><br />
       <span id="recipe_caption"><%= link_to "Preparation Time:#{recipe.preparation_time} min"  ,{:category=>'recipe',:preparation_time => recipe.preparation_time,:text=>params[:text]},:style=>"color:black;" %></span><br />
       <span id="recipe_caption"><%= link_to "Difficulty: #{recipe.recipe_level.name}",{:category=>'recipe',:difficulty => recipe.recipe_level_id,:text=>params[:text]},:style=>"color:black;" %></span><br />
       <%= recipe.user.name if recipe.user %>

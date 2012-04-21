@@ -47,9 +47,10 @@
         <td><%= recipe.id %></td>
         <td><%= recipe.name %></td>
         <td><%= recipe.user.name rescue "Admin" %></td>
-        <td><%= link_to "Edit", edit_admin_recipe_path(recipe) %> | <%= link_to "Delete", admin_recipe_path(recipe), :method => :delete, :confirm => "Are you sure want to delete this recipe?" %></td>
+        <td><%= link_to "Edit", edit_admin_recipe_path(recipe) %> | <%= link_to "Delete", admin_recipe_path(recipe.id), :method => :delete, :confirm => "Are you sure want to delete this recipe?" %></td>
       </tr>
       <%- end -%>
     </tbody>
   </table>
 </div>
+
