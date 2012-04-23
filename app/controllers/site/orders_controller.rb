@@ -57,7 +57,7 @@ def create
       production = RAILS_ENV == "production"
       @credit_card = ActiveMerchant::Billing::CreditCard.new(params[:credit_card])
 
-      @sujith=true
+     # @sujith=true
 
      if (@credit_card.valid? or !production) or total_amount == 0               #### 0002
 
@@ -103,6 +103,7 @@ def create
                     else
                       @cupon.update_attribute('active',false)
                     end
+                    @order.update_attributes(:cupon_code=>@cart.cupon.code,:cupon_price=>@cupon.price)
                  end
                   @order.update_attributes(:paid => true, :points_used => points_used, :status_order_id => 3)
                   # => :status_order_id => 3 ORDER COMPLETED
@@ -242,7 +243,8 @@ end
       :ship_cap                   => session[:ship_address].cap,
       :ship_telephone             => session[:ship_address].telephone,
       :note                       => session[:ship_address].note,
-      :payment_method_id          => @payment_method.id
+      :payment_method_id          => @payment_method.id,
+      :cupon_code                 =>@cart.cupon
     )
   end
 
