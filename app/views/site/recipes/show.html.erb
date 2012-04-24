@@ -12,7 +12,7 @@
       <td valign="top" style="padding-left:80px;">
       <% unless @recipe.region.nil? %><span style="font-weight:bold;">Region :</span>  <%= link_to @recipe.region.name, @recipe.region  %>  <br /><br /><% end %>
         <% if !@recipe.image_1.blank? %>
-              <%= image_tag (image_url(:original, @recipe.image_1),:alt=>@recipe.name) %>
+              <div style="max-width:350px;max-height:350px;overflow:hidden;"><%= image_tag(image_url(:original, @recipe.image_1), :alt=>@recipe.name, :size =>"350x350" ) %></div>
               <% else %>
               <%= image_tag("no_images/PastaRecipe.jpg",:size => "150x150",:alt=>@recipe.name) %>
               <% end %>
