@@ -61,8 +61,9 @@
 
           <%- for region in @regions_all  -%>
 
-
-           <li><%= link_to truncate(region.name,50), region_path(region) if region.name.upcase =~ /^[A-G]/ %></li>
+            <% if region.name.upcase =~ /^[A-G]/ %>
+            <li><%= link_to truncate(region.name,50), region_path(region) %></li>
+            <%- end -%>
           <%- end -%>
         </ul>
       </td>
@@ -71,7 +72,9 @@
         <br />
         <ul class="clean" style="list-style:none;">
           <%- for region in @regions_all -%>
-          <li><%= link_to truncate(region.name,50), region_path(region) if region.name.upcase =~ /^[H-L]/ %></li>
+            <% if region.name.upcase =~ /^[H-L]/ %>
+              <li><%= link_to truncate(region.name,50), region_path(region) %></li>
+            <%- end -%>
           <%- end -%>
         </ul>
       </td>
@@ -80,7 +83,9 @@
         <br />
         <ul class="clean" style="list-style:none;">
           <%- for region in @regions_all -%>
-          <li><%= link_to truncate(region.name,50), region_path(region) if region.name.upcase =~ /^[M-Z]/ %></li>
+              <% if region.name.upcase =~ /^[M-Z]/ %>
+              <li><%= link_to truncate(region.name,50), region_path(region) if region.name.upcase =~ /^[M-Z]/ %></li>
+              <%- end -%>
           <%- end -%>
         </ul>
       </td>
