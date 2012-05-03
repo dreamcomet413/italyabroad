@@ -3,13 +3,13 @@
 
 <div id="header">
   <%= truncate @post.name, :length => 60 %>
-  <div style="float:right;font-size:12px;">Subscribe to our RSS feed <%= link_to image_tag('RSS.png'), blog_index_path(:format   => :xml, :show => :all) %></div>
+  <div style="float:right;font-size:12px;padding:0px;margin:0px;">Subscribe to our RSS feed <%= link_to image_tag('RSS.png'), blog_index_path(:format   => :xml, :show => :all) %></div>
 </div>
 
 
 
 <div id="blog_show_container">
-  <div style="text-align:center;"><%= image_tag(image_url('blog_view', (@post.image_1 or @post.image_2 or @post.image_3), :jpg),:alt=>@post.name) if @post.image_1 or @post.image_2 or @post.image_3 %></div>
+  <div style="text-align:center;"><%= image_tag(image_url('blog_banner', (@post.image_1 or @post.image_2 or @post.image_3), :jpg),:alt=>@post.name) if @post.image_1 or @post.image_2 or @post.image_3 %></div>
   <br />
 
   <div class="comment_icon"><%= @post.comments.find(:all,:conditions=>['public=?',true]).size %> comments</div>

@@ -43,7 +43,7 @@
                 <%- producers = Producer.find(:all, :limit => 1,:conditions=>['active = ?',true] ,:order => "RAND()") %>
                 <%# producers = Producer.find(:all, :limit => 1, :conditions => "id=39") %>
                 <%- for producer in producers -%>
-                      <div id="get_to_know_our_producers_avatar" style="padding:25px;">
+                      <div id="get_to_know_our_producers_avatar" style="padding:25px;padding-top:0px;">
                       <%= link_to producer.name, producer_path(producer) %>
                       <%= link_to "(more producers)", producers_path %><br /><br />
                       <%#= avatar_for_user(producer, "small") %>
@@ -92,15 +92,16 @@
 
                   <li>
                     <table style="list-style:none;margin:0;padding:0;" cellspacing="0" border="0" width="100%">
-                      <tr> <% @faq = Faq.find(:last,:conditions=>['publish = true and answer != ""']) %><% unless @faq.blank? %>
+                      <tr> <% @faqs = Faq.find(:all, :limit => 6, :conditions=>['publish = true and answer != ""']) %><% unless @faqs.blank? %>
                         <td valign="top">
                        <div style="color:#666666;padding:5px 0 10px 0">
                         <br />
 
-                        <span style="color:#000;"><%= @faq.question %></span><br />
+                        <% @faqs.each do |faq| %>
+                              <span style="color:#000;"><%= faq.question %></span><br />
+                              <%= link_to 'Read the answer',faqs_path %><br /><br /><!-- TRY THE INDIVIDUAL ANSWER PATH -->
 
-
-                       <%= link_to 'Read the answer',faqs_path %>
+                        <%- end-%>
                         </div>
                         </td>
                       <% end %>
@@ -159,7 +160,7 @@
 
         </div>
 
-        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
         <div id="box_grape_guide_forum">
           <h1 style="color:#9b0707;font-size:14px;">Grape Guide</h1>
           <%- grapes = Grape.find(:all, :limit => 1, :order => "RAND()") -%>

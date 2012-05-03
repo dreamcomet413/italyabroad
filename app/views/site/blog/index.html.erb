@@ -36,7 +36,10 @@
 	<ul>
 	<% for post in @posts %>
 	  <li class="product_listing">
-      <br /><h1><%= link_to post.name, post.friendly_identifier.blank? ? "blog/#{post.id}" : "blog/#{post.friendly_identifier}", :class => "product_title" %></h1>
+      <br /><h1>
+        <%#= link_to post.name, post.friendly_identifier.blank? ? "blog/#{post.id}" : "blog/#{post.friendly_identifier}", :class => "product_title" %>
+        <%= link_to post.name, (post.friendly_identifier.blank? ? "blog/#{post.id}" : "/blog/#{post.friendly_identifier}"), :class => "product_title" %>
+        </h1>
       <div><%= post.description_short_cleared %></div>
       <table width="100%">
         <tr>

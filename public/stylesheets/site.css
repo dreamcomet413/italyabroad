@@ -1907,8 +1907,17 @@ h1{
 }
 
 #blog_show_container {
-    margin:20px 40px 40px 40px;
     color:black;
+    text-align:center;
+    margin:auto;
+    padding:0px;
+    margin-top:20px;
+
+}
+#leftColumnContent div#blog_show_container {
+/*    height:300px;*/
+    width:723px;
+    overflow:hidden;
 }
 
 #blog_show_container .comments ul {
@@ -2934,5 +2943,15 @@ html body#categories_show.categories div#content div#mainContent div#leftColumnC
     padding:0px;
     height:35px;
     text-align:center;
+}
+#box_producer div#get_to_know_our_producers_avatar {
+ padding:0px;
+ text-align:center;
+ margin:auto;
+}
+#box_most_read_blog.block table tbody tr, #box_most_read_blog.block table tbody tr td, #box_most_read_blog.block table tbody tr td a.data {
+        text-align:center;
+        margin:auto;
+        padding:0px;
 }
 
