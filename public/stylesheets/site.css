@@ -829,7 +829,7 @@ a {
 
 #box_most_read_recipes {
     background-color:#f9fff5;
-    padding:0px 0px 0px 0px;
+    padding:5px 0px 0px 0px;
     list-style:none;
     margin:0px;}
 
@@ -2967,7 +2967,16 @@ html body#categories_show.categories div#content div#mainContent div#leftColumnC
 #blog_show_container div {
  text-align:justify;
  padding:10px;
+}
+
+#blog_show_container table tbody tr td {
+    text-align:justify;
+    padding:2px;
+}
 
 
+
+#box_other_events.block h1 {
+ padding-top:5px;
 }
 
