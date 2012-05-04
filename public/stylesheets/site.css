@@ -2955,3 +2955,10 @@ html body#categories_show.categories div#content div#mainContent div#leftColumnC
         padding:0px;
 }
 
+#rightColumn div#box_other_events.block ul li span, #rightColumn div#box_other_events.block ul li, #rightColumn div#box_other_events.block ul, #rightColumn div#box_other_events.block,  #rightColumn div#box_other_events {
+    padding:0px;
+    margin:auto;
+    text-align:center;
+    margin-top:10px;
+}
+

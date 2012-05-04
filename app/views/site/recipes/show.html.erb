@@ -20,8 +20,9 @@
               <%= image_tag("no_images/PastaRecipe.jpg",:size => "150x150",:alt=>@recipe.name) %>
               <% end %>
         <div>
+          <br /><br />
           <% if @recipe.correlations.size > 0 %>
-                          Suggested wine:
+                <span style="font-weight:bold;">Suggested wine:</span>
             <%- @recipe.correlations.all.paginate(:page => params[:page], :per_page => 4).each do |product| -%>
               <%= link_to product.name, nested_products_uri(product) %>
             <%- end -%>
