@@ -74,11 +74,14 @@
           <br /><div style="clear: both;"></div>
           <div style="margin-right:170px;text-align:right;">
 
+
             <% if logged_in? %>
 
-                      <span style="font:bold 13px Arial;"><%= link_to "Live chat (#{support_link})",chat_index_path, :popup => ['new_window_name', 'height=540,width=490'] %></span>
+                      <span style="<%= @support_status ? 'text-decoration:blink;' : '' %>font:bold 13px Arial;"><%= link_to "Live chat (#{support_link})",chat_index_path, :popup => ['new_window_name', 'height=540,width=490'] %></span>
+
             <% else %>
-                      <span style="font:bold 13px Arial"><%= link_to "Live chat (#{support_link})",chat_index_path, :popup => ['new_window_name', 'height=540,width=490,resizable=yes,scrollbars=auto'] %></span>
+                      <span style="<%= @support_status ? 'text-decoration:blink;' : '' %>font:bold 13px Arial;"><%= link_to "Live chat (#{support_link})",chat_index_path, :popup => ['new_window_name', 'height=540,width=490,resizable=yes,scrollbars=auto'] %></span>
+
             <% end %>
 
 
@@ -89,7 +92,7 @@
             <%- form_tag search_index_path, :method => :get do -%>
               <table>
                 <tr>
-                  <td>Search: <%= text_field_tag :text, params[:text], :style=>"width:110px" %></td>
+                  <td>Search: <%= text_field_tag :text, params[:text], :style=>"width:250px" %></td>
                   <td>
                     <%= select_tag :id, options_for_select([['Wine', 'wine'], ['Food', 'food'], ['Recipe', 'recipe'],['Hampers','hampers'], ['People', 'people'],['Chef', 'chef'],['All Site','all']], (params[:id] || params[:category])) %>
                   </td>
