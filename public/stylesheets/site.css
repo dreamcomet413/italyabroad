@@ -1242,7 +1242,7 @@ ul li.product_listing h1 a.recipe_title:hover {
 
 
 #topSellingWine {
-    width:258px;
+    width:252px;
     float:left;
     margin-left:6px;
 }
@@ -2978,5 +2978,14 @@ html body#categories_show.categories div#content div#mainContent div#leftColumnC
 
 #box_other_events.block h1 {
  padding-top:5px;
+}
+
+
+#wine_tours_content table tbody tr td ul.image li img {
+ margin-bottom:15px;
+}
+#wine_tours_content table tbody tr td ul.image li {
+ padding:0px;
+ margin:0px;
 }
 

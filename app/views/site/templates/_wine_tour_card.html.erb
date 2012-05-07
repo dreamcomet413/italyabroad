@@ -13,12 +13,17 @@
   <table width="100%">
     <tr>
       <%- if  @product.image_2 or @product.image_3 -%>
-     <td valign="top" width="35%">
+     <td valign="top" width="30%">
         <br />
         <ul class="image">
           <%#= content_tag(:li, image_tag(image_url("product_wine_tour", @product.image_1, :jpg))) if @product.image_1 %>
-          <%= content_tag(:li, image_tag(image_url("product_wine_tour_left_images", @product.image_2, :jpg),:alt=>@product.name, :size => "250x250")) if @product.image_2 %><br />
-          <%= content_tag(:li, image_tag(image_url("product_wine_tour_left_images", @product.image_3, :jpg),:alt=>@product.name, :size => "250x250")) if @product.image_3 %>
+
+
+          <%#= content_tag(:li, show_image_tag(:card, @product.image_2, :jpg), "") if @product.image_2 %><br />
+          <%#= content_tag(:li, show_image_tag(:card, @product.image_3, :jpg), "") if @product.image_3 %><br />
+
+          <%= content_tag(:li, image_tag(image_url("product_wine_tour_left_images", @product.image_2, :jpg),:alt=>@product.name)) if @product.image_2 %><!--br /-->
+          <%= content_tag(:li, image_tag(image_url("product_wine_tour_left_images", @product.image_3, :jpg),:alt=>@product.name)) if @product.image_3 %>
         </ul>
       </td>
       <%- end -%>

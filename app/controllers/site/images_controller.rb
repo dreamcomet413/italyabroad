@@ -65,7 +65,8 @@ class Site::ImagesController < ApplicationController
 
             image.resize '100x100' if image_type == :product_rec
             image.resize '237x180' if image_type == :product_wine_tour
-            image.resize '315' if image_type == :product_wine_tour_left_images
+            #image.resize '315' if image_type == :product_wine_tour_left_images
+            image.resize '200', :crop => true if image_type == :product_wine_tour_left_images
 
             image.resize '237x180' if image_type == :wine_tour_category
             image.resize '300x300' if image_type == :product_show

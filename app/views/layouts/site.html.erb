@@ -31,6 +31,31 @@
 <!-- Place this tag in your head or just before your close body tag -->
 <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
 
+  <!-- JAVASCRIPT BLINK START -->
+
+
+<SCRIPT>
+// Before you reuse this script you may want to have your head examined
+//
+// Copyright 1999 InsideDHTML.com, LLC.
+
+function doBlink() {
+  // Blink, Blink, Blink...
+  var blink = document.all.tags("blink")
+  for (var i=0; i < blink.length; i++)
+    blink[i].style.visibility = blink[i].style.visibility == "" ? "hidden" : ""
+}
+
+function startBlink() {
+  // Make sure it is IE4
+  if (document.all)
+    setInterval("doBlink()",1000)
+}
+window.onload = startBlink;
+</SCRIPT>
+
+  <!-- Javascript Blink End-->
+
 
   </head>
   <body <%= @paypal_redirect %> <%= "id='#{@page_id}'" if @page_id %> class="<%= @current_controller %><%= " #{@class}" if @class %>" <%= "onload='#{@onload}'" if @onload %>>
@@ -54,8 +79,10 @@
                    @support_status = (Juggernaut.show_client(@support_user) and @setting.chat_available == true) ? true : false
                    if @support_status == true
                       support_link = "available"
+                      image_name="live_chat_available.gif"
                    else
                       support_link = "unavailable"
+                      image_name="live_chat_unavailable.png"
                    end
                     %>
             <% if logged_in? %>
@@ -74,13 +101,12 @@
           <br /><div style="clear: both;"></div>
           <div style="margin-right:170px;text-align:right;">
 
-
             <% if logged_in? %>
 
-                      <span style="<%= @support_status ? 'text-decoration:blink;' : '' %>font:bold 13px Arial;"><%= link_to "Live chat (#{support_link})",chat_index_path, :popup => ['new_window_name', 'height=540,width=490'] %></span>
+                      <span style="font:bold 13px Arial;"><%= link_to image_tag (image_name), chat_index_path, :popup => ['new_window_name', 'height=540,width=490'] %></span>
 
             <% else %>
-                      <span style="<%= @support_status ? 'text-decoration:blink;' : '' %>font:bold 13px Arial;"><%= link_to "Live chat (#{support_link})",chat_index_path, :popup => ['new_window_name', 'height=540,width=490,resizable=yes,scrollbars=auto'] %></span>
+                      <span style="font:bold 13px Arial;"><%= link_to image_tag (image_name), chat_index_path, :popup => ['new_window_name', 'height=540,width=490,resizable=yes,scrollbars=auto'] %></span>
 
             <% end %>
 

@@ -173,7 +173,7 @@
             <%= image_tag(image_url(:recipe, grape.image, :jpg),:alt=>grape.name) if grape && grape.image %>
           <% else %>
             <%= image_tag("grape_guide_small.png", :alt=>grape.name, :width=> "150px") %>
-          <%- end -%><br />
+          <%- end -%><br /><br />
 
                   <%#= grape.description %>
                   <div style="text-align:justify;">
@@ -199,7 +199,7 @@
           <%- regions = Region.find(:all,:conditions=>['active = ?',true], :limit => 1, :order => "RAND()") -%>
           <%#- regions = Region.find(:all, :limit => 1, :conditions => "id = 15") -%>
           <%- for region in regions -%>
-          <div class="box_grape_guide"><%= link_to region.name, region_path(region) %>&nbsp;<%= link_to "(more regions)", regions_path %><br /><br />
+          <div class="box_grape_guide"><%= link_to region.name, region_path(region) %>&nbsp;<%= link_to "(more regions)", regions_path %><br /><br /><br />
 
 
 
