@@ -79,7 +79,7 @@ window.onload = startBlink;
                    @support_status = (Juggernaut.show_client(@support_user) and @setting.chat_available == true) ? true : false
                    if @support_status == true
                       support_link = "available"
-                      image_name="live_chat_available.gif"
+                      image_name="live_chat_available.png"
                    else
                       support_link = "unavailable"
                       image_name="live_chat_unavailable.png"
@@ -99,7 +99,8 @@ window.onload = startBlink;
             <% end %>
           </div>
           <br /><div style="clear: both;"></div>
-          <div style="margin-right:170px;text-align:right;">
+          <!-- div style="margin-right:170px;text-align:right;" -->
+          <div style="position:absolute;left:450px;top:80px;">
 
             <% if logged_in? %>
 
@@ -118,12 +119,12 @@ window.onload = startBlink;
             <%- form_tag search_index_path, :method => :get do -%>
               <table>
                 <tr>
-                  <td>Search: <%= text_field_tag :text, params[:text], :style=>"width:250px" %></td>
+                  <td><span style="font-size:18px;">Search:</span> <%= text_field_tag :text, params[:text], :style=>"width:180px" %></td>
                   <td>
                     <%= select_tag :id, options_for_select([['Wine', 'wine'], ['Food', 'food'], ['Recipe', 'recipe'],['Hampers','hampers'], ['People', 'people'],['Chef', 'chef'],['All Site','all']], (params[:id] || params[:category])) %>
                   </td>
                   <td>
-                    <%= image_submit_tag("searchButton.gif", :name => nil, :alt => "search") %>
+                    <%= image_submit_tag("searchButton.png", :name => nil, :alt => "search") %>
 
 
                   </td>
