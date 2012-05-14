@@ -119,7 +119,7 @@ window.onload = startBlink;
             <%- form_tag search_index_path, :method => :get do -%>
               <table>
                 <tr>
-                  <td><span style="font-size:18px;">Search:</span>
+                  <td><span style="font-size:18px;">&nbsp;&nbsp;&nbsp;&nbsp;<!-- Search: --></span>
 
                   <% if params[:text].blank? %>
 
@@ -132,7 +132,7 @@ window.onload = startBlink;
 
                   </td>
                   <td>
-                    <%= select_tag :id, options_for_select([['Wine', 'wine'], ['Food', 'food'], ['Recipe', 'recipe'],['Hampers','hampers'], ['People', 'people'],['Chef', 'chef'],['All Site','all']], (params[:id] || params[:category])) %>
+                    <%= select_tag :id, options_for_select([['All Site','all'], ['Food', 'food'], ['Recipe', 'recipe'],['Hampers','hampers'], ['People', 'people'],['Chef', 'chef'], ['Wine', 'wine'] ], (params[:id] || params[:category])) %>
                   </td>
                   <td>
                     <%= image_submit_tag("searchButton.png", :name => nil, :alt => "search") %>

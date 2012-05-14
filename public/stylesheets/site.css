@@ -510,7 +510,7 @@ a {
 
 #search_form {
     float:right;
-    margin-top:30px;
+    margin-top:10px;
 }
 
 #search_form button {
@@ -2987,5 +2987,8 @@ html body#categories_show.categories div#content div#mainContent div#leftColumnC
 #wine_tours_content table tbody tr td ul.image li {
  padding:0px;
  margin:0px;
+}
+#search_form form table tbody tr td input#text {
+    color:grey;
 }
 
