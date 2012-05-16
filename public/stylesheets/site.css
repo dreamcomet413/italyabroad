@@ -510,7 +510,7 @@ a {
 
 #search_form {
     float:right;
-    margin-top:10px;
+    margin-top:15px;
 }
 
 #search_form button {
@@ -593,6 +593,10 @@ a {
     margin-right:10px;
 }
 
+#box_get_to_know_italy {
+    margin-right:0px;
+}
+
 #box_latest_review a,
 #box_grape_guide_forum a,
 #box_get_to_know_italy a{
@@ -632,18 +636,16 @@ a {
 
 .box_producer_description {
 
-  /*  width: 250px;*/
-  width: 235px;*
-/*    height: 250px;*/
+    width: 200px;*
     overflow:hidden;
     word-wrap: break-word;
-   text-align:justify;
+    text-align:justify;
 }
 
 #box_producer div#get_to_know_our_producers_avatar{
     margin:auto;
     text-align:center;
-    width:200px;
+    /*width:200px;*/
 }
 #wine_tour_description {
     float:left;
@@ -2990,5 +2992,22 @@ html body#categories_show.categories div#content div#mainContent div#leftColumnC
 }
 #search_form form table tbody tr td input#text {
     color:grey;
+    vertical-align:middle;
+    height:30px;
+    border:solid grey 1px;
+    text-align:left;
+}
+#search_form form table tbody tr td select {
+    vertical-align:middle;
+    text-align:left;
+    border:0px;
+    background-color:#fff;
+}
+
+.three-col-format {
+ padding:5px;
+ width:30%;
+ float:left;
+ text-align:center;
 }
 

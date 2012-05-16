@@ -123,16 +123,18 @@ window.onload = startBlink;
 
                   <% if params[:text].blank? %>
 
-                  <%= text_field_tag :text, params[:text], :style=>"width:180px", :onclick => "if(document.getElementById('text').value == 'Search Italyabroad.com'){ document.getElementById('text').value='';}", :value => "Search Italyabroad.com" %>
+                  <%= text_field_tag :text, params[:text], :style=>"width:180px;vertical-align:middle;text-align:left;padding-top:5px;", :onclick => "if(document.getElementById('text').value == 'Search Italyabroad.com'){ document.getElementById('text').value='';}", :value => "Search Italyabroad.com" %>
 
                  <% else%>
-                  <%= text_field_tag :text, params[:text], :style=>"width:180px", :onclick => "if(document.getElementById('text').value == 'Search Italyabroad.com'){ document.getElementById('text').value='';}" %>
+                  <%= text_field_tag :text, params[:text], :style=>"width:180px;vertical-align:middle;text-align:left;padding-top:5px;", :onclick => "if(document.getElementById('text').value == 'Search Italyabroad.com'){ document.getElementById('text').value='';}" %>
 
                  <% end%>
 
                   </td>
                   <td>
-                    <%= select_tag :id, options_for_select([['All Site','all'], ['Food', 'food'], ['Recipe', 'recipe'],['Hampers','hampers'], ['People', 'people'],['Chef', 'chef'], ['Wine', 'wine'] ], (params[:id] || params[:category])) %>
+                    <div  style="border:solid grey 1px;padding-top:7px;padding-bottom:6px;padding-right:1px;">
+                    <%= select_tag :id, options_for_select([['All Site','all'], ['Food', 'food'], ['Recipe', 'recipe'],['Hampers','hampers'], ['People', 'people'],['Chef', 'chef'], ['Wine', 'wine'] ], (params[:id] || params[:category]))%>
+                    </div>
                   </td>
                   <td>
                     <%= image_submit_tag("searchButton.png", :name => nil, :alt => "search") %>
