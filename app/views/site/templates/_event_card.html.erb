@@ -25,7 +25,7 @@
    <td valign="top" width="35%">
      <div id="box_wines_of_the_night" class="block" >
 
-    <h1>Wines of the Tasting</h1>
+    <h1>Wines</h1>
     <ul>
       <% for included_product in included_products %>
        <li><%= link_to included_product.name, "/wine-events/#{included_product.friendly_identifier}", :style => "color:#9b0707;" %></li>

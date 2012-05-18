@@ -585,6 +585,12 @@ a {
   border:1px solid #999999;
 }
 
+#box_latest_review {
+    width:205px;
+    float:right;
+    margin-right:10px;
+}
+/*
 #box_latest_review,
 #box_grape_guide_forum,
 #box_get_to_know_italy {
@@ -592,9 +598,11 @@ a {
     float:right;
     margin-right:10px;
 }
-
+*/
+#box_grape_guide_forum,
 #box_get_to_know_italy {
     margin-right:0px;
+    float:right;
 }
 
 #box_latest_review a,
@@ -2990,6 +2998,7 @@ html body#categories_show.categories div#content div#mainContent div#leftColumnC
  padding:0px;
  margin:0px;
 }
+/*
 #search_form form table tbody tr td input#text {
     color:grey;
     vertical-align:middle;
@@ -3002,12 +3011,50 @@ html body#categories_show.categories div#content div#mainContent div#leftColumnC
     text-align:left;
     border:0px;
     background-color:#fff;
+}*/
+
+/*#textbox-wrapper, #dropdown_wrapper {*/
+#textbox-wrapper, #dropdown_wrapper {
+    border:solid #808080 1px;
+    vertical-align:middle;
+    text-align:left;
+    padding-top:7px;
+    padding-bottom:7px;
+    padding-right:1px;
+}
+/*
+#dropdown_wrapper {
+    border:solid grey 1px;
+    padding-top:7px;
+    padding-bottom:6px;
+    padding-right:1px;
+}*/
+/*
+#dropdown_wrapper {
+    border:solid grey 1px;
+    padding-right:1px;
+    vertical-align:middle;
+    padding-top:5px;
+    padding-bottom:5px;
+}*/
+#textbox-wrapper input#text, #dropdown_wrapper select {
+    border:none;
+    border-style:none;
+    background-color:#fff;
+    border-width:0px;
 }
 
+#dropdown_wrapper select {
+    color:#000;
+}
+#textbox-wrapper input#text {
+    color:grey;
+}
 .three-col-format {
  padding:5px;
- width:30%;
+ width:31%;
  float:left;
  text-align:center;
+ padding-left:10px;
 }
 

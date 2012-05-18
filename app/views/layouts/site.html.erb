@@ -16,6 +16,8 @@
     <meta name="verify-v1" content="4MIDVULSRTLwLBnaUwWYWG+BeU+y0EpGRk33kFSVSYo=" />
     <meta name="msvalidate.01" content="18C4C4F5FBD1413AA93AEAD1738CD7F5" />
     <meta name="blogcatalog" content="9BC8939820" />
+    <meta http-equiv="X-UA-Compatible" content="IE=100" />
+
     <%= stylesheet_link_tag "site", "menu", "lightbox", :cache => false %>
     <%= javascript_include_tag :defaults, "dialog", "slide", "lightbox", :cache => true %>
     <!--[if gte IE 5.5]>
@@ -55,6 +57,7 @@ window.onload = startBlink;
 </SCRIPT>
 
   <!-- Javascript Blink End-->
+
 
 
   </head>
@@ -119,22 +122,25 @@ window.onload = startBlink;
             <%- form_tag search_index_path, :method => :get do -%>
               <table>
                 <tr>
-                  <td><span style="font-size:18px;">&nbsp;&nbsp;&nbsp;&nbsp;<!-- Search: --></span>
+                  <td><!--span style="font-size:18px;">&nbsp;&nbsp;&nbsp;&nbsp;Search:></span-->
 
-                  <% if params[:text].blank? %>
+                  <div id="textbox-wrapper">
+                        <% if params[:text].blank? %>
 
-                  <%= text_field_tag :text, params[:text], :style=>"width:180px;vertical-align:middle;text-align:left;padding-top:5px;", :onclick => "if(document.getElementById('text').value == 'Search Italyabroad.com'){ document.getElementById('text').value='';}", :value => "Search Italyabroad.com" %>
+                        <%= text_field_tag :text, params[:text], :style=>"", :onclick => "if(document.getElementById('text').value == 'Search Italyabroad.com'){ document.getElementById('text').value='';}", :value => "Search Italyabroad.com" %>
 
-                 <% else%>
-                  <%= text_field_tag :text, params[:text], :style=>"width:180px;vertical-align:middle;text-align:left;padding-top:5px;", :onclick => "if(document.getElementById('text').value == 'Search Italyabroad.com'){ document.getElementById('text').value='';}" %>
+                       <% else%>
+                        <%= text_field_tag :text, params[:text], :style=>"", :onclick => "if(document.getElementById('text').value == 'Search Italyabroad.com'){ document.getElementById('text').value='';}" %>
 
-                 <% end%>
+                       <% end%>
+                  </div><!-- div class="text-box-wrapper" -->
 
                   </td>
                   <td>
-                    <div  style="border:solid grey 1px;padding-top:7px;padding-bottom:6px;padding-right:1px;">
-                    <%= select_tag :id, options_for_select([['All Site','all'], ['Food', 'food'], ['Recipe', 'recipe'],['Hampers','hampers'], ['People', 'people'],['Chef', 'chef'], ['Wine', 'wine'] ], (params[:id] || params[:category]))%>
-                    </div>
+                    <!--div id="dropdown_wrapper"-->
+                    <%#= select_tag :id, options_for_select([['All Site','all'], ['Food', 'food'], ['Recipe', 'recipe'],['Hampers','hampers'], ['People', 'people'],['Chef', 'chef'], ['Wine', 'wine'] ], (params[:id] || params[:category])), :style => "border:none;" %>
+                    <%= select_tag :id, options_for_select([['All Site','all'], ['Food', 'food'], ['Recipe', 'recipe'],['Hampers','hampers'], ['People', 'people'],['Chef', 'chef'], ['Wine', 'wine'] ], (params[:id] || params[:category])), :style => "height:2.85em;padding: 7px 0px 7px 0px;" %>
+                    <!--/div --><!-- div id="dropdown_wrapper" -->
                   </td>
                   <td>
                     <%= image_submit_tag("searchButton.png", :name => nil, :alt => "search") %>
