@@ -20,7 +20,8 @@
    <h1 align="center" style="padding-top:0px;color:#9b0707;"><%= @product.name %></h1>
   <table width="100%">
     <tr>
-    <% included_products = @product.included_products.find(:all,:order=>'name asc', :conditions => "active = true") %>
+    <%# included_products = @product.included_products.find(:all,:order=>'name asc', :conditions => "active = true") %>
+    <% included_products = @product.included_products.find(:all,:order=>'created_at asc', :conditions => "active = true") %>
    <% unless included_products.blank? %>
    <td valign="top" width="35%">
      <div id="box_wines_of_the_night" class="block" >
