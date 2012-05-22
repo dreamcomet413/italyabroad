@@ -170,7 +170,7 @@ a {
     border-bottom:solid #ccc;
     border-bottom-width:1px;
     padding-bottom:20px;
-    margin-top:15px;
+    margin-top:0px;
 }
 
 .events #rightColumn {
@@ -3014,13 +3014,21 @@ html body#categories_show.categories div#content div#mainContent div#leftColumnC
 }*/
 
 /*#textbox-wrapper, #dropdown_wrapper {*/
-#textbox-wrapper, #dropdown_wrapper {
+#textbox-wrapper {
     border:solid #808080 1px;
     vertical-align:middle;
     text-align:left;
     padding-top:7px;
     padding-bottom:7px;
     padding-right:1px;
+}
+#dropdown_wrapper {
+    width:80px;
+    height:26px;
+    border:solid #808080 1px;
+    padding:0px;
+    padding-right:5px;
+    padding-top:7px;
 }
 /*
 #dropdown_wrapper {

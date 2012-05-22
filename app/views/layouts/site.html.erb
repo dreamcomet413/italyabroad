@@ -136,12 +136,24 @@ window.onload = startBlink;
                   </div><!-- div class="text-box-wrapper" -->
 
                   </td>
+
+
+
                   <td>
                     <!--div id="dropdown_wrapper"-->
                     <%#= select_tag :id, options_for_select([['All Site','all'], ['Food', 'food'], ['Recipe', 'recipe'],['Hampers','hampers'], ['People', 'people'],['Chef', 'chef'], ['Wine', 'wine'] ], (params[:id] || params[:category])), :style => "border:none;" %>
-                    <%= select_tag :id, options_for_select([['All Site','all'], ['Food', 'food'], ['Recipe', 'recipe'],['Hampers','hampers'], ['People', 'people'],['Chef', 'chef'], ['Wine', 'wine'] ], (params[:id] || params[:category])), :style => "height:2.85em;padding: 7px 0px 7px 0px;" %>
+                    <%#= select_tag :id, options_for_select([['All Site','all'], ['Food', 'food'], ['Recipe', 'recipe'],['Hampers','hampers'], ['People', 'people'],['Chef', 'chef'], ['Wine', 'wine'] ], (params[:id] || params[:category])), :style => "height:2.85em;padding: 7px 0px 7px 0px;" %><!-- /td  REMOVE THIS- -->
+
                     <!--/div --><!-- div id="dropdown_wrapper" -->
+                  <!-- /td  REMOVE THIS- -->
+
+                    <div id="dropdown_wrapper">
+                    <%= select_tag :id, options_for_select([['All Site','all'], ['Food', 'food'], ['Recipe', 'recipe'],['Hampers','hampers'], ['People', 'people'],['Chef', 'chef'], ['Wine', 'wine'] ], (params[:id] || params[:category])), :style => "border:none;" %>
+                    <%#= select_tag :id, options_for_select([['All Site','all'], ['Food', 'food'], ['Recipe', 'recipe'],['Hampers','hampers'], ['People', 'people'],['Chef', 'chef'], ['Wine', 'wine'] ], (params[:id] || params[:category])), :style => "height:2.85em;"%>
+
+                    </div><!-- div id="dropdown_wrapper" -->
                   </td>
+
                   <td>
                     <%= image_submit_tag("searchButton.png", :name => nil, :alt => "search") %>
 
