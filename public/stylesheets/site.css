@@ -3065,4 +3065,7 @@ html body#categories_show.categories div#content div#mainContent div#leftColumnC
  text-align:center;
  padding-left:10px;
 }
+#div_latest_blog {
+    text-align:justify;
+}
 

@@ -4,11 +4,11 @@
 <div id="wineBanner">
   <span class="community_home_title">
      <%#= @about.title rescue "About us"%>
-   <% unless @about.title.blank? %>
-  <div style="color:white;width:330px;height:100px;background:black;opacity: 0.6;filter:alpha(opacity=40);text-align:left">
-    <%= @about.title if @about %>
-   </div>
-  <% end %>
+      <% unless @about.title.blank? %>
+        <div style="color:white;width:330px;height:100px;background:black;opacity: 0.6;filter:alpha(opacity=40);text-align:left">
+        <%= @about.title if @about %>
+        </div>
+      <% end %>
     <!--Share your <strong style="font-size:24px;">passion,</strong> meet <strong style="font-size:24px;">people</strong> like you, compare<br />
     <strong style="font-size:24px;">tasting notes</strong> and get <strong style="font-size:24px;">recommendations</strong> -->
   </span>
@@ -17,10 +17,9 @@
   <% else %>
   <%= image_tag("forum_home.jpg",:alt=>'Community') if @about.blank? %>
   <% end %>
-</div>
-<!-- ################################## -->
+</div><!--div id="wineBanner"-->
 
-<div style="margin:10px;float:left;width:475;"><!-- Newest Members START-->
+<div style="margin:10px;float:left;width:475;"> <!-- Newest Members START-->
             <div id="box_newest_members">
                   <% users = User.find(:all, :order => "created_at DESC", :limit => 10) %>
                   <h1 style="color:#9b0707;font-size:14px;">Our Newest Members</h1>
@@ -34,7 +33,7 @@
                   <%- end -%>
                   </ul>
             </div>
-</div><!-- Newest Members END-->
+</div>                                          <!-- Newest Members END-->
 
 
 
@@ -42,8 +41,9 @@
     <div id="box_latest_review" style="height:100px;">
     <h1 style="color:#9b0707;font-size:14px;">Latest Review</h1>
     <% latest_review = Review.last(:conditions=>['publish = ?',true]) %>
-    <%- unless latest_review.nil? -%>
 
+
+    <%- unless latest_review.nil? -%>
     <table cellpadding="0" cellspacing="0" width="100%">
     <tr>
     <td  width="1%">
@@ -78,7 +78,6 @@
 
 <!-- COLUMN 1 -->
 <div class="three-col-format">
-
 
 <div id="box_producer" >
     <h1 style="color:#9b0707;font-size:14px;">Get to know our producers</h1>
@@ -115,7 +114,7 @@
 
     </div>
     <br /><br />
-    <div id="box_latest_blog"  style="background-color:#f8f7ef;padding:5px 10px;margin-right:10px;">
+    <div id="box_latest_blog"  style="background-color:#f8f7ef;padding:5px 10px;margin-right:10px;text-align:justify;">
           <% blog = Post.last %>
           <h1 style="color:#9b0707;font-size:14px;text-align:center;">Blog</h1>
           <%= link_to "Latest Entry", blog_index_path %><br /><br />
@@ -123,7 +122,10 @@
           <%= blog.description_short %><br /><br />
           <div style="text-align:right;"><%= link_to("View all", blog_index_path) %></div>
     </div>
-</div><!-- END OF COLUMN 1-->
+
+</div><!-- END OF COLUMN 1-->   <!--div class="three-col-format"-->
+
+
 
 
 
@@ -148,6 +150,8 @@
                 <%= post.user.name %>
         <%- end -%>
   </div>
+
+
 </div><!-- END OF COLUMN 2-->
 
 
@@ -190,47 +194,37 @@
           <%- end -%>
         </div>
 <!-- AAA -->
-
+</div><!-- THIS WAS ADDED BY SUJITH ON JUN 13, 2012 SINCE I FOUND THAT A DIV WAS NOT CLOSED -->
         <div id="box_get_to_know_italy"><br /><br />
           <h1 style="color:#9b0707;font-size:14px;text-align:center;">Get to know italy</h1>
           <%- regions = Region.find(:all,:conditions=>['active = ?',true], :limit => 1, :order => "RAND()") -%>
-          <%#- regions = Region.find(:all, :limit => 1, :conditions => "id = 15") -%>
           <%- for region in regions -%>
           <div class="box_grape_guide"><%= link_to region.name, region_path(region) %>&nbsp;<%= link_to "(more regions)", regions_path %><br /><br /><br />
 
-
-
-          <%#= image_tag("get_to_know_italy.png",:alt=>'Regions') %>
           <% if region && region.image %>
             <%= image_tag(image_url(:recipe, region.image, :jpg), :alt=>region.name) if region && region.image %>
           <% else %>
             <%= image_tag("get_to_know_italy.png", :alt=>region.name, :width=> "150px") %>
           <%- end -%><br />
 
+            <div style="text-align:justify;">
+             <%=
+            if region.description and !region.description.empty? and !region.description.nil?
+              if region.description.length > @enough_chars
+                region.description[0..@enough_chars] + "..." + link_to('(Continue Reading)',region_path(region)) + '<br /><br />'
+              else
+                region.description
+              end
+            else
+              ""
+            end%>
 
-          <%#= region.description %>
-                  <div style="text-align:justify;">
-                   <%=
-                  if region.description and !region.description.empty? and !region.description.nil?
-                      if region.description.length > @enough_chars
-                        region.description[0..@enough_chars] + "..." + link_to('(Continue Reading)',region_path(region)) + '<br /><br />'
-                      else
-                        region.description
-                      end
-                  else
-                    ""
-                  end
-
-                  %>
-                  </div>
-
-
-
+            </div>
           <%- end -%>
-        </div>
-        </div>
+        </div><!--div class="box_grape_guide"-->
+      </div><!--div id="box_get_to_know_italy"-->
 
-<!-- AAA -->
+AAA
 </div><!-- END OF COLUMN 3-->
 
 

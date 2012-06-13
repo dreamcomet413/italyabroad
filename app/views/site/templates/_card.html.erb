@@ -282,7 +282,7 @@
 <% end %>
 
 
-<%- related_products = @product.correlations.all(:limit => 3, :conditions => "active") -%>
+<%- related_products = @product.correlations.all(:limit => 3, :conditions => "active").uniq -%>
 <%- column_width = related_products.size -%>
 <% unless related_products.blank? %>
   <div id="wineRelated">

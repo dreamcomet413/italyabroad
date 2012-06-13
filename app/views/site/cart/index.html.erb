@@ -179,11 +179,11 @@
    <%- for product in products -%>
       <% if product.root_category.upcase == 'WINE' or product.root_category.upcase == 'FOOD' or product.root_category.upcase == 'HAMPERS' %>
       <td valign="top">
-        <div style="float:left;width:120px;">
+        <div style="float:left;width:130px;">
           <div style="height:120px;vertical-align:bottom;v-align:bottom;margin-bottom:0px;">
               <%= link_to show_image_tag(product.layout_image, product.image_1, :jpg,product.name), nested_products_uri(product) %>
           </div>
-          <div style="clear:both;"></div>
+          <div style="clear:both;"><br /><br /></div>
           <div>
               <%= link_to product.name, nested_products_uri(product) %>
           </div>

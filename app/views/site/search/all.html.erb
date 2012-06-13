@@ -82,6 +82,23 @@
               <%= link_to @wine_events.count.to_s + '&nbsp;&nbsp; Events',  :action => "find_wine_events",:text=>params[:text]%>
               <div id="all_events"></div><br /><br /><br />
           </div>
+          <% end %>
+
+          <!-- added on Jun/12/2012 for displyaing Grapes -->
+
+          <% unless @grapes.blank? %>
+          <div style="margin:0 0 0 0px; padding-left:15px;">
+              <!--<div id="header">Your search has found the following Foods:</div>-->
+              <h1>Grapes</h1>
+              <%#= link_to_remote @foods.count.to_s + 'Foods', :url => { :action => "find_foods",:text=>params[:text]} %>
+              <%#= link_to @grapes.count.to_s + '&nbsp;&nbsp; Grapes',  :action => "find_grapes", :text=>params[:text]%>
+              <%#= link_to @grapes.count.to_s + '&nbsp;&nbsp; Grapes',  grapes_path, :search_by_name=>params[:text], :search => 'Search'%>
+              <%= link_to @grapes.count.to_s + '&nbsp;&nbsp; Grapes',  grapes_path + "?search_by_name=#{params[:text]}&" +  "search=Search"%>
+
+
+              <div id="grapes_all"></div><br /><br /><br />
+          </div>
+
 
           <% end %>
 

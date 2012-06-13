@@ -14,23 +14,24 @@
 
   <div class="comment_icon">&nbsp;&nbsp;<%= @post.comments.find(:all,:conditions=>['public=?',true]).size %> comments</div>
 
-  <div><%= @post.description_cleared %></div>
-  <table width="100%">
-    <tr>
-      <td width="50%" style="text-align:left;padding:0px;padding-left:5px;"><strong>Tags:</strong> <%#= @post.tag_names %>
+  <div><%= @post.description_cleared %></div><br />
 
-            <% @tag_list ="" %>
-            <% @post.tags.each do |p| %>
-              <% @tag_list =  @tag_list + link_to (p.name, blog_index_path(:tag_id=>p.id)) + ", "%>
-            <% end %>
-             <%= @tag_list.chop![0..-2] if !@tag_list.empty? %>
+  <div style="float:left;">
+        Tags:
+        <% @tag_list ="" %>
+        <% @post.tags.each do |p| %>
+        <% @tag_list =  @tag_list + link_to (p.name, blog_index_path(:tag_id=>p.id)) + ", "%>
+        <% end %>
+        <%= @tag_list.chop![0..-2] if !@tag_list.empty? %>
+  </div>
 
-      </td>
-      <td align="right" width="50%">
-      <%= render :partial => '/site/shared/social_bookmarks'%>
-      </td>
-    </tr>
-  </table>
+
+  <div style="float:right;">
+        <%= render :partial => '/site/shared/social_bookmarks'%>
+  </div>
+
+  <div style="clear:both;padding:0px;margin:0px;"></div>
+
   <div style="border-bottom:1px solid #CCCCCC;margin-top:20px;"></div>
   <div class="comments">
 

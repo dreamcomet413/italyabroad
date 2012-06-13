@@ -75,7 +75,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :reviews, :controller => 'site/reviews'
   map.resources :messages, :controller => 'site/messages',:collection=>[:send_reply,:send_message]
    map.resources :comments, :controller => 'site/comments'
-  map.resources :search, :controller => 'site/search', :only => [:index],:collection=>[:find_users,:find_wines,:find_foods,:find_recipes,:find_producers,:find_wine_events]
+  map.resources :search, :controller => 'site/search', :only => [:index],:collection=>[:find_users,:find_wines,:find_foods,:find_recipes,:find_producers,:find_wine_events, :find_grapes]
   map.resources :cart, :controller => 'site/cart', :only => [:index, :update], :collection => {:empty => :get, :continue_shopping => :get}
   map.connect 'site/cart/gift_options',:controller=>'site/cart',:action=>'gift_options'
   map.connect 'site/checkouts/order_confirmation',:controller=>'site/checkouts',:action=>'order_confirmation'

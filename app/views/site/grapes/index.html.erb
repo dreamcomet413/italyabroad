@@ -39,7 +39,7 @@
         <ul class="clean" style="list-style:none;">
           <%- for grape in @grapes_all -%>
           <% if grape.name.upcase =~ /^[A-H]/  %>
-          <li><%= link_to truncate(grape.name,50), grape_path(grape) if grape.name.upcase =~ /^[A-H]/ %></li>
+          <li title="<%=grape.name%>"><%= link_to (truncate(grape.name,50), grape_path(grape), :title => grape.name) if grape.name.upcase =~ /^[A-H]/ %></li>
           <% end %>
           <%- end -%>
         </ul>
@@ -50,7 +50,7 @@
         <ul class="clean" style="list-style:none;">
           <%- for grape in @grapes_all -%>
           <%- if grape.name.upcase =~ /^[I-P]/ -%>
-          <li><%= link_to truncate(grape.name,50), grape_path(grape) %></li>
+          <li><%= link_to (truncate(grape.name,50), grape_path(grape), :title => grape.id) %></li>
           <%- end -%>
           <%- end -%>
         </ul>

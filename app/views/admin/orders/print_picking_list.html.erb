@@ -42,6 +42,9 @@
 		<% end %>
 
 		<br style="clear:both" />
+		<% if @order.sub_total > 100  %>
+		  * Free Delivery
+	  <% end %>
 	</div>
 
 	<div style="padding:40px 5px 10px 5px">
@@ -76,7 +79,7 @@
 			<table border="1" cellspacing="0" cellpadding="5" style="width:350px">
 				<tr><td style="width:150px;height:20px">Picked</td><td style="width:200px;">&nbsp;</td></tr>
 				<tr><td style="width:150px;height:20px">Checked</td><td style="width:200px;">&nbsp;</td></tr>
-				<tr><td style="width:150px;height:20px">Delivery Method</td><td style="width:200px;">&nbsp;</td></tr>
+				<tr><td style="width:150px;height:20px">Delivery Method</td><td style="width:200px;"><%= @order.delivery_name%></td></tr>
 				<tr><td style="width:150px;height:20px">Date</td><td style="width:200px;">&nbsp;</td></tr>
 			</table>
 		</div>
