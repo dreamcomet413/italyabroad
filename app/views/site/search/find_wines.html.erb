@@ -4,13 +4,13 @@
 	<table style="margin:0 0 0 0px; margin-left:10px; margin-right:10px; padding-left:10px; padding-right:10px;width:98%;" cellpadding="0" border="0" cellspacing="0">
 		<tr>
 
-			<td style="width:110px;">
+			<td style="width:90px;over-flow:hidden;">
         <%= link_to show_image_tag(product.layout_image, product.image_1, :jpg,product.name),nested_products_uri(product)  %>
 			</td>
 
 
-			<td style="width:470px;">
-			<div style="margin:0 0 0 0px;margin-left:10px;">
+			<td style="width:440px;">
+			<div style="margin:0 0 0 0px;margin-left:5px;">
           <%= link_to product.name, nested_products_uri(product), :style => "font-size:17px;color:black;" %><br />
           <%= show_ratings(product) %>
           <%= product.description_short %>

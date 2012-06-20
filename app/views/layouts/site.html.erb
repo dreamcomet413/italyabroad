@@ -149,7 +149,7 @@ window.onload = startBlink;
 
                     <div id="dropdown_wrapper">
                     <%#= select_tag :id, options_for_select([['All Site','all'], ['Food', 'food'], ['Recipe', 'recipe'],['Hampers','hampers'], ['People', 'people'],['Chef', 'chef'], ['Wine', 'wine'], ['Grape', 'grape'] ], (params[:id] || params[:category])), :style => "border:none;" %> <!-- INCLUDE THIS IF GRAPES REQUIRED IN DROPDOWN-->
-                    <%= select_tag :id, options_for_select([['All Site','all'], ['Food', 'food'], ['Recipe', 'recipe'],['Hampers','hampers'], ['People', 'people'],['Chef', 'chef'], ['Wine', 'wine'], ['Grape', 'grape'] ], (params[:id] || params[:category])), :style => "border:none;" %>
+                    <%= select_tag :id, options_for_select([['All Site','all'], ['Food', 'food'], ['Recipe', 'recipe'],['Hampers','hampers'], ['People', 'people'],['Chef', 'chef'], ['Wine', 'wine']], (params[:id] || params[:category])), :style => "border:none;" %>
                     <%#= select_tag :id, options_for_select([['All Site','all'], ['Food', 'food'], ['Recipe', 'recipe'],['Hampers','hampers'], ['People', 'people'],['Chef', 'chef'], ['Wine', 'wine'] ], (params[:id] || params[:category])), :style => "height:2.85em;"%>
 
                     </div><!-- div id="dropdown_wrapper" -->
