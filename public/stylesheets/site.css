@@ -3068,4 +3068,8 @@ html body#categories_show.categories div#content div#mainContent div#leftColumnC
 #div_latest_blog {
     text-align:justify;
 }
+#box_popular_tags.block span a {
+ color:#000;
+
+}
 

@@ -1,8 +1,8 @@
 <div id="box_popular_tags" class="block">
   <%- @popular_tags = PostsTag.popular_tags -%>
-  <%  pmin = 100 # Minimum font size
+  <%  pmin = 70 # Minimum font size
   index = 1
-  pmax = 200 #Maximum font size
+  pmax = 150 #Maximum font size
   vmin = 1000000000000 #Super large number to init min
   vmax = -1000000000000 #Super small number to init max
   for tag in @popular_tags
