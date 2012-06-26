@@ -93,7 +93,7 @@
               <%#= link_to_remote @foods.count.to_s + 'Foods', :url => { :action => "find_foods",:text=>params[:text]} %>
               <%#= link_to @grapes.count.to_s + '&nbsp;&nbsp; Grapes',  :action => "find_grapes", :text=>params[:text]%>
               <%#= link_to @grapes.count.to_s + '&nbsp;&nbsp; Grapes',  grapes_path, :search_by_name=>params[:text], :search => 'Search'%>
-              <%= link_to @grapes.count.to_s + '&nbsp;&nbsp; Grapes',  grapes_path + "?search_by_name=#{params[:text]}&" +  "search=Search"%>
+              <%= link_to @grapes.count.to_s + '&nbsp;&nbsp; Grapes',  '/grapes/search_results' + "?search_by_name=#{params[:text]}&" +  "search=Search"%>
 
 
               <div id="grapes_all"></div><br /><br /><br />

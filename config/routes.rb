@@ -48,6 +48,8 @@ ActionController::Routing::Routes.draw do |map|
   map.wine_events 'wine-events', :controller => 'site/categories', :action => 'show', :category => "events"
   map.wine_community 'wine-community', :controller => 'site/forums', :action => 'index'
 
+  map.connect "grapes/search_results", :controller => 'site/grapes', :action => 'search_results'
+
   map.resources :products, :controller => 'site/products', :only => [:index, :show,:wine_of_the_week,:food_of_the_week] do |products|
     products.resources :reviews, :controller => 'site/reviews', :only => [:new, :create]
     products.resources :cart, :controller => 'site/cart', :only => [:create, :update, :destroy], :collection => {:empty => :get}
@@ -71,6 +73,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :producers, :controller => 'site/producers', :only => [:show,:index]
   map.resources :regions, :controller => 'site/regions', :only => [:show,:index]
   map.resources :grapes, :controller => 'site/grapes', :only => [:index, :show]
+
   map.resources :wine_lists, :controller => 'site/wine_lists'
   map.resources :reviews, :controller => 'site/reviews'
   map.resources :messages, :controller => 'site/messages',:collection=>[:send_reply,:send_message]
@@ -94,6 +97,7 @@ ActionController::Routing::Routes.draw do |map|
     map.resources :posts, :controller => "site/posts", :name_prefix => "#{attr}_", :path_prefix => "/#{attr.pluralize}/:#{attr}_id"
   end
   map.connect 'admin/products/delete_products_of_the_week', :controller => '/admin/products', :action => 'delete_products_of_the_week'
+
   map.connect 'admin/products/products_of_the_week', :controller => '/admin/products', :action => 'products_of_the_week'
   map.connect "admin/products/xml", :controller => '/admin/products', :action => 'xml'
   map.connect "site/orders/show_order_details",:controller => '/site/orders', :action => 'show_order_details'

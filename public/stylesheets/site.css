@@ -3073,3 +3073,8 @@ html body#categories_show.categories div#content div#mainContent div#leftColumnC
 
 }
 
+#blog_container ul li, #blog_container ul li h2 a {
+    color: #9B0707;
+
+}
+
