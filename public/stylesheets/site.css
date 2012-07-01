@@ -3077,4 +3077,7 @@ html body#categories_show.categories div#content div#mainContent div#leftColumnC
     color: #9B0707;
 
 }
+#blog_container ul li.product_listing div {
+ color:#000;
+}
 
