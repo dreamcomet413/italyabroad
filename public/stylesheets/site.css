@@ -3080,7 +3080,7 @@ html body#categories_show.categories div#content div#mainContent div#leftColumnC
 #blog_container ul li.product_listing div {
  color:#000;
 }
-#blog_container ul li div {
+#blog_container ul li h2 a, #blog_container ul li div {
  color:#000;
 }
 
