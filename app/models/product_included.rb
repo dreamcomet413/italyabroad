@@ -6,3 +6,4 @@ class ProductIncluded < ActiveRecord::Base
     return "- " + self.errors.full_messages.join("<br />- ")
   end
 end
+

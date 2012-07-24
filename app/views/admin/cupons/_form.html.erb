@@ -43,7 +43,8 @@ end
   <tr>
     <td>No of times can be used: </td>
     <td>
-      <%= select( "cupon", "no_of_times", { 1 => 1, 2 => 2,3 => 3,4 => 4}) %>
+      <%#= select( "cupon", "no_of_times", { 1 => 1, 2 => 2,3 => 3,4 => 4}) %>
+      <%= text_field :cupon, :no_of_times, :size => 10, :maxlength => 10 %>
     </td>
   </tr>
 
