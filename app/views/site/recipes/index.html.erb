@@ -30,6 +30,8 @@
   <h3>Latest Added Recipes</h3>
   <ul>
     <%- Recipe.active.latest.paginate(:page => params[:page], :per_page => 3).each do |recipe| -%>
+
+
       <li>
         <table width="100%">
           <tr>
@@ -71,7 +73,8 @@
 <div id="highestRatedRecipes">
   <h3>Most Viewed Recipes</h3>
   <ul>
-    <%- Recipe.active.most_viewed.paginate(:page => params[:page], :per_page => 3).each do |recipe| -%>
+    <%#- Recipe.active.most_viewed.paginate(:page => params[:page], :per_page => 3).each do |recipe| -%>
+    <%   Recipe.most_viewed_recipes.paginate(:page => params[:page], :per_page => 3).each do |recipe| -%>
       <li>
         <table width="100%">
           <tr>

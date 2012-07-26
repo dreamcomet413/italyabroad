@@ -23,12 +23,20 @@ class Recipe < ActiveRecord::Base
   belongs_to :user
   belongs_to :region
 
+
+
+
   friendly_identifier :name
 
   named_scope :active, :conditions => {:active => true}
   named_scope :recommended, :conditions => {:raccomanded => true}
   named_scope :latest, :order => ["created_at DESC"]
   named_scope :most_viewed, :order => ["view_count DESC"]
+
+def self.most_viewed_recipes
+
+Recipe.find(:all,:conditions=>['id NOT IN (?) and active = ?',Recipe.find(:all,:conditions=>['active=true'],:order=>'created_at DESC',:limit=>3),true],:order=>'view_count DESC')
+  end
 
   def preparation_cleared
     self.preparation.to_s.gsub("\n","<br />")
