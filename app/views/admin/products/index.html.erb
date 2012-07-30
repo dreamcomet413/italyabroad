@@ -32,6 +32,11 @@
           <% end %>
         <% end %>
         </select>
+        <% checked = false
+        if params[:inactive]
+        checked = true
+        end %>
+        <strong>Show Inactive only</strong><%= check_box_tag 'inactive','',checked %>
         <%= submit_tag 'Search' %>
 
       </td>
