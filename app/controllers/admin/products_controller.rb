@@ -30,12 +30,11 @@ class Admin::ProductsController < ApplicationController
      @products = Product.find(:all,:include => [:categories], :order => "created_at DESC").paginate(:page => params[:page], :per_page => 20)
   end
 
-   if params[:inactive]
+   if params[:active]
        if !params[:search].blank?
-         logger.info "Inactive products"
-         @products = Product.find(:all, :include => [:categories],:conditions=>['categories.id = ? AND products.name LIKE ? and active = ? ',"#{params[:search]}" ,"%#{params[:search_name]}%",false], :order => "created_at DESC").paginate(:page => params[:page], :per_page => 20)
+         @products = Product.find(:all, :include => [:categories],:conditions=>['categories.id = ? AND products.name LIKE ? and active = ? ',"#{params[:search]}" ,"%#{params[:search_name]}%",true], :order => "created_at DESC").paginate(:page => params[:page], :per_page => 20)
       elsif params[:search].blank?
-        @products = Product.find(:all, :include => [:categories],:conditions=>['products.name LIKE ? and active = ? ',"%#{params[:search_name]}%",false], :order => "created_at DESC").paginate(:page => params[:page], :per_page => 20)
+        @products = Product.find(:all, :include => [:categories],:conditions=>['products.name LIKE ? and active = ? ',"%#{params[:search_name]}%",true], :order => "created_at DESC").paginate(:page => params[:page], :per_page => 20)
       end
   end
 

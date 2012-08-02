@@ -33,10 +33,10 @@
         <% end %>
         </select>
         <% checked = false
-        if params[:inactive]
+        if params[:active]
         checked = true
         end %>
-        <strong>Show Inactive only</strong><%= check_box_tag 'inactive','',checked %>
+        <strong>Show Active only</strong><%= check_box_tag 'active','',checked %>
         <%= submit_tag 'Search' %>
 
       </td>
