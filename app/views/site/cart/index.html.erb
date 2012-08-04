@@ -4,6 +4,7 @@
 
 <div id="header">Your Cart</div>
 <% if @cart.items.size > 0 %>
+
   <%= show_messages(flash[:notice]) %>
   <div style="text-align:center;margin-top:40px;"><%= image_tag("cart_step_1.png") %></div>
   <% form_tag(cart_path(@cart.object_id), :id => "form_cart", :method => :put) do %>
