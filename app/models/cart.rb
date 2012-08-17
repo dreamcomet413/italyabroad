@@ -83,6 +83,7 @@ class Cart
   end
 
   def valid?
+
     @show_errors = ""
 
     limit = Setting.order_amount
@@ -98,6 +99,7 @@ class Cart
       else
         @show_errors = "Sorry, but there is a miminum order of £#{limit}"
       end
+
     end
 
     if @cupon

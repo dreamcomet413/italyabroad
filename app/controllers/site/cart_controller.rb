@@ -51,6 +51,9 @@ class Site::CartController < ApplicationController
     else
       flash[:notice] = @cart.show_errors
     end
+    @cupon = Cupon.find_by_code( params[:cupon][:code])
+
+
     @setting = Setting.find(:first)
    for cart_item in @cart.items
           #if cart_item.quantity < @setting.reorder_quantity
@@ -58,6 +61,11 @@ class Site::CartController < ApplicationController
             Notifier.deliver_reorder_quantity_notification(cart_item.product,AppConfig.admin_email)
           end
    end
+  unless  params[:cupon][:code].blank?
+    if @cupon.nil? or @cupon.blank?
+        flash[:notice] = "The promotional code is not valid,please enter a valid one."
+      end
+  end
     redirect_to :action => :index
   end
 
