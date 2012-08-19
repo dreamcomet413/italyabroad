@@ -320,6 +320,14 @@
 
   <script type="text/javascript">cssdropdown.startchrome("chromemenu")</script>
   <div class="menu_rightwrap" style="color:black;">
+    <%
+      @support_status = (@setting.chat_available == true) ? true : false
+      if @support_status == true
+    %>
+        <%= link_to "Chat Disable", enable_disable_chat_url %>&nbsp;&nbsp;&nbsp;
+      <% else %>
+        <%= link_to "Chat Enable", enable_disable_chat_url %>&nbsp;&nbsp;&nbsp;
+      <% end %>
     <%= link_to "Live chat",chat_index_path, :popup => ['new_window_name', 'height=540,width=490'] %>&nbsp;&nbsp;&nbsp;
     <%= link_to "Logout", logout_url %>&nbsp;&nbsp;&nbsp;
     <%= link_to "Store", root_url %>

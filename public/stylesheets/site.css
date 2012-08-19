@@ -2850,7 +2850,8 @@ li#link-to-hampers ul li a:hover{
     margin: 0 0 0 0px;
     margin-bottom:15px;
     width:233px;
-    width:247px;
+    /* commented the below line by indu on 17 August 2012 to correct the format issue in find_food_page */
+   /* width:200px;*/
 }
 
 #box_hamper_search.block {

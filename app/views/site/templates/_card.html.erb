@@ -219,7 +219,7 @@
 
 
 
-
+<%if @product.root_category != 'Hampers' and !@product.sub_categories.include?('Mixed case') %>
 <div id="wineProducer">
   <br />
   <h3>Producer</h3>
@@ -233,6 +233,7 @@
   Product has no producer description
   <% end %>
 </div>
+<% end %>
 <div id="wineReview">
   <br />
   <h3>Reviews <%= link_to("(Add Review)", login_path, :style => "font-size:12px;") unless logged_in?  %>

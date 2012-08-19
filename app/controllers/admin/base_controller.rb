@@ -7,7 +7,7 @@ class Admin::BaseController < ApplicationController
     if request.post?
       self.current_user = User.authenticate(params[:login], params[:password])
       if admin?
-        @setting.update_attribute('chat_available',true)
+       # @setting.update_attribute('chat_available',true)
         redirect_back_or_default(:controller => '/admin/base', :action => 'index')
       else
         flash[:notice] = "Invalid login account."
@@ -27,6 +27,18 @@ class Admin::BaseController < ApplicationController
     reset_session
     flash[:notice] = "You have been logout"
     redirect_back_or_default(:controller => '/admin/base', :action => 'index')
+  end
+
+  def enable_disable_chat
+    logger.info 'Chat avaible'
+    if admin? and @setting.chat_available == false
+      logger.info 'Chat avaible became true'
+      @setting.update_attribute('chat_available',true)
+    elsif @setting.chat_available == true
+      logger.info 'Chat avaible became false'
+      @setting.update_attribute('chat_available',false)
+    end
+     redirect_back_or_default(:controller => '/admin/base', :action => 'index')
   end
 end
 

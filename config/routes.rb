@@ -24,6 +24,7 @@ ActionController::Routing::Routes.draw do |map|
 #  map.connect "products.xml",:controller=>'site/products',:action=>'index'
 
  # map.testimonial 'testimonial', :controller => 'site/base', :action => 'testimonial'
+ map.enable_disable_chat 'enable_disable_chat', :controller => 'admin/base', :action => 'enable_disable_chat'
   map.testimonial 'testimonial', :controller => 'site/testimonials', :action => 'index'
   map.popular 'popular', :controller => 'site/base', :action => 'popular'
   map.signup 'signup', :controller => 'site/customers', :action => "new"

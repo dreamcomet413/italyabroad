@@ -110,7 +110,7 @@
         cart_contains_events_only = false
         for cart_item in @cart.items
          product = Product.find(cart_item.product.id)
-          if product.categories.root.name != "Events"
+          if product.categories.root.name != "Events" and  product.categories.root.name != "Wine Tours"
             cart_contains_not_only_events = true
             break
           end
@@ -119,7 +119,7 @@
 
          for cart_item in @cart.items
          product = Product.find(cart_item.product.id)
-          if product.categories.root.name == "Events"
+          if product.categories.root.name == "Events" or product.categories.root.name == "Wine Tours"
             cart_contains_events_only = true
           else
             cart_contains_events_only = false
@@ -130,28 +130,28 @@
    <% if cart_contains_events_only %>
         <tr>
           <td colspan="6">
-            <em>Tickets will be delivered electronically</em>
+            <em>Tickets and details will be delivered electronically</em>
           </td>
         </tr>
    <% end %>
 
       <% if @cart.sub_total > Setting.order_delivery_amount and @delivery.bulk_order_price == 0 %>
 
-      <% if cart_contains_not_only_events %>
-        <tr>
-          <td colspan="6">
-            <em>Your order qualifies for free delivery *</em><%= hidden_field :delivery, :id, :value => Delivery.find(:first).id %>
-          </td>
-        </tr>
-       <% end %>
+          <% if cart_contains_not_only_events %>
+            <tr>
+              <td colspan="6">
+                <em>Your order qualifies for free delivery *</em><%= hidden_field :delivery, :id, :value => Delivery.find(:first).id %>
+              </td>
+            </tr>
+           <% end %>
       <% else %>
-      <% if cart_contains_not_only_events  %>
-        <tr>
-          <td colspan="6" align="right">
-              Select delivery method: <%= collection_select :delivery, :id, Delivery.find(:all,:conditions=>['name != ?','For ticket events']), :id, :name_with_price %>
-          </td>
-        </tr>
-      <% end %>
+          <% if cart_contains_not_only_events  %>
+            <tr>
+              <td colspan="6" align="right">
+                  Select delivery method: <%= collection_select :delivery, :id, Delivery.find(:all,:conditions=>['name != ?','For ticket events']), :id, :name_with_price %>
+              </td>
+            </tr>
+          <% end %>
       <% end %>
 
 
