@@ -1,6 +1,6 @@
 <% @title = "Search #{params[:text]}"; %>
 <%- @breadcrumbs = "#{link_to "Home", root_url} &raquo; Search &raquo; All Site" -%>
-    <% if @users.blank? and  @producers.blank? and @wines.blank? and @recipes.blank? and @wine_events.blank? and @foods.blank? %>
+    <% if @users.blank? and  @producers.blank? and @wines.blank? and @recipes.blank? and @wine_events.blank? and @foods.blank? and @grapes.blank? %>
         <div id="header">Your search returned no results</div><br />
 
         <div class="search_result" >Sorry the search has not given any result, please check the spelling or <%= mail_to "info@italyabroad.com", "get in touch" %> and will find it for you.<br /><br /</div>

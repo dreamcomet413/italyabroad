@@ -165,18 +165,45 @@ class Cart
 
     #total += total < Setting.order_delivery_amount && @delivery ? @delivery.price : 0
 
+
+
+
+   cart_contains_not_only_events = false
+   @items.each do |item|
+       #  product = Product.find(cart_item.product.id)
+     # current_item = @items.find { |t| t.product.id == item[:id].to_i }
+     current_item = Product.find(item.product.id)
+      if current_item.categories.root.name != "Events" and current_item.categories.root.name != "Wine Tours"
+            cart_contains_not_only_events = true
+         break
+      end
+
+    end
+
+
+
     if total > Setting.find(:first).order_delivery_amount and @delivery.bulk_order_price == 0
       @delivery.price = 0
+  elsif cart_contains_not_only_events
+      @delivery = Delivery.find(self.delivery.id)
+      total += @delivery.price
     else
+      @delivery.price = 0
       total += @delivery.price
     end
+
+ # if total > Setting.find(:first).order_delivery_amount and @delivery.bulk_order_price == 0
+  #    @delivery.price = 0
+   # else
+    #  total += @delivery.price
+   # end
 
 
 
    # total += @gift.price if @gift
     unless self.gift[:gift_option_id].blank?
     total += GiftOption.find(self.gift[:gift_option_id]).price
-  #total += 10
+
   end
     return total
   end

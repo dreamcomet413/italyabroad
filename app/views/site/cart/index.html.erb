@@ -54,9 +54,45 @@
           </td>
         </tr>
       <% end %>
+      <!-- modified by Indu to avoid ticket event delivery method on august 13 , 2012 -->
+
+      <%
+        cart_contains_not_only_events = false
+        cart_contains_events_only = false
+        for cart_item in @cart.items
+         product = Product.find(cart_item.product.id)
+          if product.categories.root.name != "Events" and  product.categories.root.name != "Wine Tours"
+            cart_contains_not_only_events = true
+            break
+          end
+
+        end
+
+         for cart_item in @cart.items
+         product = Product.find(cart_item.product.id)
+          if product.categories.root.name == "Events" or product.categories.root.name == "Wine Tours"
+            cart_contains_events_only = true
+          else
+            cart_contains_events_only = false
+          end
+        end
+     #and cart_contains_not_only_events == false
+     %>
+
+
+      <% if cart_contains_events_only  %>
+        <tr>
+          <td colspan="6">
+            <em>Tickets and details will be delivered electronically</em>
+          </td>
+        </tr>
+   <% end %>
+
+
       <tr>
         <td colspan="6" align="right"><%= image_submit_tag "buttons/update_button.png" %></td>
       </tr>
+
       <tr>
         <td colspan="6">&nbsp;</td>
       </tr>
@@ -103,37 +139,8 @@
       <tr>
         <td colspan="6">&nbsp;</td>
       </tr>
-      <!-- modified by Indu to avoid ticket event delivery method on august 13 , 2012 -->
 
-      <%
-        cart_contains_not_only_events = false
-        cart_contains_events_only = false
-        for cart_item in @cart.items
-         product = Product.find(cart_item.product.id)
-          if product.categories.root.name != "Events" and  product.categories.root.name != "Wine Tours"
-            cart_contains_not_only_events = true
-            break
-          end
 
-        end
-
-         for cart_item in @cart.items
-         product = Product.find(cart_item.product.id)
-          if product.categories.root.name == "Events" or product.categories.root.name == "Wine Tours"
-            cart_contains_events_only = true
-          else
-            cart_contains_events_only = false
-          end
-        end
-     %>
-
-   <% if cart_contains_events_only %>
-        <tr>
-          <td colspan="6">
-            <em>Tickets and details will be delivered electronically</em>
-          </td>
-        </tr>
-   <% end %>
 
       <% if @cart.sub_total > Setting.order_delivery_amount and @delivery.bulk_order_price == 0 %>
 

@@ -320,7 +320,7 @@
 
   <script type="text/javascript">cssdropdown.startchrome("chromemenu")</script>
   <div class="menu_rightwrap" style="color:black;">
-    <%
+    <% @setting = Setting.find(:first)
       @support_status = (@setting.chat_available == true) ? true : false
       if @support_status == true
     %>

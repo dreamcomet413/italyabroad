@@ -30,12 +30,9 @@ class Admin::BaseController < ApplicationController
   end
 
   def enable_disable_chat
-    logger.info 'Chat avaible'
     if admin? and @setting.chat_available == false
-      logger.info 'Chat avaible became true'
       @setting.update_attribute('chat_available',true)
     elsif @setting.chat_available == true
-      logger.info 'Chat avaible became false'
       @setting.update_attribute('chat_available',false)
     end
      redirect_back_or_default(:controller => '/admin/base', :action => 'index')

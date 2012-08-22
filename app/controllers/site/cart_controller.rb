@@ -5,6 +5,7 @@ class Site::CartController < ApplicationController
   def index
     @cupon = @cart.cupon
     @delivery = @cart.delivery
+
     @cart.gift = ""
     @buy_together_discount = @cart.buy_together_discount
 
@@ -17,7 +18,7 @@ class Site::CartController < ApplicationController
          @setting = Setting.find(:first)
           if product.quantity.to_i - quantity.to_i < @setting.reorder_quantity.to_i
             # Commented by Sujith since UserName and Password of SMTP is not correct now
-            logger.info " product.quantity.to_i - quantity.to_i < @setting.reorder_quantity.to_i => #{product.quantity.to_i} - #{quantity.to_i} < #{@setting.reorder_quantity.to_i}"
+           # logger.info " product.quantity.to_i - quantity.to_i < @setting.reorder_quantity.to_i => #{product.quantity.to_i} - #{quantity.to_i} < #{@setting.reorder_quantity.to_i}"
             Notifier.deliver_reorder_quantity_notification(product,AppConfig.admin_email)
           end
 

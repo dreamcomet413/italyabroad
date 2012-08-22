@@ -22,7 +22,7 @@ class Site::BaseController < ApplicationController
         current_user.set_last_seen_at
         if current_user.admin?
 
-            @setting.update_attribute('chat_available',true)
+         #   @setting.update_attribute('chat_available',true)
         end
 
         redirect_back_or_default(root_url)
