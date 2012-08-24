@@ -26,6 +26,10 @@
           <td>
             <%= hidden_field_tag "cart[][id]", nil, :value => cart_item.product.id %>
             <%= cart_item.product.name %>
+            <% if product.categories.root.name == "Events" or product.categories.root.name == "Wine Tours" %>
+                   <span style="color:red;font-size:10px;"><br /><%= "(Tickets and details will be delivered electronically)"%></span>
+
+                <% end %>
             <% if product.from_quantity > 0 && product.from_quantity_price > 0 && cart_item.quantity < product.from_quantity %>
               <div style="color:red">
                 <% if product.categories.root.name == "Wine" %>
@@ -38,6 +42,9 @@
 
                 <% end %>
               </div>
+
+
+
             <% end %>
           </td>
           <td>
