@@ -4,8 +4,8 @@
 <table id="user-list" class="list sortable">
     <thead>
       <tr>
-        <th class="sortfirstdec">ID</th>
-        <th>Login</th>
+
+        <th class="sortfirstdec">Email</th>
         <th>Name</th>
         <th>Surname</th>
         <th>Know Through</th>
@@ -17,8 +17,8 @@
     <tbody>
       <%- @users.each do |user| -%>
       <tr>
-        <td><%= user.id %></td>
-        <td><%= user.login %></td>
+
+        <td><%= user.email %></td>
         <td><%= user.name %></td>
         <td><%= user.surname %></td>
          <td><%= user.know_through %></td>

@@ -20,6 +20,7 @@ class Admin::XmlController < ApplicationController
     else
       @columns = eval(params[:table]).column_names
     end
+   
     respond_to do |format|
       format.html{ render :update do |page|
           if params[:type] == 'Newsletters subscribers'

@@ -7,7 +7,10 @@
 
   <div class="banner-left">
       <% if @grape && @grape.image %>
-      <%= image_tag(image_url('recipe', @grape.image, :jpg),:alt=>@grape.name, :height=> "300px") %>
+
+     <div style="height:300px;width:300px;overflow:hidden;">
+      <%= image_tag(@grape.image.image_filename,:alt=>@grape.name, :height=> "300px") %>
+     </div>
       <% else %>
       <%= image_tag("grape_default.png",:alt=>@grape.name, :height=> "300px") %>
       <% end %>

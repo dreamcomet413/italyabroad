@@ -19,7 +19,7 @@ class Site::CartController < ApplicationController
           if product.quantity.to_i - quantity.to_i < @setting.reorder_quantity.to_i
             # Commented by Sujith since UserName and Password of SMTP is not correct now
            # logger.info " product.quantity.to_i - quantity.to_i < @setting.reorder_quantity.to_i => #{product.quantity.to_i} - #{quantity.to_i} < #{@setting.reorder_quantity.to_i}"
-            Notifier.deliver_reorder_quantity_notification(product,AppConfig.admin_email)
+           # Notifier.deliver_reorder_quantity_notification(product,AppConfig.admin_email)
           end
 
       status = "#{product.name.gsub("'", "\\'")} correctly added to your cart."
