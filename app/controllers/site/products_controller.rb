@@ -10,7 +10,10 @@ class Site::ProductsController < ApplicationController
   def show
 
     @product = Product.find(params[:id]) || Product.find_by_id(params[:id])
-
+    if !@product.active
+      flash[:alert]  = 'The Product is not available now'
+      redirect_to root_url
+    end
 
     unless @product
       render :file => File.join(RAILS_ROOT, 'public', '404.html'), :status => 404
