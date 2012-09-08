@@ -4,13 +4,13 @@ class Admin::CustomersController < ApplicationController
 
   def index
     if params[:search] and !params[:field_text].blank?
-    @users = User.paginate(:conditions=>"(#{params[:field_text]} LIKE '%#{params[:search_text]}%') AND type_id = '#{params[:user_type]}'",:page => params[:page], :per_page => 20,:order=>'id desc')
+    @users = User.paginate(:conditions=>"(#{params[:field_text]} LIKE '%#{params[:search_text]}%') AND type_id = '#{params[:user_type]}'",:page => params[:page], :per_page => 20,:order=>'dob asc')
     elsif params[:search] and params[:field_text].blank?
-    @users = User.paginate(:conditions=>"(name LIKE '%#{params[:search_text]}%' OR login LIKE '%#{params[:search_text]}%' OR surname LIKE '%#{params[:search_text]}%')AND type_id = '#{params[:user_type]}'",:page => params[:page], :per_page => 20,:order=>'id desc')
+    @users = User.paginate(:conditions=>"(name LIKE '%#{params[:search_text]}%' OR login LIKE '%#{params[:search_text]}%' OR surname LIKE '%#{params[:search_text]}%')AND type_id = '#{params[:user_type]}'",:page => params[:page], :per_page => 20,:order=>'dob asc')
     elsif params[:search] and !params[:user_type].blank?
-       @users = User.paginate(:conditions=>['type_id =?',"#{params[:user_type]}"],:page => params[:page], :per_page => 20,:order=>'id desc')
+       @users = User.paginate(:conditions=>['type_id =?',"#{params[:user_type]}"],:page => params[:page], :per_page => 20,:order=>'dob asc')
      else
-      @users = User.regulars.paginate(:page => params[:page], :per_page => 20,:order=>'id desc')
+      @users = User.regulars.paginate(:page => params[:page], :per_page => 20,:order=>'dob asc')
     end
   end
 
@@ -50,13 +50,13 @@ class Admin::CustomersController < ApplicationController
 
   def print_user_details
      if params[:search] and !params[:field_text].blank?
-    @users = User.find(:all,:conditions=>"(#{params[:field_text]} LIKE '%#{params[:search_text]}%') AND type_id = '#{params[:user_type]}'",:order=>'dob desc')
+    @users = User.find(:all,:conditions=>"(#{params[:field_text]} LIKE '%#{params[:search_text]}%') AND type_id = '#{params[:user_type]}'",:order=>'dob asc')
     elsif params[:search] and params[:field_text].blank?
-    @users = User.find(:all,:conditions=>"(name LIKE '%#{params[:search_text]}%' OR login LIKE '%#{params[:search_text]}%' OR surname LIKE '%#{params[:search_text]}%')AND type_id = '#{params[:user_type]}'",:order=>'dob desc')
+    @users = User.find(:all,:conditions=>"(name LIKE '%#{params[:search_text]}%' OR login LIKE '%#{params[:search_text]}%' OR surname LIKE '%#{params[:search_text]}%')AND type_id = '#{params[:user_type]}'",:order=>'dob asc')
     elsif params[:search] and !params[:user_type].blank?
-       @users = User.find(:all,:conditions=>['type_id =?',"#{params[:user_type]}"],:order=>'dob desc')
+       @users = User.find(:all,:conditions=>['type_id =?',"#{params[:user_type]}"],:order=>'dob asc')
      else
-      @users = User.find(:all,:conditions => ['type_id = ? or type_id = ? or type_id = ?', 2,4,3],:order=>'dob desc')
+      @users = User.find(:all,:conditions => ['type_id = ? or type_id = ? or type_id = ?', 2,4,3],:order=>'dob asc')
     end
     render :layout => "print"
   end
