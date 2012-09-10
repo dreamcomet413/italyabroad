@@ -23,17 +23,19 @@
       <%= link_to "New Customer", new_admin_customer_path %></td>
     </tr>
   </table>
-  <table id="user-list" class="list sortable">
+  <table id="user-list" class="list sortable" width="100%">
     <thead>
       <tr>
         <th class="sortfirstdec">ID</th>
         <th>Login</th>
         <th>Name</th>
         <th>Surname</th>
-        <th>Dob</th>
+        <th  class="nosort">Dob</th>
+        <th><%= image_tag 'sort.png' %></th>
         <th>Know Through</th>
         <th>Active</th>
-        <th>Created at</th>
+        <th class="nosort">Created at</th>
+        <th><%= image_tag 'sort.png' %></th>
         <th class="nosort"></th>
       </tr>
     </thead>
@@ -46,14 +48,16 @@
     <tbody>
       <%- @users.each do |user| -%>
       <tr>
-        <td><%= user.id %></td>
+        <td ><%= user.id %></td>
         <td><%= user.login %></td>
         <td><%= user.name %></td>
         <td><%= user.surname %></td>
         <td><%= user.dob.strftime("%d/%m/%y") unless user.dob.nil? %></td>
+        <td><%= user.dob unless user.dob.nil? %></td>
         <td><%= user.know_through %></td>
         <td><%= user.active %></td>
         <td><%= user.created_at.strftime("%d/%m/%y") unless user.created_at.nil? %></td>
+        <td><%= user.created_at unless user.created_at.nil? %></td>
         <td>
           <%= link_to "Edit", edit_admin_customer_path(user) %> |
           <%= link_to "Delete", admin_customer_path(user), :method => "delete", :confirm => "Are you sure want to delete this account?" %>
