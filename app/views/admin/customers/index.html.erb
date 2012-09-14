@@ -30,12 +30,12 @@
         <th>Login</th>
         <th>Name</th>
         <th>Surname</th>
-        <th  class="nosort">Dob</th>
-        <th><%= image_tag 'sort.png' %></th>
+        <th class="date-eu">Dob</th>
+
         <th>Know Through</th>
         <th>Active</th>
-        <th class="nosort">Created at</th>
-        <th><%= image_tag 'sort.png' %></th>
+        <th class="date-eu">Created at</th>
+
         <th class="nosort"></th>
       </tr>
     </thead>
@@ -52,12 +52,12 @@
         <td><%= user.login %></td>
         <td><%= user.name %></td>
         <td><%= user.surname %></td>
-        <td><%= user.dob.strftime("%d/%m/%y") unless user.dob.nil? %></td>
-        <td><%= user.dob unless user.dob.nil? %></td>
+        <td><%= user.dob.strftime("%d-%m-%Y") unless user.dob.nil? %></td>
+
         <td><%= user.know_through %></td>
         <td><%= user.active %></td>
-        <td><%= user.created_at.strftime("%d/%m/%y") unless user.created_at.nil? %></td>
-        <td><%= user.created_at unless user.created_at.nil? %></td>
+        <td><%= user.created_at.strftime("%d-%m-%Y") unless user.created_at.nil? %></td>
+
         <td>
           <%= link_to "Edit", edit_admin_customer_path(user) %> |
           <%= link_to "Delete", admin_customer_path(user), :method => "delete", :confirm => "Are you sure want to delete this account?" %>

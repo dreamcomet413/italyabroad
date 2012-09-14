@@ -16,8 +16,6 @@
     <meta name="verify-v1" content="4MIDVULSRTLwLBnaUwWYWG+BeU+y0EpGRk33kFSVSYo=" />
     <meta name="msvalidate.01" content="18C4C4F5FBD1413AA93AEAD1738CD7F5" />
     <meta name="blogcatalog" content="9BC8939820" />
-    <meta http-equiv="X-UA-Compatible" content="IE=100" />
-
     <%= stylesheet_link_tag "site", "menu", "lightbox", :cache => false %>
     <%= javascript_include_tag :defaults, "dialog", "slide", "lightbox", :cache => true %>
     <!--[if gte IE 5.5]>
@@ -59,7 +57,6 @@ window.onload = startBlink;
   <!-- Javascript Blink End-->
 
 
-
   </head>
   <body <%= @paypal_redirect %> <%= "id='#{@page_id}'" if @page_id %> class="<%= @current_controller %><%= " #{@class}" if @class %>" <%= "onload='#{@onload}'" if @onload %>>
     <div id="content">
@@ -79,7 +76,9 @@ window.onload = startBlink;
             <%# support_link = "Closed" -%>
             <%    @support_user = Setting.find(:first).support
                    #@support_status = Juggernaut.show_client(@support_user) ? true : false
-                   @support_status = (Juggernaut.show_client(@support_user) and @setting.chat_available == true) ? true : false
+                #   @support_status = (Juggernaut.show_client(@support_user) and @setting.chat_available == true) ? true : false
+                 @support_status = (@setting.chat_available == true) ? true : false
+              #  @support_status = false
                    if @support_status == true
                       support_link = "available"
                       image_name="live_chat_available.png"
@@ -102,8 +101,7 @@ window.onload = startBlink;
             <% end %>
           </div>
           <br /><div style="clear: both;"></div>
-          <!-- div style="margin-right:170px;text-align:right;" -->
-          <div style="position:absolute;left:450px;top:80px;">
+          <div style="margin-right:170px;text-align:right;">
 
             <% if logged_in? %>
 
@@ -122,41 +120,23 @@ window.onload = startBlink;
             <%- form_tag search_index_path, :method => :get do -%>
               <table>
                 <tr>
-                  <td><!--span style="font-size:18px;">&nbsp;&nbsp;&nbsp;&nbsp;Search:></span-->
+                 <% if params[:text]
+                search_text = params["text"]
+                else
+                search_text = 'Search ....'
 
-                  <div id="textbox-wrapper">
-                        <% if params[:text].blank? %>
+                end %>
+                  <td>Search: <%= text_field_tag :text, search_text,:onclick=>"
+                  if (document.getElementById('text').value == 'Search ....')
+                  {
+                  document.getElementById('text').value = '' ;
 
-                        <%= text_field_tag :text, params[:text], :style=>"", :onclick => "if(document.getElementById('text').value == 'Search Italyabroad.com'){ document.getElementById('text').value='';}", :value => "Search Italyabroad.com" %>
-
-                       <% else%>
-                        <%= text_field_tag :text, params[:text], :style=>"", :onclick => "if(document.getElementById('text').value == 'Search Italyabroad.com'){ document.getElementById('text').value='';}" %>
-
-                       <% end%>
-                  </div><!-- div class="text-box-wrapper" -->
-
-                  </td>
-
-
-
+                  }",:style=>"width:250px" %></td>
                   <td>
-                    <!--div id="dropdown_wrapper"-->
-                    <%#= select_tag :id, options_for_select([['All Site','all'], ['Food', 'food'], ['Recipe', 'recipe'],['Hampers','hampers'], ['People', 'people'],['Chef', 'chef'], ['Wine', 'wine'] ], (params[:id] || params[:category])), :style => "border:none;" %>
-                    <%#= select_tag :id, options_for_select([['All Site','all'], ['Food', 'food'], ['Recipe', 'recipe'],['Hampers','hampers'], ['People', 'people'],['Chef', 'chef'], ['Wine', 'wine'] ], (params[:id] || params[:category])), :style => "height:2.85em;padding: 7px 0px 7px 0px;" %><!-- /td  REMOVE THIS- -->
-
-                    <!--/div --><!-- div id="dropdown_wrapper" -->
-                  <!-- /td  REMOVE THIS- -->
-
-                    <div id="dropdown_wrapper">
-                    <%#= select_tag :id, options_for_select([['All Site','all'], ['Food', 'food'], ['Recipe', 'recipe'],['Hampers','hampers'], ['People', 'people'],['Chef', 'chef'], ['Wine', 'wine'], ['Grape', 'grape'] ], (params[:id] || params[:category])), :style => "border:none;" %> <!-- INCLUDE THIS IF GRAPES REQUIRED IN DROPDOWN-->
-                    <%= select_tag :id, options_for_select([['All Site','all'], ['Food', 'food'], ['Recipe', 'recipe'],['Hampers','hampers'], ['People', 'people'],['Chef', 'chef'], ['Wine', 'wine']], (params[:id] || params[:category])), :style => "border:none;" %>
-                    <%#= select_tag :id, options_for_select([['All Site','all'], ['Food', 'food'], ['Recipe', 'recipe'],['Hampers','hampers'], ['People', 'people'],['Chef', 'chef'], ['Wine', 'wine'] ], (params[:id] || params[:category])), :style => "height:2.85em;"%>
-
-                    </div><!-- div id="dropdown_wrapper" -->
+                    <%= select_tag :id, options_for_select([['Wine', 'wine'], ['Food', 'food'], ['Recipe', 'recipe'],['Hampers','hampers'], ['People', 'people'],['Chef', 'chef'],['All Site','all']], (params[:id] || params[:category])) %>
                   </td>
-
                   <td>
-                    <%= image_submit_tag("searchButton.png", :name => nil, :alt => "search") %>
+                    <%= image_submit_tag("searchButton.gif", :name => nil, :alt => "search") %>
 
 
                   </td>
