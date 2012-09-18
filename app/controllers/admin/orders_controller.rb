@@ -153,5 +153,12 @@ end
     end.render
   end
 
+
+def cancel_delivery_charge
+  @order = Order.find(params[:id])
+  @order.update_attribute(:delivery_name,"")
+  @order.update_attribute(:delivery_price,0)
+  redirect_to admin_orders_path
+end
 end
 

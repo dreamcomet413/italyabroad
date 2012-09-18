@@ -34,8 +34,8 @@
 
         <th>Know Through</th>
         <th>Active</th>
-        <th class="date-eu">Created at</th>
-
+        <th class="nosort"><div style="width:25px;">Created-at</div></th>
+        <th><div style="width:5px;"><%= image_tag "sort.png"%></div></th>
         <th class="nosort"></th>
       </tr>
     </thead>
@@ -56,8 +56,8 @@
 
         <td><%= user.know_through %></td>
         <td><%= user.active %></td>
-        <td><%= user.created_at.strftime("%d-%m-%Y") unless user.created_at.nil? %></td>
-
+        <td><div style="width:25px;"><%= user.created_at.strftime("%d-%m-%Y")%></div></td>
+        <td><div style="width:5px;display:none;"><%= user.created_at%></div></td>
         <td>
           <%= link_to "Edit", edit_admin_customer_path(user) %> |
           <%= link_to "Delete", admin_customer_path(user), :method => "delete", :confirm => "Are you sure want to delete this account?" %>

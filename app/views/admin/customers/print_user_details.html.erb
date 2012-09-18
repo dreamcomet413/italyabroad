@@ -6,10 +6,10 @@
       <tr>
 
         <th>Email</th>
-        <th width="15%">Name</th>
-        <th width="15%">Surname</th>
-        <th width="25%">Know Through</th>
-        <th width="25%">DOB</th>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Know Through</th>
+        <th>DOB</th>
       </tr>
     </thead>
 
@@ -17,12 +17,13 @@
       <%- @users.each do |user| -%>
       <tr>
 
-        <td><%= user.email %></td>
-        <td><%= user.name %></td>
-        <td><%= user.surname %></td>
-         <td><%= user.know_through %></td>
-        <td><%= user.dob.strftime("%d/%m/%y") unless user.dob.nil? %></td>
+        <td><div style="width:300px;"><%= user.email %></div></td>
+        <td><div style="width:200px;"><%= user.name %></div></td>
+        <td><div style="width:200px;"><%= user.surname %></div></td>
+        <td><div style="width:350px;"><%= user.know_through %></div></td>
+        <td><div style="width:300px;"><%= user.dob.strftime("%d/%m/%y") unless user.dob.nil? %></div></td>
       </tr>
       <%- end -%>
     </tbody>
   </table>
+
