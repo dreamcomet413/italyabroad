@@ -72,9 +72,9 @@
 				<td colspan="7" style="text-align:right">
 					<table id="table" border="0" cellpadding="0" cellspacing="0" style="margin-top:20px;float:right;text-align:right;border-top:1px solid black">
 						<tr><td style="text-align:right">Sub Total:</td><td style="width:120px"><%= number_to_currency(@order.sub_total) %></td></tr>
-						<% if @order.sub_total < Setting.order_delivery_amount %>
+						<%# if @order.sub_total < Setting.order_delivery_amount %>
 						<tr><td style="text-align:right"><%= @order.delivery_name %>:</td><td><%= number_to_currency @order.delivery_price %></td></tr>
-						<% end %>
+						<%# end %>
 						<% unless @order.cupon_code.blank? %>
 						<tr><td style="text-align:right">Coupon:</td><td style="color:red">- <%= number_to_currency @order.cupon_price %></em></td></tr>
 						<% end %>

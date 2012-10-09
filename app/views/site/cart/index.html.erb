@@ -87,7 +87,7 @@
      %>
 
 
-   
+
 
       <tr>
         <td colspan="6" align="right"><%= image_submit_tag "buttons/update_button.png" %></td>
@@ -147,7 +147,8 @@
           <% if cart_contains_not_only_events %>
             <tr>
               <td colspan="6">
-                <em>Your order qualifies for free delivery *</em><%= hidden_field :delivery, :id, :value => Delivery.find(:first).id %>
+                <em>Your order qualifies for free delivery *</em><br /><%#= hidden_field :delivery, :id, :value => Delivery.find(:first).id %>
+                 <div align="right">Select delivery method: <%= collection_select :delivery, :id, Delivery.find(:all,:conditions=>['name != ?','For ticket events']), :id, :name_with_price %></div
               </td>
             </tr>
            <% end %>
@@ -155,7 +156,7 @@
           <% if cart_contains_not_only_events  %>
             <tr>
               <td colspan="6" align="right">
-                  Select delivery method: <%= collection_select :delivery, :id, Delivery.find(:all,:conditions=>['name != ?','For ticket events']), :id, :name_with_price %>
+                  Select delivery method: <%= collection_select :delivery, :id, Delivery.find(:all,:conditions=>['name != ? and price != ?','For ticket events',0]), :id, :name_with_price %>
               </td>
             </tr>
           <% end %>

@@ -182,9 +182,10 @@ class Cart
 
 
 
-    if total > Setting.find(:first).order_delivery_amount and @delivery.bulk_order_price == 0
-      @delivery.price = 0
-  elsif cart_contains_not_only_events
+  #  if total > Setting.find(:first).order_delivery_amount and @delivery.bulk_order_price == 0
+   #   @delivery.price = 0
+#  els
+  if cart_contains_not_only_events
       @delivery = Delivery.find(self.delivery.id)
       total += @delivery.price
     else

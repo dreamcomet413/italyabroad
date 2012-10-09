@@ -45,8 +45,9 @@
 	<% end %>
 
 	<%- unless @cart.items.blank? -%>
-  <% if @cart.delivery.bulk_order_price == 0 and cart_item.total > Setting.find(:first).order_delivery_amount %>
-  <% else %>
+	<!-- Removed the following condition according to his need to add free delivery with charge = 0 mailed dtd 9 oct 2012 -->
+  <%# if @cart.delivery.bulk_order_price == 0 and cart_item.total > Setting.find(:first).order_delivery_amount %>
+  <%# else %>
 	        <tr>
 	          <td>&nbsp;</td>
 	          <td><%= @cart.delivery.name %></td>
@@ -54,7 +55,7 @@
 	        </tr>
 
 
-  <% end %>
+  <%# end %>
 	<%- end -%>
 	<tr>
     <td colspan="5" align="right">

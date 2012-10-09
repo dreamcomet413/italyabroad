@@ -46,7 +46,7 @@
           if index == 0
             food += "<tr>"
           end
-          food += "<td valign='top' class='product_cell' >#{link_to show_image_tag(product.layout_image, product.image_1, :jpg,product.name), nested_products_uri(product)} <br /> <br /> #{link_to product.name, nested_products_uri(product)}</td>"
+          food += "<td  class='product_cell' >  <div style='width:100px;height:75px;overflow:hidden;margin:0px;padding:0px;'>#{link_to show_image_tag(product.layout_image, product.image_1, :jpg,product.name), nested_products_uri(product)} </div><br /> #{link_to product.name, nested_products_uri(product)}</td>"
           index = index + 1
           if index == 4
             food += "</tr>"
@@ -75,7 +75,7 @@
 
   <% unless food == "" %>
     <% final_food = "<table>#{food}</table>" %>
-    <%=  "<h3 style=\"font-size:16px;color:#013300;border:none;\">Foods made from this producer</h3> #{final_food} "  -%>
+    <%=  "<h3 style=\"font-size:16px;color:#013300;border:none;\">Made from this producer</h3> #{final_food} "  -%>
     <%- end -%>
 
 

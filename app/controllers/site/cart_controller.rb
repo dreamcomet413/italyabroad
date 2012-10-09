@@ -58,7 +58,7 @@ class Site::CartController < ApplicationController
     @setting = Setting.find(:first)
    for cart_item in @cart.items
           #if cart_item.quantity < @setting.reorder_quantity
-          if (cart_item.product.quantity.to_i - cart_item.quantity.to_i) < @setting.reorder_quantity and product.active
+          if (cart_item.product.quantity.to_i - cart_item.quantity.to_i) < @setting.reorder_quantity and cart_item.product.active
             Notifier.deliver_reorder_quantity_notification(cart_item.product,AppConfig.admin_email)
           end
    end

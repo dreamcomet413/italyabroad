@@ -82,8 +82,8 @@
 				<tr>
 				<td style="width:150px;height:20px">Delivery Method</td>
 				<td style="width:200px;">
-				<% if @order.sub_total > 100  %>
-				 <%= "* Free Delivery" %>
+				<% if @order.sub_total > Setting.find(:first).order_delivery_amount  %>
+				 <%= "* Free Delivery (#{@order.delivery_name})" %>
 				<% else %>
 				  <%= @order.delivery_name%>
 				<% end %>
