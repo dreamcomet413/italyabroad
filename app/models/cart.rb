@@ -4,7 +4,7 @@ class Cart
 
   def initialize
     @items = []
-    @delivery = Delivery.find(:first)
+   @delivery = Delivery.find(:first)
    # @gift = GiftItem.new
   end
 

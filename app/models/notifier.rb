@@ -172,6 +172,15 @@ class Notifier < ActionMailer::Base
     body    :product=>product
   end
 
+  #send mail to users who do not complete purchase
+  def product_information(user,admin_email)
+    recipients "#{user.email}"
+    from "info@italyabroad.com"
+    subject  ""
+    body    :user=>user
+    content_type "text/html"
+  end
+
   def faq_notification(faq,user)
     recipients  AppConfig.admin_email
     from        "info@italyabroad.com"

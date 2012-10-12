@@ -15,6 +15,15 @@ class Site::CartController < ApplicationController
 
     created = @cart.create(product,quantity)
     if created
+      if @cart.sub_total > Setting.order_delivery_amount
+        @delivery = Delivery.find(11)
+        @cart.delivery  = @delivery
+      end
+
+          if logged_in?
+            IncompletePurchase.find_or_create_by_email(current_user.email)
+
+          end
          @setting = Setting.find(:first)
           if (product.quantity.to_i - quantity.to_i) < @setting.reorder_quantity.to_i and product.active
             # Commented by Sujith since UserName and Password of SMTP is not correct now
@@ -72,6 +81,11 @@ class Site::CartController < ApplicationController
 
   def empty
     session[:cart] = nil
+    @purchase = IncompletePurchase.find_by_email(current_user.email)
+    if logged_in? and !@purchase.nil?
+      Notifier.deliver_product_information(current_user,AppConfig.admin_email)
+      @purchase.destroy
+    end
     redirect_to :action => :index
   end
 
@@ -81,6 +95,11 @@ class Site::CartController < ApplicationController
 
   def destroy
     @cart.destroy(product_id)
+    @purchase = IncompletePurchase.find_by_email(current_user.email)
+    if logged_in? and !@purchase.nil?
+      Notifier.deliver_product_information(current_user,AppConfig.admin_email)
+      @purchase.destroy
+    end
     redirect_to :action => :index
   end
 
@@ -92,6 +111,9 @@ class Site::CartController < ApplicationController
     end
     if !logged_in? and @cart.sub_total > 10
       redirect_to login_path
+    end
+    if logged_in?
+      IncompletePurchase.find_or_create_by_email(current_user.email)
     end
   end
 

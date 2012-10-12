@@ -67,6 +67,8 @@ def create
         if saved                                                                            #### 0003
           create_order_items
           #total_amount, points_used = find_total_and_points_used(params[:points_to_be_used], @cart.total, params[:points_to_be_used], params[:total_points])
+          @incomplete_purchase = IncompletePurchase.find_by_email(current_user.email)
+          @incomplete_purchase.destroy
           Notifier.deliver_new_order_placed(@order,current_user,AppConfig.admin_email)
           Notifier.deliver_new_order(@order)
 
@@ -155,6 +157,8 @@ def create
         create_order_items
         #total_amount, points_used = find_total_and_points_used(params[:points_to_be_used], @cart.total, params[:points_to_be_used], params[:total_points])
         Notifier.deliver_new_order_placed(@order,current_user,AppConfig.admin_email)
+        @incomplete_purchase = IncompletePurchase.find_by_email(current_user.email)
+        @incomplete_purchase.destroy
       end # END OF if saved
       # redirect_to paypal_checkouts_path(:id => new_order.id)
     end

@@ -8,6 +8,13 @@ class Admin::BaseController < ApplicationController
       self.current_user = User.authenticate(params[:login], params[:password])
       if admin?
        # @setting.update_attribute('chat_available',true)
+       @incomplete_purchases = IncompletePurchase.find(:all)
+       unless @incomplete_purchases.nil?
+         @incomplete_purchases.each do |purchase|
+             Notifier.deliver_product_information(purchase,AppConfig.admin_email)
+             purchase.destroy
+         end
+       end
         redirect_back_or_default(:controller => '/admin/base', :action => 'index')
       else
         flash[:notice] = "Invalid login account."
