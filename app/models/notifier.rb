@@ -176,7 +176,7 @@ class Notifier < ActionMailer::Base
   def product_information(user,admin_email)
     recipients "#{user.email}"
     from "info@italyabroad.com"
-    subject  ""
+    subject  "Hi from Italyabroad"
     body    :user=>user
     content_type "text/html"
   end

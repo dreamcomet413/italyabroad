@@ -148,7 +148,10 @@
 
             <tr>
               <td colspan="6">
-                <em>Your order qualifies for free delivery *</em><br /><%#= hidden_field :delivery, :id, :value => Delivery.find(:first).id %>
+               <!-- <em>Your order qualifies for free delivery *
+
+
+                </em>--><br /><%#= hidden_field :delivery, :id, :value => Delivery.find(:first).id %>
                  <div align="right">Select delivery method: <%= collection_select :delivery, :id, Delivery.find(:all,:conditions=>['name != ?','For ticket events']), :id, :name_with_price %></div
               </td>
             </tr>

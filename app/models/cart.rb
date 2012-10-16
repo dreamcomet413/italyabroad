@@ -60,7 +60,9 @@ class Cart
       end
     end
 
+
     @delivery = Delivery.find_by_id(delivery_id)
+
     #if delivery_charge == false and [4,7,10].include?(delivery_id)
     if total_amount > Setting.find(:first).order_delivery_amount and Delivery.find_by_id(delivery_id).bulk_order_price == 0
       @delivery.price = 0

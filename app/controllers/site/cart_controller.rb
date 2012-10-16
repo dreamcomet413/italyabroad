@@ -15,9 +15,11 @@ class Site::CartController < ApplicationController
 
     created = @cart.create(product,quantity)
     if created
-      if @cart.sub_total > Setting.order_delivery_amount
+      session[:free_delivery] = false
+      if @cart.sub_total > Setting.order_delivery_amount and session[:free_delivery] == false
         @delivery = Delivery.find(11)
         @cart.delivery  = @delivery
+        session[:free_delivery] = true
       end
 
           if logged_in?
@@ -55,7 +57,35 @@ class Site::CartController < ApplicationController
 
   def update
 
-    if @cart.update(params[:cart], params[:cupon][:code], params[:delivery][:id])
+     if @cart.update(params[:cart], params[:cupon][:code],params[:delivery][:id] )
+        if @cart.sub_total > Setting.order_delivery_amount and session[:free_delivery] == false
+
+        @delivery = Delivery.find(11)
+        delivery_id = @delivery
+        session[:free_delivery] = true
+
+        @cart.delivery = @delivery
+
+      elsif @cart.sub_total < Setting.order_delivery_amount and session[:free_delivery] == true
+        @delivery = Delivery.find(params[:delivery][:id])
+        if @delivery.id == 11
+        @delivery = Delivery.find(:first)
+        end
+        delivery_id = @delivery
+        session[:free_delivery] = false
+        @cart.delivery = @delivery
+
+      else
+        logger.info "testing"
+        delivery_id = params[:delivery][:id]
+        @delivery = Delivery.find(delivery_id)
+         @cart.delivery  = @delivery
+
+      end
+
+
+    @cart.update(params[:cart], params[:cupon][:code],delivery_id )
+
 
       flash[:notice] = @cart.show_warnings
     else
@@ -76,15 +106,18 @@ class Site::CartController < ApplicationController
         flash[:notice] = "The promotional code is not valid,please enter a valid one."
       end
   end
-    redirect_to :action => :index
+    redirect_to :controller=>'cart',:action => :index
   end
 
   def empty
     session[:cart] = nil
-    @purchase = IncompletePurchase.find_by_email(current_user.email)
-    if logged_in? and !@purchase.nil?
-      Notifier.deliver_product_information(current_user,AppConfig.admin_email)
-      @purchase.destroy
+    session[:free_delivery] = false
+    if logged_in?
+      @purchase = IncompletePurchase.find_by_email(current_user.email)
+      unless @purchase.nil?
+        Notifier.deliver_product_information(current_user,AppConfig.admin_email)
+        @purchase.destroy
+     end
     end
     redirect_to :action => :index
   end
@@ -95,17 +128,21 @@ class Site::CartController < ApplicationController
 
   def destroy
     @cart.destroy(product_id)
+
+    if logged_in?
+
     @purchase = IncompletePurchase.find_by_email(current_user.email)
-    if logged_in? and !@purchase.nil?
+    unless @purchase.nil?
       Notifier.deliver_product_information(current_user,AppConfig.admin_email)
       @purchase.destroy
+    end
     end
     redirect_to :action => :index
   end
 
   def gift_options
     session[:return_to] = '/site/cart/gift_options'
-    if @cart.sub_total < 10
+   if @cart.sub_total < 10
       flash[:notice] = "Sorry, but there is a miminum order of £#{@setting.order_amount}"
       redirect_to :controller=>'cart',:action=>'index'
     end

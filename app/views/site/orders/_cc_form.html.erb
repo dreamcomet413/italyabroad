@@ -4,7 +4,7 @@
 <table border="0" cellspacing="2" cellpadding="2">
 	<tr>
 	  <td style="text-align:right">Card Type:</td>
-	  <td><%= select :credit_card, :type, [["Visa", "visa"], ["Visa Debit", "delta"], ["Visa Electron", "electron"], ["Mastercard", "master"], ["Solo", "solo"], ["Switch / Maestro", "maestro"]] %></td>
+	  <td><%#= select :credit_card, :type, [["Visa", "visa"], ["Visa Debit", "delta"], ["Visa Electron", "electron"], ["Mastercard", "master"], ["Solo", "solo"], ["Switch / Maestro", "maestro"]] %><%= select :credit_card, :type, [["Visa", "visa"], ["Visa Debit", "visa"], ["Visa Electron", "visa"], ["Mastercard", "master"], ["Solo", "solo"], ["Switch / Maestro", "maestro"]] %></td>
   </tr>
 	<tr>
 	  <td style="text-align:right">First Name:</td>
