@@ -1,11 +1,13 @@
 class Site::ShipAddressesController < ApplicationController
   before_filter :site_login_required
-  
+
   def new
+
     address_id = params[:ship_address_id].to_i
     if address_id == -1
       @ship_address = current_user.ship_addresses.new
       @ship_address.is_new = true
+
     elsif address_id > 0
       @ship_address = current_user.ship_addresses.find(address_id)
       @ship_address.is_new = false
@@ -33,6 +35,8 @@ class Site::ShipAddressesController < ApplicationController
     end
 
     respond_to do |format|
+      session[:ship_address] = @ship_address
+      @ship_address.is_new = true
       format.html { redirect_to checkouts_path }
     end
   end

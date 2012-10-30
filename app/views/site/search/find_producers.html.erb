@@ -5,7 +5,12 @@
       <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 0 0px; margin-left:15px;margin-right:15px;padding:0 0 0 0px; padding-left:15px;padding-right:15px;">
         <tr>
           <td width="98px;">
-          <%= link_to show_producer_image(producer), producer_path(producer) %>
+          <%#= link_to show_producer_image(producer), producer_path(producer) %>
+          <% if producer.image %>
+            <%=  image_tag(image_url(:community_producer_thumb, producer.image, :jpg),:alt=>producer.name) %>
+          <% else %>
+            <%= image_tag("default.jpg",:width => "150",:alt=>producer.name) %>
+          <% end %>
           </td>
           <td valign="top">
             <table cellspacing="5">

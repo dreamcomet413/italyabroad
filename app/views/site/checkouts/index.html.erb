@@ -12,9 +12,13 @@
     <table cellpadding="5" cellspacing="0" border="0">
       <tr>
         <td>To use a different address please select here:</td>
+
+
         <td><%= select :ship_address, :id, options_for_shipping_addresses(current_user) %></td>
+
         <td>
           <%= observe_field :ship_address_id,
+                            :frequency =>1,
                             :update => :ship_address,
                             :method => :get,
                             :loading => "$('loader').show()",

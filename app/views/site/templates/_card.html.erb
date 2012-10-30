@@ -236,8 +236,8 @@
 <% end %>
 <div id="wineReview">
   <br />
-  <h3>Reviews <%= link_to("(Add Review)", login_path, :style => "font-size:12px;") unless logged_in?  %>
-   <%- if logged_in? -%><%= link_to 'Add Review',"#", :style => "font-size:12px;",:onclick=>"document.getElementById('add_review').style.display='block';return false;" %>
+  <h3 id="hide_this">Reviews <%= link_to("(Add Review)", login_path, :style => "font-size:12px;") unless logged_in?  %>
+   <%- if logged_in? -%><%= link_to 'Add Review',"#", :style => "font-size:12px;",:onclick=>"document.getElementById('add_review').style.display='block';document.getElementById('hide_this').style.display='none';document.getElementById('no_review').style.display='none';return false;" %></h3>
     <div id="add_review" style="display:none;"><h3><%=  'Leave your review' %>  </h3>
     <%= render(:partial => 'site/reviews/new', :locals => {:create_url => product_reviews_path(@product, :return_to => nested_products_uri(@product))}) %>
   </div><%- end -%></h3>

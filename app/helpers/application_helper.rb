@@ -39,6 +39,8 @@ module ApplicationHelper
     options << ["[Create a new address]", -1]
   end
 
+  
+
   def title
     return  @title + " - Italyabroad.com" unless @title.blank?
     return "Discover the finest Italian food and wine made by small producers at Italyabroad.com"

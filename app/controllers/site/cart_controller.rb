@@ -76,7 +76,6 @@ class Site::CartController < ApplicationController
         @cart.delivery = @delivery
 
       else
-        logger.info "testing"
         delivery_id = params[:delivery][:id]
         @delivery = Delivery.find(delivery_id)
          @cart.delivery  = @delivery
