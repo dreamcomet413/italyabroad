@@ -5,16 +5,27 @@
 <div style="margin:10px 20px;"><br />
 		<div>Create a fantastic hamper or the perfect gift by simply choosing from the gift options below and don’t forget to write the message for the card.</div>
 		<table border="0" cellspacing="5" cellpadding="5" style="font-size:12px;margin-top:15px" >
-      <% checked =  "" %>
+     <% index = 0 %>
 			<% for gift_option in GiftOption.find(:all) %>
+
 			<% unless @cart.gift[:gift_option_id].blank?
 			  if @cart.gift[:gift_option_id].to_i == gift_option.id.to_i
+			  checked =  true
         else
         checked =  ""
 			end end %>
-			<%= checked %>
 			<tr>
-				<td><%= radio_button :gift, :gift_option_id, gift_option.id,:checked=>checked %></td>
+				<td>
+				<% if  @cart.gift[:gift_option_id].blank? and index == 0
+          checked =  true
+          index = index + 1
+        end %>
+
+				<%= radio_button :gift, :gift_option_id, gift_option.id,:checked=>checked %>
+				<% if  @cart.gift[:gift_option_id].blank? and index > 0
+				  checked =  ""
+				 end %>
+				</td>
 				<td>
 					<div style="font-size:11px;font-weight:bold">
 						<%= gift_option.name %>

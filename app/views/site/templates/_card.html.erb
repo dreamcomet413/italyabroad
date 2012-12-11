@@ -4,7 +4,10 @@
 @breadcrumbs += " &raquo; #{@product.name[0..25]+ '...'}"
 %>
 <%#= params[:category] %>
-<div id="header"><%= @product.name %> <%= "(" + @product.size + ")" unless @product.size.blank? %></div>
+<div id="header"><%= @product.name %> <%= "(" + @product.size + ")" unless @product.size.blank? %>
+
+
+</div>
 <table class="product_info">
   <tr>
     <td class="image" style ="padding:0 10px 0 0">
@@ -187,7 +190,9 @@
   <ul style="margin-bottom: 25px;">
 
   <% for include in @includes %>
-    <% inc_product = Product.find(include.included_product_id) %>
+  <% inc_product = Product.find(:first,:conditions=>['id = ?',include.included_product_id])  %>
+    <% unless inc_product.nil? %>
+
   <li style="float:left;width:140px;text-align:center;margin:0 0 10px 0; height: 210px;">
     <table>
       <tr><td valign="bottom" style="height: 150px;"><%= link_to show_image_tag(inc_product.layout_image, inc_product.image_1, :jpg,inc_product.name), nested_products_uri(inc_product) %>
@@ -203,6 +208,7 @@
     </table>
   <%#= show_image_tag('product', image.image_1, :jpg) %>
   </li>
+  <% end %>
   <% end %>
 
   </ul>
@@ -238,9 +244,13 @@
   <br />
   <h3 id="hide_this">Reviews <%= link_to("(Add Review)", login_path, :style => "font-size:12px;") unless logged_in?  %>
    <%- if logged_in? -%><%= link_to 'Add Review',"#", :style => "font-size:12px;",:onclick=>"document.getElementById('add_review').style.display='block';document.getElementById('hide_this').style.display='none';document.getElementById('no_review').style.display='none';return false;" %></h3>
-    <div id="add_review" style="display:none;"><h3><%=  'Leave your review' %>  </h3>
+    <div id="add_review" style="display:none;"><h3><%=  'Leave your review' %>
+   </h3>
+
     <%= render(:partial => 'site/reviews/new', :locals => {:create_url => product_reviews_path(@product, :return_to => nested_products_uri(@product))}) %>
-  </div><%- end -%></h3>
+
+  <%- end -%></div></h3>
+
 
 
 
@@ -258,7 +268,8 @@
   <ul style="margin-bottom: 25px;">
 
   <% for include in @includes %>
-    <% inc_product = Product.find(include.included_product_id) %>
+    <% inc_product = Product.find(:first,:conditions=>['id = ?',include.included_product_id])  %>
+    <% unless inc_product.nil? %>
   <li style="float:left;width:140px;text-align:center;margin:0 0 10px 0; height: 210px;">
     <table>
       <tr><td valign="bottom" style="height: 150px;"><%= link_to show_image_tag(inc_product.layout_image, inc_product.image_1, :jpg,inc_product.name), nested_products_uri(inc_product) %>
@@ -274,6 +285,7 @@
     </table>
   <%#= show_image_tag('product', image.image_1, :jpg) %>
   </li>
+  <% end %>
   <% end %>
 
   </ul>

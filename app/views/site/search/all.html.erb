@@ -1,6 +1,6 @@
 <% @title = "Search #{params[:text]}"; %>
 <%- @breadcrumbs = "#{link_to "Home", root_url} &raquo; Search &raquo; All Site" -%>
-    <% if @users.blank? and  @producers.blank? and @wines.blank? and @recipes.blank? and @wine_events.blank? and @foods.blank? and @grapes.blank? %>
+    <% if @users.blank? and  @producers.blank? and @wines.blank? and @recipes.blank? and @wine_events.blank? and @foods.blank? and @grapes.blank? and @hampers.blank?%>
         <div id="header">Your search returned no results</div><br />
 
         <div class="search_result" >Sorry the search has not given any result, please check the spelling or <%= mail_to "info@italyabroad.com", "get in touch" %> and will find it for you.<br /><br /</div>
@@ -43,6 +43,17 @@
               <%#= link_to_remote @wines.count.to_s + 'Wines' , :url => { :action => "find_wines",:text=>params[:text]} %>
               <%= link_to @wines.count.to_s + '&nbsp;&nbsp; Wines' ,  :action => "find_wines",:text=>params[:text] %>
               <div id="all_wines"></div> <br /><br /><br />
+          </div>
+          <h3>&nbsp;</h3>
+          <% end %>
+
+          <% unless @hampers.blank? %>
+          <div style="margin:0 0 0 0px; padding-left:15px;">
+              <!--<div id="header">Your search has found the following wines:</div>-->
+              <h1>Hampers</h1>
+              <%#= link_to_remote @wines.count.to_s + 'Wines' , :url => { :action => "find_wines",:text=>params[:text]} %>
+              <%= link_to @hampers.count.to_s + '&nbsp;&nbsp; Hampers' ,  :action => "find_hampers",:text=>params[:text] %>
+              <div id="all_hampers"></div> <br /><br /><br />
           </div>
           <h3>&nbsp;</h3>
           <% end %>

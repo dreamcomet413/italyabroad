@@ -52,6 +52,8 @@ def index
     #  @wines = Product.find(:all, :include => [:categories, :grapes] ,:conditions => @search.conditions)
     @wines = Product.find(:all, :include => [:categories] ,:conditions => ['upper(categories.name) LIKE ? AND products.name LIKE ? AND products.active = ? AND quantity > ? ','WINE',"%#{params[:text]}%",true,0])
 
+    @hampers = Product.find(:all, :include => [:categories] ,:conditions => ['upper(categories.name) LIKE ? AND products.name LIKE ? AND products.active = ? AND quantity > ? ','HAMPERS',"%#{params[:text]}%",true,0])
+
 
     @foods = Product.find(:all, :include => [:categories] ,:conditions => ['upper(categories.name) LIKE ? AND products.name LIKE ? AND products.active = ? AND quantity > ? ','FOOD',"%#{params[:text]}%",true,0])
 
@@ -110,6 +112,12 @@ end
   @foods = Product.find(:all, :include => [:categories,:grapes] ,:conditions => ['upper(categories.name) LIKE ? AND products.name LIKE ? AND products.active = ? AND products.quantity > ?','FOOD',"%#{params[:text]}%",true,0]).paginate(:page => params[:page], :per_page => 10)
 
   end
+
+  def find_hampers
+  @hampers = Product.find(:all, :include => [:categories] ,:conditions => ['upper(categories.name) LIKE ? AND products.name LIKE ? AND products.active = ? AND products.quantity > ?','HAMPERS',"%#{params[:text]}%",true,0]).paginate(:page => params[:page], :per_page => 10)
+
+  end
+
   def find_recipes
   #  @recipes = Recipe.find(:all, :conditions => ['name LIKE ? AND active = ?',"%#{params[:text]}%",true]).paginate(:page => params[:page], :per_page => 10)
   @search = Search.new(params || Hash.new)

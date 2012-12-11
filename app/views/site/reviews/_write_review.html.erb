@@ -12,7 +12,7 @@
   </td>
   </tr>
   <tr><td colspan="2" align="center">
-    <%= submit_tag 'Submit' %>
+    <%= submit_tag 'Submit' ,:onclick=>"validate_review();"%>
   </td></tr>
   <input type="hidden" value="<%= product_id%>" name="product_id">
   <input type="hidden" value="<%= order_id%>" name="order_id">
