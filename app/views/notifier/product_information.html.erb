@@ -4,8 +4,12 @@
 <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
 </head>
 <body>
-
-Hi <%= User.find_by_email(@user.email).name %>,
+<% @us = User.find_by_email(@user.email)%>
+<% unless @us.nil? %>
+  Hi <%= User.find_by_email(@user.email).name %>,
+<% else %>
+Hi
+<% end %>
 <h3>Would you like us to sort your wine out for you?</h3>
 
 We noticed that you popped some wine in your basket, tried to check out and never quite made it. Oh dear!<br />

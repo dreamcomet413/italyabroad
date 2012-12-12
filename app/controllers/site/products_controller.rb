@@ -10,9 +10,11 @@ class Site::ProductsController < ApplicationController
   def show
 
     @product = Product.find(params[:id]) || Product.find_by_id(params[:id])
-    if !@product.active
-      flash[:alert]  = 'The Product is not available now'
-      redirect_to root_url
+    unless @product.nil?
+      if !@product.active
+        flash[:alert]  = 'The Product is not available now'
+        redirect_to root_url
+      end
     end
 
     unless @product

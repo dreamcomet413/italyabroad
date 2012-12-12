@@ -1,5 +1,14 @@
 module Admin::OrdersHelper
   def render_cupon(order)
-    return "#{order.cupon_code} ( "+ number_to_currency(order.cupon_price, :unit => "&pound;") +" )" unless order.cupon_code.blank?
+    unless order.cupon_code.blank?
+      @cupon = Cupon.find_by_code(order.cupon_code)
+      unless @cupon.nil?
+       # return "#{order.cupon_code} ( "+ number_to_currency(order.cupon_price, :unit => "&pound;") +" )"
+       return "#{@cupon.code} ( "+ number_to_currency(@cupon.price, :unit => "&pound;") +" )"
+      else
+        return ""
+      end
+    end
   end
 end
+

@@ -69,8 +69,8 @@ def create
           #total_amount, points_used = find_total_and_points_used(params[:points_to_be_used], @cart.total, params[:points_to_be_used], params[:total_points])
           @incomplete_purchase = IncompletePurchase.find_by_email(current_user.email)
           @incomplete_purchase.destroy
-          Notifier.deliver_new_order_placed(@order,current_user,AppConfig.admin_email)
-          Notifier.deliver_new_order(@order)
+
+
 
           if production and total_amount > 0                                                          #### 0004
 
@@ -106,8 +106,14 @@ def create
                       @cupon.update_attribute('active',false)
                     end
                     @order.update_attributes(:cupon_code=>@cart.cupon.code,:cupon_price=>@cupon.price)
+
                  end
                   @order.update_attributes(:paid => true, :points_used => points_used, :status_order_id => 3)
+                   if @order.status_order_id == 3
+                     logger.info "venu"
+                      Notifier.deliver_new_order_placed(@order,current_user,AppConfig.admin_email)
+                      Notifier.deliver_new_order(@order)
+                  end
                   # => :status_order_id => 3 ORDER COMPLETED
                   session[:card_last_name] = ""
                   redirect_to confirmed_checkouts_path
@@ -152,11 +158,33 @@ def create
       new_order
       saved = @order.save
 
+
+
       if saved
         logger.info "SAVED ....!"
         create_order_items
         #total_amount, points_used = find_total_and_points_used(params[:points_to_be_used], @cart.total, params[:points_to_be_used], params[:total_points])
-        Notifier.deliver_new_order_placed(@order,current_user,AppConfig.admin_email)
+
+      # added by indu on dec 12 2012
+         if  @cart.cupon
+                    logger.info "55555555"
+
+                    @cupon = Cupon.find_by_code(@cart.cupon.code)
+                    if @cupon.created_by_admin
+                      @cupon.no_of_times_used =  @cupon.no_of_times_used + 1
+                      if  @cupon.no_of_times == @cupon.no_of_times_used
+                        @cupon.update_attribute('active',false)
+                      end
+                    else
+                      @cupon.update_attribute('active',false)
+                    end
+                    @order.update_attributes(:cupon_code=>@cart.cupon.code,:cupon_price=>@cupon.price)
+
+                 end
+       
+        if @order.status_order_id == 3
+           Notifier.deliver_new_order_placed(@order,current_user,AppConfig.admin_email)
+        end
         @incomplete_purchase = IncompletePurchase.find_by_email(current_user.email)
         @incomplete_purchase.destroy
       end # END OF if saved

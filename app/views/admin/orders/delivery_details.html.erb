@@ -88,8 +88,10 @@
   							<tr><td style="text-align:right"><%= @order.delivery_name %>:</td><td><%= number_to_currency @order.delivery_price, :unit => "&pound;" %></td></tr>
   							<%# end %>
   							<% unless @order.cupon_code.blank? %>
+  							<% @cupon = Cupon.find_by_code(@order.cupon_code) %>
+						    <%unless @cupon.nil? %>
   							<tr><td style="text-align:right">Cupon:</td><td style="color:red">- <%= number_to_currency @order.cupon_price, :unit => "&pound;" %></em></td></tr>
-  							<% end %>
+  							<% end end %>
   							<% if @order.gift_option && @order.gift_option.price > 0 %>
   							<tr><td style="text-align:right">Gift <%= @order.gift_option.name %>:</td><td><%= number_to_currency @order.gift_option.price, :unit => "&pound;" %></td></tr>
   							<% end %>

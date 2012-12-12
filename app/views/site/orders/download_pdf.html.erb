@@ -21,7 +21,7 @@
 			<%= "<br />" + @order.user.telephone.to_s unless @order.user.telephone.blank? %>
 			<%= "<br />" + mail_to(@order.user.email) unless @order.user.email.blank? %>
 		</div>
-		<%if @order.different_shipping_address.to_s == "" %>
+		<%if @order.different_shipping_address %>
 		<div style="float:left;">
 			<b style="font-size:13px;padding-bottom:5px">SHIP TO:</b>
 			<%= "<br />" + @order.ship_name unless @order.ship_name.blank? %>
@@ -80,7 +80,10 @@
 						<tr><td style="text-align:right"><%= @order.delivery_name %>:</td><td><%= number_to_currency @order.delivery_price, :unit => "&pound;" %></td></tr>
 						<%# end %>
 						<% unless @order.cupon_code.blank? %>
+						<% @cupon = Cupon.find_by_code(@order.cupon_code) %>
+						<%unless @cupon.nil? %>
 						<tr><td style="text-align:right">Coupon:</td><td style="color:red">- <%= number_to_currency @order.cupon_price, :unit => "&pound;" %></em></td></tr>
+						<% end %>
 						<% end %>
 						<% if @order.gift_option && @order.gift_option.price > 0 %>
 						<tr><td style="text-align:right">Wrapping option (<%= @order.gift_option.name %>):</td><td><%= number_to_currency @order.gift_option.price, :unit => "&pound;" %></td></tr>
