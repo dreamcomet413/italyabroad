@@ -1,4 +1,20 @@
+<script>
+function validate_review(){
+ if (document.getElementById('comment_name').value == ""){
 
+ alert("Name must be filled out");
+ return false;
+
+ }
+if (document.getElementById('comment_description').value == ""){
+alert("Description must be filled out");
+ return false;
+
+}
+
+
+}
+</script>
 <% @title = @post.page_title_formatted; @description = @post.meta_description_formatted; @keys = @post.meta_keys_formatted %>
 <% @class = "no-padding"; @breadcrumbs = "#{link_to("Home", root_url)} &raquo; #{link_to ('Community',wine_community_path)} &raquo; #{link_to("Blog", blog_index_path)} &raquo; #{@post.name[0..25] + '...'}" %>
 
@@ -28,7 +44,7 @@
 
 
   <div style="float:right;">
-        <%= render :partial => '/site/shared/social_bookmarks'%>
+        <%#= render :partial => '/site/shared/social_bookmarks'%>
   </div>
 
   <div style="clear:both;padding:0px;margin:0px;"></div>
@@ -55,9 +71,13 @@
           <p>
             Verification code:<%= show_simple_captcha :label => "Please type the verification code", :image_style => "simply_green", :object => "comment" %>
           </p>
-          <p>
-            <%= submit_tag "Send" %>
-          </p>
+
+            <%= submit_tag "Send",:onclick=>"validate_review();return false;" %>
+            <div style="float:right;">
+                <%= render :partial => '/site/shared/social_bookmarks'%>
+          </div>
+          <p></p>
+
         <% end %>
       </div>
     <% else %>

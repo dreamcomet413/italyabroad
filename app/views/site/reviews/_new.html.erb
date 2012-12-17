@@ -25,7 +25,7 @@ alert("Description must be filled out");
   <%= text_area :review, :description, :rows => 5, :style => "width:50%" %><br />
 
   Rate: <%= select :review, :score, [5,4,3,2,1] %>
-  <%= submit_tag 'Submit',:onclick=>"validate_review();" %>
+  <%= submit_tag 'Submit',:onclick=>"validate_review();return false;" %>
 
    <div align="right" style="float:right">
     <a href="http://www.facebook.com/sharer.php?u=<%= "#{request.url}" -%>&t=<%= "#{request.url}" -%>" target="blank"><img style="padding-bottom:1px;" src="/images/facebook.gif" alt="facebook" name="facebook" border="0" id="facebook"></a>
