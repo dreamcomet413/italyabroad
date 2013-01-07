@@ -67,7 +67,15 @@ end
 
 <%#= text_field_with_auto_complete "product", "name" , { :size => 81 }, { :url => formatted_product_list_admin_cupons_path(:js), :method => :get, :param_name => 'search',:multiple => true } %>
 <%#= select_tag("cupon[product_ids][]", options_from_collection_for_select(Product.find(:all).collect, "id", "name", @cupon.products.collect{|p| p.id}), {:multiple=>true, :size=>6})%>
+<ul>
+          <%- for product in @cupon.products -%>
+
+            <li><%= product.name %>
+              <%= check_box_tag "cupon[product_ids][]", product.id,@cupon.product_ids.include?(product.id) %></li>
+            <%- end -%>
+        </ul>
       <div id="search_result">
+
         <% if params[:action] == "edit"%>
           <%#= render :partial => 'product_list', :collections => @products %>
         <% end %>

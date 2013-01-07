@@ -161,13 +161,15 @@ window.onload = startBlink;
 
                   <%- unless category.children.blank? -%>
                     <ul>
-                      <%- for child in category.children -%>
+                    <% children = Category.find(:all,:conditions=>['parent_id = ? and show_in_menu = ?',category.id,true], :order => "menu_order asc" ) %>
+                      <%#- for child in category.children(:order=>"(lft1-rgt) asc") -%>
+                      <%- for child in children -%>
                         <% num_products = find_any_active_product_exists(child.products)  %>
                         <%- if num_products > 0  -%>
                         <li><%= link_to(child.name, nested_categories_url(category, child)) %></li>
                         <%- end -%>
                       <%-  end -%>
-                      <li><%= link_to("Special Offers", nested_categories_url(category, "offer"),:type => "special_offer")  %></li>
+                      <li style="font-weight:bold;"><%= link_to("Special Offers", nested_categories_url(category, "offer"),:type => "special_offer")  %></li>
                     </ul>
                   <%- end -%>
                 </li>
@@ -236,7 +238,7 @@ window.onload = startBlink;
       <div style="clear:both;"><div>
       <br /><br />
       <div style="font-size:10px;text-align:center;color:#000;">
-      © Copyright 2004-2012 Italy Abroad Network Ltd, registered in England & Wales No. 4962185. All rights reserved.<br />
+      © Copyright 2004-<%= Date.today.strftime("%Y") %> Italy Abroad Network Ltd, registered in England & Wales No. 4962185. All rights reserved.<br />
 Registered office: Oak Mill, Topcliffe Lane, Leeds, LS27 0HL. For more information see <a href="http://www.italyabroad.com/about-us">about us</a><br /><br /><br /><br />
       </div>
 

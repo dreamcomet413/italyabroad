@@ -9,11 +9,13 @@ class Cart
   end
 
   def create(product, quantity = 1)
+
     current_item = @items.find { |t| t.product == product }
     if quantity.to_i < 1
       @show_warnings = "Quantity of #{product.name} must be greater than one."
       return false
     end
+
 
     current_item ||= CartItem.new(product, quantity)
 
@@ -27,7 +29,7 @@ class Cart
       else
         @items << current_item
       end
-      return true
+       return true
     end
   end
 
@@ -57,6 +59,7 @@ class Cart
           current_item.quantity = item[:quantity]
         end
         total_amount += item[:quantity].to_i * item[:price].to_i
+
       end
     end
 
@@ -110,6 +113,7 @@ class Cart
         coupon_products_subtotal = 0
         items.each {|item| coupon_products_subtotal += item.total if coupon_product_ids.include? item.product.id }
         @show_errors = "Sorry, this voucher only gives discount on certain products with a minimum order of £#{limit}" if coupon_products_subtotal < limit
+        @show_warnings = "Sorry, this voucher only gives discount on certain products with a minimum order of £#{limit}" if coupon_products_subtotal < limit
       end
     end
 
@@ -120,12 +124,17 @@ class Cart
     total = 0
     disc = 0
     @items.each { |t| total += t.total }
+
     total -= buy_together_discount
+
     cupon_is_active = false
     if (@cupon and @cupon.active and @cupon.created_by_admin and @cupon.expiry_date >= Date.today and @cupon.no_of_times > @cupon.no_of_times_used )
       cupon_is_active = true
   elsif (@cupon and @cupon.active and (@cupon.created_at + 30.days) >= Date.today)
        cupon_is_active = true
+    end
+    if @cupon and cupon_is_active == false
+      @show_warnings = "Voucher expired, Please enter a valid one."
     end
 
 
@@ -164,6 +173,20 @@ class Cart
 
   def total
     total  = sub_total
+    @setting = Setting.first
+    @number_of_wines_in_cart = 0
+    @items.each do  |t|
+      @p = Product.find(t.product.id)
+
+      if @p.categories.root.name == "Wine"
+        if t.quantity >= 1 and @setting.wine_discount_number.to_i != 0 and @setting.wine_discount_amount.to_i != 0
+          @number_of_wines_in_cart = @number_of_wines_in_cart + t.quantity.to_i
+        end
+      end
+    end
+    if @number_of_wines_in_cart >=  @setting.wine_discount_number.to_i
+     total  -= (total*(@setting.wine_discount_amount))/100
+    end
 
     #total += total < Setting.order_delivery_amount && @delivery ? @delivery.price : 0
 
@@ -171,6 +194,7 @@ class Cart
 
 
    cart_contains_not_only_events = false
+
    @items.each do |item|
        #  product = Product.find(cart_item.product.id)
      # current_item = @items.find { |t| t.product.id == item[:id].to_i }
@@ -206,8 +230,7 @@ class Cart
    # total += @gift.price if @gift
     unless self.gift[:gift_option_id].blank?
     total += GiftOption.find(self.gift[:gift_option_id]).price
-
-  end
+    end
     return total
   end
 
@@ -233,5 +256,8 @@ class Cart
     end
     discount
   end
+
+
+
 end
 

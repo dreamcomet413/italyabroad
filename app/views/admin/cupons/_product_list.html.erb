@@ -1,1 +1,9 @@
-<%= auto_complete_result @products, :name %>
+<%#= auto_complete_result @products, :name %>
+
+<ul>
+<%- for product in @products -%>
+            <li><%= product.name %>
+            <%= check_box_tag "cupon[product_ids][]", product.id %></li>
+        <%- end -%>
+</ul>
+

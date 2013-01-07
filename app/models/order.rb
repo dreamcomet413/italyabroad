@@ -37,7 +37,21 @@ class Order < ActiveRecord::Base
     total  = sub_total
     total += delivery_price if total < Setting.order_delivery_amount
     total -= cupon_price
+     @setting = Setting.first
+    @number_of_wines_in_cart = 0
+    for order_item in order_items
+      @p = Product.find(order_item.product.id)
+      if @p.categories.root.name == "Wine"
+        if order_item.quantity >= 1 and @setting.wine_discount_number.to_i != 0 and @setting.wine_discount_amount.to_i != 0
+          @number_of_wines_in_cart = @number_of_wines_in_cart + order_item.quantity.to_i
+        end
+      end
+    end
+    if @number_of_wines_in_cart >=  @setting.wine_discount_number.to_i
+    total  -= (total*(@setting.wine_discount_amount))/100
+    end
     total += gift_option.price if gift_option
+
     return total
   end
 

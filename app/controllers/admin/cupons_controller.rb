@@ -20,6 +20,7 @@ class Admin::CuponsController < ApplicationController
   def edit
     @cupon = Cupon.find(params[:id])
     @products = @cupon.products.find(:all)
+
    if @products.empty?
      @products = Product.all
    end
@@ -44,6 +45,7 @@ class Admin::CuponsController < ApplicationController
   def update
 
     @cupon = Cupon.find(params[:id])
+
     if @cupon.update_attributes(params[:cupon])
       flash[:alert] = "Cupon is updated successfully"
     else

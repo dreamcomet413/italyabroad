@@ -14,7 +14,16 @@
       <td><h4>Price</h4></td>
       <td>&nbsp;</td>
     </tr>
-    <%- for order_item in @order.order_items -%>
+    <%-  number_of_wines = 0
+    for order_item in @order.order_items
+    product = Product.find(order_item.product.id)
+         if product.categories.root.name == "Wine"
+          number_of_wines += order_item.quantity
+         end
+
+    -%>
+
+
     <tr>
       <td style="width:20px;padding-left:5px;"><%= show_image_tag(:product_thumb_cart, order_item.product.image_1) %></td>
       <td><%= order_item.product.name %></td>
@@ -38,6 +47,15 @@
       <td colspan="2" style="text-align:right;">Points Used (<%= @order.points_used %>)equivalent to </td><td></td><td><%= number_to_currency(@order.points_used * Setting.find(:first).points_to_pound, :unit => "&pound;" )%></td>
     </tr>
     <%- end -%>
+    <% if number_of_wines >= @setting.wine_discount_number.to_i %>
+      <tr>
+        <td colspan="2" >
+          <span style="font-size:14px;"><strong>Your cart contains <%= number_of_wines %> wines so will get a discount of</td>
+          <td></td><td><%= @setting.wine_discount_amount %>%</td>
+          </strong> <%#= number_to_currency(@cart.total, :unit => "&pound;") %></span>
+        </td>
+      </tr>
+      <% end %>
 
 
 
