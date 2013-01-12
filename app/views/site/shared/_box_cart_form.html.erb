@@ -85,9 +85,8 @@
 	<% if number_of_wines >= @setting.wine_discount_number.to_i %>
       <tr>
         <td colspan="6" align="right">
-          <span style="font-size:14px;"><strong>Your cart contains <%= number_of_wines %> wines so will get a discount of
-          <%= @setting.wine_discount_amount %>%
-          </strong> <%#= number_to_currency(@cart.total, :unit => "&pound;") %></span>
+          <span style="font-size:14px;"><strong>Buy <%= number_of_wines %> wines and get <%= ((@cart.total*(@setting.wine_discount_amount))/100).round(1) %>discount
+          </strong> <%= ((@cart.total*(@setting.wine_discount_amount))/100).round(1) %></span>
         </td>
       </tr>
       <% end %>

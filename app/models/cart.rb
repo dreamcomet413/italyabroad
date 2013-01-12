@@ -185,7 +185,7 @@ class Cart
       end
     end
     if @number_of_wines_in_cart >=  @setting.wine_discount_number.to_i
-     total  -= (total*(@setting.wine_discount_amount))/100
+     total  -= ((total*(@setting.wine_discount_amount))/100).round(1)
     end
 
     #total += total < Setting.order_delivery_amount && @delivery ? @delivery.price : 0

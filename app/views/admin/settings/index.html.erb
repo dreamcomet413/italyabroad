@@ -223,11 +223,11 @@
     </tr>
     <tr>
       <td>Quantity of wines for discount</td>
-      <td style="padding-left:40px;"><%= text_field :setting, :wine_discount_number %></td>
+      <td style="padding-left:40px;"><%= text_field :setting, :wine_discount_number,:maxlength=>2 %></td>
     </tr>
     <tr>
       <td>% for discount</td>
-      <td style="padding-left:40px;"><%= text_field :setting, :wine_discount_amount %></td>
+      <td style="padding-left:40px;"><%= text_field :setting, :wine_discount_amount,:maxlength=>2 %></td>
     </tr>
      <tr>
       <td colspan="2"><%= submit_tag "Save" %></td>

@@ -48,7 +48,7 @@ class Order < ActiveRecord::Base
       end
     end
     if @number_of_wines_in_cart >=  @setting.wine_discount_number.to_i
-    total  -= (total*(@setting.wine_discount_amount))/100
+    total  -= ((total*(@setting.wine_discount_amount))/100).round(1)
     end
     total += gift_option.price if gift_option
 

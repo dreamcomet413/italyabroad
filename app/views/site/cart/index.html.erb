@@ -62,17 +62,23 @@
         </tr>
       <% end %>
       <!-- modified by Indu to avoid ticket event delivery method on august 13 , 2012 -->
+<% number_of_wines = 0
+for cart_item in @cart.items
+product = Product.find(cart_item.product.id)
+         if product.categories.root.name == "Wine"
+          number_of_wines += cart_item.quantity
+         end
+end
+%>
+
 
       <%
-        number_of_wines = 0
+
         cart_contains_not_only_events = false
         cart_contains_events_only = false
         for cart_item in @cart.items
 
-         product = Product.find(cart_item.product.id)
-         if product.categories.root.name == "Wine"
-          number_of_wines += cart_item.quantity
-         end
+
           if product.categories.root.name != "Events" and  product.categories.root.name != "Wine Tours"
             cart_contains_not_only_events = true
             break
@@ -170,11 +176,11 @@
             </tr>
           <% end %>
       <% end %>
-      <% if number_of_wines >= @setting.wine_discount_number.to_i %>
+     
+      <% if number_of_wines >= @setting.wine_discount_number.to_i and  @setting.wine_discount_number.to_i != 0 and @setting.wine_discount_amount != 0 %>
       <tr>
         <td colspan="6" align="right">
-          <span style="font-size:14px;"><strong>Your cart contains <%= number_of_wines %> wines so will get a discount of
-          <%= @setting.wine_discount_amount%>%
+          <span style="font-size:14px;">Buy <%= number_of_wines %> wines and get <%= ((@cart.total*(@setting.wine_discount_amount))/100).round(1) %>discount &nbsp;&nbsp;<%= ((@cart.total*(@setting.wine_discount_amount))/100).round(1) %>
           </strong> <%#= number_to_currency(@cart.total, :unit => "&pound;") %></span>
         </td>
       </tr>
