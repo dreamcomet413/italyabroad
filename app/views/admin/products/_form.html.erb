@@ -1,3 +1,88 @@
+
+<script>    
+fields = 0;
+
+function addInput() {
+ 
+    var id =  fields
+   
+    var size_field = "mul["+id+"][size]"  
+    var price_field = "mul["+id+"][price]"  
+    str = "<div> Size  <input type='text' name='"+size_field+"' />" + "<br />" + "Price <input type='text' name='"+price_field+"' />" + " <a href='javascript:void()' onclick='removeInput(this.parentNode)' >remove</a></div>";   
+
+  	$('text').insert(str);
+	 // bottom: new Element('img', {src: 'logo.png'})
+   // });
+    fields += 1;
+  
+}  
+
+
+function addInput2(size,price) {
+   //  alert(5)
+    var id =  fields
+   
+    var size_field = "mul["+id+"][size]"  
+    var price_field = "mul["+id+"][price]"  
+    str = "<div> Size  <input type='text' name='"+size_field+"' value='"+size+"'/>" + "<br />" + "Price <input type='text' name='"+price_field+"' value='"+price+"'/>" + " <a href='javascript:void()' onclick='removeInput(this.parentNode)' >remove</a></div>";   
+
+     $('text').insert(str); 
+   // alert(str)
+	 // bottom: new Element('img', {src: 'logo.png'})
+   // });
+    fields += 1;
+  
+}
+
+
+function removeInput( el ) {
+  if (fields > 0) {
+    document.getElementById('warning').innerHTML = "";
+    var parent = document.getElementById('text');
+    parent.removeChild(el);
+    fields -= 1;
+  }
+}   
+
+function removeInput1() {
+  document.getElementById('text').innerHTML = "";
+  document.getElementById('warning').innerHTML = "";  
+document.getElementById('addmore').hide();
+  
+}  
+function displayField() {
+  document.getElementById('text').show();
+  document.getElementById('warning').show();   
+  document.getElementById('addmore').show();
+  
+}
+document.observe('dom:loaded', function(){     
+ 
+    $('product_multiple_true').observe('click', handler1);    
+    $('product_multiple_false').observe('click', handler2); 
+    $('addmore').observe('click', handler3); 
+    <% if @product.multiple == true %>   
+    <% @product.product_sizes.each do |gr| %>
+	       addInput2(<%= gr.size %>,<%= gr.price %>)   
+             displayField();
+	<% end %>  
+	<% end %> 
+});  
+
+function handler1(event) {
+     displayField();
+} 
+function handler2(event) {
+   removeInput1();
+}
+function handler3(event) {
+      addInput();  
+} 
+
+
+
+</script>
+
 <fieldset id="general_information">
 	<table border="0" cellspacing="5" cellpadding="5">
 	  <tr>
@@ -23,6 +108,33 @@
 		<tr>
 		  <td style="text-align:right">Producer Name:</td>
 		  <td><%= select :product, :producer_id, Producer.find(:all,:order=>'name asc').inject([["No Producer", ""]]) {|ps, p| ps << [p.name, p.id]} %></td>
+    </tr> 
+	<tr>
+		  <td style="text-align:right"> Multiple purchases :</td>  
+		       
+		  <td>            
+		   <%= radio_button("product", "multiple", true)  %> Yes
+		   <%= radio_button("product", "multiple", false)  %>  No
+		
+		</td>
+    </tr> 
+     <tr> 
+	      <td>
+	      	   <div>
+	      	   	&nbsp;
+	      	   </div>
+	      </td>
+	      <td>  
+		  
+	      	<div id="text" style="display:none"></div>
+			<div id="warning" style="display:none"></div>
+			<div id="addmore" style="display:none"><a href="javascript:void()">Click to Add Size And Price</a></div>  
+	      </td>  
+	     
+	</tr>
+	<tr>
+		  <td style="text-align:right">Size:</td>
+		  <td><%= text_field :product, :size, :size => 20 %><em>(ex: 50 cl. or 130x150)</em></td>
     </tr>
 		<tr>
 		  <td style="text-align:right">Price:</td>

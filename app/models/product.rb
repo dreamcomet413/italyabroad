@@ -11,7 +11,8 @@ class Product < ActiveRecord::Base
 
   validates_uniqueness_of :name, :message => "of product must be unique"
   validates_uniqueness_of :code, :message => "must be unique"
-
+   
+  has_many :product_sizes
   has_many :categorizations, :dependent => :destroy
   has_many :categories, :through => :categorizations
 

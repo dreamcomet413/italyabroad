@@ -5,7 +5,8 @@ class Admin::ProductsController < ApplicationController
   layout "admin"
 
 
-  def index
+  def index   
+  
      categories = Category.find_by_sql("select * from categories where parent_id is null")
      @categories_data = Admin::CategoriesController.new
     @data = @categories_data.get_tree(categories,nil)
@@ -36,7 +37,8 @@ class Admin::ProductsController < ApplicationController
       elsif params[:search].blank?
         @products = Product.find(:all, :include => [:categories],:conditions=>['products.name LIKE ? and active = ? ',"%#{params[:search_name]}%",true], :order => "created_at DESC").paginate(:page => params[:page], :per_page => 20)
       end
-  end
+  end  
+  
 
  end
 
@@ -154,7 +156,8 @@ class Admin::ProductsController < ApplicationController
     end
   end
 
-  def update
+  def update  
+            
     @product = Product.find(params[:id])
     params[:product] ||= {}
 
@@ -200,7 +203,7 @@ class Admin::ProductsController < ApplicationController
     @product.build_resource_3(params[:resource_3]) unless params[:resource_3].blank?
    # p ("===============")
 #p params[:product]
-
+   
     if @product.update_attributes(params[:product])
       color = params[:product][:color]
       if color
@@ -208,7 +211,14 @@ class Admin::ProductsController < ApplicationController
         color = color.strip
         color = color.capitalize
       end
-
+      if(params[:mul])  
+           @product.product_sizes.map{|p|p.destroy}  
+           params[:mul].each do |key,value|  
+              v = ProductSize.create(:size => value["size"], :price => value["price"], :product_id => @product.id  )    
+              v.save   
+           end
+        
+      end        
       @product.update_attribute('color',"#{color}")
       flash.now[:notice] = "Product is updated successfully"
       redirect_back_or_default(admin_products_path)
@@ -224,7 +234,9 @@ class Admin::ProductsController < ApplicationController
       flash.now[:notice] = @product.show_errors
       redirect_back_or_default(admin_products_path)
     end
-  end
+  end  
+  
+  
 
   def included_products
     p_ids = []

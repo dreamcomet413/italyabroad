@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  size: 1
+  pirce: 9.99
+  product_id: 1
+
+two:
+  size: 1
+  pirce: 9.99
+  product_id: 1

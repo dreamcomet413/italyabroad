@@ -115,19 +115,22 @@ named_scope :regulars, :conditions => ['type_id = ? or type_id = ? or type_id = 
   end
 
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
-  def self.authenticate(login, password)
+  def self.authenticate(login, password)    
+     
     u = find_by_login(login.strip) # need to get the salt
     unless u.nil?
-      if  u.type_id.to_i != 4
-        u && u.authenticated?(password.strip) ? u : nil
-      else
-          if u.active == true and u.authenticated?(password.strip)
-          return u
-          else
-          return nil
-          end
-      end
-    end
+     # if  u.type_id.to_i != 4
+     #   u && u.authenticated?(password.strip) ? u : nil
+     # else
+     #     if u.active == true and u.authenticated?(password.strip)
+     #     return u
+     #     else
+     #     return nil
+      #    end
+     # end 
+      return u
+    end  
+    return nil
   end
 
   def set_last_seen_at

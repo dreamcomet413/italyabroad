@@ -110,7 +110,32 @@
             <%= link_to @product.tasting_video,@product.tasting_video,:target=>'blank'   %>
             <% end %>
             </td>
+          </tr>  
+          <% if @product.size || (@product.product_sizes && @product.product_sizes.size > 0)  %>  
+          <% if @product.multiple? %>  
+          <% if @product.product_sizes && @product.product_sizes.size > 0 %>  
+          <% @product.product_sizes.each do |p|  %>
+          <tr>
+            <td valign="top">Quantity:</td>
+            <td class="data">
+            <%= p.size   %>
+            </td> 
+            <td valign="top">Price:</td>
+            <td class="data">
+            <%= p.price   %>
+            </td>
+          </tr>   
+           <% end %> 
+          <% end %>
+          <% else %>  
+          <tr>
+            <td valign="top">Quantity:</td>
+            <td class="data">
+            <%=  @product.size   %>
+            </td>
           </tr>
+          <% end %>
+          <% end %>
         </table>
       <% end %>
       <br /><br />

@@ -8,7 +8,7 @@ class Site::ProductsController < ApplicationController
   end
 
   def show
-
+     
     @product = Product.find(params[:id]) || Product.find_by_id(params[:id])
     unless @product.nil?
       if !@product.active
