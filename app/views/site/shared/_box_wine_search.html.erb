@@ -12,7 +12,7 @@ end %>
 <div class="block center" id="box_wine_search">
   <h3>Wine Search</h3>
   <% form_tag search_url, :method => :get do %>
-  <%= hidden_field_tag :id,@category.name.downcase %>
+  <%= hidden_field_tag :id,@category.name.downcase if !@category.nil? %>
   <table border="0">
     <tr>
       <td>Text:</td>
@@ -20,20 +20,20 @@ end %>
     </tr>
     <tr>
       <td>Region:</td>
-      <td><%= select_tag :region_id, options_for_select(@category.products.regions.inject([["Any", ""]]) {|rs, r| rs << [r.name, r.id]}, params[:region_id].to_i), :id => "search_region" %></td>
+      <td><%= select_tag :region_id, options_for_select(@category.products.regions.inject([["Any", ""]]) {|rs, r| rs << [r.name, r.id]}, params[:region_id].to_i), :id => "search_region" if !@category.nil? %></td>
     </tr>
     <tr>
       <td>Grape:</td>
-      <td><%= select_tag :grape_id, options_for_select(@category.products.grapes.inject([["Any", ""]]) { |gs, g| gs << [g.name, g.id] }, params[:grape_id].to_i), :id => "search_grape" %></td>
+      <td><%= select_tag :grape_id, options_for_select(@category.products.grapes.inject([["Any", ""]]) { |gs, g| gs << [g.name, g.id] }, params[:grape_id].to_i), :id => "search_grape" if !@category.nil? %></td>
     </tr>
     <tr>
       <td>Colour:</td>
-      <td><%= select_tag :color, options_for_select(Product.colors(@category), params[:color]), :id => "search_color" %></td>
+      <td><%= select_tag :color, options_for_select(Product.colors(@category), params[:color]), :id => "search_color" if !Product.all.blank? %></td>
     </tr>
 
     <tr>
       <td>Producer:</td>
-      <td><%= select_tag :producer_id, options_for_select(@category.products.producers.inject([["Any", ""]]) { |ps, p| ps << [p.name, p.id] }, params[:producer_id].to_i), :id => "search_producer_name" %></td>
+      <td><%= select_tag :producer_id, options_for_select(@category.products.producers.inject([["Any", ""]]) { |ps, p| ps << [p.name, p.id] }, params[:producer_id].to_i), :id => "search_producer_name" if !@category.nil?  %></td>
     </tr>
     <tr>
       <td colspan="2"></td>
@@ -54,6 +54,10 @@ end %>
     <tr>
       <td>Price:</td>
       <td><%= select_tag :price, options_for_select([["Any Price",""],["Less than £7","< 7"],["From £7 to £11","BETWEEN 7 AND 11"],["From £11 to £15","BETWEEN 11 AND 15"],["From £16 to £20","BETWEEN 11 AND 20"],["More than £30","> 30"]], params[:price]), :id => "search_price" %></td>
+    </tr>
+    <tr>
+      <td>Mood:</td>
+      <td><%= select_tag :mood, options_for_select([["Any",""],["Neutral","Neutral"],["Happy","Happy"],["Enjoy","Enjoy"],["Tensed","Tensed"],["Depressed","Depressed"],["Provoked","Provoked"],["Angry","Angry"],["Sad","Sad"]],params[:mood]), :id => "search_price" %></td>
     </tr>
     <tr>
       <td colspan="2"></td>

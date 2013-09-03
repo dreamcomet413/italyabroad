@@ -1,8 +1,10 @@
-<% @title = @setting.home_page_title.blank? ? "Italian Wines & Italian Food made by Small Producers" : @setting.home_page_title %>
+
+<% @title = "Italian Wines & Italian Food made by Small Producers" %>
 <%# @title = "Italian Wines & Italian Food made by Small Producers";
 #@description = "Italian Food and Italian Wine made by Passionate Small Producers in the UK,Fantastic Italian Wine and Italian Food,High Quality Italian Wine and Food"; @keys = "Italian Wines,Fine Italian Wines,Italian Red and White Wines, Italian Food, Wine Tasting, Wine Expert,Italian Wine Blog,Italy,Food,Wines,Barolo,Amarone,Brunello"
 %>
-<%  @description = @setting.home_page_meta_description; @keys = @setting.home_page_meta_key %>
+<%  @description =  @setting.home_page_meta_description if !@setting.nil? %>
+<% @keys = @setting.home_page_meta_key if !@setting.nil? %>
 <!--<script type="text/javascript">
 /*function win1()
 {
@@ -46,23 +48,25 @@
 <%- @onload = "StartSlideShow()" -%>
 <%#= javascript_tag "document.observe('dom:loaded', function(e){ HomeImageSlideShow.setup() });" %>
 <div id="flashBanner">
-  <ul>
-    <li id="home_image_1" class="home_image">
-      <%= link_to((show_home_image_tag(@setting.home_image_1) || @setting.home_image_1_title), (@setting.home_image_1_url || root_url)) %>
-    </li>
-    <li id="home_image_2" class="home_image" style="display:none;">
-      <%= link_to((show_home_image_tag(@setting.home_image_2) || @setting.home_image_2_title), (@setting.home_image_2_url || root_url)) %>
-    </li>
-    <li id="home_image_3" class="home_image" style="display:none;">
-      <%= link_to((show_home_image_tag(@setting.home_image_3) || @setting.home_image_3_title), (@setting.home_image_3_url || root_url)) %>
-    </li>
-    <li id="home_image_4" class="home_image" style="display:none;">
-      <%= link_to((show_home_image_tag(@setting.home_image_4) || @setting.home_image_4_title), (@setting.home_image_4_url || root_url)) %>
-    </li>
-    <li id="home_image_5" class="home_image" style="display:none;">
-      <%= link_to((show_home_image_tag(@setting.home_image_5) || @setting.home_image_5_title), (@setting.home_image_5_url || root_url)) %>
-    </li>
-  </ul>
+  <% if !@setting.nil? %>
+    <ul>
+      <li id="home_image_1" class="home_image">
+        <%= link_to((show_home_image_tag(@setting.home_image_1) || @setting.home_image_1_title), (@setting.home_image_1_url || root_url)) %>
+      </li>
+      <li id="home_image_2" class="home_image" style="display:none;">
+        <%= link_to((show_home_image_tag(@setting.home_image_2) || @setting.home_image_2_title), (@setting.home_image_2_url || root_url)) %>
+      </li>
+      <li id="home_image_3" class="home_image" style="display:none;">
+        <%= link_to((show_home_image_tag(@setting.home_image_3) || @setting.home_image_3_title), (@setting.home_image_3_url || root_url)) %>
+      </li>
+      <li id="home_image_4" class="home_image" style="display:none;">
+        <%= link_to((show_home_image_tag(@setting.home_image_4) || @setting.home_image_4_title), (@setting.home_image_4_url || root_url)) %>
+      </li>
+      <li id="home_image_5" class="home_image" style="display:none;">
+        <%= link_to((show_home_image_tag(@setting.home_image_5) || @setting.home_image_5_title), (@setting.home_image_5_url || root_url)) %>
+      </li>
+    </ul>
+  <%end%>
 </div><br />
 <ul class="slideshow_images" id="navmenu">
 
@@ -70,75 +74,85 @@
     <%= link_to_function "1", "javascript:GoTo('home_image_1');" %></li>
   <%
   ln_class = ""
-  if @setting.home_image_1_title.size < 18  #earlier it was 16
-    ln_class = "single-line"
-  elsif @setting.home_image_1_title.size < 32
-    ln_class = "double-line"
-  elsif @setting.home_image_1_title.size < 45
-    ln_class = "three-line"
+  if !@setting.nil?
+    if @setting.home_image_1_title.size < 18  #earlier it was 16
+      ln_class = "single-line"
+    elsif @setting.home_image_1_title.size < 32
+      ln_class = "double-line"
+    elsif @setting.home_image_1_title.size < 45
+      ln_class = "three-line"
+    end
   end
 %>
 <li id="link_home_image_1" class="active">
     <%#= link_to_function @setting.home_image_1_title, "javascript:GoTo('home_image_1');", :class => "slide #{ln_class}" %>
-    <%= link_to @setting.home_image_1_title, @setting.home_image_1_url || root_url , :class => "slide #{ln_class}" %>
+    <%= link_to @setting.home_image_1_title, @setting.home_image_1_url || root_url , :class => "slide #{ln_class}" if !@setting.nil?  %>
   </li>
   <li id="link_number_2" class="white_text">
     <%= link_to_function "2", "javascript:GoTo('home_image_2');" %></li>
   <%
   ln_class = ""
-  if @setting.home_image_2_title.size < 16
-    ln_class = "single-line"
-  elsif @setting.home_image_2_title.size < 32
-    ln_class = "double-line"
-  elsif @setting.home_image_2_title.size < 45
-    ln_class = "three-line"
+  if !@setting.nil?
+    if @setting.home_image_2_title.size < 16
+      ln_class = "single-line"
+    elsif @setting.home_image_2_title.size < 32
+      ln_class = "double-line"
+    elsif @setting.home_image_2_title.size < 45
+      ln_class = "three-line"
+    end
   end
 %>
   <li id="link_home_image_2">
   <%#= link_to_function @setting.home_image_2_title, "javascript:GoTo('home_image_2');", :class => "slide #{ln_class}" %>
-  <%= link_to  @setting.home_image_2_title, @setting.home_image_2_url || root_url, :class => "slide #{ln_class}" %></li>
+  <%= link_to  @setting.home_image_2_title, @setting.home_image_2_url || root_url, :class => "slide #{ln_class}" if !@setting.nil? %></li>
   <li id="link_number_3" class="white_text" >
     <%= link_to_function "3", "javascript:GoTo('home_image_3');" %></li>
   <%
   ln_class = ""
-  if @setting.home_image_3_title.size < 16
-    ln_class = "single-line"
-  elsif @setting.home_image_3_title.size < 32
-    ln_class = "double-line"
-  elsif @setting.home_image_3_title.size < 45
-    ln_class = "three-line"
+  if !@setting.nil?
+    if @setting.home_image_3_title.size < 16
+      ln_class = "single-line"
+    elsif @setting.home_image_3_title.size < 32
+      ln_class = "double-line"
+    elsif @setting.home_image_3_title.size < 45
+      ln_class = "three-line"
+    end
   end
 %>
 <%#= link_to_function @setting.home_image_3_title, "javascript:GoTo('home_image_3');", :class => "slide #{ln_class}" %>
-<li id="link_home_image_3"><%= link_to @setting.home_image_3_title, (@setting.home_image_3_url || root_url), :class => "slide #{ln_class}" %></li>
+<li id="link_home_image_3"><%= link_to @setting.home_image_3_title, (@setting.home_image_3_url || root_url), :class => "slide #{ln_class}" if !@setting.nil? %></li>
   <li id="link_number_4" class="white_text" >
     <%= link_to_function "4", "javascript:GoTo('home_image_4');" %></li>
   <%
   ln_class = ""
-  if @setting.home_image_4_title.size < 16
-    ln_class = "single-line"
-  elsif @setting.home_image_4_title.size < 32
-    ln_class = "double-line"
-  elsif @setting.home_image_4_title.size < 45
-    ln_class = "three-line"
+  if !@setting.nil?
+    if @setting.home_image_4_title.size < 16
+      ln_class = "single-line"
+    elsif @setting.home_image_4_title.size < 32
+      ln_class = "double-line"
+    elsif @setting.home_image_4_title.size < 45
+      ln_class = "three-line"
+    end
   end
 %>
   <%#= link_to_function @setting.home_image_4_title, "javascript:GoTo('home_image_4');", :class => "slide #{ln_class}" %>
-  <li id="link_home_image_4"><%= link_to @setting.home_image_4_title, (@setting.home_image_4_url || root_url), :class => "slide #{ln_class}" %></li>
+  <li id="link_home_image_4"><%= link_to @setting.home_image_4_title, (@setting.home_image_4_url || root_url), :class => "slide #{ln_class}" if !@setting.nil? %></li>
   <li id="link_number_5" class="white_text" >
     <%= link_to_function "5", "javascript:GoTo('home_image_5');" %></li>
   <%
   ln_class = ""
-  if @setting.home_image_5_title.size < 16
-    ln_class = "single-line"
-  elsif @setting.home_image_5_title.size < 32
-    ln_class = "double-line"
-  elsif @setting.home_image_5_title.size < 45
-    ln_class = "three-line"
+  if !@setting.nil?
+    if @setting.home_image_5_title.size < 16
+      ln_class = "single-line"
+    elsif @setting.home_image_5_title.size < 32
+      ln_class = "double-line"
+    elsif @setting.home_image_5_title.size < 45
+      ln_class = "three-line"
+    end
   end
 %>
   <%#= link_to_function @setting.home_image_5_title, "javascript:GoTo('home_image_5');", :class => "slide #{ln_class}" %>
-  <li id="link_home_image_5"><%= link_to @setting.home_image_5_title, (@setting.home_image_5_url || root_url), :class => "slide #{ln_class}" %></li>
+  <li id="link_home_image_5"><%= link_to @setting.home_image_5_title, (@setting.home_image_5_url || root_url), :class => "slide #{ln_class}" if !@setting.nil? %></li>
 </ul>
 
 <div style="float:right; width: 60px; margin-top: 13px;">
@@ -156,54 +170,59 @@
     <h3>Featured Wines</h3>
     <%= image_tag "featuredWineImg.jpg", :style => "padding-bottom: 20px;" %>
     <% category_wine = Category.find(:first, :conditions => ["name like (?) AND parent_id is ?","%wine%", nil]) %>
-    <% wines = Product.find(:all, :limit => 5, :order => "RAND()", :conditions => "id IN (#{category_wine.all_products_ids.join(',')}) AND active = true AND featured = true") %>
+
+    <% wines = Product.find(:all, :limit => 5, :order => "RAND()", :conditions => "id IN (#{category_wine.all_products_ids.join(',')}) AND active = true AND featured = true") if !Product.all.blank? %>
     <ul>
-      <% for wine in wines %>
-        <li class="faveWineIcon">
-          <table width="100%" cellpadding="0" cellspacing="0" border="0">
-            <tr>
-              <td><%= link_to wine.name, nested_products_uri(wine)  %></td>
-              <td align="right"><span style="color:#9b0707;">
-                  <% if wine.discount > 0 %>
+      <% if !wines.nil? %>
+        <% for wine in wines %>
+          <li class="faveWineIcon">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td><%= link_to wine.name, nested_products_uri(wine)  %></td>
+                <td align="right"><span style="color:#9b0707;">
+                    <% if wine.discount > 0 %>
 
-                    <%= number_to_currency wine.price_discounted, :unit => "&pound;" %>
-                  <% else %>
-                    <%= number_to_currency wine.price, :unit => "&pound;" %></span>
-                <% end %>
-              </td>
+                      <%= number_to_currency wine.price_discounted, :unit => "&pound;" %>
+                    <% else %>
+                      <%= number_to_currency wine.price, :unit => "&pound;" %></span>
+                  <% end %>
+                </td>
 
-            </tr>
-            <tr><td colspan="2"><hr style="color: #c5d1c5;" /></td></tr>
-          </table>
-        </li>
-      <% end %>
+              </tr>
+              <tr><td colspan="2"><hr style="color: #c5d1c5;" /></td></tr>
+            </table>
+          </li>
+        <% end %>
+      <%end%>
     </ul>
   </div>
   <div id="favFood">
     <h3>Food Counter</h3>
     <%= image_tag "featuredFoodImg.jpg", :style => "padding-bottom: 20px;" %>
     <% category_food = Category.find(:first, :conditions => ["name like (?) AND parent_id is ?", "%food%", nil]) %>
-    <% foods = Product.find(:all, :limit => 5, :order => "RAND()", :conditions => "id IN (#{category_food.all_products_ids.join(',')}) AND active = true AND featured = true") %>
+    <% foods = Product.find(:all, :limit => 5, :order => "RAND()", :conditions => "id IN (#{category_food.all_products_ids.join(',')}) AND active = true AND featured = true") if !Product.all.blank? %>
     <ul>
-      <% for food in foods %>
-        <li class="faveWineIcon">
-          <table width="100%" cellpadding="0" cellspacing="0" border="0">
-            <tr>
-              <td><%= link_to food.name, nested_products_uri(food) %></td>
-              <td align="right"><span style="color:#9b0707;">
-                  <% if food.discount > 0 %>
-                    <%= number_to_currency food.price_discounted, :unit => "&pound;" if food %>
-                  <% else %>
-                    <%= number_to_currency food.price, :unit => "&pound;" if food %>
-                  <% end %>
+      <% if !foods.nil? %>
+        <% for food in foods %>
+          <li class="faveWineIcon">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td><%= link_to food.name, nested_products_uri(food) %></td>
+                <td align="right"><span style="color:#9b0707;">
+                    <% if food.discount > 0 %>
+                      <%= number_to_currency food.price_discounted, :unit => "&pound;" if food %>
+                    <% else %>
+                      <%= number_to_currency food.price, :unit => "&pound;" if food %>
+                    <% end %>
 
-                </span></td>
-              <!--<hr />-->
-            </tr>
-            <tr><td colspan="2"><hr style="color: #c5d1c5;" /></td></tr>
-          </table>
-        </li>
-      <% end %>
+                  </span></td>
+                <!--<hr />-->
+              </tr>
+              <tr><td colspan="2"><hr style="color: #c5d1c5;" /></td></tr>
+            </table>
+          </li>
+        <% end %>
+      <%end%>
     </ul>
   </div>
 </div>

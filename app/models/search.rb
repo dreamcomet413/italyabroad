@@ -1,5 +1,5 @@
 class Search
-  attr_accessor :text, :region, :color, :grape, :organic, :vegetarian, :price, :category, :preparation_time, :recipe_type, :producer, :user, :difficulty
+  attr_accessor :text, :region, :color, :grape, :organic, :vegetarian, :price, :category, :preparation_time, :recipe_type, :producer, :user, :difficulty, :mood
 
   def initialize(params = {})
     @text             = params[:text] ||= ""
@@ -17,6 +17,7 @@ class Search
     @occasion         = params[:occasion_id] ||= ""
     @category         = params[:category].nil? ? nil : Category.find(params[:category])
     @user_id          = params[:chef] ||= ""
+    @mood             = params[:mood] ||= ""
 
   end
 
@@ -40,6 +41,7 @@ class Search
     conditions << "price #{price}" unless price.blank?
     conditions << "grapes.id = #{@grape}" unless grape.blank?
     conditions << "occasion_id = #{@occasion}" unless @occasion.blank?
+    conditions << "products.mood LIKE '%#{mood}%'" unless @mood.blank?
    # conditions << "products.quantity > 0"
     conditions = conditions.join(" AND ")
     conditions = nil if conditions.blank?

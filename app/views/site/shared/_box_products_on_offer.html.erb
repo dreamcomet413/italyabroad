@@ -3,6 +3,7 @@
     @category = Category.find("wine")
     end
 %>
+
 <% unless @category.blank? %>
 <%- product_on_offers = @category.products.on_offer || Product.on_offer -%>
 <% unless product_on_offers.blank? %>
@@ -14,7 +15,7 @@
   <ul style="list-style:none;margin:0;padding:0;">
   <%- product_on_offers.each do |product| -%>
     <li style="margin-bottom:3px;padding-top:6px;padding-bottom:6px;">
-    <%= link_to product.name, nested_products_uri(product),:class=>'data' %></li>
+    <%= link_to product.name, nested_products_uri(product),:class=>'data', :style=>"color: red;" %></li>
   <%- end -%>
   </ul>
   <%- else -%>

@@ -5,10 +5,12 @@
 <div id="blog_home">
 
   <span class="title">
-  <% unless @about.title.blank? %>
-  <div style="color:white;width:350px;height:100px;background:black;opacity: 0.6;filter:alpha(opacity=40);text-align:left">
-    <%= @about.title if @about %>
-   </div>
+  <% if !@about.nil? %>
+    <% unless @about.title.blank? %>
+    <div style="color:white;width:350px;height:100px;background:black;opacity: 0.6;filter:alpha(opacity=40);text-align:left">
+      <%= @about.title if @about %>
+     </div>
+    <% end %>
   <% end %>
     <!--A <strong style="font-size:30px;">blog</strong> dedicated entirely to<br />
     <strong style="font-size:30px;">Italian wine,</strong> follow us in our<br />

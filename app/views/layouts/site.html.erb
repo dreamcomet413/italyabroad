@@ -74,7 +74,8 @@ window.onload = startBlink;
 
             <!-- Remove this line and uncomment the other lines when u go live -->
             <%# support_link = "Closed" -%>
-            <%    @support_user = Setting.find(:first).support
+            <% if !Setting.first.nil? %>
+              <%  @support_user = Setting.find(:first).support
                    #@support_status = Juggernaut.show_client(@support_user) ? true : false
                 #   @support_status = (Juggernaut.show_client(@support_user) and @setting.chat_available == true) ? true : false
                  @support_status = (@setting.chat_available == true) ? true : false
@@ -87,6 +88,7 @@ window.onload = startBlink;
                       image_name="live_chat_unavailable.png"
                    end
                     %>
+            <%end%>
             <% if logged_in? %>
                       Welcome <%= current_user.name %> <% if current_user.type_id == 1 %> | <%= link_to "Admin Site",siteadmin_path %><% end %> |
 
@@ -105,10 +107,10 @@ window.onload = startBlink;
 
             <% if logged_in? %>
 
-                      <span style="font:bold 13px Arial;"><%= link_to image_tag (image_name), chat_index_path, :popup => ['new_window_name', 'height=540,width=490'] %></span>
+                      <span style="font:bold 13px Arial;"><%= link_to image_tag (image_name), chat_index_path, :popup => ['new_window_name', 'height=540,width=490'] if !image_name.nil?  %></span>
 
             <% else %>
-                      <span style="font:bold 13px Arial;"><%= link_to image_tag (image_name), chat_index_path, :popup => ['new_window_name', 'height=540,width=490,resizable=yes,scrollbars=auto'] %></span>
+                      <span style="font:bold 13px Arial;"><%= link_to image_tag (image_name), chat_index_path, :popup => ['new_window_name', 'height=540,width=490,resizable=yes,scrollbars=auto'] if !image_name.nil? %></span>
 
             <% end %>
 
@@ -150,7 +152,7 @@ window.onload = startBlink;
           <%- active_uri = request.request_uri -%>
           <ul class="nav1" style="z-index:1000;">  <!-- sujith modification z-index altered to try fixing the menu display issue -->
             <!--<li id="link-to-home" class="first<%#= " active" if active_uri == "/"%>"><%#= link_to "Home", root_path %></li>-->
-            <% for category in Category.find(:all, :conditions => ["parent_id is ? AND show_in_menu = ?", nil, true], :order => "menu_order asc" ) do %>
+            <% for category in Category.find(:all, :conditions => ["parent_id is ? AND show_in_menu = ?", nil, true] ) do %>
 
                 <li id="link-to-<%= category.friendly_identifier %>" <%= 'class="active"' if active_uri == "/#{category.friendly_identifier}"   %>>
 
@@ -161,7 +163,7 @@ window.onload = startBlink;
 
                   <%- unless category.children.blank? -%>
                     <ul>
-                    <% children = Category.find(:all,:conditions=>['parent_id = ? and show_in_menu = ?',category.id,true], :order => "menu_order asc" ) %>
+                    <% children = Category.find(:all,:conditions=>['parent_id = ? and show_in_menu = ?',category.id,true] ) %>
                       <%#- for child in category.children(:order=>"(lft1-rgt) asc") -%>
                       <%- for child in children -%>
                         <% num_products = find_any_active_product_exists(child.products)  %>

@@ -1,13 +1,13 @@
 <%if request.request_uri.upcase != '/CHECKOUTS/CONFIRMED' %>
 <%- if @cart.items.size > 0 -%>
-<%- @promotion_limit = @setting.order_delivery_amount.to_f - @cart.sub_total.to_f -%>
+<%- @promotion_limit = @setting.order_delivery_amount.to_f - @cart.sub_total.to_f if !@setting.nil? -%>
 <%- if @promotion_limit > 0 -%>
 Add another <%= number_to_currency(@promotion_limit,{:unit => "&pound;"}) -%> and get free delivery
 <%- else -%>
 Your order qualifies for free delivery *
 <%- end -%>
 <%- else -%>
-Spend <%= number_to_currency(@setting.order_delivery_amount,{:unit => "&pound;"}) %> and get free delivery
+Spend <%= number_to_currency(@setting.order_delivery_amount,{:unit => "&pound;"})  if !@setting.nil? %> and get free delivery
 <%- end -%>
 <% end %>
 

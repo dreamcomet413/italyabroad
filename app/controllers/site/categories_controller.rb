@@ -36,7 +36,7 @@ class Site::CategoriesController < ApplicationController
               @products = @category.blank? ? [] : @category.products.find(:all, :order => @sort_by, :include => [:categories, :grapes], :conditions => @search.conditions).paginate(:page => (params[:page] ||=1), :per_page => 10)
               SearchQuery.create(:query => @search.text) unless @search.text.blank?
           else
-              @product = Product.find(:first,:conditions=>['friendly_identifier = ?',params[:category]])
+              @product = Product.find(:first,:conditions=>['friendly_identifier = ? AND mood= ?',params[:category], params[:mood]])
               unless @product.blank?
               redirect_to product_path(@product.friendly_identifier)
               else
@@ -57,7 +57,7 @@ class Site::CategoriesController < ApplicationController
 #      @products = @category.blank? ? [] : @category.products.find(:all, :order => @sort_by, :include => [:categories, :grapes], :conditions => @search.conditions).paginate(:page => (params[:page] ||=1), :per_page => 10)
        #@products = @category.blank? ? [] : @category.products.find(:all, :order => 'products.id desc', :include => [:categories, :grapes], :conditions => [@search.conditions << " and discount != 0"]).paginate(:page => (params[:page] ||=1), :per_page => 10)
        @products = @category.blank? ? [] : @category.products.find(:all, :order => 'products.price ASC', :include => [:categories, :grapes], :conditions => [@search.conditions << " and discount != 0"]).paginate(:page => (params[:page] ||=1), :per_page => 10)
-   SearchQuery.create(:query => @search.text) unless @search.text.blank?
+       SearchQuery.create(:query => @search.text) unless @search.text.blank?
 
     end
 
@@ -78,8 +78,7 @@ class Site::CategoriesController < ApplicationController
   end
 
   def special_offer
-    hh
-    p params[:parent]
+      params[:parent]
       #@sort_by = available_sorting.include?(params[:sort_by]) ? params[:sort_by] : "products.price DESC"
       @sort_by = available_sorting.include?(params[:sort_by]) ? params[:sort_by] : "products.price ASC"
       @category = Category.find(params[:category])

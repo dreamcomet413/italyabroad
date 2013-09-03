@@ -3,12 +3,14 @@
 <% @about = AboutU.find(:first, :conditions => {:link_type => "community"} ) %>
 <div id="wineBanner">
   <span class="community_home_title">
-     <%#= @about.title rescue "About us"%>
-      <% unless @about.title.blank? %>
+    <%#= @about.title rescue "About us"%>
+    <% if !@about.nil? %>
+      <% unless @about.title.blank?   %>
         <div style="color:white;width:330px;height:100px;background:black;opacity: 0.6;filter:alpha(opacity=40);text-align:left">
         <%= @about.title if @about %>
         </div>
       <% end %>
+    <% end %>
     <!--Share your <strong style="font-size:24px;">passion,</strong> meet <strong style="font-size:24px;">people</strong> like you, compare<br />
     <strong style="font-size:24px;">tasting notes</strong> and get <strong style="font-size:24px;">recommendations</strong> -->
   </span>
@@ -118,9 +120,11 @@
           <% blog = Post.last %>
           <h1 style="color:#9b0707;font-size:14px;text-align:center;">Blog</h1>
           <%= link_to "Latest Entry", blog_index_path %><br /><br />
-          <%= link_to blog.name.upcase, blog_path(blog.id) %> - <%= blog.created_at.strftime("%d/%m/%Y") %><br /><br />
-          <%= blog.description_short %><br /><br />
-          <div style="text-align:right;"><%= link_to("View all", blog_index_path) %></div>
+          <% if !blog.nil? %>
+            <%= link_to blog.name.upcase, blog_path(blog.id) %> - <%= blog.created_at.strftime("%d/%m/%Y") %><br /><br />
+            <%= blog.description_short %><br /><br />
+            <div style="text-align:right;"><%= link_to("View all", blog_index_path) %></div>
+          <%end%>
     </div>
 
 </div><!-- END OF COLUMN 1-->   <!--div class="three-col-format"-->

@@ -41,7 +41,8 @@
 
                   <!-- Live Chat Start -->
                    <div style="float:right;margin-right:25px;"><%= link_to image_tag('LiveChatHelpIcon.jpg'),chat_index_path, :popup => ['new_window_name', 'height=400,width=300'] %> <br />
-                    <%     @support_user = Setting.find(:first).support %>
+                    <% if !Setting.first.blank?%>
+                      <%  @support_user = Setting.find(:first).support %>
                                  <%# @support_status = Juggernaut.show_client(@support_user) ? true : false %>
                                  <% @support_status = (Juggernaut.show_client(@support_user) and @setting.chat_available == true) ? true : false %>
                                  <%
@@ -52,7 +53,8 @@
                                     support_link = "Closed"
                                  end
                                   %>
-                     <span style="font:bold 13px Arial"><%= link_to "Live chat (#{support_link})",chat_index_path, :popup => ['new_window_name', 'height=540,width=490'] %></span>
+                    <% end %>
+                    <span style="font:bold 13px Arial"><%= link_to "Live chat (#{support_link})",chat_index_path, :popup => ['new_window_name', 'height=540,width=490'] %></span>
 
                     </div>
                   <!-- Live Chat End -->
