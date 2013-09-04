@@ -1,6 +1,6 @@
 require 'rake'
 require 'rake/testtask'
-require 'rake/rdoctask'
+require 'rdoc/task'
 
 desc 'Run tests on all database adapters. See README.'
 task :default => [:test_mysql, :test_sqlite3, :test_postgresql]

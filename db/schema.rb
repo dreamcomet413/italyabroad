@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121012011252) do
+ActiveRecord::Schema.define(:version => 20130903102140) do
 
   create_table "about_us", :force => true do |t|
     t.string   "title"
@@ -61,7 +61,6 @@ ActiveRecord::Schema.define(:version => 20121012011252) do
     t.string  "friendly_identifier"
     t.string  "text_on_image"
     t.string  "page_heading"
-    t.integer "menu_order"
     t.string  "image_link"
   end
 
@@ -91,11 +90,11 @@ ActiveRecord::Schema.define(:version => 20121012011252) do
     t.integer "product_id"
     t.boolean "public"
     t.string  "cupon_type",       :default => "price"
-    t.date    "created_at",       :default => '2012-01-06'
+    t.date    "created_at",       :default => '2013-09-02'
     t.date    "expiry_date"
     t.boolean "created_by_admin", :default => false
     t.integer "no_of_times",      :default => 1
-    t.integer "no_of_times_used", :default => 1
+    t.integer "no_of_times_used", :default => 0
   end
 
   create_table "cupons_products", :force => true do |t|
@@ -105,8 +104,7 @@ ActiveRecord::Schema.define(:version => 20121012011252) do
 
   create_table "deliveries", :force => true do |t|
     t.string  "name"
-    t.decimal "price",            :precision => 8, :scale => 2, :default => 0.0
-    t.float   "bulk_order_price",                                                :null => false
+    t.decimal "price", :precision => 8, :scale => 2, :default => 0.0
   end
 
   create_table "faqs", :force => true do |t|
@@ -175,13 +173,6 @@ ActiveRecord::Schema.define(:version => 20121012011252) do
   create_table "grapes_producers", :id => false, :force => true do |t|
     t.integer "grape_id"
     t.integer "producer_id"
-  end
-
-  create_table "hampermixedcase_included_products", :force => true do |t|
-    t.integer  "product_id"
-    t.integer  "hampermixedcase_included_product_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "images", :force => true do |t|
@@ -308,7 +299,6 @@ ActiveRecord::Schema.define(:version => 20121012011252) do
     t.integer  "shipping_agency_id"
     t.string   "consignment_no"
     t.float    "points_used",                                              :default => 0.0,   :null => false
-    t.string   "surname"
   end
 
   create_table "payment_methods", :force => true do |t|
@@ -381,26 +371,34 @@ ActiveRecord::Schema.define(:version => 20121012011252) do
     t.datetime "updated_at"
   end
 
+  create_table "product_sizes", :force => true do |t|
+    t.string   "size"
+    t.integer  "price",      :limit => 10, :precision => 10, :scale => 0
+    t.integer  "product_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "products", :force => true do |t|
     t.string   "name"
     t.string   "code"
     t.text     "description_short"
     t.text     "description"
-    t.decimal  "price",               :precision => 8, :scale => 2, :default => 0.0
-    t.string   "rate",                                              :default => "17.5%"
-    t.decimal  "cost",                :precision => 8, :scale => 2, :default => 0.0
+    t.decimal  "price",                 :precision => 8, :scale => 2, :default => 0.0
+    t.string   "rate",                                                :default => "17.5%"
+    t.decimal  "cost",                  :precision => 8, :scale => 2, :default => 0.0
     t.integer  "image_1_id"
     t.integer  "image_2_id"
     t.integer  "image_3_id"
     t.integer  "resource_1_id"
     t.integer  "resource_2_id"
     t.integer  "resource_3_id"
-    t.boolean  "active",                                            :default => true
-    t.integer  "quantity",                                          :default => 1
-    t.boolean  "raccomanded",                                       :default => false
+    t.boolean  "active",                                              :default => true
+    t.integer  "quantity",                                            :default => 1
+    t.boolean  "raccomanded",                                         :default => false
     t.string   "region"
-    t.boolean  "vegetarian",                                        :default => false
-    t.boolean  "organic",                                           :default => false
+    t.boolean  "vegetarian",                                          :default => false
+    t.boolean  "organic",                                             :default => false
     t.string   "color"
     t.string   "size"
     t.string   "weight"
@@ -415,21 +413,24 @@ ActiveRecord::Schema.define(:version => 20121012011252) do
     t.string   "vintage"
     t.string   "volume"
     t.integer  "rating"
-    t.integer  "from_quantity",                                     :default => 0
-    t.decimal  "from_quantity_price", :precision => 8, :scale => 2, :default => 0.0
+    t.integer  "from_quantity",                                       :default => 0
+    t.decimal  "from_quantity_price",   :precision => 8, :scale => 2, :default => 0.0
     t.string   "date_arrival"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "how_to_cook_id"
     t.integer  "ideal_with_id"
-    t.decimal  "discount",            :precision => 8, :scale => 2, :default => 0.0
+    t.decimal  "discount",              :precision => 8, :scale => 2, :default => 0.0
     t.datetime "date"
     t.string   "friendly_identifier"
-    t.boolean  "featured",                                          :default => false
+    t.boolean  "featured",                                            :default => false
     t.integer  "region_id"
     t.integer  "producer_id"
-    t.integer  "occasion_id",                                       :default => 0
+    t.integer  "occasion_id",                                         :default => 0
     t.string   "tasting_video"
+    t.boolean  "multiple",                                            :default => false
+    t.integer  "defalult_product_size"
+    t.string   "mood"
   end
 
   create_table "products_grapes", :force => true do |t|
@@ -522,7 +523,7 @@ ActiveRecord::Schema.define(:version => 20121012011252) do
     t.string   "weekend_lunch"
     t.string   "weekend_dinner"
     t.string   "reservation"
-    t.integer  "cost",               :default => 0
+    t.integer  "cost",               :limit => 10, :precision => 10, :scale => 0, :default => 0
     t.string   "closed"
     t.text     "happy_hour"
     t.text     "regional_cuisine"
@@ -546,12 +547,12 @@ ActiveRecord::Schema.define(:version => 20121012011252) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "google_map_link"
-    t.boolean  "raccomanded",        :default => false
+    t.boolean  "raccomanded",                                                     :default => false
     t.integer  "rating"
     t.string   "city"
     t.string   "cap"
     t.string   "style"
-    t.boolean  "active",             :default => false
+    t.boolean  "active",                                                          :default => false
   end
 
   create_table "reviews", :force => true do |t|
@@ -608,8 +609,8 @@ ActiveRecord::Schema.define(:version => 20121012011252) do
     t.string  "home_image_5_title"
     t.string  "home_image_5_url"
     t.string  "promotion"
-    t.integer "reorder_quantity"
-    t.string  "vat_rate",                                                 :default => "0.00"
+    t.integer "reorder_quantity",                                         :default => 10
+    t.string  "vat_rate",                                                 :default => "0.0"
     t.string  "support",                                                  :default => "admin"
     t.float   "points_per_pound",                                         :default => 0.0,     :null => false
     t.float   "points_to_pound",                                          :default => 0.0,     :null => false
@@ -632,7 +633,6 @@ ActiveRecord::Schema.define(:version => 20121012011252) do
     t.string  "country"
     t.text    "note"
     t.integer "user_id"
-    t.string  "surname"
   end
 
   create_table "shipping_agencies", :force => true do |t|
@@ -691,7 +691,6 @@ ActiveRecord::Schema.define(:version => 20121012011252) do
     t.integer  "sequence"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id"
   end
 
   create_table "topics", :force => true do |t|

@@ -77,7 +77,6 @@ class Admin::ProductsController < ApplicationController
   def create
     @product = Product.new(params[:product])
 
-
     if @product.save
       redirect_to edit_admin_product_path(@product)
     else
