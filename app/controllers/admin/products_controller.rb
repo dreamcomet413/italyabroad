@@ -76,14 +76,26 @@ class Admin::ProductsController < ApplicationController
 
   def create
     @product = Product.new(params[:product])
+    @product.friendly_identifier = @product.name
 
-
-    if @product.save
+    if !Product.all(:conditions => ["name LIKE ?", @product.name]).blank?
+      @like_products = Product.all(:conditions => ["name LIKE ?", @product.name])
+      if @like_products.collect(&:quantity).include?(@product.quantity) && @like_products.collect(&:price).include?(@product.price)
+        flash[:notice] = "Product's Quantity and Price already exists for the same name"
+        render :action => :new
+      elsif @product.save
+        redirect_to edit_admin_product_path(@product)
+      else
+       flash[:notice] = @product.show_errors
+       render :action => :new
+      end
+    elsif @product.save
       redirect_to edit_admin_product_path(@product)
     else
       flash[:notice] = @product.show_errors
       render :action => :new
     end
+    
   end
 
   def meta
@@ -93,6 +105,7 @@ class Admin::ProductsController < ApplicationController
       format.html
     end
   end
+
 
   def categories
     @product = Product.find(params[:id])

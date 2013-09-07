@@ -39,4 +39,16 @@ class Admin::UsersController < ApplicationController
     User.admins.find(params[:id]).destroy
     redirect_to :action => :index
   end
+
+
+  def fb_connect
+    debugger
+    @user = User.find_by_facebook_uid(params[:auth][:user_id]) || 
+            User.create(:facebook_uid => params[:auth][:user_id],
+                        :name => params[:auth][:info][:name],
+                        :email => params[:auth][:info][:email])
+    session[:user_id] = @user.id
+    redirect_to root_path
+  end
+  
 end

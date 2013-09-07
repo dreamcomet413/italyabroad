@@ -9,7 +9,7 @@ class Product < ActiveRecord::Base
   validates_numericality_of :discount, :message => "is not a number"
   validates_numericality_of :quantity, :message => "is not a number"
 
-  validates_uniqueness_of :name, :message => "of product must be unique"
+  # validates_uniqueness_of :name, :message => "of product must be unique"
   validates_uniqueness_of :code, :message => "must be unique"
    
   has_many :product_sizes
@@ -48,13 +48,14 @@ class Product < ActiveRecord::Base
 
   has_many :reviews, :as => :reviewer, :dependent => :destroy
 
-  friendly_identifier :name
+  # friendly_identifier :name
 
   named_scope :featured, :conditions => {:featured, true}, :limit => 5
   named_scope :on_offer, :conditions => ["active = ? AND discount > ?", true, 0], :limit => 5, :order => "RAND()"
   named_scope :other_events, lambda { |product|
     { :conditions => ["categories.name LIKE 'Events' AND products.id <> ? AND DATE(products.date) > ? AND active", product.id, Date.today], :include => {:categorizations => :category}, :order => "date", :limit => 3 }
   }
+
 
   def validate
     errors.add(:price, "must be positive !") if price < 0
