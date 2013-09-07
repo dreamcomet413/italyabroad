@@ -76,6 +76,7 @@ class Admin::ProductsController < ApplicationController
 
   def create
     @product = Product.new(params[:product])
+
     @product.friendly_identifier = @product.name
 
     if !Product.all(:conditions => ["name LIKE ?", @product.name]).blank?
@@ -90,6 +91,7 @@ class Admin::ProductsController < ApplicationController
        render :action => :new
       end
     elsif @product.save
+
       redirect_to edit_admin_product_path(@product)
     else
       flash[:notice] = @product.show_errors
