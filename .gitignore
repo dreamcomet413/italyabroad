@@ -1,8 +1,7 @@
 public/system
 public/resources/*
-config/database.yml
 config/environment.rb
-config/deploy.rb
+
 config/preinitializer.rb
 log/*
 tmp/*

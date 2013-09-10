@@ -1,0 +1,29 @@
+development:
+  adapter: mysql
+  encoding: utf8
+  reconnect: false
+  database: italyabroad_dev
+  pool: 5
+  username: root
+  password:
+  socket: /opt/lampp/var/mysql/mysql.sock
+
+test:
+  adapter: mysql
+  database: italyabroad_test
+  username: root
+
+
+production:
+  adapter: mysql
+  database: italy2011sep_prod
+  username: root
+  password: italyabroad
+
+staging:
+  adapter: mysql
+  database: italy_april_production
+  username: root
+  password: italyabroad
+
+
