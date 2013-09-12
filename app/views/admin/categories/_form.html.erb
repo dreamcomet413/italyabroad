@@ -43,9 +43,9 @@
     <td>Parent category</td>
     <td>
     <% if !@category.new_record? %>
-    <%= select :category, :parent_id, Category.find(:all,:conditions=>['upper(name) = ? OR upper(name) = ? OR upper(name) = ? OR upper(name) = ?' ,'WINE','FOOD','HAMPERS','OTHER BEVRAGES']).inject([]) {|categories, category| categories << [category.name, category.id] } %><!--, { :include_blank => true }-->
+    <%= select :category, :parent_id, Category.find(:all,:conditions=>['upper(name) = ? OR upper(name) = ? OR upper(name) = ? ' ,'WINE','FOOD','HAMPERS']).inject([]) {|categories, category| categories << [category.name, category.id] } %><!--, { :include_blank => true }-->
     <% else %>
-     <%= select :category, :parent_id, Category.find(:all,:conditions=>['upper(name) = ? OR upper(name) = ? OR upper(name) = ? OR upper(name) = ?' ,'WINE','FOOD','HAMPERS','OTHER BEVRAGES']).inject([]) {|categories, category| categories << [category.name, category.id] } ,{ :include_blank => true } %><em style="font-size:85%">blank is root</em>
+     <%= select :category, :parent_id, Category.find(:all,:conditions=>['upper(name) = ? OR upper(name) = ? OR upper(name) = ? ' ,'WINE','FOOD','HAMPERS']).inject([]) {|categories, category| categories << [category.name, category.id] } ,{ :include_blank => true } %><em style="font-size:85%">blank is root</em>
     <% end %>
 
     </td>
@@ -53,20 +53,20 @@
 
   <tr>
     <td>Layout</td>
-    <td><%= select :category, :layout, [["Wine", "wine_category"], ["Wine Sub Category", "wine_sub_category"], ["Food","food_category"], ["Food Sub Category", "food_sub_category"], ["Hamper","hamper_category"], ["Hamper Sub Category", "hamper_sub_category"], ["Event","event_category"], ["Wine Tour", "wine_tour_category"], ["Wine Club", "wine_club_category"], ["Other Bevrages", "other_bevrages_category"], ["Other Bevrages Sub Category", "other_bevrages_sub_category"]] %></td>
+    <td><%= select :category, :layout, [["Wine", "wine_category"], ["Wine Sub Category", "wine_sub_category"], ["Food","food_category"], ["Food Sub Category", "food_sub_category"], ["Hamper","hamper_category"], ["Hamper Sub Category", "hamper_sub_category"], ["Event","event_category"], ["Wine Tour", "wine_tour_category"], ["Wine Club", "wine_club_category"]] %></td>
 
   </tr>
   <tr>
     <td>Layout Search</td>
-    <td><%= select :category, :layout_search, [["Wine", "wine_category"], ["Wine Sub Category", "wine_sub_category"], ["Food","food_category"], ["Food Sub Category", "food_sub_category"], ["Hamper","hamper_category"], ["Hamper Sub Category", "hamper_sub_category"], ["Event","event_category"], ["Wine Tour", "wine_tour_category"], ["Wine Club", "wine_club_category"], ["Other Bevrages", "other_bevrages_category"], ["Other Bevrages Sub Category", "other_bevrages_sub_category"]] %></td>
+    <td><%= select :category, :layout_search, [["Wine", "wine_category"], ["Wine Sub Category", "wine_sub_category"], ["Food","food_category"], ["Food Sub Category", "food_sub_category"], ["Hamper","hamper_category"], ["Hamper Sub Category", "hamper_sub_category"], ["Event","event_category"], ["Wine Tour", "wine_tour_category"], ["Wine Club", "wine_club_category"]] %></td>
   </tr>
   <tr>
     <td>Product Layout</td>
-    <td><%= select :category, :layout_card, [["Wine", "wine_card"], ["Food","food_card"], ["Hamper","hamper_card"], ["Event","event_card"], ["Wine Tour", "wine_tour_card"], ["Wine Club", "wine_club_card"], ["Other Bevrages", "other_bevrages_card"]] %></td>
+    <td><%= select :category, :layout_card, [["Wine", "wine_card"], ["Food","food_card"], ["Hamper","hamper_card"], ["Event","event_card"], ["Wine Tour", "wine_tour_card"], ["Wine Club", "wine_club_card"]] %></td>
   </tr>
   <tr>
     <td>Product Image Layout</td>
-    <td><%= select :category, :layout_image, [["Wine", "wine_category"], ["Wine Sub Category", "wine_sub_category"], ["Food","food_category"], ["Food Sub Category", "food_sub_category"], ["Hamper","hamper_category"], ["Hamper Sub Category", "hamper_sub_category"], ["Event","event_category"], ["Wine Tour", "wine_tour_category"], ["Wine Club", "wine_club_category"], ["Other Bevrages", "other_bevrages_category"], ["Other Bevrages Sub Category", "other_bevrages_sub_category"]] %></td>
+    <td><%= select :category, :layout_image, [["Wine", "wine_category"], ["Wine Sub Category", "wine_sub_category"], ["Food","food_category"], ["Food Sub Category", "food_sub_category"], ["Hamper","hamper_category"], ["Hamper Sub Category", "hamper_sub_category"], ["Event","event_category"], ["Wine Tour", "wine_tour_category"], ["Wine Club", "wine_club_category"]] %></td>
   </tr>
   <tr>
     <td>View on menu?</td>

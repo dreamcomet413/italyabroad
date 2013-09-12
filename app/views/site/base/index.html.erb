@@ -1,11 +1,10 @@
 
-
-<% @title = "Italian Wines & Italian Food made by Small Producers" %>
+<% @title = @setting.home_page_title.blank? ? "Italian Wines & Italian Food made by Small Producers" : @setting.home_page_title %>
+<%# @title = "Italian Wines & Italian Food made by Small Producers" %>
 <%# @title = "Italian Wines & Italian Food made by Small Producers";
 #@description = "Italian Food and Italian Wine made by Passionate Small Producers in the UK,Fantastic Italian Wine and Italian Food,High Quality Italian Wine and Food"; @keys = "Italian Wines,Fine Italian Wines,Italian Red and White Wines, Italian Food, Wine Tasting, Wine Expert,Italian Wine Blog,Italy,Food,Wines,Barolo,Amarone,Brunello"
 %>
-<%  @description =  @setting.home_page_meta_description if !@setting.nil? %>
-<% @keys = @setting.home_page_meta_key if !@setting.nil? %>
+<%  @description = @setting.home_page_meta_description; @keys = @setting.home_page_meta_key %> 
 <!--<script type="text/javascript">
 /*function win1()
 {
@@ -239,48 +238,3 @@
   <br />
   <%= render :partial => '/site/shared/box_popular' %>
 <% end %>
-<script>
-  window.fbAsyncInit = function() {
-    // init the FB JS SDK
-    FB.init({
-      appId      : 'YOUR_APP_ID',                        // App ID from the app dashboard
-      channelUrl : '//WWW.YOUR_DOMAIN.COM/channel.html', // Channel file for x-domain comms
-      status     : true,                                 // Check Facebook Login status
-      xfbml      : true                                  // Look for social plugins on the page
-    });
-
-    // Additional initialization code such as adding Event Listeners goes here
-  };
-
-  // Load the SDK asynchronously
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "//connect.facebook.net/en_US/all.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-</script>
-<div id="fb-root"></div>
-<script>
-  window.fbAsyncInit = function() {
-    // init the FB JS SDK
-    FB.init({
-      appId      : '417985914972023',                        // App ID from the app dashboard
-      channelUrl : 'localhost:3000', // Channel file for x-domain comms
-      status     : true,                                 // Check Facebook Login status
-      xfbml      : true                                  // Look for social plugins on the page
-    });
-
-    // Additional initialization code such as adding Event Listeners goes here
-  };
-
-  // Load the SDK asynchronously
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "//connect.facebook.net/en_US/all.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-</script>
