@@ -9,4 +9,4 @@ tmp/*
 .gitignore
 config/juggernaut_hosts.yml
 juggernaut.yml
-
+.idea

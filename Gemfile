@@ -1,0 +1,10 @@
+source 'http://rubygems.org'
+
+gem 'prawn'
+gem 'pg'
+gem 'fleximage'
+gem 'RedCloth'
+gem 'pdfkit'
+gem 'rails', '2.3.5'
+gem 'capistrano'
+gem 'mime-types', '1.23'

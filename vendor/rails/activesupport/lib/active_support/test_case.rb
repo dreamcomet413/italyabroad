@@ -6,7 +6,7 @@ require 'active_support/testing/declarative'
 
 begin
   gem 'mocha', ">= 0.9.7"
-  require 'mocha'
+  require 'mocha/setup'
 rescue LoadError
   # Fake Mocha::ExpectationError so we can rescue it in #run. Bleh.
   Object.const_set :Mocha, Module.new
