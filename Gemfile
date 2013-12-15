@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 
 gem 'prawn'
 gem 'pg'
-gem 'fleximage'
+gem 'fleximage', '1.0.4'
 gem 'RedCloth'
 gem 'pdfkit'
 gem 'rails', '2.3.5'

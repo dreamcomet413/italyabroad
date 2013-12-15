@@ -70,7 +70,7 @@ PLATFORMS
 DEPENDENCIES
   RedCloth
   capistrano
-  fleximage
+  fleximage (= 1.0.4)
   mime-types (= 1.23)
   pdfkit
   pg
