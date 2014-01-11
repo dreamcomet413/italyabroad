@@ -116,8 +116,12 @@ ItalyabroadNew::Application.routes.draw do
     end
   end
 
-  resources :orders, :only => [:index, :new, :create, :show] do
-    match :download_pdf, :on => :collection
+  namespace :site do
+    resources :orders, :only => [:index, :new, :create, :show] do
+      match :download_pdf, :on => :collection
+    end
+    resources :wish_list, :only => [:index, :create, :destroy]
+    resources :wine_lists, :only => [:index, :create, :destroy]
   end
 
   resources :customers do
@@ -142,8 +146,6 @@ ItalyabroadNew::Application.routes.draw do
     end
   end
 
-  resources :wish_list, :only => [:index, :create, :destroy]
-  resources :wine_lists, :only => [:index, :create, :destroy]
   resources :posts
   match 'admin/products/delete_products_of_the_week' => 'admin/products#delete_products_of_the_week'
   match 'admin/products/products_of_the_week' => 'admin/products#products_of_the_week'

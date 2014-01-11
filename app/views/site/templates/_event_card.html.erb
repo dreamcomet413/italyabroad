@@ -45,8 +45,8 @@
       <li style="margin-bottom:10px;text-align:right;">
       	<% if @product.discount > 0 %>
       		Was <span style="text-decoration: line-through;"><%= number_to_currency @product.price, :unit => "&pound;" %></span><br />
-      		Now <span class="red"><%= number_to_currency (@product.price - (@product.price * @product.discount / 100)), :unit => "&pound;" %></span>
-      		(save <span class="red"><%= number_to_currency (@product.price * @product.discount / 100), :unit => "&pound;" %></span>)
+      		Now <span class="red"><%= number_to_currency(@product.price - (@product.price * @product.discount / 100)), :unit => "&pound;" %></span>
+      		(save <span class="red"><%= number_to_currency(@product.price * @product.discount / 100), :unit => "&pound;" %></span>)
       	<% else %>
       		<!--Price:--> <span style="font-size:18px;color:#9b0707;text-align:right;" class="red"><%= number_to_currency @product.price, :unit => "&pound;" %></span>
       	<% end %>

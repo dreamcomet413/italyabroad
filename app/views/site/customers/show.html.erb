@@ -1,221 +1,221 @@
 <%- @title = "#{@my_profile ? "My" : @user.name+"'s"} Profile" -%>
-<%- @breadcrumbs = "#{link_to "Home", root_url} &raquo; #{link_to ('Community',wine_community_path)} &raquo #{@title}" -%>
+<%- @breadcrumbs = "#{link_to "Home", root_url} &raquo; #{link_to('Community',wine_community_path)} &raquo #{@title}".html_safe -%>
 <div id="header"><%= render :partial => 'site/shared/box_login' %></div>
 
 <% @class = "no-padding" %>
 
 <!-- div id="header"><%= @title %></div -->
 <h4 class="account-title"><%= @title %>
-&nbsp;&nbsp;<%= link_to 'You have new message',:controller=>'site/messages',:action=>'index',:id=>current_user.id if @unread_msg %>
+  &nbsp;&nbsp;<%= link_to 'You have new message',:controller=>'site/messages',:action=>'index',:id=>current_user.id if @unread_msg %>
 
 </h4>
 <div class="profile-container">
-  <table width="100%" cellpadding="0" cellspacing="0">
-    <tr>
-      <td valign="top" width="98px" style='text-align:center;'>
-        <%= avatar_for_user(@user) %><br />
-        <% unless @my_profile %>
-        <%- if @user.followed_by?(current_user) -%>
-        <%= link_to image_tag("buttons/unfollow.png"), unfollow_path(@user) %>
-        <%- else -%>
-        <%= link_to image_tag("buttons/follow.png"), follow_path(@user) %>
-        <%- end -%>
-        <% end %>
-      </td>
-      <td valign="top">
-        <div style="margin-left:20px;">
-          <div style="font-size:18px;"><%#= @user.name %></div>
-          <%- if @my_profile -%>
-           <%- form_for :user, :url => customer_path(@user), :html => {:method => :put} do -%>
-          <table cellpadding="0" cellspacing="0">
-            <tr>
-              <td><p><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> favorite Meal:&nbsp;</p></td>
-              <td>
-
-                <div id="favorite_meal">
-                    <%= text_field :user,:fav_meals,:size => 45 %>  <!-- or --> <%#= link_to("Cancel", '', :onclick=>"document.getElementById('favorite_meal').style.display = 'none';return false;") %>
-                  </div>
-              </td>
-            </tr>
-            <tr>
-              <td><p><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> favorite Wine:&nbsp;</p></td>
-              <td>
-                 <div id="favorite_wine">
-                    <%= text_field :user,:fav_wine, :size => 45 %> <!-- or --> <%#= link_to("Cancel", '', :onclick=>"document.getElementById('favorite_wine').style.display = 'none';return false;") %>
-                  </div>
-              </td>
-            </tr>
-            <tr>
-              <td><p><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> favorite Holiday:&nbsp;</p></td>
-              <td>
-                <div id="favorite_holiday">
-                    <%= text_field :user, :holidays, :size => 45 %>  <!-- or --> <%#= link_to("Cancel", '', :onclick=>"document.getElementById('favorite_holiday').style.display = 'none';return false;") %>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td><p><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> favorite Song:&nbsp;</p></td>
-              <td>
-                <div id="favorite_song">
-                    <%= text_field :user, :songs, :size => 45 %>  <!-- or --> <%#= link_to("Cancel",'', :onclick=>"document.getElementById('favorite_song').style.display = 'none';return false;") %>                </div>
-              </td>
-            </tr>
-            <tr>
-              <td><p><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> favorite Film:&nbsp;</p></td>
-              <td>
-                <div id="favorite_film">
-                    <%= text_field :user, :films, :size => 45 %>  <!-- or --> <%#= link_to("Cancel",'', :onclick=>"document.getElementById('favorite_film').style.display = 'none';return false;") %>                </div>
-              </td>
-            </tr>
-            <tr>
-              <td><p><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> favorite Newspaper:&nbsp;</p></td>
-              <td>
-                <div id="favorite_newspaper">
-                <%- @display = "none" unless @user.newspapers.blank? -%>
-               <%= text_field :user, :newspapers, :size => 45 %>  <!-- or --> <%#= link_to("Cancel",'', :onclick=>"document.getElementById('favorite_newspaper').style.display = 'none';return false;") %>
-                </div>
-              </td>
-            </tr>
-
-            <tr><td colspan="2" align="right">
-            <%= image_submit_tag("buttons/save_button.png") %>
-          </table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr>
+    <td valign="top" width="98px" style='text-align:center;'>
+      <%= avatar_for_user(@user) %><br />
+      <% unless @my_profile %>
+          <%- if @user.followed_by?(current_user) -%>
+              <%= link_to image_tag("buttons/unfollow.png"), unfollow_path(@user) %>
+          <%- else -%>
+              <%= link_to image_tag("buttons/follow.png"), follow_path(@user) %>
           <%- end -%>
-          <% else %>
-           <table cellpadding="0" cellspacing="0" border="2">
-            <tr>
-              <td><p><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> favorite Meal:&nbsp;</p></td>
-              <td>
-                  <%= @user.fav_meals ? @user.fav_meals : 'Not Added yet'%>
-              </td>
-            </tr>
-            <tr>
-              <td><p><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> favorite Wine:&nbsp;</p></td>
-              <td>
-                  <%= @user.fav_wine ? @user.fav_wine : 'Not Added yet'%>
-              </td>
-            </tr>
-            <tr>
-              <td><p><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> favorite Holiday:&nbsp;</p></td>
-              <td>
-                <%= @user.holidays ? @user.holidays : 'Not Added yet' %>
-              </td>
-            </tr>
-            <tr>
-              <td><p><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> favorite Song:&nbsp;</p></td>
-              <td>
-                <%= @user.songs ? @user.songs : 'Not Added yet' %>
-              </td>
-            </tr>
-            <tr>
-              <td><p><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> favorite Film:&nbsp;</p></td>
-              <td>
-                <%= @user.films ? @user.films : 'Not Added yet'  %>
-              </td>
-            </tr>
-            <tr>
-              <td><p><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> favorite Newspaper:&nbsp;</p></td>
-              <td>
-                 <%= @user.newspapers ? @user.newspapers : 'Not Added yet' %>
-              </td>
-            </tr>
+      <% end %>
+    </td>
+    <td valign="top">
+      <div style="margin-left:20px;">
+        <div style="font-size:18px;"><%#= @user.name %></div>
+        <%- if @my_profile -%>
+            <%- form_for(:user, :url => customer_path(@user), :html => {:method => :put}) do -%>
+                <table cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td><p><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> favorite Meal:&nbsp;</p></td>
+                    <td>
 
-            </td></tr>
-          </table>
+                      <div id="favorite_meal">
+                        <%= text_field :user,:fav_meals,:size => 45 %>  <!-- or --> <%#= link_to("Cancel", '', :onclick=>"document.getElementById('favorite_meal').style.display = 'none';return false;") %>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><p><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> favorite Wine:&nbsp;</p></td>
+                    <td>
+                      <div id="favorite_wine">
+                        <%= text_field :user,:fav_wine, :size => 45 %> <!-- or --> <%#= link_to("Cancel", '', :onclick=>"document.getElementById('favorite_wine').style.display = 'none';return false;") %>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><p><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> favorite Holiday:&nbsp;</p></td>
+                    <td>
+                      <div id="favorite_holiday">
+                        <%= text_field :user, :holidays, :size => 45 %>  <!-- or --> <%#= link_to("Cancel", '', :onclick=>"document.getElementById('favorite_holiday').style.display = 'none';return false;") %>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><p><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> favorite Song:&nbsp;</p></td>
+                    <td>
+                      <div id="favorite_song">
+                        <%= text_field :user, :songs, :size => 45 %>  <!-- or --> <%#= link_to("Cancel",'', :onclick=>"document.getElementById('favorite_song').style.display = 'none';return false;") %>                </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><p><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> favorite Film:&nbsp;</p></td>
+                    <td>
+                      <div id="favorite_film">
+                        <%= text_field :user, :films, :size => 45 %>  <!-- or --> <%#= link_to("Cancel",'', :onclick=>"document.getElementById('favorite_film').style.display = 'none';return false;") %>                </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><p><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> favorite Newspaper:&nbsp;</p></td>
+                    <td>
+                      <div id="favorite_newspaper">
+                        <%- @display = "none" unless @user.newspapers.blank? -%>
+                        <%= text_field :user, :newspapers, :size => 45 %>  <!-- or --> <%#= link_to("Cancel",'', :onclick=>"document.getElementById('favorite_newspaper').style.display = 'none';return false;") %>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr><td colspan="2" align="right">
+                    <%= image_submit_tag("buttons/save_button.png") %>
+                </table>
+            <%- end -%>
+        <% else %>
+            <table cellpadding="0" cellspacing="0" border="2">
+              <tr>
+                <td><p><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> favorite Meal:&nbsp;</p></td>
+                <td>
+                  <%= @user.fav_meals ? @user.fav_meals : 'Not Added yet'%>
+                </td>
+              </tr>
+              <tr>
+                <td><p><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> favorite Wine:&nbsp;</p></td>
+                <td>
+                  <%= @user.fav_wine ? @user.fav_wine : 'Not Added yet'%>
+                </td>
+              </tr>
+              <tr>
+                <td><p><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> favorite Holiday:&nbsp;</p></td>
+                <td>
+                  <%= @user.holidays ? @user.holidays : 'Not Added yet' %>
+                </td>
+              </tr>
+              <tr>
+                <td><p><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> favorite Song:&nbsp;</p></td>
+                <td>
+                  <%= @user.songs ? @user.songs : 'Not Added yet' %>
+                </td>
+              </tr>
+              <tr>
+                <td><p><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> favorite Film:&nbsp;</p></td>
+                <td>
+                  <%= @user.films ? @user.films : 'Not Added yet'  %>
+                </td>
+              </tr>
+              <tr>
+                <td><p><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> favorite Newspaper:&nbsp;</p></td>
+                <td>
+                  <%= @user.newspapers ? @user.newspapers : 'Not Added yet' %>
+                </td>
+              </tr>
+
+              </td></tr>
+            </table>
+        <% end %>
+      </div>
+    </td>
+  </tr>
+</table>
+<br />
+<br />
+<div style="clear:both;"></div>
+<ul class="profile-list-info">
+  <li>
+    <h1><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> Comments</h1>
+    <ul>
+      <%- @user.comments.all(:order=>' id desc',:limit => 5).each do |comment| -%>
+          <li><%= comment.name unless comment.name.blank? %></li>
+      <%- end -%>
+      <% if @user.comments.size > 5 %>
+          <li style="list-style:none;text-align:right;margin-top:20px;"><%= link_to("more",:controller=>'comments',:action=>'index',:id=>params[:id]) %></li>
+      <% end %>
+    </ul>
+  </li>
+
+  <li>
+    <h1><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> Latest Reviews</h1>
+    <ul>
+      <%- @user.reviews.all(:order=>' id desc', :limit => 5, :conditions=>['publish = ?',true],:select => 'DISTINCT reviewer_id' ).each do |review| -%>
+
+
+          <%= link_to '<li>' +  Product.find_by_id(review.reviewer_id).name + '</li>', product_path(review.reviewer_id) rescue "" %>
+
+      <%- end -%>
+      <% if @user.reviews.size > 5 %>
+          <li style="list-style:none;text-align:right;margin-top:20px;"><%= link_to("more",reviews_path) %></li>
+      <% end %>
+    </ul>
+  </li>
+  <li>
+    <h1><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> Winelist</h1>
+    <ul>
+      <%- @user.wine_lists.all(:order=>' id desc',:limit => 5).each do |wine_list| -%>
+          <li><%= wine_list.product.name %></li>
+      <%- end -%>
+      <% if @user.wine_lists.size > 5 %>
+          <li style="list-style:none;text-align:right;margin-top:20px;"><%= link_to("more",wine_lists_path) %></li>
+      <% end %>
+    </ul>
+  </li>
+</ul>
+<div style="clear:both;"><br /></div>
+<% if  @my_profile %>
+    <% @messages = @user.messages.all(:order=>' id desc',:limit => 5)
+       unless @messages.blank?%>
+
+        <div>
+          <h1><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> Messages</h1>
+          <ul>
+            <%- @messages.each do |msg| -%>
+                <li><%= msg.name unless msg.name.blank? %>
+                  <%= link_to_remote '&nbsp;&#171;Reply&#187;&nbsp;', :url => { :controller=>'messages',:action => "send_reply",:msg_id=>msg.id} %>
+                  <div id='reply<%=msg.id%>'> </div>
+                </li>
+            <%- end -%>
+            <% if @user.messages.size > 5 %>
+                <li style="list-style:none;text-align:right;margin-top:20px;"><%= link_to("more",:controller=>'site/messages',:action=>'index',:id=>params[:id]) %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% else %>
+        <br />
+        <h1>&nbsp;&nbsp;You don't have any messages</h1>
+        <br />
+    <% end %>
+<% end %> <br />
+<% if logged_in? %>
+    <% unless @my_profile %>
+        <div>
+          <h1><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> wall - write a Message:</h1>
+          <% form_tag 'send_message' do |f| %>
+              <%= text_area_tag  :name,'', :size => "95x5" %>
+              <%= hidden_field_tag :user_id,params[:id]%>
+              <%= hidden_field_tag :send_by_id,current_user.id %>
+              <p style="text-align:right;">
+
+                <%= image_submit_tag("buttons/submit.png") %></p>
           <% end %>
         </div>
-      </td>
-    </tr>
-  </table>
-  <br />
-  <br />
-  <div style="clear:both;"></div>
-  <ul class="profile-list-info">
-    <li>
-      <h1><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> Comments</h1>
-      <ul>
-        <%- @user.comments.all(:order=>' id desc',:limit => 5).each do |comment| -%>
-        <li><%= comment.name unless comment.name.blank? %></li>
-        <%- end -%>
-        <% if @user.comments.size > 5 %>
-        <li style="list-style:none;text-align:right;margin-top:20px;"><%= link_to("more",:controller=>'comments',:action=>'index',:id=>params[:id]) %></li>
-        <% end %>
-      </ul>
-    </li>
-
-    <li>
-      <h1><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> Latest Reviews</h1>
-      <ul>
-        <%- @user.reviews.all(:order=>' id desc', :limit => 5, :conditions=>['publish = ?',true],:select => 'DISTINCT reviewer_id' ).each do |review| -%>
-
-
-        <%= link_to '<li>' +  Product.find_by_id(review.reviewer_id).name + '</li>', product_path(review.reviewer_id) rescue "" %>
-
-        <%- end -%>
-        <% if @user.reviews.size > 5 %>
-        <li style="list-style:none;text-align:right;margin-top:20px;"><%= link_to("more",reviews_path) %></li>
-        <% end %>
-      </ul>
-    </li>
-    <li>
-      <h1><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> Winelist</h1>
-      <ul>
-        <%- @user.wine_lists.all(:order=>' id desc',:limit => 5).each do |wine_list| -%>
-        <li><%= wine_list.product.name %></li>
-        <%- end -%>
-        <% if @user.wine_lists.size > 5 %>
-        <li style="list-style:none;text-align:right;margin-top:20px;"><%= link_to("more",wine_lists_path) %></li>
-        <% end %>
-      </ul>
-    </li>
-  </ul>
-  <div style="clear:both;"><br /></div>
- <% if  @my_profile %>
-  <% @messages = @user.messages.all(:order=>' id desc',:limit => 5)
-  unless @messages.blank?%>
-
-   <div>
-      <h1><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> Messages</h1>
-      <ul>
-        <%- @messages.each do |msg| -%>
-        <li><%= msg.name unless msg.name.blank? %>
-        <%= link_to_remote '&nbsp;&#171;Reply&#187;&nbsp;', :url => { :controller=>'messages',:action => "send_reply",:msg_id=>msg.id} %>
-        <div id='reply<%=msg.id%>'> </div>
-        </li>
-        <%- end -%>
-        <% if @user.messages.size > 5 %>
-        <li style="list-style:none;text-align:right;margin-top:20px;"><%= link_to("more",:controller=>'site/messages',:action=>'index',:id=>params[:id]) %></li>
-        <% end %>
-      </ul>
-  </div>
-  <% else %>
-    <br />
-   <h1>&nbsp;&nbsp;You don't have any messages</h1>
-   <br />
-  <% end %>
-  <% end %> <br />
-   <% if logged_in? %>
-  <% unless @my_profile %>
-  <div>
-    <h1><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> wall - write a Message:</h1>
-    <% form_tag 'send_message' do |f| %>
-    <%= text_area_tag  :name,'', :size => "95x5" %>
-    <%= hidden_field_tag :user_id,params[:id]%>
-    <%= hidden_field_tag :send_by_id,current_user.id %>
-    <p style="text-align:right;">
-
-    <%= image_submit_tag("buttons/submit.png") %></p>
-    <% end %>
-  </div>
-  <% end  else %>
-   <!-- p style="font:italic 16px Arial;text-align:center">To submit any message please log in!</p -->
-  <div style="border-bottom:1px solid #CCCCCC;background-color:#F3F8DA;color:#161616;font-size:1.3em;margin-top:8px;padding:1px 0 0 8px;">
-        <h1>Write a message for <%= @user.name %></h1>
-       <!-- <p>Comment with italyabroad account</p> -->
-        <p style = "font:bold 16px Arial;">&nbsp;<%= link_to("Login", login_path) %> ||
-          <%= link_to "Register", "/signup" %> </p>
-      </div>
-  <%end %>
+    <% end  else %>
+    <!-- p style="font:italic 16px Arial;text-align:center">To submit any message please log in!</p -->
+    <div style="border-bottom:1px solid #CCCCCC;background-color:#F3F8DA;color:#161616;font-size:1.3em;margin-top:8px;padding:1px 0 0 8px;">
+      <h1>Write a message for <%= @user.name %></h1>
+      <!-- <p>Comment with italyabroad account</p> -->
+      <p style = "font:bold 16px Arial;">&nbsp;<%= link_to("Login", login_path) %> ||
+        <%= link_to "Register", "/signup" %> </p>
+    </div>
+<%end %>
 </div>
 
 <div id="follower">
@@ -224,19 +224,19 @@
     <%#- @user.followers.all(:limit => 10).each do |people| -%>
     <% @followers = Follower.find(:all,:conditions=>['follower_id = ?',params[:id]],:limit=>10)%>
     <% for people in @followers %>
-    <td>
-      <% user = User.find_by_id(people.user_id)%>
-      <%#= link_to avatar_for_user(people.follower, 'small'), customer_path(people.follower) %>
-      <%= link_to avatar_for_user(user, 'small'), customer_path(user.id) %>
-      <%#= link_to people.follower.name, customer_path(people.follower) %>
-      <%= link_to user.name, customer_path(user.id) %><br />
+        <td>
+          <% user = User.find_by_id(people.user_id)%>
+          <%#= link_to avatar_for_user(people.follower, 'small'), customer_path(people.follower) %>
+          <%= link_to avatar_for_user(user, 'small'), customer_path(user.id) %>
+          <%#= link_to people.follower.name, customer_path(people.follower) %>
+          <%= link_to user.name, customer_path(user.id) %><br />
 
-        <%- if user.followed_by?(current_user) -%><br >
-       <%= link_to image_tag("buttons/unfollow.png"), unfollow_path(user) %>
+          <%- if user.followed_by?(current_user) -%><br >
+              <%= link_to image_tag("buttons/unfollow.png"), unfollow_path(user) %>
 
-        <%- end -%>
+          <%- end -%>
 
-    </td>
+        </td>
     <%- end -%>
   </tr></table>
 </div>
@@ -245,8 +245,8 @@
 <br /><br /><br />
 
 <%- content_for :right do -%>
-  <%= render :partial => 'site/shared/box_subscriptions' %>
-  <br />
-  <%= render :partial => 'site/shared/box_wine_tours' %>
+    <%= render :partial => 'site/shared/box_subscriptions' %>
+    <br />
+    <%= render :partial => 'site/shared/box_wine_tours' %>
 <%- end -%>
 

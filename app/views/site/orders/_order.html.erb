@@ -7,7 +7,7 @@
 	</td>
 	<td><%= order.created_at.strftime("%d/%m/%y %H:%M") %></td>
 	<td><%= order.status_order.name %></td>
-	<td><%= link_to(image_tag("buttons/more_info.png"), order_path(order)) %></td>
+	<td><%= link_to(image_tag("buttons/more_info.png"), site_order_path(order)) %></td>
 </tr>
 <% end %>
 

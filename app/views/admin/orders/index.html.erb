@@ -59,7 +59,7 @@
         <td><%= number_to_currency(order.sub_total, :unit => "&pound;") %></td>
         <td><%#= number_to_currency(order.total, :unit => "&pound;") %>
         <%#= number_to_currency order.sub_total - (order.points_used * Setting.find(:first).points_to_pound) + order.delivery_price, :unit => "&pound;" %>
-         <%= number_to_currency (order.total - (order.points_used * Setting.find(:first).points_to_pound), :unit => "&pound;") %>
+         <%= number_to_currency(order.total - (order.points_used * Setting.find(:first).points_to_pound), :unit => "&pound;") %>
         </td>
         <td><%= order.created_at.strftime("%d/%m/%y") %></td>
         <td><%= order.updated_at.strftime("%d/%m/%y") %></td>

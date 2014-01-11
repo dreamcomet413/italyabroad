@@ -162,7 +162,7 @@
                     <%- for child in children -%>
                         <%# num_products = find_any_active_product_exists(child.products)  %>
                         <%#- if num_products > 0  -%>
-                        <li><%= link_to(child.name, nested_categories_url(category, child)) %></li>
+                        <li><%= link_to(child.name.html_safe(), nested_categories_url(category, child)) %></li>
                         <%#- end -%>
                     <%-  end -%>
                     <li style="font-weight:bold;"><%= link_to("Special Offers", nested_categories_url(category, "offer"), :type => "special_offer", :class => "red-text")  %></li>

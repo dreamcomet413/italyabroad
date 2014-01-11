@@ -143,7 +143,7 @@ module ApplicationHelper
 
   def show_home_image_tag(image, format = :jpg)
     if image && format
-      return image_tag(site_image_url(:original, image, format), :size => "723x284")
+      return image_tag(site_image_url(:original, image, format), :size => "723x284").html_safe()
     else
       return nil
     end

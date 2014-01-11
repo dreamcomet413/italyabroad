@@ -25,7 +25,7 @@
 		<td style="text-align:center;">
 		  <div class="box_price">
 		    <ul class="inner-container">
-  		    <li class="price"><%= number_to_currency (product.price,{:unit => "&pound;"}) %></li>
+  		    <li class="price"><%= number_to_currency(product.price,{:unit => "&pound;"}) %></li>
       <li class="add_to_cart_button">
   		   <%- if product.out_of_stock? -%>
 			        <%= image_tag('out_of_stock.png') %>
