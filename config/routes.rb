@@ -122,6 +122,7 @@ ItalyabroadNew::Application.routes.draw do
     end
     resources :wish_list, :only => [:index, :create, :destroy]
     resources :wine_lists, :only => [:index, :create, :destroy]
+    resources :reviews
   end
 
   resources :customers do
