@@ -117,7 +117,7 @@ module ApplicationHelper
     if image_type && image && format
 
       #return image_tag(image_url(image_type, image, format), {:alt => image_alt, :title => image_alt, :height => "80"})
-      return image_tag(image_url(image_type, image, format), {:alt => image_alt, :title => image_alt}).html_safe()
+      return image_tag(site_image_url(image_type, image, format), {:alt => image_alt, :title => image_alt}).html_safe()
 
     elsif image_type
       #return image_tag("no_images/#{image_type}.jpg", :size => "100x120", :alt => image_alt)
@@ -132,7 +132,7 @@ module ApplicationHelper
   def show_image_tag_in_cart(image_type, image, format = :jpg, image_alt = "italyabroad.com")
     if image_type && image && format
 
-      return '<div style="width:100px;height:150px;text-align:center;margin:auto;border-style:solid;border-width:1px;border-color:white;overflow:hidden;v-align:bottom;">' + image_tag(image_url(image_type, image, format), {:alt => image_alt, :title => image_alt, :size => "150"}) + '</div>'
+      return '<div style="width:100px;height:150px;text-align:center;margin:auto;border-style:solid;border-width:1px;border-color:white;overflow:hidden;v-align:bottom;">' + image_tag(site_image_url(image_type, image, format), {:alt => image_alt, :title => image_alt, :size => "150"}) + '</div>'
 
     elsif image_type
       return image_tag("no_images/#{image_type}.jpg", :size => "100x120", :alt => image_alt)
@@ -143,7 +143,7 @@ module ApplicationHelper
 
   def show_home_image_tag(image, format = :jpg)
     if image && format
-      return image_tag(image_url(:original, image, format), :size => "723x284")
+      return image_tag(site_image_url(:original, image, format), :size => "723x284")
     else
       return nil
     end
@@ -181,21 +181,21 @@ module ApplicationHelper
 
 
   def show_grape_image(grape)
-    return image_tag(image_url(:grape_original, grape.image, :jpg), :width => "300px") if grape.image
+    return image_tag(site_image_url(:grape_original, grape.image, :jpg), :width => "300px") if grape.image
     return image_tag("grape_default.png", :width => "300px")
   end
 
   def show_region_image(region)
-    return image_tag(image_url(:region_original, region.image, :jpg), :width => "300px") if region.image
+    return image_tag(site_image_url(:region_original, region.image, :jpg), :width => "300px") if region.image
     return image_tag("region-home-image.jpg", :width => "300px")
   end
 
   def show_producer_image(producer)
-    return image_tag(image_url(:producer_thumb, producer.image, :jpg), :width => "98px") if producer.image
+    return image_tag(site_image_url(:producer_thumb, producer.image, :jpg), :width => "98px") if producer.image
     return image_tag("default.jpg", :width => "98px")
   end
   def show_producer_image1(producer)
-    return image_tag(image_url(:producer_thumb, producer.image, :jpg)) if producer.image
+    return image_tag(site_image_url(:producer_thumb, producer.image, :jpg)) if producer.image
     return image_tag("default.jpg", :width => "98px")
   end
 
