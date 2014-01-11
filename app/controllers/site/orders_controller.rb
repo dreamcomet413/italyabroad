@@ -13,7 +13,7 @@ class Site::OrdersController < ApplicationController
   require "prawn"
 
   def index
-    @orders = current_user.orders.all(:order => "created_at DESC").paginate(:page => params[:page], :per_page => 10)
+    @orders = current_user.orders.where("id is not null").order("created_at DESC").paginate(:page => params[:page], :per_page => 10)
 
     respond_to do |format|
       format.html { render :layout => 'site' }

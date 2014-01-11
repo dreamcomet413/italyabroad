@@ -86,10 +86,7 @@ ItalyabroadNew::Application.routes.draw do
   end
 
   resources :comments
-  resources :search, :only => [:index] do
-    collection do
-    end
-  end
+  match "/search" => "site/search#index"
 
   resources :cart, :only => [:index, :update] do
     collection do

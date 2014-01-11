@@ -11,7 +11,8 @@
           <td valign="top" style="padding:0;width:630px;">
             <!-- <table>
                <tr>
-                 <td> --><%= link_to truncate(product.name, :length => 60), nested_products_uri(product) %><br />
+                 <td> -->
+            <%= link_to truncate(product.name, :length => 60), nested_products_uri(product) %><br />
             <%= show_ratings(product).html_safe() %>
             <!-- </td>
             </tr>
@@ -25,12 +26,14 @@
           </td>
           <td valign="top" style="padding:10px 0;width:100px;">
             <div style="font-size:18px;color:#9b0707;text-align:right;">
-              <div style="margin-bottom:15px;"><%= number_to_currency product.price, :unit => "&pound;" %></div>
+              <div style="margin-bottom:15px;">
+                <%= number_to_currency product.price, :unit => "&pound;" %>
+              </div>
               <%- if product.out_of_stock? -%>
                   <%= image_tag('out_of_stock.png') %>
               <%- else -%>
                   <%#= link_to_remote image_tag("buttons/add_to_cart_button.png"), product_cart_index_path(product), :method => 'post' %>
-                  <%= link_to image_tag("buttons/add_to_cart_button.png"), :url => product_cart_index_path(product), :remote => true, :html => {:method => 'post'} %>
+                  <%= link_to(image_tag("buttons/add_to_cart_button.png"), product_cart_index_path(product), :method => :post, :remote => true) %>
               <%- end -%>
             </div>
           </td>

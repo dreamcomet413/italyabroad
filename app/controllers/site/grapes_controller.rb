@@ -4,9 +4,9 @@ class Site::GrapesController < ApplicationController
 
   def index
     if params[:search]
-      @grapes = Grape.find(:all,:conditions=>['name LIKE ? ',"%#{params[:search_by_name]}%"],:order => "name asc").paginate(:page => params[:page], :per_page => 10)
+      @grapes = Grape.where(['name LIKE ? ',"%#{params[:search_by_name]}%"]).order("name asc").paginate(:page => params[:page], :per_page => 10)
     else
-      @grapes = Grape.find(:all,:order=>'name asc').paginate(:page => params[:page], :per_page => 10)
+      @grapes = Grape.where("id is not null").order('name asc').paginate(:page => params[:page], :per_page => 10)
     end
     @grapes_all = Grape.find(:all,:order=>'name asc')
     respond_to do |format|
@@ -15,11 +15,11 @@ class Site::GrapesController < ApplicationController
   end
 
 
-    def search_results
+  def search_results
     if params[:search]
-      @grapes = Grape.find(:all,:conditions=>['name LIKE ? ',"%#{params[:search_by_name]}%"],:order => "name asc").paginate(:page => params[:page], :per_page => 10)
+      @grapes = Grape.where(['name LIKE ? ',"%#{params[:search_by_name]}%"]).order("name asc").paginate(:page => params[:page], :per_page => 10)
     else
-      @grapes = Grape.find(:all,:order=>'name asc').paginate(:page => params[:page], :per_page => 10)
+      @grapes = Grape.where("id is not null").order('name asc').paginate(:page => params[:page], :per_page => 10)
     end
     @grapes_all = Grape.find(:all,:order=>'name asc')
     respond_to do |format|

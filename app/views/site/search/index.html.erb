@@ -2,129 +2,129 @@
 <%- @breadcrumbs = "#{link_to "Home", root_url} &raquo; Search #{ '&raquo; ' + @category.name.titleize unless @category.blank?}" -%>
 
 <% if @products && @products.size > 0 %>
-  <div id="header">Your search result has found the following products:</div>
-  <div style="margin:10px 0px;padding:5px;background-color:#F3F8DA;">
-    <table style="width:100%;" cellpadding="0" cellspacing="0" border="0">
-      <tr>
-        <%- unless will_paginate(@products).blank? -%>
-        <td class="pagination_div"><%= will_paginate(@products) %></td>
-        <%- end -%>
-        <td align="right">
-          <%- form_tag search_index_path, :method => :get, :id => "sort_by_form" do -%>
-              <%= hidden_field_tag :page, (params[:page] || 1) %>
-              <%= hidden_field_tag :text, params[:text] %>
-              <%= hidden_field_tag :id, params[:id] %>
-              <strong>Sort by:</strong>&nbsp;<%= select_tag("sort_by", options_for_select([["Price: Low to high", "price asc"],["Price: High to low", "price desc"],  ["Name", "name"], ["Region", "region_id"]], @sort_by), :onchange => "$('sort_by_form').submit()") %>
+    <div id="header">Your search result has found the following products:</div>
+    <div style="margin:10px 0px;padding:5px;background-color:#F3F8DA;">
+      <table style="width:100%;" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <%- unless will_paginate(@products).blank? -%>
+              <td class="pagination_div"><%= will_paginate(@products) %></td>
           <%- end -%>
-        </td>
-      </tr>
-    </table>
-  </div>
-
-
-
-	<% for product in @products %>
-	<%- product = Product.find(product.id) -%>
-	<table style="width:100%;" cellpadding="0" border="0" cellspacing="0">
-		<tr>
-			<td style="width: 80px;margin:0 0 0 0px;margin-left:15px;margin-right:15px;padding:0 0 0 0px;padding-left:10px;padding-right:10px;">
-				<%= link_to show_image_tag(product.layout_image, product.image_1, :jpg,product.name), nested_products_uri(product) %>
-			</td>
-			<td style="width: 490px;vertical-align:top;margin:0 0 0 0px;">
-        <br /><br /><br />
-				<%= link_to product.name, nested_products_uri(product), :style => "font-size:17px;color:black;" %>
-				<br />
-				 <% if product.categories.root.name.downcase == "food" || product.categories.root.name.downcase == "hampers"  %>
-				  <%= show_review_ratings(product, product.average_rating_round) %>
-				  <% else %>
-				  <%= show_ratings(product, product.average_rating_round) %>
-				 <% end %>
-				<div style="padding-top:10px"><%= product.description_short %></div>
-        <br/>
-        Quantity : <%= product.quantity %>
-			</td>
-			<td style="padding: 20px 10px 5px;vertical-align:top;margin:0 0 0 0px;">
-        <div class="box_price_product">
-          <ul>
-            <li class="price_info">
-      				<% if product.discounted? %>
-      					<div style="font-size:14px">Was <span style="text-decoration: line-through;"><%= number_to_currency product.price, :unit => "&pound;" %></span></div>
-      					<span class="price red" style="color:#003300;">Now&nbsp;<span class="promotion"; style="color:red;"><%= number_to_currency product.price_discounted, :unit => "&pound;" %></span></span>
-      				<% else %>
-      					<span class="price" style="color:black;"><%= number_to_currency product.price, :unit => "&pound;" %></span>
-      				<% end %>
-    				</li>
-
-  			    <li>
-  			      <%- if product.out_of_stock? -%>
-  			        <%= image_tag('out_of_stock.png') %>
-  			      <%- else -%>
-  			        <%= link_to_remote image_tag("buttons/add_to_cart_button.png"), :url => product_cart_index_path(product), :html => {:method => 'post'} %>
-  			      <%- end -%>
-  			    </li>
-
-    				<li style="margin-bottom:10px;">
-    				  <%= link_to_remote image_tag("add_to_wish_list.png"), :url => product_wish_list_index_path(product), :html => {:style => "color:#464646;", :method => :post} %>
-    				</li>
-
-
-            <% if  product.categories.root.name.downcase == 'wine' %>
-    				<li style="margin-bottom:10px;">
-    				  <%= link_to_remote image_tag("WINE_LIST.jpg"), :url => product_wine_list_index_path(@product), :html => {:style => "color:#464646;", :method => :post} %>
-    				</li>
+          <td align="right">
+            <%- form_tag "/search", :method => :get, :id => "sort_by_form" do -%>
+                <%= hidden_field_tag :page, (params[:page] || 1) %>
+                <%= hidden_field_tag :text, params[:text] %>
+                <%= hidden_field_tag :id, params[:id] %>
+                <strong>Sort by:</strong>&nbsp;<%= select_tag("sort_by", options_for_select([["Price: Low to high", "price asc"],["Price: High to low", "price desc"],  ["Name", "name"], ["Region", "region_id"]], @sort_by), :onchange => "$('sort_by_form').submit()") %>
             <%- end -%>
+          </td>
+        </tr>
+      </table>
+    </div>
 
-  				</ul>
-        </div>
-			</td>
-		</tr>
-    <tr>
-      <td colspan="3" style="border-bottom:1px solid #CCCCCC;">&nbsp;</td>
-    </tr>
-	</table>
-	<% end %>
 
-  <%= content_tag(:div, will_paginate(@products), :style => "padding:5px;text-align:right;background-color:#F3F8DA") unless will_paginate(@products).blank? %>
-  <br /><br />
-  <% else %>
-  <div id="header">Your search returned no result</div>
-  <div style="margin:20px;font-size:14px;">
-  <!--Please check the spelling or in case you did not find what you wanted <%= mail_to "info@italyabroad.com", "get in touch" %> and will find it for you -->
-  <p><strong style="font-weight:bold;">Sorry - no results match your search. Please try again and see what gems you may find. </strong> </p>
-  <p>To help you find what you’re looking for try one of these tips:</p>
-  <p><strong style="font-weight:bold;">Is it the right word?</strong><br />
-  Check the spelling of the word(s) you've just tried to search with.
-  </p>
-<p><strong style="font-weight:bold;">Try shortening the word</strong><br />
-  Maybe the spelling of the product you are looking for is different from the pronunciation, entering only the first 3 caracthers will give you more results. </p>
- <p><strong style="font-weight:bold;"> Why not browse the categories?</strong><br />
-If you're looking for something specific try looking through our categories.</p>
-  </div>
-  <% end %>
+
+    <% for product in @products %>
+        <%- product = Product.find(product.id) -%>
+        <table style="width:100%;" cellpadding="0" border="0" cellspacing="0">
+          <tr>
+            <td style="width: 80px;margin:0 0 0 0px;margin-left:15px;margin-right:15px;padding:0 0 0 0px;padding-left:10px;padding-right:10px;">
+              <%= link_to show_image_tag(product.layout_image, product.image_1, :jpg,product.name), nested_products_uri(product) %>
+            </td>
+            <td style="width: 490px;vertical-align:top;margin:0 0 0 0px;">
+              <br /><br /><br />
+              <%= link_to product.name, nested_products_uri(product), :style => "font-size:17px;color:black;" %>
+              <br />
+              <% if product.categories.root.name.downcase == "food" || product.categories.root.name.downcase == "hampers"  %>
+                  <%= show_review_ratings(product, product.average_rating_round) %>
+              <% else %>
+                  <%= show_ratings(product, product.average_rating_round) %>
+              <% end %>
+              <div style="padding-top:10px"><%= product.description_short %></div>
+              <br/>
+              Quantity : <%= product.quantity %>
+            </td>
+            <td style="padding: 20px 10px 5px;vertical-align:top;margin:0 0 0 0px;">
+              <div class="box_price_product">
+                <ul>
+                  <li class="price_info">
+                    <% if product.discounted? %>
+                        <div style="font-size:14px">Was <span style="text-decoration: line-through;"><%= number_to_currency product.price, :unit => "&pound;" %></span></div>
+                        <span class="price red" style="color:#003300;">Now&nbsp;<span class="promotion"; style="color:red;"><%= number_to_currency product.price_discounted, :unit => "&pound;" %></span></span>
+                    <% else %>
+                        <span class="price" style="color:black;"><%= number_to_currency product.price, :unit => "&pound;" %></span>
+                    <% end %>
+                  </li>
+
+                  <li>
+                    <%- if product.out_of_stock? -%>
+                        <%= image_tag('out_of_stock.png') %>
+                    <%- else -%>
+                        <%= link_to image_tag("buttons/add_to_cart_button.png"), :url => product_cart_index_path(product), :remote => true, :html => {:method => 'post'} %>
+                    <%- end -%>
+                  </li>
+
+                  <li style="margin-bottom:10px;">
+                    <%= link_to image_tag("add_to_wish_list.png"), :url => product_wish_list_index_path(product), :remote => true, :html => {:style => "color:#464646;", :method => :post} %>
+                  </li>
+
+
+                  <% if  product.categories.root.name.downcase == 'wine' %>
+                      <li style="margin-bottom:10px;">
+                        <%= link_to image_tag("WINE_LIST.jpg"), :url => product_wine_list_index_path(@product), :remote => true, :html => {:style => "color:#464646;", :method => :post} %>
+                      </li>
+                  <%- end -%>
+
+                </ul>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3" style="border-bottom:1px solid #CCCCCC;">&nbsp;</td>
+          </tr>
+        </table>
+    <% end %>
+
+    <%= content_tag(:div, will_paginate(@products), :style => "padding:5px;text-align:right;background-color:#F3F8DA") unless will_paginate(@products).blank? %>
+    <br /><br />
+<% else %>
+    <div id="header">Your search returned no result</div>
+    <div style="margin:20px;font-size:14px;">
+      <!--Please check the spelling or in case you did not find what you wanted <%= mail_to "info@italyabroad.com", "get in touch" %> and will find it for you -->
+      <p><strong style="font-weight:bold;">Sorry - no results match your search. Please try again and see what gems you may find. </strong> </p>
+      <p>To help you find what you’re looking for try one of these tips:</p>
+      <p><strong style="font-weight:bold;">Is it the right word?</strong><br />
+        Check the spelling of the word(s) you've just tried to search with.
+      </p>
+      <p><strong style="font-weight:bold;">Try shortening the word</strong><br />
+        Maybe the spelling of the product you are looking for is different from the pronunciation, entering only the first 3 caracthers will give you more results. </p>
+      <p><strong style="font-weight:bold;"> Why not browse the categories?</strong><br />
+        If you're looking for something specific try looking through our categories.</p>
+    </div>
+<% end %>
 
 
 <% content_for :right do %>
-  <% if !params[:id].blank?
-    if params[:id].upcase == 'HAMPERS' %>
-      <%= render :partial => 'site/shared/box_hamper_search' %>
-      <br />
-    <% elsif params[:id].upcase == 'FOOD' %>
-      <%= render :partial => 'site/shared/box_food_search' %>
-    <% elsif params[:id].upcase == 'WINE' %>
-      <%= render :partial => 'site/shared/box_wine_search' %>
-      <br />
-   <%end
-   else %>
-    <%= render :partial => 'site/shared/box_wine_search', :locals => {:search_url => search_index_path} %>
-    <br />
-  <% end %>
+    <% if !params[:id].blank?
+         if params[:id].upcase == 'HAMPERS' %>
+            <%= render :partial => 'site/shared/box_hamper_search' %>
+            <br />
+        <% elsif params[:id].upcase == 'FOOD' %>
+            <%= render :partial => 'site/shared/box_food_search' %>
+        <% elsif params[:id].upcase == 'WINE' %>
+            <%= render :partial => 'site/shared/box_wine_search' %>
+            <br />
+        <%end
+          else %>
+        <%= render :partial => 'site/shared/box_wine_search', :locals => {:search_url => search_index_path} %>
+        <br />
+    <% end %>
 
-	<%= render :partial => 'site/shared/box_products_on_offer' %>
-	<br />
-	<%= render :partial => '/site/shared/box_event' %>
-	<br />
-	<%= render :partial => '/site/shared/box_subscriptions' %>
-	<br />
-	<%= render :partial => '/site/shared/box_grape_guide' %>
+    <%= render :partial => 'site/shared/box_products_on_offer' %>
+    <br />
+    <%= render :partial => '/site/shared/box_event' %>
+    <br />
+    <%= render :partial => '/site/shared/box_subscriptions' %>
+    <br />
+    <%= render :partial => '/site/shared/box_grape_guide' %>
 <% end %>
 
