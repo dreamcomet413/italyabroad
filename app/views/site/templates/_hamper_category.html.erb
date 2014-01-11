@@ -32,9 +32,9 @@ end
       </td>
       <td valign="top" style="padding:0;width:630px;">
         <%= link_to truncate(product.name, :length => 60), nested_products_uri(product) %><br />
-            <%= show_review_ratings(product) %>
+            <%= show_review_ratings(product).html_safe() %>
         <br />
-        <%= product.description_short[0..200] %>
+        <%= product.description_short[0..200].html_safe() %>
       </td>
       <td valign="top" style="padding:10px 0;width:100px;">
         <div style="font-size:18px;color:#9b0707;text-align:right;">

@@ -37,9 +37,9 @@
               <% if product.categories.root.name.downcase == "food" || product.categories.root.name.downcase == "hampers"  %>
                   <%= show_review_ratings(product, product.average_rating_round) %>
               <% else %>
-                  <%= show_ratings(product, product.average_rating_round) %>
+                  <%= show_ratings(product, product.average_rating_round).html_safe() %>
               <% end %>
-              <div style="padding-top:10px"><%= product.description_short %></div>
+              <div style="padding-top:10px"><%= product.description_short.html_safe() %></div>
               <br/>
               Quantity : <%= product.quantity %>
             </td>

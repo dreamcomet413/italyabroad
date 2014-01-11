@@ -53,7 +53,7 @@ end %>
     </tr>
     <tr>
       <td>Price:</td>
-      <td><%= select_tag :price, options_for_select([["Any Price",""],["Less than £7","< 7"],["From £7 to £11","BETWEEN 7 AND 11"],["From £11 to £15","BETWEEN 11 AND 15"],["From £16 to £20","BETWEEN 11 AND 20"],["More than £30","> 30"]], params[:price]), :id => "search_price" %></td>
+      <td><%#= select_tag :price, options_for_select([["Any Price",""],["Less than £7","< 7"],["From £7 to £11","BETWEEN 7 AND 11"],["From £11 to £15","BETWEEN 11 AND 15"],["From £16 to £20","BETWEEN 11 AND 20"],["More than £30","> 30"]], params[:price]), :id => "search_price" %></td>
     </tr>
     <tr>
       <td>Mood:</td>

@@ -37,9 +37,9 @@
         </td>
         <td style="width:490px;" valign="top">
           <h2 style="margin:0;padding:20px 0 0 0;"><%= link_to product.name, nested_products_uri(product), :style => "font-size:17px;color:#003300;" %></h2>
-          <%= show_ratings(product, product.average_rating_round) %>
+          <%= show_ratings(product, product.average_rating_round).html_safe() %>
           <br />
-          <%= product.description_short %>
+          <%= product.description_short.html_safe() %>
           <br />
           <br />
           Quantity : <%= product.quantity %>

@@ -10,8 +10,8 @@
           <td valign="top" style="padding:0;width:630px;padding-top:15px;">
 
                 <%= link_to product.name, nested_products_uri(product), :style => "font-size:15px;" %><br />
-                <%= show_review_ratings(product) %>
-                <%= product.description_short %>
+                <%= show_review_ratings(product).html_safe() %>
+                <%= product.description_short.html_safe() %>
 
 
           </td>

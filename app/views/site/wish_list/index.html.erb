@@ -20,7 +20,7 @@
 	  </td>
 		<td valign="top">
 		  <h2 style="font-weight:normal;"><%= product.name %></h2>
-		  <%= product.description_short %>
+		  <%= product.description_short.html_safe() %>
 		</td>
 		<td style="text-align:center;">
 		  <div class="box_price">

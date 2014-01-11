@@ -122,7 +122,7 @@
           <%= link_to "Latest Entry", blog_index_path %><br /><br />
           <% if !blog.nil? %>
             <%= link_to blog.name.upcase, blog_path(blog.id) %> - <%= blog.created_at.strftime("%d/%m/%Y") %><br /><br />
-            <%= blog.description_short %><br /><br />
+            <%= blog.description_short.html_safe() %><br /><br />
             <div style="text-align:right;"><%= link_to("View all", blog_index_path) %></div>
           <%end%>
     </div>

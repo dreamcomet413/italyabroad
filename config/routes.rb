@@ -86,7 +86,15 @@ ItalyabroadNew::Application.routes.draw do
   end
 
   resources :comments
-  match "/search" => "site/search#index"
+  match "/search" => "site/search#index", :as => "search_index"
+  match "/search/find_wines" => "site/search#find_wines", :as => "find_wines"
+  match "/search/find_users" => "site/search#find_users", :as => "find_users"
+  match "/search/find_producers" => "site/search#find_producers", :as => "find_producers"
+  match "/search/find_hampers" => "site/search#find_hampers", :as => "find_hampers"
+  match "/search/find_foods" => "site/search#find_foods", :as => "find_foods"
+  match "/search/find_recipes" => "site/search#find_recipes", :as => "find_recipes"
+  match "/search/find_wine_events" => "site/search#find_wine_events", :as => "find_wine_events"
+  match "/search/find_grapes" => "site/search#find_grapes", :as => "find_grapes"
 
   resources :cart, :only => [:index, :update] do
     collection do

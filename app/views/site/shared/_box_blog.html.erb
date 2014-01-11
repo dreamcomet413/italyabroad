@@ -6,7 +6,7 @@
 	<ul>
 	  <li>
   		<span class="title"><%= link_to post.name, blog_path(post.id) %></span>
-      <div class="teaser" style="padding-top:5px;"><%= post.description_short[0..200] %>... <%= link_to "(Continue reading)", blog_path(post.id) %></div>
+      <div class="teaser" style="padding-top:5px;"><%= post.description_short[0..200].html_safe() %>... <%= link_to "(Continue reading)", blog_path(post.id) %></div>
     </li>
   </ul>
 	<% end %>

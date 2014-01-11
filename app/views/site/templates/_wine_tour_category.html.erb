@@ -56,7 +56,7 @@ end
      <%# end %>
   </h3>-->
   <p style="margin:6px;text-align:justify;margin-right:20px;text-indent:0px;">
-  <%= @category.description %>
+  <%= @category.description.html_safe() %>
   <!--Make your own wine, live the harvesting in one of the most beautiful area of Tuscany-->
   </p>
 <div id="wine_tour_description" style = "float:left;margin-left:10px;">
@@ -76,7 +76,7 @@ end
         <%= product.date.strftime("%d %B %Y") if product.date %>
         <h1><%= link_to product.name, nested_products_uri(product), :class => "product_title" %></h1>
         <%#= product.date.strftime("%d %B %Y") if product.date %><!--<br /><br />-->
-        <div><%= product.description_short %></div>
+        <div><%= product.description_short.html_safe() %></div>
         <div style="font-size:18px;color:#9b0707;text-align:right;">
         <!--Price:&nbsp;--><%= number_to_currency product.price, :unit => "&pound;" %><br />
         <%= link_to_remote image_tag("buttons/buy_button_new.png"), :url => product_cart_index_path(product), :html => {:method => 'post'} %></div>

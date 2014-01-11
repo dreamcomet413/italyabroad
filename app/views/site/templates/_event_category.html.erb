@@ -59,7 +59,7 @@ end
       <%# end %>
       </h3>-->
       <div style="margin:5px;text-align:justify;margin-right:15px;">
-      <%= @category.description %>
+      <%= @category.description.html_safe() %>
       </div>
 
 <div style="clear:both;">
@@ -80,7 +80,7 @@ end
                           <%#= product.description_short.gsub("\n","<br />") %><%#= link_to "(More info)", "wine-events/#{product.friendly_identifier}" %>
 
                          <!-- <br /><br />-->
-                          <%= product.description_short %>
+                          <%= product.description_short.html_safe() %>
                           <div style="font-size:18px;color:#9b0707;text-align:right;">
         <!--Price:&nbsp;--><%= number_to_currency product.price, :unit => "&pound;" %><br />
          <% if product.quantity > 0 %>

@@ -1,82 +1,82 @@
 <div id="header">Your search result has found the following products:</div>
 <div align="right" class="pagination_div"><%= will_paginate(@wines) %></div>
-	<% for product in @wines %>
-	<table style="margin:0 0 0 0px; margin-left:10px; margin-right:10px; padding-left:10px; padding-right:10px;width:98%;" cellpadding="0" border="0" cellspacing="0">
-		<tr>
+<% for product in @wines %>
+    <table style="margin:0 0 0 0px; margin-left:10px; margin-right:10px; padding-left:10px; padding-right:10px;width:98%;" cellpadding="0" border="0" cellspacing="0">
+      <tr>
 
-			<td style="width:90px;over-flow:hidden;">
-        <%= link_to show_image_tag(product.layout_image, product.image_1, :jpg,product.name),nested_products_uri(product)  %>
-			</td>
-
-
-			<td style="width:440px;">
-			<div style="margin:0 0 0 0px;margin-left:5px;">
-          <%= link_to product.name, nested_products_uri(product), :style => "font-size:17px;color:black;" %><br />
-          <%= show_ratings(product) %>
-          <%= product.description_short %>
-          <br /><br />
-          Quantity : <%= product.quantity %>
-			</div>
-			</td>
+        <td style="width:90px;over-flow:hidden;">
+          <%= link_to show_image_tag(product.layout_image, product.image_1, :jpg,product.name),nested_products_uri(product)  %>
+        </td>
 
 
-
-      <!-- THIRD COLUMN START (PRICE)-->
-      <td>
-        <div class="box_price_product" style="float:left;">
-          <ul>
-            <li class="price_info">
-      				<% if product.discounted? %>
-      					<div style="font-size:14px">Was <span style="text-decoration: line-through;"><%= number_to_currency product.price, :unit => "&pound;" %></span></div>
-      					<span class="price red" style="color:#003300;">Now&nbsp;<span class="promotion"; style="color:red;"><%= number_to_currency product.price_discounted, :unit => "&pound;" %></span></span>
-      				<% else %>
-      					<span class="price" style="color:black;"><%= number_to_currency product.price, :unit => "&pound;" %></span>
-      				<% end %>
-    				</li>
-
-  			    <li>
-  			      <%- if product.out_of_stock? -%>
-  			        <%= image_tag('out_of_stock.png') %>
-  			      <%- else -%>
-  			        <%= link_to_remote image_tag("buttons/add_to_cart_button.png"), :url => product_cart_index_path(product), :html => {:method => 'post'} %>
-  			      <%- end -%>
-  			    </li>
-
-    				<li style="margin-bottom:5px;">
-    				  <%= link_to_remote image_tag("add_to_wish_list.png"), :url => product_wish_list_index_path(product), :html => {:style => "color:#464646;", :method => :post} %>
-    				</li>
-
-
-    				<li style="margin-bottom:5px;">
-    				  <%= link_to_remote image_tag("WINE_LIST.jpg"), :url => product_wine_list_index_path(@product), :html => {:style => "color:#464646;", :method => :post} %>
-    				</li>
+        <td style="width:440px;">
+          <div style="margin:0 0 0 0px;margin-left:5px;">
+            <%= link_to product.name, nested_products_uri(product), :style => "font-size:17px;color:black;" %><br />
+            <%= show_ratings(product) %>
+            <%= product.description_short.html_safe() %>
+            <br /><br />
+            Quantity : <%= product.quantity %>
+          </div>
+        </td>
 
 
 
-  				</ul>
-        </div>
+        <!-- THIRD COLUMN START (PRICE)-->
+        <td>
+          <div class="box_price_product" style="float:left;">
+            <ul>
+              <li class="price_info">
+                <% if product.discounted? %>
+                    <div style="font-size:14px">Was <span style="text-decoration: line-through;"><%= number_to_currency product.price, :unit => "&pound;" %></span></div>
+                    <span class="price red" style="color:#003300;">Now&nbsp;<span class="promotion"; style="color:red;"><%= number_to_currency product.price_discounted, :unit => "&pound;" %></span></span>
+                <% else %>
+                    <span class="price" style="color:black;"><%= number_to_currency product.price, :unit => "&pound;" %></span>
+                <% end %>
+              </li>
+
+              <li>
+                <%- if product.out_of_stock? -%>
+                    <%= image_tag('out_of_stock.png') %>
+                <%- else -%>
+                    <%= link_to image_tag("buttons/add_to_cart_button.png"), :url => product_cart_index_path(product), :remote => true, :html => {:method => 'post'} %>
+                <%- end -%>
+              </li>
+
+              <li style="margin-bottom:5px;">
+                <%= link_to image_tag("add_to_wish_list.png"), :url => product_wish_list_index_path(product), :remote => true, :html => {:style => "color:#464646;", :method => :post} %>
+              </li>
 
 
-      </td>
-      <!-- THIRD COLUMN END (PRICE)-->
+              <li style="margin-bottom:5px;">
+                <%= link_to image_tag("WINE_LIST.jpg"), :url => product_wine_list_index_path(@product), :remote => true, :html => {:style => "color:#464646;", :method => :post} %>
+              </li>
 
-		</tr>
 
-	</table>
-	<h3>&nbsp;</h3>
-	<% end %>
+
+            </ul>
+          </div>
+
+
+        </td>
+        <!-- THIRD COLUMN END (PRICE)-->
+
+      </tr>
+
+    </table>
+    <h3>&nbsp;</h3>
+<% end %>
 
 
 
 <% content_for :right do %>
-	<%= render :partial => 'site/shared/box_wine_search', :locals => {:search_url => search_index_path} %>
-	<br />
-	<%= render :partial => 'site/shared/box_products_on_offer' %>
-	<br />
-	<%= render :partial => '/site/shared/box_event' %>
-	<br />
-	<%= render :partial => '/site/shared/box_subscriptions' %>
-	<br />
-	<%= render :partial => '/site/shared/box_grape_guide' %>
+    <%= render :partial => 'site/shared/box_wine_search', :locals => {:search_url => search_index_path} %>
+    <br />
+    <%= render :partial => 'site/shared/box_products_on_offer' %>
+    <br />
+    <%= render :partial => '/site/shared/box_event' %>
+    <br />
+    <%= render :partial => '/site/shared/box_subscriptions' %>
+    <br />
+    <%= render :partial => '/site/shared/box_grape_guide' %>
 <% end %>
 

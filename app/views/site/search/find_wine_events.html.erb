@@ -10,8 +10,8 @@
 			<td >
 			<div style="margin:0 0 0 0px;margin-left:10px;">
           <%= link_to product.name, nested_products_uri(product), :style => "font-size:17px;color:black;" %><br />
-          <%= show_ratings(product) %>
-          <%= product.description_short %>
+          <%= show_ratings(product).html_safe() %>
+          <%= product.description_short.html_safe() %>
 			</div>
 			</td>
 

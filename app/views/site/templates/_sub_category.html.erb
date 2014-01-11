@@ -37,7 +37,7 @@
               </h2>
               <%= show_ratings(product, product.average_rating_round).html_safe() %>
               <br />
-              <%= product.description_short %>
+              <%= product.description_short.html_safe() %>
               <br />
               <br />
               Quantity : <%= product.quantity %>

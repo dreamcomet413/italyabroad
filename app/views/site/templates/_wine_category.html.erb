@@ -37,13 +37,13 @@ end
        <!-- <table>
           <tr>
             <td> --><%= link_to truncate(product.name, :length => 60), nested_products_uri(product) %><br />
-           <%= show_ratings(product) %>
+           <%= show_ratings(product).html_safe() %>
           <!-- </td>
           </tr>
         </table>  <br />-->
 
         <br />
-        <%= product.description_short[0..240] %>
+        <%= product.description_short[0..240].html_safe() %>
         <br />
         <br />
         Quantity : <%= product.quantity %>

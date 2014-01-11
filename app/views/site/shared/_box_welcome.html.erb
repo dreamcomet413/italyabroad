@@ -58,7 +58,7 @@
               <% else %>
                   <%= image_tag "default.jpg" %>
               <% end %>
-              "<%= testimonial.description[0..80] %>..."
+              "<%= testimonial.description[0..80].html_safe() %>..."
           </tr>
       <% end %>
       <tr>
