@@ -1,0 +1,17 @@
+<% @title = "New Product"; @page_id = "Catalog" %>
+<%- @breadcrumbs = "Catalog &raquo; #{link_to "Products", admin_products_path} &raquo; #{@title}" -%>
+
+<div class="inner_content products" id="admin_products_new">
+  <h2><%= @title %></h2>
+  <br />
+  <%= render :partial => 'product_links', :locals => {:active => 'general'} %>
+  <% form_for :product, :url => admin_products_path do %>
+    <%= show_messages(flash[:notice]) %>
+
+  	<%= render :partial => "form" %>
+  	<p>
+  	 <%= submit_tag "Save" %> or <%= link_to "Cancel", admin_products_path %>
+  	</p>
+  <% end %>
+</div>
+

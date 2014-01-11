@@ -1,0 +1,371 @@
+--- 
+aglianico:
+  id: 1
+  name: Aglianico
+  description: A red grape originally grown in Campania and Basilicata, where it still give its best results with powerful and at the same time, elegant wines, that is now grown in the whole south of Italy. Within these two regions, there are different areas where the grape is grown resulting in red wines with different characteristics.<br><br>Its red wines are usually tannic, smoky and full of blackberry flavours and age very well when properly made. The Aglianico grape is used to make <a href="http://www.italyabroad.com/products/aglianico-del-caburno-organic-doc-masseria-frattasi"><font color="#0000FF">Aglianico</font></a> wines, red and rose’, and the Taurasi.
+  friendly_identifier: <%= Grape.format_identifier("Aglianico") %>
+
+barbera:
+  id: 2
+  name: Barbera
+  description: <b>Barbera</b> is a red wine that lives in the shadow of its more famous cousins, Nebbiolo and Barolo, but when properly made, is responsible for elegant, deep coloured medium-bodied wines with spicy flavours and a vibrant acidity.<br><br>The Barbera grape is planted widely in many parts of the country, but its finest wines come from Piedmont where the wine has two denominations, <a href="http://www.italyabroad.com/products/barbera-dalba-superiore-rivetto"><font color="#0000FF">Barbera D’Alba</font></a> and Barbera d’Asti; the first made with grapes from vineyards surrounding the town of Alba and producing the best wines and the second the town of Asti.
+  friendly_identifier: <%= Grape.format_identifier("Barbera") %>
+
+montepulciano:
+  id: 3
+  name: Montepulciano
+  description: Montepulciano is Abruzzo most important grape and red wines, bottled as <a href="http://www.italyabroad.com/product-search?text=montepulciano+d+Abruzzo"><font color="#0000FF">Montepulciano d’Abruzzo</font></a> and <a href="http://www.italyabroad.com/products/cerasuolo-d-abruzzo-organic-d-o-c-jasci-marchesani"><font color="#0000FF">Cerasuolo d’Abruzzo</font></a>, red and rose' wine respectively. It is also planted in other regions, especially the Marche where is used to make the Rosso Conero.<br><br>The Montepulciano grape is a very robust grape and its wines are powerful, plummy red wines with soft tannins and it ages well. Montepulciano wines range from very poor to very good and the grape is also blended with other grapes in the making of several wines
+  friendly_identifier: <%= Grape.format_identifier("Montepulciano") %>
+
+nebbiolod:
+  id: 4
+  name: Nebbiolo
+  description: Nebbiolo is the most important grape in Piedmont and, amongst the other wines, it makes <a href="http://www.italyabroad.com/product-search?text=barolo"><font color="#0000FF">Barolo</font></a> and <a href="http://www.italyabroad.com/products/barbaresco-2000-rivetto"><font color="#0000FF">Barbaresco</font></a>, only with grapes obtained from vineyards surrounding the town of Barolo and Barbaresco. The nebbiolo grape is also planted in other Italian areas and regions, mainly Lombardy.<br><br><a href="http://www.italyabroad.com/products/nebbiolo-dalba-lirano-rivetto"><font color="#0000FF">Nebbiolo</font></a> is a wine that when young is often astringent and tannic but with age, develops a nose of roses, cherries and the tannins soften. Nebbiolo wines are full bodied with plenty of character.
+  friendly_identifier: <%= Grape.format_identifier("Nebbiolo") %>
+
+nero_d_avola:
+  id: 5
+  name: Nero d’ Avola
+  description: Nero d’ Avola is probably the most planted grape in Sicily and it can now be found as far as Australia and California due to the ability of the grape to grown under extreme hot temperature.<br><br>The grape is generous, ripe with black fruit flavours and soft tannins and produces full bodied, rich, red wines. It is also often used in blend due to its characteristics that can be passed to the wine.
+  friendly_identifier: <%= Grape.format_identifier("Nero d’ Avola") %>
+
+sangiovese:
+  id: 6
+  name: Sangiovese
+  description: Sangiovese is probably Italy’s most famous grape and it is grown every where, from Emilia Romagna going south, but the most famous Sangiovese is the one grown in Tuscany that, together with its clones Canaiolo and Sangiovese grosso only to mention a few, is used to make all renowned Tuscan wines, from the <a href="http://www.italyabroad.com/product-search?text=chianti"><font color="#0000FF">Chianti</font></a> to the <a href="http://www.italyabroad.com/product-search?text=brunello"><font color="#0000FF">Brunello di Montalcino</font></a> passing for the <a href="http://www.italyabroad.com/product-search?text=nobile"><font color="#0000FF">Nobile di Montepulciano</font></a> and the majority of Tuscan wines.<br><br>The grape produces <a href="http://www.italyabroad.com/categories/search/wine?color=&amp;grape=Sangiovese&amp;organic=0&amp;price=&amp;producer_name=&amp;region=&amp;text=&amp;vegetarian=0"><font color="#0000FF">wines</font></a> of medium intensity colour, high acidity, firm tannin, and aromas and flavours of cherries. Sangiovese wines ages very well.
+  friendly_identifier: <%= Grape.format_identifier("Sangiovese") %>
+
+dolcetto:
+  id: 7
+  name: Dolcetto
+  description: The Dolcetto grape produce a wine, the <a href="http://www.italyabroad.com/products/dolcetto-dalba-doc-frach-rivetto"><font color="#0000FF">Dolcetto</font></a>, that is the everyday wine for Piedmont ‘s natives. The Dolcetto is a very delicate grape and has to be vinified carefully as to produce a good wine.<br><br>The Dolcetto grape is found mainly in Piedmont where the wine is made. The wine Dolcetto is best drunk when young. There are 7 denominations for the Dolcetto wines, from Alba to Dogliani, from Ovada (the only DOCG wine) to Diano D’Alba and each one with different characteristics.
+  friendly_identifier: <%= Grape.format_identifier("Dolcetto") %>
+
+lagrein:
+  id: 8
+  name: Lagrein
+  description: The <a href="http://www.italyabroad.com/product-search?text=lagrein"><font color="#0000FF">Lagrein</font></a> is a grape widely planted in Trentino and Alto Adige in the north east of Italy where gives the best results, produces tannic, soft wines with real character and a vibrant acidity and age well.<br><br>The grape is also used to produce elegant and fresh rose' wines.
+  friendly_identifier: <%= Grape.format_identifier("Lagrein") %>
+
+pinot_grigio:
+  id: 9
+  name: Pinot grigio
+  description: The <a href="http://www.italyabroad.com/product-search?text=pinot+grigio"><font color="#0000FF">Pinot Grigio</font></a> is a red grape, with the skin not dark enough for a red wine, that produces white or rose’ wine, widely planted in the north of Italy and in Friuli, crisp and fruity dry white wines but, due to the commercial success of the wine, it is currently being planted all over Italy and not only.<br><br>The best Pinot grigios wine comes from the Friuli Venezia Giulia, from the area called Collio and their style differs depending of where the wine comes from, varying from fuller to lighter wines. The wines are now, due to the high commercial success, often blended with other grapes.
+  friendly_identifier: <%= Grape.format_identifier("Pinot grigio") %>
+
+amarone:
+  id: 10
+  name: Amarone
+  description: <a href="http://www.italyabroad.com/product-search?text=amarone"><font color="#0000FF">Amarone</font></a> is another famous Italian wine made mainly from Corvinia, Rondinella and Molinara grapes from vineyards located in the Valpolicella area, also used in the making of the <a href="http://www.italyabroad.com/products/valpolicella-valetti"><font color="#0000FF">Valpolicella</font></a> and <a href="http://www.italyabroad.com/products/bardolino-classico-valetti"><font color="#0000FF">Bardolino</font></a>. Another wine of the area is the <a href="http://www.italyabroad.com/products/valpolicella-ripasso-classico-superiore-doc-2004-camporeale"><font color="#0000FF">Ripasso della valpolicella</font></a>.<br><br>The wine is obtained drying the grapes, to concentrate the juice, and aged in barriques. The wines offers ripe fruits on the nose, is powerful and round and ages well.
+  friendly_identifier: <%= Grape.format_identifier("Amarone") %>
+
+pinot_bianco:
+  id: 11
+  name: Pinot Bianco
+  description: The <a href="http://www.italyabroad.com/product-search?text=pinot+bianco"><font color="#0000FF">Pinot Bianco</font></a>, cousin of the Pinot Noir, is found mostly in the north of Italy, particularly in the North East with the Friuli and Alto Adige regions with the highest density.<br><br>The grape produces light-bodied white wines, with flavours recalling crisp pears and green apples.
+  friendly_identifier: <%= Grape.format_identifier("Pinot Bianco") %>
+
+fiano:
+  id: 12
+  name: Fiano
+  description: This grape variety, grown mostly in the Campania region, but now being planted in many other southern Italian regions, produces full bodied, floral white wines with fruity flavours. Within the region of Campania, where the best are wines are made, there are sub areas produces wines with different characteristics.<br><br>Amongst the Fiano wines, the most important are the Fiano di Avellino and the <a href="http://www.italyabroad.com/products/fiano-beneventano-organic-masseria-frattasi"><font color="#0000FF">Fiano Beneventano</font></a> capable of ageing and producing outstanding wines.
+  friendly_identifier: <%= Grape.format_identifier("Fiano") %>
+
+garganega:
+  id: 13
+  name: Garganega
+  description: The <a href="http://www.italyabroad.com/products/presuntuoso-bianco-italyabroad-com"><font color="#0000FF">Garganega</font></a>, grown in Veneto, is mainly used in making the <a href="http://www.italyabroad.com/products/soave-corte-giacobbe-dal-cero"><font color="#0000FF">Soave</font></a> and its passito, the <a href="http://www.italyabroad.com/products/passito-del-casale-dal-cero"><font color="#0000FF">Recioto di Soave</font></a> . The garganega used to make the Soave and the Recioto di Soave comes from vineyards around the town of Soave and the grapes coming from vineyards surrounding the town can be called Soave Classico.<br><br>Soave is now undergoing a renaissance. Wines made with Garganega are a bit more than light bodied, with fruits scents and an almond finish and can produce outstanding wines.
+  friendly_identifier: <%= Grape.format_identifier("Garganega") %>
+
+trebbiano:
+  id: 14
+  name: Trebbiano
+  description: The Trebbiano is the most planted white grape variety in Italy that produces poor and good wines. The Trebbiano grape, to make good wines, needs to be grown carefully and unfortunately this is not always the case.<br><br>The Trebbiano has several clones, including the Trebbiano Toscano and the Trebbiano d’Abruzzo and it is often used in the making of several classic Italian white wines such as the <a href="http://www.italyabroad.com/product-search?text=trebbiano"><font color="#0000FF">Trebbiano d’Abruzzo</font></a> vinified on its own, or the <a href="http://www.italyabroad.com/product-search?text=Frascati"><font color="#0000FF">Frascati</font></a> together with other grapes.
+  friendly_identifier: <%= Grape.format_identifier("Trebbiano") %>
+
+orvieto:
+  id: 15
+  name: Orvieto
+  description: L’Orvieto is a wine produced in an area that crosses the regions of Latium and Umbria, and take its name from the Umbrian town of Orvieto. Different grapes can be used in making the wine, but the mainly are Trebbiano toscano, Verdello, Grechetto, Canaiolo bianco e Malvasia toscana.<br><br>The Orvieto wines can be divided into <a href="http://www.italyabroad.com/products/orvieto-classico-san-marco"><font color="#0000FF">“Classico”</font></a>, from grapes grown in the historical part of the area, and the <a href="http://www.italyabroad.com/products/orvieto-abboccato-san-marco"><font color="#0000FF">"Abboccato"</font></a> or ”Amabile”, depending on the quantity of residual sugar in the wine, that is obtained stopping the fermentation before it is completed.
+  friendly_identifier: <%= Grape.format_identifier("Orvieto") %>
+
+verdicchio:
+  id: 16
+  name: Verdicchio
+  description: The Verdicchio grape gives its best in the Marche, on the Adriatic Coast, and there are only two denominations, DOC, within it, the Castello di Jesi and Matelica.<br><br>The Verdicchio is renowned for making medium body wines, with crisp acidity and aromas of lemon.
+  friendly_identifier: <%= Grape.format_identifier("Verdicchio") %>
+
+vermentino:
+  id: 17
+  name: Vermentino
+  description: The <a href="http://www.italyabroad.com/products/vermentino-isalle-bianco-cantina-di-dorgali"><font color="#0000FF">vermentino</font></a> grape is grown in several parts of Italy but it is near the coast, Liguria, Sardinia and Tuscany that produces the best white wines.<br><br>The cool climate brings out the best qualities for its wines, freshness, pleasant acidic, lightly herbal flavour and a complex, mineral, finish.
+  friendly_identifier: <%= Grape.format_identifier("Vermentino") %>
+
+friulano:
+  id: 18
+  name: Friulano
+  description: Until recently called Tocai Friulano, now only <a href="http://www.italyabroad.com/products/tocai-friulano-scubla"><font color="#0000FF">Friulano</font></a>, from the Friuli region in the north east of Italy, is a grape and a white wine not related to the Tokaji from Hungary.<br><br>The wine is light bodied, slightly bittery and a floral nose with hints of almonds and it is intended to be drunk young. The best Friulano wines have a rich and viscous texture.
+  friendly_identifier: <%= Grape.format_identifier("Friulano") %>
+
+gavi:
+  id: 19
+  name: Gavi
+  description: <a href="http://www.italyabroad.com/products/gavi-san-pietro"><font color="#0000FF">Gavi</font></a> is a wine produced in the Alto Monferrato, in the southern part of the province of Alessandria, and it is made exclusively from Cortese grapes. It takes its name from the town of Gavi that is found at the centre of the production area.<br><br>The wine has a light straw colour with green hues and a delicate, fruity nose. It is dry, full and harmonic. Recently, Gavi producers have started to produce more structured and complex wines. From 1998 Gavi is a DOCG wine.
+  friendly_identifier: <%= Grape.format_identifier("Gavi") %>
+
+frascati:
+  id: 20
+  name: Frascati
+  description: Known like the wine of Rome, takes its name from the town of Frascati that is part of the area in which the wine is produced. In the production of the wine, different grapes are used, however, the mains are Malvasia bianca di Candia, Trebbiano Toscano, Malvasia del Lazio.<br><br>Two different <a href="http://www.italyabroad.com/product-search?text=frascati"><font color="#0000FF">Frascati</font></a> wines can be found, the secco and amabile, with the second being medium sweet and known and drunk only locally. The Frascati is also found in its “superiore” (better) version and differentiates from the normal Frascati because it has to have a least 11.5% of alcoholic content.
+  friendly_identifier: <%= Grape.format_identifier("Frascati") %>
+
+moscato:
+  id: 21
+  name: Moscato
+  description: A grape, the Moscato, that grows all over Italy making all sort of wines, from the <a href="http://www.italyabroad.com/products/moscato-dasti-rivetto"><font color="#0000FF">Moscato d’Asti</font></a> a dessert wine to the Asti spumante a sparkling wine.<br><br>The floral, perfumed notes that characterise the Moscato in the north are amongst the finest expressions of this variety.
+  friendly_identifier: <%= Grape.format_identifier("Moscato") %>
+
+corvina:
+  id: 22
+  name: Corvina
+  friendly_identifier: <%= Grape.format_identifier("Corvina") %>
+
+corvina_veronese:
+  id: 23
+  name: Corvina Veronese
+  friendly_identifier: <%= Grape.format_identifier("Corvina Veronese") %>
+
+corvinone:
+  id: 24
+  name: Corvinone
+  friendly_identifier: <%= Grape.format_identifier("Corvinone") %>
+
+rondinella:
+  id: 25
+  name: Rondinella
+  friendly_identifier: <%= Grape.format_identifier("Rondinella") %>
+
+merlot:
+  id: 26
+  name: Merlot
+  friendly_identifier: <%= Grape.format_identifier("Merlot") %>
+
+sauvignon:
+  id: 27
+  name: Sauvignon
+  friendly_identifier: <%= Grape.format_identifier("Sauvignon") %>
+
+syrah:
+  id: 28
+  name: Syrah
+  friendly_identifier: <%= Grape.format_identifier("Syrah") %>
+
+cesanese:
+  id: 29
+  name: Cesanese
+  friendly_identifier: <%= Grape.format_identifier("Cesanese") %>
+
+aleatico:
+  id: 30
+  name: Aleatico
+  friendly_identifier: <%= Grape.format_identifier("Aleatico") %>
+
+riesling:
+  id: 31
+  name: Riesling
+  friendly_identifier: <%= Grape.format_identifier("Riesling") %>
+
+cabernet_franc:
+  id: 32
+  name: Cabernet Franc
+  friendly_identifier: <%= Grape.format_identifier("Cabernet Franc") %>
+
+cabernet_sauvignon:
+  id: 33
+  name: Cabernet Sauvignon
+  friendly_identifier: <%= Grape.format_identifier("Cabernet Sauvignon") %>
+
+cannonau:
+  id: 34
+  name: Cannonau
+  friendly_identifier: <%= Grape.format_identifier("Cannonau") %>
+
+montepulciano_d_abruzzo:
+  id: 35
+  name: Montepulciano d'Abruzzo
+  friendly_identifier: <%= Grape.format_identifier("Montepulciano d'Abruzzo") %>
+
+chardonnay:
+  id: 36
+  name: Chardonnay
+  friendly_identifier: <%= Grape.format_identifier("Chardonnay") %>
+
+refosco_del_peduncolo_rosso:
+  id: 37
+  name: Refosco del peduncolo rosso
+  friendly_identifier: <%= Grape.format_identifier("Refosco del peduncolo rosso") %>
+
+bombino:
+  id: 38
+  name: Bombino
+  friendly_identifier: <%= Grape.format_identifier("Bombino") %>
+
+malvasia:
+  id: 39
+  name: Malvasia
+  friendly_identifier: <%= Grape.format_identifier("Malvasia") %>
+
+cacchione:
+  id: 40
+  name: Cacchione
+  friendly_identifier: <%= Grape.format_identifier("Cacchione") %>
+
+malvasia_gialla:
+  id: 41
+  name: Malvasia Gialla
+  friendly_identifier: <%= Grape.format_identifier("Malvasia Gialla") %>
+
+malvasia_del_lazio:
+  id: 42
+  name: Malvasia del Lazio
+  friendly_identifier: <%= Grape.format_identifier("Malvasia del Lazio") %>
+
+cortese:
+  id: 43
+  name: Cortese
+  friendly_identifier: <%= Grape.format_identifier("Cortese") %>
+
+ciliegiolo:
+  id: 44
+  name: Ciliegiolo
+  friendly_identifier: <%= Grape.format_identifier("Ciliegiolo") %>
+
+malbech:
+  id: 45
+  name: Malbech
+  friendly_identifier: <%= Grape.format_identifier("Malbech") %>
+
+cataratto:
+  id: 46
+  name: Cataratto
+  friendly_identifier: <%= Grape.format_identifier("Cataratto") %>
+  
+grillo:
+  id: 47
+  name: Grillo
+  friendly_identifier: <%= Grape.format_identifier("Grillo") %>
+
+grechetto:
+  id: 48
+  name: Grechetto
+  friendly_identifier: <%= Grape.format_identifier("Grechetto") %>
+
+pinot_nero:
+  id: 49
+  name: Pinot Nero
+  friendly_identifier: <%= Grape.format_identifier("Pinot Nero") %>
+
+prugnolo_gentile:
+  id: 50
+  name: Prugnolo Gentile
+  friendly_identifier: <%= Grape.format_identifier("Prugnolo Gentile") %>
+  
+malvasia_istriana:
+  id: 51
+  name: Malvasia Istriana
+  friendly_identifier: <%= Grape.format_identifier("Malvasia Istriana") %>
+
+ribolla_gialla:
+  id: 52
+  name: Ribolla Gialla
+  friendly_identifier: <%= Grape.format_identifier("Ribolla Gialla") %>
+
+tocai_friulano:
+  id: 53
+  name: Tocai Friulano
+  friendly_identifier: <%= Grape.format_identifier("Tocai Friulano") %>
+
+trebbiano_d_abruzzo:
+  id: 54
+  name: Trebbiano d'Abruzzo
+  friendly_identifier: <%= Grape.format_identifier("Trebbiano d'Abruzzo") %>
+  
+verduzzo_friulano:
+  id: 55
+  name: Verduzzo Friulano
+  friendly_identifier: <%= Grape.format_identifier("Verduzzo Friulano") %>
+
+prosecco:
+  id: 56
+  name: Prosecco
+  friendly_identifier: <%= Grape.format_identifier("Prosecco") %>
+
+malvasia_puntinata:
+  id: 57
+  name: Malvasia Puntinata
+  friendly_identifier: <%= Grape.format_identifier("Malvasia Puntinata") %>
+
+malvasia_rossa:
+  id: 58
+  name: Malvasia Rossa
+  friendly_identifier: <%= Grape.format_identifier("Malvasia Rossa") %>
+
+bellone:
+  id: 59
+  name: Bellone
+  friendly_identifier: <%= Grape.format_identifier("Bellone") %>
+
+ribolla:
+  id: 60
+  name: Ribolla
+  friendly_identifier: <%= Grape.format_identifier("Ribolla") %>
+
+falanghina:
+  id: 61
+  name: Falanghina
+  friendly_identifier: <%= Grape.format_identifier("Falanghina") %>
+
+muller_thurgau:
+  id: 62
+  name: Muller Thurgau
+  friendly_identifier: <%= Grape.format_identifier("Muller Thurgau") %>
+
+gewurztraminer:
+  id: 63
+  name: Gewurztraminer
+  friendly_identifier: <%= Grape.format_identifier("Gewurztraminer") %>
+
+schiava:
+  id: 64
+  name: Schiava
+  friendly_identifier: <%= Grape.format_identifier("Schiava") %>
+
+pecorino:
+  id: 65
+  name: Pecorino
+  friendly_identifier: <%= Grape.format_identifier("Pecorino") %>
+
+coda_di_volpe:
+  id: 66
+  name: Coda di volpe
+  friendly_identifier: <%= Grape.format_identifier("Coda di volpe") %>
+
+greco:
+  id: 67
+  name: Greco
+  friendly_identifier: <%= Grape.format_identifier("Greco") %>
+
+trebbiano_toscano:
+  id: 68
+  name: Trebbiano Toscano
+  friendly_identifier: <%= Grape.format_identifier("Trebbiano Toscano") %>
+
+fernanda:
+  id: 69
+  name: Fernanda
+  friendly_identifier: <%= Grape.format_identifier("Fernanda") %>
+
+molinara:
+  id: 70
+  name: Molinara
+  friendly_identifier: <%= Grape.format_identifier("Molinara") %>

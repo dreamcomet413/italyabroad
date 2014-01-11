@@ -1,0 +1,211 @@
+
+<script>    
+fields = 0;
+
+function addInput() {
+ 
+    var id =  fields
+   
+    var size_field = "mul["+id+"][size]"  
+    var price_field = "mul["+id+"][price]"  
+    str = "<div> Size  <input type='text' name='"+size_field+"' />" + "<br />" + "Price <input type='text' name='"+price_field+"' />" + " <a href='javascript:void()' onclick='removeInput(this.parentNode)' >remove</a></div>";   
+
+  	$('text').insert(str);
+	 // bottom: new Element('img', {src: 'logo.png'})
+   // });
+    fields += 1;
+  
+}  
+
+
+function addInput2(size,price) {
+   //  alert(5)
+    var id =  fields
+   
+    var size_field = "mul["+id+"][size]"  
+    var price_field = "mul["+id+"][price]"  
+    str = "<div> Size  <input type='text' name='"+size_field+"' value='"+size+"'/>" + "<br />" + "Price <input type='text' name='"+price_field+"' value='"+price+"'/>" + " <a href='javascript:void()' onclick='removeInput(this.parentNode)' >remove</a></div>";   
+
+     $('text').insert(str); 
+   // alert(str)
+	 // bottom: new Element('img', {src: 'logo.png'})
+   // });
+    fields += 1;
+  
+}
+
+
+function removeInput( el ) {
+  if (fields > 0) {
+    document.getElementById('warning').innerHTML = "";
+    var parent = document.getElementById('text');
+    parent.removeChild(el);
+    fields -= 1;
+  }
+}   
+
+function removeInput1() {
+  document.getElementById('text').innerHTML = "";
+  document.getElementById('warning').innerHTML = "";  
+document.getElementById('addmore').hide();
+  
+}  
+function displayField() {
+  document.getElementById('text').show();
+  document.getElementById('warning').show();   
+  document.getElementById('addmore').show();
+  
+}
+document.observe('dom:loaded', function(){     
+ 
+    $('product_multiple_true').observe('click', handler1);    
+    $('product_multiple_false').observe('click', handler2); 
+    $('addmore').observe('click', handler3); 
+    <% if @product.multiple == true %>   
+    <% @product.product_sizes.each do |gr| %>
+	       addInput2(<%= gr.size %>,<%= gr.price %>)   
+             displayField();
+	<% end %>  
+	<% end %> 
+});  
+
+function handler1(event) {
+     displayField();
+} 
+function handler2(event) {
+   removeInput1();
+}
+function handler3(event) {
+      addInput();  
+} 
+
+
+
+</script>
+
+<fieldset id="general_information">
+	<table border="0" cellspacing="5" cellpadding="5">
+	  <tr>
+	    <td style="text-align:right" valign="top">Product Name:</td>
+	    <td><%= text_field :product, :name %></td>
+    </tr>
+	  <tr>
+	    <td style="text-align:right">Product Code:</td>
+	    <td><%= text_field :product, :code %> <em>(for internal use)</em></td>
+    </tr>
+		<tr>
+		  <td style="text-align:right">Product Date:</td>
+		  <td><%= datetime_select :product, :date %> <em>(useful for events)</em></td>
+    </tr>
+		<tr>
+		  <td style="text-align:right">Short Description:</td>
+		  <td><%= text_area :product, :description_short, :rows => 3 %></td>
+    </tr>
+		<tr>
+		  <td style="text-align:right">Long Description:</td>
+		  <td><%= text_area :product, :description, :rows => 10 %></td>
+    </tr>
+		<tr>
+		  <td style="text-align:right">Producer Name:</td>
+		  <td><%= select :product, :producer_id, Producer.find(:all,:order=>'name asc').inject([["No Producer", ""]]) {|ps, p| ps << [p.name, p.id]} %></td>
+    </tr> 
+	<tr>
+		  <td style="text-align:right"> Multiple purchases :</td>  
+		       
+		  <td>            
+		   <%= radio_button("product", "multiple", true)  %> Yes
+		   <%= radio_button("product", "multiple", false)  %>  No
+		
+		</td>
+    </tr> 
+     <tr> 
+	      <td>
+	      	   <div>
+	      	   	&nbsp;
+	      	   </div>
+	      </td>
+	      <td>  
+		  
+	      	<div id="text" style="display:none"></div>
+			<div id="warning" style="display:none"></div>
+			<div id="addmore" style="display:none"><a href="javascript:void()">Click to Add Size And Price</a></div>  
+	      </td>  
+	     
+	</tr>
+	<tr>
+		  <td style="text-align:right">Size:</td>
+		  <td><%= text_field :product, :size, :size => 20 %><em>(ex: 50 cl. or 130x150)</em></td>
+    </tr>
+		<tr id="product_prices">
+		  <td style="text-align:right">Price:</td>
+		  <td><%= text_field_tag "product[price][]", @product.try(:price), :size => 20 %>  <%= link_to "Add more prices for duplicate products", "#", :onclick => "add_prices(); return false;" -%> </td>
+    </tr>
+		<tr>
+		  <td style="text-align:right">Rate:</td><td>
+		  <%#= select :product, :rate, ["17.5%","0%"] %>
+		  <% @setting = Setting.find(:first) %>
+		  <select name="product[rate]" id="prodct_rate" >
+		  <% vat = @setting.vat_rate.to_s.split(",") %>
+		  <% vat.length.times do |i| %>
+		  <%-if vat[i].strip.to_s + "%" == @product.rate
+         selected = "selected=\"selected\""
+
+          else
+          selected = ""
+
+          end
+          -%>
+        <!--option value="0%">0%</option-->
+        <option value="<%= vat[i].strip.to_s + '%' %>"  <%= selected %> > <%= vat[i].strip.to_s + '%'%></option>
+
+       <% end %>
+
+
+      </select>
+
+		  </td>
+    </tr>
+		<tr>
+		  <td style="text-align:right">From Quantity:</td>
+		  <td><%= text_field :product, :from_quantity, :size => 2 %> customer save: <%= text_field :product, :from_quantity_price, :size => 20 %></td>
+    </tr>
+		<tr>
+		  <td style="text-align:right">Cost:</td>
+		  <td><%= text_field :product, :cost, :size => 20 %> <em>(for internal use)</em></td>
+    </tr>
+		<tr>
+		  <td style="text-align:right">Discount:</td>
+		  <td><%= text_field :product, :discount, :size => 5 %> <em>(to apply on retail price)</em></td>
+    </tr>
+		<tr id="product_quantities">
+		  <td style="text-align:right">Quantity:</td>
+		  <td><%= text_field_tag "product[quantity][]", @product.try(:quantity), :size => 3, :maxlength => 3 %>  <%= link_to "Add more quantities for duplicate products", "#", :onclick => "add_quantities(); return false;" -%> </td>
+    </tr>
+		<tr>
+		  <td style="text-align:right">Active:</td>
+		  <% if @product.new_record?
+		  checked = false
+		  else
+		  checked = @product.active
+		   end %>
+		  <td><%= check_box :product, :active,:checked => checked %>
+    </tr>
+    <tr>
+      <td style="text-align:right">Recommended:</td>
+      <td><%= check_box :product, :raccomanded %></td>
+    </tr>
+    <tr>
+      <td style="text-align:right">Featured:</td>
+      <td><%= check_box :product, :featured %></td>
+    </tr>
+		<tr>
+		  <td style="text-align:right">Rating:</td>
+		  <td><%= select :product, :rating, (1..5) %></td>
+    </tr>
+    <tr>
+		  <td style="text-align:right">Occasion Name:</td>
+		  <td><%= select :product, :occasion_id, Occasion.all.inject([["No Occasion", "0"]]) {|ps, p| ps << [p.name, p.id]} %></td>
+    </tr>
+	</table>
+</fieldset>
+

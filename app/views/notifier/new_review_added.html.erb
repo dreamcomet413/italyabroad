@@ -1,0 +1,11 @@
+Hi,
+
+	<%=@user.name.titleize %> <%= @user.surname.titleize unless @user.surname.blank? %> wrote a new review on <%= @product.name %>:
+
+<%= @review.name %>
+Description : <%= @review.description %>
+
+One of our team will now review your comment and publish it.
+---------------------------------------------------
+The Italyabroad.com Team
+

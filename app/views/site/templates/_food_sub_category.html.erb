@@ -1,0 +1,12 @@
+<%= render :partial => '/site/templates/sub_category' %>
+
+<% content_for :right do %>
+	<%= render :partial => '/site/shared/box_food_search' %>
+	<br />
+	<%= render :partial => 'site/shared/box_products_on_offer' %>
+	<br />
+	<%= render :partial => '/site/shared/box_event' %>
+	<br />
+	<%= render :partial => '/site/shared/box_subscriptions' %>
+<% end %>
+

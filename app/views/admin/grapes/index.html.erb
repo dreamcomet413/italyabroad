@@ -1,0 +1,78 @@
+<%- @title = "Grapes"; @page_id = "Grapes" -%>
+<%- @breadcrumbs = "Grapes &raquo; #{link_to "Grapes", admin_grapes_path}" -%>
+
+<div class="inner_content grapes" id="admin_grapes_index">
+  <h2>Grapes</h2>
+  <br />
+  <table>
+    <tr>
+      <td><%- form_tag admin_grapes_path, :method => :get do -%>
+        <strong>Search:</strong>
+        <%= text_field_tag :search_text,'',:value=>params[:search_text] %>
+        <%= submit_tag "Search", :name => 'search' %>
+        <% end %></td>
+      <td align="right"><%= link_to "New Grape", new_admin_grape_path %></td>
+    </tr>
+  </table>
+  <table id="grape-list" class="list sortable">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+       <!-- <th>Description</th> -->
+        <th>Producers</th>
+        <th>Wines</th>
+        <th class="nosort">Image</th>
+        <th class="nosort"></th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+        <td colspan="3"><%= will_paginate_(@grapes) %></td>
+        <td colspan="3" align="right"><%= page_entries_info_ @grapes %></td>
+      </tr>
+    </tfoot>
+    <tbody>
+      <%- for grape in @grapes -%>
+      <tr>
+        <td valign="top"><%= grape.id %></td>
+        <td valign="top"><%= grape.name %></td>
+       <!-- <td valign="top"><%#= grape.description %></td> -->
+       <td valign="top">
+          <ol style="padding-left:20px;">
+          <%- grape.producers.each do |p| -%>
+            <li><%= link_to p.name, admin_producer_path(p) %></li>
+          <%- end -%>
+          </ol>
+        </td>
+
+
+       <td valign="top">
+          <ol style="padding-left:20px;">
+          <%- grape.products.find(:all,:include=>:categories,:conditions=>['upper(categories.name)=?','WINE']).each do |p| -%>
+
+            <li><%= link_to p.name, admin_product_path(p) %></li>
+          <%- end -%>
+          </ol>
+        </td>
+
+
+        <td valign="top"><%#= show_grape_image(grape) %>
+         <% if grape && grape.image %>
+
+        <%= image_tag(image_url('grape_thumb', grape.image, :jpg, :width=>"100px;")) %>
+        <% else %>
+        <%= image_tag("grape_default.png",:width => "100px;") %>
+        <!--#show_producer_image(producer) -->
+        <% end %>
+        </td>
+        <td valign="top">
+          <%= link_to "Edit", edit_admin_grape_path(grape) %> |
+          <%= link_to "Destroy", admin_grape_path(grape), :method => :delete, :confirm => "Are you sure want to delete this grape?" %>
+        </td>
+      </tr>
+      <%- end -%>
+    </tbody>
+  </table>
+</div>
+

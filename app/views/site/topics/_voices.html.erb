@@ -1,0 +1,7 @@
+<h5><%= 'Voices' %></h5>
+<ul class="flat talking">
+<% @topic.voices.each do | user | %>
+  <li><%#= link_to h(user.display_name), user_path(user) %>
+    <%= user.display_name %>
+  </li>
+<% end %>

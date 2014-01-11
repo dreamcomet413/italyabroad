@@ -1,0 +1,405 @@
+--- 
+product_grape1:  
+  id: 1
+  product_id: 38
+  grape_id: 22
+
+product_grape2:
+  id: 2  
+  product_id: 38
+  grape_id: 24
+
+product_grape3:
+  id: 3
+  product_id: 38
+  grape_id: 25
+
+product_grape4:
+  id: 4
+  product_id: 39
+  grape_id: 26
+
+product_grape5:
+  id: 5
+  product_id: 40
+  grape_id: 4
+
+product_grape6:  
+  id: 6
+  product_id: 41
+  grape_id: 2
+
+product_grape7:
+  id: 7
+  product_id: 46
+  grape_id: 27
+
+product_grape8:
+  id: 8
+  product_id: 53
+  grape_id: 28
+
+product_grape9:
+  id: 9  
+  product_id: 53
+  grape_id: 29
+
+product_grape10:
+  id: 10
+  product_id: 56
+  grape_id: 30
+
+product_grape11:
+  id: 11
+  product_id: 84
+  grape_id: 11
+
+product_grape12:
+  id: 12
+  product_id: 84
+  grape_id: 18
+
+product_grape13:
+  id: 13
+  product_id: 84
+  grape_id: 31
+
+product_grape14:
+  id: 14
+  product_id: 89
+  grape_id: 6
+
+product_grape15:
+  id: 15
+  product_id: 93
+  grape_id: 32
+
+product_grape16:
+  id: 16
+  product_id: 96
+  grape_id: 33
+
+product_grape17:
+  id: 17
+  product_id: 98
+  grape_id: 34
+
+product_grape18:
+  id: 18
+  product_id: 114
+  grape_id: 35
+
+product_grape19:
+  id: 19
+  product_id: 116
+  grape_id: 36
+
+product_grape20:
+  id: 20
+  product_id: 118
+  grape_id: 37
+
+product_grape21:
+  id: 21
+  product_id: 118
+  grape_id: 32
+
+product_grape22:
+  id: 22
+  product_id: 143
+  grape_id: 38
+
+product_grape23:
+  id: 23
+  product_id: 143
+  grape_id: 39
+
+product_grape24:
+  id: 24
+  product_id: 143
+  grape_id: 14
+
+product_grape25:
+  id: 25  
+  product_id: 143
+  grape_id: 40
+
+product_grape26:
+  id: 26
+  product_id: 171
+  grape_id: 7
+
+product_grape27:
+  id: 27
+  product_id: 190
+  grape_id: 39
+
+product_grape28:
+  id: 28
+  product_id: 190
+  grape_id: 14
+
+product_grape29:
+  id: 29
+  product_id: 192
+  grape_id: 41
+
+product_grape30:
+  id: 30
+  product_id: 192
+  grape_id: 42
+
+product_grape31:
+  id: 31
+  product_id: 196
+  grape_id: 43
+
+product_grape32:
+  id: 32
+  product_id: 196
+  grape_id: 39
+
+product_grape33:
+  id: 33
+  product_id: 206
+  grape_id: 31
+
+product_grape34:
+  id: 34
+  product_id: 208
+  grape_id: 44
+
+product_grape35:
+  id: 35
+  product_id: 208
+  grape_id: 6
+
+product_grape36:
+  id: 36
+  product_id: 209
+  grape_id: 45
+
+product_grape37:
+  id: 37
+  product_id: 213
+  grape_id: 9
+
+product_grape38:
+  id: 38
+  product_id: 219
+  grape_id: 3
+
+product_grape39:
+  id: 39
+  product_id: 223
+  grape_id: 46
+
+product_grape40:
+  id: 40
+  product_id: 223
+  grape_id: 47
+
+product_grape41:
+  id: 41
+  product_id: 225
+  grape_id: 5
+
+product_grape42:
+  id: 42
+  product_id: 226
+  grape_id: 47
+
+product_grape43:
+  id: 43
+  product_id: 241
+  grape_id: 48
+
+product_grape44:
+  id: 44
+  product_id: 241
+  grape_id: 14
+
+product_grape45:
+  id: 45
+  product_id: 241
+  grape_id: 39
+
+product_grape46:
+  id: 46
+  product_id: 242
+  grape_id: 13
+
+product_grape47:
+  id: 47
+  product_id: 250
+  grape_id: 49
+
+product_grape48:
+  id: 48
+  product_id: 261
+  grape_id: 50
+
+product_grape49:
+  id: 49
+  product_id: 269
+  grape_id: 51
+
+product_grape50:
+  id: 50
+  product_id: 269
+  grape_id: 52
+
+product_grape51:
+  id: 51
+  product_id: 269
+  grape_id: 53
+
+product_grape52:
+  id: 52
+  product_id: 277
+  grape_id: 53
+
+product_grape53:
+  id: 53
+  product_id: 280
+  grape_id: 54
+
+product_grape54:
+  id: 54
+  product_id: 289
+  grape_id: 55
+
+product_grape55:
+  id: 55
+  product_id: 291
+  grape_id: 17
+
+product_grape56:
+  id: 56
+  product_id: 293
+  grape_id: 14
+
+product_grape57:
+  id: 57
+  product_id: 293
+  grape_id: 39
+
+product_grape58:
+  id: 58
+  product_id: 302
+  grape_id: 29
+
+product_grape59:
+  id: 59
+  product_id: 305
+  grape_id: 21
+
+product_grape60:
+  id: 60
+  product_id: 307
+  grape_id: 56
+
+product_grape61:
+  id: 61
+  product_id: 312
+  grape_id: 57
+
+product_grape62:
+  id: 62
+  product_id: 312
+  grape_id: 58
+
+product_grape63:
+  id: 63
+  product_id: 312
+  grape_id: 59
+
+product_grape64:
+  id: 64
+  product_id: 404
+  grape_id: 60
+
+product_grape65:
+  id: 65
+  product_id: 407
+  grape_id: 61
+
+product_grape66:
+  id: 66
+  product_id: 408
+  grape_id: 1
+
+product_grape67:
+  id: 67
+  product_id: 409
+  grape_id: 12
+
+product_grape68:
+  id: 68
+  product_id: 420
+  grape_id: 62
+
+product_grape69:
+  id: 69
+  product_id: 421
+  grape_id: 63
+
+product_grape70:
+  id: 70
+  product_id: 423
+  grape_id: 8
+
+product_grape71:
+  id: 71
+  product_id: 425
+  grape_id: 64
+
+product_grape72:
+  id: 72
+  product_id: 499
+  grape_id: 65
+
+product_grape73:
+  id: 73
+  product_id: 512
+  grape_id: 66
+
+product_grape74:
+  id: 74
+  product_id: 513
+  grape_id: 67
+
+product_grape75:
+  id: 75
+  product_id: 530
+  grape_id: 68
+
+product_grape76:
+  id: 76
+  product_id: 530
+  grape_id: 13
+
+product_grape77:
+  id: 77
+  product_id: 530
+  grape_id: 69
+
+product_grape78:
+  id: 78
+  product_id: 530
+  grape_id: 39
+
+product_grape79:
+  id: 79
+  product_id: 550
+  grape_id: 23
+
+product_grape80:
+  id: 80
+  product_id: 550
+  grape_id: 25
+
+product_grape81:
+  id: 81
+  product_id: 550
+  grape_id: 70

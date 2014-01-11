@@ -1,0 +1,12 @@
+<% @title = "Edit #{@delivery.name}"; @page_id = "Catalog" %>
+<%- @breadcrumbs = "Catalog &raquo; #{link_to "Deliveries", admin_deliveries_path} &raquo; #{@title}" -%>
+
+<div class="inner_content deliveries" id="admin_deliveries_edit">
+  <h2>Edit <%= @delivery.name %></h2>
+  <br />
+  <%- form_for :delivery, :url => admin_delivery_path(@delivery), :html => {:method => :put} do -%>
+    <%= render :partial => 'form' %>
+    <p><%= @delivery.name != "Collection at our warehouse" ? (submit_tag ("Save")) : "" %> | <%= link_to "Cancel", admin_deliveries_path %></p>
+    <%= @delivery.name == "Collection at our warehouse" ? "*You cannot edit this record- it could affect the process" : "" %>
+  <%- end -%>
+</div>

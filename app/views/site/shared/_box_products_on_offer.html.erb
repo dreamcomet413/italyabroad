@@ -1,0 +1,27 @@
+<% category = params[:category]
+    if category == "wine-club" or category == "wine-tours"
+    @category = Category.find("wine")
+    end
+%>
+
+<% unless @category.blank? %>
+<%- product_on_offers = @category.products.on_offer || Product.on_offer -%>
+<% unless product_on_offers.blank? %>
+
+<div id="box_products_on_offer" class="block">
+  <h1  style="color:#9b0707;">Special Offers</h1>
+  <br />
+  <%- if product_on_offers.size > 0 -%>
+  <ul style="list-style:none;margin:0;padding:0;">
+  <%- product_on_offers.each do |product| -%>
+    <li style="margin-bottom:3px;padding-top:6px;padding-bottom:6px;">
+    <%= link_to product.name, nested_products_uri(product),:class=>'data', :style=>"color: red;" %></li>
+  <%- end -%>
+  </ul>
+  <%- else -%>
+  No products
+  <%- end -%>
+</div>
+<% end %>
+<%end %>
+

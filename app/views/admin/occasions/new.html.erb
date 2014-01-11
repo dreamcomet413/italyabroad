@@ -1,0 +1,12 @@
+<% @title = "New Occasion" %>
+<%- @breadcrumbs = "Catalog &raquo; #{link_to "Occasions", admin_occasions_path} &raquo; #{@title}" -%>
+
+<div class="inner_content posts">
+  <h2><%= @title %></h2>
+  <br />
+  <% form_for :occasion, :url => admin_occasions_path, :html => {:multipart => true} do %>
+  	<%= render :partial => "form" %>
+  	<p><%= submit_tag "Save" %> or <%= link_to "Cancel", admin_occasions_path %></p>
+  <% end %>
+</div>
+

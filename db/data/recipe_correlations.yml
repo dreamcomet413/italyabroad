@@ -1,0 +1,573 @@
+--- 
+recipe_correlations_134: 
+  product_id: "380"
+  recipe_id: "134"
+  id: "551"
+recipe_correlations_59: 
+  product_id: "309"
+  recipe_id: "96"
+  id: "223"
+recipe_correlations_5: 
+  product_id: "9"
+  recipe_id: "13"
+  id: "389"
+recipe_correlations_106: 
+  product_id: "309"
+  recipe_id: "117"
+  id: "512"
+recipe_correlations_88: 
+  product_id: "323"
+  recipe_id: "72"
+  id: "434"
+recipe_correlations_135: 
+  product_id: "309"
+  recipe_id: "134"
+  id: "552"
+recipe_correlations_6: 
+  product_id: "11"
+  recipe_id: "13"
+  id: "388"
+recipe_correlations_107: 
+  product_id: "311"
+  recipe_id: "117"
+  id: "511"
+recipe_correlations_30: 
+  product_id: "192"
+  recipe_id: "62"
+  id: "418"
+recipe_correlations_89: 
+  product_id: "132"
+  recipe_id: "72"
+  id: "433"
+recipe_correlations_136: 
+  product_id: "309"
+  recipe_id: "135"
+  id: "553"
+recipe_correlations_7: 
+  product_id: "13"
+  recipe_id: "13"
+  id: "387"
+recipe_correlations_108: 
+  product_id: "428"
+  recipe_id: "118"
+  id: "516"
+recipe_correlations_31: 
+  product_id: "321"
+  recipe_id: "62"
+  id: "417"
+recipe_correlations_137: 
+  product_id: "309"
+  recipe_id: "136"
+  id: "554"
+recipe_correlations_60: 
+  product_id: "320"
+  recipe_id: "97"
+  id: "224"
+recipe_correlations_8: 
+  product_id: "14"
+  recipe_id: "13"
+  id: "386"
+recipe_correlations_109: 
+  product_id: "309"
+  recipe_id: "118"
+  id: "515"
+recipe_correlations_32: 
+  product_id: "60"
+  recipe_id: "64"
+  id: "422"
+recipe_correlations_138: 
+  product_id: "71"
+  recipe_id: "136"
+  id: "555"
+recipe_correlations_61: 
+  product_id: "308"
+  recipe_id: "98"
+  id: "225"
+recipe_correlations_9: 
+  product_id: "330"
+  recipe_id: "26"
+  id: "391"
+recipe_correlations_33: 
+  product_id: "314"
+  recipe_id: "64"
+  id: "421"
+recipe_correlations_139: 
+  product_id: "64"
+  recipe_id: "136"
+  id: "556"
+recipe_correlations_62: 
+  product_id: "326"
+  recipe_id: "99"
+  id: "226"
+recipe_correlations_34: 
+  product_id: "43"
+  recipe_id: "64"
+  id: "420"
+recipe_correlations_90: 
+  product_id: "327"
+  recipe_id: "95"
+  id: "451"
+recipe_correlations_63: 
+  product_id: "87"
+  recipe_id: "101"
+  id: "452"
+recipe_correlations_35: 
+  product_id: "192"
+  recipe_id: "65"
+  id: "423"
+recipe_correlations_91: 
+  product_id: "324"
+  recipe_id: "104"
+  id: "454"
+recipe_correlations_64: 
+  product_id: "12"
+  recipe_id: "8"
+  id: "568"
+recipe_correlations_110: 
+  product_id: "314"
+  recipe_id: "119"
+  id: "517"
+recipe_correlations_92: 
+  product_id: "357"
+  recipe_id: "104"
+  id: "453"
+recipe_correlations_111: 
+  product_id: "309"
+  recipe_id: "120"
+  id: "518"
+recipe_correlations_36: 
+  product_id: "88"
+  recipe_id: "55"
+  id: "547"
+recipe_correlations_93: 
+  product_id: "309"
+  recipe_id: "4"
+  id: "562"
+recipe_correlations_65: 
+  product_id: "10"
+  recipe_id: "8"
+  id: "567"
+recipe_correlations_140: 
+  product_id: "309"
+  recipe_id: "137"
+  id: "557"
+recipe_correlations_112: 
+  product_id: "309"
+  recipe_id: "121"
+  id: "519"
+recipe_correlations_37: 
+  product_id: "143"
+  recipe_id: "67"
+  id: "543"
+recipe_correlations_94: 
+  product_id: "309"
+  recipe_id: "105"
+  id: "476"
+recipe_correlations_66: 
+  product_id: "8"
+  recipe_id: "10"
+  id: "376"
+recipe_correlations_141: 
+  product_id: "68"
+  recipe_id: "137"
+  id: "558"
+recipe_correlations_113: 
+  product_id: "357"
+  recipe_id: "121"
+  id: "520"
+recipe_correlations_38: 
+  product_id: "309"
+  recipe_id: "67"
+  id: "542"
+recipe_correlations_95: 
+  product_id: "88"
+  recipe_id: "106"
+  id: "469"
+recipe_correlations_67: 
+  product_id: "10"
+  recipe_id: "10"
+  id: "375"
+recipe_correlations_142: 
+  product_id: "71"
+  recipe_id: "140"
+  id: "559"
+recipe_correlations_114: 
+  product_id: "309"
+  recipe_id: "122"
+  id: "521"
+recipe_correlations_39: 
+  product_id: "308"
+  recipe_id: "69"
+  id: "429"
+recipe_correlations_96: 
+  product_id: "309"
+  recipe_id: "106"
+  id: "468"
+recipe_correlations_68: 
+  product_id: "10"
+  recipe_id: "11"
+  id: "572"
+recipe_correlations_143: 
+  product_id: "416"
+  recipe_id: "141"
+  id: "560"
+recipe_correlations_115: 
+  product_id: "248"
+  recipe_id: "122"
+  id: "522"
+recipe_correlations_97: 
+  product_id: "309"
+  recipe_id: "108"
+  id: "474"
+recipe_correlations_10: 
+  product_id: "349"
+  recipe_id: "29"
+  id: "392"
+recipe_correlations_116: 
+  product_id: "428"
+  recipe_id: "122"
+  id: "523"
+recipe_correlations_98: 
+  product_id: "428"
+  recipe_id: "109"
+  id: "475"
+recipe_correlations_11: 
+  product_id: "318"
+  recipe_id: "33"
+  id: "396"
+recipe_correlations_69: 
+  product_id: "11"
+  recipe_id: "11"
+  id: "571"
+recipe_correlations_117: 
+  product_id: "77"
+  recipe_id: "123"
+  id: "524"
+recipe_correlations_40: 
+  product_id: "326"
+  recipe_id: "70"
+  id: "430"
+recipe_correlations_99: 
+  product_id: "309"
+  recipe_id: "110"
+  id: "484"
+recipe_correlations_12: 
+  product_id: "65"
+  recipe_id: "33"
+  id: "395"
+recipe_correlations_118: 
+  product_id: "40"
+  recipe_id: "124"
+  id: "525"
+recipe_correlations_41: 
+  product_id: "43"
+  recipe_id: "71"
+  id: "432"
+recipe_correlations_13: 
+  product_id: "64"
+  recipe_id: "33"
+  id: "394"
+recipe_correlations_119: 
+  product_id: "309"
+  recipe_id: "125"
+  id: "526"
+recipe_correlations_42: 
+  product_id: "309"
+  recipe_id: "71"
+  id: "431"
+recipe_correlations_70: 
+  product_id: "15"
+  recipe_id: "11"
+  id: "570"
+recipe_correlations_43: 
+  product_id: "309"
+  recipe_id: "73"
+  id: "435"
+recipe_correlations_14: 
+  product_id: "88"
+  recipe_id: "40"
+  id: "401"
+recipe_correlations_71: 
+  product_id: "18"
+  recipe_id: "11"
+  id: "569"
+recipe_correlations_15: 
+  product_id: "161"
+  recipe_id: "40"
+  id: "400"
+recipe_correlations_72: 
+  product_id: "70"
+  recipe_id: "32"
+  id: "393"
+recipe_correlations_44: 
+  product_id: "248"
+  recipe_id: "74"
+  id: "436"
+recipe_correlations_16: 
+  product_id: "309"
+  recipe_id: "9"
+  id: "374"
+recipe_correlations_73: 
+  product_id: "64"
+  recipe_id: "37"
+  id: "399"
+recipe_correlations_45: 
+  product_id: "290"
+  recipe_id: "75"
+  id: "437"
+recipe_correlations_120: 
+  product_id: "248"
+  recipe_id: "125"
+  id: "527"
+recipe_correlations_17: 
+  product_id: "301"
+  recipe_id: "9"
+  id: "373"
+recipe_correlations_74: 
+  product_id: "65"
+  recipe_id: "37"
+  id: "398"
+recipe_correlations_46: 
+  product_id: "309"
+  recipe_id: "82"
+  id: "439"
+recipe_correlations_121: 
+  product_id: "311"
+  recipe_id: "126"
+  id: "528"
+recipe_correlations_18: 
+  product_id: "309"
+  recipe_id: "45"
+  id: "403"
+recipe_correlations_75: 
+  product_id: "320"
+  recipe_id: "37"
+  id: "397"
+recipe_correlations_122: 
+  product_id: "311"
+  recipe_id: "128"
+  id: "532"
+recipe_correlations_19: 
+  product_id: "327"
+  recipe_id: "46"
+  id: "404"
+recipe_correlations_76: 
+  product_id: "79"
+  recipe_id: "47"
+  id: "405"
+recipe_correlations_47: 
+  product_id: "88"
+  recipe_id: "82"
+  id: "438"
+recipe_correlations_123: 
+  product_id: "309"
+  recipe_id: "128"
+  id: "531"
+recipe_correlations_77: 
+  product_id: "301"
+  recipe_id: "41"
+  id: "402"
+recipe_correlations_48: 
+  product_id: "43"
+  recipe_id: "83"
+  id: "209"
+recipe_correlations_124: 
+  product_id: "98"
+  recipe_id: "129"
+  id: "533"
+recipe_correlations_78: 
+  product_id: "10"
+  recipe_id: "12"
+  id: "385"
+recipe_correlations_49: 
+  product_id: "309"
+  recipe_id: "85"
+  id: "440"
+recipe_correlations_125: 
+  product_id: "88"
+  recipe_id: "130"
+  id: "534"
+recipe_correlations_20: 
+  product_id: "88"
+  recipe_id: "51"
+  id: "408"
+recipe_correlations_79: 
+  product_id: "12"
+  recipe_id: "12"
+  id: "384"
+recipe_correlations_126: 
+  product_id: "309"
+  recipe_id: "130"
+  id: "535"
+recipe_correlations_21: 
+  product_id: "308"
+  recipe_id: "54"
+  id: "409"
+recipe_correlations_127: 
+  product_id: "311"
+  recipe_id: "130"
+  id: "536"
+recipe_correlations_22: 
+  product_id: "352"
+  recipe_id: "56"
+  id: "411"
+recipe_correlations_50: 
+  product_id: "324"
+  recipe_id: "89"
+  id: "442"
+recipe_correlations_128: 
+  product_id: "309"
+  recipe_id: "131"
+  id: "537"
+recipe_correlations_51: 
+  product_id: "72"
+  recipe_id: "89"
+  id: "441"
+recipe_correlations_23: 
+  product_id: "311"
+  recipe_id: "56"
+  id: "410"
+recipe_correlations_129: 
+  product_id: "84"
+  recipe_id: "131"
+  id: "538"
+recipe_correlations_80: 
+  product_id: "14"
+  recipe_id: "12"
+  id: "383"
+recipe_correlations_52: 
+  product_id: "313"
+  recipe_id: "90"
+  id: "444"
+recipe_correlations_24: 
+  product_id: "323"
+  recipe_id: "57"
+  id: "412"
+recipe_correlations_81: 
+  product_id: "17"
+  recipe_id: "12"
+  id: "382"
+recipe_correlations_53: 
+  product_id: "323"
+  recipe_id: "90"
+  id: "443"
+recipe_correlations_82: 
+  product_id: "18"
+  recipe_id: "12"
+  id: "381"
+recipe_correlations_54: 
+  product_id: "309"
+  recipe_id: "91"
+  id: "446"
+recipe_correlations_100: 
+  product_id: "378"
+  recipe_id: "110"
+  id: "483"
+recipe_correlations_25: 
+  product_id: "60"
+  recipe_id: "60"
+  id: "415"
+recipe_correlations_83: 
+  product_id: "318"
+  recipe_id: "49"
+  id: "407"
+recipe_correlations_55: 
+  product_id: "88"
+  recipe_id: "91"
+  id: "445"
+recipe_correlations_101: 
+  product_id: "309"
+  recipe_id: "111"
+  id: "489"
+recipe_correlations_26: 
+  product_id: "88"
+  recipe_id: "60"
+  id: "414"
+recipe_correlations_130: 
+  product_id: "309"
+  recipe_id: "55"
+  id: "546"
+recipe_correlations_84: 
+  product_id: "132"
+  recipe_id: "48"
+  id: "406"
+recipe_correlations_56: 
+  product_id: "252"
+  recipe_id: "93"
+  id: "448"
+recipe_correlations_1: 
+  product_id: "10"
+  recipe_id: "3"
+  id: "4"
+recipe_correlations_102: 
+  product_id: "309"
+  recipe_id: "112"
+  id: "490"
+recipe_correlations_27: 
+  product_id: "314"
+  recipe_id: "60"
+  id: "413"
+recipe_correlations_131: 
+  product_id: "309"
+  recipe_id: "132"
+  id: "548"
+recipe_correlations_85: 
+  product_id: "309"
+  recipe_id: "68"
+  id: "428"
+recipe_correlations_57: 
+  product_id: "316"
+  recipe_id: "94"
+  id: "450"
+recipe_correlations_2: 
+  product_id: "11"
+  recipe_id: "3"
+  id: "5"
+recipe_correlations_103: 
+  product_id: "309"
+  recipe_id: "113"
+  id: "499"
+recipe_correlations_28: 
+  product_id: "107"
+  recipe_id: "61"
+  id: "416"
+recipe_correlations_132: 
+  product_id: "309"
+  recipe_id: "133"
+  id: "549"
+recipe_correlations_3: 
+  product_id: "12"
+  recipe_id: "3"
+  id: "6"
+recipe_correlations_104: 
+  product_id: "309"
+  recipe_id: "114"
+  id: "505"
+recipe_correlations_29: 
+  product_id: "143"
+  recipe_id: "62"
+  id: "419"
+recipe_correlations_86: 
+  product_id: "357"
+  recipe_id: "66"
+  id: "424"
+recipe_correlations_133: 
+  product_id: "378"
+  recipe_id: "134"
+  id: "550"
+recipe_correlations_58: 
+  product_id: "350"
+  recipe_id: "94"
+  id: "449"
+recipe_correlations_4: 
+  product_id: "8"
+  recipe_id: "13"
+  id: "390"
+recipe_correlations_105: 
+  product_id: "309"
+  recipe_id: "116"
+  id: "506"
+recipe_correlations_87: 
+  product_id: "322"
+  recipe_id: "92"
+  id: "447"

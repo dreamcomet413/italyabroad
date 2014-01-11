@@ -1,0 +1,115 @@
+<script type="text/javascript">
+  function ValidateForm()
+  {
+    //var frm = document.recipe_form;
+    if (document.getElementById("recipe_name").value == ""){
+      alert("Name of the Recipe cannot be blank!");
+      document.getElementById("recipe_name").focus();
+      return false;
+    }
+    if (document.getElementById("recipe_serves").value == ""){
+      alert("Serves cannot be blank!");
+      document.getElementById("recipe_serves").focus();
+      return false;
+    }
+    if (document.getElementById("recipe_ingredients").value == ""){
+      alert("Ingredients of the Recipe cannot be blank!");
+      document.getElementById("recipe_ingredients").focus();
+      return false;
+    }
+    if (document.getElementById("recipe_preparation").value == ""){
+      alert("Preparation of the Recipe cannot be blank!");
+      document.getElementById("recipe_preparation").focus();
+      return false;
+    }
+  }
+</script>
+<% @title = "Submit your recipe"; @description = "Share your italian recipes and get featured on the website" %>
+
+<%- @breadcrumbs = "#{link_to("Home", root_url)} &raquo; #{link_to("Recipes", '/recipes')} &raquo; New" -%>
+
+<div id="recipe_new_home_image">
+  <%= image_tag("recipe_new.jpg") %>
+</div>
+<span style="color:red"><%= error_messages_for 'recipe' %></span>
+<div id="recipe_new_container">
+  <div id="recipe_new_introduction">
+    <h2>Submit your Recipe</h2>
+    <p>
+      If you have a recipe that you would like to share with other users, please give details in the section below, please note that to submit a recipe you must
+      <%= link_to "logged in,", login_url %> if you are a chef, you can create your <%= link_to "own profile",account_path %> and promote your establishement
+    </p>
+  </div>
+  <h1>Recipe Details</h1>
+  <div id="recipe_new_form">
+    <%- form_for :recipe, :url => {:controller => "site/recipes", :action => "create"}, :html => {:multipart => true, :name => "recipe_form",:onsubmit => "return ValidateForm();"} do |f| -%>
+      <table>
+        <tr>
+          <td>Recipe Title:</td>
+          <td><%= f.text_field :name, :size => 14  %></td>
+        </tr>
+        <tr>
+          <td>Short description:</td>
+          <td><%= f.text_area :description, :rows => 2 %></td>
+        </tr>
+        <tr>
+          <td>Category:</td>
+          <td><%= f.collection_select :recipe_type_id, RecipeType.find(:all), :id, :name %></td>
+        </tr>
+        <tr>
+          <td>Preparation time:</td>
+          <td><%= f.select :preparation_time, [["15 min", 15], ["30 min", 30], ["45 min", 45], ["60 min", 60], ["75 min", 75], ["90 min", 90]] %></td>
+        </tr>
+        <tr>
+          <td>Serves:</td>
+          <td><%= f.text_field :serves, :size => 5 %></td>
+        </tr>
+        <tr>
+          <td>Difficulty:</td>
+          <td><%= f.collection_select :recipe_level_id, RecipeLevel.find(:all), :id, :name %></td>
+        </tr>
+        <tr>
+          <td>Region:</td>
+          <td><%= f.collection_select :region_id, Region.find(:all), :id, :name %></td>
+        </tr>
+        <tr>
+          <td valign="top">Ingredients:</td>
+          <td><%= f.text_area :ingredients, :rows => 10 %></td>
+        </tr>
+        <tr>
+          <td valign="top">Cooking Instructions:</td>
+          <td><%= f.text_area :preparation, :rows => 10 %></td>
+        </tr>
+      </table>
+      <h1>Add a picture</h1>
+      <p>
+        If you would like to upload a photo of this recipe for other users to view on the recipe page, please upload an image below:
+      </p>
+      <table>
+        <tr>
+          <td valign="top"><%= image_tag("default.jpg") %></td>
+          <td valign="top"><%= file_field_tag :image_1 %></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+        </tr>
+      </table>
+      <p>
+        <%= submit_tag "Submit" %>
+      </p>
+    <%- end -%>
+  </div>
+</div>
+
+<%- content_for :right do -%>
+  <%= render :partial => '/site/shared/box_event' %>
+  <br />
+  <%= render :partial => '/site/shared/box_subscriptions' %>
+<%- end -%>
+<% if current_user == :false %>
+  <script type="text/javascript">
+    alert("You need to login to submit your recipe!");
+  </script>
+<% end %>
+

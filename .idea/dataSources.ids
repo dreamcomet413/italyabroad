@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source source="LOCAL" name="Rails italyabroad_new: staging" uuid="3f2b7ac9-4c05-44e6-bb03-2785f40142cd">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+  <data-source source="LOCAL" name="Rails italyabroad_new: production" uuid="683d8f90-79aa-4e3f-9a8f-d9b3353dc9fb">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+</component>

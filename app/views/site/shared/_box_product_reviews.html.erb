@@ -1,0 +1,25 @@
+<%- @category ||= Category.find(params[:category]) if params[:category] -%>
+<% unless @category.blank? %>
+<div class="block" id="box_event_reviews">
+  <h1><%= @category.name.titleize %> reviews</h1>
+  <br />
+  <table>
+  <%- if @category.reviews.size > 0 -%>
+    <%- @category.reviews.each do |review| -%>
+    <tr>
+      <td>
+        <%= avatar_for_user(review.user, 'small') %><br />
+        <%= review.user.name %>
+      </td>
+      <td valign="top"><%= truncate review.description, 20 %></td>
+    </tr>
+    <%- end -%>
+  <%- else -%>
+    <tr>
+      <td>No reviews for <%= @category.name.titleize %></td>
+    </tr>
+  <%- end -%>
+  </table>
+</div>
+<% end %>
+

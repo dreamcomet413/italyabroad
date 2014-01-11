@@ -1,0 +1,73 @@
+<% @title = "Guide to Italian wines and Italian grapes"; @description = "Guide to Italian wines and Italian grapes"; @keys = ", Italian wine information,Italian wine guide,Italian wine,Italian red and white wine,italian grapes,wine grapes,wine expert,guide to Italian wines,aglianico,barbera,montepulciano,nero d'avola,nebbiolo" %>
+<% @breadcrumbs = "#{link_to("Home", root_url)}&raquo; #{link_to ('Community',wine_community_path)} &raquo; Guide to Italian wines and Italian grapes" %>
+<% @about = AboutU.find(:first, :conditions => {:link_type => "grape-guide"} ) %>
+<div style="text-align:center;padding-top:10px;"></div>
+<div id="blog_home">
+
+  <span class="title">
+  <% unless @about.title.blank? %>
+  <div style="color:white;width:350px;height:100px;background:black;opacity: 0.6zz;filter:alpha(opacity=40);text-align:left">
+    <%= @about.title if @about %>
+  </div>
+  <% end %>
+  </span>
+  <% if  @about and !@about.image_id.nil? %>
+  <%= link_to image_tag(image_url(:about_thumb, @about.image, :jpg),:alt=>@about.title) , search_index_path(:id => "grapes") unless @about.blank? %>
+  <% else %>
+  <%= link_to image_tag("guide_home_image.jpg",:alt=>'Grape guide'), search_index_path(:id => "grapes") %>
+  <% end %>
+</div>
+<h3 style="border:none;"  align="center">Italian grapes and wines</h3>
+
+<div id="blog_container"  style="text-align:justify;">
+    <p style="text-align:justify;">
+    <%= @about.description rescue 'The wine and grape details ...' %> <br />
+    </p>
+   <div style="float:right;">
+
+  </div>
+   <h3 style="font-size:16px;border:none;margin-bottom:0;">Grape search result, click for information</h3>
+    <br />
+ <% if params[:search] %>
+  <div><%= will_paginate_(@grapes) %></div>
+<% if @grapes && @grapes.size > 0 %>
+	<ul>
+	<% for grape in @grapes %>
+	  <li>
+      <h2><%= link_to grape.name, grape.friendly_identifier.blank? ? "grapes/#{grape.id}" : "#{grape.friendly_identifier}" %><%#= show_region_image(region) %></h2>
+      <%#= show_region_image(region) %>
+      <div><% unless grape.description.blank? %>
+      <%= grape.description[0,250] %>
+       <%- end -%>
+      </div>
+
+      <table width="100%" class="foot">
+        <tr>
+
+          <td align="right">
+
+          </td>
+        </tr>
+      </table>
+    </li>
+  <% end %>
+  </ul>
+<div><%= will_paginate_(@grapes) %></div>
+<%- end -%><br />
+<% end %>
+<%= link_to "grapes", grapes_path %>
+
+</div>
+
+<%- content_for :right do -%>
+  <%= render :partial => 'site/shared/box_event' %>
+  <br />
+  <%= render :partial => 'site/shared/box_subscriptions' %>
+  <br />
+  <%= render :partial => 'site/shared/box_wine_tours' %>
+  <br />
+  <%= render :partial => 'site/shared/box_recipes' %>
+  <br />
+  <%= render :partial => 'site/shared/box_popular' %>
+<%- end -%>
+

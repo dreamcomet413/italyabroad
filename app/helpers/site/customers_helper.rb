@@ -1,0 +1,2 @@
+module Site::CustomersHelper
+end

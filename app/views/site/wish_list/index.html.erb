@@ -1,0 +1,53 @@
+<% @title = "My Wishlist"; %>
+<%- @breadcrumbs = "#{link_to "Home", root_url} &raquo; My Wishlist" -%>
+<% @class = "no-padding" %>
+
+<div id="header"><%= render :partial => 'site/shared/box_login' %></div>
+<h4 class="account-title">My Wishlist</h4>
+<table border="0" cellspacing="0" cellpadding="10" width="100%">
+	<% if @wish_lists.size == 0 %>
+		<tr>
+		  <td>You don't have any products in your wish list.</td>
+    </tr>
+	<% else %>
+	<%= product_id = "" %>
+  <% for wish_list in @wish_lists  %>
+  <% if product_id.to_i != wish_list.product_id %>
+  <% product = wish_list.product %>
+	<tr>
+	  <td>
+	   <%= show_image_tag(product.layout_image, product.image_1,:jpg,product.name) %>
+	  </td>
+		<td valign="top">
+		  <h2 style="font-weight:normal;"><%= product.name %></h2>
+		  <%= product.description_short %>
+		</td>
+		<td style="text-align:center;">
+		  <div class="box_price">
+		    <ul class="inner-container">
+  		    <li class="price"><%= number_to_currency (product.price,{:unit => "&pound;"}) %></li>
+      <li class="add_to_cart_button">
+  		   <%- if product.out_of_stock? -%>
+			        <%= image_tag('out_of_stock.png') %>
+			      <%- else -%>
+			        <%= link_to_remote image_tag("buttons/add_to_cart_button.png"), :url => product_cart_index_path(product), :html => {:method => 'post'} %>
+			      <%- end -%>
+         </li>
+
+  			  <li class="wish_list_button"><%= link_to image_tag("remove_wish.png"), product_wish_list_path(product, wish_list), :method => :delete, :confirm => "Are you sure want to delete this product from your wish list?" %></li>
+  			</ul>
+			</div>
+		</td>
+	</tr>
+	<%  product_id = wish_list.product_id
+	end %>
+  <% end %>
+	<% end %>
+</table>
+
+<% content_for :right do %>
+	<%= render :partial => '/site/shared/box_blog' %>
+	<br />
+	<%= render :partial => '/site/shared/box_subscriptions' %>
+<% end %>
+

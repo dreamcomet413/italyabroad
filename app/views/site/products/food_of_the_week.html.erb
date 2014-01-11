@@ -1,0 +1,211 @@
+<%
+@breadcrumbs = "#{link_to "Home", root_url} &raquo; "
+@breadcrumbs += "#{@product.unique_categories.collect {|c| link_to(c.name, "#{"/" + c.root.friendly_identifier unless c.is_root?}/#{c.friendly_identifier}")}.join(" &raquo; ")}"
+@breadcrumbs += " &raquo; #{@product.name[0..25]+ '...'}"
+%>
+<%#= params[:category] %>
+<div id="header">Food of the Week: <%= @product.name %> <%= "(" + @product.size + ")" unless @product.size.blank? %></div><br />
+<div style="margin:20px;text-align:justify;"><%= Setting.find(:first).desc_food_of_the_week %></div><br /><br /><br /><br /><br />
+<table class="product_info">
+  <tr>
+    <td class="image" style ="padding:0 10px 0 0">
+      <% if !(@product.image_1).blank? %>
+      <%#= show_image_tag('product', @product.image_1, :jpg) %>
+      <%= link_to show_image_tag('product_show', @product.image_1, :jpg, @product.name), image_url('product_display', @product.image_1, :jpg),{:rel => "lightbox", :title => @product.name} %>
+      <% else %>
+      <% if params[:root_category] == "wine" %>
+      <%= image_tag("no_images/product_wine.jpg",:size => "230x250") %>
+      <% elsif params[:root_category] == "food" %>
+      <%= image_tag("no_images/product_food.jpg",:size => "230x250") %>
+      <% elsif params[:root_category] == "hampers" %>
+      <%= image_tag("no_images/product_hamper.jpg",:size => "230x250") %>
+      <% else %>
+      <% end %>
+      <% end %>
+    </td>
+    <td class="properties" valign="top">
+      <% if @product.categories.root.name.downcase == "food" || @product.categories.root.name.downcase == "hampers" || @product.categories.root.name.downcase == "wine" %>
+        <table>
+
+          <tr>
+            <td>Avg.Rating:</td>
+            <td class="data">
+              <%= show_ratings(@product, @product.average_rating_round) %>
+            </td>
+          </tr>
+          <tr>
+            <td valign="top">Type:</td>
+            <td class="data"><%= @product.categories.root.name %></td>
+          </tr>
+          <%- if @product.is_wine? || @product.is_food? -%>
+            <tr>
+              <td valign="top">Region:</td>
+              <td class="data">
+              <% if @product.region
+                if @product.region.active %>
+              <%= link_to (@product.region.name, region_path(@product.region)) %>
+              <% else %>
+               "No region"
+              <% end %>
+              <% else %>
+               "No region"
+              <% end %>
+              </td>
+            </tr>
+          <%- end -%>
+          <%- if @product.is_wine? -%>
+            <tr>
+              <td valign="top">Grape:</td>
+              <td class="data user_name_class">
+                <%= @product.grapes.collect{ |g| [link_to(g.name, grape_path(g))] }.join(", ") %>
+              </td>
+            </tr>
+          <%- end -%>
+          <tr>
+            <td valign="top">Producer:</td>
+            <td class="data">
+            <%  if @product.producer
+            if @product.producer.active %>
+            <%= link_to(@product.producer.name, producer_path(@product.producer)) %>
+            <% else %>
+             No producer
+             <% end %>
+             <% else %>
+             No producer
+             <% end %>
+
+            </td>
+          </tr>
+          <%- if @product.is_wine? -%>
+            <tr>
+              <td valign="top">Vintage:</td>
+              <td class="data"><%= @product.vintage %></td>
+            </tr>
+            <tr>
+              <td valign="top">Volume:</td>
+              <td class="data"><%= @product.volume %></td>
+            </tr>
+          <%- end -%>
+          <tr>
+            <td valign="top">Vegan:</td>
+            <td class="data"><%= @product.vegetarian ? "YES" : "NO" %></td>
+          </tr>
+          <tr>
+            <td valign="top">Organic:</td>
+            <td class="data"><%= @product.organic ? "YES" : "NO" %></td>
+          </tr>
+        </table>
+      <% end %>
+      <br /><br />
+      <%= render :partial => '/site/shared/social_bookmarks' %>
+    </td>
+    <td>
+      <div class="box_price_product">
+        <ul>
+          <li class="price_info">
+            <% if @product.discount > 0 %>
+              <div style="font-size:14px;color:#003300;">Was <span style="text-decoration: line-through;"><%= number_to_currency @product.price, :unit => "&pound;" %></span></div>
+              <span class="price red" style="color:#003300;">Now&nbsp;<span style="color:red;"><%= number_to_currency @product.price_discounted, :unit => "&pound;" %></span></span>
+                                  (save <span style="color:red;"><%= number_to_currency (@product.price * @product.discount / 100), :unit => "&pound;" %></span>)
+            <% else %>
+              <span class="price" style="color:#003300;"><%= number_to_currency @product.price, :unit => "&pound;" %></span>
+            <% end %>
+          </li>
+          <% if @product.from_quantity > 0 && @product.from_quantity_price > 0 %>
+            <li>
+              <% if @product.categories.root.name == "Wine" %>
+                <span style="color:red;">Buy a case of <%= @product.from_quantity %> and save <span><%= number_to_currency @product.from_quantity_price, :unit => "&pound;" %><br/>(price per bottle <%= number_to_currency @product.price_per_bottle, :unit => "&pound;" %>)</span></span>
+              <% elsif @product.categories.root.name == "Food" %>
+                <span style="color:red;">Buy <%= @product.from_quantity %> and save <span><%= number_to_currency @product.from_quantity_price, :unit => "&pound;" %></span></span>
+              <% end %>
+            </li>
+          <% end %>
+          <li class="cart_form">
+            <%- if @product.out_of_stock? -%>
+              <%= image_tag('out_of_stock.png') %>
+            <%- else -%>
+              <%- form_remote_for :cart, :url => product_cart_index_path(@product) do  -%>
+                                  Qty: <%#= select :cart, :quantity, [1,2,3,4,5,6,7,8,9] %>
+                                        <%= text_field :cart, :quantity,:value=> 1, :size => '4' %><br /><br />
+                <%= image_submit_tag("buttons/add_to_cart_button.png") %>
+
+              <%- end -%>
+            <%- end -%>
+            <%#= link_to_remote image_tag("add_to_wish_list.png"), :url => product_wish_list_index_path(@product), :html => {:method => :post} %>
+           <% if  @product.categories.root.name.downcase == 'wine' %>
+           <%#= link_to_remote image_tag("WINE_LIST.jpg"), :url => product_wine_list_index_path(@product), :html => {:style => "color:#464646;", :method => :post} %>
+           <% end %>
+          </li>
+        </ul>
+      </div>
+    </td>
+  </tr>
+
+</table>
+
+<div style="clear:both;"></div>
+<div id="wineDesc">
+  <br />
+  <h3>Description</h3>
+  <%= @product.description.gsub("\n","<br />") rescue "Product has no description" %>
+</div>
+
+<!--<div style="float: left;" id ="other-image"></div>
+
+<div style="font:normal 16px Arial;padding:0 0 0 10px"><%= link_to_remote(("Other images"),:url => { :controller => "site/categories",:action => "all_mixedcase_image", :parent =>@product.categories.root.name }) %></div>
+-->
+
+<div id="wineProducer">
+  <br />
+  <h3>Producer</h3>
+  <% if @product.producer
+   if @product.producer.active %>
+  <%= @product.producer.description.gsub("\n","<br />") %>
+  <% else %>
+   "Product has no producer description"
+   <% end %>
+   <% else %>
+   "Product has no producer description"
+   <% end %>
+</div>
+<% if @product.categories.root.name.downcase == "wine"  %>
+<% @includes = @product.product_includeds.all(:limit => 3) %>
+    <% if !@includes.blank? %>
+<div id="wineRelated">
+  <br/>
+  <h3>Wines you may like</h3>
+  <ul style="margin-bottom: 25px;">
+
+  <% for include in @includes %>
+    <% inc_product = Product.find(include.included_product_id) %>
+  <li style="float:left;width:140px;text-align:center;margin:0 0 10px 0; height: 210px;">
+    <table>
+      <tr><td valign="bottom" style="height: 150px;"><%= link_to show_image_tag(inc_product.layout_image, inc_product.image_1, :jpg), nested_products_uri(inc_product) %>
+              <%#= image_tag(image_url(image.layout_image, image.image_1, "jpg")) %>
+        </td></tr>
+      <tr>
+        <td style="vertical-align:bottom;"><%= link_to truncate(inc_product.name,80), nested_products_uri(inc_product) %></td>
+      </tr>
+      <tr>
+            <td><%= number_to_currency inc_product.price, :unit => "&pound;" %></td>
+            </tr>
+      <tr><td><%= link_to_remote image_tag("buttons/add_to_cart_button.png"), :url => product_cart_index_path(inc_product), :html => {:method => 'post'} %></td></tr>
+    </table>
+  <%#= show_image_tag('product', image.image_1, :jpg) %>
+  </li>
+  <% end %>
+
+  </ul>
+</div>
+
+  <% end %>
+<% end %>
+
+<% content_for :right do %>
+	<%= render :partial => '/site/shared/box_food_search' %>
+	<br />
+	<%= render :partial => '/site/shared/box_event' %>
+	<br />
+	<%= render :partial => '/site/shared/box_subscriptions' %>
+<% end %>
+

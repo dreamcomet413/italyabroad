@@ -1,0 +1,163 @@
+GIT
+  remote: git://github.com/galetahub/simple-captcha.git
+  revision: 3557b78feb5fa2624efce065ff77dd4775a8256f
+  specs:
+    simple_captcha (0.1.5)
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    Ascii85 (1.0.2)
+    RedCloth (4.2.9)
+    abstract (1.0.0)
+    actionmailer (3.0.6)
+      actionpack (= 3.0.6)
+      mail (~> 2.2.15)
+    actionpack (3.0.6)
+      activemodel (= 3.0.6)
+      activesupport (= 3.0.6)
+      builder (~> 2.1.2)
+      erubis (~> 2.6.6)
+      i18n (~> 0.5.0)
+      rack (~> 1.2.1)
+      rack-mount (~> 0.6.14)
+      rack-test (~> 0.5.7)
+      tzinfo (~> 0.3.23)
+    activemerchant (1.5.1)
+      activesupport (>= 2.3.2)
+      builder (>= 2.0.0)
+    activemodel (3.0.6)
+      activesupport (= 3.0.6)
+      builder (~> 2.1.2)
+      i18n (~> 0.5.0)
+    activerecord (3.0.6)
+      activemodel (= 3.0.6)
+      activesupport (= 3.0.6)
+      arel (~> 2.0.2)
+      tzinfo (~> 0.3.23)
+    activeresource (3.0.6)
+      activemodel (= 3.0.6)
+      activesupport (= 3.0.6)
+    activesupport (3.0.6)
+    afm (0.2.0)
+    arel (2.0.10)
+    aws-s3 (0.6.3)
+      builder
+      mime-types
+      xml-simple
+    better_nested_set (0.1.1)
+    builder (2.1.2)
+    capistrano (2.12.0)
+      highline
+      net-scp (>= 1.0.0)
+      net-sftp (>= 2.0.0)
+      net-ssh (>= 2.0.14)
+      net-ssh-gateway (>= 1.1.0)
+    columnize (0.3.6)
+    debugger (1.6.5)
+      columnize (>= 0.3.1)
+      debugger-linecache (~> 1.2.0)
+      debugger-ruby_core_source (~> 1.3.1)
+    debugger-linecache (1.2.0)
+    debugger-ruby_core_source (1.3.1)
+    erubis (2.6.6)
+      abstract (>= 1.0.0)
+    fleximage (1.0.4)
+      aws-s3
+      rmagick
+    hashery (2.1.1)
+    highline (1.6.20)
+    i18n (0.5.3)
+    json (1.8.1)
+    mail (2.2.20)
+      activesupport (>= 2.3.6)
+      i18n (>= 0.4.0)
+      mime-types (~> 1.16)
+      treetop (~> 1.4.8)
+    mime-types (1.23)
+    mysql (2.9.1)
+    net-scp (1.1.2)
+      net-ssh (>= 2.6.5)
+    net-sftp (2.1.2)
+      net-ssh (>= 2.6.5)
+    net-ssh (2.7.0)
+    net-ssh-gateway (1.2.0)
+      net-ssh (>= 2.6.5)
+    pdf-reader (1.3.3)
+      Ascii85 (~> 1.0.0)
+      afm (~> 0.2.0)
+      hashery (~> 2.0)
+      ruby-rc4
+      ttfunk
+    pdfkit (0.5.4)
+    pg (0.17.1)
+    polyglot (0.3.3)
+    prawn (0.11.1)
+      pdf-reader (>= 0.9.0)
+      ttfunk (~> 1.0.0)
+    rack (1.2.8)
+    rack-mount (0.6.14)
+      rack (>= 1.0.0)
+    rack-test (0.5.7)
+      rack (>= 1.0)
+    rails (3.0.6)
+      actionmailer (= 3.0.6)
+      actionpack (= 3.0.6)
+      activerecord (= 3.0.6)
+      activeresource (= 3.0.6)
+      activesupport (= 3.0.6)
+      bundler (~> 1.0)
+      railties (= 3.0.6)
+    railties (3.0.6)
+      actionpack (= 3.0.6)
+      activesupport (= 3.0.6)
+      rake (>= 0.8.7)
+      thor (~> 0.14.4)
+    rake (0.8.7)
+    rdoc (4.1.1)
+      json (~> 1.4)
+    require_relative (1.0.3)
+    rmagick (2.13.2)
+    ruby-rc4 (0.1.5)
+    rvm-capistrano (1.4.1)
+      capistrano (>= 2.0.0)
+    sshkit (1.3.0)
+      net-scp (>= 1.1.2)
+      net-ssh
+      term-ansicolor
+    term-ansicolor (1.2.2)
+      tins (~> 0.8)
+    thor (0.14.6)
+    tins (0.13.1)
+    treetop (1.4.15)
+      polyglot
+      polyglot (>= 0.3.1)
+    ttfunk (1.0.3)
+    tzinfo (0.3.38)
+    will_paginate (3.0.5)
+    xml-simple (1.1.3)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  RedCloth
+  activemerchant (= 1.5.1)
+  better_nested_set
+  capistrano (= 2.12.0)
+  debugger
+  fleximage (= 1.0.4)
+  mime-types (= 1.23)
+  mysql
+  pdfkit
+  pg
+  prawn (= 0.11.1)
+  rails (= 3.0.6)
+  rake (~> 0.8.7)
+  rdoc
+  require_relative
+  rmagick
+  rvm-capistrano
+  simple_captcha!
+  sshkit
+  will_paginate (>= 2.3.12)

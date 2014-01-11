@@ -1,0 +1,80 @@
+<%- @title = "#{@region.name}"; @breadcrumbs = "#{link_to("Home", root_url)}  &raquo; #{link_to ('Community',wine_community_path)} &raquo;  #{link_to("Regions", regions_path)} &raquo; #{@region.name}" -%>
+<%- @class = "no-padding" -%>
+
+<div id="header"><%= @region.name %></div>
+<br />
+<!--<div style="text-align:center;margin-top:15px;"><%#= image_tag("region-home-image.jpg") %></div> -->
+
+<div id="page_banners">
+
+  <div class="banner-left">
+    <% if @region && @region.image %>
+      <%= image_tag(image_url('region_thumb', @region.image, :jpg),:alt=>@region.name, :height=> "300px") if @region && @region.image %>
+    <% else %>
+      <%= image_tag("region-home-image.jpg", :alt=>@region.name, :height=> "300px") %>
+    <%- end -%>
+
+  </div>
+  <div class="banner-right"><%=@region.region_quote %></div>
+
+</div>
+
+
+
+
+
+<br />
+<div style="margin-left:5px;margin-right:0px;">
+  <p id="region_description" style="margin-left:10px;text-indent:0px;text-align:justify;"><%= @region.description || "Have a look at " %></p>
+  <br /><br />
+  <% unless @region.producers(:conditions=>['active = ?',true]).blank? %>
+  <h3 style="font-size:16px;color:#013300;border:none;margin-left:13px;">Our producers from <%= @region.name %></h3>
+  <% end %>
+  <ul>
+  <%- @region.producers.each do |p| -%>
+    <li style="list-style:none;"><%= link_to p.name,producer_path(p) %></li>
+  <%- end -%>
+  </ul>
+ <!-- <h3 style="font-size:16px;color:#013300;border:none;">Wine and Food from <%#= @region.name %></h3> -->
+ <% unless  @region.products.find(:all,:conditions=>['active = ? and quantity > ?',true,0]).blank? %>
+ <h3 style="font-size:16px;color:#013300;border:none;margin-left:13px;">Produce from the region <%= @region.name %></h3>
+ <% end %>
+      <%-
+      region_products = ""
+      final_region_products = ""
+      index = 0
+     @region.products.find(:all,:conditions=>['active = ? and quantity > ?',true,0]).each do |product|
+          if index == 0
+            region_products += "<tr>"
+          end
+          region_products += "<td valign='top' class='product_cell' >#{link_to show_image_tag(product.layout_image, product.image_1, :jpg,product.name), nested_products_uri(product)} <br /> <br /> #{link_to product.name, nested_products_uri(product)}</td>"
+          index = index + 1
+          if index == 5
+            region_products += "</tr>"
+            index = 0
+          end
+       end %>
+
+   <% unless region_products == "" %>
+    <% region_products = "<table>#{region_products}</table>" %>
+    <%=  "#{region_products}"  -%>
+    <%- end -%>
+  <!--<ul style="list-style:none;margin:0;padding:0;text-align:center;float:left;">
+    <%#- @region.products.each do |product| -%>
+    <li style="float:left;width:100px;margin-left:10px;margin-bottom:10px;">
+      <%#= link_to show_image_tag(product.layout_image, product.image_1, :jpg), nested_products_uri(product) %><br />
+      <%#= link_to product.name, nested_products_uri(product) %>
+    </li>  -->
+    <%#- end -%>
+ <!-- </ul> -->
+
+
+  <div style="clear:both;"></div>
+  <br /><br />
+  <br />
+</div>
+
+<%- content_for :right do -%>
+  <%= render :partial => 'site/shared/box_subscriptions' %>
+<%- end -%>
+

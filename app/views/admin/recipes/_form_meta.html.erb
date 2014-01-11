@@ -1,0 +1,17 @@
+<fieldset id="meta_information">
+  <legend>Edit <em>Meta</em> for <em>"<%= @recipe.name %>"</em></legend>
+	<table id="table" border="0" cellspacing="5" cellpadding="5" style="width:99%">
+	  <tr>
+	    <td style="width:200px;text-align:right">Page Title:</td>
+	    <td><%= text_field :recipe, :page_title, :style => "width:99%" %></td>
+    </tr>
+	  <tr>
+	    <td style="width:200px;text-align:right">Meta Keys:</td>
+	    <td><%= text_field :recipe, :meta_keys, :style => "width:99%" %></td>
+    </tr>
+		<tr>
+		  <td style="width:200px;text-align:right">Description:</td>
+		  <td><%= text_area :recipe, :meta_description, :rows => 3, :style => "width:99%" %></td>
+    </tr>
+	</table>
+</fieldset>

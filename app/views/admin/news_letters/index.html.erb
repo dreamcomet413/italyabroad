@@ -1,0 +1,45 @@
+<%- @title = "Administration - Letters"; @page_id = "News Letters" -%>
+<%- @breadcrumbs = "News Letters &raquo; #{link_to "Letters", admin_news_letters_path}" -%>
+
+<div class="inner_content news_letters" id="admin_news_letters_index">
+  <h2>Letters</h2>
+  <br />
+  <table>
+    <tr>
+      <td></td>
+      <td align="right"><%= link_to "New Letter", new_admin_news_letter_path %></td>
+    </tr>
+  </table>
+  <table id="news_letters-list" class="list sortable">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Status</th>
+        <th>Created at</th>
+        <th class="nosort"></th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+        <td colspan="2"><%= will_paginate_(@news_letters) %></td>
+        <td colspan="3" align="right"><%= page_entries_info_ @news_letters %></td>
+      </tr>
+    </tfoot>
+    <tbody>
+      <%- for news_letter in @news_letters -%>
+      <tr>
+        <td><%= news_letter.id %></td>
+        <td><%= news_letter.name %></td>
+        <td><%= news_letter.status_news_letter.name rescue "No status" %></td>
+        <td><%= news_letter.created_at.strftime("%d/%m/%y") %></td>
+        <td>
+          <%= link_to "Edit", edit_admin_news_letter_path(news_letter) %> | 
+          <%= link_to "Delete", admin_news_letter_path(news_letter), :method => :delete, :confirm => "Are you sure want to delete this letter?" %> | 
+          <%= link_to "Preview", news_letter_path(news_letter), :popup => ["Preview newsletter"] %>
+        </td>
+      </tr>
+      <%- end -%>
+    </tbody>
+  </table>
+</div>

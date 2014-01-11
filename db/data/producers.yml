@@ -1,0 +1,207 @@
+--- 
+producer1:
+  id: 1
+  name: Antica Pasticceria Betti
+  description: "Antica Pasticceria Betti has been making traditional Italian biscuits and cakes for three generations in their laboratory in Prato, Tuscany. They don&rsquo;t use anything which is not natural and only high quality ingredients."
+  friendly_identifier: <%= Grape.format_identifier("Antica Pasticceria Betti") %>
+
+producer2:
+  id: 2
+  name: Antica Torroneria Piemontese
+  description: "Handmade products made using only best ingredients, this is the philosophy of Antica torroneria Piemontese. Slow preparation, careful cooking and a patient wait watched by masters. Once the product is made, the care continue in the elegant handmade packaging. The end result is obvious: small quantities produced and unrivalled quality."
+  friendly_identifier: <%= Grape.format_identifier("Antica Torroneria Piemontese") %>
+
+producer3:
+  id: 3
+  name: Antico Forno Santi
+  friendly_identifier: <%= Grape.format_identifier("Antico Forno Santi") %>
+
+producer4:
+  id: 4
+  name: Antinori
+  friendly_identifier: <%= Grape.format_identifier("Antinori") %>
+
+producer5:
+  id: 5
+  name: Azienda Agricola Righetti
+  friendly_identifier: <%= Grape.format_identifier("Azienda Agricola Righetti") %>
+
+producer6:
+  id: 6
+  name: Aziende di Burana
+  friendly_identifier: <%= Grape.format_identifier("Aziende di Burana") %>
+
+producer7:
+  id: 7
+  name: Bellenda
+  friendly_identifier: <%= Grape.format_identifier("Bellenda") %>
+
+producer8:
+  id: 8
+  name: Camporeale
+  description: "The Lavarini family has a long tradition of wine making in the Classic area of the Valpolicella but only recently started bottling their own wines, before they were selling the wines to other producers of the area. Mario, the current generation in charge, together with his family looks after the 3 hectares of vineyards of native grapes using modern technologies and respecting the tradition, without following the fashion. Their wines are &ldquo;classici&rdquo;, classic, and made according to the tradition, from the Valpolicella Ripasso to the Amarone, these wines are made exactly as we like them."
+  friendly_identifier: <%= Grape.format_identifier("Camporeale") %>
+
+producer9:
+  id: 9
+  name: Cantina di Dorgali
+  description: "Cantina di Dorgali is a cooperative of passionate wine makers with vineyards in, probably, the most vocated area of Sardinia for the Cannonau grapes which is their main grape together with the Vermentino. The members of the cooperative are small wine growers that bring their grapes to the Cantina that own modern machinery and equipment, that the single wine grower could not afford, that allow to produce high quality wines."
+  friendly_identifier: <%= Grape.format_identifier("Cantina di Dorgali") %>
+
+producer10:
+  id: 10
+  name: Cantine Botta
+  friendly_identifier: <%= Grape.format_identifier("Cantine Botta") %>
+
+producer11:
+  id: 11
+  name: Coceani
+  description: "The family run winery Coceani started in Friuli, in the Collio area, in the 1800 with Alfonso when he bought his first vineyard. The winery has then been passed down and added new vineyards and it now has vineyards in the Collio and Colli Orientali del Friuli areas and from the late 80&rsquo;, Renzo has decided to follow the organic philosophy and started growing their grapes organically. Now, helped by his family, is starting to make wines with no sulphites. Their philosophy is to produce exceptional wines with character and enhancing the characteristics of the soil. The grapes grown are the typical of the area, from the famous Pinot Grigio to the less knows Ribolla Gialla, all organically certified."
+  friendly_identifier: <%= Grape.format_identifier("Coceani") %>
+
+producer12:
+  id: 12
+  name: Dal Cero
+  description: "The Dal Cero family has been making wine for over three generations but only recently have started bottling it, before were selling it to some of the best Italian wine houses. The Dal Cero combine the love for tradition with the most modern wine-making techniques, where classic Italian wines are given a touch of modernity.  With vineyards in Veneto, on the hills overlooking the town of Soave, and Tuscany, on the hills surrounding Cortona, between Florence and Montalcino, Giuseppe and Dario and their families take care of all stages of the wine making process. The estate also produces an extra virgin olive oil, obtained pressing the olives using a stone press, from their olive trees that surround the vineyards in Tuscany."
+  friendly_identifier: <%= Grape.format_identifier("Dal Cero") %>
+
+producer13:
+  id: 13
+  name: DonnadiCoppe
+  friendly_identifier: <%= Grape.format_identifier("DonnadiCoppe") %>
+
+producer14:
+  id: 14
+  name: Donnardea
+  description: "Donnardea is a family winery with vineyards outside the city of Rome, in the Frascati DOC area. Antonio, the owner, together with his family and colleagues, grows native grapes such as Cesanese and Bombino or Malvasia used the making of the Frascati, but also international grapes like Syrah that produce a unique wine. The family is involved in all stages, from the plantation to the bottling and their wines are vegan friendly, do not use animal derivate in the fining of their wines."
+  friendly_identifier: <%= Grape.format_identifier("Donnardea") %>
+
+producer15:
+  id: 15
+  name: Egger Ramer
+  description: "Egger Ramer is a family run winery with vineyards in the heart of Bolzano, in the Alto Adige area, near the Alps. One of the characteristic of the Alto Adige producers is their limited size due to the topographic conditions and the Egger Ramer is no exception. The own a few hectars of vineyards producing the typical Alto Adige grapes, from the Lagrein to Muller Thurgau, from the Gew&uuml;rztraminer to the Santa Maddalena. The Egger Ramer family is a young and passionate family and their wines are perfect example of how to make wine in an unfriendly area."
+  friendly_identifier: <%= Grape.format_identifier("Egger Ramer") %>
+
+producer16:
+  id: 16
+  name: Giacomo Marengo
+  description: "Giacomo Marengo is a family run winery with vineyards in San Savino, between Siena and Arezzo, in the middle of the Chianti Aretini area and in La Morra, in the heart of the Barolo area where it owns a few hectares from which he produces a very limited quantity of his award winning Barolo and Merlot. The vineyards in Tuscany, located in the hills surrounding Arezzo and enclosed in a forest, produce the typical Tuscan grapes used in the making of the Chianti, Sangiovese and Canaiolo, and international grapes like Chardonnay and Sauvignon amongst the whites and Merlot and Cabernet Sauvignon amongst the red used to make the other wines the estate produces. From planting the vines to the final bottling and ageing of the wines, everything is done in the winery by Emilio and his colleagues."
+  friendly_identifier: <%= Grape.format_identifier("Giacomo Marengo") %>
+
+producer17:
+  id: 17
+  name: Godiolo
+  description: "The Godiolo is a small winery located in Montepulciano, Tuscany, owned by the Fiorini family since the early years of the 1900. The winery owns about 6 hectares of vineyards, they grow Sangiovese, Canaiolo and Prugnolo Gentile with these last two, clones of the Sangiovese grape,  with about 2,50 hectares of vineyards more than 40 years and the remaining are younger vineyards that have been added more recently. Godiolo produces the typical wines of the area, the award winning Vino Nobile di Montepulciano and the Rosso di Montepulciano."
+  friendly_identifier: <%= Grape.format_identifier("Godiolo") %>
+
+producer18:
+  id: 18
+  name: Italyabroad.com
+  description: "Italyabroad.com imports some of the finest Italian wine and food made by small producers, our experts work very hard to bring you only the finest and most authentic and they have put together this fantastic selection for you to enjoy and start your journey to discover the real Italy."
+  friendly_identifier: <%= Grape.format_identifier("Italyabroad.com") %>
+
+producer19:
+  id: 19
+  name: Jasci & Marchesani
+  description: "Jasci & Marchesani is currently at the third generation with Nicola, the youngest son, in charge of the winery. Jasco & Marchesani vineyards are located in Vasto, Abruzzo, along the Adriatic cost with the Apennines overlooking the sea and protecting the vineyards. Together with the local grapes, Montepulciano and Trebbiano and the more recent Pecorino, the estate also grows international grapes such as Cabernet Sauvignon and the Chardonnay and more interesting, the Riesling, that have found in the Abruzzean soil, an ideal spot, producing wines with character. Jasci and Marchesani has been growing their grapes using organic methods since 1978, with their wines organically certified, well before &ldquo;organic&rdquo; was trendy."
+  friendly_identifier: <%= Grape.format_identifier("Jasci & Marchesani") %>
+
+producer20:
+  id: 20
+  name: L'Olivella
+  description: "Olivella vineyards are located in the Frascati DOC area, surrounding the town of Frascati, and the grapes are grown organically and without the use of any meat derivate in the fining process. The Notarnicola family, under the directions of Danilo, looks after the whole process, from planting the vines to bottling and storing the wines. Together with native grapes such as Cesanese and the Malvasia and Trebbiano used in the making of the Frascati, l&rsquo;Olivella also grows international grapes like the Cabernet Sauvignon and Syrah which are blended with the Cesanese in the making of their red wines. L&rsquo;Olivella philosophy is to emphasise the native grapes with the reduction of the international grape in their wines."
+  friendly_identifier: <%= Grape.format_identifier("L'Olivella") %>
+
+producer21:
+  id: 21
+  name: La Braghina
+  description: "La Braghina vineyards are situated in the renowned wine-growing region of Lison Pramaggiore, south east of Veneto and its name derives from the word \"brago\" from Dante's time, which means mud. The grapes grown by the Altan family are all the local ones, from the Tocai to the Pinot Grigio plus grapes such as Merlot and Cabernet Sauvignon that have been grown in the area for centuries and now produces characteristic wines, expression of the land in which they have been grown. La Braghina wines enhance the characteristics of the grapes with a very limited if not inexistent, use of the wood. Their wines are made to be drunk as soon as they are released."
+  friendly_identifier: <%= Grape.format_identifier("La Braghina") %>
+
+producer22:
+  id: 22
+  name: La Casaccia
+  description: "La Casaccia is a family run winery that started 200 years ago, in their cellars are still kept some of their first vintages dating back to the end of &lsquo;800, with plenty of history and tradition. La Casaccia, currently lead by Francesco, own 9 hectares of vineyards located in the province of Siena, right below Florence, deep in the very heart of the Chianti Classico area, and they were one of the first winery to produce Chianti Classico. La Casaccia only produces Chianti Classico, Chianti Classico Riserva and a very limited production of Vin Santo del Chianti Classico. The wines of La Casaccia, are wines that have always been faithful to the tradition, without following any trend, their wines enhance the Sangiovese that is the only grape used in their Chianti Classico and Riserva, and a limited use of wood through big barrels."
+  friendly_identifier: <%= Grape.format_identifier("La Casaccia") %>
+
+producer23:
+  id: 23
+  name: La Farra
+  description: "The vineyards of La Farra, owned by the Nardi family, are found in the hills around Farra di Soligo in the heart of the Valdobbiadene area famous for its prosecco. La Farra uses the most advanced technology but still respecting the tradition."
+  friendly_identifier: <%= Grape.format_identifier("La Farra") %>
+
+producer24:
+  id: 24
+  name: La Gerla
+  friendly_identifier: <%= Grape.format_identifier("La Gerla") %>
+
+producer25:
+  id: 25
+  name: La Valle
+  friendly_identifier: <%= Grape.format_identifier("La Valle") %>
+
+producer26:
+  id: 26
+  name: Le 7 Camicie
+  friendly_identifier: <%= Grape.format_identifier("Le 7 Camicie") %>
+
+producer27:
+  id: 27
+  name: Masseria Frattasi
+  description: "Masseria Frattasi, where Frattasi is the name and \"masseria\" means farmhouse, is an ancient seventeenth century building, perfectly kept by its owners, Clemente Cecere, that also gives the name to the winery. Masseria Frattasi is a family run winery that has been making typical wines of the Sannio since 1779, growing organically grapes in the Taburno area in Campania. Pasquale who is now in charge of developing the winery, is very passionate and is committed to take Masseria Frattasi amongst the best producers of Campania. Campania reputation for making good wines has only recently risen to the top but Masseria Frattasi is definitely one of the best examples."
+  friendly_identifier: <%= Grape.format_identifier("Masseria Frattasi") %>
+
+producer28:
+  id: 28
+  name: Montalbano
+  friendly_identifier: <%= Grape.format_identifier("Montalbano") %>
+
+producer29:
+  id: 29
+  name: Pio Cesare
+  friendly_identifier: <%= Grape.format_identifier("Pio Cesare") %>
+
+producer30:
+  id: 30
+  name: Rivetto
+  description: "In 1902 the Rivetto family started making wines in Alba. Today, the winery has added more vineyards and still makes wine combining tradition and modern techniques. The Rivetto Family, currently at the fourth generation with Enrico and Alessandro, grows the classic Piedmont grapes, from Dolcetto to Barbera, from Roero Arneis to Nebbiolo also used in the making of their award winning Barolo in vineyards located around the town of Alba, also famous for its truffles and in the DOCG area of the Barolo. Their wines are elegant, sophisticated and classy."
+  friendly_identifier: <%= Grape.format_identifier("Rivetto") %>
+
+producer31:
+  id: 31
+  name: San Marco
+  friendly_identifier: <%= Grape.format_identifier("San Marco") %>
+
+producer32:
+  id: 32
+  name: San Pietro in Avenano
+  friendly_identifier: <%= Grape.format_identifier("San Pietro in Avenano") %>
+
+producer33:
+  id: 33
+  name: Scubla
+  description: "Roberto Scubla is according to many, one of the best Italian wine makers. His wines are in the all wine bibles and he keeps receiving plenty of awards, national and international, from the 3 glasses from the Gambero Rosso to Decanter and International wine challenge medals. He is also on of the founder members of the &ldquo;super whites&rdquo;, group of producers of white wines from Friuli that is recognized to produce some of the best white wines made. Roberto Scubla vineyards are located in the Colli Orientali area of Friuli, north east of Italy, near the border with Slovenia where he grows native grapes like the Tocai and Verduzzo but also grapes that have found in Friuli an ideal environment such as the Merlot and Cabernet Sauvignon. All its wines have plenty of character and elegance."
+  friendly_identifier: <%= Grape.format_identifier("Scubla") %>
+
+producer34:
+  id: 34
+  name: Tenuta San Pietro
+  friendly_identifier: <%= Grape.format_identifier("Tenuta San Pietro") %>
+
+producer35:
+  id: 35
+  name: Triveri
+  description: "Alessandro Triveri is the current generation producing some of the best Italian, or better Abruzzean or from Abruzzo, specialties. They are a small family business, they buy the finest and freshest produce available from selected farms that they been knowing for generation and then they transform them into preserve, using olive oil with no chemical or preservatives exactly as our grandmas used to do. The results are excellent."
+  friendly_identifier: <%= Grape.format_identifier("Triveri") %>
+
+producer36:
+  id: 36
+  name: Valetti
+  description: "The story of Valetti started in the early years of &lsquo;900 with Angelo, the grand father of the current generation in charge. With the years, new vineyards have been bought and added to the winery but still remaining a family run winery where the three brothers Valetti are now looking after all aspect of the winery. Valetti has vineyards located in the Bardolino Classico area, along the lake of Garda, and they only grow native grapes such as Rondinella and Corvina used in the making of the local wines, from the Valpolicella and Bardolino to the more important Amarone."
+  friendly_identifier: <%= Grape.format_identifier("Valetti") %>
+
+producer37:
+  id: 37
+  name: Viola
+  description: "Marco Viola makes one of the best Italian extra virgin olive oil from his olive trees in Umbria, he has won and keep winning plenty of awards for its olive oils and they were named amongst the top ten Italian olive oil by the food guide Il Golosario. Marco is young and passionate, for him making fantastic olive oil is his mission. He says \"I am proud to say I am a farmer, I have my roots in the land which I deeply love because it is from it that I have received all that I know and possess.\""
+  friendly_identifier: <%= Grape.format_identifier("Viola") %>

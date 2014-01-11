@@ -1,0 +1,99 @@
+<%- @title = "Administration - Orders"; @page_id = "Sales" -%>
+<%- @breadcrumbs = "Sales &raquo; #{link_to "Orders", admin_orders_path}" -%>
+<style type="text/css">
+  /* that IE 5+ conditional comment makes this only visible in IE 5+ */
+  ul.makeMenu li {  /* the behaviour to mimic the li:hover rules in IE 5+ */
+                    behavior: url( /IEmen.htc );
+  }
+  ul.makeMenu ul {  /* copy of above declaration without the > selector, except left position is wrong */
+                    display: none; position: absolute; top: 2px; left: 78px;
+  }
+</style>
+<div class="inner_content orders" id="admin_orders_index">
+  <h2>Orders</h2>
+  <br />
+  <table>
+    <tr>
+      <td>
+        <%- form_tag admin_orders_path, :method => :get do -%>
+        <strong>Search:</strong>
+        <%= text_field_tag :search_text,'',:value=>params[:search_text] %>
+
+         <% @order_status = StatusOrder.find(:all,:conditions=>"name != 'Admin' and name!='Guest'")%>
+       <%=  select_tag :status, "<option value="">Select ....</option>"+options_from_collection_for_select(@order_status, "id", "name",params[:status].to_i)%>
+       <% if params[:order_date]
+          date=Date.new(params[:order_date]['(1i)'].to_i,params[:order_date]['(2i)'].to_i, params[:order_date]['(3i)'].to_i)
+        else
+        date = Date.today
+        end %>Before
+     <%= date_select('order_date','',:default=>date,:order => [:month, :day, :year])%>
+        <%= submit_tag "Search", :name => 'search' %>
+        <%= set_focus_to 'search' %>
+        <%- end -%>
+      </td>
+
+    </tr>
+  </table>
+  <table id="cupons-list" class="list sortable" >
+    <thead>
+      <tr>
+        <th>No</th><th>Customer</th><th>Cupon</th><th>Gift</th><th>Paid</th><th>Status</th><th>Method</th><th>Sub Total</th><th>Total</th><th>Created</th><th>Updated</th><th class="nosort"></th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+        <td colspan="11"><%= will_paginate_(@orders) %></td><td align="right"><%= page_entries_info_ @orders %></td>
+      </tr>
+    </tfoot>
+    <tbody>
+      <%- @orders.each do |order| -%>
+      <% unless order.order_items.blank? %>
+      <tr>
+        <td><%= order.id %></td>
+        <td><%= order.customer %></td>
+        <td><%= render_cupon(order) %></td>
+        <td><%= order.ship_a_gift %></td>
+        <td><%= order.paid %></td>
+        <td><%= order.status_order.name rescue "No Status" %></td>
+        <td><%= order.payment_method.name %></td>
+        <td><%= number_to_currency(order.sub_total, :unit => "&pound;") %></td>
+        <td><%#= number_to_currency(order.total, :unit => "&pound;") %>
+        <%#= number_to_currency order.sub_total - (order.points_used * Setting.find(:first).points_to_pound) + order.delivery_price, :unit => "&pound;" %>
+         <%= number_to_currency (order.total - (order.points_used * Setting.find(:first).points_to_pound), :unit => "&pound;") %>
+        </td>
+        <td><%= order.created_at.strftime("%d/%m/%y") %></td>
+        <td><%= order.updated_at.strftime("%d/%m/%y") %></td>
+        <td>
+         <!-- <span ><%#= link_to "Download Invoice (PDF)", print_invoice_admin_order_path(order, :format => "pdf") %></span> -->
+          <span ><%= link_to "Preview", admin_order_path(order) %>&nbsp;|&nbsp;</span>
+          <span><%= link_to "Cancel", admin_order_path(order), :method => :delete, :confirm => "Are you sure want to delete this order?" %>&nbsp;|&nbsp;</span>
+
+          <span>
+             <!-- <ul  class="makeMenu">
+                <li> -->             <!--   <%= link_to "Print", print_invoice_admin_order_path(order),:target => '_blank'%>&nbsp;|&nbsp; -->
+                 <!-- <ul>
+                    <li> -->
+                    <%= link_to "Invoice", print_invoice_admin_order_path(order,:format => "pdf") %><!--, :format => "pdf">--> <!--</li>--><!--,:target =>'_blank' -->&nbsp;|&nbsp;
+                    <!--<li>-->
+               <%= link_to "Tasting Notes", print_tasting_admin_order_path(order),:target =>'_blank' %>&nbsp;|&nbsp;
+                    <!--, :format => "pdf">-->
+                    <!--</li>-->
+                    <!--<li>-->
+                   <%= link_to "Picking List", print_picking_list_admin_order_path(order,:format => "pdf") %> &nbsp;|&nbsp;
+                    <!--</li>-->
+      <!--, :format => "pdf">-->
+                 <!-- </ul>-->
+               <!--  </li>-->
+
+              <!--</ul>-->
+            </span>
+            <% if order.paid and order.status_order_id == 3 %>
+             <span><%= link_to "Delivery Details",:controller=>'admin/orders',:action=>'delivery_details',:id=>order.id %></span>
+             <% end %>
+        </td>
+      </tr>
+      <%- end end -%>
+    </tbody>
+  </table>
+</div>
+

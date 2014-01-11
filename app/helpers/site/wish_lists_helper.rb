@@ -1,0 +1,2 @@
+module Site::WishListsHelper
+end

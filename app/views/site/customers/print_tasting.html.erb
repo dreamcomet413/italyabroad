@@ -1,0 +1,10 @@
+<div style="padding:5px;text-align:center">
+	<% for order_item in @order.order_items %>
+		<% if (product = Product.find_by_name(order_item.name)) && product.is_wine? %>
+		<div style="border-bottom:1px solid #c1d830;padding:30px 0px 5px 0px; width:250px;margin:0 auto">
+			<h3><%= product.name %> <%= product.vintage %></h3>
+		</div>
+		<div style="padding:10px 0px 5px 0px;text-align:justify"><%= product.description.gsub("\n","<br />") %></div>
+		<% end %>
+	<% end %>
+</div>

@@ -1,0 +1,18 @@
+<fieldset id="ideal_with_information">
+  <table class="list">
+    <tr>
+      <td class="header">&nbsp;</td>
+      <td class="header">Category</td>
+      <td class="header">Name</td>
+      <td class="header">Price</td>
+    </tr>
+    <%- for product in @products -%>
+    <tr>
+      <td><%= radio_button_tag "ideal_with_id", product.id, (@product.ideal_with_id == product.id) %></td>
+      <td><%= product.root_category %></td>
+      <td><%= product.name %></td>
+      <td><%= number_to_currency product.price, :unit => "&pound;" %></td>
+    </tr>
+    <%- end -%>
+  </table>
+</fieldset>

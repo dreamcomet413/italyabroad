@@ -1,0 +1,12 @@
+<%- @title = "Edit #{@region.name}"; @page_id = "Grapes" -%>
+<%- @breadcrumbs = "Grapes &raquo; #{link_to "Regions", admin_regions_path} &raquo; #{@title}" -%>
+
+<div class="inner_content regions" id="admin_regions_edit">
+  <h2><%= @title %></h2>
+  <br />
+  <% form_for :region, :url => admin_region_path(@region), :html => {:multipart => true, :method => :put} do %>
+    <%= render :partial => 'form' %>
+    <p><%= submit_tag "Save" %> or <%= link_to "Cancel", admin_regions_path %></p>
+  <% end %>
+</div>
+

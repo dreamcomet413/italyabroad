@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<rss version ="2.0" xmlns:g="http://base.google.com/ns/1.0">
+
+<channel>
+<title>The name of your data feed.</title>
+<description>A description of your content.</description>
+<link>http://www.example.com</link>
+
+<% @products.each do |product| %>
+
+
+<item>
+<g:id><%= product.id %></g:id>
+
+<title><%=h product.name %></title>
+<g:price><%= product.price %></g:price>
+<description><%=h product.description %></description>
+<g:condition>new</g:condition>
+<link><%=h url_for(:only_path => false, :controller => 'site/products', :action => 'show', :id => product.friendly_identifier) %></link>
+<g:quantity><%= product.quantity %></g:quantity>
+<code><%= product.code %></code>
+<rate><%= product.rate %></rate>
+<discount><%= product.discount %></discount>
+</item>
+<% end %>
+
+
+</channel>
+</rss>
+

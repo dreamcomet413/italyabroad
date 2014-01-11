@@ -1,0 +1,36 @@
+<%- @title = "Administration - Occasions"; @page_id = "Catalog" -%>
+<%- @breadcrumbs = "Catalog &raquo; #{link_to "Occasions", admin_occasions_path}" -%>
+
+<div class="inner_content posts" id="admin_occasions_index">
+  <h2><%= 'Occasions'%></h2>
+  <br />
+  <table>
+    <tr>
+      <td></td>
+      <td align="right"><%= link_to "New Occasion", new_admin_occasion_path %></td>
+    </tr>
+  </table>
+  <table class="list sortable" id="posts-list">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%- @occasions.each do |occasion| -%>
+      <tr>
+        <td><%= occasion.id %></td>
+        <td><%= occasion.name %></td>
+         <td>
+          <%= link_to "Edit", edit_admin_occasion_path(occasion.id) %> |
+          <%= link_to "Delete", admin_occasion_path(occasion.id), :method => :delete, :confirm => "Are you sure want to delete this occasion?" %>
+        </td>
+      </tr>
+    <%- end -%>
+    </tbody>
+  </table>
+</div>
+

@@ -1,0 +1,108 @@
+<%- @class = "wine_tours"; @breadcrumbs = "#{link_to("Home", root_url)} &raquo; #{link_to("Wine Tours", "/wine-tours")} &raquo; #{@product.name+ '...'}" -%>
+
+<div id="wineBanner" style="padding-top:5px;"><%#= image_tag("wine_tours_card_home.jpg") %>
+ <%- if @product.image_1 or @product.image_2 or @product.image_3 -%>
+    <%= image_tag(image_url("region_card", @product.image_1, :jpg),:alt=>@product.name) if @product.image_1 %>
+          <%#= image_tag(image_url("region_card", @product.image_2, :jpg)) if @product.image_2 %>
+          <%#=  image_tag(image_url("region_card", @product.image_3, :jpg)) if @product.image_3 %>
+      <%- end -%>
+</div>
+<div id="wine_tours_content">
+  <!--<h2 style="font-size:18px;color:#666666;"><%#= @product.name.upcase %></h2> -->
+
+  <table width="100%">
+    <tr>
+      <%- if  @product.image_2 or @product.image_3 -%>
+     <td valign="top" width="30%">
+        <br />
+        <ul class="image">
+          <%#= content_tag(:li, image_tag(image_url("product_wine_tour", @product.image_1, :jpg))) if @product.image_1 %>
+
+
+          <%#= content_tag(:li, show_image_tag(:card, @product.image_2, :jpg), "") if @product.image_2 %><br />
+          <%#= content_tag(:li, show_image_tag(:card, @product.image_3, :jpg), "") if @product.image_3 %><br />
+
+          <%= content_tag(:li, image_tag(image_url("product_wine_tour_left_images", @product.image_2, :jpg),:alt=>@product.name)) if @product.image_2 %><!--br /-->
+          <%= content_tag(:li, image_tag(image_url("product_wine_tour_left_images", @product.image_3, :jpg),:alt=>@product.name)) if @product.image_3 %>
+        </ul>
+      </td>
+      <%- end -%>
+      <td valign="top">
+        <h1 align="center" style="padding-top:0px;color:#9b0707;"><%= @product.name %></h1>
+        <div style="padding-left:10px;">
+          <%= @product.description.gsub("\n","<br />") rescue "Product has no description" %>
+          <br /><br />
+          <div style="float:right;">
+          <table>
+            <tr>
+              <td style="font-size:18px;color:#9b0707;text-align:right;"><!--Price:&nbsp;--><%= number_to_currency @product.price, :unit => "&pound;" %></td>
+             </tr>
+             <tr>
+              <td align="right"><%= link_to_remote image_tag("buttons/buy_button_new.png"), :url => product_cart_index_path(@product), :html => {:method => 'post'} %></td>
+            </tr>
+          </table>
+          </div>
+
+        </div>
+      </td>
+    </tr>
+  </table>
+
+  <div class="invite" style="text-align:center;margin:10px 20px;padding-top:10px;border-top:2px solid #b6cb31;padding-left:20px;padding-right:20px;">
+    <h2 style="font-size:16px;color:#666666;">Invite a Friend</h2>
+    <%- form_tag 'invite_a_friend' do -%>
+    <table align="center">
+      <tr>
+        <td>
+          <div style="text-align:left;">Your name</div>
+          <%= text_field_tag  'your_name','', :size => 20 %>
+        </td>
+        <td>
+          <div style="text-align:left;">Your friends name</div>
+          <%= text_field_tag  'your_friend_name', '',:size => 20 %>
+        </td>
+        <td>
+          <div style="text-align:left;">Your friends email</div>
+          <%= text_field_tag  'your_friend_email', '',:size => 20 %>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3">
+          <div style="text-align:left;">Your message</div>
+          <%= text_field_tag  'your_message','', :value => "I thought you might be interested in this...",:size => 68 %>
+          <%= hidden_field_tag 'h_product_id',request.request_uri %>
+        </td>
+      </tr>
+    </table>
+    <br />
+    <%= image_submit_tag("send_ico.png") %>
+    <%- end -%>
+  </div>
+
+ <!--<div class="add_new_review">
+<h3>Reviews <%#= link_to("(Add Review)", login_path, :style => "font-size:12px;") unless logged_in?  %></h3>
+ <%#= render :partial => 'site/shared/review_view_short', :locals => {:reviewer => @product} %>
+ <%#- if logged_in? -%><%#= link_to 'Add Review',"#",:onclick=>"document.getElementById('add_review').style.display='block';return false;" %>
+    <div id="add_review" style="display:none;"><h3>Leave your review</h3>
+    <%#= render(:partial => 'site/reviews/new', :locals => {:create_url => product_reviews_path(@product, :return_to => nested_products_uri(@product))}) %>
+  <%#- end -%></div>-->
+
+ <!-- <h3>Reviews <%#= link_to("(Add Review)", login_path, :style => "font-size:12px;") unless logged_in?  %></h3>
+   <%#= render :partial => 'site/shared/review_view_short', :locals => {:reviewer => @product} %>
+   <%#- if logged_in? -%>
+    <h3>Leave your review</h3>
+    <%#= render(:partial => 'site/reviews/new', :locals => {:create_url => product_reviews_path(@product, :return_to => nested_products_uri(@product))}) %>
+  <%#- end -%> -->
+</div>
+
+<% content_for :right do %>
+  <%#= render :partial => 'site/shared/box_product_reviews' %>
+  <%= render :partial => 'site/shared/box_wine_tour_testimonials' %>
+  <br />
+	<%= render :partial => '/site/shared/box_subscriptions' %>
+	<br />
+	<%= render :partial => 'site/shared/box_products_on_offer' %>
+	<br />
+	<%= render :partial => '/site/shared/box_grape_guide' %>
+<% end %>
+

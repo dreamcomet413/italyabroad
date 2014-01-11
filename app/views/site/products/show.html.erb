@@ -1,0 +1,7 @@
+<% @title = @product.page_title_formatted; @description = @product.meta_description_formatted; @keys = @product.meta_keys_formatted %>
+<% unless Category.find(@product.categories).blank? %>
+<%= render :partial => "site/templates/#{@product.layout}" %>
+<% else %>
+<%= render :partial => "site/templates/product_without_category" %>
+<% end %>
+

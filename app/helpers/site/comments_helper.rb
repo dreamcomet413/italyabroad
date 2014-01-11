@@ -1,0 +1,3 @@
+module Site::CommentsHelper
+end
+

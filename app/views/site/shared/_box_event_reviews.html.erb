@@ -1,0 +1,21 @@
+<div class="block" id="box_event_reviews">
+  <h1>Event reviews</h1>
+  <br />
+  <table>
+  <%- if @category.reviews.size > 0 -%>
+    <%- @category.reviews.each do |review| -%>
+    <tr>
+      <td>
+        <%= avatar_for_user(review.user, 'small') %><br />
+        <%= review.user.name %>
+      </td>
+      <td valign="top"><%= truncate review.description, 20 %></td>
+    </tr>
+    <%- end -%>
+  <%- else -%>
+    <tr>
+      <td>No reviews for events</td>
+    </tr>
+  <%- end -%>
+  </table>
+</div>

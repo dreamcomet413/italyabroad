@@ -1,0 +1,29 @@
+<div style="width:800px;font: normal 12px Arial;text-align:left">
+  <%= image_tag('pdf_header.jpg') %><br/><br/><br/><br/>
+</div>
+<table width="100%">
+    <thead>
+      <tr>
+
+        <th>Email</th>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Know Through</th>
+        <th>DOB</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%- @users.each do |user| -%>
+      <tr>
+
+        <td><div style="width:300px;"><%= user.email %></div></td>
+        <td><div style="width:200px;"><%= user.name %></div></td>
+        <td><div style="width:200px;"><%= user.surname %></div></td>
+        <td><div style="width:350px;"><%= user.know_through %></div></td>
+        <td><div style="width:300px;"><%= user.dob.strftime("%d/%m/%y") unless user.dob.nil? %></div></td>
+      </tr>
+      <%- end -%>
+    </tbody>
+  </table>
+

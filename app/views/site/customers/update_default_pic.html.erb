@@ -1,0 +1,10 @@
+<%#= render :partial => "profile_pic" %>
+<% if params[:kind].to_i == 1 %>
+<img src ="images/default.jpg">
+<input type="hidden" name="kind" value="<%=params[:kind]%>">
+
+<% else %>
+<img src ="images/default_<%=params[:kind]%>.jpg">
+<input type="hidden" name="kind" value="<%=params[:kind]%>">
+<% end %>
+

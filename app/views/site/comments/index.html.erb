@@ -1,0 +1,14 @@
+<%- @title = "Comments"; @class = "no-padding" -%>
+<%- @breadcrumbs = "#{link_to "Home", root_url} &raquo;Comments" -%>
+
+<div id="header"><%= render :partial => 'site/shared/box_login' %></div>
+<h4 class="account-title"> Comments</h4>
+<%= content_tag(:div, will_paginate(@comments), :style => "margin:10px 20px;") if @comments.size > 0  %>
+<ul style="padding:0;list-style:none;" id="my_reviews_list">
+   <%= render :partial => 'comment', :collection => @comments %>
+</ul>
+
+<%- content_for :right do -%>
+  <%= render :partial => '/site/shared/box_subscriptions' %>
+<%- end -%>
+

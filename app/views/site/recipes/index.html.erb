@@ -1,0 +1,120 @@
+<% @title = "Authentic Italian recipes, pasta, antipasti, pesce, carne"; @description = "Authentic italian recipes directly from our grandma secret book, pasta, antipasti,starter, the most authentic Italian recipes for you to recreate at home the italian meal"; @keys ="pasta, lasagne, carne, bolognese, cantuccini, panettone, pandoro, fagioli, osso buco, arancini, pollo" %>
+
+<%- @breadcrumbs = "#{link_to("Home", root_url)} &raquo; #{link_to("Recipes", '/recipes')}" -%>
+<% @about = AboutU.find(:first, :conditions => {:link_type => "recipe"} ) %>
+
+<div id="wineBanner">
+<% if @about and !@about.title.blank? %>
+  <span class="recipes_home_title"  style="background-color:black;padding:8px;opacity:0.8; filter:alpha(opacity=80);">
+   <%= @about.title  %>
+
+  </span>
+  <% end %>
+
+  <% if  @about and !@about.image_id.nil? %>
+  <%= link_to image_tag(image_url(:about_thumb, @about.image, :jpg),:alt=>@about.title) , search_index_path(:id => "recipe") unless @about.blank? %>
+  <% else %>
+  <%= link_to image_tag("recipes.jpg",:alt=>'Recipes'), search_index_path(:id => "recipe") %>
+  <% end %>
+</div>
+<br/>
+<%= render :partial => '/site/shared/box_search_recipes_new' %>
+
+<div id="recipes_introduction">
+  <h3>About Italian food</h3>
+  <%= image_tag("aboutItalianFood.png", :style => "float:left;",:alt=>'About Italian Food') %>
+  <%= @about.description if @about %>
+</div>
+<div style="clear:both;"></div>
+<div id="latestRecipes">
+  <h3>Latest Added Recipes</h3>
+  <ul>
+    <%- Recipe.active.latest.paginate(:page => params[:page], :per_page => 3).each do |recipe| -%>
+
+
+      <li>
+        <table width="100%">
+          <tr>
+            <td width="60%" valign="top">
+              <%= link_to recipe.name, recipe_path(recipe), :style => "font-size:14px;color:black;font-weight:bold;" %>
+              <%= show_ratings(recipe, recipe.average_rating_round) if recipe.average_rating_round %><br />
+              Course: <%= recipe.recipe_type.name %><br />
+              Difficulty: <%= recipe.recipe_level.name %><br />
+              Prep time: <%= recipe.preparation_time %> min<br/>
+              Added by:
+              <% if recipe.user_id == 3 %>
+                Guest
+              <%else%>
+                <%= link_to recipe.user.name.capitalize,customer_path(recipe.user.id) rescue "Admin" %>
+               &nbsp;&nbsp;&nbsp;
+               <% if !recipe.user.nil? %>
+               <%#= link_to recipe.user.establishment_link,recipe.user.establishment_link%>
+               <% end %>
+                <% end %>
+            </td>
+            <td align="right">
+              <% if !recipe.image_1.blank? %>
+              <%= link_to image_tag(image_url('recipe_thumb', recipe.image_1, :jpg),:alt=>recipe.name), recipe_path(recipe) %>
+              <% else %>
+              <%= link_to image_tag("no_images/PastaRecipe.jpg",:size => "100x75",:alt=>recipe.name), recipe_path(recipe) %>
+              <% end %>
+
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2" align="right"><%= link_to "Ingredients and cooking instructions", recipe_path(recipe) %></td>
+          </tr>
+        </table>
+        <br />
+      </li>
+    <%- end -%>
+  </ul>
+</div>
+<div id="highestRatedRecipes">
+  <h3>Most Viewed Recipes</h3>
+  <ul>
+    <%#- Recipe.active.most_viewed.paginate(:page => params[:page], :per_page => 3).each do |recipe| -%>
+    <%   Recipe.most_viewed_recipes.paginate(:page => params[:page], :per_page => 3).each do |recipe| -%>
+      <li>
+        <table width="100%">
+          <tr>
+            <td width="60%" valign="top">
+              <%= link_to recipe.name, recipe_path(recipe), :style => "font-size:14px;font-weight:bold;color:black;" %>
+              <%= show_ratings(recipe, recipe.average_rating_round) %><br />
+              Course: <%= recipe.recipe_type.name %><br />
+              Difficulty: <%= recipe.recipe_level.name %><br />
+              Prep time: <%= recipe.preparation_time %> min<br/>
+              Added by:
+              <% if recipe.user_id == 3 %>
+                Guest
+              <%else%><%#= link_to recipe.user.name,customer_path(recipe.user.id) rescue "Admin" %><% end %>
+            </td>
+            <td align="right">
+              <% if !recipe.image_1.blank? %>
+              <%= link_to image_tag(image_url('recipe_thumb', recipe.image_1, :jpg)), recipe_path(recipe) %>
+              <% else %>
+              <%= link_to image_tag("no_images/PastaRecipe.jpg",:size => "100x75"), recipe_path(recipe) %>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2" align="right"><%= link_to "Ingredients and cooking instructions", recipe_path(recipe) %></td>
+          </tr>
+        </table>
+        <br />
+      </li>
+    <%- end -%>
+  </ul>
+  <br />
+  <br />
+</div>
+
+<% content_for :right do %>
+  <%= render :partial => '/site/shared/box_latest_recipe_reviews' %>
+  <%= link_to image_tag("shareRecipe.png"), new_recipe_path  %>
+  <br />
+  <%= link_to image_tag("chefProfile.png"), account_path %>
+  <br />
+  <%= render :partial => '/site/shared/box_subscriptions' %>
+<% end %>
+

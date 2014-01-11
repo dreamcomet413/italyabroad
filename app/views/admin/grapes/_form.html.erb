@@ -1,0 +1,29 @@
+<table>
+  <tr>
+    <td>Name</td>
+    <td><%= text_field :grape, :name %></td>
+  </tr>
+  <tr>
+    <td valign="top">Description</td>
+    <td><%= text_area :grape, :description %></td>
+  </tr>
+  <tr>
+      <td>Quote on Grape: </td>
+      <td><%= text_field :grape, :grape_quote %></td>
+    </tr>
+  <tr>
+    <td>Image</td>
+    <% fields_for :image do %>
+    <td><%= file_field :image,:image_file %>
+    <%= image_tag(image_url('product_thumb', @grape.image, :jpg)) if @grape && @grape.image %>
+    <%= link_to "Destroy", admin_grape_image_url(@grape, @grape.image), :confirm => "Are you sure?", :method => :delete if @grape && @grape.image %>
+
+    </td>
+     <% end %>
+  </tr>
+  <tr>
+    <td valign="top">Producers</td>
+    <td valign="top"><%= select :grape, :producer_ids, Producer.find(:all,:order=>'name').collect {|p| [p.name, p.id]}, {}, {:multiple => true} %></td>
+  </tr>
+</table>
+

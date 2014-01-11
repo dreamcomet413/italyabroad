@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+</head>
+<body>
+Dear <%= @order.user.name %>,<br />
+<br />
+Thank you for shopping with Italyabroad.com<br /><br />
+We thought you'd like to know that your <strong>order No:<%= @order.id %></strong> has now been despatched and <br />
+will be with you according to the delivery option chosen.<br />
+<table>
+<tr><td colspan="3"><hr /></td></tr>
+<tr>
+  <td><strong>Delivery Details</strong><br />
+          <% if @order.delivery_name == "Collection at our warehouse" -%>
+            <% msg = "Your order is ready to be collected, please let us know when you are thinking of coming."%><br />
+          <% else %>
+            <% msg = "" %>
+            <% if @order.shipping_agency and  @order.consignment_no -%>
+              Shipped with: <%= @order.shipping_agency.name %><br />
+              Consignment No: <%= @order.consignment_no %><br />
+            <% end -%>
+          <% end -%><br />
+          If you have chosen to collect it from our warehouse, it is ready for collection. Simply inform us when you are thinking of coming.
+
+  </td>
+  <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+  <td>
+        <%= @order.user.name %><br />
+        <%= @order.ship_address %><br />
+        <%= @order.ship_city %>, <%= @order.ship_cap %><br />
+        <%= @order.ship_country %><br />
+  </td>
+</tr>
+</table>
+
+
+<table style="border:solid grey 1px;padding:5px;">
+<tr><th style="text-align:left;padding-right:5px;">Product</th><td>&nbsp;&nbsp;</td><th>Quantity</th><td>&nbsp;&nbsp;</td><th>Price</th><td>&nbsp;&nbsp;</td><th>Total</th></tr>
+
+<% for order_item in @order.order_items %>
+<tr>
+<td style="text-align:left;padding-right:5px;"><%= order_item.name %></td><td></td>
+<td style="text-align:right;padding-right:5px;"><%= order_item.quantity %></td><td></td>
+<td style="text-align:right;padding-right:5px;"><%= number_to_currency order_item.price, :unit => '£' %></td><td></td>
+<td style="text-align:right;padding-right:5px;"><%= number_to_currency order_item.total , :unit => '£' %></td>
+</tr>
+<% end %>
+
+<tr>
+<td colspan="6" style="text-align:right;">Total Amount : </td><td><strong><%= number_to_currency @order.total , :unit => '£' %></strong></td>
+</tr>
+</table>
+<br />
+<%= msg %>
+
+<br />
+If you have not received your item(s) within this time, please contact us on info@italyabroad.com<br />
+<br />
+Thanks and regards,<br />
+Italyabroad.com<br />
+</body>
+</html>
+

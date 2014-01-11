@@ -1,0 +1,65 @@
+<%- @category = Category.find(params[:category] || 'food') -%>
+<%- @parent = Category.find(params[:parent] || "food") -%>
+<%- search_url = @category == @parent ? search_index_path(:id => @parent) : nested_categories_url(@parent, @category) -%>
+<div class="block" id="box_food_search">
+	<h3>Deli Finder</h3>
+	<% form_tag search_url, :method => :get do %>
+	<table border="0">
+		<tr>
+		  <td>Text:</td>
+		  <td><%= text_field_tag :text, params[:text], :id => "search_text" %></td>
+    </tr>
+		<tr>
+		  <td>Region:</td>
+		  <td><%= select_tag :region_id, options_for_select(@category.products.regions.inject([["Any", ""]]) { |rs, r| rs << [r.name, r.id] }, params[:region_id].to_i), :id => "search_region" %></td>
+    </tr>
+    <% @producers =[]
+    producer_ids = []
+     products = @category.products.find(:all,:conditions=>['active = true'])
+    products.each do |p|
+    producer_ids << p.producer_id if p.producer_id and !producer_ids.include?(p.producer_id)
+    end
+    producer_ids.each do |producer_id|
+
+        producer=Producer.find_by_id(producer_id)
+        if producer
+        @producers << producer
+        end
+
+    end
+    %>
+		<tr>
+		  <td>Producer:</td>
+		  <td><%= select_tag :producer_id, options_for_select( @producers.inject([["Any", ""]]) { |ps, p| ps << [p.name, p.id] }, params[:producer_id].to_i), :id => "search_producer_name" %></td>
+    </tr>
+		<tr>
+		  <td colspan="2"></td>
+    </tr>
+		<tr>
+		  <td>Organic:</td>
+      <% checked = (params[:organic] == 'organic') ? true : false %>
+      <td><%= check_box_tag :organic, 'organic',checked  %></td>
+    </tr>
+		<tr>
+		  <td>Vegan:</td>
+      <% checked = (params[:vegetarian] == 'vegetarian') ? true : false %>
+      <td><%= check_box_tag :vegetarian, 'vegetarian', checked  %>
+    </tr>
+		<tr>
+		  <td colspan="2"></td>
+    </tr>
+		<tr>
+		  <td>Price:</td>
+		  <td><%= select_tag :price, options_for_select([["Any Price",""],["Less than 5","< 5"],["From £5 to £10","BETWEEN 5 AND 10"],["From £11 to £20","BETWEEN 11 AND 20"],["From £21 to £30","BETWEEN 21 AND 30"],["More than £30","> 30"]], params[:price]), :id => "search_price" %></td>
+    </tr>
+		<tr>
+		  <td colspan="2"></td>
+    </tr>
+		<tr>
+		  <td></td>
+		  <td style="padding:0 0 0 17px;"><%= submit_tag "search" ,:class=>"search_btn"%><%= hidden_field_tag :id,@category.name.downcase %></td>
+    </tr>
+	</table>
+	<% end %>
+</div>
+

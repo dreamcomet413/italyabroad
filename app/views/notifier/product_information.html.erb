@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+</head>
+<body>
+<% @us = User.find_by_email(@user.email)%>
+<% unless @us.nil? %>
+  Hi <%= User.find_by_email(@user.email).name %>,
+<% else %>
+Hi
+<% end %>
+<h3>Would you like us to sort your wine out for you?</h3>
+
+We noticed that you popped some wine in your basket, tried to check out and never quite made it. Oh dear!<br />
+
+Whatever the reason just <%= mail_to "info@italyabroad.com", "Click Here" %> to reply to this email and we'll make sure you go thirsty no longer! <br />
+
+
+Best Wishes <br />
+
+The Italyabroad.com Team
+
+
+
+</body>
+</html>
+

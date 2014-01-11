@@ -1,0 +1,56 @@
+<fieldset id="general_information">
+  <legend>
+    <%- if @recipe.new_record? -%>
+      General Information for New Recipe
+    <%- else -%>
+      Edit <em>General Information</em> for <em>"<%= @recipe.name %>"</em>
+    <%- end -%>
+  </legend>
+	<table border="0" cellspacing="5" cellpadding="5">
+	  <tr>
+	    <td style="width:200px;text-align:right">Recipe Name:</td>
+	    <td><%= text_field :recipe, :name, :style => "width:99%" %></td>
+    </tr>
+	  <tr>
+	    <td style="width:200px;text-align:right">Preparation Time:</td>
+	    <td><%= text_field :recipe, :preparation_time, :size => 20 %></td>
+    </tr>
+		<tr>
+		  <td style="width:200px;text-align:right">Difficult:</td>
+		  <td><%= collection_select :recipe, :recipe_level_id, RecipeLevel.find(:all), :id, :name %></td>
+    </tr>
+    <tr>
+          <td  style="width:200px;text-align:right">Region:</td>
+          <td><%= collection_select :recipe,:region_id, Region.find(:all), :id, :name %></td>
+        </tr>
+     <tr>
+          <td style="width:200px;text-align:right">Ingredients:</td>
+          <td><%= text_area :recipe,:ingredients, :rows => 10 %></td>
+        </tr>
+        <tr>
+          <td style="width:200px;text-align:right"Cooking Instructions:</td>
+          <td><%= text_area :recipe,:preparation, :rows => 10 %></td>
+        </tr>
+		<tr>
+		  <td style="width:200px;text-align:right">Type:</td>
+		  <td><%= collection_select :recipe, :recipe_type_id, RecipeType.find(:all), :id, :name %></td>
+    </tr>
+		<tr>
+		  <td style="width:200px;text-align:right">Recommended:</td>
+		  <td><%= check_box :recipe, :raccomanded %></td>
+    </tr>
+		<tr>
+		  <td style="width:200px;text-align:right">Active:</td>
+		  <td><%= check_box :recipe, :active %></td>
+    </tr>
+		<tr>
+		  <td style="width:200px;text-align:right">Rating:</td>
+		  <td><%= select :recipe, :rating, (1..5) %></td>
+    </tr>
+    <tr>
+      <td style="width:200px;text-align:right">Vegetarian:</td>
+      <td><%= check_box :recipe, :vegetarian %></td>
+    </tr>
+	</table>
+</fieldset>
+

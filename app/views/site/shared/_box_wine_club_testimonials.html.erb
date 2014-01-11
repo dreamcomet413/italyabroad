@@ -1,0 +1,27 @@
+<%- @testimonials = Testimonial.find(:all,:conditions=>['UPPER(page_to_display) = ?','WINE CLUB'],:order=>'id DESC',:limit=>2) -%>
+<%# unless @testimonials.blank? %>
+<div class="block" id="box_event_reviews">
+  <h1>Wine Club Testimonials</h1>
+  <br />
+  <table>
+  <%- if @testimonials.size > 0 -%>
+    <%- @testimonials.each do |testimonial| -%>
+    <tr>
+     <!-- <td>
+        <%#= avatar_for_user(review.user, 'small') %><br />
+        <%#= testimonial.title %>
+      </td> -->
+      <td valign="top"><%= truncate testimonial.description, 100 %>
+      <%#= link_to testimonial.description,testimonial_path %><br /><br />
+      </td>
+    </tr>
+    <%- end -%>
+  <%- else -%>
+    <tr>
+      <td>No Testimonial for Wine Club</td>
+    </tr>
+  <%- end -%>
+  </table>
+</div>
+<%# end %>
+

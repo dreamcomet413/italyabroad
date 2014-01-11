@@ -1,0 +1,20 @@
+<%- @title = "Messages"; @class = "no-padding" -%>
+<%- @breadcrumbs = "#{link_to "Home", root_url} &raquo;Messages" -%>
+<div id="header"><%= render :partial => 'site/shared/box_login' %></div>
+
+<% if @messages.size > 0 %>
+<h4 class="account-title">Messages</h4>
+<%= content_tag(:div, will_paginate(@messages), :style => "margin:10px 20px;") if @messages.size > 0  %>
+<ul style="padding:0;list-style:none;" id="my_reviews_list">
+   <%= render :partial => 'message', :collection => @messages %>
+</ul>
+<% else %>
+<div style="height:300px;margin-left:10px;">
+<h4>You have no messages</h4>
+</div>
+<% end %>
+<%- content_for :right do -%>
+  <%= render :partial => '/site/shared/box_subscriptions' %>
+<%- end -%>
+<!-- /div --><!-- removed to fix the issue with sitemap on 2011 may 10 - sujith -->
+

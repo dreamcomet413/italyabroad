@@ -1,0 +1,107 @@
+<% @title = "Italyabroad.com testimonials"; @breadcrumbs = "#{link_to("Home", root_url)} &raquo; Testimonials"; @class = "testimonials no-padding"%>
+
+<div id="header">Testimonials</div>
+<!--<div style="margin:20px;">
+  <p>
+    Our customers are the most important people to us and at Italyabroad.com we don't want simply to offer the finest Italian wine and food made by small producers but also the best customer experience possible to everyone.
+  </p>
+  <p>
+    Below some of the feedbacks received, please feel free to email us your experience with Italyabroad.com at <%= mail_to "info@italyabroad.com" %>
+  </p>
+
+  <h1>Wine and food testimonials</h1>
+  <p>
+    "The wines you have supplied have never failed to please, I dont have a clue about what grapes or where they come from, but i know that I enjoy them"
+    <em>(R. Patterson)</em>
+  </p>
+
+  <p>
+    "Not available in retail outlet. Have not tasted Italian wines as such since visiting Italy 3 years ago"
+    <em>(Mr. Carruthers)</em>
+  </p>
+
+  <p>
+    "The quality of your wines, oils and foods are excellent and are truly a joy to taste, i look forward to my next order"
+    <em>(J. Regan)</em>
+  </p>
+
+  <p>
+    "thanks for the prompt and efficient delivery of 24 bottles of olive oil - I am sure our clients will be delighted with their Christmas gifts this year.I will certainly be using your website again next year. Many thanks again"
+    <em>(Alexandra Abraham, John Abraham Ltd)</em>
+  </p>
+
+  <p>
+    "Fantatic wines at a great value. The Lazio Rosso is now our favourite after being introduced to it at a local restaurant supplied by Italyabroad.com. After receiving excellent service we will sure be returning to place an order in the near future."
+    <em>(Martyn Lewis (March 2009))</em>
+  </p>
+
+
+  <h1>Wine tasting events testimonials</h1>
+  <p>
+    "The food and wine were excellent and the table companions all very friendly, which made  for a relaxing and very pleasant fun evening all round."
+    <em>(Ann Phillips (February 2009))</em>
+  </p>
+
+  <p>
+    "Excellent evening. Looking Forward to the next one"
+    <em>(F.Bozic (February 2009))</em>
+  </p>
+
+  <p>
+    "Fantastic evening. Food and wine perfectly suited. Will be back and will bring others."
+    <em>(G.Dunn (March 2009))</em>
+  </p>
+
+  <p>
+    "A very enjoyable evening. Wines and food perfect. Look forward to the enxt one"
+    <em>(Mr Dawson (April 2009))</em>
+  </p>
+
+  <p>
+    "Hi Andrea, please let me just say how much we all enjoyed the last event; the food was marvellous, the wine was excellent (we bought some of each) and the service was top notch. you clearly know your subject"
+    <em>(Blaine Ward (April 2009))</em>
+  </p>
+
+  <p>
+    "Andrea,Just a quick note to say how much Angela and I enjoyed your event, the food, the wine, the venue, the company on our table and your explanations of each wine and the regions in Italy were all fantastic and we can't wait for the next event.  We'll be telling all of our friends about the event and hope that they will join us next time."
+    <em>(Niki Mather (May 2009))</em>
+  </p>
+
+  <p>
+    "A wonderful, wonderful evening with superb wines to accompany great food. I have learnt a lot about wine this evening"
+    <em>(W.L.Elliot  (July 09))</em>
+  </p>
+
+  <p>
+    "A fantastic night – Andrea did a fab job, he was extremely knowledgeable about his wines. The food matched the wine brilliantly (thanks!). I would love you to do another very soon."
+    <em>(L Richards (July 09))</em>
+  </p>
+
+
+  <p>
+    "I have been to over 100 wine tastings all over the world and I would have to say this will stay in my top 10. Mr. D'Ercole knowledge of wine and about each vineyard was AMAZING!! If you’re looking for a great night and truly wish to learn about wine this group is one of a kind. From now on this is the only place I will be taking my friends and family. Thanks again Mr. D'Ercole for an amazing night and I look forward to each month learning more at your event."
+    <em>(Charles W Denney II (November 09))</em>
+  </p>
+
+  <p>
+    "Andrea, your knowledge is inspirational! Thank you for a wonderful night - again"
+    <em>(A Simmons (January 2010))</em>
+  </p>
+</div>-->
+
+<% @about = AboutU.find(:first, :conditions => {:link_type => "testimonials"} ) %>
+<div style="margin:20px;">
+  <% if @about %>
+    <h2><%= @about.title %></h2>
+    <%= @about.description %>
+  <% end %>
+
+</div>
+
+<% content_for :right do %>
+  <%= render :partial => '/site/shared/box_grape_guide' %>
+  <br />
+  <%= render :partial => '/site/shared/box_subscriptions' %>
+  <br />
+  <%= render :partial => '/site/shared/box_popular' %>
+<% end %>

@@ -1,0 +1,94 @@
+<%- @title = "Administration - Products"; @page_id = "Catalog" -%>
+<%- @breadcrumbs = "Catalog » #{link_to "Products", admin_products_path}" -%>
+
+<div class="inner_content products" id="admin_products_index">
+  <h2>Products</h2>
+  <br />
+  <table>
+    <tr>
+      <% form_tag admin_products_path, :method=>:get do  %>
+      <td>
+      <strong>Search</strong><%= text_field_tag 'search_name',params[:search_name]%>
+
+        <select name="search" >
+        <option value="">Select ...</option>
+        <%- @data.each do |category| -%>
+        <%-if params[:search].to_i == category['id'].to_i
+          selected = "selected=\"selected\""
+          else
+          selected =""
+          end
+          -%>
+
+           <option value="<%= category['id']%>" <%= selected %> ><%= category['text']%></option>
+          <%- category["children"].each do |children| -%>
+             <%-if params[:search].to_i == children['id'].to_i
+          selected = "selected=\"selected\""
+          else
+          selected =""
+          end
+          -%>
+         <option value="<%= children['id']%>" <%= selected %> >&nbsp;&nbsp;--<%= children['text'] %></option>
+          <% end %>
+        <% end %>
+        </select>
+        <% checked = false
+        if params[:active]
+        checked = true
+        end %>
+        <strong>Show Active only</strong><%= check_box_tag 'active','',checked %>
+        <%= submit_tag 'Search' %>
+
+      </td>
+      <td align="right"><%= link_to "New Product", new_admin_product_path %></td>
+      <td align="right"><%= link_to "XML", :controller => 'admin/products', :action => 'xml' %></td>
+    </tr>
+  </table> <br />
+ Discount<%= text_field_tag 'discount',params[:discount]%><%= submit_tag 'Update',:name=>'update'%>
+  <table id="products-list" class="list sortable">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Code</th>
+        <th>Category</th>
+        <th>Sub Categories</th>
+        <th>Name</th>
+        <th>Discount</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Out of stock</th>
+        <th>Active</th>
+        <th class="nosort"></th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <%- @products.each do |product| -%>
+      <tr>
+        <td><%= product.id %></td>
+        <td><%= product.code %></td>
+        <td><%= product.root_category unless product.root_category.blank? %></td>
+        <td><%= product.sub_categories.join(" &raquo; ") unless product.sub_categories.blank? %></td>
+        <td><%= link_to product.name, nested_products_uri(product) %></td>
+        <td><%= product.discount %>%</td>
+        <td><%= number_to_currency product.price, :unit => "&pound;" %></td>
+        <td><%= product.quantity %></td>
+        <td><%= product.quantity == 0 %></td>
+        <td><%= product.active %></td>
+        <td>
+          <%= link_to "Edit", edit_admin_product_path(product.id), :popup => ['Edit #{product.name}', 'height=1000,width=1000,scrollbars=yes']%> |
+          <%= link_to "Delete",admin_product_path(product),:confirm => 'Are you sure?', :method => :delete %>
+        </td>
+       </tr>
+      <%- end -%>
+    </tbody>
+    <tfoot>
+    <tr>
+      <td colspan="10"><%= (will_paginate_(@products)).html_safe %></td>
+      <td align="right"><%= page_entries_info_ @products %></td>
+    </tr>
+    </tfoot>
+  </table>
+  <% end %>
+</div>
+

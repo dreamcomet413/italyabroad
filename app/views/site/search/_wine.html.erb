@@ -1,0 +1,56 @@
+
+	<% for product in @wines %>
+	<table style="padding-bottom:20px;width:100%;" cellpadding="0" border="0" cellspacing="0">
+		<tr>
+
+			<td style="width: 490px;">
+
+				<h1><%= link_to product.name, nested_products_uri(product), :style => "font-size:17px;color:black;" %></h1>
+				<br />
+				<div style="padding-top:10px"><%= product.description_short %></div>
+			</td>
+			<td style="padding: 20px 10px 5px;">
+        <div class="box_price_product">
+          <ul>
+            <li class="price_info">
+      				<% if product.discounted? %>
+      					<div style="font-size:14px">Was <span style="text-decoration: line-through;"><%= number_to_currency product.price, :unit => "&pound;" %></span></div>
+      					<span class="price red" style="color:#003300;">Now&nbsp;<span class="promotion"; style="color:red;"><%= number_to_currency product.price_discounted, :unit => "&pound;" %></span></span>
+      				<% else %>
+      					<span class="price" style="color:black;"><%= number_to_currency product.price, :unit => "&pound;" %></span>
+      				<% end %>
+    				</li>
+    				<li style="margin-bottom:10px;">
+    				  <%= link_to_remote image_tag("add_to_wish_list.png"), :url => product_wish_list_index_path(product), :html => {:style => "color:#464646;", :method => :post} %>
+    				</li>
+  			    <li>
+  			      <%- if product.out_of_stock? -%>
+  			        <%= image_tag('out_of_stock.png') %>
+  			      <%- else -%>
+  			        <%= link_to_remote image_tag("buttons/add_to_cart_button.png"), :url => product_cart_index_path(product), :html => {:method => 'post'} %>
+  			      <%- end -%>
+  			    </li>
+  				</ul>
+        </div>
+			</td>
+		</tr>
+    <tr>
+      <td colspan="3" style="border-bottom:1px solid #CCCCCC;">&nbsp;</td>
+    </tr>
+	</table>
+	<% end %>
+
+
+
+<% content_for :right do %>
+	<%= render :partial => 'site/shared/box_wine_search', :locals => {:search_url => search_index_path} %>
+	<br />
+	<%= render :partial => 'site/shared/box_products_on_offer' %>
+	<br />
+	<%= render :partial => '/site/shared/box_event' %>
+	<br />
+	<%= render :partial => '/site/shared/box_subscriptions' %>
+	<br />
+	<%= render :partial => '/site/shared/box_grape_guide' %>
+<% end %>
+

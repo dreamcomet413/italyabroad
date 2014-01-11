@@ -1,0 +1,21 @@
+<% @title = "Account"; %>
+<%- @breadcrumbs = "#{link_to "Home", root_url} &raquo; My Account" -%>
+<% @class = "no-padding" %>
+
+<div id="header"><%= render :partial => 'site/shared/box_login' %></div>
+<h4 class="account-title">My Account</h4>
+<div style="padding:0 10px;">
+  <% form_tag "/customers/update", :method => :put, :multipart => true do %>
+    <%= render :partial => 'form' %>
+    <p style="text-align:right;">
+      <%= image_submit_tag "buttons/update_button.png" %>
+    </p>
+  <% end %>
+</div>
+
+<% content_for :right do %>
+	<%= render :partial => '/site/shared/box_grape_guide' %>
+	<br />
+	<%= render :partial => '/site/shared/box_popular' %>
+<% end %>
+

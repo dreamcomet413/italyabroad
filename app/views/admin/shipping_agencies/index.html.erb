@@ -1,0 +1,36 @@
+<%- @title = "Administration - Shipping Agency"; @page_id = "Catalog" -%>
+<%- @breadcrumbs = "Catalog &raquo; #{link_to "Agencies", admin_shipping_agencies_path}" -%>
+
+<div class="inner_content posts" id="admin_occasions_index">
+  <h2><%= 'Shipping Agency'%></h2>
+  <br />
+  <table>
+    <tr>
+      <td></td>
+      <td align="right"><%= link_to "New Agency", new_admin_shipping_agency_path %></td>
+    </tr>
+  </table>
+  <table class="list sortable" id="posts-list">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%- @shipping_agencies.each do |agency| -%>
+      <tr>
+        <td><%= agency.id %></td>
+        <td><%= agency.name %></td>
+         <td>
+          <%= link_to "Edit", edit_admin_shipping_agency_path(agency.id) %> |
+          <%= link_to "Delete", admin_shipping_agency_path(agency.id), :method => :delete, :confirm => "Are you sure want to delete this occasion?" %>
+        </td>
+      </tr>
+    <%- end -%>
+    </tbody>
+  </table>
+</div>
+

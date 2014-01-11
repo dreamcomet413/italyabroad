@@ -1,0 +1,10 @@
+<%- @title = "Edit #{@user.full_name || @user.id}"; @page_id = "Administration" -%>
+<%- @breadcrumbs = "Administration &raquo; #{link_to "Users", admin_users_path} &raquo; #{@title}" -%>
+
+<div class="inner_content">
+  <h2><%= @title %></h2>
+  <br />
+  <% form_for :user, :url => admin_user_path(@user), :html => {:method => :put} do %>
+  	<%= render :partial => "form" %>
+  <% end %>
+</div>

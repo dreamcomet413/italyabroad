@@ -1,0 +1,39 @@
+<div id="grapes" class="sub_menu">
+  <ul>
+    <li <%= "class='active'" if @current_controller == "grapes" %>>
+      <%= link_to "Grapes", admin_grapes_path, :class => ('active' if @current_controller == "grapes") %>
+    </li>
+    <li <%= "class='active'" if @current_controller == "producers" %>>
+      <%= link_to "Producers", admin_producers_path, :class => ('active' if @current_controller == "producers") %>
+    </li>
+    <li <%= "class='active'" if @current_controller == "regions" %>>
+      <%= link_to "Regions", admin_regions_path, :class => ('active' if @current_controller == "regions") %>
+    </li>
+  </ul>
+  <ul>
+    <li <%= "class='active'" if @current_action == "index" %>>
+      <% 
+      if @current_controller == "grapes"
+        list_uri = admin_grapes_path
+      elsif @current_controller == "producers"
+        list_uri = admin_producers_path
+      else
+        list_uri = admin_regions_path
+      end
+      %>
+      <%= link_to "List", list_uri, :class => ('active' if @current_action == "index") %>
+    </li>
+    <li <%= "class='active'" if @current_action == "new" %>>
+      <% 
+      if @current_controller == "grapes"
+        new_uri = new_admin_grape_path
+      elsif @current_controller == "producers"
+        new_uri = new_admin_producer_path
+      else
+        new_uri = new_admin_region_path
+      end
+      %>
+      <%= link_to "New", new_uri, :class => ('active' if @current_action == "new") %>
+    </li>
+  </ul>
+</div>

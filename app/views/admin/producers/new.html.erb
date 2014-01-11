@@ -1,0 +1,14 @@
+<%- @title = "New Producer"; @page_id = "Grapes" -%>
+<%- @breadcrumbs = "Grapes &raquo; #{link_to "Producers", admin_producers_path} &raquo; #{@title}" -%>
+
+<div class="inner_content producers" id="admin_producers_new">
+  <h2><%= @title %></h2>
+  <br />
+  <% form_for :producer, :url => admin_producers_path(@producer),:html => {:multipart => true} do %>
+    <%= render :partial => 'form' %>
+    <p>
+      <%= submit_tag "Save" %> or <%= link_to "Cancel", admin_producers_path %>
+    </p>
+  <% end %>
+</div>
+

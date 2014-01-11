@@ -1,0 +1,9 @@
+Hello <%= @comment.user.name if @comment.user %>,
+
+      <%= @user.name %> has posted comments on <%= @comment.post.name if @comment.post %>
+
+      One of our team will now review your comment and publish it
+
+Details are below:
+	<%= @comment.description %>
+

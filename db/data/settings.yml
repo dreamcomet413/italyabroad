@@ -1,0 +1,21 @@
+---
+settings_1:
+  home_image_1_url: http://www.italyabroad.com/wine
+  order_delivery_amount: "100.00"
+  order_cupon_amount: "60.00"
+  wine_pdf_id: "8"
+  order_amount: "10.00"
+  id: "1"
+  home_image_1_id: "1305"
+  home_image_1_title: ""
+  home_image_2_title: ""
+  home_image_3_title: ""
+  home_image_4_title: ""
+  home_image_5_title: ""
+
+
+  promotion: "76.00"
+  reorder_quantity: "10"
+
+  support: "admin"
+

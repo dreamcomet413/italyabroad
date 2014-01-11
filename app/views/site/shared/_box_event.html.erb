@@ -1,0 +1,23 @@
+<% products = Product.find(:all, :limit => 3,:include => {:categorizations => :category},:conditions => ["categories.name LIKE ? AND DATE(date) > ? AND active" ,'Events',Date.today],:order =>'date') %>
+<% unless products.blank? %>
+<div class="block" id="box_event" >
+  <%#= link_to((image_tag "upcomingEvents1.png",:alt=>'Upcoming Events',:title=>'Upcoming Events'), '/events')%>
+  <%#= link_to((image_tag "upcomingEvents_new.png",:alt=>'Upcoming Events',:title=>'Upcoming Events',:height=>'117px;',:width=>'248px;'), '/events')%>
+  <%= link_to((image_tag "upcoming-events.jpg",:alt=>'Upcoming Events',:title=>'Upcoming Events'), '/events')%>
+  <br />
+  <ul>
+  <%- products.each do |product| -%>
+    <li style="margin-bottom:10px;">
+      <%= product.date.strftime("%d %B %Y at %H:%M") if product.date %>
+  	  <div><%= link_to product.name, "/wine-events/#{product.friendly_identifier}", :style => "font-size:14px;" %></div>
+	  </li>
+  <%- end -%>
+  </ul>
+</div>
+<% else %>
+<div class="block" id="box_event" >
+  <div><%= image_tag("upcomingEvents1.png", :alt => "Upcoming Events") %></div>
+  <div style="padding:10px 10px 10px 10px;">Sorry there are currently no upcoming events planned please come back later.</div>
+</div>
+<% end %>
+

@@ -1,0 +1,20 @@
+<div id="blog" class="sub_menu">
+  <ul>
+    <li <%= "class='active'" if @current_controller == "posts" %>><%= link_to "Posts", admin_posts_path, :class => ('active' if @current_controller == "posts") %></li>
+    <li <%= "class='active'" if @current_controller == "comments" %>><%= link_to "Feedbacks", admin_comments_path, :class => ('active' if @current_controller == "comments") %></li>
+  </ul>
+  <ul>
+    <li <%= "class='active'" if @current_action == "index" %>>
+      <% 
+        list_uri = admin_posts_path
+        list_uri = admin_comments_path if @current_controller == "comments"
+      %>
+      <%= link_to "List", list_uri, :class => ('active' if @current_action == "index") %>
+    </li>
+    <%- if @current_controller == "posts" -%>
+    <li <%= "class='active'" if @current_action == "new" %>>
+      <%= link_to "New", new_admin_post_path, :class => ('active' if @current_action == "new")  %>
+    </li>
+    <%- end -%>
+  </ul>
+</div>

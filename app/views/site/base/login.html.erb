@@ -1,0 +1,69 @@
+
+<% @title = "Login"; @breadcrumbs = "#{link_to("Home", root_url)} &raquo; Login"%>
+<% @class = "no-padding" %>
+
+<div id="header">Login</div>
+<div>
+  <%#= error_messages_for 'user' unless params[:user_type] == "guest" %>
+  <%= show_messages(flash[:notice]) %>
+
+</div>
+<table align="center" width="95%" id="login_box" cellpadding="0" cellspacing="0">
+  <tr>
+    <td valign="top" width="50%">
+      <h1>Existing User</h1>
+      <% form_tag login_url do  %>
+
+        <p>Username</p>
+        <p><%= text_field_tag :login, nil %></p>
+        <%= set_focus_to('login') %>
+        <p>Password</p>
+        <p><%= password_field_tag :password, nil %></p>
+        <p><%= link_to "Forgot your password", request_new_password_path %></p>
+        <p><%= image_submit_tag "login_button.png" %></p>
+        <!--<fb:login-button onlogin='rack_fbconnect()'></fb:login-button>-->
+        
+      <% end %>
+    </td>
+    <td valign="top" width="50%" style="border-left:none;">
+      <h1>New User test</h1>
+      <p>
+        Creating an account only takes a few moments.
+        you will be able to store your payment and delivery details for future orders.
+      </p>
+      <p>
+        <%= link_to image_tag("buttons/register_button.png"), signup_url %>
+      </p>
+     <!--  <p style="padding-left:45px;font:normal 16px Arial">–OR–</p>
+      <h1>Login as Guest</h1>
+      <div>
+        <%#= error_messages_for 'user' if params[:user_type] == "guest" %>
+      </div>
+     <%# form_tag guest_login_url do %>
+        <span style="font:italic 12px Arial;color:red"><%#= content_tag :p, flash[:guest_login] if flash[:guest_login] %></span>
+        <p>Name</p>
+        <p><%#= text_field_tag :name, nil %></p>
+        <p>Email</p>
+        <p><%#=text_field_tag :email, nil %></p>
+        <p style="font:normal 15px Arial">
+        <%#= show_simple_captcha(:label=>"(type the code from the image. <br />it is case sensitive.)") %><br />
+        <%#= link_to "Guest Login",{:controller => 'site/recipes', :action => 'new',:user => "guest"} %>
+          <%#= image_submit_tag("buttons/guest_login_button.png") %></p>
+        <%# end %> -->
+    </td>
+  </tr>
+</table>
+
+
+<% content_for :right do %>
+  <%= render :partial => '/site/shared/box_event' %>
+  <br />
+  <%= render :partial => '/site/shared/box_subscriptions' %>
+  <br />
+  <%= render :partial => '/site/shared/box_wine_tours' %>
+  <br />
+  <%= render :partial => '/site/shared/box_grape_guide' %>
+  <br />
+  <%= render :partial => '/site/shared/box_popular' %>
+<% end %>
+

@@ -1,0 +1,28 @@
+<div id="catalog" class="sub_menu">
+  <ul>
+    <li <%= "class='active'" if @current_controller == "deliveries" %>><%= link_to "Deliveries", admin_deliveries_path, :class => ('active' if @current_controller == "deliveries") %></li>
+    <li <%= "class='active'" if @current_controller == "categories" %>><%= link_to "Categories", admin_categories_path, :class => ('active' if @current_controller == "categories") %></li>
+    <li <%= "class='active'" if @current_controller == "products" %>><%= link_to "Products", admin_products_path, :class => ('active' if @current_controller == "products") %></li>
+    <li <%= "class='active'" if @current_controller == "gift_options" %>><%= link_to "Gift Options", admin_gift_options_path, :class => ('active' if @current_controller == "gift_options") %></li>
+  </ul>
+  <ul>
+    <li <%= "class='active'" if @current_action == "index" %>>
+      <% 
+        list_uri = admin_deliveries_path
+        list_uri = admin_categories_path if @current_controller == "categories"
+        list_uri = admin_products_path if @current_controller == "products"
+        list_uri = admin_gift_options_path if @current_controller == "gift_options"
+      %>
+      <%= link_to "List", list_uri, :class => ('active' if @current_action == "index") %>
+    </li>
+    <li <%= "class='active'" if @current_action == "new" %>>
+      <% 
+        new_uri = new_admin_delivery_path
+        new_uri = new_admin_category_path if @current_controller == "categories"
+        new_uri = new_admin_product_path if @current_controller == "products"
+        new_uri = new_admin_gift_option_path if @current_controller == "gift_options"
+      %>
+      <%= link_to "New", new_uri, :class => ('active' if @current_action == "new") %>
+    </li>
+  </ul>
+</div>

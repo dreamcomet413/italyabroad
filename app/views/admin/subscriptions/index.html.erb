@@ -1,0 +1,41 @@
+<%- @title = "Administration - Subscriptions"; @page_id = "News Letters" -%>
+<%- @breadcrumbs = "News Letters &raquo; #{link_to "Subscriptions", admin_subscriptions_path}" -%>
+
+<div class="inner_content subscriptions" id="admin_subscriptions_index">
+  <h2>Subscriptions</h2>
+  <br />
+  <table>
+    <tr>
+      <td></td>
+      <td align="right"><%= link_to "New Subscriber", new_admin_subscription_path %></td>
+    </tr>
+  </table>
+  <table id="subscriptions-list" class="list sortable">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Know Through</th>
+        <th>Created</th>
+        <th class="nosort"></th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+        <td colspan="2"><%= will_paginate_(@subscriptions) %></td>
+        <td colspan="3" align="right"><%= page_entries_info_ @subscriptions %></td>
+      </tr>
+    </tfoot>
+    <tbody>
+      <%- for subscription in @subscriptions -%>
+      <tr>
+        <td><%= subscription.id %></td>
+        <td><%= subscription.name + " " + subscription.surname %></td>
+        <td><%= subscription.know_through %></td>
+        <td><%= subscription.created_at.strftime("%d/%m/%y") %></td>
+        <td><%= link_to "Edit", edit_admin_subscription_path(subscription) %> | <%= link_to "Delete", admin_subscription_path(subscription), :method => :delete, :confirm => "Are you sure want to delete this subscriber?" %></td>
+      </tr>
+      <%- end -%>
+    </tbody>
+  </table>
+</div>

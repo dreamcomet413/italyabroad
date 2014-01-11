@@ -1,0 +1,93 @@
+<%#= @category.parent.name %> <%=  session[:return_url] = "" %>
+<% @breadcrumbs = "#{link_to "Home", root_url} &raquo; #{link_to(@category.parent.name, "/#{@category.parent.friendly_identifier}")} &raquo; #{@category.name}" %>
+<%- @class = "sub_categories #{@category.friendly_identifier}" -%>
+
+<% if @products && @products.size > 0 %>
+    <div id="header"><%= @category.name %></div>
+
+    <div style="margin:10px 0px;padding:5px;background-color:#F3F8DA;">
+      <table style="width:100%;" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <%- unless will_paginate(@products).blank? -%>
+              <td><%= will_paginate(@products).html_safe() %></td>
+          <%- end -%>
+          <td align="right">
+            <%- form_tag nested_categories_path(params[:parent], params[:category]), :method => :get, :id => "sort_by_form" do -%>
+                <%= hidden_field_tag :page, (params[:page] || 1) %>
+                <strong>Sort by:</strong>&nbsp;<%= select_tag("sort_by", options_for_select([["Price: Low to high", "price asc"], ["Price: High to low", "price desc"], ["Name", "name"], ["Region", "region_id"]], @sort_by), :onchange => "$('sort_by_form').submit()") %>
+            <%- end -%>
+          </td>
+        </tr>
+
+      </table>
+    </div>
+
+    <table style="padding-bottom:20px;width:100%;" cellpadding="0" border="0" cellspacing="0" class="sub-categories-list">
+
+      <% @products.each do |product| %>
+          <%# if product.quantity > 0 %><!--commented this condition to avoid error in pagination(page without a product)-->
+          <tr>
+            <td style="width:80px;padding:5px 10px;">
+              <%#= product.image_1 %>
+              <%= link_to show_image_tag(product.layout_image, product.image_1, :jpg, product.name), nested_products_uri(product) %>
+            </td>
+            <td style="width:490px;" valign="top">
+              <h2 style="margin:0;padding:20px 0 0 0;">
+                <%= link_to product.name, nested_products_uri(product), :style => "font-size:17px;color:black;font-weight:normal;" %>
+              </h2>
+              <%= show_ratings(product, product.average_rating_round).html_safe() %>
+              <br />
+              <%= product.description_short %>
+              <br />
+              <br />
+              Quantity : <%= product.quantity %>
+            </td>
+            <td style="padding:20px 10px 5px 10px;" valign="top">
+              <div class="box_price_product">
+                <ul>
+                  <li class="price_info">
+                    <% if product.discounted? %>
+                        <div style="font-size:14px;color:black;">Was <span style="text-decoration: line-through;"><%= number_to_currency product.price, :unit => "&pound;" %></span></div>
+                        <span class="price red" style="color:#003300;">Now&nbsp;<span style="color:red;"><%= number_to_currency product.price_discounted, :unit => "&pound;" %></span></span>
+                    <% else %>
+                        <span class="price" style="color:black;"><%= number_to_currency product.price, :unit => "&pound;" %></span>
+                    <% end %>
+                  </li>
+
+                  <li>
+                    <%- if product.out_of_stock? -%>
+                        <%= image_tag('out_of_stock.png') %>
+                    <%- else -%>
+                        <%= link_to image_tag("buttons/add_to_cart_button.png"), :url => product_cart_index_path(product), :remote => true, :html => {:method => 'post'} %>
+                    <%- end -%>
+                  </li>
+                  <li style="margin-bottom:10px;">
+                    <%= link_to image_tag("add_to_wish_list.png"), :url => product_wish_list_index_path(product), :remote => true, :html => {:style => "color:#464646;", :method => :post} %>
+                  </li>
+                  <% if @category.parent.name == 'Wine' %>
+                      <li style="margin-bottom:10px;">
+                        <%= link_to image_tag("WINE_LIST.jpg"), :url => product_wine_list_index_path(product), :remote => true, :html => {:style => "color:#464646;", :method => :post} %>
+                      </li>
+                  <% end %>
+                </ul>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3" style="border-bottom:1px solid #CCCCCC;">&nbsp;</td>
+          </tr>
+          <%# end %> <!-- #end of condition for eliminating out of stock items -->
+      <% end %> <!-- #end of @products.each -->
+
+    </table>
+    <%= content_tag(:div, will_paginate(@products).html_safe, :style => "padding:5px;text-align:right;background-color:#F3F8DA") unless will_paginate(@products).blank? %>
+    <% if @category.name == "Mixed case" ||@category.parent.name == "Hampers" %>
+
+
+    <% end %>
+<%#=@category.parent.name%>
+<% else %>
+    <div id="header">No products found</div>
+    <div style="margin:30px 20px;">Did you not find what you wanted? <%= mail_to "info@italyabroad.com", "Get in touch" %></div>
+<% end %>
+

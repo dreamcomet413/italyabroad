@@ -1,0 +1,111 @@
+<% @title = "Order Confirmation"; %>
+
+	<div id="header">Order Confirmation</div>
+	<div style="border-bottom:1px solid #c1d830;margin-bottom:10px"></div>
+	<% if flash[:notice] %>
+		<div style="text-align:center;margin:10px 0px 10px 0px;padding:5px;font-size:12px;color:red;">
+			<%= flash[:notice] %>
+		</div>
+	<% end %>
+	<div style="padding:10px 5px 10px 5px">
+		<div style="float:left;width:300px">
+			<b>SOLD TO:</b>
+			<%= "<br />" + current_user.name + " " + current_user.surname %>
+			<%= "<br />" + session[:ship_address].name unless session[:ship_address].blank? %>
+			<%= "<br />" + session[:ship_address].address_2 unless session[:ship_address].address_2.blank?  %>
+			<%= "<br />" + session[:ship_address].city unless session[:ship_address].city.blank? %>
+			<%= "<br />" + session[:ship_address].cap unless session[:ship_address].cap.blank? %>
+			<%= "<br />" + session[:ship_address].country unless session[:ship_address].country .blank?%>
+			<%= "<br />Tel. " + session[:ship_address].telephone.to_s unless session[:ship_address].telephone.blank? %>
+			<%= "<br />" + mail_to(current_user.email) unless current_user.email.blank? %>
+		</div>
+		<% if session[:ship_address].is_new %>
+		<div style="float:left;">
+			<b>SHIP TO:</b>
+			<%= "<br />" + session[:ship_address].name unless session[:ship_address].blank? %>
+			<%= "<br />" + session[:ship_address].address_2 unless session[:ship_address].address_2.blank?  %>
+			<%= "<br />" + session[:ship_address].city unless session[:ship_address].city.blank? %>
+			<%= "<br />" + session[:ship_address].cap unless session[:ship_address].cap.blank? %>
+			<%= "<br />" + session[:ship_address].country unless session[:ship_address].country .blank?%>
+			<%= "<br />Tel. " + session[:ship_address].telephone.to_s unless session[:ship_address].telephone.blank? %>
+		</div>
+		<% else %>
+		<div style="float:left;">
+			<b>SHIP TO:</b>
+			<%= "<br />" + current_user.name + " " + current_user.surname %>
+			<%= "<br />" + session[:ship_address].name unless session[:ship_address].blank? %>
+			<%= "<br />" + session[:ship_address].address_2 unless session[:ship_address].address_2.blank?  %>
+			<%= "<br />" + session[:ship_address].city unless session[:ship_address].city.blank? %>
+			<%= "<br />" + session[:ship_address].cap unless session[:ship_address].cap.blank? %>
+			<%= "<br />" + session[:ship_address].country unless session[:ship_address].country .blank?%>
+			<%= "<br />Tel. " + session[:ship_address].telephone.to_s unless session[:ship_address].telephone.blank? %>
+		</div>
+		<% end %>
+		<br style="clear:both" />
+	</div>
+	<div style="padding:10px 5px 10px 5px">
+		<table id="table" border="0" cellspacing="0" cellpadding="0" class="formatTable">
+			<tr><th style="text-align:left;">Code</th><th>Qty</th><th style="text-align:left">Description</th><th>Price(ex)</th><th>VAT</th><th>Price(inc)</th><th style="text-align:right;">Total</th></tr>
+			<% for item in @cart.items %>
+				<tr>
+					<td style="text-align:left"><%= item.product.code %></td>
+					<td style="text-align:center"><%= item.quantity %></td>
+					<td style="text-align:left"><%= item.product.name %></td>
+					<td style="text-align:center"><%= number_to_currency item.vat %></td>
+					<td style="text-align:center"><%= item.product.rate %></td>
+					<td style="text-align:center"><%= number_to_currency item.price %></td>
+					<td style="text-align:right"><%= number_to_currency item.total %></td>
+				</tr>
+			<% end %>
+			<tr>
+				<td colspan="7" style="text-align:right">
+					<table id="table" border="0" cellpadding="0" cellspacing="0" style="margin-top:20px;float:right;text-align:right;border-top:1px solid black">
+						<tr><td style="text-align:right">Sub Total:</td><td style="width:70px"><%= number_to_currency(@cart.sub_total) %></td></tr>
+						<% if @cart.sub_total < Setting.order_delivery_amount %>
+						<tr><td style="text-align:right"><%= @cart.delivery.name %>:</td><td><%= number_to_currency @cart.delivery.price %></td></tr>
+						<% end %>
+						<%# unless @order.cupon_code.blank? %>
+					<!--	<tr><td style="text-align:right">Coupon:</td><td style="color:red">- <%#= number_to_currency @order.cupon_price %></td></tr>-->
+						<%# end %>
+						<% unless @cart.gift[:gift_option_id].blank?
+						if GiftOption.find(@cart.gift[:gift_option_id]).price > 0   %>
+						<tr><td style="text-align:right">Wrapping option (<%= GiftOption.find(@cart.gift[:gift_option_id]).name %>):</td><td><%= number_to_currency GiftOption.find(@cart.gift[:gift_option_id]).price %></td></tr>
+						<% end end %>
+						<tr><td style="text-align:right"><b>Total:</b></td><td><%= number_to_currency(@cart.total) %></b></td></tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+		<br style="clear:both"/>
+		<% unless @cart.gift.blank? %>
+		<% unless @cart.gift[:note].blank? %>
+		<div style="padding:10px 5px 10px 5px;">
+			<b>Customer Comment:</b><br />
+			<%= @cart.gift[:note].gsub("\n","<br />") %>
+		</div>
+		<% end %>
+		<% end %>
+	</div>
+
+	<% form_tag( {:action => :order_confirmation}, :id => "form_submit" ) do %>
+		<div style="text-align:right;font-size:10px;padding-top:10px;">
+			<div style="background-color:#efff9f;padding:5px">
+				Please tick here to confirm that you accept our
+				<%= link_to "Terms and Conditions", {:controller => :base, :action => :terms_conditions}, :popup => ['wtc', 'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=Yes,resizable=No,copyhistory=no, width=450, height=520'] %>
+				<%#= check_box :agreement, :role %>
+				<%=check_box_tag 'accept' %>
+<br /><br />
+        <%= link_to image_tag("buttons/continue_shopping_button.png"), continue_shopping_cart_path %>&nbsp;
+				<%#= submit_tag("BACK", :onclick => "window.location = '#{url_for(:action => :gift_options)}';return false") %>
+				<%#= submit_tag "SUBMIT ORDER" %>
+				<%= image_submit_tag("buttons/continue_button.png") %>
+			</div>
+		</div>
+	<% end %>
+
+<% content_for :right do %>
+	<%= render :partial => '/site/shared/box_subscriptions' %>
+	<br />
+	<%= render :partial => '/site/shared/box_grape_guide' %>
+<% end %>
+

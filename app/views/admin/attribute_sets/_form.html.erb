@@ -1,0 +1,17 @@
+<div id="attribute-set-form-ct">
+	<div class="save_button" id="attribute-set-form-hr"><%= image_submit_tag "/javascripts/ext/resources/images/admin/btn_save.png" %></div>
+	<div id="attribute-set-form-cn">
+		<table id="table" border="0" cellspacing="5" cellpadding="5" style="width:99%">
+			<tr><td style="text-align:right;width:200px">Attribute Set Name:</td><td><%= text_field :attribute_set, :name, :style => "width:99%" %></td></tr>
+			<tr><td colspan="2"></td></tr>
+			<% for attribute_item in @attribute_items %>
+			<tr>
+				<td style="text-align:right"><%= attribute_item.name %>:</td>
+				<td>
+				<%= check_box_tag "attribute_set[attribute_item_ids][]", attribute_item.id, @attribute_set.attribute_items.include?(attribute_item) %> 
+				</td>
+			</tr>
+			<% end %>
+		</table>
+	</div>
+</div>

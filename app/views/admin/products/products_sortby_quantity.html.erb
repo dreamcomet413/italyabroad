@@ -1,0 +1,66 @@
+<%- @title = "Administration - Products"; @page_id = "Catalog" -%>
+<%- @breadcrumbs = "Catalog &raquo; #{link_to "Products", admin_products_path}" -%>
+
+<div class="inner_content products" id="admin_products_index">
+  <h2>Products</h2>
+  <br />
+  <table>
+    <tr>
+      <% form_tag 'products_sortby_quantity' do  %>
+      <td>
+      <strong>Quantity</strong><%= text_field_tag 'search_name',params[:search_name]%>
+
+
+        <%= submit_tag 'Search' %>
+
+      </td>
+
+    </tr>
+  </table> <br />
+
+  <table id="products-list" class="list sortable">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Code</th>
+        <th>Category</th>
+        <th>Sub Categories</th>
+        <th>Name</th>
+        <th>Discount</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Out of stock</th>
+        <th>Active</th>
+        <th class="nosort"></th>
+
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+        <td colspan="10"><%= will_paginate_(@products) %></td>
+        <td align="right"><%= page_entries_info_ @products %></td>
+      </tr>
+    </tfoot>
+    <tbody>
+      <%- @products.each do |product| -%>
+      <tr>
+        <td><%= product.id %></td>
+        <td><%= product.code %></td>
+        <td><%= product.root_category unless product.root_category.blank? %></td>
+        <td><%= product.sub_categories.join(" &raquo; ") unless product.sub_categories.blank? %></td>
+        <td><%= link_to product.name, nested_products_uri(product) %></td>
+        <td><%= product.discount %>%</td>
+        <td><%= number_to_currency product.price, :unit => "&pound;" %></td>
+        <td><%= product.quantity %></td>
+        <td><%= product.quantity == 0 %></td>
+        <td><%= product.active %></td>
+        <td>
+          <%= link_to "Edit", edit_admin_product_path(product.id), :popup => ['Edit #{product.name}', 'height=1000,width=1000,scrollbars=yes']%> | <%= link_to "Delete",admin_product_path(product),:confirm => 'Are you sure?', :method => :delete %>
+        </td>
+       </tr>
+      <%- end -%>
+    </tbody>
+  </table>
+  <% end %>
+</div>
+

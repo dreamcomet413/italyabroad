@@ -1,0 +1,28 @@
+development:
+  adapter: mysql
+  database: italyabroad_dev
+  username: root
+  password: password
+  socket: /var/mysql/mysql.sock
+
+test:
+  adapter: mysql
+  database: italyabroad_test
+  username: root
+  password: password
+  socket: /var/mysql/mysql.sock
+
+production:
+  adapter: mysql2
+  encoding: utf8
+  host: 89.145.121.178
+  port: 80
+  database: italy2011sep_prod
+  username: root
+  password: italyabroad
+
+staging:
+  adapter: mysql
+  database: italy_april_production
+  username: root
+  password: italyabroad

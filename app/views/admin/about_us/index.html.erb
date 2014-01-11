@@ -1,0 +1,25 @@
+<h1>Listing about_us</h1>
+
+<table class="list sortable" >
+  <tr>
+    <th>Title</th>
+    <th>Description</th>
+    <th padding-left="10px">Link Type</th>
+    <th></th>
+    <th></th>
+  </tr>
+  
+<% @about_us.each do |about_u| %>
+  <tr>
+    <td width="250"><%= about_u.title %></td>
+    <td width="400"><%= truncate(about_u.description,300) %></td>
+    <td width="180" padding-left="10px"><%= about_u.link_type %></td>
+    <td><%= link_to 'Edit', edit_admin_about_u_path(about_u) %></td>
+    <td><%= link_to 'Destroy', admin_about_u_path(about_u), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%#= link_to 'New about_u', new_about_u_path %>

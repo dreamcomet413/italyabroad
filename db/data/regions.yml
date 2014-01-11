@@ -1,0 +1,86 @@
+---
+region1:
+  id: 1
+  name: Abruzzo
+  friendly_identifier: <%= Grape.format_identifier("Abruzzo") %>
+
+region2:  
+  id: 2
+  name: Apulia
+  friendly_identifier: <%= Grape.format_identifier("Apulia") %>
+
+region3:
+  id: 3
+  name: Campania
+  friendly_identifier: <%= Grape.format_identifier("Campania") %>
+
+region4:
+  id: 4
+  name: Emilia Romagna
+  friendly_identifier: <%= Grape.format_identifier("Emilia Romagna") %>
+
+region5:  
+  id: 5
+  name: Friuli Venezia Giulia
+  friendly_identifier: <%= Grape.format_identifier("Friuli Venezia Giulia") %>
+
+region6:  
+  id: 6
+  name: Italy
+  friendly_identifier: <%= Grape.format_identifier("Italy") %>
+
+region7:  
+  id: 7
+  name: Latium
+  friendly_identifier: <%= Grape.format_identifier("Latium") %>
+
+region8:  
+  id: 8
+  name: Liguria
+  friendly_identifier: <%= Grape.format_identifier("Liguria") %>
+
+region9:  
+  id: 9
+  name: Lombardia
+  friendly_identifier: <%= Grape.format_identifier("Lombardia") %>
+
+region10:  
+  id: 10
+  name: Marche
+  friendly_identifier: <%= Grape.format_identifier("Marche") %>
+
+region11:  
+  id: 11
+  name: Piedmont
+  friendly_identifier: <%= Grape.format_identifier("Piedmont") %>
+
+region12:  
+  id: 12
+  name: Sardinia
+  friendly_identifier: <%= Grape.format_identifier("Sardinia") %>
+
+region13:  
+  id: 13
+  name: Sicily
+  friendly_identifier: <%= Grape.format_identifier("Sicily") %>
+
+region14:  
+  id: 14
+  name: Trentino Alto Adige
+  friendly_identifier: <%= Grape.format_identifier("Trentino Alto Adige") %>
+
+region15:  
+  id: 15
+  name: Tuscany
+  description: <p>The region of Tuscany includes seven coastal islands and is Italy’s fifth largest region. It is bordered to the northwest by Liguria, the north by Emilia-Romagna, Umbria to the east and Lazio  to the south. To the west is the Tyrrhenian Sea which gives the area a warm mediterranean climate. The terrain is quite hilly (over 68% of the terrain), progressing inward to the Apennine Mountains along the border with Emilia-Romagna. The hills serve as a tempering affect on the summertime heat with many vineyards planted on the higher elevations  of the hillsides.</p><p>The Sangiovese grape performs better when it can receive more direct sunlight, which is a benefit of the many hillside vineyards in Tuscany. The majority of the region’s vineyards are found at altitudes of 500-1600 feet (150-500 meters). The higher elevations also increase the diurnal temperature variation, helping the grapes maintain their balance of sugars and acidity as well as their aromatic qualities.</p>
+  friendly_identifier: <%= Grape.format_identifier("Tuscany") %>
+
+region16:  
+  id: 16
+  name: Umbria
+  friendly_identifier: <%= Grape.format_identifier("Umbria") %>
+
+region17:  
+  id: 17
+  name: Veneto
+  friendly_identifier: <%= Grape.format_identifier("Veneto") %>

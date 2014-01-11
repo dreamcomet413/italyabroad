@@ -1,0 +1,23 @@
+<% @title = "Unsubscribe"; %>
+
+<div style="text-align:center;font-size:14px;padding-top:50px" class="green">
+	<%= flash[:title] %><br /><br />
+	<div style="color:#333;padding-bottom:20px">
+		<%= flash[:message] %>
+	</div>
+	<% unless @hide %>
+		<% form_tag :action => :unsubscribe do %>
+			Insert your email address<br />
+			<%= text_field :subscriptions, :email %><br />
+			<%= submit_tag "UNSUBSCRIBE" %>
+		<% end %>
+	<% end %>
+</div>
+
+<% content_for :right do %>
+	<%= render :partial => '/site/shared/box_contact' %>
+	<br />
+	<%= render :partial => '/site/shared/box_blog' %>
+	<br />
+	<%= render :partial => '/site/shared/box_subscriptions' %>
+<% end %>

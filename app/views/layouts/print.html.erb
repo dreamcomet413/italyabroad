@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html:charset=utf-8" />
+	<style type="text/css">
+		@page {
+		  size: 210mm 297mm;
+		  margin: 40mm 5mm 13mm 5mm;
+			
+			
+			<% if @tasting_notes %>
+				@top {
+					content: url(/images/pdf_tasting_header.png);
+					 prince-image-resolution: normal;
+			  }
+
+				@bottom {
+					content: url(/images/pdf_tasting_footer.png);
+				  }	 prince-image-resolution: normal;
+			<% else %>
+				@top {
+					content: url(/images/pdf_header.png);
+				  }	 prince-image-resolution: normal;
+
+				@bottom {
+					/*content: url(/images/pdf_footer.png);*/
+				  }	  prince-image-resolution: normal;
+			<% end %>
+		}
+	</style>
+</head>
+<body>
+  <%= yield %>
+</body>
+</html>
+

@@ -1,0 +1,2 @@
+module Site::ReviewsHelper
+end

@@ -1,0 +1,70 @@
+<%- @title = "Administration - Customers"; @page_id = "Administration" -%>
+<%- @breadcrumbs = "Administration &raquo; #{link_to "Customers", admin_customers_path}" -%>
+
+<div class="inner_content customers" id="admin_customers_index"><% %>
+  <h2>Customers </h2>
+  <br />
+  <table>
+    <tr>
+      <td>
+        <%- form_tag admin_customers_path, :method => :get do -%>
+        <strong>Search:</strong>
+        <%= text_field_tag :search_text,'',:value=>params[:search_text] %>
+        in
+        <%= select_tag :field_text, options_for_select([["All", ""], ["Login", "login"], ["Name", "name"], ["Surname", "surname"]],params[:field_text]) %>
+         <% @user_types = Type.find(:all,:conditions=>"name != 'Admin' and name!='Guest'")%>
+        <%= select_tag :user_type,'<option value="">Any</option>'+options_from_collection_for_select(@user_types, "id", "name",params[:user_type].to_i) %>
+
+        <%= submit_tag "Search", :name => 'search' %>
+        <%= set_focus_to 'search' %>
+        <%- end -%>
+      </td>
+      <td align="right"><%= link_to "Customers by DOB", :controller=>'admin/customers',:action=>"print_user_details",:search_text=>params[:search_text],:field_text=>params[:field_text],:user_type=>params[:user_type],:search=>params[:search],:format => "pdf" %> &nbsp;&nbsp;
+      <%= link_to "New Customer", new_admin_customer_path %></td>
+    </tr>
+  </table>
+  <table id="user-list" class="list sortable" width="100%">
+    <thead>
+      <tr>
+        <th class="sortfirstdec">ID</th>
+        <th>Login</th>
+        <th>Name</th>
+        <th>Surname</th>
+        <th class="date-eu">Dob</th>
+
+        <th>Know Through</th>
+        <th>Active</th>
+        <th class="nosort"><div style="width:25px;">Created-at</div></th>
+        <th><div style="width:5px;"><%= image_tag "sort.png"%></div></th>
+        <th class="nosort"></th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+        <td colspan="4"><%= will_paginate_(@users) %></td>
+        <td colspan="4" align="right"><%= page_entries_info_ @users %></td>
+      </tr>
+    </tfoot>
+    <tbody>
+      <%- @users.each do |user| -%>
+      <tr>
+        <td ><%= user.id %></td>
+        <td><%= user.login %></td>
+        <td><%= user.name %></td>
+        <td><%= user.surname %></td>
+        <td><%= user.dob.strftime("%d-%m-%Y") unless user.dob.nil? %></td>
+
+        <td><%= user.know_through %></td>
+        <td><%= user.active %></td>
+        <td><div style="width:25px;"><%= user.created_at.strftime("%d-%m-%Y")%></div></td>
+        <td><div style="width:5px;display:none;"><%= user.created_at%></div></td>
+        <td>
+          <%= link_to "Edit", edit_admin_customer_path(user) %> |
+          <%= link_to "Delete", admin_customer_path(user), :method => "delete", :confirm => "Are you sure want to delete this account?" %>
+        </td>
+      </tr>
+      <%- end -%>
+    </tbody>
+  </table>
+</div>
+

@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <%= javascript_include_tag "prototype", :juggernaut %>
+    <%= stylesheet_link_tag "chat", :cache => false %>
+    <% unless session[:chat_user_name].blank? %>
+    <%= juggernaut(:channels => session[:juggernaut_channels], :client_id => session[:chat_user_name], :debug => false) %>
+    <% end -%>
+<script type="text/javascript" >
+hasFocus = true;
+window.onblur = function () {hasFocus = false;}
+window.onfocus = function () {hasFocus = true;}
+function scrollup(chat_data){
+var objDiv = document.getElementById(chat_data);
+objDiv.scrollTop = objDiv.scrollHeight;
+
+}
+<%  if session[:chat_user_name] == @support_user %>
+function window_to_front(){
+if (hasFocus == false)
+  {
+   alert ("Please check message");
+  }
+
+}
+<% else %>
+function window_to_front(){
+window.focus();
+}
+<% end %>
+
+</script>
+  </head>
+  <body>
+    <div>
+
+      <% if @support_status == true %>
+        <h3>Welcome to the Italyabroad.com live chat</h3>
+      <% else %>
+        <%  if session[:chat_user_name] == @support_user %>
+            <!-- Sujith-->
+           <!-- UserName<%#= session[:chat_user_name] %> Support User<%#=@support_user%> -->
+          <h3>Welcome to the Italyabroad.com live chat</h3>
+        <% else %>
+          <h3>Sorry, Chat not available now.</h3>
+        <% end %>
+      <% end %>
+      <p class="flash"><%= flash[:notice] %></p>
+
+      <% if !session[:chat_user_name].blank? %>
+      <% if @support_status == true || session[:chat_user_name] == @support_user %>
+      <div id="chat_data"></div>
+      <p>
+      </p>
+        <%= form_remote_tag(
+          :url => { :action => :send_data },
+          :complete => "$('chat_input').value = ''" ) %>
+
+        <% if session[:chat_user_name] == @support_user = Setting.find(:first).support %>
+        <%= hidden_field_tag "reply_to" ,"", {:id => 'reply_to'} %>
+        <%= label_tag "","Click on \"Reply\" to select a Chat User", {:id => 'label_reply'} %>
+        <% end %>
+
+        <%= text_field_tag( 'chat_input', '', { :size => 48 , :id => 'chat_input'} ) %>
+        <%= submit_tag "send" %>
+
+
+    </form>
+      <% end %>
+  </div>
+    <% else %>
+    <div>
+      <% unless @support_status == false %>
+        As you are not logged in!!,<br/> Please enter a "user name" to continue chat session
+        <% form_tag :action => :create_chat_user do %>
+        <%= text_field_tag "chat_user"  %>
+        <%= submit_tag "Submit" %>
+        <% end %>
+      <% end %>
+    </div>
+    <% end %>
+
+</body>
+</html>
+

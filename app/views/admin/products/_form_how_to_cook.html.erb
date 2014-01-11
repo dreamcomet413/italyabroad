@@ -1,0 +1,14 @@
+<fieldset id="how_to_cook_information">
+  <table class="list">
+    <tr>
+      <td class="header">&nbsp;</td>
+      <td class="header">Name</td>
+    </tr>
+    <%- for recipe in @recipes -%>
+    <tr>
+      <td><%= radio_button_tag "how_to_cook_id", recipe.id, (@product.how_to_cook_id == recipe.id) %></td>
+      <td><%= recipe.name %></td>
+    </tr>
+    <%- end -%>
+  </table>
+</fieldset>

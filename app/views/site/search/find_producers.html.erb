@@ -1,0 +1,38 @@
+<div id="header">Your search has found the following Producers </div>
+<div align="right" class="pagination_div"><%= will_paginate(@producers) %></div>
+  <ul  style="list-style:none;margin:0 0 0 0px;padding:0 0 0 0px;">
+    <%- for producer in @producers -%>
+      <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 0 0px; margin-left:15px;margin-right:15px;padding:0 0 0 0px; padding-left:15px;padding-right:15px;">
+        <tr>
+          <td width="98px;">
+          <%#= link_to show_producer_image(producer), producer_path(producer) %>
+          <% if producer.image %>
+            <%=  image_tag(image_url(:community_producer_thumb, producer.image, :jpg),:alt=>producer.name) %>
+          <% else %>
+            <%= image_tag("default.jpg",:width => "150",:alt=>producer.name) %>
+          <% end %>
+          </td>
+          <td valign="top">
+            <table cellspacing="5">
+              <tr>
+                <td>
+                 <h1><%= link_to producer.name, producer_path(producer) %><br /><span style="font-size:10px;font-weight:bold;">Region:&nbsp;&nbsp;<%= producer.region.name rescue "No region" %><span></h1>
+
+                </td>
+              </tr>
+
+              <tr><td><%= producer.description[0..400] rescue "" %></td></tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <h3>&nbsp;</h3>
+  <% end %>
+  </ul>
+
+<% content_for :right do %>
+	<%= render :partial => '/site/shared/box_popular' %>
+	<br />
+	<%= render :partial => '/site/shared/box_grape_guide' %>
+<% end %>
+

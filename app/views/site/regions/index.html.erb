@@ -1,0 +1,166 @@
+<% @title = "Regions"; @description = "Andrea’s Wine Blog, The Italian Wine Blog, A Guide to Italian Wines, Journey Through Italian Wines"; @keys = "Wine Blog,Italian Wine Blog,Italian Red and White Wine,Italian Food,Wine Tasting,Wine Expert" %>
+<%- @breadcrumbs = "#{link_to("Home", root_url)}  &raquo; #{link_to("Community", wine_community_path)} &raquo; #{link_to("Regions", regions_path)}" -%>
+
+<% @about = AboutU.find(:first, :conditions => {:link_type => "region"} ) %>
+<div id="blog_home">
+
+  <span class="title">
+  <% if !@about.nil? %>
+    <% unless @about.title.blank? %>
+     <div style="color:white;width:350px;height:100px;background:black;opacity: 0.6;filter:alpha(opacity=40);text-align:left">
+      <%= @about.title if @about %>
+      </div>
+    <% end %>
+  <% end %>
+    <!--A <strong style="font-size:30px;">blog</strong> dedicated entirely to<br />
+    <strong style="font-size:30px;">Italian wine,</strong> follow us in our<br />
+    discovery journey, <strong style="font-size:30px;">read news</strong><br />
+    and our <strong style="font-size:30px;">views</strong> on Italian wine-->
+  </span>
+ <% if  @about and !@about.image_id.nil? %>
+  <%= link_to image_tag(image_url('region_card', @about.image, :jpg),:alt=>@about.title) , search_index_path(:id => "regions") unless @about.blank? %>
+  <% else %>
+  <%= link_to image_tag("blog_home.jpg",:alt=>'Regions'),search_index_path(:id => "regions") %>
+  <% end %>
+</div>
+<h3 style="border:none;"  align="center">Italy and its regions</h3>
+<div id="blog_container">
+  <div id="blog_introduction" style="text-align:justify;">
+    <%= @about.description if @about %>
+    <!--I had my first sip of wine when I was 2, I can still recall that moment like it was yesterday. Sitting on my grandpa knees, sipping the wine he had produced from his glass.
+    <br/><br/>
+    That was the moment where my passion for italian food & wine was born.
+    <br/><br/>
+    In my blog I will write about my adventures whilst discovering the finest itailian produce.
+    <br/><br/>
+    I will also like to hear what you have to say so please share your views & comments.  -->
+  </div>
+<br />
+  <div style="clear:both;"></div><br />
+ <!-- <div style="float:right;">
+  <%#- form_tag regions_path, :method => :get do -%>
+    <strong>Region Search</strong><%= text_field_tag 'search_by_name',params[:search_by_name] %>
+    <%#= submit_tag 'Search', :name => 'search' %>
+  <%# end %>
+  </div> -->
+  <br />
+  <br />
+  <!-- Alphabetical listing of regions added by Sujith on 2011.jan.28 START -->
+
+
+
+
+
+
+  <h3 style="font-size:16px;border:none;margin-bottom:0;">Regions list, click for information</h3>
+  <br />
+  <table cellpadding="5" cellspacing="0" border="0" width="100%">
+    <tr>
+      <td valign="top" style="width:33%;">
+        <h4 style="margin:0;padding:0;">A-G</h4>
+        <br />
+        <ul class="clean" style="list-style:none;">
+
+          <%- for region in @regions_all  -%>
+
+            <% if region.name.upcase =~ /^[A-G]/ %>
+            <li><%= link_to truncate(region.name,50), region_path(region) %></li>
+            <%- end -%>
+          <%- end -%>
+        </ul>
+      </td>
+      <td valign="top" style="width:33%;">
+        <h4 style="margin:0;padding:0;">H-L</h4>
+        <br />
+        <ul class="clean" style="list-style:none;">
+          <%- for region in @regions_all -%>
+            <% if region.name.upcase =~ /^[H-L]/ %>
+              <li><%= link_to truncate(region.name,50), region_path(region) %></li>
+            <%- end -%>
+          <%- end -%>
+        </ul>
+      </td>
+      <td valign="top" style="width:33%;">
+        <h4 style="margin:0;padding:0;">M-Z</h4>
+        <br />
+        <ul class="clean" style="list-style:none;">
+          <%- for region in @regions_all -%>
+              <% if region.name.upcase =~ /^[M-Z]/ %>
+              <li><%= link_to truncate(region.name,50), region_path(region) if region.name.upcase =~ /^[M-Z]/ %></li>
+              <%- end -%>
+          <%- end -%>
+        </ul>
+      </td>
+     <!-- <td valign="top" style="width:33%;">
+        <h4 style="margin:0;padding:0;">S-Z</h4>
+        <br />
+        <ul class="clean" style="list-style:none;">
+          <%#- for region in @regions_all -%>
+          <li><%#= link_to truncate(region.name,50), region_path(region) if region.name.upcase =~ /^[S-Z]/ %></li>
+          <%#- end -%>
+        </ul>
+      </td>-->
+    </tr>
+  </table>
+
+
+
+
+
+
+
+<!-- Alphabetical listing of regions added by Sujith on 2011.jan.28 END --><br />
+
+ <% if params[:search] %>
+  <div><%= will_paginate_(@regions) %></div>
+<% if @regions && @regions.size > 0 %>
+	<ul>
+	<% for region in @regions %>
+	  <li>
+      <h2><%= link_to region.name, region.friendly_identifier.blank? ? "regions/#{region.id}" : "regions/#{region.friendly_identifier}" %><%#= show_region_image(region) %></h2>
+      <%#= show_region_image(region) %>
+      <div><% unless region.description.blank? %>
+      <%= region.description[0,250] %>
+       <%- end -%>
+      </div>
+      <div>
+      <% unless region.producers(:conditions=>['active = ?',true]).blank? %>
+      Producers in this region : <%- region.producers.each do |p| -%>
+            <%= p.name %>
+          <%- end -%>
+       <% else %>
+       No Producers from this region
+       <% end %>
+      </div>
+      <table width="100%" class="foot">
+        <tr>
+
+          <td align="right">
+
+          </td>
+        </tr>
+      </table>
+    </li>
+  <% end %>
+  </ul>
+<div><%= will_paginate_(@regions) %></div>
+  <% end %>
+
+  <div style="clear:both;"></div>
+  <div style="float:right;margin-top:20px;margin-bottom:10px;"><%= render :partial => '/site/shared/social_bookmarks' %></div>
+  <% end %>
+</div>
+<% content_for :right do %>
+<%= render :partial => 'site/shared/box_event' %>
+	<br />
+	<%= render :partial => '/site/blog/box_most_read_blog' %>
+	<br />
+	<%= render :partial => 'site/shared/box_popular' %>
+	<br />
+	<%#= render :partial => 'box_popular_tags' %>
+	<br />
+	<%#= render :partial => 'box_latest_blog_comments' %>
+	<br />
+	<%#= render :partial => 'box_archives' %>
+<% end %>
+

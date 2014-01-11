@@ -1,0 +1,20 @@
+<% @page_title = "All Posts" -%>
+<%- set_title @page_title -%>
+
+<h1>
+<% if params[:q].blank? -%>
+  <%= @page_title %>
+<% else -%>
+  <%= 'Searching for' %> '<%= h params[:q] %>'
+<% end -%>
+</h1>
+<p class="subtitle">
+  <%= feed_icon_tag @page_title, search_posts_path(true) %>
+  <%= number_with_delimiter(@posts.total_entries) %> posts
+</p>
+
+<%= will_paginate @posts %>
+<%= stylesheet_link_tag "display" %>
+<%= render :partial => 'site/posts/posts' %>
+
+

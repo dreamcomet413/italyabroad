@@ -1,0 +1,13 @@
+<%- @title = "Administration - Reviews/Edit"; @page_id = "Other Stuff" -%>
+<%- @breadcrumbs = "Other Stuff &raquo; #{link_to "Reviews", edit_admin_review_path}" -%>
+
+
+<div class="inner_content posts">
+  <h2><%= @title %></h2>
+  <br />
+  <% form_for [:admin,@review] do %>
+  	<%= render :partial => "form" %>
+  	<p><%= submit_tag "Save" %> or <%= link_to "Cancel", edit_admin_review_path %></p>
+  <% end %>
+</div>
+

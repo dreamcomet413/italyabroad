@@ -1,0 +1,16 @@
+<fieldset id="meta_information">
+	<table border="0" cellspacing="5" cellpadding="5">
+	  <tr>
+	    <td style="text-align:right;width:150px;">Page Title:</td>
+	    <td><%= text_field :product, :page_title, :style => "width:99%" %></td>
+    </tr>
+	  <tr>
+	    <td style="text-align:right">Meta Keys:</td>
+	    <td><%= text_field :product, :meta_keys, :style => "width:99%" %></td>
+    </tr>
+		<tr>
+		  <td style="text-align:right">Description:</td>
+		  <td><%= text_area :product, :meta_description, :rows => 3, :style => "width:99%" %></td>
+    </tr>
+	</table>
+</fieldset>

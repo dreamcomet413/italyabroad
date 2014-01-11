@@ -1,0 +1,49 @@
+<%- @title = "Administration - Deliveries"; @page_id = "Catalog" -%>
+<%- @breadcrumbs = "Catalog &raquo; #{link_to "Deliveries", admin_deliveries_path}" -%>
+
+<div class="inner_content deliveries" id="admin_deliveries_index">
+  <h2>Deliveries</h2>
+  <br />
+  <table>
+    <tr>
+      <td><%= will_paginate_(@deliveries) %></td>
+      <td align="right"><%= link_to "New Delivery", new_admin_delivery_path %></td>
+    </tr>
+  </table>
+  <table id="delivery-list" class="list sortable">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th class="nosort"></th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+        <td colspan="2"><%= will_paginate_(@deliveries) %></td>
+        <td colspan="2" align="right"><%= page_entries_info_ @deliveries %></td>
+      </tr>
+    </tfoot>
+    <tbody>
+      <%- @deliveries.each do |delivery| -%>
+      <tr>
+        <td><%= delivery.id %></td>
+        <td><%= delivery.name %></td>
+        <td><%= number_to_currency(delivery.price, :unit => "&pound;") %></td>
+        <td>
+          <% if delivery.name != "Collection at our warehouse" and delivery.name != "For ticket events" and delivery.name != "Free delivery (3/4 days, UK mainland only)"%>
+            <%= link_to "Edit", edit_admin_delivery_path(delivery) %> | <%= link_to "Delete", admin_delivery_path(delivery), :method => :delete, :confirm => "Are you sure want to delete this item?" %>
+            <% else %>
+              Non- Editable
+          <% end %>
+        </td>
+      </tr>
+      <%- end -%>
+    </tbody>
+  </table>
+  <%= will_paginate(@deliveries) %>
+</div>
+
+</div>
+

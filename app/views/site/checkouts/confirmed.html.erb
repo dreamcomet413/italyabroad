@@ -1,0 +1,58 @@
+<!-- Google Code for Sucessfull order Conversion Page -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 998283630;
+var google_conversion_language = "en";
+var google_conversion_format = "3";
+var google_conversion_color = "ffffff";
+var google_conversion_label = "KNvKCJLbrwMQ7rKC3AM";
+var google_conversion_value = 0;
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="https://www.googleadservices.com/pagead/conversion/998283630/?value=0&amp;label=KNvKCJLbrwMQ7rKC3AM&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
+<% @title = "Complete Order" %>
+<%- @breadcrumbs = "#{link_to "Home", root_url} &raquo; Checkout &raquo; Complete Order" -%>
+<% @class = "no-padding" %>
+<!--Response - <%#= session[:response] %><br />
+Success or failure - <%#= session[:response_success] %>
+Response Params is <%#= session[:response_params] %>-->
+
+<div id="header">Your Order is Complete!</div>
+<!--<div style="text-align:center;margin-top:40px;"><%#= image_tag("cart_step_4.png") %></div> -->
+<%#= render :partial => 'site/shared/box_cart_form' %>
+ <p style="margin: 10px 20px">
+  Your Order has been successfully received by our team and you will shortly receive an acknowledgement by email.
+  </p><br />
+<div style="margin: 10px 20px;font-size:16px;font-weight:bold;">
+Order Details
+</div>
+
+<p style="margin: 10px 20px;">
+Order Reference : <%= @order.id %><br /><br />
+<!--Total order Value : <span style="font-size:16px;"><%#= number_to_currency (@order.total - (@order.points_used * Setting.find(:first).points_to_pound), :unit => "&pound;") %></span>
+( + Points: <%#= number_to_currency (@order.points_used * Setting.find(:first).points_to_pound, :unit => "&pound;") %>)
+<br /><br />
+You will shortly receive an order acknowledgement by email.-->
+Payment Method : <%= number_to_currency (@order.total - (@order.points_used * @setting.points_to_pound), :unit => "&pound;") %> Credit Card
+ + Points equivalent to : <%= number_to_currency (@order.points_used * @setting.points_to_pound, :unit => "&pound;") %>
+<br /><br />
+</p><br />
+<div style="margin: 10px 20px;">
+<%= render :partial => 'site/shared/box_cart_form' %>
+</div>
+<br />
+  <p style="margin: 10px 20px;font-weight:bold;">
+  Thank you for shopping at Italyabroad.com
+  </p>
+
+
+<%- content_for :right do -%>
+  <%= render :partial => 'site/shared/box_subscriptions' %>
+<%- end -%>
+

@@ -1,0 +1,15 @@
+<% products = Product.other_events(@product) %>
+
+
+<div class="block" id="box_event">
+  <%= link_to((image_tag "MoreEvents_edited.png",:alt=>'More Events',:title=>'More Events'), '/events')%><br />
+  <ul>
+  <%- for event in products -%>
+    <li style="margin-bottom:10px;">
+      <span style="color:grey;"><%= event.date.strftime("%d %B %Y at %H:%M") if event.date %></span>
+  	  <div style="font-size:14px;"><%= link_to event.name, "/wine-events/#{event.friendly_identifier}" %></div>
+	  </li>
+  <%- end -%>
+  </ul>
+</div>
+

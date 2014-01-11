@@ -1,0 +1,441 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title><%= h(title) %></title>
+	<link rel="shortcut icon" href="/images/italyabroad.ico" />
+	<meta name="description" content="<%= h(description) %>" />
+	<meta name="keywords" content="<%= h(keys) %>" />
+	<meta http-equiv="content-language" content="EN" />
+
+<style type="text/css" media="screen">
+
+html, body 
+{
+height: 100%;
+}
+#Container
+{
+    width:600px;
+	min-height:100%;
+	height:100%;
+	height:auto;
+	margin:0 auto;
+}
+#BannerTop
+{   
+	float:left;
+	width:600px;
+	/*height:100px;*/
+	padding:0;
+}
+
+#Links
+{   
+	float:left;
+	width:600px;
+	height:35px;
+	background-image: <%= AppConfig.site_url %>/images/NLLBG.png);
+	text-align:center;
+	font-family:Verdana;
+	font-size:11px;
+	color:#FFF;
+	font-weight:bold;
+	display: none;
+}
+
+#Banner1
+{
+	float:left;
+	width:600px;
+	/*height:50px;*/
+	padding: 0;
+}
+
+#MainBody
+{
+    float:left;
+	width:390px;
+	/*min-height:300px;*/
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	text-align:justify;
+	font-size:11px;
+	color:#999999;
+	padding-left:5px;
+	padding-top:0;
+	padding-right:10px;
+}
+
+#Week
+{
+	float:left;
+	width:195px;
+	/*height:auto;*/
+	padding-top: 0;
+}
+
+#Banner2
+{
+	float:left;
+	width:600px;
+	/*height:40px;*/
+	clear:both;
+	padding-bottom:0;
+}
+
+#Product1
+{
+    float:left;
+	/*width:200px;
+	height: 235px;*/	
+	padding-bottom:0;
+}
+	
+#Product2
+{
+	float:left;
+	/*width:200px;
+	height: 235px;*/
+	padding-bottom:0;
+}
+	
+#Product3
+{
+	float:left;
+	/*width:200px;
+	height: 235px;*/
+	clear:none;
+	padding-bottom:0;
+}
+
+#Footer1
+{
+	float:left;
+	width:600px;
+	height:40px;
+	clear:both;
+	padding-bottom:0;
+}
+#Other
+{   
+	float:left;
+	width:600px;
+	/*height:200px;*/
+	clear:none;	
+	padding-bottom:0;
+}
+	
+#Footer2
+{
+	float:left;
+	width:600px;
+	/*height:60px;*/
+	clear:both;
+}
+		h1 { font-size:12px; font-weight: bold; margin:0px; padding:0px; }
+		h2 { font-size: 12px; margin: 0px; padding: 0px; color: #7B8C11; font-weight: normal; }
+		h3 { font-size: 12px; margin: 0px; padding: 0px; color: #7B8C11; font-weight: bold; }
+		img { border: none; padding:0px; margin:0px; }
+		a { color:#FFF; text-decoration: none; }
+		a:hover { color:#FFF; text-decoration: none; }
+		.green { color:#7B8C11; }
+		.red { color:#f03838; }
+		.withe a { color: #FFF; text-decoration: none; }
+		.withe a:hover { color:#5e352f; text-decoration: none; }
+		.black a { color: #333; text-decoration: none; }
+		.black a:hover { color: #5e352f; text-decoration: none; }
+		#header-logo { float:left; }
+		
+		#header-search {
+    	float:right;
+    	padding: 5px 5px 0px 0px;
+    }
+
+    #header-search .red a { color:#FC0000; }
+    
+    #header-search div a {
+      color:#000;
+    }
+
+    #header-search img {
+    	border:1px solid #6b6b6b;
+    }
+
+    .clear {
+    	clear: both;
+    }
+
+    #header-menu {
+    	margin:10px 7px 0 0 !important;
+    	margin:0px;
+    	margin-top:10px;
+    	border-bottom:0px solid #DAE77C;
+    	background-color: #BCD127;
+    	text-align:center;
+    	width: 600px;
+    }
+    
+    /* Root = Horizontal, Secondary = Vertical */
+    ul#navmenu {
+      margin: 0 auto;
+      border: 0 none;
+      padding: 0;
+      width: 600px; /*For KHTML*/
+      list-style: none;
+      height: 26px;
+
+    }
+
+    ul#navmenu li {
+      margin: 0;
+      border: 0 none;
+      padding: 0;
+      float: left; /*For Gecko*/
+      display: inline 0;
+      list-style: none;
+      position: relative;
+      height: 26px;
+    }
+
+    ul#navmenu ul {
+      margin: 0;
+      border: 0 none;
+      padding: 0;
+      width: 160px;
+      list-style: none;
+      display: none;
+      position: absolute;
+      top: 26px;
+      left: 0;
+    }
+
+    ul#navmenu ul:after /*From IE 7 lack of compliance*/{
+      clear: both;
+      display: block;
+      font: 1px/0px serif;
+      content: ".";
+      height: 0;
+      visibility: hidden;
+      border: 0 none;
+    }
+
+    ul#navmenu ul li {
+      width: 180px;
+      float: left; /*For IE 7 lack of compliance*/
+      display: block !important;
+      display: inline; /*For IE*/
+      border: 0 none;
+
+    }
+
+    /* Root Menu */
+    ul#navmenu a {
+      padding: 0 10px;
+      float: none !important; /*For Opera*/
+      float: left; /*For IE*/
+      display: block;
+      color: #FFF;
+      font: bold 13px/25px Verdana;
+      text-decoration: none;
+      height: auto !important;
+      height: 1%; /*For IE*/
+      border: 0px none;
+    }
+
+    /* Root Menu Hover Persistence */
+    ul#navmenu a:hover,
+    ul#navmenu li:hover a,
+    ul#navmenu li.iehover a {
+      color: #EAF1B6;
+      border: 0px none;
+    }
+
+    /* 2nd Menu */
+    ul#navmenu li:hover li a,
+    ul#navmenu li.iehover li a {
+        float: none;
+    	text-align:left;
+        background: transparent url(/images/opaque.png);
+    	font-size:10px;
+    	font-weight: bold;
+    	border-right:0px solid #c1d830;
+    	border-bottom:0px solid #c1d830;
+    	border-left:0px solid #c1d830;
+    	color: #333;
+    	border-width:0px 0px 0px 0px;
+    	line-height:26px;
+
+    }
+
+    /* 2nd Menu Hover Persistence */
+    ul#navmenu li:hover li a:hover,
+    ul#navmenu li:hover li:hover a,
+    ul#navmenu li.iehover li a:hover,
+    ul#navmenu li.iehover li.iehover a {
+      color:#fff;
+      border-bottom:2px solid #DBE882;
+    }
+
+    /* 3rd Menu */
+    ul#navmenu li:hover li:hover li a,
+    ul#navmenu li.iehover li.iehover li a {
+      background-color: #c1d830;
+      border: 0 none;
+    }
+
+    /* 3rd Menu Hover Persistence */
+    ul#navmenu li:hover li:hover li a:hover,
+    ul#navmenu li:hover li:hover li:hover a,
+    ul#navmenu li.iehover li.iehover li a:hover,
+    ul#navmenu li.iehover li.iehover li.iehover a {
+      background-color: #c1d830;
+      border: 0 none;
+    }
+
+    /* 4th Menu */
+    ul#navmenu li:hover li:hover li:hover li a,
+    ul#navmenu li.iehover li.iehover li.iehover li a {
+      background-color: #c1d830;
+      border: 0 none;
+    }
+
+    /* 4th Menu Hover */
+    ul#navmenu li:hover li:hover li:hover li a:hover,
+    ul#navmenu li.iehover li.iehover li.iehover li a:hover {
+      background-color: #c1d830;
+      border: 0 none;
+    }
+
+    ul#navmenu ul ul,
+    ul#navmenu ul ul ul {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 160px;
+      border: 0px none;
+    }
+
+    /* Do Not Move - Must Come Before display:block for Gecko */
+    ul#navmenu li:hover ul ul,
+    ul#navmenu li:hover ul ul ul,
+    ul#navmenu li.iehover ul ul,
+    ul#navmenu li.iehover ul ul ul {
+      display: none;
+      border: 0 none;
+    }
+
+    ul#navmenu li:hover ul,
+    ul#navmenu ul li:hover ul,
+    ul#navmenu ul ul li:hover ul,
+    ul#navmenu li.iehover ul,
+    ul#navmenu ul li.iehover ul,
+    ul#navmenu ul ul li.iehover ul {
+      display: block;
+      border: 0 none;
+    }
+		
+</style>
+</head>
+<body>
+<div id="Container">
+	
+<div id="BannerTop">
+<%= image_tag("http://#{ENV['lipsiashop_host']}"+ url_for(:controller => :images, :action => :news_letters_header, :id => @news_letter.header )) %>
+</div>
+
+<div id="header">
+	<div class="clear"></div>
+	<div id="header-menu">
+		<ul id="navmenu">
+			<li><%= link_to "Home", "#{AppConfig.site_url}"+ url_for(:controller => :base, :action => :index) %></li>
+			<% for category in Category.find(:all, :conditions => ["parent_id is ? AND show_in_menu = ?", nil, true] ) do %>
+				<li>
+					<%= link_to category.name, "#{AppConfig.site_url}"+ url_for(:controller => :categories, :action => :show, :id => category) %>
+					<% if category.children.size > 0 %>
+						<ul>
+						<% for child in category.children do %>
+							<% if child.all_products.size > 0 %>
+							<li><%= link_to child.name, "#{AppConfig.site_url}"+ url_for(:controller => :categories, :action => :show_sub, :id => child) %></li>
+							<% end %>
+						<% end %>
+						<% if category.name == "Wine" %>
+							<% if wc = Category.find_by_name("Wine Club") %>
+								<li><%= link_to wc.name, "#{AppConfig.site_url}"+ url_for(:controller => :categories, :action => :show, :id => wc) %></li>
+								
+							<% end %>
+							<li><%= link_to "Grape & Wine guide", "#{AppConfig.site_url}"+ url_for(:controller => :base, :action => :guide) %></li>
+						<% end %>
+						</ul>
+					<% end %>
+				</li>
+			<% end %>
+			<li><%= link_to "Recipes", "#{AppConfig.site_url}"+ url_for(:controller => :recipes, :action => :index) %></li>
+			<li><%= link_to "Corporate", "#{AppConfig.site_url}"+ url_for(:controller => :base, :action => :corporate) %></li>
+			<li><%= link_to "Blog", "#{AppConfig.site_url}"+ url_for(:controller => :blog, :action => :index) %></li>
+		</ul>
+	</div>
+</div>
+
+<div id="Links">
+<% for category in Category.find(:all, :conditions => ["parent_id is ? AND show_in_menu = ?", nil, true] ) do %>
+<%= link_to category.name, "http://#{ENV['lipsiashop_host']}"+ url_for(:controller => :categories, :action => :show, :id => category) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<% end %>
+<%= link_to "Recipes", "http://#{ENV['lipsiashop_host']}"+ url_for(:controller => :recipes, :action => :index) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<%= link_to "Blog", "http://#{ENV['lipsiashop_host']}"+ url_for(:controller => :blog, :action => :index) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<%= link_to "Contact", "http://#{ENV['lipsiashop_host']}"+ url_for(:controller => :base, :action => :contact) %></div>
+
+<div id="Banner1">
+<% if @news_letter.image_1 %>
+<%= link_to image_tag("http://#{ENV['lipsiashop_host']}"+ url_for(:controller => :images, :action => :news_letters_banner,:id => @news_letter.image_1)), @news_letter.link_1 %>
+<% end %>	
+</div>
+
+<div id="MainBody"><%= @news_letter.description.gsub("\n", "<br />") %></div>
+
+<div id="Week">
+<% if @news_letter.image_2 %>
+<%= link_to image_tag("http://#{ENV['lipsiashop_host']}"+ url_for(:controller => :images, :action => :news_letters_week,:id => @news_letter.image_2)), @news_letter.link_2 %>
+<% end %>
+</div>
+
+<div id="Banner2">
+<% if @news_letter.image_3 %>
+<%= link_to image_tag("http://#{ENV['lipsiashop_host']}"+ url_for(:controller => :images, :action => :news_letters_banner,:id => @news_letter.image_3)), @news_letter.link_3 %>
+<% end %>
+</div>
+
+<div id="Product1">
+<% if @news_letter.image_4 %>
+<%= link_to image_tag("http://#{ENV['lipsiashop_host']}"+ url_for(:controller => :images, :action => :news_letters_product,:id => @news_letter.image_4)), @news_letter.link_4 %>
+<% end %>
+</div>
+
+<div id="Product2">
+<% if @news_letter.image_5 %>
+<%= link_to image_tag("http://#{ENV['lipsiashop_host']}"+ url_for(:controller => :images, :action => :news_letters_product,:id => @news_letter.image_5)), @news_letter.link_5 %>
+<% end %>	
+</div>
+
+<div id="Product3">
+<% if @news_letter.image_6 %>
+<%= link_to image_tag("http://#{ENV['lipsiashop_host']}"+ url_for(:controller => :images, :action => :news_letters_product,:id => @news_letter.image_6)), @news_letter.link_6 %>
+<% end %>
+</div>
+
+<div id="Footer1">
+<% if @news_letter.image_7 %>
+<%= link_to image_tag("http://#{ENV['lipsiashop_host']}"+ url_for(:controller => :images, :action => :news_letters_banner,:id => @news_letter.image_7)), @news_letter.link_7 %>
+<% end %>
+</div>
+
+<div id="Other">
+<% if @news_letter.image_8 %>
+<%= link_to image_tag("http://#{ENV['lipsiashop_host']}"+ url_for(:controller => :images, :action => :news_letters_other,:id => @news_letter.image_8)), @news_letter.link_8%>
+<% end %>
+</div>
+
+<div id="Footer2">
+<%= link_to image_tag("http://#{ENV['lipsiashop_host']}/images/nl_footer.png"),"http://#{ENV['lipsiashop_host']}"+ url_for(:controller => "site/base", :action => :index) %>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,11 @@
+<%- @title = "New Category"; @page_id = "Catalog" -%>
+<%- @breadcrumbs = "Catalog &raquo; #{link_to "Categories", admin_categories_path} &raquo; #{@title}" -%>
+
+<div class="inner_content categories" id="admin_categories_new">
+  <h2><%= @title %></h2>
+  <br />
+  <% form_for :category, :url => admin_categories_path, :html => {:multipart => true} do %>
+    <%= render :partial => 'form' %>
+    <p><%= submit_tag "Save" %> or <%= link_to "Cancel", admin_categories_path %></p>
+  <% end %>
+</div>

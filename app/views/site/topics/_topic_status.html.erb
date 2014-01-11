@@ -1,0 +1,14 @@
+ <%
+    icon = "comment"
+    color = ""
+    if topic.locked?
+      icon = "lock"
+      post = ", this topic is locked."
+      color = "darkgrey"
+    end
+    %>
+    <% if recent_topic_activity(topic) %>
+       <%= image_tag "savage_beast/clearbits/#{icon}.gif", :class => "icon green", :title => "Recent activity #{post}" %>
+    <% else %>
+      <%= image_tag "savage_beast/clearbits/#{icon}.gif", :class => "icon grey #{color}", :title => "No recent activity #{post}" %>
+    <% end %>

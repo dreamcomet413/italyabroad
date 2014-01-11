@@ -1,0 +1,34 @@
+<% @title = "Popular Searches"; @class = "no-padding"; @breadcrumbs = "#{link_to("Home", root_url)} &raquo; Popular searches"%>
+
+<div id="header">Most Popular</div>
+
+<div style="padding:20px;text-align:center;color:#003300;">
+  <div style="text-align:left;">
+  Browse through our customers' favourite Italian produce with our Search Cloud.
+  </div>
+  <br />
+  <% @popular_searches = SearchQuery.popular_searches(50) %>
+  <%
+  pmin = 100 # Minimum font size
+  #pmin = 150 # Minimum font size
+
+  pmax = 200 #Maximum font size
+  #pmax = 300 #Maximum font size
+  vmin = 1000000000000 #Super large number to init min
+  vmax = -1000000000000 #Super small number to init max
+  for search in @popular_searches
+    vmin = search.popularity.to_f if (search.popularity.to_f < vmin)
+    vmax = search.popularity.to_f if (search.popularity.to_f > vmax)
+  end
+  %>
+  <% @popular_searches.each do |result| %>
+    <span style="font-size:<%= (((1.5*pmax - pmin) * (Math.log(result.popularity)) / (Math.log(vmax)) + pmin)/100 * 12).round.to_s %>px"><%= link_to result.query.titleize, search_index_path(:text => result.query), :style => "color:black;" %>, &nbsp;</span> &nbsp;&nbsp;
+  <% end %>
+</div>
+
+<% content_for :right do %>
+	<%= render :partial => '/site/shared/box_subscriptions' %>
+	<br />
+	<%= render :partial => '/site/shared/box_grape_guide' %>
+<% end %>
+

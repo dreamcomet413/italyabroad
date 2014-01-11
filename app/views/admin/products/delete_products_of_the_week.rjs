@@ -1,0 +1,3 @@
+page.alert("Product of the week removed");
+page[params[:id]].remove();
+

@@ -1,0 +1,96 @@
+<%
+  @breadcrumbs = "#{link_to "Home", root_url} &raquo; "
+  @breadcrumbs += "#{@product.unique_categories.collect {|c| link_to(c.name, "#{"/" + c.root.friendly_identifier unless c.is_root?}/#{c.friendly_identifier}")}.join(" &raquo; ")}"
+  @breadcrumbs += " &raquo; #{@product.name[0..25]+ '...'}"
+%>
+<%- @class = "wine_tours" -%>
+<div id="wineBanner" style="padding:5px;"><%#= image_tag("wine_tours_card_home.jpg") %>
+ <%= image_tag image_url('region_card', @product.image_1, :jpg),:alt=>@product.name if @product && @product.image_1 %>
+</div>
+
+<!-- div id="wineBanner" style="padding-top:5px;"><%#= image_tag("wine_tours_card_home.jpg") %>
+ <%- if @product.image_1 or @product.image_2 or @product.image_3 -%>
+    <%= image_tag(image_url("region_card", @product.image_1, :jpg),:alt=>@product.name) if @product.image_1 %>
+       <%- end -%>
+</div-->
+
+
+<div id="wine_tours_content">
+  <!--<h2 style="font-size:18px;color:#666666;"><%#= @product.name.upcase %></h2> -->
+   <h1 align="center" style="padding-top:0px;color:#9b0707;"><%= @product.name %></h1>
+  <table width="100%">
+    <tr>
+    <%# included_products = @product.included_products.find(:all,:order=>'name asc', :conditions => "active = true") %>
+    <% included_products = @product.included_products.find(:all,:order=>'created_at asc', :conditions => "active = true") %>
+   <% unless included_products.blank? %>
+   <td valign="top" width="35%">
+     <div id="box_wines_of_the_night" class="block" >
+
+    <h1>Wines</h1>
+    <ul>
+      <% for included_product in included_products %>
+       <li><%= link_to included_product.name, "/wine-events/#{included_product.friendly_identifier}", :style => "color:#9b0707;" %></li>
+      <%- end -%>
+    </ul>
+
+  </div>
+     </td> <%- end -%>
+      <td valign="top" width="60%">
+
+        <div style="padding-left:5px;text-align:justify;">
+          <%= @product.description.gsub("\n","<br />") rescue "Product has no description" %>
+          <br /><br />
+          <div style="float:right;">
+           <ul style="list-style:none;margin:0;padding:0;float:right;font-size:14px;">
+      <li style="margin-bottom:10px;text-align:right;">
+      	<% if @product.discount > 0 %>
+      		Was <span style="text-decoration: line-through;"><%= number_to_currency @product.price, :unit => "&pound;" %></span><br />
+      		Now <span class="red"><%= number_to_currency (@product.price - (@product.price * @product.discount / 100)), :unit => "&pound;" %></span>
+      		(save <span class="red"><%= number_to_currency (@product.price * @product.discount / 100), :unit => "&pound;" %></span>)
+      	<% else %>
+      		<!--Price:--> <span style="font-size:18px;color:#9b0707;text-align:right;" class="red"><%= number_to_currency @product.price, :unit => "&pound;" %></span>
+      	<% end %>
+      </li>
+
+      <li style="text-align:right;">
+      <% if @product.quantity > 0 %>
+      	<%- form_remote_for :cart, :url => product_cart_index_path(@product), :html => {:method => :post} do  -%>
+      	  <table cellspacing="0" border="0">
+
+      	    <tr>
+      		    <td>Ticket qty: </td>
+      		    <td><%= text_field :cart, :quantity, :size => 2, :value => 1 %></td>
+      		    <td><%= image_submit_tag("buttons/buy_button_new.png", :style=>"vertical-align:bottom; border:none") %></td>
+      		  </tr>
+      		</table>
+      	<% end %>
+      	<% else %>
+      	<span style="color:red;"><img src="/images/out_of_stock.png?1387085163" alt="Out_of_stock"></span>
+      	<% end %>
+    	</li>
+  	</ul>
+          </div>
+
+        </div>
+      </td>
+    </tr>
+  </table>
+
+
+
+</div>
+
+<% content_for :right do %>
+<% unless Product.other_events(@product).blank? %>
+	<%= render :partial => "/site/shared/box_event_others" %>
+	<br />
+<% end %>
+	<%= render :partial => '/site/shared/box_subscriptions' %>
+	<br />
+	<%= render :partial => '/site/shared/box_wine_tours' %>
+	<br />
+	<%= render :partial => '/site/shared/box_grape_guide' %>
+	<br />
+	<%= render :partial => '/site/shared/box_popular' %>
+<% end %>
+

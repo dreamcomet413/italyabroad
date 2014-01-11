@@ -1,0 +1,16 @@
+<% form_tag(:action => :eval_xml, :table => table , :id => id, :type =>type ) do %>
+<% if params[:table] != 'Product' %>
+<h3>Choose the Columns</h3>
+  <% columns.each do |column| %>
+    <%= check_box_tag 'names[]',column %><%= column %>
+
+  <%end%>
+
+
+  <br /><br />
+
+<%end %>
+ <%= submit_tag "Get XML" %> <%= link_to "Collapse", xml_path %>
+
+<% end %>
+

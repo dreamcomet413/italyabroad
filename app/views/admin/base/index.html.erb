@@ -1,0 +1,14 @@
+<div style="margin:20px;">
+  <h2>Overview</h2>
+  <ul>
+    <li>
+      <h3>Total Users</h3>
+      <strong><%= User.all.size %></strong> (Administrator: <strong><%= User.admins.size %></strong>, Customer/Guest: <strong><%= User.regulars.size %></strong>)
+    </li>
+    <li>
+      <h3>Total Products</h3>
+      <strong><%= Product.all.size %></strong>
+    </li>
+  </ul>
+</div>
+

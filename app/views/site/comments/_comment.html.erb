@@ -1,0 +1,12 @@
+<li class="review <%= cycle('odd', 'even') %>" style="padding:10px;">
+  <table width="100%">
+    <tr>
+      <td>
+        <%= comment.name %><br /><br />
+        <%= comment.description %> <br /><br />
+        About:  <%= comment.post.name %>
+      </td>
+    </tr>
+  </table>
+</li>
+

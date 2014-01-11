@@ -1,0 +1,19 @@
+<h1>Hi <%= @user.name %></h1>
+
+<p>
+  <%= @replied_user.name %> has replied to your topic in italyabroad.com forums.
+</p>
+
+<p>
+  Topic title: <%= @topic.title %>
+</p>
+
+<p>
+   Post: <%=t @post.body_html %>
+</p>
+
+<p>
+  <%= link_to "Click here", "http://#{AppConfig.site_url}#{forum_topic_path(@topic.forum, @topic)}" %> to details
+</p>
+
+

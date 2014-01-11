@@ -1,0 +1,28 @@
+<% @title = "Italian food and wine wholesaler"; @description = "Italian wine and food wholesaler, wine and food made by passionate small producers"; @keys = "wholesale, italian wine,fine italian wine,fine,italian red and white wine, italian food, wine tasting, wine expert,deli,blog,italy,food,wine" %>
+<% @class = "about-us no-padding" %>
+<% @breadcrumbs = "#{link_to("Home", root_url)} &raquo; About us &raquo; Wholesale Enquiry" %>
+
+<div id="header"><strong>Italyabroad.com</strong>-About us</div>
+<!--<div style="margin:20px;">
+  <h2>Wholesale Enquiry</h2>
+  <p>
+    Italyabroad.com is the Italian wine and food specialist and our wholesale division has been helping hotel, restaurants and retailer around the UK in offering their customers the finest Italian food and wine since 2003.
+  </p>
+  <p>
+    Italyabroad.com is the exclusive importer for the UK of the producers featured on this site and many more specifically dedicated to the trade. For wholesale enquiries please get in touch either by calling us on 0845 0526886 or emailing us at <%= mail_to "wholesale@italyabroad.com" %>.
+  </p>
+</div>-->
+<% @about = AboutU.find(:first, :conditions => {:link_type => "Wholesale"} ) %>
+    <div style="margin:20px;">
+      <% if @about %>
+        <h2><%= @about.title if @about %></h2>
+        <%= @about.description if @about %>
+      <% else %>
+        <p style="padding:30px 0 30px 0;text-align:center;font: bold 16px Arial">Coming soon...</p>
+      <% end %>
+    </div>
+
+<% content_for :right do %>
+  <%= render :partial => 'site/shared/box_about_us' %>
+<% end %>
+

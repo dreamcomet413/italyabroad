@@ -1,0 +1,14 @@
+<% @title = "Problem with your order"; %>
+
+<div style="text-align:center;font-size:14px;padding-top:50px" class="green">
+	ATTENTION
+	<div style="color:#333;padding-top:20px">
+		Your order could not be processed.
+	</div>
+</div>
+
+<% content_for :right do %>
+	<%= render :partial => '/site/shared/box_subscriptions' %>
+	<br />
+	<%= render :partial => '/site/shared/box_grape_guide' %>
+<% end %>

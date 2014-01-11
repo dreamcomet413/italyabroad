@@ -1,0 +1,88 @@
+<%- @title = "Your Invoice" -%>
+<%- @order_title = "Order no. #{@order.id} of #{@order.created_at.strftime("%d/%m/%y")}" -%>
+<%- @breadcrumbs = "#{link_to "Home", root_url} &raquo; #{link_to("My Orders and Tracking", orders_path)} &raquo; #{@order_title}" -%>
+<% @class = "no-padding" %>
+
+<div id="header"><%= render :partial => 'site/shared/box_login' %></div>
+<h4 class="account-title">Your Invoice</h4>
+<div style="margin:0 20px 60px 20px;">
+  <h4><%= @order_title %></h4>
+  <table width="99%" cellspacing="0" cellpadding="0" border="0" align="center">
+    <tr>
+      <td colspan="2"><h4>Product</h4></td>
+      <td><h4>Qty</h4></td>
+      <td><h4>Price</h4></td>
+      <td>&nbsp;</td>
+    </tr>
+    <%-  number_of_wines = 0
+    for order_item in @order.order_items
+    product = Product.find(order_item.product.id)
+         if product.categories.root.name == "Wine"
+          number_of_wines += order_item.quantity
+         end
+
+    -%>
+
+
+    <tr>
+      <td style="width:20px;padding-left:5px;"><%= show_image_tag(:product_thumb_cart, order_item.product.image_1) %></td>
+      <td><%= order_item.product.name %></td>
+      <td><%= order_item.quantity %></td>
+      <td><%= number_to_currency order_item.product.price, :unit => "&pound;" %></td>
+      <td align="right">
+        <%= link_to(image_tag("buttons/add_to_cart_button.png"), product_cart_index_path(order_item.product), :method => 'post') %>
+      </td>
+    </tr>
+    <%- end -%>
+    <tr>
+      <td colspan="2" style="text-align:right;">Sub Total</td><td></td><td><%= @order.sub_total %></td>
+    </tr>
+
+    <tr>
+      <td colspan="2" style="text-align:right;"><%=@order.delivery_name%> </td><td></td><td><%= @order.delivery_price %></td>
+    </tr>
+
+    <%- if @order.points_used > 0 -%>
+    <tr>
+      <td colspan="2" style="text-align:right;">Points Used (<%= @order.points_used %>)equivalent to </td><td></td><td><%= number_to_currency(@order.points_used * Setting.find(:first).points_to_pound, :unit => "&pound;" )%></td>
+    </tr>
+    <%- end -%>
+    <% if number_of_wines >= @setting.wine_discount_number.to_i %>
+      <tr>
+        <td colspan="2" >
+          <span style="font-size:14px;"><strong>Your cart contains <%= number_of_wines %> wines so will get a discount of</td>
+          <td></td><td><%= @setting.wine_discount_amount %>%</td>
+          </strong> <%#= number_to_currency(@cart.total, :unit => "&pound;") %></span>
+        </td>
+      </tr>
+      <% end %>
+
+
+
+    <tr>
+      <td colspan="2" style="text-align:right;font-weight:bold">Total</td><td></td><td style="text-align:left;font-weight:bold"><%= number_to_currency (@order.total - (@order.points_used * Setting.find(:first).points_to_pound), :unit => "&pound;") %></td>
+    </tr>
+
+
+  </table>
+
+
+
+  <p style="text-align:right;width:99%;">
+    <%#= link_to(image_tag("buttons/back_to_list.png"), orders_path) %>&nbsp;&nbsp;&nbsp;&nbsp;<%#= link_to(image_tag("buttons/print_invoice.png"), print_invoice_path(@order.id)) %>
+    &nbsp;&nbsp;&nbsp;&nbsp;<%= link_to(image_tag("buttons/download_invoice.png"), :action => 'download_pdf',:id => @order.id,:format => "pdf") %>
+  </p>
+</div>
+
+<%- content_for :right do -%>
+  <%= render :partial => '/site/shared/box_event' %>
+  <br />
+  <%= render :partial => '/site/shared/box_subscriptions' %>
+  <br />
+  <%= render :partial => '/site/shared/box_latest_community_comments' %>
+  <br />
+  <%= render :partial => '/site/shared/box_blog' %>
+  <br />
+  <%= render :partial => '/site/shared/box_popular' %>
+<%- end -%>
+

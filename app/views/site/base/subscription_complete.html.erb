@@ -1,0 +1,14 @@
+<% @title = "Subscription complete"; @class = "no-padding"; @breadcrumbs = "#{link_to("Home", root_url)} &raquo; Thank you" %>
+
+<div id="header">THANK YOU FOR YOUR SUBSCRIPTION</div>
+<div style="padding:20px">
+	<!--Your subscription for Italyabroad.com monthly news letter has been accepted.-->
+	Thanks you for joining our newsletter, we will keep you informed on anything happening at Italyabroad.com
+</div>
+
+<% content_for :right do %>
+	<%= render :partial => '/site/shared/box_contact' %>
+	<br />
+	<%= render :partial => '/site/shared/box_popular' %>
+<% end %>
+

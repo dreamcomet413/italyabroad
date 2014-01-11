@@ -1,0 +1,25 @@
+<% @title = "Type your question" %>
+<%#- @breadcrumbs = "Home &raquo; #{link_to "Faqs", faqs_path} &raquo; #{@title}" -%>
+
+<div class="inner_content posts">
+  <h2>&nbsp;&nbsp;&nbsp;&nbsp;<%= @title %></h2>
+
+<div>
+  	<table border="0" cellspacing="5" cellpadding="5">
+  	  <tr>
+
+  	    <td>
+
+  <% form_for :faq, :url =>faqs_path do %>
+  	<%= render :partial => "form" %>
+  	<div align="right"><%= image_submit_tag "buttons/submit.png" %>  <%#= link_to "Cancel", faqs_path %>&nbsp;&nbsp;&nbsp;</div>
+  <% end %>
+  	  </tr>
+
+  	</table>
+</div>
+
+
+
+</div>
+

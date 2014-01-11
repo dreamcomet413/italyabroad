@@ -1,0 +1,17 @@
+<div id="review-form-ct">
+	<div id="review-form-mu">
+		<ul>
+			<!-- li><%#= link_to_function "General", "Review.general()" %></li -->
+		</ul>
+	</div>
+	<div id="review-form-cn">
+		<div id="general_information">
+			<table id="table" border="0" cellspacing="5" cellpadding="5" style="width:99%">
+				<tr><td style="text-align:right">Name:</td><td><%= text_field :review, :name %></td></tr>
+				<tr><td style="text-align:right">Description:</td><td><%= text_area :review, :description, :rows => 5, :style => "width:99%" %></td></tr>
+			</table>
+			<%= hidden_field :review, :user_id %>
+		</div>
+	</div>
+</div>
+

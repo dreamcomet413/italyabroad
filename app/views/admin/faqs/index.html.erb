@@ -1,0 +1,64 @@
+<%- @title = "Administration - Faqs"; @page_id = "Other Stuff" -%>
+<%- @breadcrumbs = "Other Stuff &raquo; #{link_to "Faqs", admin_faqs_path}" -%>
+
+<div class="inner_content reviews" id="admin_faqs_index">
+  <h2>Faqs</h2>
+  <br />
+  <table>
+    <tr>
+    <td>
+    <% form_tag admin_faqs_path, :method=>:get do  %>
+      <strong>Search</strong><%= text_field_tag 'question',params[:question]%>
+      <%= select_tag "publish", options_for_select([["Published","1"],["Un Published","0"]],params[:publish])%>
+      <%= select_tag "answered", options_for_select([["Answered","1"],["Un Answered","0"]],params[:answered])%>
+      <%= submit_tag 'Search' %>
+    <% end %>
+    </td>
+    <tr>
+      <td></td>
+      <td align="right"><%= link_to "New Question", new_admin_faq_path %></td>
+    </tr>
+  </table>
+  <table id="reviews-list" class="list sortable">
+    <thead>
+      <tr>
+        <th>Question</th>
+        <th>Answer</th>
+        <th>Asked by</th>
+        <th>Published</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+        <td><%= will_paginate_(@faqs) %></td>
+        <td align="right"><%= page_entries_info_ @faqs %></td>
+      </tr>
+    </tfoot>
+    <tbody>
+      <%- for faq in @faqs -%>
+      <tr>
+        <td><%= faq.question %></td>
+        <td><% unless faq.answer.blank? %>
+              <%= faq.answer %>
+            <% else %>
+              <%= 'Not Answered' %>
+            <% end %>
+        </td>
+        <td><%= faq.user.name %></td>
+        <td><% if faq.publish %>
+              <%= 'Published' %>
+            <% else %>
+              <%= 'Un Published' %>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to "Edit", edit_admin_faq_path(faq.id) %> |
+            <%= link_to "Delete", admin_faq_path(faq.id), :method => :delete, :confirm => "Are you sure want to delete this question?" %>
+          </td>
+      </tr>
+      <%- end -%>
+    </tbody>
+  </table>
+</div>
+

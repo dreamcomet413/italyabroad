@@ -1,0 +1,83 @@
+<%- @breadcrumbs = "#{link_to("Home", root_url)} &raquo; #{link_to("Wine", '/wine')}" -%>
+<% if @category.image_link
+link = @category.image_link
+else
+link = search_index_path(:id=>@category)
+end
+
+%>
+<% if @category.image && !@category.image_url.blank? %>
+  <div id="wineBanner">
+   <span class="title_wine_tours">
+    <%#= @category.text_on_image %>
+    </span>
+	<%= link_to image_tag(image_url('home_image', @category.image, :jpg),:alt=>@category.name),link %>
+	</div>
+<% else %>
+  <div id="wineBanner">
+	<%= link_to image_tag("flashContent.jpg",:alt=>@category.name), link %>
+	</div>
+<% end %>
+
+<%= render :partial => '/site/shared/box_wine_search' %>
+<%= render :partial => '/site/templates/category' %>
+
+<%# products = Product.find(:all, :limit => 3, :order => "created_at DESC", :conditions => "id IN (#{@category.all_products_ids.join(',')}) AND quantity > 0") %>
+<% products = Product.find(:all, :limit => 3, :order => "price ASC", :conditions => "id IN (#{@category.all_products_ids.join(',')}) AND quantity > 0 AND active ") %>
+<%- products.each do |product| -%>
+<div class="wineList">
+  <br />
+  <table width="100%">
+    <tr>
+      <td style="padding:0;width:100px;height:100px;text-align:center;">
+      <%#= product.layout_image %>
+ <%= link_to show_image_tag(product.layout_image, product.image_1, :jpg,product.name),nested_products_uri(product)  %>
+      </td> <!--nested_products_path(product.root_category_id, product.sub_category_id, product) -->
+      <td valign="top" style="padding:0;width:630px;">
+       <!-- <table>
+          <tr>
+            <td> --><%= link_to truncate(product.name, :length => 60), nested_products_uri(product) %><br />
+           <%= show_ratings(product) %>
+          <!-- </td>
+          </tr>
+        </table>  <br />-->
+
+        <br />
+        <%= product.description_short[0..240] %>
+        <br />
+        <br />
+        Quantity : <%= product.quantity %>
+      </td>
+      <td valign="top" style="padding:10px 0;width:100px;">
+        <div style="font-size:18px;color:#9b0707;text-align:right;">
+          <div style="margin-bottom:15px;"><%= number_to_currency product.price, :unit => "&pound;" %></div>
+          <%- if product.out_of_stock? -%>
+            <%= image_tag('out_of_stock.png') %>
+          <%- else -%>
+            <%#= link_to_remote image_tag("buttons/add_to_cart_button.png"), product_cart_index_path(product), :method => 'post' %>
+            <%= link_to_remote image_tag("buttons/add_to_cart_button.png"), :url => product_cart_index_path(product), :html => {:method => 'post'} %>
+          <%- end -%>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
+<br />
+<%- end -%>
+
+<% content_for :right do %>
+  <%= render :partial => '/site/shared/box_wine_of_the_week' %>
+
+  <%#= render :partial => '/site/shared/box_food_of_the_week' %>
+
+  <%= render :partial => '/site/shared/box_event' %>
+  <br />
+  <%= render :partial => '/site/shared/box_subscriptions' %>
+  <br />
+  <%= render :partial => '/site/shared/box_grape_guide' %>
+  <br />
+	<%= render :partial => '/site/shared/box_wine_tours' %>
+	<br />
+	<%= render :partial => '/site/shared/box_popular' %>
+<% end %>
+

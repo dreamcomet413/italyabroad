@@ -1,0 +1,12 @@
+<% @title = "New Agency" %>
+<%- @breadcrumbs = "Catalog &raquo; #{link_to "Shipping Agency", admin_shipping_agencies_path} &raquo; #{@title}" -%>
+
+<div class="inner_content posts">
+  <h2><%= @title %></h2>
+  <br />
+  <% form_for :shipping_agency, :url => admin_shipping_agencies_path, :html => {:multipart => true} do %>
+  	<%= render :partial => "form" %>
+  	<p><%= submit_tag "Save" %> or <%= link_to "Cancel", admin_shipping_agencies_path %></p>
+  <% end %>
+</div>
+

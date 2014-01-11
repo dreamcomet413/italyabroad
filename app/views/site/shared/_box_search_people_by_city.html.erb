@@ -1,0 +1,21 @@
+<div class="block" id="box_search_recipes_new">
+	<h3>Refine search</h3>
+	<% form_tag search_index_path, :method => :get do %>
+   <%= hidden_field_tag :category, "people" %>
+		<table border="0" cellspacing="2" cellpadding="0">
+			<tr>
+			  <td>Search by city:</td>
+			  <td> <%= text_field_tag :city_text, params[:city_text], :id => "search_text" %></td>
+      </tr>
+
+			<tr>
+			  <td colspan="2"></td>
+      </tr>
+			<tr>
+			  <td></td>
+			  <td><%= image_submit_tag "search.png" %></td>
+      </tr>
+		</table>
+	<% end %>
+</div>
+

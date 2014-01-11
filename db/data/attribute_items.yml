@@ -1,0 +1,73 @@
+--- 
+attribute_items_16: 
+  name: Say to friend
+  id: "16"
+  section: say_to_friend
+attribute_items_8: 
+  name: Gallery
+  id: "8"
+  section: gallery
+attribute_items_17: 
+  name: Review
+  id: "17"
+  section: review
+attribute_items_9: 
+  name: Video
+  id: "9"
+  section: video
+attribute_items_18: 
+  name: Comparison
+  id: "18"
+  section: comparison
+attribute_items_1: 
+  name: Availability
+  id: "1"
+  section: availability
+attribute_items_10: 
+  name: Files
+  id: "10"
+  section: files
+attribute_items_2: 
+  name: Discount
+  id: "2"
+  section: discount
+attribute_items_11: 
+  name: Correlations
+  id: "11"
+  section: correlations
+attribute_items_3: 
+  name: Meta Key
+  id: "3"
+  section: meta_key
+attribute_items_12: 
+  name: Better Togheter
+  id: "12"
+  section: better_togheter
+attribute_items_4: 
+  name: Meta Description
+  id: "4"
+  section: meta_description
+attribute_items_13: 
+  name: Comments
+  id: "13"
+  section: comments
+attribute_items_5: 
+  name: Color
+  id: "5"
+  section: color
+attribute_items_14: 
+  name: Preording
+  id: "14"
+  section: preording
+attribute_items_6: 
+  name: Size
+  id: "6"
+  section: size
+attribute_items_15: 
+  name: Up Selling
+  id: "15"
+  section: upselling
+attribute_items_7: 
+  name: Weight
+  id: "7"
+  section: weight

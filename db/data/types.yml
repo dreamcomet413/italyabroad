@@ -1,0 +1,14 @@
+---
+types_1:
+  name: Admin
+  id: "1"
+types_2:
+  name: Customer
+  id: "2"
+types_3:
+  name: Guest
+  id: "3"
+type_4:
+  name: Chef
+  id: "4"
+

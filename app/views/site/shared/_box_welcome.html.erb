@@ -1,0 +1,107 @@
+<% products = Product.find(:all, :limit => 3) %>
+<%- products.each do |product| -%>
+<div class="wineList">
+  <br />
+  <table width="100%">
+    <tr>
+      <td style="padding:0;width:100px;height:100px;text-align:center;">
+      <%#= product.layout_image %>
+ <%= link_to show_image_tag(product.layout_image, product.image_1, :jpg,product.name),nested_products_uri(product)  %>
+      </td> <!--nested_products_path(product.root_category_id, product.sub_category_id, product) -->
+      <td valign="top" style="padding:0;width:630px;">
+       <!-- <table>
+          <tr>
+            <td> --><%= link_to truncate(product.name, :length => 60), nested_products_uri(product) %><br />
+           <%= show_ratings(product) %>
+          <!-- </td>
+          </tr>
+        </table>  <br />-->
+
+        <br />
+        <%= product.description_short[0..240] %>
+        <br />
+        <br />
+        Quantity : <%= product.quantity %>
+      </td>
+      <td valign="top" style="padding:10px 0;width:100px;">
+        <div style="font-size:18px;color:#9b0707;text-align:right;">
+          <div style="margin-bottom:15px;"><%= number_to_currency product.price, :unit => "&pound;" %></div>
+          <%- if product.out_of_stock? -%>
+            <%= image_tag('out_of_stock.png') %>
+          <%- else -%>
+            <%#= link_to_remote image_tag("buttons/add_to_cart_button.png"), product_cart_index_path(product), :method => 'post' %>
+            <%= link_to image_tag("buttons/add_to_cart_button.png"), :url => product_cart_index_path(product), :remote => true, :html => {:method => 'post'} %>
+          <%- end -%>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
+<br />
+<%- end -%>
+
+
+<div class="block" id="topTextBox" style= "display:none;">
+  <div id="reviews">
+    <h3>Our customers say</h3>
+   <table>
+    <% Testimonial.find(:all,:limit=>4,:order=>'created_at DESC',:conditions=>['UPPER(page_to_display)=?','HOME']).each do |testimonial| %>
+      <tr>
+        <td>
+          <%#= image_tag "default.jpg" %>
+          <%# user = User.find_by_id(testimonial.user_id) %>
+          <% if testimonial.user_id %>
+            <%= link_to avatar_for_user(testimonial.user, 'small'), customer_path(testimonial.user_id), :title => testimonial.user.name  %>
+          <% else %>
+            <%= image_tag "default.jpg" %>
+          <% end %>
+          "<%= testimonial.description[0..80] %>..."
+      </tr>
+    <% end %>
+    <tr>
+      <td style="text-align:right;">
+        <%= link_to "more", "/testimonial",:style=>'color:#9b0707' %>&nbsp;&nbsp;&nbsp;&nbsp;
+      </td>
+    </tr>
+</table>
+
+  <!-- <ul>
+      <li>
+        <p>
+          <%= image_tag "default.jpg" %>
+
+        </p>
+      </li>
+      <li>
+        <p>
+          <%= image_tag "default.jpg" %>
+          "thanks for the prompt and efficient delivery of 24 bottles of olive oil - I am sure our clients will be delighted with their Christmas gifts this year."
+        </p>
+      </li>
+      <li>
+        <p>
+          <%= image_tag "default.jpg" %>
+          "Not available in retail outlet. Have not tasted Italian wines as such since visiting Italy 3 years ago"
+        </p>
+      </li>
+      <li>
+        <p>
+          <%= image_tag "default.jpg" %>
+          "Fantastic evening. Food and wine perfectly suited. Will be back and will bring others."
+        </p>
+      </li>
+      <li>
+        <p style="text-align:right;"><%= link_to "read all", testimonial_path  %></p>
+      </li>
+    </ul> -->
+  </div>
+  <div id="about">
+    <h3>About italyabroad.com</h3>
+    <%= image_tag "about.png", :style => "float:left" %>
+    <% @about = AboutU.find(:first, :conditions => {:link_type => "who we are"} ) %>
+    <%= @about.description[0..1090] rescue "Italyabroad.com is the place for Italian wine and food made by small and passionate producers. We are a growing group of passionate people who love what we do; everything started more than 30 years ago when I had my first sip of wine sitting on my granddad knees, he was so proud of his wine that gave a 2 year old nephew a taste. We believe that some of the best Italian wines and food are made by small, passionate producers who respect the environment because they know that, without it, they will be unemployed. They are family run, the whole family works in the vineyards or fields, pasticceria (bakery) or pastificio (where the pasta is made); they are following the family tradition, they are at the 3rd, 4th or even more, generation, and they know everything there is to know; they are so proud of their wines and food that name them after their son or daughter, granddad or father. These are the people behind our products..."%>
+    <!--Italyabroad.com is the place for Italian wine and food made by small and passionate producers. We are a growing group of passionate people who love what we do; everything started more than 30 years ago when I had my first sip of wine sitting on my granddad knees, he was so proud of his wine that gave a 2 year old nephew a taste. We believe that some of the best Italian wines and food are made by small, passionate producers who respect the environment because they know that, without it, they will be unemployed. They are family run, the whole family works in the vineyards or fields, pasticceria (bakery) or pastificio (where the pasta is made); they are following the family tradition, they are at the 3rd, 4th or even more, generation, and they know everything there is to know; they are so proud of their wines and food that name them after their son or daughter, granddad or father. These are the people behind our products... -->
+    <div align="right"><%= link_to "Read more", about_us_url %></div>
+  </div>
+</div>
+

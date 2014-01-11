@@ -1,0 +1,31 @@
+--- 
+gift_options_1: 
+  name: This is not a gift
+  is_default: "1"
+  price: "0.00"
+  id: "1"
+  description: You can still write a gift note..
+gift_options_2: 
+  name: Hamper (in colored straw)
+  is_default: "0"
+  price: "8.00"
+  id: "2"
+  description: A nice basket for the perfect hamper. Also include a gift card
+gift_options_3: 
+  name: Wine box (1/2/3 bottle box and magnum )
+  is_default: "0"
+  price: "3.00"
+  id: "3"
+  description: A very elegant wine box fin colored cardboard for a wine gift that stands out. Specify the size required. Include a gift card.
+gift_options_4: 
+  name: Hamper (in colored cardboard)
+  is_default: "0"
+  price: "4.00"
+  id: "5"
+  description: For a nice hamper.  Include a gift card
+gift_options_5: 
+  name: Wine box (6/12 bottle case)
+  is_default: "0"
+  price: "8.00"
+  id: "6"
+  description: A very elegant wine case in colored cardboard for a wine gift that stands out. Specify the size required.  Include a gift card.

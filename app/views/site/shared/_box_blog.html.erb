@@ -1,0 +1,13 @@
+<div class="block" id="box_blog">
+	<h1><%= link_to "Andrea's Blog", "/blog" %></h1>
+	<br />
+	<% post = Post.find(:first, :order => "created_at DESC", :limit => 1) %>
+	<% if post %>
+	<ul>
+	  <li>
+  		<span class="title"><%= link_to post.name, blog_path(post.id) %></span>
+      <div class="teaser" style="padding-top:5px;"><%= post.description_short[0..200] %>... <%= link_to "(Continue reading)", blog_path(post.id) %></div>
+    </li>
+  </ul>
+	<% end %>
+</div>

@@ -1,0 +1,11 @@
+<%- @title = "Edit #{@gift_option.name}"; @page_id = "Catalog" -%>
+<%- @breadcrumbs = "Catalog &raquo; #{link_to "Gift Options", admin_gift_options_path} &raquo; #{@title}" -%>
+
+<div class="inner_content gift_options" id="admin_gift_options_edit">
+  <h2><%= @title %></h2>
+  <br />
+  <%- form_for :gift_option, :url => admin_gift_option_path(@gift_option), :method => :put do -%>
+    <%= render :partial => 'form' %>
+    <p><%= submit_tag "Save" %> or <%= link_to "Cancel", admin_gift_options_path %></p>
+  <%- end -%>
+</div>

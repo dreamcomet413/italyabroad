@@ -1,0 +1,2 @@
+module Site::GrapesHelper
+end

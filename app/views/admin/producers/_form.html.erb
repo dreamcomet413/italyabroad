@@ -1,0 +1,38 @@
+<table>
+  <tr>
+    <td>Name</td>
+    <td><%= text_field :producer, :name %></td>
+  </tr>
+  <tr>
+    <td valign="top">Description</td>
+    <td><%= text_area :producer, :description %></td>
+  </tr>
+  <tr>
+      <td>Quote on Producer page: </td>
+      <td><%= text_field :producer, :producer_quote %></td>
+    </tr>
+  <tr>
+		  <td >Active:</td>
+		  <td><%= check_box :producer, :active %>
+    </tr>
+  <tr>
+    <td valign="top">Image</td>
+    <% fields_for :image do %>
+    <td><%= file_field :image,:image_file %>
+    <%= image_tag(image_url('product_thumb', @producer.image, :jpg)) if @producer && @producer.image %>
+    <%= link_to "Destroy", admin_producer_image_url(@producer, @producer.image), :confirm => "Are you sure?", :method => :delete if @producer && @producer.image %>
+    </td>
+    <% end %>
+
+  </tr>
+  <tr>
+    <td>Region</td>
+    <td><%= select :producer, :region_id, Region.find(:all,:order=>'name asc').inject([["No region", ""]]) { |rs, r| rs << [r.name, r.id] } %>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top">Grapes</td>
+    <td><%= select :producer, :grape_ids, Grape.find(:all,:order=>'name').collect { |g| [g.name, g.id] }, {}, :multiple => true %></td>
+  </tr>
+</table>
+

@@ -1,0 +1,6 @@
+<%= javascript_include_tag "ext/admin/attribute_set" %>
+<% form_remote_tag :url => {:action => :create}, :html => {:id => "form-attribute-sets-create"}   do %>
+	<div id="form-attribute-sets">
+		<%= render :partial => "form" %>
+	</div>
+<% end %>

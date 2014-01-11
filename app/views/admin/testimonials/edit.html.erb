@@ -1,0 +1,13 @@
+
+<%- @title = "Edit #{@testimonial.title}" -%>
+<%- @breadcrumbs = "#{link_to "Testimonials", admin_testimonials_path} &raquo; #{@title}" -%>
+
+<div class="inner_content regions" id="admin_regions_edit">
+  <h2><%= @title %></h2>
+  <br />
+  <% form_for [:admin,@testimonial] do %>
+    <%= render :partial => 'form' %>
+    <p><%= submit_tag "Save" %> or <%= link_to "Cancel", admin_regions_path %></p>
+  <% end %>
+</div>
+

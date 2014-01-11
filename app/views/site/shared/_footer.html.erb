@@ -1,0 +1,129 @@
+<div id="siteMap">
+  <ul>
+    <li class="list" style="width: 15%">
+      <h3><%= link_to"About Us","/about-us", :style => "font-size:14px;color:#9b0707" %></h3>
+      <ul>
+        <li><%= link_to "Who We Are", about_us_path %></li>
+        <li><%= link_to "Our Principles & Philosophy", our_principles_path %></li>
+        <li><%= link_to "Meet Us", meet_us_path %></li>
+        <li><%= link_to "Contact Us", contact_us_path %></li>
+        <li><%= link_to "Wholesale", wholesale_enquiry_path %></li>
+        <li><%= link_to "Corporate Services", corporate_path %></li>
+        <li><%= link_to "Supplier", "/supplier" %></li>
+        <li><%= link_to "Franchising",:controller=>'base',:action=>'franchise' %></li>
+      </ul>
+    </li>
+    <li class="list">
+      <h3><%= link_to"Wine","/wine", :style => "font-size:14px;color:#9b0707;" %></h3>
+      <ul>
+        <%- parent_category = Category.find('wine') -%>
+        <%- if !parent_category.nil? -%>
+          <%- parent_category.children[0..5].each do |category| -%>
+          <% num_products  = find_any_active_product_exists(category.products) %>
+          <% if num_products > 0 %>
+            <li><%= link_to category.name.split(" ").map{|w| w.capitalize}.join(" "), nested_categories_url(parent_category, category) if num_products > 0 %></li>
+            <% end %>
+          <%- end -%>
+        <%- end -%>
+        <li><%= link_to("more", "/wine", :style => "color:#9b0707;") %></li>
+      </ul>
+    </li>
+    <li class="list">
+      <h3><%= link_to"Food","/food", :style => "font-size:14px;color:#9b0707" %></h3>
+      <ul>
+        <%- parent_category = Category.find('food') -%>
+        <%- if !parent_category.nil? -%>
+          <%- parent_category.children.each do |category| -%>
+          <% num_products  = find_any_active_product_exists(category.products) %>
+            <% if num_products > 0 %>
+            <li><%= link_to category.name.split(" ").map{|w| w.capitalize}.join(" "), nested_categories_url(parent_category, category)  %></li>
+            <% end %>
+          <%- end -%>
+        <%- end -%>
+        <li><%= link_to("more", "/food", :style => "color:#9b0707;") %></li>
+      </ul>
+    </li>
+    <li class="list">
+      <h3><%= link_to"Hampers","/hampers", :style => "font-size:14px;color:#9b0707" %></h3>
+      <ul>
+        <%- parent_category = Category.find('hampers') -%>
+        <%- if !parent_category.nil? -%>
+          <%- parent_category.children.each do |category| -%>
+               <% num_products  = find_any_active_product_exists(category.products) %>
+              <% if num_products > 0 %>
+            <li><%= link_to category.name.split(" ").map{|w| w.capitalize}.join(" "), nested_categories_url(parent_category, category)  %></li>
+             <% end %>
+          <%- end -%>
+        <%- end -%>
+        <li><h3><%= link_to"Events","/wine-events", :style => "font-size:14px;color:#9b0707" %></h3></li>
+        <%- parent_category = Category.find('events') -%>
+        <%- if !parent_category.nil? -%>
+          <%- parent_category.children.each do |category| -%>
+          <% num_products  = find_any_active_product_exists(category.products) %>
+          <% if num_products > 0 %>
+            <li><%= link_to category.name, nested_categories_url(parent_category, category) %></li>
+            <% end %>
+          <%- end -%>
+        <%- end -%>
+        <li><h3><%= link_to"Wine Tours","/wine-tours", :style => "font-size:14px;color:#9b0707" %></h3></li>
+        <%- parent_category = Category.find('wine-tours') -%>
+        <%- if !parent_category.nil? -%>
+          <%- parent_category.children.each do |category| -%>
+            <li><%= link_to category.name, nested_categories_url(parent_category, category) %></li>
+          <%- end -%>
+        <%- end -%>
+        <li><h3><%= link_to"Wine Club","/wine-club", :style => "font-size:14px;color:#9b0707" %></h3></li>
+        <!--<%#- parent_category = Category.find('wine-club') -%>
+        <%#- parent_category.children.each do |category| -%>
+          <li><%#= link_to category.name, nested_categories_url(parent_category, category) %></li>
+        <%#- end -%>-->
+      </ul>
+    </li>
+    <li class="list" style="width:15%">
+      <h3><%= link_to"Recipes","/recipes", :style => "font-size:14px;color:#9b0707" %></h3>
+      <ul>
+        <% # @words = [] %>
+        <% Recipe.find(:all, :order => "created_at DESC", :limit => 5).each do |recipe| %>
+  <%# (recipe.name).split.each do |word|%>
+  <%# @words << word.capitalize %>
+  <%#end%>
+  <%# recipe.name.split.map{|w| w.capitalize}.join(" ") %>
+          <li>
+            <%= link_to (recipe.name[0..20]).split(" ").map{|w| w.capitalize}.join(" "), recipe_path(recipe) %>
+          </li>
+
+  <%# @words = " " %>
+        <% end %>
+        <li><%= link_to("more", "/recipes", :style => "color:#9b0707;") %></li>
+      </ul>
+    </li>
+    <li class="list" style="width:13%">
+      <h3><%= link_to"Community","/wine-community", :style => "font-size:14px;color:#9b0707" %></h3>
+      <ul>
+        <li><%= link_to "Andrea's Blog", blog_index_path %></li>
+        <!--<li><%#= link_to "Forum", forums_path %></li>-->
+        <!--<li><%#= link_to "Latest Entries", posts_path %></li>-->
+        <!--<li><%#= link_to "Browse Threads", forums_path %></li>-->
+        <!--<li><%= link_to "Our Members" %></li>-->
+        <li><%= link_to "Community", wine_community_path %></li>
+        <li><%= link_to "Producers", producers_path %></li>
+        <li><%= link_to "Grape guide", grapes_path %></li>
+        <li><%= link_to "Regions", regions_path %></li>
+        <li><%= link_to "Testimonials", testimonial_path %></li>
+      </ul>
+    </li>
+    <li class="list" style="width:13%">
+      <h3><%= link_to"Help","/help/terms-and-conditions", :style => "font-size:14px;color:#9b0707" %></h3>
+      <ul>
+        <li><%= link_to "Terms & Conditions", terms_and_conditions_path %></li>
+        <li><%= link_to "Privacy Policy ", privacy_policy_path %></li>
+        <li><%= link_to "Delivery Service", delivery_services_path %></li>
+        <!-- li><%#= link_to "Managing Account", managing_account_path %></li -->
+        <li><%= link_to "Contact Details", contact_details_path %></li>
+        <li><%= link_to "Sitemap", sitemap_path %></li>
+
+      </ul>
+    </li>
+  </ul>
+</div>
+

@@ -1,0 +1,2 @@
+@image.operate do |image|
+end
