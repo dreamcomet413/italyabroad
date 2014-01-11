@@ -95,14 +95,6 @@ ItalyabroadNew::Application.routes.draw do
   match "/search/find_recipes" => "site/search#find_recipes", :as => "find_recipes"
   match "/search/find_wine_events" => "site/search#find_wine_events", :as => "find_wine_events"
   match "/search/find_grapes" => "site/search#find_grapes", :as => "find_grapes"
-
-  resources :cart, :only => [:index, :update] do
-    collection do
-      get :empty
-      get :continue_shopping
-    end
-  end
-
   match 'site/cart/gift_options' => 'site/cart#gift_options'
   match 'site/checkouts/order_confirmation' => 'site/checkouts#order_confirmation'
   match 'site/cart/update_gift' => 'site/cart#update_gift'
@@ -123,6 +115,12 @@ ItalyabroadNew::Application.routes.draw do
     resources :wish_list, :only => [:index, :create, :destroy]
     resources :wine_lists, :only => [:index, :create, :destroy]
     resources :reviews
+    resources :cart, :only => [:index, :update] do
+      collection do
+        get :empty
+        get :continue_shopping
+      end
+    end
   end
 
   resources :customers do
