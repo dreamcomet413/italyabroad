@@ -47,13 +47,13 @@ ItalyabroadNew::Application.routes.draw do
 
   resources :products, :only => [:index, :show, :wine_of_the_week, :food_of_the_week] do
     resources :reviews, :only => [:new, :create]
+    resources :wish_list, :only => [:index, :create, :destroy]
+    resources :wine_list, :only => [:index, :create, :destroy]
     resources :cart, :only => [:create, :update, :destroy] do
       collection do
         get :empty
       end
     end
-    resources :wish_list, :only => [:index, :create, :destroy]
-    resources :wine_list, :only => [:index, :create, :destroy]
   end
 
   resources :recipes do
@@ -119,6 +119,11 @@ ItalyabroadNew::Application.routes.draw do
       collection do
         get :empty
         get :continue_shopping
+      end
+    end
+    resources :cart, :only => [:create, :update, :destroy] do
+      collection do
+        get :empty
       end
     end
   end

@@ -1,6 +1,6 @@
 class Site::CartController < ApplicationController
- # before_filter :site_login_required, :only => [:gift_options,:update_gift]
-   layout "site"
+  # before_filter :site_login_required, :only => [:gift_options,:update_gift]
+  layout "site"
 
   def index
     @cupon = @cart.cupon
@@ -21,16 +21,16 @@ class Site::CartController < ApplicationController
         session[:free_delivery] = true
       end
 
-          if logged_in?
-            IncompletePurchase.find_or_create_by_email(current_user.email)
+      if logged_in?
+        IncompletePurchase.find_or_create_by_email(current_user.email)
 
-          end
-         @setting = Setting.find(:first)
-          if (product.quantity.to_i - quantity.to_i) < @setting.reorder_quantity.to_i and product.active
-            # Commented by Sujith since UserName and Password of SMTP is not correct now
+      end
+      @setting = Setting.find(:first)
+      if (product.quantity.to_i - quantity.to_i) < @setting.reorder_quantity.to_i and product.active
+        # Commented by Sujith since UserName and Password of SMTP is not correct now
 
-            Notifier.deliver_reorder_quantity_notification(product,AppConfig.admin_email)
-          end
+        Notifier.deliver_reorder_quantity_notification(product,AppConfig.admin_email)
+      end
 
       status = "#{product.name.gsub("'", "\\'")} correctly added to your cart."
     else
@@ -45,9 +45,10 @@ class Site::CartController < ApplicationController
 
       format.js do
         render :update do |page|
-          page.replace_html 'cart', :partial => "/site/shared/cart"
-          page.replace_html 'promotion', :partial => "/site/shared/promotion"
-          page.visual_effect :highlight, 'cart', :startcolor => "#FFA800", :endcolor => "#c1d830"
+          page["#cart"].html("")
+          page["#cart"].html(render :partial => '/site/shared/cart')
+          page["#promotion"].html(render :partial => '/site/shared/promotion')
+          #page["#cart"].visual_effect :highlight, :startcolor => "#FFA800", :endcolor => "#c1d830"
           page << "alert('#{status}')"
         end
       end
@@ -56,8 +57,8 @@ class Site::CartController < ApplicationController
 
   def update
 
-     if @cart.update(params[:cart], params[:cupon][:code],params[:delivery][:id] )
-        if @cart.sub_total > Setting.order_delivery_amount and session[:free_delivery] == false
+    if @cart.update(params[:cart], params[:cupon][:code],params[:delivery][:id] )
+      if @cart.sub_total > Setting.order_delivery_amount and session[:free_delivery] == false
 
         @delivery = Delivery.find(11)
         delivery_id = @delivery
@@ -68,7 +69,7 @@ class Site::CartController < ApplicationController
       elsif @cart.sub_total < Setting.order_delivery_amount and session[:free_delivery] == true
         @delivery = Delivery.find(params[:delivery][:id])
         if @delivery.id == 11
-        @delivery = Delivery.find(:first)
+          @delivery = Delivery.find(:first)
         end
         delivery_id = @delivery
         session[:free_delivery] = false
@@ -77,12 +78,12 @@ class Site::CartController < ApplicationController
       else
         delivery_id = params[:delivery][:id]
         @delivery = Delivery.find(delivery_id)
-         @cart.delivery  = @delivery
+        @cart.delivery  = @delivery
 
       end
 
 
-    @cart.update(params[:cart], params[:cupon][:code],delivery_id )
+      @cart.update(params[:cart], params[:cupon][:code],delivery_id )
 
 
       flash[:notice] = @cart.show_warnings
@@ -93,17 +94,17 @@ class Site::CartController < ApplicationController
 
 
     @setting = Setting.find(:first)
-   for cart_item in @cart.items
-          #if cart_item.quantity < @setting.reorder_quantity
-          if (cart_item.product.quantity.to_i - cart_item.quantity.to_i) < @setting.reorder_quantity and cart_item.product.active
-            Notifier.deliver_reorder_quantity_notification(cart_item.product,AppConfig.admin_email)
-          end
-   end
-  unless  params[:cupon][:code].blank?
-    if @cupon.nil? or @cupon.blank?
+    for cart_item in @cart.items
+      #if cart_item.quantity < @setting.reorder_quantity
+      if (cart_item.product.quantity.to_i - cart_item.quantity.to_i) < @setting.reorder_quantity and cart_item.product.active
+        Notifier.deliver_reorder_quantity_notification(cart_item.product,AppConfig.admin_email)
+      end
+    end
+    unless  params[:cupon][:code].blank?
+      if @cupon.nil? or @cupon.blank?
         flash[:notice] = "The promotional code is not valid,please enter a valid one."
       end
-  end
+    end
     redirect_to :controller=>'cart',:action => :index
   end
 
@@ -115,7 +116,7 @@ class Site::CartController < ApplicationController
       unless @purchase.nil?
         Notifier.deliver_product_information(current_user,AppConfig.admin_email)
         @purchase.destroy
-     end
+      end
     end
     redirect_to :action => :index
   end
@@ -129,18 +130,18 @@ class Site::CartController < ApplicationController
 
     if logged_in?
 
-    @purchase = IncompletePurchase.find_by_email(current_user.email)
-    unless @purchase.nil?
-      Notifier.deliver_product_information(current_user,AppConfig.admin_email)
-      @purchase.destroy
-    end
+      @purchase = IncompletePurchase.find_by_email(current_user.email)
+      unless @purchase.nil?
+        Notifier.deliver_product_information(current_user, AppConfig.admin_email)
+        @purchase.destroy
+      end
     end
     redirect_to :action => :index
   end
 
   def gift_options
     session[:return_to] = '/site/cart/gift_options'
-   if @cart.sub_total < 10
+    if @cart.sub_total < 10
       flash[:notice] = "Sorry, but there is a miminum order of £#{@setting.order_amount}"
       redirect_to :controller=>'cart',:action=>'index'
     end
@@ -153,8 +154,8 @@ class Site::CartController < ApplicationController
   end
 
   def update_gift
-      @cart.gift = params[:gift]
-      redirect_to checkouts_url
+    @cart.gift = params[:gift]
+    redirect_to checkouts_url
   end
 
   private

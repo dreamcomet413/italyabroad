@@ -7,7 +7,7 @@
 
   <%= show_messages(flash[:notice]) %>
   <div style="text-align:center;margin-top:40px;"><%= image_tag("cart_step_1.png") %></div>
-  <% form_tag(cart_path(@cart.object_id), :id => "form_cart", :method => :put) do %>
+  <% form_tag(site_cart_path(@cart.object_id), :id => "form_cart", :method => :put) do %>
     <table border="0" cellpadding="5" cellspacing="10" width="100%">
       <tr>
         <td style="font-size:14px;font-weight:bold;" colspan="2">Product</td>
@@ -57,7 +57,7 @@
             <%= number_to_currency cart_item.total, :unit => "&pound;" %>
           </td>
           <td>
-            <%= link_to image_tag("icon-cancel.png", :alt => "Delete Item", :style => "vertical-align:bottom"), product_cart_path(cart_item.product.id, @cart.object_id), :confirm => "Are you sure want to delete this product?", :method => :delete  %>
+            <%= link_to(image_tag("icon-cancel.png", :alt => "Delete Item", :style => "vertical-align:bottom"), "/site/cart/#{@cart.object_id}?product_id=#{cart_item.product.id}", :method => :delete, :confirm => "Are you sure want to delete this product?")  %>
           </td>
         </tr>
       <% end %>
@@ -196,7 +196,7 @@ end
       <tr>
         <td colspan="3"></td>
         <td align="right">
-          <%= link_to image_tag("buttons/continue_shopping_button.png"), continue_shopping_cart_path %>
+          <%= link_to image_tag("buttons/continue_shopping_button.png"), continue_shopping_site_cart_index_path %>
           <%= link_to image_tag("buttons/pay_now_btn.png"),:controller=>'cart',:action=>'gift_options' %>
           <%#= link_to image_tag("buttons/continue_button.png"), checkouts_url %>
                 <%#= link_to image_tag("buttons/pay_now_btn.png"), checkouts_url %>
@@ -206,7 +206,7 @@ end
           <%#= link_to image_tag("buttons/continue_button.png"), checkouts_url %>
         </td>-->
         <td align="right">
-             or <%= link_to "Empty", empty_cart_path, :confirm => "Are you sure want to empty this cart?" %>
+             or <%= link_to "Empty", empty_site_cart_index_path, :confirm => "Are you sure want to empty this cart?" %>
         </td>
       </tr>
       <tr>
@@ -216,7 +216,7 @@ end
       </tr>
     </table>
   <% end %>
-  <%= observe_field "delivery_id", :on => :change, :function => "$('form_cart').submit()" %>
+  <%#= observe_field "delivery_id", :on => :change, :function => "$('form_cart').submit()" %>
 <% else %>
   <table border="0" cellpadding="5" cellspacing="10" width="100%">
     <tr>
@@ -267,4 +267,11 @@ end
   <br />
   <%= render :partial => '/site/shared/box_popular' %>
 <% end %>
+
+<script type="text/javascript">
+  $("#delivery_id").on("change", function(){
+      console.log("hello")
+      $('#form_cart').submit();
+  })
+</script>
 

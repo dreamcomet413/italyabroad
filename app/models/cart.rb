@@ -227,7 +227,7 @@ class Cart
 
 
     # total += @gift.price if @gift
-    unless self.gift[:gift_option_id].blank?
+    if self.gift.present? and !self.gift[:gift_option_id].blank?
       total += GiftOption.find(self.gift[:gift_option_id]).price
     end
     return total

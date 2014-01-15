@@ -1,7 +1,6 @@
 source 'http://rubygems.org'
 
 gem 'prawn', '0.11.1'
-gem 'pg'
 gem 'fleximage', '1.0.4'
 gem 'RedCloth'
 gem 'pdfkit'
@@ -17,7 +16,15 @@ gem 'require_relative'
 gem 'sshkit'
 gem 'rvm-capistrano'
 gem 'rake', '~> 0.8.7'
-gem 'debugger'
 gem 'better_nested_set'
 gem 'rmagick', :require => false
 gem 'simple_captcha', :git => 'git://github.com/galetahub/simple-captcha.git'
+gem 'jquery-rails'
+
+group :development do
+  gem 'thin'
+end
+
+group :development, :test do
+  gem 'debugger'
+end

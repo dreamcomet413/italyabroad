@@ -233,7 +233,7 @@
   <h3>Best Sellers</h3>
   <% if @best_sellers.present? -%>
       <% @best_sellers.each do |best_seller| %>
-          <%= image_tag(image_url('product_thumb', best_seller.image_1, :jpg)) if best_seller && best_seller.image_1-%>
+          <%= image_tag(site_image_url('product_thumb', best_seller.image_1, :jpg)) if best_seller && best_seller.image_1-%>
       <% end %>
   <% end %>
   <% category_wine = Category.find(:first, :conditions => ["name like (?) AND parent_id is ?","%wine%", nil]) %>

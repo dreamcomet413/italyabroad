@@ -20,7 +20,7 @@ class Notifier < ActionMailer::Base
   end
 
   def news_letter(email, name, news_letter)
-    account    email
+    recipients    email
 #    from          "Italyabroad.com <info@italyabroad.com>"
     subject       "#{news_letter.name}"
     content_type  "text/html"
@@ -31,7 +31,7 @@ class Notifier < ActionMailer::Base
   end
 
   def subscribe(email)
-    account    email
+    recipients    email
  #   from          "Italyabroad.com <info@italyabroad.com>"
     bcc           "info@italyabroad.com"
     subject       "[News Letters Italyabroad.com] Subscription Complete!"
@@ -40,23 +40,23 @@ class Notifier < ActionMailer::Base
   end
 
   def activation(user)
-    account    user.email
+    recipients    user.email
 #    from          "Italyabroad.com <info@italyabroad.com>"
-    subject       "[Account Italyabroad.com] Activation Code"
+    subject       "[recipients Italyabroad.com] Activation Code"
     body          :user => user,
                   :url  => url_for(:host => AppConfig.site_url, :controller => "site/customers", :action => "confirmation", :id=>user, :code=>user.activation_code)
   end
 
   def change_mail(user)
-    account    user.email
+    recipients    user.email
 #    from          "Italyabroad.com <info@italyabroad.com>"
-    subject       "[Account Italyabroad.com] Change Mail"
+    subject       "[recipients Italyabroad.com] Change Mail"
     body          :user => user,
                   :url  => url_for(:host => AppConfig.site_url, :controller => "site/customers", :action => "confirmation", :id=>user, :code=>user.activation_code)
   end
 
   def send_to_friend(email, sender, receiver, message, url)
-    account    email
+    recipients    email
     bcc           "info@italyabroad.com"
 #    from          "Italyabroad.com <info@italyabroad.com>"
     subject       "[Italyabroad.com] Your friend #{sender} has found a product on italyabroad.com that you may like"
@@ -66,23 +66,23 @@ class Notifier < ActionMailer::Base
                   :message => message
   end
 
-  def account_created(user)
-    account    user.email
+  def recipients_created(user)
+    recipients    user.email
     bcc           "info@italyabroad.com"
 #    from          "Italyabroad.com <info@italyabroad.com>"
-    subject       "[Account Italyabroad.com] Account Created"
+    subject       "[recipients Italyabroad.com] recipients Created"
     body          :user => user
   end
 
-  def account_data(user)
-    account    user.email
+  def recipients_data(user)
+    recipients    user.email
 #    from          "Italyabroad.com <info@italyabroad.com>"
-    subject       "[Account Italyabroad.com] Account Data"
+    subject       "[recipients Italyabroad.com] recipients Data"
     body          :user => user
   end
 
   def contact(contact)
-    account    "info@italyabroad.com"
+    recipients    "info@italyabroad.com"
     bcc           "info@italyabroad.com"
 #    from          contact.email
     subject       "[Request Italyabroad.com] Request from site"
@@ -90,7 +90,7 @@ class Notifier < ActionMailer::Base
   end
 
   def new_review(review)
-    account    "info@italyabroad.com"
+    recipients    "info@italyabroad.com"
 #    from          "Italyabroad.com <info@italyabroad.com>"
     subject       "[Review Italyabroad.com] New review"
     body          :review => review,
@@ -98,7 +98,7 @@ class Notifier < ActionMailer::Base
   end
 
   def new_reservation(reservation)
-    account    reservation.user.email
+    recipients    reservation.user.email
     bcc           "info@italyabroad.com"
 #    from          "Italyabroad.com <info@italyabroad.com>"
     subject       "[Reservation Italyabroad.com] Reservation Accepted"
@@ -106,7 +106,7 @@ class Notifier < ActionMailer::Base
   end
 
   def status_reservation(reservation)
-    account    reservation.user.email
+    recipients    reservation.user.email
     bcc           "info@italyabroad.com"
 #    from          "Italyabroad.com <info@italyabroad.com>"
     subject       "[Reservation Italyabroad.com] Reservation Status"
@@ -114,7 +114,7 @@ class Notifier < ActionMailer::Base
   end
 
   def new_order(order)
-    account    order.user.email
+    recipients    order.user.email
     bcc           "info@italyabroad.com"
 #    from          "Italyabroad.com <info@italyabroad.com>"
     subject       "[Order Italyabroad.com] Order Accepted"
@@ -133,7 +133,7 @@ class Notifier < ActionMailer::Base
   end
 
   def status_order(order)
-    account    order.user.email
+    recipients    order.user.email
     bcc           "info@italyabroad.com"
 #    from          "Italyabroad.com <info@italyabroad.com>"
     subject       "[Order Italyabroad.com] Order Status"
@@ -141,7 +141,7 @@ class Notifier < ActionMailer::Base
   end
 
   def paid_order(order)
-    account    order.user.email
+    recipients    order.user.email
     bcc           "info@italyabroad.com"
 #    from          "Italyabroad.com <info@italyabroad.com>"
     subject       "[Order Italyabroad.com] Order Paid"
@@ -149,7 +149,7 @@ class Notifier < ActionMailer::Base
   end
 
   def comment(comment,user)
-    account    comment.email
+    recipients    comment.email
     bcc           "info@italyabroad.com"
 #    from          "info@italyabroad.com"
     subject       "[Request Italyabroad.com] Request from site"
@@ -158,7 +158,7 @@ class Notifier < ActionMailer::Base
   end
 
   def order_details_after_shipping(order)
-    account    order.user.email
+    recipients    order.user.email
     bcc           "info@italyabroad.com"
 #    from          "Italyabroad.com <info@italyabroad.com>"
     #subject       "[Order Italyabroad.com] Order Paid"
@@ -168,7 +168,7 @@ class Notifier < ActionMailer::Base
   end
 
   def reorder_quantity_notification(product,admin_email)
-    account "#{admin_email}"
+    recipients "#{admin_email}"
 #    from "info@italyabroad.com"
     subject  "Reorder quantity alert :" + product.name
     body    :product=>product
@@ -176,7 +176,7 @@ class Notifier < ActionMailer::Base
 
   #send mail to users who do not complete purchase
   def product_information(user,admin_email)
-    account "#{user.email}"
+    recipients "#{user.email}"
 #    from "info@italyabroad.com"
     subject  "Need some help to sort your wine"
     body    :user=>user
@@ -184,7 +184,7 @@ class Notifier < ActionMailer::Base
   end
 
   def faq_notification(faq,user)
-    account  AppConfig.admin_email
+    recipients  AppConfig.admin_email
 #    from        "info@italyabroad.com"
     subject     "A Question asked by #{user.name}"
     body        :faq=>faq,
@@ -194,7 +194,7 @@ class Notifier < ActionMailer::Base
 
 
   def new_review_added(product,user,admin_email,review)
-    account "#{admin_email}"
+    recipients "#{admin_email}"
 #    from "info@italyabroad.com"
     subject  "A review of " + product.name + "added"
     body      :product  => product,
@@ -203,23 +203,23 @@ class Notifier < ActionMailer::Base
   end
 
   def new_order_placed(order,user,admin_email)
-    account "#{admin_email}"
+    recipients "#{admin_email}"
 #    from "info@italyabroad.com"
     subject  "New order from  " + user.name
     body      :order  => order,
              :user=>user
   end
 
-  def new_account_created(user,admin_email)
-    account "#{admin_email}"
+  def new_recipients_created(user,admin_email)
+    recipients "#{admin_email}"
 #    from "info@italyabroad.com"
-    subject  "New Account created by  " + user.name
+    subject  "New recipients created by  " + user.name
     body     :user=>user,
             :url  => url_for(:host => AppConfig.site_url, :controller => "site/customers", :action => "show", :id=>user.id)
   end
 
   def invite_a_friend(email,name,friend_name,message)
-    account "#{email}"
+    recipients "#{email}"
  #   from "info@italyabroad.com"
     subject  "An invitation from  " + "#{name}"
     body  :message =>message,:your_name=>name,:friend_name=>friend_name
@@ -227,7 +227,7 @@ class Notifier < ActionMailer::Base
   end
   def coupon_notification_for_first_review (product,user,coupon_code)
 
-    account "#{user.email}"
+    recipients "#{user.email}"
 #    from AppConfig.admin_email
     cc       ["info@italyabroad.com"]
     subject  "First review of " + product.name + " added"
@@ -238,14 +238,14 @@ class Notifier < ActionMailer::Base
   end
 
   def new_message_received(message,user,sender)
-    account "#{user.email}"
+    recipients "#{user.email}"
 #    from "info@italyabroad.com"
     subject  "Message from  " + "#{sender.name}"
     body  :message =>message,:user=>user,:sender=>sender
   end
 
   def faq_answered_notification(faq)
-    account "#{faq.user.email}"
+    recipients "#{faq.user.email}"
 #    from "info@italyabroad.com"
     subject  "Your Question is answered by Italyabroad Team"
     body  :faq =>faq
@@ -255,7 +255,7 @@ class Notifier < ActionMailer::Base
   protected
 
   def setup_email(user)
-    @account   = "#{user.email}"
+    @recipients   = "#{user.email}"
     @subject      = AppConfig.subject
 #    @sent_on      = Time.now
     @content_type = "text/html"
