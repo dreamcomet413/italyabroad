@@ -36,8 +36,8 @@
         <table width="100%">
           <tr>
             <td width="60%" valign="top">
-              <%= link_to recipe.name, recipe_path(recipe), :style => "font-size:14px;color:black;font-weight:bold;" %>
-              <%= show_ratings(recipe, recipe.average_rating_round) if recipe.average_rating_round %><br />
+              <%= link_to recipe.name, site_recipe_path(recipe), :style => "font-size:14px;color:black;font-weight:bold;" %>
+              <%= show_ratings(recipe, recipe.average_rating_round).html_safe() if recipe.average_rating_round %><br />
               Course: <%= recipe.recipe_type.name %><br />
               Difficulty: <%= recipe.recipe_level.name %><br />
               Prep time: <%= recipe.preparation_time %> min<br/>
@@ -54,7 +54,7 @@
             </td>
             <td align="right">
               <% if !recipe.image_1.blank? %>
-              <%= link_to image_tag(image_url('recipe_thumb', recipe.image_1, :jpg),:alt=>recipe.name), recipe_path(recipe) %>
+              <%= link_to image_tag(site_image_url('recipe_thumb', recipe.image_1, :jpg),:alt=>recipe.name), site_recipe_path(recipe) %>
               <% else %>
               <%= link_to image_tag("no_images/PastaRecipe.jpg",:size => "100x75",:alt=>recipe.name), recipe_path(recipe) %>
               <% end %>
@@ -62,7 +62,7 @@
             </td>
           </tr>
           <tr>
-            <td colspan="2" align="right"><%= link_to "Ingredients and cooking instructions", recipe_path(recipe) %></td>
+            <td colspan="2" align="right"><%= link_to "Ingredients and cooking instructions", site_recipe_path(recipe) %></td>
           </tr>
         </table>
         <br />
@@ -79,8 +79,8 @@
         <table width="100%">
           <tr>
             <td width="60%" valign="top">
-              <%= link_to recipe.name, recipe_path(recipe), :style => "font-size:14px;font-weight:bold;color:black;" %>
-              <%= show_ratings(recipe, recipe.average_rating_round) %><br />
+              <%= link_to recipe.name, site_recipe_path(recipe), :style => "font-size:14px;font-weight:bold;color:black;" %>
+              <%= show_ratings(recipe, recipe.average_rating_round).html_safe() %><br />
               Course: <%= recipe.recipe_type.name %><br />
               Difficulty: <%= recipe.recipe_level.name %><br />
               Prep time: <%= recipe.preparation_time %> min<br/>
@@ -91,14 +91,14 @@
             </td>
             <td align="right">
               <% if !recipe.image_1.blank? %>
-              <%= link_to image_tag(image_url('recipe_thumb', recipe.image_1, :jpg)), recipe_path(recipe) %>
+              <%= link_to image_tag(site_image_url('recipe_thumb', recipe.image_1, :jpg)), site_recipe_path(recipe) %>
               <% else %>
-              <%= link_to image_tag("no_images/PastaRecipe.jpg",:size => "100x75"), recipe_path(recipe) %>
+              <%= link_to image_tag("no_images/PastaRecipe.jpg",:size => "100x75"), site_recipe_path(recipe) %>
               <% end %>
             </td>
           </tr>
           <tr>
-            <td colspan="2" align="right"><%= link_to "Ingredients and cooking instructions", recipe_path(recipe) %></td>
+            <td colspan="2" align="right"><%= link_to "Ingredients and cooking instructions", site_recipe_path(recipe) %></td>
           </tr>
         </table>
         <br />
@@ -111,7 +111,7 @@
 
 <% content_for :right do %>
   <%= render :partial => '/site/shared/box_latest_recipe_reviews' %>
-  <%= link_to image_tag("shareRecipe.png"), new_recipe_path  %>
+  <%= link_to image_tag("shareRecipe.png"), new_site_recipe_path  %>
   <br />
   <%= link_to image_tag("chefProfile.png"), account_path %>
   <br />

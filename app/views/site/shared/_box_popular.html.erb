@@ -1,19 +1,19 @@
 <div class="block" id="box_popular">
   <% @popular_searches = SearchQuery.popular_searches_box(10) %>
   <%
-  font_size = 21
-  arr_popular = []
-  for search in @popular_searches
-    arr_popular << {:query=> search.query,:popularity => search.popularity, :font_size => font_size-=1 }
-  end  %>
+     font_size = 21
+     arr_popular = []
+     for search in @popular_searches
+       arr_popular << {:query=> search.query,:popularity => search.popularity, :font_size => font_size-=1 }
+     end  %>
   <h1>Popular Searches</h1>
   <br />
   <div style="text-align:center;">
     <%
-    arr_popular = arr_popular.shuffle
-    arr_popular.each do |result| %>
+       arr_popular = arr_popular.shuffle
+       arr_popular.each do |result| %>
 
-      <span style="font-size:<%= result[:font_size] %>px;line-height:25px;"><%= link_to result[:query].titleize, search_index_path(:text => result[:query]) %></span>, &nbsp;&nbsp;
+        <span style="font-size:<%= result[:font_size] %>px;line-height:25px;"><%= link_to result[:query].titleize, search_index_path(:text => result[:query]) %></span>, &nbsp;&nbsp;
     <% end %>
     <span class="more-link"><%= link_to "more", popular_path %></span>
   </div>

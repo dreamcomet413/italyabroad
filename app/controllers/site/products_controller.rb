@@ -25,13 +25,13 @@ class Site::ProductsController < ApplicationController
       p "**************************"
       p params[:category]
       p "*************************"
-      unless Category.find(@product.categories).blank?
+      unless Category.find(@product.categories.map(&:id)).blank?
         @category = Category.find(@product.categories.root.name)
       end
       p "******hjjh********************"
       p YAML::dump(@category)
       p "**************************"
-      unless Category.find(@product.categories).blank?
+      unless Category.find(@product.categories.map(&:id)).blank?
         if @product.categories.root.name == "Hampers" or params[:category] == "mixed-case" or params[:category] == "wine-hampers"
           @images = @category.blank? ? [] : @category.products.where("id is not null").includes([:categories, :grapes]).order("products.price DESC").
               paginate(:page => params[:page], :per_page => 10)

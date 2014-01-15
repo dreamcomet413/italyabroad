@@ -33,9 +33,8 @@ class Recipe < ActiveRecord::Base
   scope :latest, :order => ["created_at DESC"]
   scope :most_viewed, :order => ["view_count DESC"]
 
-def self.most_viewed_recipes
-
-Recipe.find(:all,:conditions=>['id NOT IN (?) and active = ?',Recipe.find(:all,:conditions=>['active=true'],:order=>'created_at DESC',:limit=>3),true],:order=>'view_count DESC')
+  def self.most_viewed_recipes
+    Recipe.where(['id NOT IN (?) and active = ?', Recipe.where(['active=true']).order('created_at DESC').limit(3),true]).order('view_count DESC')
   end
 
   def preparation_cleared
@@ -146,15 +145,15 @@ Recipe.find(:all,:conditions=>['id NOT IN (?) and active = ?',Recipe.find(:all,:
     end
   end
 
-	# Calculates the average rating. Calculation based on the already given scores.
-	def average_rating
-		return 0 if reviews.empty?
-		( self.reviews.inject(0){|total, r| total += r.score.to_f }.to_f / reviews.size )
-	end
+  # Calculates the average rating. Calculation based on the already given scores.
+  def average_rating
+    return 0 if reviews.empty?
+    ( self.reviews.inject(0){|total, r| total += r.score.to_f }.to_f / reviews.size )
+  end
 
-	# Rounds the average rating value.
-	def average_rating_round
-		average_rating.round
-	end
+  # Rounds the average rating value.
+  def average_rating_round
+    average_rating.round
+  end
 end
 

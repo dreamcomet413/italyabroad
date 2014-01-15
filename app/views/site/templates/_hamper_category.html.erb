@@ -11,7 +11,7 @@ end
     <span class="title_wine_tours">
     <%#= @category.text_on_image %>
     </span>
-	  <%= link_to image_tag(image_url('home_image', @category.image, :jpg),:alt=>@category.name), link %>
+	  <%= link_to image_tag(site_image_url('home_image', @category.image, :jpg),:alt=>@category.name), link %>
 	</div>
 <% else %>
   <div id="wineBanner">
@@ -43,7 +43,7 @@ end
             <%= image_tag('out_of_stock.png') %>
           <%- else -%>
           <%#= link_to image_tag("buttons/add_to_cart_button.png"), product_cart_index_path(product), :method => 'post' %>
-          <%= link_to_remote image_tag("buttons/add_to_cart_button.png"), :url => product_cart_index_path(product), :html => {:method => 'post'} %>
+              <%= link_to(image_tag("buttons/add_to_cart_button.png"), "/site/cart?product_id=#{product.id}", :remote => true, :method => :post) %>
           <%- end -%>
         </div>
       </td>

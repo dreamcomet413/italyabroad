@@ -31,7 +31,7 @@
       <tr>
 		  <td>Occasion:</td>
 		  <% @occasions = Occasion.find(:all,:include=>'products',:conditions=>['products.active = ?',true])%>
-		  <td><%= select_tag (:occasion_id,"<option value="">Any</option>" +  options_from_collection_for_select(@occasions, :id, :name,params[:occasion_id].to_i)) %></td>
+		  <td><%= select_tag(:occasion_id,"<option value="">Any</option>" +  options_from_collection_for_select(@occasions, :id, :name,params[:occasion_id].to_i)) %></td>
     </tr>
       <tr>
         <td></td>

@@ -56,15 +56,6 @@ ItalyabroadNew::Application.routes.draw do
     end
   end
 
-  resources :recipes do
-    collection do
-      get :recipes_list
-    end
-  end
-
-  resources :recipes do
-    resources :reviews, :only => [:new, :create]
-  end
 
   resources :forums do
     resources :topics do
@@ -126,6 +117,12 @@ ItalyabroadNew::Application.routes.draw do
         get :empty
       end
     end
+    resources :recipes do
+      collection do
+        get :recipes_list
+      end
+    end
+    resources :reviews, :only => [:new, :create]
   end
 
   resources :customers do

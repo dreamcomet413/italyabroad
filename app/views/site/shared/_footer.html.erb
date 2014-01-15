@@ -89,7 +89,7 @@
   <%#end%>
   <%# recipe.name.split.map{|w| w.capitalize}.join(" ") %>
           <li>
-            <%= link_to (recipe.name[0..20]).split(" ").map{|w| w.capitalize}.join(" "), recipe_path(recipe) %>
+            <%= link_to (recipe.name[0..20]).split(" ").map{|w| w.capitalize}.join(" "), site_recipe_path(recipe.id) %>
           </li>
 
   <%# @words = " " %>

@@ -16,7 +16,7 @@
         <%#= link_to show_image_tag('product_show', @product.image_1, :jpg, @product.name), image_url('product_display', @product.image_1, :jpg),{:rel => "lightbox", :title => @product.name} %>
         <%#= link_to show_image_tag(@product.layout_image, @product.image_1, :jpg, @product.name), image_url('product_display', @product.image_1, :jpg),{:rel => "lightbox", :title => @product.name} %>
 
-        <%= link_to show_image_tag(:card, @product.image_1, :jpg, @product.name), image_url('product_display', @product.image_1, :jpg),{:rel => "lightbox", :title => @product.name} %>
+        <%= link_to show_image_tag(:card, @product.image_1, :jpg, @product.name), site_image_url('product_display', @product.image_1, :jpg),{:rel => "lightbox", :title => @product.name} %>
 
 
     <% else %>
@@ -45,7 +45,7 @@
           <tr>
             <td>Avg.Rating:</td>
             <td class="data">
-              <%= show_ratings(@product, @product.average_rating_round) %>
+              <%= show_ratings(@product, @product.average_rating_round).html_safe() %>
             </td>
           </tr>
           <!--<tr>
@@ -58,7 +58,7 @@
                 <td class="data">
                   <% if @product.region %>
                       <% if @product.region.active %>
-                          <%= link_to (@product.region.name, region_path(@product.region))   %>
+                          <%= link_to(@product.region.name, region_path(@product.region))   %>
                       <% end   %>
                   <% end %>
                 </td>
@@ -193,7 +193,7 @@
           <%- if @product.out_of_stock? -%>
               <%= image_tag('out_of_stock.png') %>
           <%- else -%>
-              <%- form_remote_for :cart, :url => product_cart_index_path(@product) do  -%>
+              <%- form_for :cart, product_cart_index_path(@product), :remote => true do  -%>
                   Qty: <%#= select :cart, :quantity, [1,2,3,4,5,6,7,8,9] %>
                   <%= text_field :cart, :quantity,:value=> 1, :size => '4' %><br /><br />
                   <%= hidden_field_tag(:discounted_price, @product.discounted_price(params[:actual_price]), :id => "actual_price") if params[:actual_price].present? -%>
@@ -201,9 +201,9 @@
 
               <%- end -%>
           <%- end -%>
-          <%= link_to_remote image_tag("add_to_wish_list.png"), :url => product_wish_list_index_path(@product), :html => {:method => :post} %>
+          <%= link_to image_tag("add_to_wish_list.png"), "/site/wish_list?product_id=#{@product.id}", :remote => true, :method => :post %>
           <% if  @product.categories.root.name.downcase == 'wine' %>
-              <%= link_to_remote image_tag("WINE_LIST.jpg"), :url => product_wine_list_index_path(@product), :html => {:style => "color:#464646;", :method => :post} %>
+            <%= link_to image_tag("WINE_LIST.jpg"), "/site/wish_list?product_id=#{@product.id}", :remote => true, :method => :post, :style => "color:#464646;" %>
           <% end %>
         </li>
       </ul>
@@ -217,12 +217,12 @@
 <div id="wineDesc">
   <br />
   <h3>Description</h3>
-  <%= @product.description.gsub("\n","<br />") rescue "Product has no description" %>
+  <%= @product.description.html_safe().gsub("\n","<br />") rescue "Product has no description" %>
 </div>
 
 <!--<div style="float: left;" id ="other-image"></div>
 
-<div style="font:normal 16px Arial;padding:0 0 0 10px"><%= link_to_remote(("Other images"),:url => { :controller => "site/categories",:action => "all_mixedcase_image", :parent =>@product.categories.root.name }) %></div>
+<div style="font:normal 16px Arial;padding:0 0 0 10px"><%= link_to(("Other images"),:url => { :controller => "site/categories",:action => "all_mixedcase_image", :parent =>@product.categories.root.name }, :remote => true) %></div>
 -->
 
 <!-- Included products for mixed case and hampers added on november 14, 2011 !-->
@@ -334,7 +334,9 @@
                         <tr>
                           <td><%= number_to_currency inc_product.price, :unit => "&pound;" %></td>
                         </tr>
-                        <tr><td><%= link_to_remote image_tag("buttons/add_to_cart_button.png"), :url => product_cart_index_path(inc_product), :html => {:method => 'post'} %></td></tr>
+                        <tr><td>
+                          <%= link_to(image_tag("buttons/add_to_cart_button.png"), "/site/cart?product_id=#{inc_product.id}", :remote => true, :method => :post) %>
+                        </td></tr>
                       </table>
                       <%#= show_image_tag('product', image.image_1, :jpg) %>
                     </li>
@@ -369,7 +371,8 @@
                   <td><%= number_to_currency related_product.price, :unit => "&pound;" %></td>
                 </tr>
                 <tr>
-                  <td><%= link_to_remote image_tag("buttons/add_to_cart_button.png"), :url => product_cart_index_path(related_product), :html => {:method => 'post'} %></td>
+                  <td>
+                    <%= link_to(image_tag("buttons/add_to_cart_button.png"), "/site/cart?product_id=#{related_product.id}", :remote => true, :method => :post) %>
                 </tr>
               </table>
             </li>

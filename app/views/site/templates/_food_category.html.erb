@@ -11,11 +11,11 @@ end
      <span class="title_wine_tours">
     <%#= @category.text_on_image %>
     </span>
-	  <%= link_to image_tag(image_url('home_image', @category.image, :jpg),:alt=>@category.name), link %>
+	  <%= link_to(image_tag(site_image_url('home_image', @category.image, :format => :jpg), :alt => @category.name), link) %>
 	</div>
 <% else %>
   <div id="wineBanner">
-	  <%= link_to image_tag("food.png",:alt=>@category.name), link %>
+	  <%= link_to image_tag("food.png",@category.name), link %>
 	</div>
 <% end %>
 <%= render :partial => '/site/shared/box_food_search' %>
@@ -26,7 +26,7 @@ end
   <table width="100%">
     <tr>
       <td style="padding:0;width:100px;height:100px;text-align:center;">
-        <%= link_to show_image_tag(product.layout_image, product.image_1, :jpg,:alt=>product.name), nested_products_uri(product) %>
+        <%= link_to show_image_tag(product.layout_image, product.image_1, :format => :jpg, :alt => product.name), nested_products_uri(product) %>
       </td>
       <td valign="top" style="padding:0;width:630px;padding-top:15px;">
 
@@ -42,7 +42,7 @@ end
             <%- if product.out_of_stock? -%>
             <%= image_tag('out_of_stock.png') %>
           <%- else -%>
-          <%= link_to_remote image_tag("buttons/add_to_cart_button.png"), :url => product_cart_index_path(product), :html => {:method => 'post'} %>
+            <%= link_to(image_tag("buttons/add_to_cart_button.png"), "/site/cart?product_id=#{product.id}", :remote => true, :method => :post) %>
           <% end %>
         </div>
      </td>

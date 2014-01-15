@@ -1,111 +1,112 @@
 <%- @breadcrumbs = "#{link_to("Home", root_url)} &raquo; #{link_to("Events", '/event')}" -%>
 <% @about = AboutU.find(:first, :conditions => {:link_type => "events"} ) %>
 <% if @category.image_link
-link = @category.image_link
-else
-link = search_index_path(:id=>@category)
-end
+     link = @category.image_link
+   else
+     link = search_index_path(:id=>@category)
+   end
 
 %>
 <% if @category.image && !@category.image_url.blank? %>
-          <div id="wineBanner">
+    <div id="wineBanner">
           <span class="title">
          <!-- <%# unless @category.text_on_image.blank? %>
           <div style="width:260px;height:100px;color:white;background:black;opacity: 0.6;filter:alpha(opacity=40);text-align:left;overflow:hidden;">
              <%#= @category.text_on_image %>
           </div>-->
-           <%# end %>
+            <%# end %>
           </span>
-          <%= link_to image_tag(image_url('home_image', @category.image, :jpg),:alt=>@category.name), link%>
-          </div>
+      <%= link_to image_tag(image_url('home_image', @category.image, :jpg),:alt=>@category.name), link%>
+    </div>
 <% else %>
-          <div id="wineBanner">
+    <div id="wineBanner">
               <span class="title">
                      <strong style="font-size:25px;">Discover</strong> and <strong style="font-size:24px;">taste</strong> some<br />
                     of the <strong style="font-size:24px;">finest Italian<br />
-                    wines,</strong> unknown, very<br />
+                wines,</strong> unknown, very<br />
                     small production, fantastic<br />
                     wines, <strong style="font-size:24px;">learn about<br />
-                    Italian wine regions</strong> and<br />
+                Italian wine regions</strong> and<br />
                     improve <strong style="font-size:24px;">your wine<br />
-                    knowledge</strong> at our <strong style="font-size:24px;">wine<br />
-                    events</strong>
-                    <%#= @about.title if @about %>
+                knowledge</strong> at our <strong style="font-size:24px;">wine<br />
+                events</strong>
+                <%#= @about.title if @about %>
               </span>
-              <%# if  @about and !@about.image_id.nil? %>
-                    <%#= link_to image_tag(image_url(:about_thumb, @about.image, :jpg)) , search_index_path(:id => @category)  unless @about.blank? %>
-              <%# else %>
-                    <%#= link_to image_tag("events.jpg"), search_index_path(:id => @category)%>
-              <%# end %>
-             <%= link_to image_tag("events.jpg",:alt=>'Events'), link%>
-          </div>
+      <%# if  @about and !@about.image_id.nil? %>
+      <%#= link_to image_tag(image_url(:about_thumb, @about.image, :jpg)) , search_index_path(:id => @category)  unless @about.blank? %>
+      <%# else %>
+      <%#= link_to image_tag("events.jpg"), search_index_path(:id => @category)%>
+      <%# end %>
+      <%= link_to image_tag("events.jpg",:alt=>'Events'), link%>
+    </div>
 <% end %>
-  <h3 align="center" style="border:none;" >
-      <% unless @category.page_heading.blank? %>
+<h3 align="center" style="border:none;" >
+  <% unless @category.page_heading.blank? %>
       <%= @category.page_heading %>
-      <% else %>
-        Wine Courses &amp; Events
-      <% end %>
-      </h3>
+  <% else %>
+      Wine Courses &amp; Events
+  <% end %>
+</h3>
 <div style="margin:5px;float:left;margin-right:15px;">
-    <%= render :partial => "/site/shared/box_upcoming_events" -%>
+  <%= render :partial => "/site/shared/box_upcoming_events" -%>
 </div>
 <!-- moved this portion above just to span the title according to his mail Thursday, September 8, 2011 10:19 PM -->
 <!--<h3 align="center" style="border:none;" >
       <%# unless @category.page_heading.blank? %>
-      <%#= @category.page_heading %>
-      <%# else %>
+<%#= @category.page_heading %>
+<%# else %>
         Wine Courses &amp; Events
       <%# end %>
       </h3>-->
-      <div style="margin:5px;text-align:justify;margin-right:15px;">
-      <%= @category.description.html_safe() %>
-      </div>
+<div style="margin:5px;text-align:justify;margin-right:15px;">
+  <%= @category.description.html_safe() %>
+</div>
 
 <div style="clear:both;">
 </div>
-<% products = @category.products.find(:all, :conditions => ["active = ? AND DATE(date) >= ?", true, Date.today], :order => "date").paginate(:page => params[:page], :per_page => 4).uniq %>
+<% products = @category.products.where(["active = ? AND DATE(date) >= ?", true, Date.today]).order("date").paginate(:page => params[:page], :per_page => 4).uniq %>
 <div id="featured_events"  style="text-align:justify;margin-right:15px;">
-        <br />
+  <br />
 
-        <% if products.size > 0  -%>
-        <h3>Coming Events</h3>
-        <% end  %>
+  <% if products.size > 0  -%>
+      <h3>Coming Events</h3>
+  <% end  %>
 
-        <ul>
-                <% for product in products %>
-                <li>
-                         <%= product.date.strftime("%d %B %Y at %H:%M") if product.date -%>
-                          <h1><%= link_to product.name, "/wine-events/#{product.friendly_identifier}", :style => "color:black;" %></h1>
-                          <%#= product.description_short.gsub("\n","<br />") %><%#= link_to "(More info)", "wine-events/#{product.friendly_identifier}" %>
+  <ul>
+    <% for product in products %>
+        <li>
+          <%= product.date.strftime("%d %B %Y at %H:%M") if product.date -%>
+          <h1><%= link_to product.name, "/wine-events/#{product.friendly_identifier}", :style => "color:black;" %></h1>
+          <%#= product.description_short.gsub("\n","<br />") %><%#= link_to "(More info)", "wine-events/#{product.friendly_identifier}" %>
 
-                         <!-- <br /><br />-->
-                          <%= product.description_short.html_safe() %>
-                          <div style="font-size:18px;color:#9b0707;text-align:right;">
-        <!--Price:&nbsp;--><%= number_to_currency product.price, :unit => "&pound;" %><br />
-         <% if product.quantity > 0 %>
-        <%= link_to_remote image_tag("buttons/buy_button_new.png"), :url => product_cart_index_path(product), :html => {:method => 'post'} %>
-        <% else %>
-      	<span style="color:red;font-size:14px;">Sorry no places left</span>
-      	<% end %>
-        </div>
+          <!-- <br /><br />-->
+          <%= product.description_short.html_safe() %>
+          <div style="font-size:18px;color:#9b0707;text-align:right;">
+            <!--Price:&nbsp;--><%= number_to_currency product.price, :unit => "&pound;" %><br />
+            <% if product.quantity > 0 %>
+                <%= link_to(image_tag("buttons/add_to_cart_button.png"), "/site/cart?product_id=#{product.id}", :remote => true, :method => :post) %>
+            <% else %>
+                <span style="color:red;font-size:14px;">Sorry no places left</span>
+            <% end %>
+          </div>
 
-                </li>
-                <% end %>
-                <%= will_paginate(products) %><%#= page_entries_info_ products %>
-        </ul>
+        </li>
+    <% end %>
+    <% products = @category.products.find(:all, :conditions => ["active = ? AND DATE(date) >= ?", true, Date.today], :order => "date").paginate(:page => params[:page], :per_page => 4)%>
+    <%= will_paginate(products) %>
+  </ul>
 </div>
 
 <% content_for :right do %>
-  <%= render :partial => '/site/shared/box_wine_event_testimonials' %>
-	<%#= render :partial => '/site/shared/box_event_reviews' %>
-	<br />
-	<%= render :partial => '/site/shared/box_subscriptions' %>
-	<br />
-	<%= render :partial => '/site/shared/box_wine_tours' %>
-	<br />
-	<%= render :partial => '/site/shared/box_grape_guide' %>
-	<br />
-	<%= render :partial => '/site/shared/box_popular' %>
+    <%= render :partial => '/site/shared/box_wine_event_testimonials' %>
+    <%#= render :partial => '/site/shared/box_event_reviews' %>
+    <br />
+    <%= render :partial => '/site/shared/box_subscriptions' %>
+    <br />
+    <%= render :partial => '/site/shared/box_wine_tours' %>
+    <br />
+    <%= render :partial => '/site/shared/box_grape_guide' %>
+    <br />
+    <%= render :partial => '/site/shared/box_popular' %>
 <% end %>
 
