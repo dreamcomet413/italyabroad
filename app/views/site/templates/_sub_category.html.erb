@@ -3,7 +3,7 @@
 <%- @class = "sub_categories #{@category.friendly_identifier}" -%>
 
 <% if @products && @products.size > 0 %>
-    <div id="header"><%= @category.name %></div>
+    <div id="header"><%= @category.name.html_safe() %></div>
 
     <div style="margin:10px 0px;padding:5px;background-color:#F3F8DA;">
       <table style="width:100%;" cellpadding="0" cellspacing="0" border="0">
@@ -14,7 +14,8 @@
           <td align="right">
             <%- form_tag nested_categories_path(params[:parent], params[:category]), :method => :get, :id => "sort_by_form" do -%>
                 <%= hidden_field_tag :page, (params[:page] || 1) %>
-                <strong>Sort by:</strong>&nbsp;<%= select_tag("sort_by", options_for_select([["Price: Low to high", "price asc"], ["Price: High to low", "price desc"], ["Name", "name"], ["Region", "region_id"]], @sort_by), :onchange => "$('sort_by_form').submit()") %>
+                <strong>Sort by:</strong>&nbsp;
+                <%= select_tag("sort_by", options_for_select([["Price: Low to high", "price asc"], ["Price: High to low", "price desc"], ["Name", "name"], ["Region", "region_id"]], @sort_by), :onchange => "$('#sort_by_form').submit()") %>
             <%- end -%>
           </td>
         </tr>
@@ -58,15 +59,15 @@
                     <%- if product.out_of_stock? -%>
                         <%= image_tag('out_of_stock.png') %>
                     <%- else -%>
-                        <%= link_to image_tag("buttons/add_to_cart_button.png"), product_cart_index_path(product), :remote => true, :html => {:method => 'post'} %>
+                        <%= link_to(image_tag("buttons/add_to_cart_button.png"), "/site/cart?product_id=#{product.id}", :remote => true, :method => :post) %>
                     <%- end -%>
                   </li>
                   <li style="margin-bottom:10px;">
-                    <%= link_to image_tag("add_to_wish_list.png"), :url => product_wish_list_index_path(product), :remote => true, :html => {:style => "color:#464646;", :method => :post} %>
+                    <%= link_to image_tag("add_to_wish_list.png"), "/site/wish_list?product_id=#{product.id}", :remote => true, :method => :post, :style => "color:#464646;" %>
                   </li>
                   <% if @category.parent.name == 'Wine' %>
                       <li style="margin-bottom:10px;">
-                        <%= link_to image_tag("WINE_LIST.jpg"), :url => product_wine_list_index_path(product), :remote => true, :html => {:style => "color:#464646;", :method => :post} %>
+                        <%= link_to image_tag("WINE_LIST.jpg"), "/site/wine_lists?product_id=#{product.id}", :remote => true, :method => :post, :style => "color:#464646;" %>
                       </li>
                   <% end %>
                 </ul>

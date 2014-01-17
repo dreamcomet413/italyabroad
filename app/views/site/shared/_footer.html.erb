@@ -21,7 +21,7 @@
           <%- parent_category.children[0..5].each do |category| -%>
           <% num_products  = find_any_active_product_exists(category.products) %>
           <% if num_products > 0 %>
-            <li><%= link_to category.name.split(" ").map{|w| w.capitalize}.join(" "), nested_categories_url(parent_category, category) if num_products > 0 %></li>
+            <li><%= link_to category.name.html_safe().split(" ").map{|w| w.capitalize}.join(" ").html_safe(), nested_categories_url(parent_category, category) if num_products > 0 %></li>
             <% end %>
           <%- end -%>
         <%- end -%>
@@ -100,7 +100,7 @@
     <li class="list" style="width:13%">
       <h3><%= link_to"Community","/wine-community", :style => "font-size:14px;color:#9b0707" %></h3>
       <ul>
-        <li><%= link_to "Andrea's Blog", blog_index_path %></li>
+        <li><%= link_to "Andrea's Blog", site_blog_index_path %></li>
         <!--<li><%#= link_to "Forum", forums_path %></li>-->
         <!--<li><%#= link_to "Latest Entries", posts_path %></li>-->
         <!--<li><%#= link_to "Browse Threads", forums_path %></li>-->

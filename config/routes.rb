@@ -123,6 +123,9 @@ ItalyabroadNew::Application.routes.draw do
       end
     end
     resources :reviews, :only => [:new, :create]
+    resources :blog, :only => [:index, :show] do
+      match :comment, :on => :member
+    end
   end
 
   resources :customers do
@@ -136,10 +139,6 @@ ItalyabroadNew::Application.routes.draw do
   end
 
   match 'site/image' => 'site/images#show', :path_prefix => ':image_type'
-
-  resources :blog, :only => [:index, :show] do
-    match :comment, :on => :member
-  end
 
   resources :posts do
     collection do

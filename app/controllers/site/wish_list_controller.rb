@@ -12,7 +12,7 @@ class Site::WishListController < ApplicationController
     product = Product.find(params[:product_id])
 
     if logged_in?
-      current_user.wish_lists.find_or_create_by_product_id(:product_id => product.id)
+      current_user.wish_lists.find_or_create_by_product_id(product.id)
       render :js => "alert('#{product.name} correctly added to your wish list')"
     else
       render :js => "alert('You must login to add a product to your wish list')"

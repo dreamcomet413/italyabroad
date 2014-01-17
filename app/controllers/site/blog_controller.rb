@@ -7,10 +7,10 @@ class Site::BlogController < ApplicationController
     if params[:tag_id]
       @tag = Tag.find(params[:tag_id])
 
-       @posts = @tag.posts.find(:all, :conditions => ["blog_type_id = ?", 1], :order  => "created_at DESC").paginate(:page => params[:page], :per_page => per_page)
+       @posts = @tag.posts.where(["blog_type_id = ?", 1]).order("created_at DESC").paginate(:page => params[:page], :per_page => per_page)
 
   elsif params[:year].blank? && params[:month].blank?
-       @posts = Post.find(:all, :conditions => ["blog_type_id = ?", 1], :order  => "created_at DESC").paginate(:page => params[:page], :per_page => per_page)
+       @posts = Post.where(["blog_type_id = ?", 1]).order("created_at DESC").paginate(:page => params[:page], :per_page => per_page)
     else
       year = params[:year].to_i
       month = params[:month].to_i
@@ -29,10 +29,10 @@ class Site::BlogController < ApplicationController
     store_location
     @post = Post.find(params[:id])
     unless @post
-      redirect_to "/blog"
+      redirect_to "/site/blog"
     else
       @post.count_view if @post
-      @comments = (@post.comments.find(:all,:conditions=>['public=?',true])).paginate(:page => params[:page], :per_page => 5, :offset => 5,:order => "created_at DESC")
+      @comments = @post.comments.where(['public=?',true]).paginate(:page => params[:page], :per_page => 5, :offset => 5,:order => "created_at DESC")
     end
 
   end

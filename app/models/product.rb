@@ -96,11 +96,13 @@ class Product < ActiveRecord::Base
 
   def self.colors(category, search=nil)
     colors = [[" Any",""]]
-    conditions  = "products.id IN (#{category.all_products_ids.join(",")})"
-    conditions += " AND " if search && !search.conditions.blank?
+    conditions = ""
+    conditions  += "products.id IN (#{category.all_products_ids.join(",")})" unless category.all_products_ids.blank?
+    conditions += " AND " if search && !search.conditions.blank? and !category.all_products_ids.blank?
     conditions += search.conditions if search && !search.conditions.blank?
 
-    self.find(:all, :include => [:categories, :grapes], :conditions => conditions ).group_by(&:color).each do |t,  product|
+    where(conditions).includes([:categories, :grapes]).group_by(&:color).each do |t, product|
+    #find(:all, :include => [:categories, :grapes], :conditions => conditions ).group_by(&:color).each do |t,  product|
  # self.find(:all, :include => [:categories, :grapes], :conditions => conditions ).group_by(&:color).each do |t,  product|
 
       color = t.strip if !t.blank?
