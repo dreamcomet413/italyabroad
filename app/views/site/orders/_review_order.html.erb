@@ -9,8 +9,8 @@
 
   						<td><td style="text-align:left">
               	<% if order_item.reviewed == false %>
-              <%= link_to_remote "Write Review",
-               :update =>"write_review#{product.id}" ,
+              <%= link_to "Write Review",
+               :update =>"write_review#{product.id}" , :remote => true,
                         :url => {:controller=>'site/orders', :action => "write_review", :id => product.id,:order_id=>order.id}
   %>          <% end %>
   						</td>

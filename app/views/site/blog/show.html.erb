@@ -26,7 +26,7 @@ alert("Description must be filled out");
 
 
 <div id="blog_show_container">
-  <div style="text-align:center;"><%= image_tag(image_url('blog_banner', (@post.image_1 or @post.image_2 or @post.image_3), :jpg),:alt=>@post.name) if @post.image_1 or @post.image_2 or @post.image_3 %></div>
+  <div style="text-align:center;"><%= image_tag(site_image_url('blog_banner', (@post.image_1 or @post.image_2 or @post.image_3), :jpg),:alt=>@post.name) if @post.image_1 or @post.image_2 or @post.image_3 %></div>
 
 
   <div class="comment_icon">&nbsp;&nbsp;<%= @post.comments.find(:all,:conditions=>['public=?',true]).size %> comments</div>

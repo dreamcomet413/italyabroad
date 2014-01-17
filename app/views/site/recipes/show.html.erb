@@ -10,28 +10,28 @@
         <%= @recipe.ingredients.gsub("\n","<br />") %>
       </td>
       <td valign="top" style="padding-left:80px;">
-      <% unless @recipe.region.nil? %><span style="font-weight:bold;">Region :</span>  <%= link_to @recipe.region.name, @recipe.region  %>  <br /><br /><% end %>
+        <% unless @recipe.region.nil? %><span style="font-weight:bold;">Region :</span>  <%= link_to @recipe.region.name, @recipe.region  %>  <br /><br /><% end %>
         <% if !@recipe.image_1.blank? %>
-              <div style="max-width:350px;max-height:350px;overflow:hidden;">
-                <%#= image_tag(image_url(:original, @recipe.image_1), :alt=>@recipe.name, :size =>"350x350" ) %>
-                <img src= "<%= image_url(:original, @recipe.image_1) %>", width ="350px;" title = "<%= @recipe.name %>" %>
-              </div>
-              <% else %>
-              <%= image_tag("no_images/PastaRecipe.jpg",:size => "150x150",:alt=>@recipe.name) %>
-              <% end %>
+            <div style="max-width:350px;max-height:350px;overflow:hidden;">
+              <%#= image_tag(image_url(:original, @recipe.image_1), :alt=>@recipe.name, :size =>"350x350" ) %>
+              <img src= "<%= site_image_url(:original, @recipe.image_1) %>", width ="350px;" title = "<%= @recipe.name %>" %>
+            </div>
+        <% else %>
+            <%= image_tag("no_images/PastaRecipe.jpg",:size => "150x150",:alt=>@recipe.name) %>
+        <% end %>
         <div>
           <br /><br />
           <% if @recipe.correlations.size > 0 %>
-                <span style="font-weight:bold;">Suggested wine:</span>
-            <%- @recipe.correlations.all.paginate(:page => params[:page], :per_page => 4).each do |product| -%>
-              <%= link_to product.name, nested_products_uri(product) %>
-            <%- end -%>
+              <span style="font-weight:bold;">Suggested wine:</span>
+              <%- @recipe.correlations.all.paginate(:page => params[:page], :per_page => 4).each do |product| -%>
+                  <%= link_to product.name, nested_products_uri(product) %>
+              <%- end -%>
           <% end %>
         </div>
         <% if !@recipe.user.nil? %>
-        <div>Recipes by <%#= link_to @recipe.user.name,:controller=>'/recipes',:action=>'recipes_list',:user_id=>@recipe.user.id %>
-        <%= link_to @recipe.user.name,customer_path(@recipe.user.id)%>  </div>
-        <div><%= link_to @recipe.user.establishment_link, @recipe.user.establishment_link%></div>
+            <div>Recipes by <%#= link_to @recipe.user.name,:controller=>'/recipes',:action=>'recipes_list',:user_id=>@recipe.user.id %>
+              <%= link_to @recipe.user.name,customer_path(@recipe.user.id)%>  </div>
+            <div><%= link_to @recipe.user.establishment_link, @recipe.user.establishment_link%></div>
         <%- end -%>
 
       </td>
@@ -48,26 +48,26 @@
 
   <div style="border-bottom:1px solid #CCCCCC;margin-top:20px;"></div>
   <% if @reviews.size > 0 %>
-  <h2>
-  <%= @reviews.size %>  Comments</h2>
+      <h2>
+        <%= @reviews.size %>  Comments</h2>
   <% end %>
   <%- if logged_in? -%><%= link_to 'Add Review',"#",:onclick=>"document.getElementById('recipe_comments_add').style.display='block';return false;" %>
-  <div id="recipe_comments_add" style="border-bottom:1px solid #CCCCCC;background-color:#F3F8DA;padding:5px 0 5px 8px;display:none;">
-      <h2>Leave your review</h2>
-      <%= render(:partial => 'site/reviews/new', :locals => {:create_url => recipe_reviews_path(@recipe, :return_to => recipe_path(@recipe))}) %>
-  </div>
+      <div id="recipe_comments_add" style="border-bottom:1px solid #CCCCCC;background-color:#F3F8DA;padding:5px 0 5px 8px;display:none;">
+        <h2>Leave your review</h2>
+        <%= render(:partial => 'site/reviews/new', :locals => {:create_url => recipe_reviews_path(@recipe, :return_to => recipe_path(@recipe))}) %>
+      </div>
   <%- else -%>
-  <%# if !logged_in? %>
-  <div style="border-bottom:1px solid #CCCCCC;background-color:#F3F8DA;color:#161616;font-size:1.3em;margin-top:8px;padding:1px 0 0 8px;">
-    <h1>Add a comment</h1>
-    <p>Comment with your account</p>
-    <p style = "font:bold 16px Arial;"><%= link_to("Login", login_path) %> ||
-      <%= link_to "Register", "/signup" %> </p>
-  </div>
+      <%# if !logged_in? %>
+      <div style="border-bottom:1px solid #CCCCCC;background-color:#F3F8DA;color:#161616;font-size:1.3em;margin-top:8px;padding:1px 0 0 8px;">
+        <h1>Add a comment</h1>
+        <p>Comment with your account</p>
+        <p style = "font:bold 16px Arial;"><%= link_to("Login", login_path) %> ||
+          <%= link_to "Register", "/signup" %> </p>
+      </div>
   <% end %>
 
   <div style="padding-bottom:16px; border-bottom:1px solid #CCCCCC;margin-top:8px;font:normal 14px Arial;">
-     Showing <%= @reviews.blank? ? "0" : (@reviews.offset) +1 %>--<%= (@reviews.offset)+(@reviews.length) %> of <%= @reviews.size %> comments.</div>
+    Showing <%= @reviews.blank? ? "0" : (@reviews.offset) +1 %>--<%= (@reviews.offset)+(@reviews.length) %> of <%= @reviews.size %> comments.</div>
   <div id="recipe_comments">
     <!--<h3 style="border:none;">Your Comments <%= link_to("(Add comment)", login_path, :style => "font-size:12px;") unless logged_in? %></h3>-->
     <%= render :partial => 'site/shared/review_view_short', :locals => {:reviewer => @recipe} %>
@@ -79,15 +79,15 @@
 </div>
 
 <% content_for :right do %>
-  <%= render :partial => '/site/shared/box_most_read_recipes' %>
-  <br />
-  <%= render :partial => '/site/shared/box_event' %>
-  <br />
-  <%= render :partial => '/site/shared/box_subscriptions' %>
-  <br/>
-  <%= render :partial => '/site/shared/box_popular' %>
-  <br/>
-  <%= render :partial => '/site/shared/box_grape_guide' %>
-  <br />
+    <%= render :partial => '/site/shared/box_most_read_recipes' %>
+    <br />
+    <%= render :partial => '/site/shared/box_event' %>
+    <br />
+    <%= render :partial => '/site/shared/box_subscriptions' %>
+    <br/>
+    <%= render :partial => '/site/shared/box_popular' %>
+    <br/>
+    <%= render :partial => '/site/shared/box_grape_guide' %>
+    <br />
 <% end %>
 

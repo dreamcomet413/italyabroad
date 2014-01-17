@@ -2,7 +2,7 @@
 
 <% if @category.image && !@category.image_url.blank? %>
   <div id="wineBanner">
-	  <%= link_to image_tag(image_url('home_image', @category.image, :jpg)), @category.image_url %>
+	  <%= link_to image_tag(site_image_url('home_image', @category.image, :jpg)), @category.image_url %>
 	</div>
 <% else %>
   <div id="wineBanner">

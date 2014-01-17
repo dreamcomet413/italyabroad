@@ -2,9 +2,9 @@
 
 <div id="wineBanner" style="padding-top:5px;"><%#= image_tag("wine_tours_card_home.jpg") %>
  <%- if @product.image_1 or @product.image_2 or @product.image_3 -%>
-    <%= image_tag(image_url("region_card", @product.image_1, :jpg),:alt=>@product.name) if @product.image_1 %>
-          <%#= image_tag(image_url("region_card", @product.image_2, :jpg)) if @product.image_2 %>
-          <%#=  image_tag(image_url("region_card", @product.image_3, :jpg)) if @product.image_3 %>
+    <%= image_tag(site_image_url("region_card", @product.image_1, :jpg),:alt=>@product.name) if @product.image_1 %>
+          <%#= image_tag(site_image_url("region_card", @product.image_2, :jpg)) if @product.image_2 %>
+          <%#=  image_tag(site_image_url("region_card", @product.image_3, :jpg)) if @product.image_3 %>
       <%- end -%>
 </div>
 <div id="wine_tours_content">
@@ -16,14 +16,14 @@
      <td valign="top" width="30%">
         <br />
         <ul class="image">
-          <%#= content_tag(:li, image_tag(image_url("product_wine_tour", @product.image_1, :jpg))) if @product.image_1 %>
+          <%#= content_tag(:li, image_tag(site_image_url("product_wine_tour", @product.image_1, :jpg))) if @product.image_1 %>
 
 
           <%#= content_tag(:li, show_image_tag(:card, @product.image_2, :jpg), "") if @product.image_2 %><br />
           <%#= content_tag(:li, show_image_tag(:card, @product.image_3, :jpg), "") if @product.image_3 %><br />
 
-          <%= content_tag(:li, image_tag(image_url("product_wine_tour_left_images", @product.image_2, :jpg),:alt=>@product.name)) if @product.image_2 %><!--br /-->
-          <%= content_tag(:li, image_tag(image_url("product_wine_tour_left_images", @product.image_3, :jpg),:alt=>@product.name)) if @product.image_3 %>
+          <%= content_tag(:li, image_tag(site_image_url("product_wine_tour_left_images", @product.image_2, :jpg),:alt=>@product.name)) if @product.image_2 %><!--br /-->
+          <%= content_tag(:li, image_tag(site_image_url("product_wine_tour_left_images", @product.image_3, :jpg),:alt=>@product.name)) if @product.image_3 %>
         </ul>
       </td>
       <%- end -%>
@@ -38,7 +38,9 @@
               <td style="font-size:18px;color:#9b0707;text-align:right;"><!--Price:&nbsp;--><%= number_to_currency @product.price, :unit => "&pound;" %></td>
              </tr>
              <tr>
-              <td align="right"><%= link_to_remote image_tag("buttons/buy_button_new.png"), :url => product_cart_index_path(@product), :html => {:method => 'post'} %></td>
+              <td align="right">
+                <%= link_to_remote image_tag("buttons/buy_button_new.png"), "/site/cart?product_id=#{product.id}", :method => :post, :remote => true %>
+              </td>
             </tr>
           </table>
           </div>

@@ -12,7 +12,7 @@
     and our <strong style="font-size:30px;">views</strong> on Italian wine-->
   </div>
    <% if  @about and !@about.image_id.nil? %>
-   <%=  image_tag(image_url(:about_thumb, @about.image, :jpg),:alt=>@about.title[0..150]) unless @about.blank?  %>
+   <%=  image_tag(site_image_url(:about_thumb, @about.image, :jpg),:alt=>@about.title[0..150]) unless @about.blank?  %>
    <% else %>
   <%= image_tag("blog_home.jpg",:alt=>@about.title[0..150]) unless @about.blank?  %>
   <% end %>
@@ -54,7 +54,8 @@
              <%= @tag_list.chop![0..-2] if !@tag_list.empty? %>
           </td>
           <td align="right">
-            <%= link_to "view comments (#{post.comments.find(:all,:conditions=>['public=?',true]).size})", blog_path(:id => post.id) %> - <%= link_to "read more", blog_path(:id => post.id) %>
+            <%= link_to "view comments (#{post.comments.find(:all,:conditions=>['public=?',true]).size})", blog_path(:id => post.id) %> -
+            <%= link_to "read more", blog_path(:id => post.id) %>
           </td>
         </tr>
       </table>

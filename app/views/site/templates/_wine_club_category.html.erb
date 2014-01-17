@@ -1,98 +1,99 @@
 <%- @breadcrumbs = "#{link_to("Home", root_url)} &raquo; #{link_to("Wine club", '/wine-tours')}" -%>
 <% @about = AboutU.find(:first, :conditions => {:link_type => "wine-club"} ) %>
 <% if @category.image_link
-link = @category.image_link
-else
-link = search_index_path(:id=>@category)
-end
+     link = @category.image_link
+   else
+     link = search_index_path(:id=>@category)
+   end
 
 %>
 <% if @category.image && !@category.image_url.blank? %>
-  <div id="wineBanner">
+    <div id="wineBanner">
     <span class="title_wine_tours">
     <%# unless @category.text_on_image.blank? %>
-    <!-- <div style="width:260px;height:100px;color:white;background:black;opacity: 0.6;filter:alpha(opacity=40);text-align:left;overflow:hidden;">
+      <!-- <div style="width:260px;height:100px;color:white;background:black;opacity: 0.6;filter:alpha(opacity=40);text-align:left;overflow:hidden;">
     <%#= @category.text_on_image%>
     </div> -->
-    <%# end %>
+      <%# end %>
   </span>
-	  <%= link_to image_tag(image_url('home_image', @category.image, :jpg),:alt=>@category.name), link %>
-	</div>
+      <%= link_to image_tag(site_image_url('home_image', @category.image, :jpg),:alt=>@category.name), link %>
+    </div>
 <% else %>
-  <div id="wineBanner">
+    <div id="wineBanner">
     <span class="title_wine_tours">
       <strong style="font-size:24px;">Experience</strong> firsthand the <strong style="font-size:24px;">passion,</strong><br />
       talk to the <strong style="font-size:24px;">winemakers</strong>, visit the<br >
       <strong style="font-size:24px;">vineyards,</strong> the cellar, <strong style="font-size:24px;">taste the<br />
       wines</strong> directly from the barrels,<br />
       <strong style="font-size:24px;">harvest</strong> the grapes and <strong style="font-size:24px;">make your<br />own wine</strong> with our <strong style="font-size:24px;">wine tours</strong></span>
-	  <%#= link_to image_tag("wine_tours_home.jpg"), search_index_path(:id => @category.friendly_identifier) %>
-  <%# if  @about and !@about.image_id.nil? %>
-	  <%#= link_to image_tag(image_url(:about_thumb, @about.image, :jpg)) , search_index_path(:id => @category.friendly_identifier)  unless @about.blank?  %>
-	  <%# else %>
-	  <%= link_to image_tag("wine_tours_home.jpg",:alt=>@category.name), link %>
-	  <%# end %>
-	</div>
+      <%#= link_to image_tag("wine_tours_home.jpg"), search_index_path(:id => @category.friendly_identifier) %>
+      <%# if  @about and !@about.image_id.nil? %>
+      <%#= link_to image_tag(site_image_url(:about_thumb, @about.image, :jpg)) , search_index_path(:id => @category.friendly_identifier)  unless @about.blank?  %>
+      <%# else %>
+      <%= link_to image_tag("wine_tours_home.jpg",:alt=>@category.name), link %>
+      <%# end %>
+    </div>
 <% end %>
 <h3 style="border:none;" align="center">
-    <% unless @category.page_heading.blank? %>
+  <% unless @category.page_heading.blank? %>
       <%= @category.page_heading %>
-     <% else %>
+  <% else %>
       <%= @category.name %>
-     <% end %>
-  </h3>
+  <% end %>
+</h3>
 
 <% products = Product.find(:all, :limit => 2, :include => {:categorizations => :category}, :conditions => ["categories.name LIKE ? AND DATE(date) > ? AND active" ,'Events',Date.today],:order =>'date') %>
 <% unless products.blank? -%>
-          <div style="margin:6px;float:left;margin-right:20px;">
-            <%= render :partial => '/site/shared/box_upcoming_events' -%>
-          </div>
+    <div style="margin:6px;float:left;margin-right:20px;">
+      <%= render :partial => '/site/shared/box_upcoming_events' -%>
+    </div>
 <% end %>
 
- <!-- <h3 style="border:none;" align="center">
+<!-- <h3 style="border:none;" align="center">
     <%# unless @category.page_heading.blank? %>
-      <%#= @category.page_heading %>
-     <%# else %>
-      <%#= @category.name %>
-     <%# end %>
+<%#= @category.page_heading %>
+<%# else %>
+<%#= @category.name %>
+<%# end %>
   </h3>-->
-  <p style="margin:6px;text-align:justify;margin-right:20px;">
-    <%= @category.description.html_safe() %>
-    <!--Need content to change this static description.-->
-  </p><div id="wine_tour_description">
+<p style="margin:6px;text-align:justify;margin-right:20px;">
+  <%= @category.description.html_safe() %>
+  <!--Need content to change this static description.-->
+</p><div id="wine_tour_description">
 </div>
-  <div style="clear:both;"></div>
-  <%# products = @category.products.find(:all, :conditions => ["active = ?", true], :order => "date ").paginate(:page => params[:page], :per_page => 3) %>
-  <% products = @category.products.where(["active = ?", true]).order("price ASC ").paginate(:page => params[:page], :per_page => 3) %>
-  <%- unless products.blank? -%>
-  <div id="featured_wine_tours" style="margin:6px;text-align:justify;margin-right:20px;">
-    <br />
-    <h3>Wine Club Options</h3>
-    <ul>
-      <%- products.each do |product| -%>
-      <li class="product_listing">
-        <h1><%= link_to product.name, nested_products_uri(product), :class => "product_title" %></h1>
-        <div><%= product.description_short.html_safe() %></div>
-        <div style="font-size:18px;color:#9b0707;text-align:right;">
-       <!-- Price:&nbsp;--><%= number_to_currency product.price, :unit => "&pound;" %><br />
-        <%= link_to_remote image_tag("buttons/buy_button_new.png"), :url => product_cart_index_path(product), :html => {:method => 'post'} %></div>
-      </li>
-      <%- end -%>
-    </ul>
-    <% products = @category.products.find(:all, :conditions => ["active = ?", true], :order => "price ASC ").paginate(:page => params[:page], :per_page => 3) %>
-    <%= will_paginate(products) %>
-  </div>
-  <%- end -%>
+<div style="clear:both;"></div>
+<%# products = @category.products.find(:all, :conditions => ["active = ?", true], :order => "date ").paginate(:page => params[:page], :per_page => 3) %>
+<% products = @category.products.where(["active = ?", true]).order("price ASC ").paginate(:page => params[:page], :per_page => 3) %>
+<%- unless products.blank? -%>
+    <div id="featured_wine_tours" style="margin:6px;text-align:justify;margin-right:20px;">
+      <br />
+      <h3>Wine Club Options</h3>
+      <ul>
+        <%- products.each do |product| -%>
+            <li class="product_listing">
+              <h1><%= link_to product.name, nested_products_uri(product), :class => "product_title" %></h1>
+              <div><%= product.description_short.html_safe() %></div>
+              <div style="font-size:18px;color:#9b0707;text-align:right;">
+                <!-- Price:&nbsp;--><%= number_to_currency product.price, :unit => "&pound;" %><br />
+                <%= link_to_remote image_tag("buttons/buy_button_new.png"), "/site/cart?product_id=#{product.id}", :method => :post, :remote => true %>
+              </div>
+            </li>
+        <%- end -%>
+      </ul>
+      <% products = @category.products.find(:all, :conditions => ["active = ?", true], :order => "price ASC ").paginate(:page => params[:page], :per_page => 3) %>
+      <%= will_paginate(products) %>
+    </div>
+<%- end -%>
 <!-- /div -->
 
 <% content_for :right do %>
-  <%#= render :partial => 'site/shared/box_product_reviews' %>
-   <%= render :partial => 'site/shared/box_wine_club_testimonials' %>
-  <br />
-	<%= render :partial => '/site/shared/box_subscriptions' %>
-	<br />
-	<%= render :partial => 'site/shared/box_products_on_offer' %>
-	<br />
-	<%= render :partial => '/site/shared/box_grape_guide' %>
+    <%#= render :partial => 'site/shared/box_product_reviews' %>
+    <%= render :partial => 'site/shared/box_wine_club_testimonials' %>
+    <br />
+    <%= render :partial => '/site/shared/box_subscriptions' %>
+    <br />
+    <%= render :partial => 'site/shared/box_products_on_offer' %>
+    <br />
+    <%= render :partial => '/site/shared/box_grape_guide' %>
 <% end %>
 
