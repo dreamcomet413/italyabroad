@@ -92,7 +92,7 @@
 
         </li>
     <% end %>
-    <% products = @category.products.find(:all, :conditions => ["active = ? AND DATE(date) >= ?", true, Date.today], :order => "date").paginate(:page => params[:page], :per_page => 4)%>
+    <% products = @category.products.where(["active = ? AND DATE(date) >= ?", true, Date.today]).order("date").paginate(:page => params[:page], :per_page => 4)%>
     <%= will_paginate(products) %>
   </ul>
 </div>

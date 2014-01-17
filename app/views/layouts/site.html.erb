@@ -171,8 +171,8 @@
         <%- end -%>
 
         <!--<li class="<%#= " active" if active_uri == "/wine-club" %>"><%#= link_to "Wine Club", :action=>"wine_club", :controller=>"site/base" %></li>-->
-        <li id="link-to-forum" <%= 'class="active"' if active_uri == "/site/wine-community" %>><%= link_to "Community", wine_community_path %></li><!-- earlier it was if active_uri == "/forums" problem when mouser hover in this case -->
-        <li id="link-to-recipes" <%= 'class="active"' if active_uri == "/site/recipes" %>><%= link_to "Recipes", site_recipes_path  %>
+        <li id="link-to-forum" class="<%= "active" if active_uri == "/wine-community" %>"><%= link_to "Community", wine_community_path %></li><!-- earlier it was if active_uri == "/forums" problem when mouser hover in this case -->
+        <li id="link-to-recipes" class="<%= "active" if active_uri == "/site/recipes" %>"><%= link_to "Recipes", site_recipes_path  %>
         </li>
         <li id="link-to-blog" class="last<%= " active" if active_uri == "/site/blog" %>"><%= link_to "Blog", site_blog_index_path %></li>
 

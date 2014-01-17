@@ -1,5 +1,5 @@
 <%- set_title "Community" -%>
-<% @breadcrumbs = "#{link_to("Home", root_url)} &raquo; #{link_to ('Community',wine_community_path)}" %>
+<% @breadcrumbs = "#{link_to("Home", root_url)} &raquo; #{link_to('Community',wine_community_path)}" %>
 <% @about = AboutU.find(:first, :conditions => {:link_type => "community"} ) %>
 <div id="wineBanner">
   <span class="community_home_title">
@@ -119,11 +119,11 @@
     <div id="box_latest_blog"  style="background-color:#f8f7ef;padding:5px 10px;margin-right:10px;text-align:justify;">
           <% blog = Post.last %>
           <h1 style="color:#9b0707;font-size:14px;text-align:center;">Blog</h1>
-          <%= link_to "Latest Entry", blog_index_path %><br /><br />
+          <%= link_to "Latest Entry", site_blog_index_path %><br /><br />
           <% if !blog.nil? %>
-            <%= link_to blog.name.upcase, blog_path(blog.id) %> - <%= blog.created_at.strftime("%d/%m/%Y") %><br /><br />
+            <%= link_to blog.name.upcase, site_blog_path(blog.id) %> - <%= blog.created_at.strftime("%d/%m/%Y") %><br /><br />
             <%= blog.description_short.html_safe() %><br /><br />
-            <div style="text-align:right;"><%= link_to("View all", blog_index_path) %></div>
+            <div style="text-align:right;"><%= link_to("View all", site_blog_index_path) %></div>
           <%end%>
     </div>
 
@@ -184,16 +184,16 @@
                   <%=
                   if grape.description
                       if grape.description.length > @enough_chars
-                        grape.description[0..@enough_chars] + "..." + link_to('(Continue Reading)',grape_path(grape)) + '<br /><br />'
+                        grape.description[0..@enough_chars].html_safe() + "..." + link_to('(Continue Reading)',grape_path(grape)).html_safe()
                       else
-                        grape.description
+                        grape.description.html_safe()
                       end
                   else
              "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".html_safe()
                    end
                   %>
                   </div>
@@ -218,16 +218,16 @@
              <%=
             if region.description and !region.description.empty? and !region.description.nil?
               if region.description.length > @enough_chars
-                region.description[0..@enough_chars] + "..." + link_to('(Continue Reading)',region_path(region)) + '<br /><br />'
+                region.description[0..@enough_chars].html_safe() + "..." + link_to('(Continue Reading)',region_path(region)).html_safe()
               else
-                region.description
+                region.description.html_safe()
               end
             else
               " &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".html_safe()
              end%>
 
             </div>
