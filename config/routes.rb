@@ -31,7 +31,8 @@ ItalyabroadNew::Application.routes.draw do
   match 'subscriptions' => 'site/base#create_subscription', :as => :create_subscription, :method => :post
   match 'thank-you' => 'site/base#subscription_complete', :as => :subscription_complete
   match 'unsubscribe-dali-news' => 'site/base#unsubscribe', :as => :unsubscribe_dali_news
-  match '/simple_captcha/:action' => 'simple_captcha#index', :as => :simple_captcha
+  #match '/simple_captcha/:action' => 'simple_captcha#index', :as => :simple_captcha
+  match 'simple_captcha/:id', :to => 'simple_captcha#show', :as => :simple_captcha
   match 'siteadmin' => 'admin/base#index', :as => :siteadmin
   match 'admin/login' => 'admin/base#login', :as => :admin_login
   match 'blog/:year/:month' => 'site/blog#index', :as => :blog_by_month_page, :year => /\d{4}/, :month => /\d{1,2}/

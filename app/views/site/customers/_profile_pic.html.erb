@@ -34,27 +34,27 @@
               Or if you would not like to upload an image please select your preferred color from the default images below.
               <ul class="photo_list">
                 <li>
-                  <%= link_to (image_tag('default.jpg')), :url => update_default_pic_customers_path(:kind => "1"),
+                  <%= link_to (image_tag('default.jpg')), :url => update_default_pic_site_customers_path(:kind => "1"),
                   :method => :get, :remote => true, :update => "profile_pic", :loading => "$('loader-image').show();$('user_photo').hide();" %>
                 </li>
                 <li>
-                  <%= link_to (image_tag('default_a.jpg')), :url => update_default_pic_customers_path(:kind => "a"),
+                  <%= link_to (image_tag('default_a.jpg')), :url => update_default_pic_site_customers_path(:kind => "a"),
                   :method => :get, :remote => true, :update => "profile_pic", :loading => "$('loader-image').show();$('user_photo').hide();" %>
                 </li>
                 <li>
-                  <%= link_to (image_tag('default_b.jpg')), :url => update_default_pic_customers_path(:kind => "b"),
+                  <%= link_to (image_tag('default_b.jpg')), :url => update_default_pic_site_customers_path(:kind => "b"),
                   :method => :get, :remote => true, :update => "profile_pic", :loading => "$('loader-image').show();$('user_photo').hide();" %>
                 </li>
                 <li>
-                  <%= link_to (image_tag('default_c.jpg')), :url => update_default_pic_customers_path(:kind => "c"),
+                  <%= link_to (image_tag('default_c.jpg')), :url => update_default_pic_site_customers_path(:kind => "c"),
                   :method => :get, :remote => true, :update => "profile_pic", :loading => "$('loader-image').show();$('user_photo').hide();" %>
                 </li>
                 <li>
-                  <%= link_to (image_tag('default_d.jpg')), :url => update_default_pic_customers_path(:kind => "d"),
+                  <%= link_to (image_tag('default_d.jpg')), :url => update_default_pic_site_customers_path(:kind => "d"),
                   :method => :get, :remote => true, :update => "profile_pic", :loading => "$('loader-image').show();$('user_photo').hide();" %>
                 </li>
                 <li>
-                  <%= link_to (image_tag('default_e.jpg')), :url => update_default_pic_customers_path(:kind => "e"),
+                  <%= link_to (image_tag('default_e.jpg')), :url => update_default_pic_site_customers_path(:kind => "e"),
                   :method => :get, :remote => true, :update => "profile_pic", :loading => "$('loader-image').show();$('user_photo').hide();" %>
                 </li>
               </ul>

@@ -218,7 +218,12 @@ class User < ActiveRecord::Base
   end
 
   def show_errors
-    return "- " + self.errors.full_messages.join("<br />- ")
+    str = ""
+    self.errors.each do |k, v|
+      str += "#{k} #{v} <br />-".html_safe() unless k == :base
+      str += "#{v} <br />-".html_safe() if k == :base
+    end
+    return ("- " + str).html_safe()
   end
 
   def default_ship_address
