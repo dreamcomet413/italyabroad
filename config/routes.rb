@@ -87,14 +87,6 @@ ItalyabroadNew::Application.routes.draw do
   match 'site/checkouts/order_confirmation' => 'site/checkouts#order_confirmation'
   match 'site/cart/update_gift' => 'site/cart#update_gift'
   resources :ship_addresses
-  resources :checkouts, :only => [:index] do
-    collection do
-      post :confirm_address
-      get :payment
-      get :paypal
-      get :confirmed
-    end
-  end
 
   namespace :site do
     resources :orders, :only => [:index, :new, :create, :show] do
@@ -136,6 +128,14 @@ ItalyabroadNew::Application.routes.draw do
       end
     end
     resources :regions, :only => [:show, :index]
+    resources :checkouts, :only => [:index] do
+      collection do
+        post :confirm_address
+        get :payment
+        get :paypal
+        get :confirmed
+      end
+    end
   end
 
 

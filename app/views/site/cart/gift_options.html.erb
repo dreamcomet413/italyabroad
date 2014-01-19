@@ -8,7 +8,7 @@
      <% index = 0 %>
 			<% for gift_option in GiftOption.find(:all) %>
 
-			<% unless @cart.gift[:gift_option_id].blank?
+			<% if @cart.gift.present? and !@cart.gift[:gift_option_id].blank?
 			  if @cart.gift[:gift_option_id].to_i == gift_option.id.to_i
 			  checked =  true
         else
@@ -16,13 +16,13 @@
 			end end %>
 			<tr>
 				<td>
-				<% if  @cart.gift[:gift_option_id].blank? and index == 0
+				<% if @cart.gift.present? and @cart.gift[:gift_option_id].blank? and index == 0
           checked =  true
           index = index + 1
         end %>
 
 				<%= radio_button :gift, :gift_option_id, gift_option.id,:checked=>checked %>
-				<% if  @cart.gift[:gift_option_id].blank? and index > 0
+				<% if @cart.gift.present? and  @cart.gift[:gift_option_id].blank? and index > 0
 				  checked =  ""
 				 end %>
 				</td>
@@ -30,7 +30,7 @@
 					<div style="font-size:11px;font-weight:bold">
 						<%= gift_option.name %>
 						<% if gift_option.price > 0  %>
-						(<span style="color:red"><%= number_to_currency (gift_option.price,:unit => "&pound;") %></span>)
+						(<span style="color:red"><%= number_to_currency(gift_option.price,:unit => "&pound;") %></span>)
 						<% end %>
 						<%#= hidden_field :gift,:price ,:value=>gift_option.price %>
 					</div>
