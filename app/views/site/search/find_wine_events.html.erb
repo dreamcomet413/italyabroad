@@ -1,5 +1,5 @@
 <div id="header">Your search result has found the following events:</div>
-<div align="right" class="pagination_div"><%= will_paginate(@wine_events) %></div>
+<div align="right" class="pagination_div"><%= will_paginate_(@wine_events) %></div>
 <% for product in @wine_events %>
     <table style="margin:0 0 0 0px; margin-left:10px; margin-right:10px; padding-left:10px; padding-right:10px;width:98%;" cellpadding="0" border="0" cellspacing="0">
       <tr>
@@ -23,8 +23,13 @@
             <ul>
               <li class="price_info">
                 <% if product.discounted? %>
-                    <div style="font-size:14px">Was <span style="text-decoration: line-through;"><%= number_to_currency product.price, :unit => "&pound;" %></span></div>
-                    <span class="price red" style="color:#003300;">Now&nbsp;<span class="promotion"; style="color:red;"><%= number_to_currency product.price_discounted, :unit => "&pound;" %></span></span>
+                    <div style="font-size:14px">Was <span style="text-decoration: line-through;">
+                      <%= number_to_currency product.price, :unit => "&pound;" %>
+                    </span>
+                    </div>
+                    <span class="price red" style="color:#003300;">Now&nbsp;<span class="promotion" style="color:red;">
+                      <%= number_to_currency product.price_discounted, :unit => "&pound;" %>
+                    </span></span>
                 <% else %>
                     <span class="price" style="color:black;"><%= number_to_currency product.price, :unit => "&pound;" %></span>
                 <% end %>
@@ -39,7 +44,7 @@
                         <td>Ticket qty: </td>
                         <td><%= text_field :cart, :quantity, :size => 2, :value => 1 %></td>
                         <td>
-                          <%= link_to_remote image_tag("buttons/buy_button_new.png"), "/site/cart?product_id=#{product.id}", :method => :post, :remote => true %>
+                          <%= link_to image_tag("buttons/buy_button_new.png"), "/site/cart?product_id=#{product.id}", :method => :post, :remote => true %>
                         </td>
                       </tr>
                     </table>

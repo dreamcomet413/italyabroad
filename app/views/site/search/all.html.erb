@@ -16,7 +16,7 @@
       <!--<div id="header">Your search has found the following users:</div>-->
       <h1>Community members</h1>
       <%#= link_to_remote @users.count.to_s + 'Users', :url => { :action => "find_users",:text=>params[:text]} %>
-      <%= link_to @users.count.to_s + '&nbsp;&nbsp; Users',   :action => "find_users",:text=>params[:text] %>
+      <%= link_to (@users.count.to_s + '&nbsp;&nbsp; Users').html_safe(),   :action => "find_users",:text=>params[:text] %>
       <div id="all_users"></div><br /><br /><br />
     </div>
     <h3>&nbsp;</h3>
@@ -28,7 +28,7 @@
       <!--<div id="header">Your search has found the following producers:</div>-->
       <h1>Producers</h1>
       <%#= link_to_remote @producers.count.to_s + 'Producers', :url => { :action => "find_producers",:text=>params[:text]} %>
-      <%= link_to @producers.count.to_s + '&nbsp;&nbsp; Producers',  :action => "find_producers",:text=>params[:text] %>
+      <%= link_to (@producers.count.to_s + '&nbsp;&nbsp; Producers').html_safe(),  :action => "find_producers",:text=>params[:text] %>
       <div id="all_producers"></div><br /><br /><br />
     </div>
     <h3>&nbsp;</h3>
@@ -52,7 +52,7 @@
       <!--<div id="header">Your search has found the following wines:</div>-->
       <h1>Hampers</h1>
       <%#= link_to_remote @wines.count.to_s + 'Wines' , :url => { :action => "find_wines",:text=>params[:text]} %>
-      <%= link_to @hampers.count.to_s + '&nbsp;&nbsp; Hampers' ,  :action => "find_hampers",:text=>params[:text] %>
+      <%= link_to (@hampers.count.to_s + '&nbsp;&nbsp; Hampers').html_safe() ,  :action => "find_hampers",:text=>params[:text] %>
       <div id="all_hampers"></div> <br /><br /><br />
     </div>
     <h3>&nbsp;</h3>
@@ -65,7 +65,7 @@
       <!--<div id="header">Your search has found the following Recipes:</div>-->
       <h1>Recipes</h1>
       <%#= link_to_remote @recipes.count.to_s + 'Recipes', :url => { :action => "find_recipes",:text=>params[:text]} %>
-      <%= link_to @recipes.count.to_s + '&nbsp;&nbsp; Recipes',  :action => "find_recipes",:text=>params[:text] %>
+      <%= link_to (@recipes.count.to_s + '&nbsp;&nbsp; Recipes').html_safe(),  :action => "find_recipes",:text=>params[:text] %>
       <div id="all_recipes"></div><br /><br /><br />
     </div>
     <h3>&nbsp;</h3>
@@ -78,7 +78,7 @@
       <!--<div id="header">Your search has found the following Foods:</div>-->
       <h1>Foods</h1>
       <%#= link_to_remote @foods.count.to_s + 'Foods', :url => { :action => "find_foods",:text=>params[:text]} %>
-      <%= link_to @foods.count.to_s + '&nbsp;&nbsp; Foods',  :action => "find_foods",:text=>params[:text]%>
+      <%= link_to (@foods.count.to_s + '&nbsp;&nbsp; Foods').html_safe(),  :action => "find_foods",:text=>params[:text]%>
       <div id="all_foods"></div><br /><br /><br />
     </div><h3>&nbsp;</h3>
 <% end %>
@@ -90,7 +90,7 @@
       <!--<div id="header">Your search has found the following Foods:</div>-->
       <h1>Events</h1>
       <%#= link_to_remote @foods.count.to_s + 'Foods', :url => { :action => "find_foods",:text=>params[:text]} %>
-      <%= link_to @wine_events.count.to_s + '&nbsp;&nbsp; Events',  :action => "find_wine_events",:text=>params[:text]%>
+      <%= link_to (@wine_events.count.to_s + '&nbsp;&nbsp; Events').html_safe(),  :action => "find_wine_events",:text=>params[:text]%>
       <div id="all_events"></div><br /><br /><br />
     </div>
 <% end %>
@@ -104,7 +104,7 @@
       <%#= link_to_remote @foods.count.to_s + 'Foods', :url => { :action => "find_foods",:text=>params[:text]} %>
       <%#= link_to @grapes.count.to_s + '&nbsp;&nbsp; Grapes',  :action => "find_grapes", :text=>params[:text]%>
       <%#= link_to @grapes.count.to_s + '&nbsp;&nbsp; Grapes',  grapes_path, :search_by_name=>params[:text], :search => 'Search'%>
-      <%= link_to @grapes.count.to_s + '&nbsp;&nbsp; Grapes',  '/grapes/search_results' + "?search_by_name=#{params[:text]}&" +  "search=Search"%>
+      <%= link_to (@grapes.count.to_s + '&nbsp;&nbsp; Grapes').html_safe(),  '/grapes/search_results' + "?search_by_name=#{params[:text]}&" +  "search=Search"%>
 
 
       <div id="grapes_all"></div><br /><br /><br />
