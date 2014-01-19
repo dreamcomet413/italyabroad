@@ -137,61 +137,61 @@ module ApplicationHelper
     image_type = image_type.to_sym
     case image_type
       when :product_rec, :region_thumb_small
-        {:height => '100', :weight => '100'}
+        {:height => '100', :width => '100'}
       when :wine_category
         {:height => '100'}
       when :product_food
         {:height => '100'}
       when :wine_category_producers_page, :product_food
-        {:height => '150', :weight => '80'}
+        {:height => '150', :width => '80'}
       when :food_category, :food_sub_category, :hamper_sub_category
-        {:height => '150', :weight => '120'}
-      when :hamper_category, :product_hamper
+        {:height => '150', :width => '120'}
+      when :hamper_category, :product_hamper, :product_wine
         {:height => '80'}
       when :wine_sub_category
-        {:height => '104', :weight => '80'}
+        {:height => '104', :width => '80'}
       when :grape_thumb, :product_thumb_carta
-        {:height => '100', :weight => '65'}
+        {:height => '100', :width => '65'}
       when :avatar_thumb_small
-        {:height => '50', :weight => '50'}
+        {:height => '50', :width => '50'}
       when :avatar_thumb
-        {:height => '98', :weight => '98'}
-      when :home_image, :blog_banner, :about_thumb, :region_card
-        {:height => '284', :weight => '723'}
+        {:height => '98', :width => '98'}
+      when :home_image, :blog_banner, :about_thumb, :region_card, :original
+        {:height => '284', :width => '723'}
       when :home_image_thumb, :category_thumb, :recipe_thumb, :post_thumb, :restaurant_thumb
-        {:height => '75', :weight => '100'}
+        {:height => '75', :width => '100'}
       when :category
-        {:height => '270', :weight => '500'}
+        {:height => '270', :width => '500'}
       when :product
-        {:height => '200', :weight => '200'}
+        {:height => '200', :width => '200'}
       when :product_wine_tour_left_images
         {:height => '200'}
       when :product_display
-        {:height => '600', :weight => '800'}
+        {:height => '600', :width => '800'}
       when :card
         {:height => '80'}
       when :product_hamper_big
-        {:height => '120', :weight => '120'}
-      when :product_wine, :product_food
-        {:height => '128', :weight => '60'}
+        {:height => '120', :width => '120'}
+      when :product_food
+        {:height => '128', :width => '60'}
       when :product_event
-        {:height => '90', :weight => '70'}
+        {:height => '90', :width => '70'}
       when :product_thumb
-        {:height => '190', :weight => '65'}
+        {:height => '190', :width => '65'}
       when :product_thumb_cart
-        {:height => '30', :weight => '30'}
+        {:height => '30', :width => '30'}
       when :product_show, :producer_thumb, :region_thumb
-        {:height => '300', :weight => '300'}
+        {:height => '300', :width => '300'}
       when :product_wine_tour, :wine_tour_category
-        {:height => '180', :weight => '237'}
+        {:height => '180', :width => '237'}
       when :post
-        {:height => '450', :weight => '480'}
+        {:height => '450', :width => '480'}
       when :restaurant_thumb_site
-        {:height => '200', :weight => '250'}
+        {:height => '200', :width => '250'}
       when :recipe, :community_producer_thumb
-        {:height => '150', :weight => '150'}
+        {:height => '150', :width => '150'}
       when :blog_view
-        {:height => '200', :weight => '287'}
+        {:height => '200', :width => '287'}
       else
         {}
     end
@@ -211,7 +211,8 @@ module ApplicationHelper
 
   def show_home_image_tag(image, format = :jpg)
     if image && format
-      return image_tag(site_image_url(:original, image, format), :size => "723x284").html_safe()
+      return image_tag("/resources/images/#{image.id}.#{format}", image_dimensions(:original))
+      #return image_tag(site_image_url(:original, image, format), :size => "723x284").html_safe()
     else
       return nil
     end
