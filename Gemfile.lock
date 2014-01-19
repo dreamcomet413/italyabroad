@@ -150,7 +150,6 @@ DEPENDENCIES
   better_nested_set
   capistrano (= 2.12.0)
   debugger
-  debugger-linecache
   fleximage!
   jquery-rails
   mime-types (= 1.23)

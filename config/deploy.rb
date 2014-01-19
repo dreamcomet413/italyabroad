@@ -12,7 +12,7 @@ set :user, "root"
 set :domain, "192.241.165.181"
 server domain, :app, :web
 role :db, domain, :primary => true
-set :rvm_ruby_string, 'ruby-2.0.0-p353'
+set :rvm_ruby_string, 'ruby-2.0.0'
 $:.unshift(File.expand_path('./lib', ENV['rvm_path']))
 set :rvm_type, :system
 
