@@ -24,7 +24,7 @@
         </tr>
         <tr>
           <td>Grape:</td>
-          <td><%= select_tag :grape_id, options_for_select(@category.products.grapes.inject([["Any", ""]]) { |gs, g| gs << [g.name, g.id] }, params[:grape_id].to_i), :id => "search_grape" if !@category.nil? %></td>
+          <td><%= select_tag(:grape_id, options_for_select(@category.products.grapes.inject([["Any", ""]]) {|gs, g| gs << [g.name.include?("Avola") ? "Nero d’ Avola": g.name, g.id]}, params[:grape_id].to_i), :id => "search_grape") if !@category.nil? %></td>
         </tr>
         <tr>
           <td>Colour:</td>

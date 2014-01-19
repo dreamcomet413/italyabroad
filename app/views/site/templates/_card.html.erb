@@ -58,7 +58,7 @@
                 <td class="data">
                   <% if @product.region %>
                       <% if @product.region.active %>
-                          <%= link_to(@product.region.name, site_region_path(@product.region)).html_safe()   %>
+                          <%= link_to(@product.region.name, site_region_path(@product.region))   %>
                       <% end   %>
                   <% end %>
                 </td>
@@ -329,7 +329,7 @@
                           <%#= image_tag(image_url(image.layout_image, image.image_1, "jpg")) %>
                         </td></tr>
                         <tr>
-                          <td style="vertical-align:bottom;"><%= link_to truncate(inc_product.name,80), nested_products_uri(inc_product) %></td>
+                          <td style="vertical-align:bottom;"><%= link_to inc_product.name, nested_products_uri(inc_product) %></td>
                         </tr>
                         <tr>
                           <td><%= number_to_currency inc_product.price, :unit => "&pound;" %></td>
