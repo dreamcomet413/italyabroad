@@ -40,7 +40,7 @@ module ApplicationHelper
     options << ["[Create a new address]", -1]
   end
 
-  
+
 
   def title
     return  @title + " - Italyabroad.com" unless @title.blank?
@@ -98,7 +98,7 @@ module ApplicationHelper
   def topic_title_link(topic, options)
     if topic.title =~ /^\[([^\]]{1,15})\]((\s+)\w+.*)/
       "<span class='flag'>#{$1}</span>" +
-        link_to(h($2.strip), forum_topic_path(@forum, topic), options)
+          link_to(h($2.strip), forum_topic_path(@forum, topic), options)
     else
       link_to(h(topic.title), forum_topic_path(@forum, topic), options)
     end
@@ -117,7 +117,11 @@ module ApplicationHelper
     if image_type && image && format
 
       #return image_tag(image_url(image_type, image, format), {:alt => image_alt, :title => image_alt, :height => "80"})
-      return image_tag(site_image_url(image_type, image, format), {:alt => image_alt, :title => image_alt}).html_safe()
+      #"http://localhost:3000/site/image/product_wine/541.jpg"
+      #return image_tag(site_image_url(image_type, image, format), {:alt => image_alt, :title => image_alt})
+      return image_tag("/resources/images/#{image.id}.#{format}", image_dimensions(image_type).merge!(:alt => image_alt, :title => image_alt))
+      #return image_tag("/site/image?id=#{image.id}&image_type=#{image_type}&format=#{format}")
+      #return image_tag(url_for(:controller => "site/images", :action => "show", :id => image.id, :format => format))
 
     elsif image_type
       #return image_tag("no_images/#{image_type}.jpg", :size => "100x120", :alt => image_alt)
@@ -126,6 +130,70 @@ module ApplicationHelper
     else
       #return image_tag("no_images/noimage.png", :alt => image_alt, :width => "80")
       return image_tag("no_images/noimage.png", :alt => image_alt).html_safe()
+    end
+  end
+
+  def image_dimensions(image_type)
+    image_type = image_type.to_sym
+    case image_type
+      when :product_rec, :region_thumb_small
+        {:height => '100', :weight => '100'}
+      when :wine_category
+        {:height => '100'}
+      when :product_food
+        {:height => '100'}
+      when :wine_category_producers_page, :product_food
+        {:height => '150', :weight => '80'}
+      when :food_category, :food_sub_category, :hamper_sub_category
+        {:height => '150', :weight => '120'}
+      when :hamper_category, :product_hamper
+        {:height => '80'}
+      when :wine_sub_category
+        {:height => '104', :weight => '80'}
+      when :grape_thumb, :product_thumb_carta
+        {:height => '100', :weight => '65'}
+      when :avatar_thumb_small
+        {:height => '50', :weight => '50'}
+      when :avatar_thumb
+        {:height => '98', :weight => '98'}
+      when :home_image, :blog_banner, :about_thumb, :region_card
+        {:height => '284', :weight => '723'}
+      when :home_image_thumb, :category_thumb, :recipe_thumb, :post_thumb, :restaurant_thumb
+        {:height => '75', :weight => '100'}
+      when :category
+        {:height => '270', :weight => '500'}
+      when :product
+        {:height => '200', :weight => '200'}
+      when :product_wine_tour_left_images
+        {:height => '200'}
+      when :product_display
+        {:height => '600', :weight => '800'}
+      when :card
+        {:height => '80'}
+      when :product_hamper_big
+        {:height => '120', :weight => '120'}
+      when :product_wine, :product_food
+        {:height => '128', :weight => '60'}
+      when :product_event
+        {:height => '90', :weight => '70'}
+      when :product_thumb
+        {:height => '190', :weight => '65'}
+      when :product_thumb_cart
+        {:height => '30', :weight => '30'}
+      when :product_show, :producer_thumb, :region_thumb
+        {:height => '300', :weight => '300'}
+      when :product_wine_tour, :wine_tour_category
+        {:height => '180', :weight => '237'}
+      when :post
+        {:height => '450', :weight => '480'}
+      when :restaurant_thumb_site
+        {:height => '200', :weight => '250'}
+      when :recipe, :community_producer_thumb
+        {:height => '150', :weight => '150'}
+      when :blog_view
+        {:height => '200', :weight => '287'}
+      else
+        {}
     end
   end
 

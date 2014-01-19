@@ -64,11 +64,7 @@ ItalyabroadNew::Application.routes.draw do
     end
   end
 
-  resources :faqs
   resources :news_letters, :only => [:show]
-  resources :producers, :only => [:show, :index]
-  resources :regions, :only => [:show, :index]
-  resources :grapes, :only => [:index, :show]
   resources :wine_lists
   resources :reviews
   resources :messages do
@@ -126,19 +122,24 @@ ItalyabroadNew::Application.routes.draw do
     resources :blog, :only => [:index, :show] do
       match :comment, :on => :member
     end
+    resources :producers, :only => [:show, :index]
+    resources :grapes, :only => [:index, :show]
+    resources :faqs
+    resources :customers do
+      collection do
+        get :account
+        get :update_default_pic
+        get :request_new_password
+        post :find
+        post :send_message
+      end
+    end
+    resources :regions, :only => [:show, :index]
   end
 
-  resources :customers do
-    collection do
-      get :account
-      get :update_default_pic
-      get :request_new_password
-      post :find
-      post :send_message
-    end
-  end
 
   match 'site/image' => 'site/images#show', :path_prefix => ':image_type'
+  resources :image, :controller => 'site/images', :only => [:show], :path_prefix => ':image_type'
 
   resources :posts do
     collection do

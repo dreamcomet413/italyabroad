@@ -1,5 +1,5 @@
 <%- @title = "Administration - Faqs"; @page_id = "Other Stuff" -%>
-<%- @breadcrumbs = "Other Stuff &raquo; #{link_to "Faqs", admin_faqs_path}" -%>
+<%- @breadcrumbs = "Other Stuff &raquo; #{link_to "Faqs", admin_faqs_path}".html_safe() -%>
 
 <div class="inner_content reviews" id="admin_faqs_index">
   <h2>Faqs</h2>

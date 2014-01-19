@@ -1,4 +1,7 @@
-<% @title = "#{@grape.name}"; @class= "no-padding"; @breadcrumbs = "#{link_to("Home", root_url)} &raquo; #{link_to ('Community',wine_community_path)} &raquo; #{link_to("Grapes", grape_guide_path)} &raquo; #{@grape.name}" %>
+<% @title = "#{@grape.name}";
+   @class= "no-padding";
+   @breadcrumbs = "#{link_to("Home", root_url)} &raquo; #{link_to('Community',wine_community_path)} &raquo; #{link_to("Grapes", grape_guide_path)} &raquo; #{@grape.name}".html_safe()
+%>
 
 <div id="header"><%= @grape.name %></div>
 <br />
@@ -24,7 +27,7 @@
 <div style="margin-left:10px;margin-right:10px;">
  <!-- <h1 style="text-align:center;font-size:18px;font-weight:bold;color:#666666;margin-bottom:30px">Grape Information</h1> -->
   <div style="float:left;margin-right:20px;"><%#= show_grape_image(@grape) %></div><br />
-  <p style="text-align:justify;margin-left:10px;margin-right:10px;"><%= @grape.description || "No Description" %></p>
+  <p style="text-align:justify;margin-left:10px;margin-right:10px;"><%= @grape.description.html_safe() || "No Description" %></p>
   <div style="clear:both;"></div>
   <br />
 
@@ -34,7 +37,7 @@
   <%-end-%>
   <ul style="list-style:none;margin:0;padding:0;">
     <%- @grape.producers.find(:all,:conditions=>['active = ?',true]).each do |producer| -%>
-    <li><%= link_to producer.name, producer_path(producer) %></li>
+    <li><%= link_to producer.name, site_producer_path(producer) %></li>
     <%- end -%>
   </ul>
   <br />

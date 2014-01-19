@@ -58,7 +58,7 @@
                 <td class="data">
                   <% if @product.region %>
                       <% if @product.region.active %>
-                          <%= link_to(@product.region.name, region_path(@product.region))   %>
+                          <%= link_to(@product.region.name, site_region_path(@product.region)).html_safe()   %>
                       <% end   %>
                   <% end %>
                 </td>
@@ -68,7 +68,7 @@
               <tr>
                 <td valign="top">Grape:</td>
                 <td class="data user_name_class">
-                  <%= @product.grapes.collect{ |g| [link_to(g.name, grape_path(g))] }.join(", ") %>
+                  <%= @product.grapes.collect{ |g| [link_to(g.name, site_grape_path(g))] }.join(", ").html_safe() %>
                 </td>
               </tr>
           <%- end -%>
@@ -77,7 +77,7 @@
             <td class="data">
               <% if @product.producer %>
                   <% if @product.producer.active %>
-                      <%= link_to(@product.producer.name, producer_path(@product.producer))  %>
+                      <%= link_to(@product.producer.name, site_producer_path(@product.producer))  %>
                   <% else %>
                       No producer
                   <%  end %>

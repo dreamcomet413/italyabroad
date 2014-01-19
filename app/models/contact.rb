@@ -1,5 +1,5 @@
 class Contact < ActiveRecord::BaseWithoutTable
-  apply_simple_captcha :message => " image and text were different", :add_to_base => true  
+  apply_simple_captcha :message => " image and text were different", :add_to_base => true
   column :name, :string
   column :email, :string
   column :message, :text

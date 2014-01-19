@@ -50,17 +50,17 @@
 <div id="flashBanner">
   <% if !@setting.nil? %>
       <ul>
-        <li id="home_image_1" class="home_image foo">
-          <%= link_to((image_tag("blog_home.jpg") || @setting.home_image_1_title), (@setting.home_image_1_url || root_url)) %>
+        <li id="home_image_1" class="home_image">
+          <%= link_to((show_home_image_tag(@setting.home_image_1) || @setting.home_image_1_title), (@setting.home_image_1_url || root_url)) %>
         </li>
         <li id="home_image_2" class="home_image" style="display:none;">
-          <%= link_to((image_tag("corporate1.jpg") || @setting.home_image_2_title), (@setting.home_image_2_url || root_url)) %>
+          <%= link_to((show_home_image_tag(@setting.home_image_2) || @setting.home_image_2_title), (@setting.home_image_2_url || root_url)) %>
         </li>
         <li id="home_image_3" class="home_image" style="display:none;">
-          <%= link_to((image_tag("events.jpg") || @setting.home_image_3_title), (@setting.home_image_3_url || root_url)) %>
+          <%= link_to((show_home_image_tag(@setting.home_image_3) || @setting.home_image_3_title), (@setting.home_image_3_url || root_url)) %>
         </li>
         <li id="home_image_4" class="home_image" style="display:none;">
-          <%= link_to((image_tag("food.png") || @setting.home_image_4_title), (@setting.home_image_4_url || root_url)) %>
+          <%= link_to((show_home_image_tag(@setting.home_image_4) || @setting.home_image_4_title), (@setting.home_image_4_url || root_url)) %>
         </li>
         <li id="home_image_5" class="home_image" style="display:none;">
           <%= link_to((show_home_image_tag(@setting.home_image_5) || @setting.home_image_5_title), (@setting.home_image_5_url || root_url)) %>

@@ -75,12 +75,12 @@
               <div><%= product.description_short.html_safe() %></div>
               <div style="font-size:18px;color:#9b0707;text-align:right;">
                 <!-- Price:&nbsp;--><%= number_to_currency product.price, :unit => "&pound;" %><br />
-                <%= link_to_remote image_tag("buttons/buy_button_new.png"), "/site/cart?product_id=#{product.id}", :method => :post, :remote => true %>
+                <%= link_to(image_tag("buttons/add_to_cart_button.png"), "/site/cart?product_id=#{product.id}", :remote => true, :method => :post) %>
               </div>
             </li>
         <%- end -%>
       </ul>
-      <% products = @category.products.find(:all, :conditions => ["active = ?", true], :order => "price ASC ").paginate(:page => params[:page], :per_page => 3) %>
+      <%# products = @category.products.find(:all, :conditions => ["active = ?", true], :order => "price ASC ").paginate(:page => params[:page], :per_page => 3) %>
       <%= will_paginate(products) %>
     </div>
 <%- end -%>

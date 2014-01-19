@@ -1,5 +1,5 @@
 <% @title = @recipe.page_title_formatted; @description = @recipe.meta_description_formatted; @keys = @recipe.meta_keys_formatted %>
-<% @class = "no-padding"; @breadcrumbs = "#{link_to("Home", root_url)} &raquo; #{link_to("Recipes", recipes_path)} &raquo; #{@recipe.name}" %>
+<% @class = "no-padding"; @breadcrumbs = "#{link_to("Home", root_url)} &raquo; #{link_to("Recipes", site_recipes_path)} &raquo; #{@recipe.name}" %>
 
 <div id="header"><%= @recipe.name %></div>
 <div id="recipes_show_container">
@@ -7,7 +7,7 @@
     <tr>
       <td valign="top">
         <h3 style="border:none;">Ingredients:</h3>
-        <%= @recipe.ingredients.gsub("\n","<br />") %>
+        <%= @recipe.ingredients.gsub("\n","<br />").html_safe() %>
       </td>
       <td valign="top" style="padding-left:80px;">
         <% unless @recipe.region.nil? %><span style="font-weight:bold;">Region :</span>  <%= link_to @recipe.region.name, @recipe.region  %>  <br /><br /><% end %>
@@ -23,7 +23,7 @@
           <br /><br />
           <% if @recipe.correlations.size > 0 %>
               <span style="font-weight:bold;">Suggested wine:</span>
-              <%- @recipe.correlations.all.paginate(:page => params[:page], :per_page => 4).each do |product| -%>
+              <%- @recipe.correlations.where("").paginate(:page => params[:page], :per_page => 4).each do |product| -%>
                   <%= link_to product.name, nested_products_uri(product) %>
               <%- end -%>
           <% end %>
@@ -40,7 +40,7 @@
   <br /><br />
   <h3 style="border:none;">Preparation</h3>
   <div id="recipe_preparation">
-    <%= @recipe.preparation_cleared %>
+    <%= @recipe.preparation_cleared.html_safe() %>
   </div>
   <br /><br />
   <div id="recipe_share_this_with" align="right"><%#= render :partial => '/site/shared/social_bookmarks'%></div>
@@ -54,7 +54,7 @@
   <%- if logged_in? -%><%= link_to 'Add Review',"#",:onclick=>"document.getElementById('recipe_comments_add').style.display='block';return false;" %>
       <div id="recipe_comments_add" style="border-bottom:1px solid #CCCCCC;background-color:#F3F8DA;padding:5px 0 5px 8px;display:none;">
         <h2>Leave your review</h2>
-        <%= render(:partial => 'site/reviews/new', :locals => {:create_url => recipe_reviews_path(@recipe, :return_to => recipe_path(@recipe))}) %>
+        <%= render(:partial => 'site/reviews/new', :locals => {:create_url => site_reviews_path(@recipe, :return_to => site_recipe_path(@recipe))}) %>
       </div>
   <%- else -%>
       <%# if !logged_in? %>

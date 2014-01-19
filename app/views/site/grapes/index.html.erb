@@ -1,5 +1,5 @@
 <% @title = "Guide to Italian wines and Italian grapes"; @description = "Guide to Italian wines and Italian grapes"; @keys = ", Italian wine information,Italian wine guide,Italian wine,Italian red and white wine,italian grapes,wine grapes,wine expert,guide to Italian wines,aglianico,barbera,montepulciano,nero d'avola,nebbiolo" %>
-<% @breadcrumbs = "#{link_to("Home", root_url)}&raquo; #{link_to ('Community',wine_community_path)} &raquo; Guide to Italian wines and Italian grapes" %>
+<% @breadcrumbs = "#{link_to("Home", root_url)}&raquo; #{link_to('Community',wine_community_path)} &raquo; Guide to Italian wines and Italian grapes".html_safe() %>
 <% @about = AboutU.find(:first, :conditions => {:link_type => "grape-guide"} ) %>
 <div style="text-align:center;padding-top:10px;"></div>
 <div id="blog_home">
@@ -23,10 +23,10 @@
 
 <div id="blog_container"  style="text-align:justify;">
     <p style="text-align:justify;">
-    <%= @about.description rescue 'The wine and grape details ...' %> <br />
+    <%= @about.description.html_safe() rescue 'The wine and grape details ...' %> <br />
     </p>
    <div style="float:right;">
-  <%- form_tag grapes_path, :method => :get do -%>
+  <%- form_tag site_grapes_path, :method => :get do -%>
     <strong>Grape Search</strong><%= text_field_tag 'search_by_name',params[:search_by_name] %>
     <%= submit_tag 'Search', :name => 'search' %>
   <% end %>
@@ -41,7 +41,7 @@
         <ul class="clean" style="list-style:none;">
           <%- for grape in @grapes_all -%>
           <% if grape.name.upcase =~ /^[A-H]/  %>
-          <li title="<%=grape.name%>"><%= link_to (truncate(grape.name,50), grape_path(grape), :title => grape.name) if grape.name.upcase =~ /^[A-H]/ %></li>
+          <li title="<%=grape.name%>"><%= link_to(grape.name, site_grape_path(grape), :title => grape.name) if grape.name.upcase =~ /^[A-H]/ %></li>
           <% end %>
           <%- end -%>
         </ul>
@@ -52,7 +52,7 @@
         <ul class="clean" style="list-style:none;">
           <%- for grape in @grapes_all -%>
           <%- if grape.name.upcase =~ /^[I-P]/ -%>
-          <li><%= link_to (truncate(grape.name,50), grape_path(grape), :title => grape.id) %></li>
+          <li><%= link_to(grape.name, site_grape_path(grape), :title => grape.id) %></li>
           <%- end -%>
           <%- end -%>
         </ul>
@@ -63,7 +63,7 @@
         <ul class="clean" style="list-style:none;">
           <%- for grape in @grapes_all -%>
           <% if grape.name.upcase =~ /^[Q-Z]/ %>
-          <li><%= link_to truncate(grape.name,50), grape_path(grape)  %></li>
+          <li><%= link_to grape.name, site_grape_path(grape)  %></li>
           <% end %>
           <%- end -%>
         </ul>

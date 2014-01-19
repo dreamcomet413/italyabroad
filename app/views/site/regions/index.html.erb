@@ -1,5 +1,5 @@
 <% @title = "Regions"; @description = "Andrea’s Wine Blog, The Italian Wine Blog, A Guide to Italian Wines, Journey Through Italian Wines"; @keys = "Wine Blog,Italian Wine Blog,Italian Red and White Wine,Italian Food,Wine Tasting,Wine Expert" %>
-<%- @breadcrumbs = "#{link_to("Home", root_url)}  &raquo; #{link_to("Community", wine_community_path)} &raquo; #{link_to("Regions", regions_path)}" -%>
+<%- @breadcrumbs = "#{link_to("Home", root_url)}  &raquo; #{link_to("Community", wine_community_path)} &raquo; #{link_to("Regions", site_regions_path)}" -%>
 
 <% @about = AboutU.find(:first, :conditions => {:link_type => "region"} ) %>
 <div id="blog_home">
@@ -64,7 +64,7 @@
           <%- for region in @regions_all  -%>
 
             <% if region.name.upcase =~ /^[A-G]/ %>
-            <li><%= link_to truncate(region.name,50), region_path(region) %></li>
+            <li><%= link_to region.name, site_region_path(region) %></li>
             <%- end -%>
           <%- end -%>
         </ul>
@@ -75,7 +75,7 @@
         <ul class="clean" style="list-style:none;">
           <%- for region in @regions_all -%>
             <% if region.name.upcase =~ /^[H-L]/ %>
-              <li><%= link_to truncate(region.name,50), region_path(region) %></li>
+              <li><%= link_to region.name, site_region_path(region) %></li>
             <%- end -%>
           <%- end -%>
         </ul>
@@ -86,7 +86,7 @@
         <ul class="clean" style="list-style:none;">
           <%- for region in @regions_all -%>
               <% if region.name.upcase =~ /^[M-Z]/ %>
-              <li><%= link_to truncate(region.name,50), region_path(region) if region.name.upcase =~ /^[M-Z]/ %></li>
+              <li><%= link_to region.name, site_region_path(region) if region.name.upcase =~ /^[M-Z]/ %></li>
               <%- end -%>
           <%- end -%>
         </ul>
@@ -120,7 +120,7 @@
       <h2><%= link_to region.name, region.friendly_identifier.blank? ? "regions/#{region.id}" : "regions/#{region.friendly_identifier}" %><%#= show_region_image(region) %></h2>
       <%#= show_region_image(region) %>
       <div><% unless region.description.blank? %>
-      <%= region.description[0,250] %>
+      <%= region.description[0,250].html_safe() %>
        <%- end -%>
       </div>
       <div>

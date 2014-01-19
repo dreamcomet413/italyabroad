@@ -139,7 +139,6 @@ class Site::SearchController < ApplicationController
         paginate(:page => params[:page], :per_page => 10)
   end
 
-
   private
   def available_categories
     ["wine", "food", "hampers", "recipe", "people"]

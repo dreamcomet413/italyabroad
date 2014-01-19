@@ -62,8 +62,10 @@ module ItalyabroadNew
   
     # This line added by Sujith since we believe httponly is a problem while redirecting to HTTPS in checkout/payment page
     config.action_controller.session = { :httponly => false }
+    config.action_dispatch.ignore_accept_header = true
   end
 end
 require "custom_country_select"
 require 'simple_captcha'
 ActiveRecord::Base.logger = Logger.new STDOUT
+
