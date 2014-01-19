@@ -22,12 +22,11 @@ gem 'better_nested_set'
 gem 'rmagick', :require => false
 gem 'simple_captcha', :git => 'git://github.com/arcadi/simple-captcha.git'
 gem 'jquery-rails'
-gem 'debugger'
 
 group :development do
 #  gem 'thin'
 end
 
 group :development, :test do
-  gem 'debugger'
+  #gem 'debugger'
 end
