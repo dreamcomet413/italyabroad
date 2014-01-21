@@ -27,7 +27,7 @@
     </thead>
     <tfoot>
       <tr>
-        <td colspan="2"><%= will_paginate_(@regions) %></td>
+        <td colspan="2"><%= will_paginate(@regions) %></td>
         <td colspan="2" align="right"><%= page_entries_info_ @regions %></td>
       </tr>
     </tfoot>
@@ -35,7 +35,7 @@
       <%- for region in @regions -%>
       <tr>
         <td valign="top"><%= region.id %></td>
-        <td valign="top"><%= link_to region.name, region_path(region) %></td>
+        <td valign="top"><%= link_to region.name, site_region_path(region) %></td>
        <!--<td valign="top" style="width:50%"><%#= region.description %></td> -->
        <!-- <td valign="top">
           <ol>

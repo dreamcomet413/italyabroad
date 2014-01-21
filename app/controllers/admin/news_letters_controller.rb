@@ -3,7 +3,7 @@ class Admin::NewsLettersController < ApplicationController
   layout "admin"
 
   def index
-    @news_letters = NewsLetter.all(:order => "created_at DESC").paginate(:page => params[:page], :per_page => 10)
+    @news_letters = NewsLetter.where("").order("created_at DESC").paginate(:page => params[:page], :per_page => 10)
     
     respond_to do |format|
       format.html

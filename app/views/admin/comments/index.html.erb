@@ -17,7 +17,7 @@
     </thead>
     <tfoot>
       <tr>
-        <td colspan="3"><%= will_paginate_(@comments) %></td>
+        <td colspan="3"><%= will_paginate(@comments) %></td>
         <td colspan="2" align="right"><%= page_entries_info_ @comments %></td>
       </tr>
     </tfoot>
@@ -26,12 +26,10 @@
       <tr>
         <td><%= comment.id %></td>
         <td><%= comment.name %></td>
-        <td><%= comment.description %></td>
+        <td><%= comment.description.html_safe() %></td>
         <td><%= link_to(comment.post.name, blog_path(comment.post.id)) rescue "No posted in" %></td>
         <td><%= comment.public ?  'Approved' : 'Not Approved ' %></td>
-       <td> <%= button_to_remote "Approve",
-    :url => { :action => "approve_comment", :id => comment.id }
- %>
+       <td> <%= link_to "Approve", admin_comments_approve_comment_path(:id => comment.id ), :remote => true %>
         <%= link_to "Destroy", admin_comment_path(comment), :method => :delete, :confirm => "Are you sure want to delete this comment?" %></td>
       </tr>
       <%- end -%>

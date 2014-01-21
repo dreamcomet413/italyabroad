@@ -3,7 +3,7 @@ class Admin::ForumsController < ApplicationController
   layout "admin"
 
   def index
-    @forums = Forum.all(:order => "name ASC").paginate(:page => params[:page], :per_page => 10)
+    @forums = Forum.where("").order("name ASC").paginate(:page => params[:page], :per_page => 10)
     
     respond_to do |format|
       format.html

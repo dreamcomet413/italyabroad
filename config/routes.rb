@@ -65,7 +65,6 @@ ItalyabroadNew::Application.routes.draw do
     end
   end
 
-  resources :news_letters, :only => [:show]
   resources :wine_lists
   resources :reviews
   resources :messages do
@@ -136,6 +135,7 @@ ItalyabroadNew::Application.routes.draw do
         get :confirmed
       end
     end
+    resources :news_letters, :only => [:show]
   end
 
 
@@ -160,6 +160,7 @@ ItalyabroadNew::Application.routes.draw do
   match 'admin/xml/xml_options' => 'admin/xml#xml_options', :as => :xml_options
   match 'admin/xml/eval_xml' => 'admin/xml#eval_xml', :as => :eval_xml
   match 'admin/xml/eval_xml_g_comptible' => 'admin/xml#eval_xml_g_comptible', :as => :eval_xml_g_comptible
+  match 'admin/comments/approve_comment' => 'admin/comments#approve_comment'
   namespace :admin do
     resources :testimonials
     resources :faqs
@@ -184,7 +185,6 @@ ItalyabroadNew::Application.routes.draw do
     resources :forums
     resources :posts
     resources :comments
-    match 'admin/comments/approve_comment' => 'admin/comments#approve_comment'
     resources :reviews
     resources :orders, :only => [:index, :show, :destroy] do
       member do

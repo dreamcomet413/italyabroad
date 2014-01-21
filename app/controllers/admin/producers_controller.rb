@@ -4,9 +4,9 @@ class Admin::ProducersController < ApplicationController
 
   def index
     if params[:search]
-      @producers = Producer.find(:all,:conditions=>['name LIKE ? ',"%#{params[:search_text]}%"],:order => "id DESC").paginate(:page => params[:page], :per_page => 10)
+      @producers = Producer.where(['name LIKE ? ',"%#{params[:search_text]}%"]).order("id DESC").paginate(:page => params[:page], :per_page => 10)
     else
-      @producers = Producer.all(:order => "id DESC").paginate(:page => params[:page], :per_page => 10)
+      @producers = Producer.where("").order("id DESC").paginate(:page => params[:page], :per_page => 10)
     end
     respond_to do |format|
       format.html

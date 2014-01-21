@@ -151,8 +151,9 @@
         <% for category in ["Wine", "Other Drinks", "Food", "Hampers", "Wine Tours", "Events"] do %>
             <% category = Category.find_by_name(category)%>
 
+            <% if category.present? %>
             <li id="link-to-<%= category.friendly_identifier %>" class="<%= "active" if active_uri == "/#{category.friendly_identifier}"   %>">
-              <%= link_to category.name, "/#{category.friendly_identifier}" %>
+              <%= link_to category.name, "/#{category.try(:friendly_identifier)}" %>
 
               <%- unless category.children.blank? -%>
                   <ul>
@@ -168,6 +169,7 @@
                   </ul>
               <%- end -%>
             </li>
+                <% end %>
         <%- end -%>
 
         <!--<li class="<%#= " active" if active_uri == "/wine-club" %>"><%#= link_to "Wine Club", :action=>"wine_club", :controller=>"site/base" %></li>-->

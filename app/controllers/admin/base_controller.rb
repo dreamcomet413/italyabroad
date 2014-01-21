@@ -2,19 +2,22 @@ class Admin::BaseController < ApplicationController
   before_filter :admin_login_required, :except => [:login]
   layout "admin"
 
+  def index
+  end
+
   def login
-    redirect_to siteadmin_path and return if logged_in? and current_user.admin?
+    (redirect_to siteadmin_path and return) if logged_in? and current_user.admin?
     if request.post?
       self.current_user = User.authenticate(params[:login], params[:password])
       if admin?
-       # @setting.update_attribute('chat_available',true)
-       @incomplete_purchases = IncompletePurchase.find(:all)
-       unless @incomplete_purchases.nil?
-         @incomplete_purchases.each do |purchase|
-             Notifier.deliver_product_information(purchase,AppConfig.admin_email)
-             purchase.destroy
-         end
-       end
+        # @setting.update_attribute('chat_available',true)
+        @incomplete_purchases = IncompletePurchase.find(:all)
+        unless @incomplete_purchases.nil?
+          @incomplete_purchases.each do |purchase|
+            Notifier.deliver_product_information(purchase,AppConfig.admin_email)
+            purchase.destroy
+          end
+        end
         redirect_back_or_default(:controller => '/admin/base', :action => 'index')
       else
         flash[:notice] = "Invalid login account."
@@ -28,7 +31,7 @@ class Admin::BaseController < ApplicationController
   def logout
     self.current_user.forget_me if logged_in?
     if admin?
-        @setting.update_attribute('chat_available',false)
+      @setting.update_attribute('chat_available',false)
     end
     cookies.delete :auth_token
     reset_session
@@ -42,7 +45,7 @@ class Admin::BaseController < ApplicationController
     elsif @setting.chat_available == true
       @setting.update_attribute('chat_available',false)
     end
-     redirect_back_or_default(:controller => '/admin/base', :action => 'index')
+    redirect_back_or_default(:controller => '/admin/base', :action => 'index')
   end
 end
 

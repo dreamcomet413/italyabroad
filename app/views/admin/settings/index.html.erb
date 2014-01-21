@@ -4,7 +4,7 @@
 <div class="inner_content settings" id="admin_settings_edit">
   <h2>Settings</h2>
   <br />
-  <% form_for :setting, @setting, :url => admin_setting_path(@setting), :html => {:multipart => true, :method => :put} do |form| %>
+  <% form_for(:setting, :as => @setting, :url => admin_setting_path(@setting), :html => { :multipart => true, :method => :put }) do |form| %>
   <table>
     <tr>
       <td width="290px">Promotion:</td>
@@ -73,7 +73,7 @@
           <tr>
             <td>&nbsp;</td>
             <td valign="top" style="padding:0;">
-              <%= image_tag image_url('home_image_thumb', @setting.home_image_1, :jpg) %>
+              <%= show_image_tag('home_image_thumb', @setting.home_image_1, :jpg) %>
               <%= link_to "Destroy", admin_setting_image_url(@setting, @setting.home_image_1), :confirm => "Are you sure?", :method => :delete %>
             </td>
           </tr>
@@ -133,7 +133,7 @@
           <tr>
             <td>&nbsp;</td>
             <td valign="top" style="padding:0;">
-              <%= image_tag image_url('home_image_thumb', @setting.home_image_3, :jpg) %>
+              <%= show_image_tag('home_image_thumb', @setting.home_image_3, :jpg) %>
               <%= link_to "Destroy", admin_setting_image_url(@setting, @setting.home_image_3), :confirm => "Are you sure?", :method => :delete %>
             </td>
           </tr>
@@ -163,7 +163,7 @@
           <tr>
             <td>&nbsp;</td>
             <td valign="top" style="padding:0;">
-              <%= image_tag image_url('home_image_thumb', @setting.home_image_4, :jpg) %>
+              <%= show_image_tag('home_image_thumb', @setting.home_image_4, :jpg) %>
               <%= link_to "Destroy", admin_setting_image_url(@setting, @setting.home_image_4), :confirm => "Are you sure?", :method => :delete %>
             </td>
           </tr>
@@ -193,7 +193,7 @@
           <tr>
             <td>&nbsp;</td>
             <td valign="top" style="padding:0;">
-              <%= image_tag image_url('home_image_thumb', @setting.home_image_5, :jpg) %>
+              <%= show_image_tag('home_image_thumb', @setting.home_image_5, :jpg) %>
               <%= link_to "Destroy", admin_setting_image_url(@setting, @setting.home_image_5), :confirm => "Are you sure?", :method => :delete %>
             </td>
           </tr>
@@ -219,7 +219,7 @@
     </tr>
     <tr>
       <td>Home page title</td>
-      <td style="padding-left:40px;"><%= text_field :setting, :home_page_title %></td>
+      <td style="padding-left:40px;"><%= text_field :setting, :home_page_1_title %></td>
     </tr>
     <tr>
       <td>Quantity of wines for discount</td>

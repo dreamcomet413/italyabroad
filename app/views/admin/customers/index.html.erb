@@ -19,8 +19,10 @@
         <%= set_focus_to 'search' %>
         <%- end -%>
       </td>
-      <td align="right"><%= link_to "Customers by DOB", :controller=>'admin/customers',:action=>"print_user_details",:search_text=>params[:search_text],:field_text=>params[:field_text],:user_type=>params[:user_type],:search=>params[:search],:format => "pdf" %> &nbsp;&nbsp;
-      <%= link_to "New Customer", new_admin_customer_path %></td>
+      <td align="right">
+        <%= link_to "Customers by DOB", :controller=>'admin/customers',:action=>"print_user_details",:search_text=>params[:search_text],:field_text=>params[:field_text],:user_type=>params[:user_type],:search=>params[:search],:format => "pdf" %> &nbsp;&nbsp;
+        <%= link_to "New Customer", new_admin_customer_path %>
+      </td>
     </tr>
   </table>
   <table id="user-list" class="list sortable" width="100%">
@@ -31,7 +33,6 @@
         <th>Name</th>
         <th>Surname</th>
         <th class="date-eu">Dob</th>
-
         <th>Know Through</th>
         <th>Active</th>
         <th class="nosort"><div style="width:25px;">Created-at</div></th>
@@ -41,7 +42,7 @@
     </thead>
     <tfoot>
       <tr>
-        <td colspan="4"><%= will_paginate_(@users) %></td>
+        <td colspan="4"><%= will_paginate(@users) %></td>
         <td colspan="4" align="right"><%= page_entries_info_ @users %></td>
       </tr>
     </tfoot>

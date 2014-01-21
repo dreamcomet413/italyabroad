@@ -22,7 +22,7 @@
     </thead>
     <tfoot>
       <tr>
-        <td colspan="2"><%= will_paginate_(@news_letters) %></td>
+        <td colspan="2"><%= will_paginate(@news_letters) %></td>
         <td colspan="3" align="right"><%= page_entries_info_ @news_letters %></td>
       </tr>
     </tfoot>
@@ -30,13 +30,13 @@
       <%- for news_letter in @news_letters -%>
       <tr>
         <td><%= news_letter.id %></td>
-        <td><%= news_letter.name %></td>
-        <td><%= news_letter.status_news_letter.name rescue "No status" %></td>
+        <td><%= news_letter.name.html_safe() %></td>
+        <td><%= news_letter.status_news_letter.name.html_safe() rescue "No status" %></td>
         <td><%= news_letter.created_at.strftime("%d/%m/%y") %></td>
         <td>
           <%= link_to "Edit", edit_admin_news_letter_path(news_letter) %> | 
           <%= link_to "Delete", admin_news_letter_path(news_letter), :method => :delete, :confirm => "Are you sure want to delete this letter?" %> | 
-          <%= link_to "Preview", news_letter_path(news_letter), :popup => ["Preview newsletter"] %>
+          <%= link_to "Preview", site_news_letter_path(news_letter), :popup => ["Preview newsletter"] %>
         </td>
       </tr>
       <%- end -%>

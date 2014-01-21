@@ -3,7 +3,7 @@ class Admin::CommentsController < ApplicationController
   layout "admin"
 
   def index
-    @comments = Comment.all(:order => "created_at DESC").paginate(:page => params[:page], :per_page => 10)
+    @comments = Comment.where("").order("created_at DESC").paginate(:page => params[:page], :per_page => 10)
   end
 
   def destroy

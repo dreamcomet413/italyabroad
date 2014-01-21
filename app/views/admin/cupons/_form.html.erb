@@ -91,7 +91,7 @@ end
     <td><%= check_box :cupon, :public %></td>
   </tr>
 </table>
-<%= observe_field 'product_search',
+<%#= observe_field 'product_search',
   :url => {:action=>"product_list", :controller=> "admin/cupons"},
 
   :with => 'search', :frequency => 0.25  %>

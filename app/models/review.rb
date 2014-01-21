@@ -8,5 +8,9 @@ class Review < ActiveRecord::Base
   def send_notification
     Notifier.deliver_new_review(self)
   end
+
+  def show_errors
+    return "- " + self.errors.full_messages.join("<br />- ")
+  end
 end
 

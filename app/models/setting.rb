@@ -5,6 +5,8 @@ class Setting < ActiveRecord::Base
   belongs_to :home_image_3,   :class_name => "Image",     :foreign_key => "home_image_3_id"
   belongs_to :home_image_4,   :class_name => "Image",     :foreign_key => "home_image_4_id"
   belongs_to :home_image_5,   :class_name => "Image",     :foreign_key => "home_image_5_id"
+
+  attr_accessor :home_page_1_title
   
   def self.order_amount
     s = Setting.find(:first)

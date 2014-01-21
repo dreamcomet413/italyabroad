@@ -3,7 +3,7 @@ class Admin::FaqsController < ApplicationController
   before_filter :admin_login_required
 
   def index
-    @faqs = Faq.find(:all,:conditions=>search_conditions,:order => "created_at DESC").paginate(:page => params[:page], :per_page => 20)
+    @faqs = Faq.where(search_conditions).order("created_at DESC").paginate(:page => params[:page], :per_page => 20)
   end
 
 

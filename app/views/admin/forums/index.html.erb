@@ -22,7 +22,7 @@
     </thead>
     <tfoot>
       <tr>
-        <td colspan="3"><%= will_paginate_(@forums) %></td>
+        <td colspan="3"><%= will_paginate(@forums) %></td>
         <td colspan="2" align="right"><%= page_entries_info_ @forums %></td>
       </tr>
     </tfoot>
@@ -30,11 +30,11 @@
       <% @forums.each_with_index do |forum, i| %>
       <tr>
         <td><%=h forum.name %></td>
-        <td><%= forum.description_html %></td>
+        <td><%= forum.description_html.html_safe() %></td>
         <td><%=h forum.topics_count %></td>
         <td><%=h forum.posts_count %></td>
         <td>
-          <%=link_to "Show", forum_path(:id => forum.id), :popup => true %> | 
+          <%=link_to "Show", site_forum_path(:id => forum.id), :popup => true %> |
           <%=link_to "Edit", edit_forum_path(:id => forum.id) %> | 
           <%=link_to "Delete", "/forums/#{forum.id}", :confirm => "It'll delete forum forever !Are you sure ? ", :method => 'delete'%>
         </td>

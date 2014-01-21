@@ -3,7 +3,7 @@ class Admin::SubscriptionsController < ApplicationController
   layout "admin"
 
   def index
-    @subscriptions = Subscription.all.paginate(:page => params[:page], :per_page => 20)
+    @subscriptions = Subscription.where("").paginate(:page => params[:page], :per_page => 20)
 
     respond_to do |format|
       format.html

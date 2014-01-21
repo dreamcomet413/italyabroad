@@ -2,56 +2,56 @@
 <%- @breadcrumbs = "Other Stuff &raquo; #{link_to "XML", xml_path}" -%>
 
 <div class="inner_content recipes" id="admin_recipes_index">
-<table>
-<tr><td valign="top">
-  <h2>XML</h2>
-  <br />
-  <% @category = Category.find(:all, :conditions =>{:parent_id => nil}) %>
+  <table>
+    <tr><td valign="top">
+      <h2>XML</h2>
+      <br />
+      <% @category = Category.find(:all, :conditions =>{:parent_id => nil}) %>
 
-  <% @tables.each do |table| %>
-    <% if table == "Category" %>
-      <% @category.each do |p| %>
-        <% table = p.name %>
-        <%="<div id=table#{@count}>"%>
-        <%= link_to_remote table, :url => { :action => "xml_options", :count => @count, :table => p.class, :id => p.id }%><br />
-      </div><div style="font-size:15px;padding: 5px 0px 8px 0px"><%="<div id=options#{@count}>"%></div>
-      <% @count = @count + 1 %>
-    <% end %>
+      <% @tables.each do |table| %>
+          <% if table == "Category" %>
+              <% @category.each do |p| %>
+                  <% table = p.name %>
+                  <%="<div id=table#{@count}>".html_safe() %>
+                  <%= link_to table, xml_options_path(:count => @count, :table => p.class, :id => p.id), :remote => true %><br />
+                </div><div style="font-size:15px;padding: 5px 0px 8px 0px"><%="<div id=options#{@count}>".html_safe() %></div>
+                <% @count = @count + 1 %>
+            <% end %>
 
-  <% elsif table == "Newsletters subscribers" %>
-    <%="<div id=table#{@count}>"%>
-    <%= link_to_remote table, :url => { :action => "xml_options", :count => @count, :table => 'User',:type => 'Newsletters subscribers' }%><br />
-    </div><div style="font-size:15px;padding: 5px 0px 8px 0px"><%="<div id=options#{@count}>"%></div>
-    <% @count = @count + 1 %>
+        <% elsif table == "Newsletters subscribers" %>
+            <%="<div id=table#{@count}>".html_safe()%>
+            <%= link_to table, xml_options_path(:count => @count, :table => 'User', :type => 'Newsletters subscribers'), :remote => true %><br />
+            </div><div style="font-size:15px;padding: 5px 0px 8px 0px"><%="<div id=options#{@count}>".html_safe()%></div>
+            <% @count = @count + 1 %>
 
-  <% else %>
-    <%="<div id=table#{@count}>"%>
-    <%= link_to_remote   eval(table), :url => { :action => "xml_options", :count => @count, :table => table }%><br />
-    </div><div style="font-size:15px;padding: 5px 0px 8px 0px"><%="<div id=options#{@count}>"%></div>
-    <% @count = @count + 1 %>
+        <% else %>
+            <%="<div id=table#{@count}>".html_safe()%>
+            <%= link_to eval(table), xml_options_path(:count => @count, :table => table) %><br />
+            </div><div style="font-size:15px;padding: 5px 0px 8px 0px"><%="<div id=options#{@count}>".html_safe() %></div>
+            <% @count = @count + 1 %>
 
-  <%end%>
+        <%end%>
 
-<%end%>
-</td>
-<td valign="top"><h2>Google compatible XML Download</h2>
-    <table>
-    <% @category.each do |p| %>
+    <%end%>
+    </td>
+    <td valign="top"><h2>Google compatible XML Download</h2>
+      <table>
+        <% @category.each do |p| %>
 
-    <tr>
-    <td width="25%"><br /><%=  p.name %> </td>
-     <td>
-       <% form_tag(:action => :eval_xml_g_comptible,:table=>p.name, :id =>p.id) do %>
-      <%= submit_tag "Get XML" %></td>
-     <% end %>
-    </tr>
-    <% end %>
-    <tr><td><br /><%= 'All Products' %></td>
-    <td><% form_tag(:action => :eval_xml_g_comptible,:table=>'products') do %>
-      <%= submit_tag "Get XML" %></td>
-     <% end %>
-    </td></tr>
-</td>
-</tr></table>
-</div>
+            <tr>
+              <td width="25%"><br /><%=  p.name %> </td>
+              <td>
+                <% form_tag(:action => :eval_xml_g_comptible,:table=>p.name, :id =>p.id) do %>
+                    <%= submit_tag "Get XML" %></td>
+                <% end %>
+                </tr>
+        <% end %>
+        <tr><td><br /><%= 'All Products' %></td>
+          <td><% form_tag(:action => :eval_xml_g_comptible,:table=>'products') do %>
+                <%= submit_tag "Get XML" %></td>
+            <% end %>
+            </td></tr>
+        </td>
+        </tr></table>
+      </div>
 

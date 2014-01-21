@@ -3,7 +3,7 @@ class Admin::GiftOptionsController < ApplicationController
   layout "admin"
 
   def index
-    @gift_options = GiftOption.all.paginate(:page => params[:page], :per_page => 20)
+    @gift_options = GiftOption.where("").paginate(:page => params[:page], :per_page => 20)
   end
 
   def new

@@ -3,7 +3,7 @@ class Admin::DeliveriesController < ApplicationController
   layout "admin"
 
   def index
-    @deliveries = Delivery.all.paginate(:page => params[:page], :per_page => 10)
+    @deliveries = Delivery.where("").paginate(:page => params[:page], :per_page => 10)
   end
 
   def new

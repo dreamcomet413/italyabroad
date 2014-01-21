@@ -1,44 +1,44 @@
 <%- @title = "Administration - Products"; @page_id = "Catalog" -%>
 <%- @breadcrumbs = "Catalog &raquo; #{link_to "Products of the Week", :controller=>'admin/products',:action=>'products_of_the_week'}" -%>
 <table>
-    <tr>
-      <td>
+  <tr>
+    <td>
       <% form_tag url_for_options ={:controller=>'admin/products',:action=>'products_of_the_week'},:method=>:get do  %>
-      <strong>Search</strong><%= text_field_tag 'search_name',params[:search_name]%>
+          <strong>Search</strong><%= text_field_tag 'search_name',params[:search_name]%>
 
-        <select name="search" >
-        <option value="">Select ...</option>
-        <%- @data.each do |category| -%>
-        <%-if params[:search].to_i == category['id'].to_i
-          selected = "selected=\"selected\""
-          else
-          selected =""
-          end
-          -%>
+          <select name="search" >
+            <option value="">Select ...</option>
+            <%- @data.each do |category| -%>
+                <%-if params[:search].to_i == category['id'].to_i
+                     selected = "selected=\"selected\""
+                   else
+                     selected =""
+                   end
+                -%>
 
-           <option value="<%= category['id']%>" <%= selected %> ><%= category['text']%></option>
-          <%- category["children"].each do |children| -%>
-             <%-if params[:search].to_i == children['id'].to_i
-          selected = "selected=\"selected\""
-          else
-          selected =""
-          end
-          -%>
-         <option value="<%= children['id']%>" <%= selected %> >&nbsp;&nbsp;--<%= children['text'] %></option>
-          <% end %>
-        <% end %>
-        </select>
-        <%= submit_tag 'Search' %>
-       <% end %>
-      </td>
-     </tr></table>
+                <option value="<%= category['id']%>" <%= selected %> ><%= category['text']%></option>
+                <%- category["children"].each do |children| -%>
+                    <%-if params[:search].to_i == children['id'].to_i
+                         selected = "selected=\"selected\""
+                       else
+                         selected =""
+                       end
+                    -%>
+                    <option value="<%= children['id']%>" <%= selected %> >&nbsp;&nbsp;--<%= children['text'] %></option>
+                <% end %>
+            <% end %>
+          </select>
+          <%= submit_tag 'Search' %>
+      <% end %>
+    </td>
+  </tr></table>
 <div class="inner_content products" id="admin_products_index">
 
   <!--<h2>Products</h2>-->
   <%= link_to (image_tag 'products_focussed.png', :border => 0) ,{:controller=>'admin/products',:action=>'products_of_the_week'}%><%= link_to (image_tag 'selected_nonfocus.png', :border => 0) ,{:controller=>'admin/products',:action=>'delete_products_of_the_week'}%>
   <%# if WeekProduct.find(:first) %><div style="float:right"><%#= link_to 'Remove',:controller=>'admin/products',:action=>'delete_products_of_the_week' %></div><%# end %>
   <table class="list" width="100%">
-  <thead>
+    <thead>
     <tr>
       <th></th>
       <th>Category</th>
@@ -46,26 +46,24 @@
       <th>Price</th>
     </tr>
     </thead>
-  <tfoot>
-      <tr>
-        <td colspan="2"><%= will_paginate_(@products) %></td>
-        <td colspan="2" align="right"><%= page_entries_info_ @products %></td>
-      </tr>
+    <tfoot>
+    <tr>
+      <td colspan="2"><%= will_paginate(@products) %></td>
+      <td colspan="2" align="right"><%= page_entries_info_ @products %></td>
+    </tr>
     </tfoot>
     <tbody>
     <%- @products.each do |product| -%>
-     <tr id="<%= product.id %>" class="<%= cycle("even", "odd") %>" >
-      <td width="10%"><%= button_to_remote "Add",
-    :url => { :action => "products_of_the_week", :id => product.id }
- %>
-      </td>
-      <td><%= product.root_category_id.titleize unless product.root_category_id.blank? %></td>
-      <td><%= product.name %></td>
-      <td><%= number_to_currency product.price, :unit => "&pound;" %></td>
-    </tr>
+        <tr id="<%= product.id %>" class="<%= cycle("even", "odd") %>" >
+          <td width="10%">
+            <%= link_to "Add", admin_products_products_of_the_week_path(:id => product.id), :remote => true %>
+          </td>
+          <td><%= product.root_category_id.titleize unless product.root_category_id.blank? %></td>
+          <td><%= product.name %></td>
+          <td><%= number_to_currency product.price, :unit => "&pound;" %></td>
+        </tr>
     <%- end  -%>
-   <!-- <tr><td colspan="4"><%#= submit_tag "Save",:name=>'save' %> </td></tr> -->
+    <!-- <tr><td colspan="4"><%#= submit_tag "Save",:name=>'save' %> </td></tr> -->
     </tbody>
   </table>
 </div>
-

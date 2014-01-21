@@ -18,9 +18,8 @@
     <%- @week_products.each do |w_product| -%>
      <% product = Product.find(w_product.week_product_id) %>
       <tr id="<%= product.id %>" class="<%= cycle("even", "odd") %>" >
-      <td><%= button_to_remote "Delete",
-    :url => { :action => "delete_products_of_the_week", :id => product.id }
- %>
+      <td>
+        <%= link_to "Delete", admin_products_delete_products_of_the_week_path(:id => product.id ), :remote => true %>
       </td>
       <td><%= product.root_category_id.titleize unless product.root_category_id.blank? %></td>
       <td><%= product.name %></td>

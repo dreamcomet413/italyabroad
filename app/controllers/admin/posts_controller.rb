@@ -3,7 +3,7 @@ class Admin::PostsController < ApplicationController
   layout "admin"
 
   def index
-    @posts = Post.find(:all, :order => "created_at DESC").paginate(:per_page => 10, :page => params[:page])
+    @posts = Post.where("").order("created_at DESC").paginate(:per_page => 10, :page => params[:page])
   end
 
   def new

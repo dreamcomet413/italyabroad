@@ -5,10 +5,10 @@ class Admin::RecipesController < ApplicationController
   layout "admin"
 
   def index
-     if params[:search]
-       @recipes = Recipe.all(:conditions=>['name LIKE ?',"%#{params[:search_text]}%"],:order => "created_at DESC").paginate(:page => params[:page], :per_page => 20)
-     else
-    @recipes = Recipe.all(:order => "created_at DESC").paginate(:page => params[:page], :per_page => 20)
+    if params[:search]
+      @recipes = Recipe.where(['name LIKE ?',"%#{params[:search_text]}%"]).order("created_at DESC").paginate(:page => params[:page], :per_page => 20)
+    else
+      @recipes = Recipe.where("").order("created_at DESC").paginate(:page => params[:page], :per_page => 20)
     end
 
     respond_to do |format|
@@ -17,9 +17,9 @@ class Admin::RecipesController < ApplicationController
   end
 
   def xml
-     @recipes = Recipe.all.to_xml
-      File.open("recipes.xml", 'w') {|f| f.write(@recipes) }
-      send_file File.join(Rails.root,"recipes.xml" )
+    @recipes = Recipe.all.to_xml
+    File.open("recipes.xml", 'w') {|f| f.write(@recipes) }
+    send_file File.join(Rails.root,"recipes.xml" )
   end
 
 
@@ -91,7 +91,8 @@ class Admin::RecipesController < ApplicationController
       flash.now[:notice] = @recipe.show_errors
     end
 
-    redirect_back_or_default(admin_recipes_path)
+    #redirect_back_or_default(admin_recipes_path)
+    redirect_to admin_recipes_path
   end
 
   def destroy

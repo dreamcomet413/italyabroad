@@ -359,7 +359,7 @@ height: 100%;
 						<% end %>
 						<% if category.name == "Wine" %>
 							<% if wc = Category.find_by_name("Wine Club") %>
-								<li><%= link_to wc.name, "#{AppConfig.site_url}"+ url_for(:controller => :categories, :action => :show, :id => wc) %></li>
+								<li><%= link_to wc.name.html_safe(), "#{AppConfig.site_url}"+ url_for(:controller => :categories, :action => :show, :id => wc) %></li>
 								
 							<% end %>
 							<li><%= link_to "Grape & Wine guide", "#{AppConfig.site_url}"+ url_for(:controller => :base, :action => :guide) %></li>
@@ -377,7 +377,7 @@ height: 100%;
 
 <div id="Links">
 <% for category in Category.find(:all, :conditions => ["parent_id is ? AND show_in_menu = ?", nil, true] ) do %>
-<%= link_to category.name, "http://#{ENV['lipsiashop_host']}"+ url_for(:controller => :categories, :action => :show, :id => category) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<%= link_to category.name.html_safe(), "http://#{ENV['lipsiashop_host']}"+ url_for(:controller => :categories, :action => :show, :id => category) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <% end %>
 <%= link_to "Recipes", "http://#{ENV['lipsiashop_host']}"+ url_for(:controller => :recipes, :action => :index) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <%= link_to "Blog", "http://#{ENV['lipsiashop_host']}"+ url_for(:controller => :blog, :action => :index) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -389,7 +389,7 @@ height: 100%;
 <% end %>	
 </div>
 
-<div id="MainBody"><%= @news_letter.description.gsub("\n", "<br />") %></div>
+<div id="MainBody"><%= @news_letter.description.html_safe().gsub("\n", "<br />") %></div>
 
 <div id="Week">
 <% if @news_letter.image_2 %>

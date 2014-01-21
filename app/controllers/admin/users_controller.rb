@@ -10,6 +10,11 @@ class Admin::UsersController < ApplicationController
     @user = User.admins.new
   end
 
+  def show
+    redirect_to :action => :index
+  end
+
+
   def edit
     @user = User.admins.find(params[:id])
   end

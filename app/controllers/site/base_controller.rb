@@ -25,6 +25,7 @@ class Site::BaseController < ApplicationController
       if logged_in
         self.current_user = User.authenticate(params[:login], params[:password])
         current_user.set_last_seen_at
+        session[:current_user] = current_user.id
         if current_user.admin?
 
           #   @setting.update_attribute('chat_available',true)

@@ -4,8 +4,10 @@
 <div class="inner_content posts" id="admin_posts_new">
   <h2><%= @title %></h2>
   <br />
-  <% form_for :post, :url => admin_post_path(@post.id), :html => {:multipart => true, :method => :put} do %>
+  <%- form_for :post, :url => admin_post_path(@post.id), :html => {:multipart => true, :method => :put} do %>
   	<%= render :partial => "form" %>
-  	<p><%= submit_tag "Save" %> or <%= link_to "Cancel", admin_posts_path %></p>
+  	<p>
+      <%= submit_tag "Save" %> or <%= link_to "Cancel", admin_posts_path %>
+    </p>
   <% end %>
 </div>

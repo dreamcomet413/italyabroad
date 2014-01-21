@@ -4,34 +4,34 @@
   <h1><%= link_to "Latest Review", "/wine-community" %></h1>
   <br />
   <% if latest_review.blank? %>
-    There are no reviews yet, why not write one and get £10 voucher
+      There are no reviews yet, why not write one and get £10 voucher
   <% else %>
- <table width="100%">
- <tr>
- <td>
+      <table width="100%">
+        <tr>
+          <td>
 
-        <%= link_to avatar_for_user(latest_review.user, 'small'), customer_path(latest_review.user.id)%>
-                      <%= link_to latest_review.user.name, customer_path(latest_review.user.id), :class=>'data', :id => 'latest_review_name'%>
-</td>
-<td>
+            <%= link_to avatar_for_user(latest_review.user, 'small'), site_customer_path(latest_review.user.id)%>
+            <%= link_to latest_review.user.name, site_customer_path(latest_review.user.id), :class=>'data', :id => 'latest_review_name'%>
+          </td>
+          <td>
 
 
-           <% unless latest_review.description.blank? %> &nbsp;&nbsp;
-                    <%#= link_to latest_review.description,review_path(latest_review),:class=>'data' %>
-                   <% if latest_review.reviewer_type == 'Product' %>
-                    "<%= link_to latest_review.description[0..120] + "..." ,nested_products_uri(Product.find(latest_review.reviewer_id)  ),:class=>'data' %>"
+            <% unless latest_review.description.blank? %> &nbsp;&nbsp;
+                <%#= link_to latest_review.description,review_path(latest_review),:class=>'data' %>
+                <% if latest_review.reviewer_type == 'Product' %>
+                    "<%= link_to latest_review.description[0..120].html_safe() + "..." ,nested_products_uri(Product.find(latest_review.reviewer_id)  ),:class=>'data' %>"
                     <%= link_to "(Continue reading)", nested_products_uri(Product.find(latest_review.reviewer_id)  ) %>"
-                    <% elsif latest_review.reviewer_type == 'Recipe' %>
-                    "<%= link_to latest_review.description[0..120] + "...", recipe_path(Recipe.find(latest_review.reviewer_id)  ),:class=>'data' %>"
+                <% elsif latest_review.reviewer_type == 'Recipe' %>
+                    "<%= link_to latest_review.description[0..120].html_safe() + "...", site_recipe_path(Recipe.find(latest_review.reviewer_id)  ),:class=>'data' %>"
                     <%= link_to "(Continue reading)", recipe_path(Recipe.find(latest_review.reviewer_id)  ) %>"
-                    <% end %>
-                     <% else %>
-                       "<%= 'Added a new review' %>"
-                      <% end %>
+                <% end %>
+            <% else %>
+                "<%= 'Added a new review' %>"
+            <% end %>
 
-   </td>
-   </tr>
-   </table>
+          </td>
+        </tr>
+      </table>
   <% end %>
 </div>
 

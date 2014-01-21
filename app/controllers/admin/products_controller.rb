@@ -48,9 +48,9 @@ class Admin::ProductsController < ApplicationController
 
     if !params[:search_name].blank?
 
-      @products = Product.find(:all, :conditions=>['quantity <= ? ',"#{params[:search_name]}"], :order => "quantity DESC").paginate(:page => params[:page], :per_page => 20)
+      @products = Product.where(['quantity <= ? ',"#{params[:search_name]}"]).order("quantity DESC").paginate(:page => params[:page], :per_page => 20)
     else
-      @products = Product.find(:all, :order => "quantity DESC").paginate(:page => params[:page], :per_page => 20)
+      @products = Product.where("").order("quantity DESC").paginate(:page => params[:page], :per_page => 20)
     end
   end
 
@@ -346,12 +346,15 @@ class Admin::ProductsController < ApplicationController
 
     if !params[:search].blank?
 
-      @products = Product.find(:all, :include => [:categories],:conditions=>['categories.id = ? AND products.name LIKE ? AND(UPPER(categories.name) = ? OR UPPER(categories.name = ?)) and products.id NOT IN (select week_product_id from week_products) ',"#{params[:search]}" ,"%#{params[:search_name]}%",'WINE','FOOD']).paginate(:page => params[:page], :per_page => 20)
+      @products = Product.where(["categories.id = ? AND products.name LIKE ? AND(UPPER(categories.name) = ? OR UPPER(categories.name = ?)) and products.id NOT IN (select week_product_id from week_products), #{params[:search]} ,'%#{params[:search_name]}%','WINE','FOOD'"]).
+          includes([:categories]).paginate(:page => params[:page], :per_page => 20)
+      #@products = Product.find(:all, :include => [:categories],:conditions=>['categories.id = ? AND products.name LIKE ? AND(UPPER(categories.name) = ? OR UPPER(categories.name = ?)) and products.id NOT IN (select week_product_id from week_products) ',"#{params[:search]}" ,"%#{params[:search_name]}%",'WINE','FOOD']).paginate(:page => params[:page], :per_page => 20)
     elsif params[:search].blank?
-      @products = Product.find(:all, :include => [:categories],:conditions=>['products.name LIKE ? AND(UPPER(categories.name) = ? OR UPPER(categories.name = ?)) and products.id NOT IN (select week_product_id from week_products)',"%#{params[:search_name]}%",'WINE','FOOD']).paginate(:page => params[:page], :per_page => 20)
+      @products = Product.where(["products.name LIKE '%#{params[:search_name]}%' AND (UPPER(categories.name) = 'WINE' OR UPPER(categories.name = 'FOOD')) and products.id NOT IN (select week_product_id from week_products)"]).includes([:categories]).paginate(:page => params[:page], :per_page => 20)
+      #@products = Product.find(:all, :include => [:categories],:conditions=>['products.name LIKE ? AND(UPPER(categories.name) = ? OR UPPER(categories.name = ?)) and products.id NOT IN (select week_product_id from week_products)',"%#{params[:search_name]}%",'WINE','FOOD']).paginate(:page => params[:page], :per_page => 20)
 
     else
-      @products = Product.find(:all,:include => [:week_products],:conditions=>['UPPER(categories.name) = ? OR UPPER(categories.name = ?) and products.id NOT IN (select week_product_id from week_products)','Wine','FOOD'],:include => [:categories]).paginate(:page => params[:page], :per_page => 20)
+      @products = Product.where(['UPPER(categories.name) = ? OR UPPER(categories.name = ?) and products.id NOT IN (select week_product_id from week_products)','Wine','FOOD']).includes([:categories]).paginate(:page => params[:page], :per_page => 20)
 
     end
     if params[:id] and request.xhr?
