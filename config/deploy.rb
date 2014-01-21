@@ -38,7 +38,7 @@ end
 
 set :scm, :git
 #set :repository, "git@github.com:italyabroad/italyabroad.git"
-set :repository, "ssh://git@bitbucket.org/neerajkumar/italyabroad.git"
+set :repository, "ssh://git@bitbucket.org/neerajkumar/italyabroad_new.git"
 set :rake, 'bundle exec rake'
 #set :repository, "https://github.com/italyabroad/italyabroad.git"
 #set :git_enable_submodules, 1
