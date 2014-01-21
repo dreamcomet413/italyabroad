@@ -30,4 +30,5 @@ end
 group :development, :test do
   #gem 'debugger'
   #gem 'linecache19'
+  gem 'byebug'
 end

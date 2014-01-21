@@ -51,12 +51,17 @@ GEM
     arel (2.0.10)
     better_nested_set (0.1.1)
     builder (2.1.2)
+    byebug (2.5.0)
+      columnize (~> 0.3.6)
+      debugger-linecache (~> 1.2.0)
     capistrano (2.12.0)
       highline
       net-scp (>= 1.0.0)
       net-sftp (>= 2.0.0)
       net-ssh (>= 2.0.14)
       net-ssh-gateway (>= 1.1.0)
+    columnize (0.3.6)
+    debugger-linecache (1.2.0)
     erubis (2.6.6)
       abstract (>= 1.0.0)
     hashery (2.1.1)
@@ -141,6 +146,7 @@ DEPENDENCIES
   activemerchant (= 1.5.1)
   activerecord-mysql2-adapter
   better_nested_set
+  byebug
   capistrano (= 2.12.0)
   fleximage!
   jquery-rails
