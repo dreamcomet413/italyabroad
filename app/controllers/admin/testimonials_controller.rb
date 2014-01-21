@@ -4,7 +4,7 @@ class Admin::TestimonialsController < ApplicationController
   # GET /testimonials
   # GET /testimonials.xml
   def index
-    @testimonials = Testimonial.all(:order => "created_at DESC").paginate(:page => params[:page], :per_page => 10)
+    @testimonials = Testimonial.where("").order("created_at DESC").paginate(:page => params[:page], :per_page => 10)
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @testimonials }

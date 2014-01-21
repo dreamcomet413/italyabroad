@@ -17,7 +17,7 @@
     </thead>
     <tfoot>
       <tr>
-        <td colspan="2"><%= will_paginate_(@testimonials) %></td>
+        <td colspan="2"><%= will_paginate(@testimonials) %></td>
         <td colspan="2" align="right"><%= page_entries_info_ @testimonials %></td>
       </tr>
     </tfoot>
@@ -26,7 +26,7 @@
       <tr>
         <td valign="top"><%= testimonial.id %></td>
         <td valign="top"><%= link_to testimonial.title, admin_testimonial_path(testimonial) %></td>
-        <td valign="top"><%= testimonial.description %></td>
+        <td valign="top"><%= testimonial.description.html_safe() %></td>
         <td valign="top"><%= testimonial.page_to_display %></td>
         <td valign="top"><%= link_to "Edit", edit_admin_testimonial_path(testimonial) %> | <%= link_to "Destroy", admin_testimonial_path(testimonial), :method => :delete, :confirm => "Are you sure want to delete this testimonial?" %></td>
       </tr>
