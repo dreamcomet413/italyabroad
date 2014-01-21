@@ -33,7 +33,7 @@ module ItalyabroadNew
     config.gem "pdfkit"
   
     config.gem 'rails'
-    config.gem "mysql"
+    config.gem "mysql2"
     config.gem 'simple_captcha'
   
     config.gem "capistrano" 
