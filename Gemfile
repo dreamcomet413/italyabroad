@@ -8,7 +8,6 @@ gem 'rails', '3.0.6'
 #gem 'rails', '2.3.5'
 gem 'capistrano', '2.12.0'
 gem 'mime-types', '1.23'
-gem 'mysql'
 gem 'mysql2'
 gem 'activerecord-mysql2-adapter'
 gem 'rdoc'
@@ -25,6 +24,7 @@ gem 'jquery-rails'
 
 group :development do
 #  gem 'thin'
+  gem 'mysql'
 end
 
 group :development, :test do
