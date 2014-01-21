@@ -29,4 +29,5 @@ end
 
 group :development, :test do
   gem 'debugger'
+  gem 'linecache', '0.41'
 end
