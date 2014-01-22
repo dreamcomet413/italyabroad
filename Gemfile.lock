@@ -29,6 +29,7 @@ GEM
       rack-mount (~> 0.6.14)
       rack-test (~> 0.5.7)
       tzinfo (~> 0.3.23)
+    active_record_base_without_table (0.1.2)
     activemerchant (1.5.1)
       activesupport (>= 2.3.2)
       builder (>= 2.0.0)
@@ -41,8 +42,6 @@ GEM
       activesupport (= 3.0.6)
       arel (~> 2.0.2)
       tzinfo (~> 0.3.23)
-    activerecord-mysql2-adapter (0.0.3)
-      mysql2
     activeresource (3.0.6)
       activemodel (= 3.0.6)
       activesupport (= 3.0.6)
@@ -79,7 +78,8 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.23)
-    mysql2 (0.3.14)
+    mysql (2.8.1)
+    mysql2 (0.2.6)
     net-scp (1.1.2)
       net-ssh (>= 2.6.5)
     net-sftp (2.1.2)
@@ -144,15 +144,16 @@ PLATFORMS
 
 DEPENDENCIES
   RedCloth
+  active_record_base_without_table
   activemerchant (= 1.5.1)
-  activerecord-mysql2-adapter
   better_nested_set
   capistrano (= 2.12.0)
   debugger
   fleximage!
   jquery-rails
   mime-types (= 1.23)
-  mysql2
+  mysql (= 2.8.1)
+  mysql2 (= 0.2.6)
   pdfkit
   prawn (= 0.11.1)
   rails (= 3.0.6)

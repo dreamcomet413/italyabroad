@@ -8,9 +8,9 @@ gem 'rails', '3.0.6'
 #gem 'rails', '2.3.5'
 gem 'capistrano', '2.12.0'
 gem 'mime-types', '1.23'
-#gem 'mysql'
-gem 'mysql2'
-gem 'activerecord-mysql2-adapter'
+gem 'mysql', '2.8.1'
+gem 'mysql2', '0.2.6'
+#gem 'activerecord-mysql2-adapter'
 gem 'rdoc'
 gem "activemerchant", "1.5.1"
 gem 'will_paginate', '>= 2.3.12'
@@ -22,6 +22,7 @@ gem 'better_nested_set'
 gem 'rmagick', :require => false
 gem 'simple_captcha', :git => 'git://github.com/arcadi/simple-captcha.git'
 gem 'jquery-rails'
+gem 'active_record_base_without_table'
 
 group :development do
 #  gem 'thin'

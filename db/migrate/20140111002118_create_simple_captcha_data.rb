@@ -1,6 +1,6 @@
 class CreateSimpleCaptchaData < ActiveRecord::Migration
   def self.up
-    drop_table :simple_captcha_data
+    #drop_table :simple_captcha_data
     create_table :simple_captcha_data do |t|
       t.string :key, :limit => 40
       t.string :value, :limit => 6
