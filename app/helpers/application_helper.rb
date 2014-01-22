@@ -179,7 +179,7 @@ module ApplicationHelper
       when :product_thumb
         {:height => '190', :width => '65'}
       when :product_thumb_cart
-        {:height => '30', :width => '30'}
+        {:height => '30'}
       when :product_show, :producer_thumb, :region_thumb
         {:height => '300', :width => '300'}
       when :product_wine_tour, :wine_tour_category
