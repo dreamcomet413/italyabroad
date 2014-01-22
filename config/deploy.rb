@@ -79,5 +79,6 @@ namespace :deploy do
 
   task :symlinks do
     run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
+    run "ln -nfs #{shared_path}/tmp #{release_path}/tmp"
   end
 end
