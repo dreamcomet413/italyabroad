@@ -5,3 +5,4 @@ tmp/
 .idea/
 .idea/*
 .idea/*.xml
+db/schema.rb

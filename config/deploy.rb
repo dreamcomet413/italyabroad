@@ -57,6 +57,7 @@ set :branch, 'master'
 
 # if you want to clean up old releases on each deploy uncomment this:
 after "deploy:restart", "deploy:cleanup"
+before "deploy:restart", "deploy:tmp_symlinks"
 #set :deploy_via, :remote_cache
 # if you're still using the script/reaper helper you will need
 # these http://github.com/rails/irs_process_scripts
@@ -80,6 +81,10 @@ namespace :deploy do
 
   task :symlinks do
     run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
-    run "cd #{current_path} && rm -rf tmp/ && ln -nfs #{shared_path}/tmp"
+    #run "cd #{current_path} && chmod -R 777 tmp/"
+  end
+
+  task :tmp_symlinks do
+    run "cd /srv/italyabroad/current && rm -rf tmp && ln -s /srv/italyabroad/shared/tmp tmp"
   end
 end
