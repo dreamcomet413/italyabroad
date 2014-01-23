@@ -12,7 +12,7 @@
         <td style="width:440px;">
           <div style="margin:0 0 0 0px;margin-left:5px;">
             <%= link_to product.name, nested_products_uri(product), :style => "font-size:17px;color:black;" %><br />
-            <%= show_ratings(product) %>
+            <%= show_ratings(product).html_safe() %>
             <%= product.description_short.html_safe() %>
             <br /><br />
             Quantity : <%= product.quantity %>
@@ -48,7 +48,7 @@
 
 
               <li style="margin-bottom:5px;">
-                <%= link_to image_tag("WINE_LIST.jpg"), :url => product_wine_list_index_path(@product), :remote => true, :html => {:style => "color:#464646;", :method => :post} %>
+                <%= link_to image_tag("WINE_LIST.jpg"), :url => product_wine_list_index_path(product), :remote => true, :html => {:style => "color:#464646;", :method => :post} %>
               </li>
 
 

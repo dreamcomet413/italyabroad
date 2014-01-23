@@ -12,13 +12,15 @@ class ApplicationController < ActionController::Base
   # filter_parameter_logging :password
   before_filter :redirect_to_new_url, :instantiate_controller_and_action_names, :find_or_initialize_cart, :initialize_general_variable
 
-  rescue_from ActiveRecord::RecordNotFound, :with => :render_record_not_found
-  rescue_from ActiveRecord::RecordInvalid, :with => :render_record_not_found
-  rescue_from ActionController::RoutingError, :with => :render_record_not_found
-  rescue_from ActionController::UnknownController, :with => :render_record_not_found
-  rescue_from ActionController::UnknownAction, :with => :render_record_not_found
-  rescue_from ActionController::MethodNotAllowed, :with => :render_record_not_found
-  rescue_from ActionController::MethodNotAllowed, :with => :render_record_not_found
+  if Rails.env == 'production'
+    rescue_from ActiveRecord::RecordNotFound, :with => :render_record_not_found
+    rescue_from ActiveRecord::RecordInvalid, :with => :render_record_not_found
+    rescue_from ActionController::RoutingError, :with => :render_record_not_found
+    rescue_from ActionController::UnknownController, :with => :render_record_not_found
+    rescue_from ActionController::UnknownAction, :with => :render_record_not_found
+    rescue_from ActionController::MethodNotAllowed, :with => :render_record_not_found
+    rescue_from ActionController::MethodNotAllowed, :with => :render_record_not_found
+  end
  # rescue_from Exception, :with => :render_record_not_found
 
 
