@@ -29,11 +29,11 @@ after "deploy:update_code", "deploy:symlinks"
 before 'deploy:setup', 'rvm:install_rvm'
 
 after "deploy:update_code" do
-  run "ls -al #{fetch(:current_release)} && which ruby"
+  run "ls -al #{fetch(:release_path)} && which ruby"
   bundle_dir = File.join(fetch(:shared_path), 'bundle')
   args = ["--path #{bundle_dir}"]
   args << "--without development"
-  run "cd #{fetch(:current_release)} && bundle install #{args.join(' ')}"
+  run "cd #{fetch(:release_path)} && bundle install #{args.join(' ')}"
 end
 
 set :scm, :git
@@ -42,7 +42,7 @@ set :repository, "ssh://git@bitbucket.org/neerajkumar/italyabroad_new.git"
 set :rake, 'bundle exec rake'
 #set :repository, "https://github.com/italyabroad/italyabroad.git"
 #set :git_enable_submodules, 1
-#set :branch, 'master'
+set :branch, 'master'
 
 #set :scm_username, 'yuvasoft'
 #set :scm_password, 'yuva_hitesh1988'
@@ -56,19 +56,20 @@ set :rake, 'bundle exec rake'
 #role :db,  "your slave db-server here"
 
 # if you want to clean up old releases on each deploy uncomment this:
-# after "deploy:restart", "deploy:cleanup"
+after "deploy:restart", "deploy:cleanup"
 #set :deploy_via, :remote_cache
 # if you're still using the script/reaper helper you will need
 # these http://github.com/rails/irs_process_scripts
 
 # If you are using Passenger mod_rails uncomment this:
-#namespace :deploy do
- # task :start do ; end
- # task :stop do ; end
-  # task :restart, :roles => :app, :except => { :no_release => true } do
-  #  run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
-  #end
-#end
+namespace :deploy do
+ task :start do ; end
+ task :stop do ; end
+  task :restart, :roles => :app, :except => { :no_release => true } do
+    #run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
+    run "touch #{File.join(current_path,'tmp','restart.txt')}"
+  end
+end
 namespace :deploy do
 
   #desc "Restarting httpd "
@@ -79,6 +80,6 @@ namespace :deploy do
 
   task :symlinks do
     run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
-    run "ln -nfs #{shared_path}/tmp #{release_path}/tmp"
+    #run "cd #{current_path} && rm -rf tmp/ &&ln -nfs #{shared_path}/tmp"
   end
 end

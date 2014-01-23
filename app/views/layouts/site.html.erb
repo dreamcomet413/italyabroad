@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <title><%= h(title) %></title>
@@ -24,7 +24,7 @@
 	<![endif]-->
 
   <%= stylesheet_link_tag "default" ,"alphacube"%>
-  <%= javascript_include_tag  "window" %>
+  <%#= javascript_include_tag  "window" %>
 
 
   <!-- Place this tag in your head or just before your close body tag -->
@@ -152,24 +152,24 @@
             <% category = Category.find_by_name(category)%>
 
             <% if category.present? %>
-            <li id="link-to-<%= category.friendly_identifier %>" class="<%= "active" if active_uri == "/#{category.friendly_identifier}"   %>">
-              <%= link_to category.name, "/#{category.try(:friendly_identifier)}" %>
+                <li id="link-to-<%= category.friendly_identifier %>" class="<%= "active" if active_uri == "/#{category.friendly_identifier}"   %>">
+                  <%= link_to category.name, "/#{category.try(:friendly_identifier)}" %>
 
-              <%- unless category.children.blank? -%>
-                  <ul>
-                    <% children = Category.find(:all,:conditions=>['parent_id = ? and show_in_menu = ?',category.id,true] ) %>
-                    <%#- for child in category.children(:order=>"(lft1-rgt) asc") -%>
-                    <%- for child in children -%>
-                        <%# num_products = find_any_active_product_exists(child.products)  %>
-                        <%#- if num_products > 0  -%>
-                        <li><%= link_to(child.name.html_safe(), nested_categories_url(category, child)) %></li>
-                        <%#- end -%>
-                    <%-  end -%>
-                    <li style="font-weight:bold;"><%= link_to("Special Offers", nested_categories_url(category, "offer"), :type => "special_offer", :class => "red-text")  %></li>
-                  </ul>
-              <%- end -%>
-            </li>
-                <% end %>
+                  <%- unless category.children.blank? -%>
+                      <ul>
+                        <% children = Category.find(:all,:conditions=>['parent_id = ? and show_in_menu = ?',category.id,true] ) %>
+                        <%#- for child in category.children(:order=>"(lft1-rgt) asc") -%>
+                        <%- for child in children -%>
+                            <%# num_products = find_any_active_product_exists(child.products)  %>
+                            <%#- if num_products > 0  -%>
+                            <li><%= link_to(child.name.html_safe(), nested_categories_url(category, child)) %></li>
+                            <%#- end -%>
+                        <%-  end -%>
+                        <li style="font-weight:bold;"><%= link_to("Special Offers", nested_categories_url(category, "offer"), :type => "special_offer", :class => "red-text")  %></li>
+                      </ul>
+                  <%- end -%>
+                </li>
+            <% end %>
         <%- end -%>
 
         <!--<li class="<%#= " active" if active_uri == "/wine-club" %>"><%#= link_to "Wine Club", :action=>"wine_club", :controller=>"site/base" %></li>-->
