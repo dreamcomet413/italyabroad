@@ -80,6 +80,6 @@ namespace :deploy do
 
   task :symlinks do
     run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
-    #run "cd #{current_path} && rm -rf tmp/ &&ln -nfs #{shared_path}/tmp"
+    run "cd #{current_path} && rm -rf tmp/ && ln -nfs #{shared_path}/tmp"
   end
 end
