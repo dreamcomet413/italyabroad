@@ -31,8 +31,8 @@
         Welcome <%= current_user.name %>!
         <%= link_to "Sign Out", signout_path %>
       <% else %>
-        <%= link_to "Login with Facebook", "/auth/facebook", :id => "facebook-login-btn" %>
-        <%= link_to "", "/auth/twitter", :id => "twitter-login-btn" %>
+        <%= link_to content_tag("div", "", :class => "facebook-login-btn width154"), "/auth/facebook" %>
+        <%= link_to content_tag("div", "", :class => "twitter-login-btn"), "/auth/twitter" %>
       <% end %>
     </td>
     <td valign="top" width="50%" style="border-left:none;">
