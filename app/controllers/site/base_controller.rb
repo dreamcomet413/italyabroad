@@ -30,6 +30,9 @@ class Site::BaseController < ApplicationController
 
           #   @setting.update_attribute('chat_available',true)
         end
+        if current_user.omniauth?(params)
+          current_user.authentications.create!(:provider => params[:provider], :uid => params[:uid], :token => params[:token])
+        end
 
         redirect_back_or_default(root_url)
       else

@@ -3,12 +3,12 @@ require 'base64'
 require 'digest/sha1'
 class User < ActiveRecord::Base
   # Virtual attribute for the unencrypted password
-  attr_accessor :password
+  attr_accessor :password, :provider
 
   apply_simple_captcha :message => " image and text were different", :add_to_base => true
 
   validates_presence_of     :login, :email, :name, :surname
- # validates_presence_of :telephone,:on=>:create,:message=>'Please supply a phone number so that we can call'
+  # validates_presence_of :telephone,:on=>:create,:message=>'Please supply a phone number so that we can call'
   validates_presence_of     :password,                   :if => :password_required?
   validates_presence_of     :password_confirmation,      :if => :password_required?
   validates_length_of       :password, :within => 6..40, :if => :password_required?
@@ -23,10 +23,10 @@ class User < ActiveRecord::Base
 
   validate :validate_telephone, :on => :create
 
- # validate :validate_phone_number,:on=>:create
+  # validate :validate_phone_number,:on=>:create
 
   HUMANIZED_ATTRIBUTES = {
-    :cap => "Post Code"
+      :cap => "Post Code"
   }
 
   def self.human_attribute_name(attr)
@@ -53,6 +53,7 @@ class User < ActiveRecord::Base
   has_many :messages
   has_many :faqs
   has_many :testimonials
+  has_many :authentications
 
   before_save :encrypt_password
 
@@ -92,7 +93,7 @@ class User < ActiveRecord::Base
       self.photo_id = photo.id
       self.photo_default = nil
       self.save
-  end
+    end
   end
 
   def get_photo_default(size)
@@ -118,27 +119,31 @@ class User < ActiveRecord::Base
   end
 
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
-  def self.authenticate(login, password)    
-     
+  def self.authenticate(login, password)
+
     u = find_by_login(login.strip) # need to get the salt
     unless u.nil?
-     # if  u.type_id.to_i != 4
-     #   u && u.authenticated?(password.strip) ? u : nil
-     # else
-     #     if u.active == true and u.authenticated?(password.strip)
-     #     return u
-     #     else
-     #     return nil
+      # if  u.type_id.to_i != 4
+      #   u && u.authenticated?(password.strip) ? u : nil
+      # else
+      #     if u.active == true and u.authenticated?(password.strip)
+      #     return u
+      #     else
+      #     return nil
       #    end
-     # end 
+      # end
       return u
-    end  
+    end
     return nil
   end
 
   def set_last_seen_at
     self.last_seen_at = Time.now
     self.save(false)
+  end
+
+  def omniauth?(params)
+    params[:provider].present? and params[:uid].present? and params[:token].present?
   end
 
   # Encrypts some data with the salt.
@@ -228,22 +233,47 @@ class User < ActiveRecord::Base
 
   def default_ship_address
     self.ship_addresses.new(
-      :code => "Default",
-      # :name => self.full_name,  # full_name attribute is not exist in our database.
-      :name => self.name,
-      :telephone => self.telephone,
-      :city => self.city,
-      :address => self.address,
-      :address_2 => self.address_2,
-      :country => self.country,
-      :cap => self.cap,
-      :note => self.note,
-      :is_new => false)
+        :code => "Default",
+        # :name => self.full_name,  # full_name attribute is not exist in our database.
+        :name => self.name,
+        :telephone => self.telephone,
+        :city => self.city,
+        :address => self.address,
+        :address_2 => self.address_2,
+        :country => self.country,
+        :cap => self.cap,
+        :note => self.note,
+        :is_new => false)
   end
 
   def find_total_points(user)
     total_points = user.orders.map {|o| o.total}.sum.to_f * Setting.find(:first).points_per_pound
     total_points = total_points + user.points
+  end
+
+  def save_obj(omniauth)
+    if omniauth.present? and self.save
+      authentication = self.authentications.new(:provider => omniauth['provider'], :uid => omniauth['uid'], :token => (omniauth['credentials']['token'] rescue nil))
+      authentication.save
+    end
+    return save
+  end
+
+  def apply_omniauth(omniauth)
+    case omniauth['provider']
+      when 'facebook'
+        self.apply_facebook(omniauth)
+    end
+
+    authentications.build(:provider => omniauth['provider'], :uid => omniauth['uid'], :token => (omniauth['credentials']['token'] rescue nil))
+  end
+
+  def facebook
+    @fb_user ||= FbGraph::User.me(self.authentications.find_by_provider('facebook').token) unless self.authentications.blank?
+  end
+
+  def self.find_by_full_name(name)
+    find_by_name_and_surname(name.split(" ").first, name.split(" ").last)
   end
 
   protected
@@ -255,11 +285,21 @@ class User < ActiveRecord::Base
   end
 
   def password_required?
-    crypted_password.blank? || !password.blank?
+    if !provider.blank?
+      return false
+    else
+      crypted_password.blank? || !password.blank?
+    end
   end
 
   def customer?
     return type_id == 1 ? false : true
+  end
+
+  def apply_facebook(omniauth)
+    if (extra = omniauth['extra']['user_hash'] rescue false)
+      self.email = (extra['email'] rescue '')
+    end
   end
 end
 

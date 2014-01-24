@@ -5,63 +5,70 @@
       If you would like your photo to be available on our website for other users to see, please upload using the following space below.
     </p>
     <p>
-      <table>
-        <tr>
-          <td valign='top'>
-            <%#= avatar_for_user(@user, "big") %>
-            <% if !@photo.nil? and current_user %>
-               <%= embedded_image_tag(@photo.operate { |img| img.resize 100 }) if @photo.has_image? %>
-            <% elsif @user.new_record? %>
+    <table>
+      <tr>
+        <td valign='top'>
+          <%#= avatar_for_user(@user, "big") %>
+          <% if !@photo.nil? and current_user %>
+              <%= embedded_image_tag(@photo.operate { |img| img.resize 100 }) if @photo.has_image? %>
+          <% elsif @user.new_record? %>
+              <% if session[:omniauth].present? %>
+                  <%#= image_tag(session[:omniauth]["info"]["image"]) -%>
+                  <%= content_tag(:div, image_tag(session[:omniauth]["info"]["image"].sub("_normal", ""), :height => "100px", :width => "100px"), :class => "user_photo_big", :id => "user_photo") -%>
+              <% else %>
+                  <%= avatar_for_user(@user, "big") %>
+                  <input type="hidden" name="kind" value="1">
+              <% end %>
+          <% elsif @user.photo_id.nil? %>
+              <% if !@user.photo_default.nil? %>
+                  <img src ="images/<%= @user.photo_default+'.jpg'%>">
+              <% elsif session[:omniauth].present? %>
+                  <%#= image_tag(session[:omniauth]["info"]["image"]) -%>
+                  <%= content_tag(:div, image_tag(session[:omniauth]["info"]["image"].sub("_normal", ""), :height => "100px", :width => "100px"), :class => "user_photo_big", :id => "user_photo") -%>
+              <% else %>
+                  <img src ="images/default.jpg">
+              <% end %>
+          <% end %>
 
-             <%= avatar_for_user(@user, "big") %>
-             <input type="hidden" name="kind" value="1">
-             <% elsif @user.photo_id.nil? %>
-              <% unless @user.photo_default.nil? %>
-             <img src ="images/<%= @user.photo_default+'.jpg'%>">
-             <% else %>
-              <img src ="images/default.jpg">
-             <% end %>
-            <% end %>
-
-           <div id="loader-image" style="display:none" align="center"><%= image_tag "loading.gif" %></div>
-          </td>
-          <td>
+          <div id="loader-image" style="display:none" align="center"><%= image_tag "loading.gif" %></div>
+        </td>
+        <td>
           <% fields_for :photo do %>
-            <%= file_field :photo, :image_file %>
-            <%#= hidden_field :user, :photo_default %>
-            <% end %>
-            <p>
-              Or if you would not like to upload an image please select your preferred color from the default images below.
-              <ul class="photo_list">
-                <li>
-                  <%= link_to (image_tag('default.jpg')), :url => update_default_pic_site_customers_path(:kind => "1"),
-                  :method => :get, :remote => true, :update => "profile_pic", :loading => "$('loader-image').show();$('user_photo').hide();" %>
-                </li>
-                <li>
-                  <%= link_to (image_tag('default_a.jpg')), :url => update_default_pic_site_customers_path(:kind => "a"),
-                  :method => :get, :remote => true, :update => "profile_pic", :loading => "$('loader-image').show();$('user_photo').hide();" %>
-                </li>
-                <li>
-                  <%= link_to (image_tag('default_b.jpg')), :url => update_default_pic_site_customers_path(:kind => "b"),
-                  :method => :get, :remote => true, :update => "profile_pic", :loading => "$('loader-image').show();$('user_photo').hide();" %>
-                </li>
-                <li>
-                  <%= link_to (image_tag('default_c.jpg')), :url => update_default_pic_site_customers_path(:kind => "c"),
-                  :method => :get, :remote => true, :update => "profile_pic", :loading => "$('loader-image').show();$('user_photo').hide();" %>
-                </li>
-                <li>
-                  <%= link_to (image_tag('default_d.jpg')), :url => update_default_pic_site_customers_path(:kind => "d"),
-                  :method => :get, :remote => true, :update => "profile_pic", :loading => "$('loader-image').show();$('user_photo').hide();" %>
-                </li>
-                <li>
-                  <%= link_to (image_tag('default_e.jpg')), :url => update_default_pic_site_customers_path(:kind => "e"),
-                  :method => :get, :remote => true, :update => "profile_pic", :loading => "$('loader-image').show();$('user_photo').hide();" %>
-                </li>
-              </ul>
-            </p>
-          </td>
-        </tr>
-      </table>
+              <%= file_field :photo, :image_file %>
+              <%#= hidden_field :user, :photo_default %>
+          <% end %>
+          <p>
+            Or if you would not like to upload an image please select your preferred color from the default images below.
+          <ul class="photo_list">
+            <li>
+              <%= link_to (image_tag('default.jpg')), :url => update_default_pic_site_customers_path(:kind => "1"),
+                          :method => :get, :remote => true, :update => "profile_pic", :loading => "$('loader-image').show();$('user_photo').hide();" %>
+            </li>
+            <li>
+              <%= link_to (image_tag('default_a.jpg')), :url => update_default_pic_site_customers_path(:kind => "a"),
+                          :method => :get, :remote => true, :update => "profile_pic", :loading => "$('loader-image').show();$('user_photo').hide();" %>
+            </li>
+            <li>
+              <%= link_to (image_tag('default_b.jpg')), :url => update_default_pic_site_customers_path(:kind => "b"),
+                          :method => :get, :remote => true, :update => "profile_pic", :loading => "$('loader-image').show();$('user_photo').hide();" %>
+            </li>
+            <li>
+              <%= link_to (image_tag('default_c.jpg')), :url => update_default_pic_site_customers_path(:kind => "c"),
+                          :method => :get, :remote => true, :update => "profile_pic", :loading => "$('loader-image').show();$('user_photo').hide();" %>
+            </li>
+            <li>
+              <%= link_to (image_tag('default_d.jpg')), :url => update_default_pic_site_customers_path(:kind => "d"),
+                          :method => :get, :remote => true, :update => "profile_pic", :loading => "$('loader-image').show();$('user_photo').hide();" %>
+            </li>
+            <li>
+              <%= link_to (image_tag('default_e.jpg')), :url => update_default_pic_site_customers_path(:kind => "e"),
+                          :method => :get, :remote => true, :update => "profile_pic", :loading => "$('loader-image').show();$('user_photo').hide();" %>
+            </li>
+          </ul>
+    </p>
+    </td>
+    </tr>
+    </table>
     </p>
   </div>
 </div>

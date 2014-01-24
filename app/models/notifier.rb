@@ -32,7 +32,7 @@ class Notifier < ActionMailer::Base
 
   def subscribe(email)
     recipients    email
- #   from          "Italyabroad.com <info@italyabroad.com>"
+    #   from          "Italyabroad.com <info@italyabroad.com>"
     bcc           "info@italyabroad.com"
     subject       "[News Letters Italyabroad.com] Subscription Complete!"
     body          :email => email,
@@ -66,7 +66,7 @@ class Notifier < ActionMailer::Base
                   :message => message
   end
 
-  def recipients_created(user)
+  def account_created(user)
     recipients    user.email
     bcc           "info@italyabroad.com"
 #    from          "Italyabroad.com <info@italyabroad.com>"
@@ -74,7 +74,7 @@ class Notifier < ActionMailer::Base
     body          :user => user
   end
 
-  def recipients_data(user)
+  def account_data(user)
     recipients    user.email
 #    from          "Italyabroad.com <info@italyabroad.com>"
     subject       "[recipients Italyabroad.com] recipients Data"
@@ -118,10 +118,10 @@ class Notifier < ActionMailer::Base
     bcc           "info@italyabroad.com"
 #    from          "Italyabroad.com <info@italyabroad.com>"
     subject       "[Order Italyabroad.com] Order Accepted"
-    #body          :order => order,
-    #              :tasting_url => url_for(:host => AppConfig.site_url, :controller => "site/customers", :action => "print_tasting", :id=>order.id),
-    #              :invoice_url => url_for(:host => AppConfig.site_url, :controller => "site/customers", :action => "print_invoice", :id=>order.id),
-    #              :customer_url => url_for(:host => AppConfig.site_url, :controller => "site/customers", :action => "orders")
+#body          :order => order,
+#              :tasting_url => url_for(:host => AppConfig.site_url, :controller => "site/customers", :action => "print_tasting", :id=>order.id),
+#              :invoice_url => url_for(:host => AppConfig.site_url, :controller => "site/customers", :action => "print_invoice", :id=>order.id),
+#              :customer_url => url_for(:host => AppConfig.site_url, :controller => "site/customers", :action => "orders")
 
     body          :order => order,
                   :printing_url => ((AppConfig.site_url.to_s[1..3] == "www" ? AppConfig.site_url.to_s : "www." + AppConfig.site_url.to_s) +  "/orders/download_pdf?id=" + order.id.to_s),
@@ -161,7 +161,7 @@ class Notifier < ActionMailer::Base
     recipients    order.user.email
     bcc           "info@italyabroad.com"
 #    from          "Italyabroad.com <info@italyabroad.com>"
-    #subject       "[Order Italyabroad.com] Order Paid"
+#subject       "[Order Italyabroad.com] Order Paid"
     subject       "Italyabroad.com Order shipped"
     body          :order=>order
     content_type "text/html"
@@ -199,7 +199,7 @@ class Notifier < ActionMailer::Base
     subject  "A review of " + product.name + "added"
     body      :product  => product,
               :review=>review,
-                :user=>user
+              :user=>user
   end
 
   def new_order_placed(order,user,admin_email)
@@ -207,20 +207,20 @@ class Notifier < ActionMailer::Base
 #    from "info@italyabroad.com"
     subject  "New order from  " + user.name
     body      :order  => order,
-             :user=>user
+              :user=>user
   end
 
-  def new_recipients_created(user,admin_email)
+  def new_account_created(user,admin_email)
     recipients "#{admin_email}"
 #    from "info@italyabroad.com"
     subject  "New recipients created by  " + user.name
     body     :user=>user,
-            :url  => url_for(:host => AppConfig.site_url, :controller => "site/customers", :action => "show", :id=>user.id)
+             :url  => url_for(:host => AppConfig.site_url, :controller => "site/customers", :action => "show", :id=>user.id)
   end
 
   def invite_a_friend(email,name,friend_name,message)
     recipients "#{email}"
- #   from "info@italyabroad.com"
+    #   from "info@italyabroad.com"
     subject  "An invitation from  " + "#{name}"
     body  :message =>message,:your_name=>name,:friend_name=>friend_name
 

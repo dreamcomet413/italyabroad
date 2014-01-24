@@ -1,0 +1,2 @@
+module Site::AuthenticationsHelper
+end

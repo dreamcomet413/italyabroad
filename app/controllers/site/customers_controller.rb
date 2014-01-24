@@ -21,11 +21,11 @@ class Site::CustomersController < ApplicationController
     end
     # end to show link You have new message
     respond_to do |format|
-       if @user.type_id == 4
-          format.html {render :action => :chef_profile}
+      if @user.type_id == 4
+        format.html {render :action => :chef_profile}
 
-       else
-          format.html
+      else
+        format.html
       end
     end
 
@@ -53,49 +53,51 @@ class Site::CustomersController < ApplicationController
   def create
     @user = User.new(params[:user])
     unless params[:photo].nil?
-    @photo = Photo.new(params[:photo])
-     @photo.save
-    @user.photo_id = @photo.id
-  else
-    set_photo_from_default(params[:kind],@user)
-  end
+      @photo = Photo.new(params[:photo])
+      @photo.save
+      @user.photo_id = @photo.id
+    else
+      set_photo_from_default(params[:kind],@user)
+    end
     if params[:chef].to_i == 4
       @user.type_id = 4
       @user.active = false
-   else
-       @user.type_id = 2
+    else
+      @user.type_id = 2
       @user.active = true
-  end
+    end
+
+    @user.provider = session[:omniauth][:provider] if session[:omniauth].present?
     #@user.activation_code = ActivePassword.new #Customers don't wont activations
 
-        if @user.valid_with_captcha?
-          if  !params[:conditions].nil?
-            @user.save
-            #.save_with_captcha
-            Notifier.deliver_new_account_created(@user,AppConfig.admin_email)
-            flash[:title] = "Congratulations"
-            flash[:message] = "Your account has been created, an email with your account details has been sent to #{@user.email}."
-            if @user.type_id != 4
-              self.current_user = User.authenticate(@user.login, @user.password_clean)
-              #redirect_back_or_default(:action => :messages)
-            elsif @user.type_id == 4
-              flash[:alert] = "The profile will be reviewed by a member of our team before being published"
-              #  flash[:notice] = "The profile will be reviewed by a member of our team before being published"
+    if @user.valid_with_captcha?
+      if  !params[:conditions].nil?
+        @user.save_obj(session[:omniauth])
+        #.save_with_captcha
+        Notifier.deliver_new_account_created(@user,AppConfig.admin_email)
+        flash[:title] = "Congratulations"
+        flash[:message] = "Your account has been created, an email with your account details has been sent to #{@user.email}."
+        if @user.type_id != 4
+          self.current_user = User.authenticate(@user.login, @user.password_clean)
+          #redirect_back_or_default(:action => :messages)
+        elsif @user.type_id == 4
+          flash[:alert] = "The profile will be reviewed by a member of our team before being published"
+          #  flash[:notice] = "The profile will be reviewed by a member of our team before being published"
 
-            end
-            redirect_back_or_default(root_url)
-          else
-            flash[:notice] = @user.show_errors
-            flash[:notice] +=  '<br />' + "You have to accept the terms and conditions"
-            render :action => :new
-          end
+        end
+        redirect_back_or_default(root_url)
       else
         flash[:notice] = @user.show_errors
-        if params[:conditions].nil?
-          flash[:notice] +=  '<br />' + "You have to accept the terms and conditions"
-        end
+        flash[:notice] +=  ('<br />' + "You have to accept the terms and conditions").html_safe()
         render :action => :new
       end
+    else
+      flash[:notice] = @user.show_errors
+      if params[:conditions].nil?
+        flash[:notice] +=  ('<br />' + "You have to accept the terms and conditions").html_safe()
+      end
+      render :action => :new
+    end
   end
 
   def confirmation
@@ -132,7 +134,7 @@ class Site::CustomersController < ApplicationController
   def account
     @user = current_user
     unless @user.photo_id.nil? or @user.photo_id.blank?
-     @photo = Photo.find_by_id(current_user.photo_id)
+      @photo = Photo.find_by_id(current_user.photo_id)
     end
 
     redirect_to :controller => :base, :action => :index if @user.nil?
@@ -140,10 +142,10 @@ class Site::CustomersController < ApplicationController
   end
 
   def update_default_pic
-  #  @user = current_user
-  # set_photo_from_default(params[:kind],@user)
+    #  @user = current_user
+    # set_photo_from_default(params[:kind],@user)
 
-  render :layout => false
+    render :layout => false
   end
 
   def update
@@ -158,24 +160,24 @@ class Site::CustomersController < ApplicationController
       set_photo_from_default(params[:kind],@user)
     end
 
-  if params[:chef].to_i == 4
+    if params[:chef].to_i == 4
       @user.type_id = 4
       @user.active = false
-  elsif (params[:chef].to_i != 4 and @user.type_id.to_i != 1)
+    elsif (params[:chef].to_i != 4 and @user.type_id.to_i != 1)
       @user.type_id = 2
       @user.active = true
-  end
+    end
 
 
 
-   # @user.set_photo_from_upload(params[:photo])
+    # @user.set_photo_from_upload(params[:photo])
     if @user.update_attributes(params[:user])
-        Notifier.deliver_account_data(User.find(@user.id))
-        flash[:title] = "Congratulations"
-        flash[:message] = "Your account has been update, you will now receive an email"
-        #   render :action => :messages
-        redirect_to customer_path(@user.id)
-        #  redirect_to root_url
+      Notifier.deliver_account_data(User.find(@user.id))
+      flash[:title] = "Congratulations"
+      flash[:message] = "Your account has been update, you will now receive an email"
+      #   render :action => :messages
+      redirect_to customer_path(@user.id)
+      #  redirect_to root_url
     else
 
       flash[:notice] = @user.show_errors
@@ -211,7 +213,7 @@ class Site::CustomersController < ApplicationController
   end
 
   def send_message
-     @message = Message.new(:name=>params[:name],:user_id=>params[:user_id],:send_by_id=>params[:send_by_id])
+    @message = Message.new(:name=>params[:name],:user_id=>params[:user_id],:send_by_id=>params[:send_by_id])
     if @message.save
       Notifier.deliver_new_message_received(params[:name],User.find(params[:user_id]),User.find(params[:send_by_id]))
       redirect_to customer_path(params[:user_id])
@@ -232,7 +234,7 @@ class Site::CustomersController < ApplicationController
         unless session[:return_to].blank?
           format.html { redirect_to(session[:return_to]) }
         else
-        format.html { redirect_to(customer_path(user)) }
+          format.html { redirect_to(customer_path(user)) }
         end
       else
         format.html { redirect_to(customer_path(current_user)) }
@@ -240,7 +242,7 @@ class Site::CustomersController < ApplicationController
     end
   end
 
- def request_new_password
+  def request_new_password
 
     respond_to do |format|
       format.html
@@ -249,37 +251,37 @@ class Site::CustomersController < ApplicationController
 
   def set_photo_from_default(kind,user)
     case kind
-    when "1"
-      image = AppConfig.avatar_1
-    when "a"
-      image = AppConfig.avatar_2
-    when "b"
-      image = AppConfig.avatar_3
-    when "c"
-      image = AppConfig.avatar_4
-    when "d"
-      image = AppConfig.avatar_5
-    when "e"
-      image = AppConfig.avatar_6
+      when "1"
+        image = AppConfig.avatar_1
+      when "a"
+        image = AppConfig.avatar_2
+      when "b"
+        image = AppConfig.avatar_3
+      when "c"
+        image = AppConfig.avatar_4
+      when "d"
+        image = AppConfig.avatar_5
+      when "e"
+        image = AppConfig.avatar_6
     end
 
 
     if image
-    user.photo_id = ""
-    user.photo_default = image
-   # @photo = Photo.new
-   # @photo.image_file = image
-    # user.photo = image
-   # @photo.save
-   # user.photo_id = @photo.id
+      user.photo_id = ""
+      user.photo_default = image
+      # @photo = Photo.new
+      # @photo.image_file = image
+      # user.photo = image
+      # @photo.save
+      # user.photo_id = @photo.id
 
       begin
-    #  user.photo.destroy if user.photo
+        #  user.photo.destroy if user.photo
       rescue => e
         logger.info "Unexpected error when delete photo #{self.photo.id} \n #{e.inspect}"
       end
-     # user.photo_id = nil
-    #  user.save
+      # user.photo_id = nil
+      #  user.save
     end
 
   end

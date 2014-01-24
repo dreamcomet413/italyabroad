@@ -15,14 +15,24 @@
       <% form_tag login_url do  %>
 
         <p>Username</p>
-        <p><%= text_field_tag :login, nil %></p>
+        <p><%= text_field_tag :login, params[:login] %></p>
         <%= set_focus_to('login') %>
         <p>Password</p>
         <p><%= password_field_tag :password, nil %></p>
+          <%= hidden_field_tag :provider, params[:provider] -%>
+          <%= hidden_field_tag :uid, params[:uid] -%>
+          <%= hidden_field_tag :token, params[:token] -%>
         <p><%= link_to "Forgot your password", request_new_password_path %></p>
         <p><%= image_submit_tag "login_button.png" %></p>
         <!--<fb:login-button onlogin='rack_fbconnect()'></fb:login-button>-->
         
+      <% end %>
+      <% if current_user != :false%>
+        Welcome <%= current_user.name %>!
+        <%= link_to "Sign Out", signout_path %>
+      <% else %>
+        <%= link_to "Login with Facebook", "/auth/facebook", :id => "facebook-login-btn" %>
+        <%= link_to "", "/auth/twitter", :id => "twitter-login-btn" %>
       <% end %>
     </td>
     <td valign="top" width="50%" style="border-left:none;">

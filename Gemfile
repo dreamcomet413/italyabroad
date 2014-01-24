@@ -23,11 +23,17 @@ gem 'rmagick', :require => false
 gem 'simple_captcha', :git => 'git://github.com/arcadi/simple-captcha.git'
 gem 'jquery-rails'
 gem 'active_record_base_without_table'
+gem 'omniauth'
+gem 'fb_graph'
+gem 'omniauth-facebook'
+gem 'omniauth-twitter'
 
 group :development do
-#  gem 'thin'
+  #gem 'thin'
+  gem "nifty-generators"
 end
 
 group :development, :test do
   gem 'debugger'
 end
+gem "mocha", :group => :test
