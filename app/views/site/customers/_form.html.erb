@@ -9,20 +9,60 @@
       <td><%= select :user, :title, ["Mr", "Miss", "Mrs", "Dr"] %></td>
     </tr>
     <tr>
+      <% first_name =
+                 if session[:omniauth].present?
+                   if session[:omniauth]["provider"] == 'facebook'
+                     session[:omniauth]["info"]["first_name"]
+                   elsif session[:omniauth]["provider"] == 'twitter'
+                     session[:omniauth]["info"]["name"].split(" ").first()
+                   end
+                 else
+                   nil
+                 end
+      %>
       <td><span style="color:red;font-size:14px;"> * </span> Name:</td>
-      <td><%= text_field :user, :name, :value => session[:omniauth].present? ? session[:omniauth]["info"]["name"].split(" ").first() : nil %></td>
+      <td><%= text_field :user, :name, :value => first_name %></td>
     </tr>
     <tr>
       <td><span style="color:red;font-size:14px;"> * </span> Surname:</td>
-      <td><%= text_field :user, :surname, :value => session[:omniauth].present? ? session[:omniauth]["info"]["name"].split(" ").last() : nil %></td>
+      <% last_name =
+                 if session[:omniauth].present?
+                   if session[:omniauth]["provider"] == 'facebook'
+                     session[:omniauth]["info"]["last_name"]
+                   elsif session[:omniauth]["provider"] == 'twitter'
+                     session[:omniauth]["info"]["name"].split(" ").last()
+                   end
+                 else
+                   nil
+                 end
+      %>
+      <td><%= text_field :user, :surname, :value => last_name %></td>
     </tr>
     <tr>
       <td> <span style="color:red;font-size:14px;"> * </span> Email:</td>
-      <td><%= text_field :user, :email, :value => session[:omniauth].present? ? (session[:omniauth]["extra"]["user_hash"].present? ? session[:omniauth]["extra"]["user_hash"]["email"] : nil) : nil %></td>
+      <% email =
+                 if session[:omniauth].present?
+                   if session[:omniauth]["provider"] == 'facebook'
+                     session[:omniauth]["info"]["email"]
+                   end
+                 else
+                   nil
+                 end
+      %>
+      <td><%= text_field :user, :email, :value => email %></td>
     </tr>
     <tr>
       <td>DOB:</td>
-      <td><%= date_select :user, :dob, :start_year => 1900, :end_year => Time.now.year, :order => [:day, :month, :year] %></td>
+      <% birthday =
+                 if session[:omniauth].present?
+                   if session[:omniauth]["provider"] == 'facebook'
+                     session[:omniauth]["extra"]["raw_info"]["birthday"]
+                   end
+                 else
+                   nil
+                 end
+      %>
+      <td><%= date_select :user, :dob, :selected => birthday, :start_year => 1900, :end_year => Time.now.year, :order => [:day, :month, :year] %></td>
     </tr>
   </table>
 </div>
@@ -76,7 +116,16 @@
 
     <tr>
       <td> <span style="color:red;font-size:14px;"> * </span> Town:</td>
-      <td><%= text_field :user, :city %></td>
+      <% address =
+                      if session[:omniauth].present?
+                        if session[:omniauth]["provider"] == 'facebook'
+                          session[:omniauth]["extra"]["raw_info"]["location"]["name"] if session[:omniauth]["extra"]["raw_info"]["location"].present?
+                        end
+                      else
+                        nil
+                      end
+           %>
+      <td><%= text_field :user, :city, :value => address %></td>
     </tr>
     <tr>
       <td><span style="color:red;font-size:14px;"> * </span> Postcode:</td>

@@ -8,13 +8,22 @@
     <table>
       <tr>
         <td valign='top'>
+          <% profile_image =
+                     if session[:omniauth].present?
+                       if session[:omniauth]["provider"] == 'facebook'
+                         session[:omniauth]["info"]["image"] + "?type=large"
+                       elsif session[:omniauth]["provider"] == 'twitter'
+                         session[:omniauth]["info"]["image"].sub("_normal", "")
+                       end
+                     end
+          %>
           <%#= avatar_for_user(@user, "big") %>
           <% if !@photo.nil? and current_user %>
               <%= embedded_image_tag(@photo.operate { |img| img.resize 100 }) if @photo.has_image? %>
           <% elsif @user.new_record? %>
               <% if session[:omniauth].present? %>
                   <%#= image_tag(session[:omniauth]["info"]["image"]) -%>
-                  <%= content_tag(:div, image_tag(session[:omniauth]["info"]["image"].sub("_normal", ""), :height => "100px", :width => "100px"), :class => "user_photo_big", :id => "user_photo") -%>
+                  <%= content_tag(:div, image_tag(profile_image, :height => "100px", :width => "100px"), :class => "user_photo_big", :id => "user_photo") -%>
               <% else %>
                   <%= avatar_for_user(@user, "big") %>
                   <input type="hidden" name="kind" value="1">
@@ -24,7 +33,7 @@
                   <img src ="images/<%= @user.photo_default+'.jpg'%>">
               <% elsif session[:omniauth].present? %>
                   <%#= image_tag(session[:omniauth]["info"]["image"]) -%>
-                  <%= content_tag(:div, image_tag(session[:omniauth]["info"]["image"].sub("_normal", ""), :height => "100px", :width => "100px"), :class => "user_photo_big", :id => "user_photo") -%>
+                  <%= content_tag(:div, image_tag(profile_image, :height => "100px", :width => "100px"), :class => "user_photo_big", :id => "user_photo") -%>
               <% else %>
                   <img src ="images/default.jpg">
               <% end %>
