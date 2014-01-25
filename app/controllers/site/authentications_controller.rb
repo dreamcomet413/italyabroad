@@ -12,6 +12,7 @@ class Site::AuthenticationsController < ApplicationController
         Authentication.find_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
       end
     user = User.find_by_login(omniauth['info']['nickname'])
+    session[:omniauth] = omniauth
     if authentication
       self.current_user = User.find(authentication.user_id)
       current_user.set_last_seen_at
@@ -28,7 +29,6 @@ class Site::AuthenticationsController < ApplicationController
         flash[:notice] = "Signed in successfully."
         sign_in_and_redirect(:user, user)
       else
-        session[:omniauth] = omniauth
         redirect_to signup_url
       end
     end
