@@ -155,7 +155,7 @@ class Site::CartController < ApplicationController
 
   def update_gift
     @cart.gift = params[:gift]
-    redirect_to checkouts_url
+    redirect_to site_checkouts_url
   end
 
   private

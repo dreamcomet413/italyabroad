@@ -92,7 +92,6 @@ ItalyabroadNew::Application.routes.draw do
   match 'site/cart/gift_options' => 'site/cart#gift_options'
   match 'site/checkouts/order_confirmation' => 'site/checkouts#order_confirmation'
   match 'site/cart/update_gift' => 'site/cart#update_gift'
-  resources :ship_addresses
 
   namespace :site do
     resources :orders, :only => [:index, :new, :create, :show] do
@@ -143,6 +142,7 @@ ItalyabroadNew::Application.routes.draw do
       end
     end
     resources :news_letters, :only => [:show]
+    resources :ship_addresses
   end
 
 

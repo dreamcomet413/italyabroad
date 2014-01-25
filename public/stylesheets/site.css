@@ -3107,3 +3107,19 @@ b {
  font-weight:bold;
 }
 
+.edit_delete_shipping_address a{
+    color: #FFFFFF;
+    background: none repeat scroll 0% 0% rgb(188, 209, 39); text-align: center;
+}
+
+.edit_delete_shipping_address td{
+    padding: 5px;
+    line-height: 0;
+    width: 68px;
+}
+
+#delete_shipping_address{
+    /*color: #fff;*/
+    background: none repeat scroll 0% 0% rgb(188, 209, 39); text-align: center;
+}
+
