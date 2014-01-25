@@ -63,7 +63,7 @@
                     <%- end -%>
                   </li>
                   <li style="margin-bottom:10px;">
-                    <%= link_to image_tag("add_to_wish_list.png"), "/site/wish_list?product_id=#{product.id}", :remote => true, :method => :post, :style => "color:#464646;" %>
+                    <%= link_to image_tag("add_to_wish_list.png"), "/site/wish_list?product_id=#{product.id}", :remote => true, :method => :post, :style => "color:#464646;" if @category.parent.name == 'Wine' %>
                   </li>
                   <% if @category.parent.name == 'Wine' %>
                       <li style="margin-bottom:10px;">

@@ -201,7 +201,7 @@
 
               <%- end -%>
           <%- end -%>
-          <%= link_to image_tag("add_to_wish_list.png"), "/site/wish_list?product_id=#{@product.id}", :remote => true, :method => :post %>
+          <%= link_to image_tag("add_to_wish_list.png"), "/site/wish_list?product_id=#{@product.id}", :remote => true, :method => :post  if @product.categories.root.name == 'Wine'%>
           <% if  @product.categories.root.name.downcase == 'wine' %>
             <%= link_to image_tag("WINE_LIST.jpg"), "/site/wine_lists?product_id=#{@product.id}", :remote => true, :method => :post, :style => "color:#464646;" %>
           <% end %>
