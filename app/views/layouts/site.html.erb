@@ -105,10 +105,11 @@
 
         <% if logged_in? %>
 
-            <span style="font:bold 13px Arial;"><%= link_to image_tag(image_name), chat_index_path, :popup => ['new_window_name', 'height=540,width=490'] if !image_name.nil?  %></span>
+            <span style="font:bold 13px Arial;"><%#= link_to image_tag(image_name), site_chat_index_path, :popup => ['new_window_name', 'height=540,width=490'] if !image_name.nil?  %></span>
+            <span style="font:bold 13px Arial;"><%= link_to image_tag(image_name), "#", :class => "chat_available" if !image_name.nil?  %></span>
 
         <% else %>
-            <span style="font:bold 13px Arial;"><%= link_to(image_tag(image_name), chat_index_path, {:popup => ['new_window_name', 'height=540,width=490,resizable=yes,scrollbars=auto']}) if !image_name.nil? %></span>
+            <span style="font:bold 13px Arial;"><%= link_to(image_tag(image_name), site_chat_index_path, {:popup => ['new_window_name', 'height=540,width=490,resizable=yes,scrollbars=auto']}) if !image_name.nil? %></span>
 
         <% end %>
 
@@ -249,6 +250,22 @@
           urchinTracker();
       </script>
   <%- end -%>
+  <script type="text/javascript">
+      $(".chat_available").click(function (event) {
+          event.preventDefault();
+          var w = window.open("<%= site_chat_index_path -%>", "popupWindow", "width=490, height=540, scrollbars=yes");
+          var $w = $(w.document.body);
+          $w.html($('#modalText').html());
+          $w.find(".addimage").click(function(e) {
+              e.preventDefault();
+              console.log(w.opener.document);
+              $("#imagelist", w.opener.document).append("<li></li>");
+          });
+          return false;
+              }
+          );
+  </script>
+
 </body>
 </html>
 

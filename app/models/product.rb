@@ -214,7 +214,7 @@ class Product < ActiveRecord::Base
 
   def is_wine?
     RAILS_DEFAULT_LOGGER.debug "----> #{root_category}"
-    root_category == "Wine"
+    root_category == "Wine" || root_category == "Other Drinks"
   end
 
   def is_food?
@@ -294,7 +294,7 @@ class Product < ActiveRecord::Base
   end
 
   def out_of_stock?
-    quantity = self.quantity.split(",").first.to_i
+    quantity = self.quantity.is_a?(String) ? self.quantity.split(",").first.to_i : self.quantity
     quantity == 0 or quantity < 0
   end
 

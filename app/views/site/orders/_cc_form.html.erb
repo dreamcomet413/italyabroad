@@ -49,11 +49,11 @@
     </td>
   </tr>
 </table>
-<%= observe_field :credit_card_type, :on => :change, :function => "extraFields(value)" %>
+<%#= observe_field :credit_card_type, :on => :change, :function => "extraFields(value)" %>
 
 
 <script type="text/javascript" charset="utf-8">
-	extraFields('<%= @credit_card.type %>')
+	extraFields('<%= @credit_card.try(:type) %>')
 	function extraFields(value){
 		if (value == "solo") {
 			$('issue_number_row').style.display = "";

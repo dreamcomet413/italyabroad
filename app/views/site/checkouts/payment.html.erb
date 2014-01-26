@@ -19,7 +19,7 @@
 total_points_used = current_user.orders.sum('points_used')
     %>
 
-<% form_tag orders_path, :id => "check_payment" do %>
+<% form_tag site_orders_path, :id => "check_payment" do %>
     <div style="padding:5px;text-align:right;font-size:15px;">
       Please tick here to confirm that you accept our
       <%= link_to "Terms and Conditions", {:controller => :base, :action => :terms_conditions}, :popup => ['wtc', 'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=Yes,resizable=No,copyhistory=no, width=450, height=520'] %>
@@ -27,7 +27,7 @@ total_points_used = current_user.orders.sum('points_used')
     </div>
 
 <% if total_points - total_points_used > 0 %>
-    <div  style="margin:10px;background-color:rgb(243, 248, 218);"><br />&nbsp;&nbsp;&nbsp;You have <span id="highlight"><%= (total_points - total_points_used).to_f.round %></span> points in your credit.  This is equivalent to <span id="highlight"><%= number_to_currency ((total_points - total_points_used)* Setting.find(:first).points_to_pound.to_f, :unit => "&pound;") %></span> <br /><br />&nbsp;&nbsp;&nbsp;Would you like to use these points for the purchase? <br /><br />&nbsp;&nbsp;&nbsp;Enter the required points here
+    <div  style="margin:10px;background-color:rgb(243, 248, 218);"><br />&nbsp;&nbsp;&nbsp;You have <span id="highlight"><%= (total_points - total_points_used).to_f.round %></span> points in your credit.  This is equivalent to <span id="highlight"><%= number_to_currency((total_points - total_points_used)* Setting.find(:first).points_to_pound.to_f, :unit => "&pound;") %></span> <br /><br />&nbsp;&nbsp;&nbsp;Would you like to use these points for the purchase? <br /><br />&nbsp;&nbsp;&nbsp;Enter the required points here
     &nbsp;&nbsp;&nbsp;<%= text_field_tag :points_to_be_used %>
     <%= hidden_field_tag :total_points, total_points - total_points_used %><br /><br />
     </div>

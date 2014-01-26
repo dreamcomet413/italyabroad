@@ -5,10 +5,10 @@
   <h2><%= @title %></h2>
   <br />
   <%= render :partial => 'product_links', :locals => {:active => 'images'} %>
-  <% form_for :product, :url => admin_product_path(@product), :html => {:multipart => true, :method => :put} do %>
-		<%= render :partial => "form_images" %>
-  	<p>
-  	 <%= submit_tag "Save" %> or <%= link_to "Cancel", admin_products_path %>
-  	</p>
+  <%= form_tag "/admin/products/#{@product.id}", :method => "put", :multipart => true do %>
+      <%= render :partial => "form_images" %>
+      <p>
+        <%= submit_tag "Save" %> or <%= link_to "Cancel", admin_products_path %>
+      </p>
   <% end %>
 </div>

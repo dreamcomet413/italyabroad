@@ -2,11 +2,6 @@ ItalyabroadNew::Application.routes.draw do
 
   namespace(:site){ resources :authentications }
 
-  resources :chat do
-    match :create_chat_user, :on => :collection
-    match :send_data, :on => :collection
-  end
-
   match "/auth/:provider/callback" => "site/authentications#create"
   #match "/signout" => "site/sessions#destroy", :as => :signout
 
@@ -143,6 +138,10 @@ ItalyabroadNew::Application.routes.draw do
     end
     resources :news_letters, :only => [:show]
     resources :ship_addresses
+    resources :chat do
+      match :create_chat_user, :on => :collection
+      match :send_data, :on => :collection
+    end
   end
 
 

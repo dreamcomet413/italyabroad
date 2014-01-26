@@ -175,8 +175,8 @@ class Admin::ProductsController < ApplicationController
 
   def update
     @product = Product.find(params[:id])
-    params[:product][:price] = params[:product][:price].join(", ")
-    params[:product][:quantity] = params[:product][:quantity].join(", ")
+    params[:product][:price] = params[:product][:price].join(", ") if params[:product].present? and params[:product][:price].present?
+    params[:product][:quantity] = params[:product][:quantity].join(", ") if params[:product].present? and params[:product][:quantity].present?
     params[:product] ||= {}
 
     params[:product][:category_ids] = params[:category_ids] if params[:category_ids]

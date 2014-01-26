@@ -29,54 +29,54 @@
               <td><%= order_item.quantity %></td>
               <td><%= number_to_currency order_item.product.price, :unit => "&pound;" %></td>
               <td align="right">
-                <%= link_to(image_tag("buttons/add_to_cart_button.png"), product_cart_index_path(order_item.product), :method => 'post') unless order_item.product.quantity.to_i == 0 %>
+                <%= link_to(image_tag("buttons/add_to_cart_button.png"), "/site/cart?product_id=#{order_item.product.id}", :method => 'post') unless order_item.product.quantity.to_i == 0 %>
               </td>
             </tr>
         <% end %>
-    <tr>
-      <td colspan="2" style="text-align:right;">Sub Total</td><td></td><td><%= @order.sub_total %></td>
-    </tr>
-
-    <tr>
-      <td colspan="2" style="text-align:right;"><%= @order.delivery_name %> </td><td></td><td><%= @order.delivery_price %></td>
-    </tr>
-
-    <%- if @order.points_used > 0 -%>
         <tr>
-          <td colspan="2" style="text-align:right;">Points Used (<%= @order.points_used %>)equivalent to </td><td></td><td><%= number_to_currency(@order.points_used * Setting.find(:first).points_to_pound, :unit => "&pound;" )%></td>
+          <td colspan="2" style="text-align:right;">Sub Total</td><td></td><td><%= @order.sub_total %></td>
         </tr>
-    <%- end -%>
-    <% if number_of_wines >= @setting.wine_discount_number.to_i %>
+
         <tr>
-          <td colspan="2" >
-            <span style="font-size:14px;"><strong>Your cart contains <%= number_of_wines %> wines so will get a discount of</td>
-          <td></td><td><%= @setting.wine_discount_amount %>%</td>
-          </strong> <%#= number_to_currency(@cart.total, :unit => "&pound;") %></span>
-          </td>
+          <td colspan="2" style="text-align:right;"><%= @order.delivery_name %> </td><td></td><td><%= @order.delivery_price %></td>
         </tr>
-    <% end %>
+
+        <%- if @order.points_used > 0 -%>
+            <tr>
+              <td colspan="2" style="text-align:right;">Points Used (<%= @order.points_used %>)equivalent to </td><td></td><td><%= number_to_currency(@order.points_used * Setting.find(:first).points_to_pound, :unit => "&pound;" )%></td>
+            </tr>
+        <%- end -%>
+        <% if number_of_wines >= @setting.wine_discount_number.to_i %>
+            <tr>
+              <td colspan="2" >
+                <span style="font-size:14px;"><strong>Your cart contains <%= number_of_wines %> wines so will get a discount of</td>
+              <td></td><td><%= @setting.wine_discount_amount %>%</td>
+              </strong></span>
+              </td>
+            </tr>
+        <% end %>
 
 
 
-    <tr>
-      <td colspan="2" style="text-align:right;font-weight:bold">Total</td><td></td><td style="text-align:left;font-weight:bold"><%= number_to_currency(@order.total - (@order.points_used * Setting.find(:first).points_to_pound), :unit => "&pound;") %></td>
-    </tr>
+        <tr>
+          <td colspan="2" style="text-align:right;font-weight:bold">Total</td><td></td><td style="text-align:left;font-weight:bold"><%= number_to_currency(@order.total - (@order.points_used * Setting.find(:first).points_to_pound), :unit => "&pound;") %></td>
+        </tr>
 
 
-  </table>
+        </table>
 
 
-  <p style="text-align:right;width:99%;">
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <%= if order_item.product.present? and order_item.product.quantity.to_i == 0
-            image_tag('out_of_stock.png')
-        else
-            link_to image_tag("buttons/download_invoice.png"), :action => 'download_pdf',:id => @order.id,:format => "pdf"
-        end
-    %>
+        <p style="text-align:right;width:99%;">
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <%= if order_item.product.present? and order_item.product.quantity.to_i == 0
+                image_tag('out_of_stock.png')
+              else
+                link_to image_tag("buttons/download_invoice.png"), :action => 'download_pdf',:id => @order.id,:format => "pdf"
+              end
+          %>
     <%- end -%>
-  </p>
-</div>
+    </p>
+    </div>
 
 <%- content_for :right do -%>
     <%= render :partial => '/site/shared/box_event' %>

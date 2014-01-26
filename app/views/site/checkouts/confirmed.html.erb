@@ -39,8 +39,8 @@ Order Reference : <%= @order.id %><br /><br />
 ( + Points: <%#= number_to_currency (@order.points_used * Setting.find(:first).points_to_pound, :unit => "&pound;") %>)
 <br /><br />
 You will shortly receive an order acknowledgement by email.-->
-Payment Method : <%= number_to_currency (@order.total - (@order.points_used * @setting.points_to_pound), :unit => "&pound;") %> Credit Card
- + Points equivalent to : <%= number_to_currency (@order.points_used * @setting.points_to_pound, :unit => "&pound;") %>
+Payment Method : <%= number_to_currency(@order.total - (@order.points_used * @setting.points_to_pound), :unit => "&pound;") %> Credit Card
+ + Points equivalent to : <%= number_to_currency(@order.points_used * @setting.points_to_pound, :unit => "&pound;") %>
 <br /><br />
 </p><br />
 <div style="margin: 10px 20px;">

@@ -12,7 +12,7 @@ class ShipAddress < ActiveRecord::Base
   
   
   def show_errors
-    return "- " + self.errors.full_messages.join("<br />- ")
+    return ("- " + self.errors.full_messages.join("<br />- ")).html_safe()
   end
 end
 

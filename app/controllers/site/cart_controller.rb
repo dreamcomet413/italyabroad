@@ -12,7 +12,7 @@ class Site::CartController < ApplicationController
   end
 
   def create
-    created = @cart.create(product,quantity, params[:discounted_price])
+    created = @cart.create(product, quantity, params[:discounted_price])
     if created
       session[:free_delivery] = false
       if @cart.sub_total > Setting.order_delivery_amount and session[:free_delivery] == false
@@ -23,12 +23,10 @@ class Site::CartController < ApplicationController
 
       if logged_in?
         IncompletePurchase.find_or_create_by_email(current_user.email)
-
       end
       @setting = Setting.find(:first)
       if (product.quantity.to_i - quantity.to_i) < @setting.reorder_quantity.to_i and product.active
         # Commented by Sujith since UserName and Password of SMTP is not correct now
-
         Notifier.deliver_reorder_quantity_notification(product,AppConfig.admin_email)
       end
 
@@ -40,7 +38,7 @@ class Site::CartController < ApplicationController
     respond_to do |format|
       format.html do
         flash[:notice] = status
-        redirect_back_or_default(cart_index_path)
+        redirect_back_or_default(site_cart_index_path)
       end
 
       format.js do
