@@ -116,30 +116,35 @@
 
       </div>
 
+
+
       <div style="clear: both;"></div>
       <div id="search_form">
         <%- form_tag search_index_path, :method => :get do -%>
             <table>
-              <tr>
+              <tbody>
                 <% if params[:text]
                      search_text = params["text"]
                    else
-                     search_text = 'Search ....'
+                     search_text = 'Search Italyabroad.com'
 
                    end %>
-                <td>Search: <%= text_field_tag :text, search_text,:onclick=>"
-                  if (document.getElementById('text').value == 'Search ....')
-                  {
-                  document.getElementById('text').value = '' ;
-
-                  }",:style=>"width:250px" %></td>
                 <td>
+                  <div id="textbox-wrapper">
+                  <%= text_field_tag :text, search_text,:onclick=>"
+                  if($('#text').val() == 'Search Italyabroad.com'){
+                  $('#text').val('');}", :style=>"" %>
+                </div>
+                </td>
+                <td>
+                  <div id="dropdown_wrapper">
                   <%= select_tag :id, options_for_select([['Wine', 'wine'], ['Food', 'food'], ['Recipe', 'recipe'],['Hampers','hampers'], ['People', 'people'],['Chef', 'chef'],['All Site','all']], (params[:id] || params[:category])) %>
+                </div>
                 </td>
                 <td>
-                  <%= image_submit_tag("searchButton.gif", :name => nil, :alt => "search") %>
+                  <%= image_submit_tag("searchButton.png", :name => nil, :alt => "search") %>
                 </td>
-              </tr>
+              </tbody>
             </table>
         <%- end -%>
       </div>

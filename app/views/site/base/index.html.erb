@@ -165,102 +165,79 @@
 
 <!--<div id="bottomTextBox">-->
 <div id="favWine">
-  <h3>Recommended Wines</h3>
-  <%= image_tag "featuredWineImg.jpg", :width => "215px", :height => "112px", :style => "padding-bottom: 20px;" %>
-  <%= image_tag "featuredWineImg.jpg", :width => "215px", :height => "112px", :style => "padding-bottom: 20px;" %>
-  <%= image_tag "featuredWineImg.jpg", :width => "215px", :height => "112px", :style => "padding-bottom: 20px;" %>
-  <% category_wine = Category.find(:first, :conditions => ["name like (?) AND parent_id is ?","%wine%", nil]) %>
-
-  <% wines = Product.find(:all, :limit => 5, :order => "RAND()", :conditions => "id IN (#{category_wine.all_products_ids.join(',')}) AND active = true AND featured = true") if !Product.all.blank? %>
-  <ul>
-    <% if !wines.nil? %>
-        <% for wine in wines %>
-            <li class="faveWineIcon">
-              <table width="100%" cellpadding="0" cellspacing="0" border="0">
-                <tr>
-                  <td><%= link_to wine.name, nested_products_uri(wine)  %></td>
-                  <td align="right"><span style="color:#9b0707;">
-                    <% if wine.discount > 0 %>
-
-                      <%= number_to_currency wine.price_discounted, :unit => "&pound;" %>
-                    <% else %>
-                      <%= number_to_currency wine.price, :unit => "&pound;" %></span>
-                  <% end %>
-                    </td>
-
-                </tr>
-                <tr><td colspan="2"><hr style="color: #c5d1c5;" /></td></tr>
-              </table>
-            </li>
-        <% end %>
-    <%end%>
-  </ul>
-</div>
-<div id="favFood">
-  <h3>Food Counter</h3>
-  <%= image_tag "featuredFoodImg.jpg", :width => "215px", :height => "112px", :style => "padding-bottom: 20px;" %>
-  <%= image_tag "featuredFoodImg.jpg", :width => "215px", :height => "112px", :style => "padding-bottom: 20px;" %>
-  <%= image_tag "featuredFoodImg.jpg", :width => "215px", :height => "112px", :style => "padding-bottom: 20px;" %>
-  <% category_food = Category.find(:first, :conditions => ["name like (?) AND parent_id is ?", "%food%", nil]) %>
-  <% foods = Product.find(:all, :limit => 5, :order => "RAND()", :conditions => "id IN (#{category_food.all_products_ids.join(',')}) AND active = true AND featured = true") if !Product.all.blank? %>
-  <ul>
-    <% if !foods.nil? %>
-        <% for food in foods %>
-            <li class="faveWineIcon">
-              <table width="100%" cellpadding="0" cellspacing="0" border="0">
-                <tr>
-                  <td><%= link_to food.name, nested_products_uri(food) %></td>
-                  <td align="right"><span style="color:#9b0707;">
-                    <% if food.discount > 0 %>
-                      <%= number_to_currency food.price_discounted, :unit => "&pound;" if food %>
-                    <% else %>
-                      <%= number_to_currency food.price, :unit => "&pound;" if food %>
-                    <% end %>
-
-                  </span></td>
-                  <!--<hr />-->
-                </tr>
-                <tr><td colspan="2"><hr style="color: #c5d1c5;" /></td></tr>
-              </table>
-            </li>
-        <% end %>
-    <%end%>
-  </ul>
-</div>
-<div id="bestSeller">
-  <h3>Best Sellers</h3>
-  <% if @best_sellers.present? -%>
-      <% @best_sellers.each do |best_seller| %>
-          <%= image_tag(site_image_url('product_thumb', best_seller.image_1, :jpg)) if best_seller && best_seller.image_1-%>
+  <table style="width:100%">
+    <tr>
+      <td colspan="4">
+        <h3 style="text-align: left">Recommended Wines</h3>
+      </td>
+    </tr>
+    <tr>
+      <% @recommended_wines.each do |wine| %>
+          <td>
+            <table>
+              <tr>
+                <td colspan="2">
+                  <%= link_to show_image_tag(:card, wine.image_1, :jpg, wine.name), site_image_url('product_display', wine.image_1, :jpg),{:rel => "lightbox", :title => wine.name} %>
+                </td>
+              </tr>
+              <tr><td colspan="2"><%= wine.name -%></td></tr>
+              <tr>
+                <td><%= number_to_currency wine.price, :unit => "&pound;" -%></td>
+                <td style="width: 101px;"><%= link_to(image_tag("buttons/add_to_cart_button.png"), "/site/cart?product_id=#{wine.id}", :remote => true, :method => :post) -%></td>
+              </tr>
+            </table>
+          </td>
       <% end %>
-  <% end %>
-  <% category_wine = Category.find(:first, :conditions => ["name like (?) AND parent_id is ?","%wine%", nil]) %>
-
-  <% wines = Product.find(:all, :limit => 5, :order => "RAND()", :conditions => "id IN (#{category_wine.all_products_ids.join(',')}) AND active = true AND featured = true") if !Product.all.blank? %>
-  <ul>
-    <% if !wines.nil? %>
-        <% for wine in wines %>
-            <li class="faveWineIcon">
-              <table width="100%" cellpadding="0" cellspacing="0" border="0">
+    </tr>
+    <tr>
+      <td colspan="4">
+        <h3 style="text-align: left">Food Counter</h3>
+      </td>
+    </tr>
+    <% @food_counter.each do |food| %>
+        <td>
+          <table>
+            <tr>
+              <td colspan="2">
+                <%= link_to show_image_tag(:card, food.image_1, :jpg, food.name), site_image_url('product_display', food.image_1, :jpg),{:rel => "lightbox", :title => food.name} %>
+              </td>
+            </tr>
+            <tr><td colspan="2"><%= food.name -%></td></tr>
+            <tr>
+              <td><%= number_to_currency food.price, :unit => "&pound;" -%></td>
+              <td style="width: 101px;"><%= link_to(image_tag("buttons/add_to_cart_button.png"), "/site/cart?product_id=#{food.id}", :remote => true, :method => :post) -%></td>
+            </tr>
+          </table>
+        </td>
+    <% end %>
+    </tr>
+    <tr>
+      <td colspan="4">
+        <h3 style="text-align: left">Best Seller</h3>
+      </td>
+    </tr>
+    <% if !@best_sellers.blank? %>
+        <% @best_sellers.each do |food| %>
+            <td>
+              <table>
                 <tr>
-                  <td><%= link_to wine.name, nested_products_uri(wine)  %></td>
-                  <td align="right"><span style="color:#9b0707;">
-                      <% if wine.discount > 0 %>
-
-                        <%= number_to_currency wine.price_discounted, :unit => "&pound;" %>
-                      <% else %>
-                        <%= number_to_currency wine.price, :unit => "&pound;" %></span>
-                    <% end %>
-                    </td>
-
+                  <td colspan="2">
+                    <%= link_to show_image_tag(:card, food.image_1, :jpg, food.name), site_image_url('product_display', food.image_1, :jpg),{:rel => "lightbox", :title => food.name} %>
+                  </td>
                 </tr>
-                <tr><td colspan="2"><hr style="color: #c5d1c5;" /></td></tr>
+                <tr><td colspan="2"><%= food.name -%></td></tr>
+                <tr>
+                  <td><%= number_to_currency food.price, :unit => "&pound;" -%></td>
+                  <td style="width: 101px;"><%= link_to(image_tag("buttons/add_to_cart_button.png"), "/site/cart?product_id=#{food.id}", :remote => true, :method => :post) -%></td>
+                </tr>
               </table>
-            </li>
+            </td>
         <% end %>
-    <%end%>
-  </ul>
+    <% end %>
+    </tr>
+  </table>
 </div>
+
 <!--</div>-->
 
 <% content_for :right do %>

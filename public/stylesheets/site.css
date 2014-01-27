@@ -520,7 +520,7 @@ a {
 
 #search_form {
     float:right;
-    margin-top:15px;
+    margin-top:-9px;
 }
 
 #search_form button {
@@ -3121,5 +3121,11 @@ b {
 #delete_shipping_address{
     /*color: #fff;*/
     background: none repeat scroll 0% 0% rgb(188, 209, 39); text-align: center;
+}
+
+#favWine table td {
+    /*border: solid 1px;*/
+    text-align: center;
+    vertical-align: middle;
 }
 
