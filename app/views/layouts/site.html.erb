@@ -65,7 +65,7 @@
     <div id="cartLogin">
 
       <div id="googleplus_lg">
-        <!-- Place this tag where you want the +1 button to render --><g:plusone></g:plusone>
+        <!--&lt;!&ndash; Place this tag where you want the +1 button to render &ndash;&gt;<g:plusone></g:plusone>-->
       </div>
       <div id="cart"><%= render :partial => "/site/shared/cart" %></div>
 
@@ -123,27 +123,27 @@
         <%- form_tag search_index_path, :method => :get do -%>
             <table>
               <tbody>
-                <% if params[:text]
-                     search_text = params["text"]
-                   else
-                     search_text = 'Search Italyabroad.com'
+              <% if params[:text]
+                   search_text = params["text"]
+                 else
+                   search_text = 'Search Italyabroad.com'
 
-                   end %>
-                <td>
-                  <div id="textbox-wrapper">
+                 end %>
+              <td>
+                <div id="textbox-wrapper">
                   <%= text_field_tag :text, search_text,:onclick=>"
                   if($('#text').val() == 'Search Italyabroad.com'){
                   $('#text').val('');}", :style=>"" %>
                 </div>
-                </td>
-                <td>
-                  <div id="dropdown_wrapper">
+              </td>
+              <td>
+                <div id="dropdown_wrapper">
                   <%= select_tag :id, options_for_select([['Wine', 'wine'], ['Food', 'food'], ['Recipe', 'recipe'],['Hampers','hampers'], ['People', 'people'],['Chef', 'chef'],['All Site','all']], (params[:id] || params[:category])) %>
                 </div>
-                </td>
-                <td>
-                  <%= image_submit_tag("searchButton.png", :name => nil, :alt => "search") %>
-                </td>
+              </td>
+              <td>
+                <%= image_submit_tag("searchButton.png", :name => nil, :alt => "search") %>
+              </td>
               </tbody>
             </table>
         <%- end -%>
@@ -206,7 +206,7 @@
   <div id="mainContent">
     <%# if flash[:error] or flash[:notice] %>
 
-    <!--   <div id="notice" style="font:bold italic large Palatino, serif;text-align:center;background:#F5F6CE" <% if flash[:error] %> color="red"<% else %> style="color:green;"<% end %>><%= flash[:error] || flash[:notice] %></div>
+    <!--   <div id="notice" style="font:bold italic large Palatino, serif;text-align:center;background:#F5F6CE" <%# if flash[:error] %> color="red"<%# else %> style="color:green;"<%# end %>><%#= flash[:error] || flash[:notice] %></div>
             <script type="text/javascript">
               setTimeout("new Effect.Fade('notice');", 12000)
             </script>
@@ -237,9 +237,13 @@
     </div>
 
   </div>
-
   <%= render :partial => 'site/shared/footer' %>
+
+
+
 </div>
+
+
 <div style="clear:both;"><div>
   <br /><br />
   <div style="font-size:10px;text-align:center;color:#000;">
@@ -257,20 +261,19 @@
   <%- end -%>
   <script type="text/javascript">
       $(".chat_available").click(function (event) {
-          event.preventDefault();
-          var w = window.open("<%= site_chat_index_path -%>", "popupWindow", "width=490, height=540, scrollbars=yes");
-          var $w = $(w.document.body);
-          $w.html($('#modalText').html());
-          $w.find(".addimage").click(function(e) {
-              e.preventDefault();
-              console.log(w.opener.document);
-              $("#imagelist", w.opener.document).append("<li></li>");
-          });
-          return false;
+                  event.preventDefault();
+                  var w = window.open("<%= site_chat_index_path -%>", "popupWindow", "width=490, height=540, scrollbars=yes");
+                  var $w = $(w.document.body);
+                  $w.html($('#modalText').html());
+                  $w.find(".addimage").click(function(e) {
+                      e.preventDefault();
+                      console.log(w.opener.document);
+                      $("#imagelist", w.opener.document).append("<li></li>");
+                  });
+                  return false;
               }
-          );
+      );
   </script>
-
 </body>
 </html>
 

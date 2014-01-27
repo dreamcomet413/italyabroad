@@ -6,7 +6,9 @@
 <%#= params[:category] %>
 <% products = Product.find_by_sql("select * from products where name like '%#{@product.name.gsub(/\(([^)]*)\)/, "").strip}%'") %>
 <% if products.size > 1 %>
-    <div id="header"><%= select_tag :products, options_from_collection_for_select(products, "id", "name", :selected => @product.id), :nested_url => nested_products_uri(@product) %></div>
+    <div id="header">
+      <%= select_tag :products, options_from_collection_for_select(products, "id", "name", :selected => @product.id), :nested_url => nested_products_uri(@product) %>
+    </div>
 <% else %>
     <div id="header"><%= @product.name %> <%= "(" + @product.size + ")" unless @product.size.blank? %></div>
 <% end %>
@@ -296,13 +298,19 @@
 <div id="wineReview">
   <br />
   <h3 id="hide_this">Reviews <%= link_to("(Add Review)", login_path, :style => "font-size:12px;") unless logged_in?  %>
-    <%- if logged_in? -%><%= link_to 'Add Review',"#", :style => "font-size:12px;",:onclick=>"document.getElementById('add_review').style.display='block';document.getElementById('hide_this').style.display='none';document.getElementById('no_review').style.display='none';return false;" %></h3>
-        <div id="add_review" style="display:none;"><h3><%=  'Leave your review' %>
+    <%- if logged_in? -%>
+        <%= link_to 'Add Review',"#", :style => "font-size:12px;",:onclick=>"document.getElementById('add_review').style.display='block';document.getElementById('hide_this').style.display='none';document.getElementById('no_review').style.display='none';return false;" %></h3>
+        <div id="add_review" style="display:none;">
+          <h3>
+            <%=  'Leave your review' %>
         </h3>
 
           <%= render(:partial => 'site/reviews/new', :locals => {:create_url => product_reviews_path(@product, :return_to => nested_products_uri(@product))}) %>
 
-    <%- end -%></div></h3>
+    </div>
+    <%- end -%>
+    </h3>
+
 
 
 
@@ -310,7 +318,8 @@
     <%= render :partial => 'site/shared/review_view_short', :locals => {:reviewer => @product} %>
     <div style="clear:both;"></div>
 
-    <br /></div>
+    <br />
+    </div>
 <% if @product.categories.root.name.downcase == "wine" and !@product.sub_categories.include?('Mixed case') %>
 <%# if @product.categories.root.name.downcase == "wine" %>
     <% @includes = @product.product_includeds.all(:limit => 5) %>
