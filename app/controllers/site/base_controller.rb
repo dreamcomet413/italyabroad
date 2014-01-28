@@ -10,6 +10,8 @@ class Site::BaseController < ApplicationController
     food_categories = Category.find_by_sql("select * from categories where parent_id is null and name='Food'")
     @food_counter = Product.where("categories.id = ? AND products.raccomanded = ?", food_categories.first.id, true).includes([:categories]).order("created_at ASC").limit(4)
     @best_sellers = Product.where("products.is_best_seller = ?", true).order("created_at ASC").limit(4) if Product.attribute_method?("is_best_seller")
+
+    @reviews = Review.where("").order("created_at DESC").limit(4)
   end
 
   def google_sitemap

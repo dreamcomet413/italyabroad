@@ -1,69 +1,26 @@
-<% products = Product.find(:all, :limit => 3) %>
-<%- products.each do |product| -%>
-    <div class="wineList">
-      <br />
-      <table width="100%">
-        <tr>
-          <td style="padding:0;width:100px;height:100px;text-align:center;">
-            <%#= product.layout_image %>
-            <%= link_to show_image_tag(product.layout_image, product.image_1, :jpg,product.name), nested_products_uri(product)  %>
-          </td> <!--nested_products_path(product.root_category_id, product.sub_category_id, product) -->
-          <td valign="top" style="padding:0;width:630px;">
-            <!-- <table>
-               <tr>
-                 <td> -->
-            <%= link_to truncate(product.name, :length => 60), nested_products_uri(product) %><br />
-            <%= show_ratings(product).html_safe() %>
-            <!-- </td>
-            </tr>
-          </table>  <br />-->
-
-            <br />
-            <%= product.description_short[0..240].html_safe() %>
-            <br />
-            <br />
-            Quantity : <%= product.quantity %>
-          </td>
-          <td valign="top" style="padding:10px 0;width:100px;">
-            <div style="font-size:18px;color:#9b0707;text-align:right;">
-              <div style="margin-bottom:15px;">
-                <%= number_to_currency product.price, :unit => "&pound;" %>
-              </div>
-              <%- if product.out_of_stock? -%>
-                  <%= image_tag('out_of_stock.png') %>
-              <%- else -%>
-                  <%#= link_to_remote image_tag("buttons/add_to_cart_button.png"), product_cart_index_path(product), :method => 'post' %>
-                  <%= link_to(image_tag("buttons/add_to_cart_button.png"), "/site/cart?product_id=#{product.id}", :remote => true, :method => :post) %>
-              <%- end -%>
-            </div>
-          </td>
-        </tr>
-      </table>
-    </div>
-    <br />
-<%- end -%>
 
 
-<div class="block" id="topTextBox" style= "display:none;">
+
+<div class="block" id="topTextBox" style= "display:block;">
   <div id="reviews">
     <h3>Our customers say</h3>
     <table>
-      <% Testimonial.find(:all,:limit=>4,:order=>'created_at DESC',:conditions=>['UPPER(page_to_display)=?','HOME']).each do |testimonial| %>
+      <% @reviews.each do |review| %>
           <tr>
             <td>
               <%#= image_tag "default.jpg" %>
               <%# user = User.find_by_id(testimonial.user_id) %>
-              <% if testimonial.user_id %>
-                  <%= link_to avatar_for_user(testimonial.user, 'small'), customer_path(testimonial.user_id), :title => testimonial.user.name  %>
+              <% if review.user_id.present? %>
+                  <%= link_to avatar_for_user(review.user, 'small'), site_customer_path(review.user_id), :title => review.user.name  %>
               <% else %>
                   <%= image_tag "default.jpg" %>
               <% end %>
-              "<%= testimonial.description[0..80].html_safe() %>..."
+              "<%= review.description[0..80].html_safe() %>..."
           </tr>
       <% end %>
       <tr>
         <td style="text-align:right;">
-          <%= link_to "more", "/testimonial",:style=>'color:#9b0707' %>&nbsp;&nbsp;&nbsp;&nbsp;
+          <%= link_to "more", site_reviews_path,:style=>'color:#9b0707' %>&nbsp;&nbsp;&nbsp;&nbsp;
         </td>
       </tr>
     </table>
