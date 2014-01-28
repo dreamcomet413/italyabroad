@@ -9,6 +9,7 @@ class Site::ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id]) || Product.find_by_id(params[:id])
+    @limited_stock =  @product.quantity.to_i < 12 ? "<p>There are only #{@product.quantity} left in stock.</p>".html_safe() : ""
     unless @product.nil?
       if !@product.active
         flash[:alert]  = 'The Product is not available now'

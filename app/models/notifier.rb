@@ -237,6 +237,16 @@ class Notifier < ActionMailer::Base
     content_type "text/html"
   end
 
+  def review_invitation(reviews, recipient)
+    recipients "neeraj.kumar@gmail.com"
+    from AppConfig.admin_email
+    cc       ["info@italyabroad.com"]
+    subject  "Italyabroad Product(s) #{reviews.collect{|x| Product.find(x.reviewer_id).name if x.reviewer_id.present?}.join(",")} - Review Request"
+    body      :products  => reviews.collect{|x| Product.find(x.reviewer_id)},
+              :user => recipient
+    content_type "text/html"
+  end
+
   def new_message_received(message,user,sender)
     recipients "#{user.email}"
     from "info@italyabroad.com"

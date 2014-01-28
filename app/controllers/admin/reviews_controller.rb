@@ -30,6 +30,25 @@ class Admin::ReviewsController < ApplicationController
     end
   end
 
+  def send_mails
+    reviews = []
+    params[:ids].split(",").collect{|x| reviews << Review.find(x)}
+    recipients = reviews.collect{|u| u.user_id}.uniq!
+    #if recipients.size > 1
+      recipients.each do |recipient|
+        #reviews = reviews.find(:user_id => recipient)
+        reviews = reviews.collect{|r| r if r.user_id == recipient}.compact
+        Notifier.deliver_review_invitation(reviews, User.find(recipient))
+      end
+    #end
+    respond_to do |format|
+      format.html do
+        flash[:notice] = "Review Request Invitation successfully sent"
+        redirect_to admin_reviews_path
+      end
+    end
+  end
+
   def new
     @review = Review.new
 

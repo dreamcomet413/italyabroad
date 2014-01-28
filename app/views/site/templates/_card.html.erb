@@ -219,7 +219,7 @@
 <div id="wineDesc">
   <br />
   <h3>Description</h3>
-  <%= @product.description.html_safe().gsub("\n","<br />") rescue "Product has no description" %>
+  <%= (@product.description.html_safe().gsub("\n","<br />") + @limited_stock) rescue "Product has no description" %>
 </div>
 
 <!--<div style="float: left;" id ="other-image"></div>
@@ -310,11 +310,6 @@
     </div>
     <%- end -%>
     </h3>
-
-
-
-
-
     <%= render :partial => 'site/shared/review_view_short', :locals => {:reviewer => @product} %>
     <div style="clear:both;"></div>
 

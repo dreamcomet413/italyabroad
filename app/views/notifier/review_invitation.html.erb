@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+</head>
+<body>
+Dear <%= @user.name -%>
+<p>Thank you for your recent purchase from Italyabroad.</p>
+<p>We are really interested to hear why you take the supplements you’ve ordered from us, and any benefits you’ve felt from taking them and so we have recently launched a product review system to help us learn more. We are aware you probably haven’t received your parcel but it should be with you shortly. (By the way - When leaving a review you can remain entirely anonymous if you wish!)
+  If you have previously taken some of these supplements we’d really like you to leave us a review and to save you time, the product(s) you’ve recently purchased are listed below, with direct links to the product review page.
+  However, if you’re new to Italyabroad, or new to taking supplements, perhaps you’d like to come back to us when you are ready.</p>
+<p>Please remember if you would like to contact us with a nutrition query don’t forget our friendly experts are just an email away on <a href="mail-to:info@italyabroad.com">info@italyabroad.com</a> for any other query you can reach us on info@italyabroad.com.
+  Many thanks for taking the time to read this email and we look forward to hearing from you soon.</p>
+<p>Best wishes from all of us at Italyabroad.com.</p>
+
+<table>
+  <thead>
+  <td>Item</td>
+  <td>Code</td>
+  <td>Description</td>
+  <td>Click to Review</td>
+  </thead>
+  <% @products.each do |product| %>
+      <tr>
+        <td><%= image_tag("/resources/images/#{product.image_1.id}.jpg", :height => "50px", :width => "50px", :alt => product.name) -%></td>
+        <td><%= product.code -%></td>
+        <td><%= product.description.html_safe() -%></td>
+        <td><%= link_to "Add Your Review", new_site_review_path -%></td>
+      </tr>
+  <% end %>
+</table>
+
+Thanks and regards,
+
+Italyabroad.com
+</body>
+</html>
+

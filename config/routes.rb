@@ -191,7 +191,9 @@ ItalyabroadNew::Application.routes.draw do
     resources :forums
     resources :posts
     resources :comments
-    resources :reviews
+    resources :reviews do
+      match :send_mails, :on => :collection
+    end
     resources :orders, :only => [:index, :show, :destroy] do
       member do
         get :print_tasting

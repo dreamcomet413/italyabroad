@@ -12,62 +12,82 @@
   </table>
   <table id="reviews-list" class="list sortable">
     <thead>
-      <tr>
-        <th>User</th>
-        <th>Review</th>
-        <th>Product</th>
-        <th>Publish</th>
-        <th></th>
-      </tr>
+    <tr>
+      <th>User</th>
+      <th>Review</th>
+      <th>Product</th>
+      <th>Publish</th>
+      <th></th>
+    </tr>
     </thead>
     <tfoot>
-      <tr>
-        <td><%= will_paginate(@reviews) %></td>
-        <td align="right"><%= page_entries_info_ @reviews %></td>
-      </tr>
+    <tr>
+      <td><%= will_paginate(@reviews) %></td>
+      <td align="right"><%= page_entries_info_ @reviews %></td>
+    </tr>
     </tfoot>
     <tbody>
     <% form_tag admin_reviews_path, :method=>:get do  %>
-      <%- for review in @reviews -%>
-      <tr>
-            <% if !Product.find_by_id(review.reviewer_id).nil? and review.reviewer_type.upcase == 'PRODUCT'-%>
+        <%- for review in @reviews -%>
+            <tr>
+              <% if !Product.find_by_id(review.reviewer_id).nil? and review.reviewer_type.upcase == 'PRODUCT'-%>
 
 
-              <td><%= review.user.name rescue "Anonymous" %></td>
-              <td><%= review.name %></td>
-              <td><%= link_to Product.find_by_id(review.reviewer_id).name, edit_admin_review_path(review.id) %>&nbsp;[<%= review.reviewer_type %>]</td>
-              <td><%= check_box_tag 'publish[]',review.id,review.publish %></td>
+                  <td><%= review.user.name rescue "Anonymous" %></td>
+                  <td><%= review.name %></td>
+                  <td><%= link_to Product.find_by_id(review.reviewer_id).name, edit_admin_review_path(review.id) %>&nbsp;[<%= review.reviewer_type %>]</td>
+                  <td><%= check_box_tag 'publish[]',review.id,review.publish %></td>
 
-              <!-- td>
+                  <!-- td>
               <%# = review.user.name rescue "Anonymous" %></td>
               <td><%# = review.reviewer_type %></td>
               <td><%# = check_box_tag 'publish[]',review.id,review.publish %></td -->
 
-       
-             <% end -%>
 
-               <% if !Recipe.find_by_id(review.reviewer_id).nil? and review.reviewer_type.upcase == 'RECIPE' -%>
+              <% end -%>
 
-
-              <td><%= review.user.name rescue "Anonymous" %></td>
-              <td><%= review.name %></td>
-              <td><%= link_to Recipe.find_by_id(review.reviewer_id).name, edit_admin_review_path(review.id) %>&nbsp;[<%= review.reviewer_type %>]</td>
-              <td><%= check_box_tag 'publish[]',review.id,review.publish %></td>
+              <% if !Recipe.find_by_id(review.reviewer_id).nil? and review.reviewer_type.upcase == 'RECIPE' -%>
 
 
+                  <td><%= review.user.name rescue "Anonymous" %></td>
+                  <td><%= review.name %></td>
+                  <td><%= link_to Recipe.find_by_id(review.reviewer_id).name, edit_admin_review_path(review.id) %>&nbsp;[<%= review.reviewer_type %>]</td>
+                  <td><%= check_box_tag 'publish[]',review.id,review.publish %></td>
 
 
 
-        <% end -%>
-      <td> <%= link_to "Delete", admin_review_path(review), :method => :delete, :confirm => "Are you sure want to delete this review?" %></td>
-       </tr>
-      <%- end -%>
 
-      <%= submit_tag 'Approve',:name=>'approve' %>
-      <% end %>
+
+              <% end -%>
+              <td> <%= link_to "Delete", admin_review_path(review), :method => :delete, :confirm => "Are you sure want to delete this review?" %></td>
+            </tr>
+        <%- end -%>
+
+        <%= submit_tag 'Approve',:name=>'approve' %>
+        &nbsp;
+        <%= link_to "Send Review Email", "#", :class => "send_email" -%>
+    <% end %>
 
     </tbody>
 
   </table>
 </div>
+<script type="text/javascript">
+    $(".send_email").click(function(){
+        var checked_checkboxes = $("#reviews-list input[type=checkbox]:checked")
+        if (checked_checkboxes.size() == 0) {
+            alert("No Review is selected. Please select the checkboxes.")
+            return false;
+        }
+        else {
+            var arr = new Array();
+            checked_checkboxes.each(function(){
+                arr.push($(this).val())
+            })
+            window.location.href = "<%= send_mails_admin_reviews_path -%>" + "?ids=" + arr.join(",")
+            return false;
+        }
+
+    })
+</script>
 
