@@ -56,27 +56,12 @@
     </ul> -->
   </div>
   <div id="about">
-    <h3>About Italyabroad.com</h3>
-    <table>
-      <% @reviews.each do |review| %>
-          <tr>
-            <td>
-              <%#= image_tag "default.jpg" %>
-              <%# user = User.find_by_id(testimonial.user_id) %>
-              <% if review.user_id.present? %>
-                  <%= link_to avatar_for_user(review.user, 'small'), site_customer_path(review.user_id), :title => review.user.name  %>
-              <% else %>
-                  <%= image_tag "default.jpg" %>
-              <% end %>
-              "<%= review.description[0..80].html_safe() %>..."
-          </tr>
-      <% end %>
-      <tr>
-        <td style="text-align:right;">
-          <%= link_to "more", site_reviews_path,:style=>'color:#9b0707' %>&nbsp;&nbsp;&nbsp;&nbsp;
-        </td>
-      </tr>
-    </table>
+    <h3>About italyabroad.com</h3>
+    <%= image_tag "about.png", :style => "float:left" %>
+    <% @about = AboutU.find(:first, :conditions => {:link_type => "who we are"} ) %>
+    <%= (@about.description[0..404] + "...").html_safe() rescue "Italyabroad.com is the place for Italian wine and food made by small and passionate producers. We are a growing group of passionate people who love what we do; everything started more than 30 years ago when I had my first sip of wine sitting on my granddad knees, he was so proud of his wine that gave a 2 year old nephew a taste. We believe that some of the best Italian wines and food are made by small, passionate producers who respect the environment because they know that, without it, they will be unemployed. They are family run, the whole family works in the vineyards or fields, pasticceria (bakery) or pastificio (where the pasta is made); they are following the family tradition, they are at the 3rd, 4th or even more, generation, and they know everything there is to know; they are so proud of their wines and food that name them after their son or daughter, granddad or father. These are the people behind our products..."%>
+    <!--Italyabroad.com is the place for Italian wine and food made by small and passionate producers. We are a growing group of passionate people who love what we do; everything started more than 30 years ago when I had my first sip of wine sitting on my granddad knees, he was so proud of his wine that gave a 2 year old nephew a taste. We believe that some of the best Italian wines and food are made by small, passionate producers who respect the environment because they know that, without it, they will be unemployed. They are family run, the whole family works in the vineyards or fields, pasticceria (bakery) or pastificio (where the pasta is made); they are following the family tradition, they are at the 3rd, 4th or even more, generation, and they know everything there is to know; they are so proud of their wines and food that name them after their son or daughter, granddad or father. These are the people behind our products... -->
+    <div align="right"><%= link_to "Read more", about_us_url %></div>
   </div>
 </div>
 

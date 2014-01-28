@@ -11,7 +11,7 @@ class Site::BaseController < ApplicationController
     @food_counter = Product.where("categories.id = ? AND products.raccomanded = ?", food_categories.first.id, true).includes([:categories]).order("created_at ASC").limit(4)
     @best_sellers = Product.where("products.is_best_seller = ?", true).order("created_at ASC").limit(4) if Product.attribute_method?("is_best_seller")
 
-    @reviews = Review.where("").order("created_at DESC").limit(4)
+    @reviews = Review.where("").order("created_at DESC").limit(2)
   end
 
   def google_sitemap
