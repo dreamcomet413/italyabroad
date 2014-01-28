@@ -176,11 +176,11 @@
           <td>
             <table>
               <tr>
-                <td colspan="2">
+                <td colspan="2" class="recWine">
                   <%= link_to show_image_tag(:card, wine.image_1, :jpg, wine.name), site_image_url('product_display', wine.image_1, :jpg),{:rel => "lightbox", :title => wine.name} %>
                 </td>
               </tr>
-              <tr><td colspan="2"><%= wine.name -%></td></tr>
+              <tr><td colspan="2" class="recWineName"><%= wine.name -%></td></tr>
               <tr>
                 <td><%= number_to_currency wine.price, :unit => "&pound;" -%></td>
                 <td style="width: 101px;"><%= link_to(image_tag("buttons/add_to_cart_button.png"), "/site/cart?product_id=#{wine.id}", :remote => true, :method => :post) -%></td>
@@ -198,11 +198,11 @@
         <td>
           <table>
             <tr>
-              <td colspan="2">
+              <td colspan="2" class="recWine">
                 <%= link_to show_image_tag(:card, food.image_1, :jpg, food.name), site_image_url('product_display', food.image_1, :jpg),{:rel => "lightbox", :title => food.name} %>
               </td>
             </tr>
-            <tr><td colspan="2"><%= food.name -%></td></tr>
+            <tr><td colspan="2" class="recWineName"><%= food.name -%></td></tr>
             <tr>
               <td><%= number_to_currency food.price, :unit => "&pound;" -%></td>
               <td style="width: 101px;"><%= link_to(image_tag("buttons/add_to_cart_button.png"), "/site/cart?product_id=#{food.id}", :remote => true, :method => :post) -%></td>
@@ -221,11 +221,11 @@
             <td>
               <table>
                 <tr>
-                  <td colspan="2">
+                  <td colspan="2" class="recWine">
                     <%= link_to show_image_tag(:card, food.image_1, :jpg, food.name), site_image_url('product_display', food.image_1, :jpg),{:rel => "lightbox", :title => food.name} %>
                   </td>
                 </tr>
-                <tr><td colspan="2"><%= food.name -%></td></tr>
+                <tr><td colspan="2" class="recWineName"><%= food.name -%></td></tr>
                 <tr>
                   <td><%= number_to_currency food.price, :unit => "&pound;" -%></td>
                   <td style="width: 101px;"><%= link_to(image_tag("buttons/add_to_cart_button.png"), "/site/cart?product_id=#{food.id}", :remote => true, :method => :post) -%></td>

@@ -3129,3 +3129,10 @@ b {
     vertical-align: middle;
 }
 
+.recWine {
+    height: 120px;
+}
+.recWineName {
+    height: 32px;
+}
+
