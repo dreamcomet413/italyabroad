@@ -200,7 +200,10 @@
       </div>
       <%#= content_tag(:div, @setting.promotion, :id => "promotion") %>
       <div id="promotion"><%= render :partial => "/site/shared/promotion" %></div>
-    </div>
+      <table class="fRight followUs"><tr><td>Follow Us</td><td><%= link_to image_tag("/images/twitter.png", :height => "23px", :width => "23px"), "https://twitter.com/Italyabroad", :id => "b", :class => "btn" -%></td>
+        <td><%= link_to image_tag("/images/facebook.gif"), "https://www.facebook.com/pages/Italyabroadcom/144011672282174" -%></td>
+      </tr>
+    </table>
   </div>
   <div style="clear:both;"></div>
   <div id="mainContent">
