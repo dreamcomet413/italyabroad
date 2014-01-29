@@ -6,3 +6,5 @@ tmp/
 .idea/*
 .idea/*.xml
 db/schema.rb
+node_modules
+node_modules/*
