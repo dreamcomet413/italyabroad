@@ -118,7 +118,7 @@
                     <% if @product.product_sizes && @product.product_sizes.size > 0 %>
                         <% @product.product_sizes.each do |p|  %>
                             <tr>
-                              <td valign="top">Quantity:</td>
+                              <td valign="top">Size:</td>
                               <td class="data">
                                 <%= p.size   %>
                               </td>
@@ -131,11 +131,19 @@
                     <% end %>
                 <% else %>
                     <tr>
-                      <td valign="top">Quantity:</td>
+                      <td valign="top">Size:</td>
                       <td class="data">
                         <%=  @product.size   %>
                       </td>
                     </tr>
+                    <% if @product.quantity.to_i < 12 %>
+                    <tr>
+                      <td valign="top" style="color: red"><b>Quantity:</b></td>
+                      <td class="data" style="color: red">
+                        <b><%=  @limited_stock %></b>
+                      </td>
+                    </tr>
+                        <% end %>
                 <% end %>
             <% end %>
           </table>
@@ -219,7 +227,7 @@
 <div id="wineDesc">
   <br />
   <h3>Description</h3>
-  <%= (@product.description.html_safe().gsub("\n","<br />") + @limited_stock) rescue "Product has no description" %>
+  <%= (@product.description.html_safe().gsub("\n","<br />")) rescue "Product has no description" %>
 </div>
 
 <!--<div style="float: left;" id ="other-image"></div>

@@ -3123,6 +3123,10 @@ b {
     background: none repeat scroll 0% 0% rgb(188, 209, 39); text-align: center;
 }
 
+#favWine table {
+    width: 100%;
+}
+
 #favWine table td {
     /*border: solid 1px;*/
     text-align: center;
@@ -3134,5 +3138,12 @@ b {
 }
 .recWineName {
     height: 32px;
+}
+
+.recWineName p {
+    color: #ff0000;
+    font-weight: bold;
+    font-size: 13px;
+    margin-top: 7px;
 }
 
