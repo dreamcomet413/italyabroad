@@ -67,7 +67,14 @@
       <div id="googleplus_lg">
         <!--&lt;!&ndash; Place this tag where you want the +1 button to render &ndash;&gt;<g:plusone></g:plusone>-->
       </div>
-      <div id="cart"><%= render :partial => "/site/shared/cart" %></div>
+      <div id="cart">
+        <%= render :partial => "/site/shared/cart" %>
+        <table class="fRight followUs"><tr><td><%= link_to image_tag("/images/twitter.png", :height => "23px", :width => "23px"), "https://twitter.com/Italyabroad", :id => "b", :class => "btn" -%></td>
+          <td><%= link_to image_tag("/images/facebook.gif", :height => "23px", :width => "23px"), "https://www.facebook.com/pages/Italyabroadcom/144011672282174" -%></td>
+          <td><%= link_to image_tag("/images/googleplus.ico", :height => "23px", :width => "23px"), "https://plus.google.com/105030552023597415239/posts" -%></td>
+        </tr>
+        </table>
+      </div>
 
       <div id="logIn">
         <!-- Remove this line and uncomment the other lines when u go live -->
@@ -200,11 +207,6 @@
       </div>
       <%#= content_tag(:div, @setting.promotion, :id => "promotion") %>
       <div id="promotion"><%= render :partial => "/site/shared/promotion" %></div>
-      <table class="fRight followUs"><tr><td>Follow Us</td><td><%= link_to image_tag("/images/twitter.png", :height => "23px", :width => "23px"), "https://twitter.com/Italyabroad", :id => "b", :class => "btn" -%></td>
-        <td><%= link_to image_tag("/images/facebook.gif", :height => "23px", :width => "23px"), "https://www.facebook.com/pages/Italyabroadcom/144011672282174" -%></td>
-        <td><%= link_to image_tag("/images/googleplus.ico", :height => "23px", :width => "23px"), "https://plus.google.com/105030552023597415239/posts" -%></td>
-      </tr>
-    </table>
   </div>
   <div style="clear:both;"></div>
   <div id="mainContent">
