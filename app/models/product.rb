@@ -48,7 +48,7 @@ class Product < ActiveRecord::Base
 
   has_many :reviews, :as => :reviewer, :dependent => :destroy
 
-  # friendly_identifier :name
+  friendly_identifier :name
 
   scope :featured, :conditions => {:featured => true}, :limit => 5
   scope :on_offer, :conditions => ["active = ? AND discount > ?", true, 0], :limit => 5, :order => "RAND()"
