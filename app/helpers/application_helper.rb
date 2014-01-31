@@ -169,7 +169,7 @@ module ApplicationHelper
       when :product_display
         {:height => '600', :width => '800'}
       when :card
-        {:height => '160'}
+        {:height => '254'}
       when :product_hamper_big
         {:height => '120', :width => '120'}
       when :product_food
