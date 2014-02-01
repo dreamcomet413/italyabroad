@@ -1,3 +1,5 @@
+require "juggernaut"
+
 class Site::ChatController < ApplicationController
   protect_from_forgery :only => [:index]
   layout  false
@@ -6,10 +8,21 @@ class Site::ChatController < ApplicationController
     session[:juggernaut_channels] = ["chat_channel"]
     @support_user = Setting.find(:first).support
 
-    @support_status = Juggernaut.show_client(@support_user) ? true : false
+    #@support_status = Juggernaut.show_client(@support_user) ? true : false
+    @support_status = true
 
     if current_user != :false
       session[:chat_user_name] = current_user.login
+    end
+  end
+
+  def send_message
+    @messg = params[:msg_body]
+    @sender = params[:sender]
+    @time = "<span class='time'>[#{(Time.now).strftime '%d%b-%T'}]</span>".html_safe()
+    Juggernaut.publish(select_channel("/channel1_channel2"), parse_chat_message(params[:msg_body], params[:sender]))
+    respond_to do |format|
+      format.js
     end
   end
 
@@ -75,8 +88,20 @@ class Site::ChatController < ApplicationController
       session[:chat_user_name] = params[:chat_user]
     end
 
-    redirect_to chat_index_path
+    redirect_to site_chat_index_path
   end
+
+  private
+
+  def parse_chat_message(msg, user)
+    return "#{user}: #{msg}"
+  end
+
+  def select_channel(receiver)
+    puts "#{receiver}"
+    return "/site/chat#{receiver}"
+  end
+
 
 
 end

@@ -2,10 +2,11 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <%= javascript_include_tag "prototype", :juggernaut %>
+  <%= javascript_include_tag 'jquery', 'application'%>
+  <%#= javascript_include_tag "prototype", :juggernaut %>
   <%= stylesheet_link_tag "chat", :cache => false %>
   <% unless session[:chat_user_name].blank? %>
-      <%= juggernaut(:channels => session[:juggernaut_channels], :client_id => session[:chat_user_name], :debug => false) %>
+      <%#= juggernaut(:channels => session[:juggernaut_channels], :client_id => session[:chat_user_name], :debug => false) %>
   <% end -%>
   <script type="text/javascript" >
       hasFocus = true;
@@ -31,9 +32,18 @@
       <% end %>
 
   </script>
+  <!--<script type="text/javascript" charset="utf-8">-->
+  <!--//    var jug = new Juggernaut;-->
+  <!--//    jug.subscribe("channel1", function(data){-->
+  <!--//      console.log("Got data: " + data);-->
+  <!--//    });-->
+  <!--</script>-->
 </head>
 <body>
 <div>
+  <script src="http://localhost:8080/application.js" type="text/javascript" charset="utf-8"></script>
+  <!--<div id="mesg"></div>-->
+
 
   <% if @support_status == true %>
       <h3>Welcome to the Italyabroad.com live chat</h3>
@@ -51,20 +61,25 @@
   <% if !session[:chat_user_name].blank? %>
       <% if @support_status == true || session[:chat_user_name] == @support_user %>
           <div id="chat_data"></div>
+          <script type="text/javascript" charset="utf-8">
+              var jug = new Juggernaut();
+              jug.subscribe("/site/chat/channel1_channel2", function(data){
+                  var li = $("<li/>");
+                  var html = "<li><%= Time.now().to_s -%> <span class='support_name'>" + data.split(": ")[0] + ": </span><span class='support_chat_data'>" + data.split(": ")[1] + "</span></li>"
+                  $("#chat_data").append(html);
+              });
+          </script>
           <p>
           </p>
-          <%= form_tag(
-                      :url => send_data_site_chat_index_path,
-                      :complete => "$('chat_input').value = ''", :remote => true ) %>
-
-          <% if session[:chat_user_name] == @support_user = Setting.find(:first).support %>
-              <%= hidden_field_tag "reply_to" ,"", {:id => 'reply_to'} %>
-              <%= label_tag "","Click on \"Reply\" to select a Chat User", {:id => 'label_reply'} %>
+          <%= form_tag('/site/chat/send_message', :method => :post, :id => 'chat_window', :remote => true) do %>
+              <%# if session[:chat_user_name] == @support_user = Setting.find(:first).support %>
+                  <%= hidden_field_tag 'sender', session[:chat_user_name] || params[:chat_user], {:id => 'reply_to'}%>
+                  <%= label_tag "","Click on \"Reply\" to select a Chat User", {:id => 'label_reply'} %>
+              <%# end %>
+              <%= text_field_tag( 'msg_body', '', { :size => 48 , :id => 'chat_input'} ) %>
+              <%= hidden_field_tag 'format', 'js'%>
+              <%= submit_tag 'Send Message' %>
           <% end %>
-
-          <%= text_field_tag( 'chat_input', '', { :size => 48 , :id => 'chat_input'} ) %>
-          <%= submit_tag "send" %>
-
 
           </form>
       <% end %>
@@ -80,6 +95,7 @@
         <% end %>
       </div>
   <% end %>
+  </div>
 
   </body>
 </html>

@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'prawn', '0.11.1'
-gem 'fleximage', :git => 'git://github.com/SysMO-DB/fleximage.git'
+gem 'fleximage'#, :git => 'git://github.com/SysMO-DB/fleximage.git'
 gem 'RedCloth'
 gem 'pdfkit'
 gem 'rails', '3.0.6'
@@ -20,13 +20,16 @@ gem 'rvm-capistrano'
 gem 'rake', '~> 0.8.7'
 gem 'better_nested_set'
 gem 'rmagick', :require => false
-gem 'simple_captcha', :git => 'git://github.com/arcadi/simple-captcha.git'
+gem 'simple_captcha'#, :git => 'git://github.com/arcadi/simple-captcha.git'
 gem 'jquery-rails'
 gem 'active_record_base_without_table'
 gem 'omniauth'
 gem 'fb_graph'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
+gem 'json'
+gem 'eventmachine'
+gem 'juggernaut'
 
 group :development do
   #gem 'thin'

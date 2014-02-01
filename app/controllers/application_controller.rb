@@ -1,3 +1,5 @@
+require "juggernaut"
+
 class ApplicationController < ActionController::Base
   include ApplicationHelper
   include AuthenticatedSystem
@@ -22,6 +24,16 @@ class ApplicationController < ActionController::Base
     rescue_from ActionController::MethodNotAllowed, :with => :render_record_not_found
   end
  # rescue_from Exception, :with => :render_record_not_found
+
+  def send_message
+    render_text "<li>" + params[:msg_body] + "</li>"
+    Juggernaut.publish("/site/chat", parse_chat_message(params[:msg_body], "Prabhat"))
+  end
+
+  def parse_chat_message(msg, user)
+    return "#{user} says: #{msg}"
+  end
+
 
 
   protected

@@ -141,9 +141,9 @@ ItalyabroadNew::Application.routes.draw do
     resources :chat do
       match :create_chat_user, :on => :collection
       match :send_data, :on => :collection
+      match :send_message, :on => :collection, :via => :post
     end
   end
-
 
   match 'site/image' => 'site/images#show', :path_prefix => ':image_type'
   resources :image, :controller => 'site/images', :only => [:show], :path_prefix => ':image_type'

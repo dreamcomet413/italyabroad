@@ -1,0 +1,9 @@
+$("#chat_window")[0].reset();
+$("#chat_data").scrollTop = $("#chat_data").scrollHeight;
+var hasFocus = true;
+<%  if session[:chat_user_name] == @support_user %>
+    if (hasFocus == false)
+        alert ("Please check message");
+<% else %>
+    window.focus();
+<% end %>
