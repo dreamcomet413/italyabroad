@@ -28,7 +28,7 @@ gem 'fb_graph'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 gem 'json'
-gem 'eventmachine'
+#gem 'eventmachine'
 gem 'juggernaut'
 
 group :development do
