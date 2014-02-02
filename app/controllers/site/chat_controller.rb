@@ -5,7 +5,13 @@ class Site::ChatController < ApplicationController
   layout  false
 
   def index
-    session[:juggernaut_channels] = ["chat_channel"]
+    #AvailableChatUsers.destroy_all unless session[:chat_user_name] == "admin"
+    #session[:juggernaut_channels] = ["channel1", "channel2"]
+    AvailableChatUsers.create(:user_name => session[:chat_user_name]) unless session[:chat_user_name] == "admin"
+    Juggernaut.publish("/site/chat/#{session[:chat_user_name]}", parse_chat_message(params[:msg_body], params[:sender]))
+    @juggernaut_channels = AvailableChatUsers.all
+    #session[:juggernaut_channels] << session[:chat_user_name] unless session[:juggernaut_channels].include?(session[:chat_user_name])
+    #@juggernaut_channels << session[:chat_user_name] unless @juggernaut_channels.include?(session[:chat_user_name])
     @support_user = Setting.find(:first).support
 
     #@support_status = Juggernaut.show_client(@support_user) ? true : false
@@ -20,7 +26,8 @@ class Site::ChatController < ApplicationController
     @messg = params[:msg_body]
     @sender = params[:sender]
     @time = "<span class='time'>[#{(Time.now).strftime '%d%b-%T'}]</span>".html_safe()
-    Juggernaut.publish(select_channel("/channel1_channel2"), parse_chat_message(params[:msg_body], params[:sender]))
+    channel = session[:chat_user_name] == "admin" ? cookies[:channel] : @sender.to_s
+    Juggernaut.publish(["/site/chat/#{channel}", "/site/chat/channel1_channel2"], parse_chat_message(params[:msg_body], params[:sender]))
     respond_to do |format|
       format.js
     end
@@ -97,9 +104,13 @@ class Site::ChatController < ApplicationController
     return "#{user}: #{msg}"
   end
 
-  def select_channel(receiver)
-    puts "#{receiver}"
-    return "/site/chat#{receiver}"
+  def select_channel(receivers)
+    puts "#{receivers.join(",")}"
+    temp = []
+    receivers.each do |r|
+      temp << "/site/chat/#{r}"
+    end
+    return temp
   end
 
 
