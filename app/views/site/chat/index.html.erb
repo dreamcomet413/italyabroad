@@ -65,14 +65,14 @@
             <% if session[:chat_user_name] == "admin" %>
               <div><h3>Available Channels</h3></div>
               <% @juggernaut_channels.each do |channel| %>
-                  <div class="channels"><%= link_to channel.user_name, "#" -%></div>
+                  <div class="channels"><%#= link_to channel.user_name, "#" -%></div>
               <% end %>
           <% end %>
           </p>
           <%= form_tag('/site/chat/send_message', :method => :post, :id => 'chat_window', :remote => true) do %>
               <%# if session[:chat_user_name] == @support_user = Setting.find(:first).support %>
               <%= hidden_field_tag 'sender', session[:chat_user_name] || params[:chat_user], {:id => 'reply_to'}%>
-              <%= label_tag "","Click on \"Available Users\" to select a Chat User", {:id => 'label_reply'} %>
+              <%= label_tag "","Click on \"Reply\" to select a Chat User", {:id => 'label_reply'} %>
               <%# end %>
               <%= text_field_tag( 'msg_body', '', { :size => 48 , :id => 'chat_input'} ) %>
               <%= hidden_field_tag 'format', 'js'%>
@@ -80,14 +80,17 @@
           <% end %>
 
           <script type="text/javascript" charset="utf-8">
-              <% if session[:chat_user_name] != "admin" %>
+              <%# if session[:chat_user_name] != "admin" %>
               var jug = new Juggernaut();
-              jug.subscribe("/site/chat/" + $("#reply_to").val(), function(data){
+              jug.subscribe("/site/chat/channel1_channel2", function(data){
                   var li = $("<li/>");
                   var html = "<li><%= Time.now().to_s -%> <span class='support_name'>" + data.split(": ")[0] + ": </span><span class='support_chat_data'>" + data.split(": ")[1] + "</span></li>"
                   $("#chat_data").append(html);
               });
-              <% end %>
+              $(".support_chat_data").click(function(){
+                  alert("hello");
+              })
+              <%# end %>
           </script>
 
       <% end %>
