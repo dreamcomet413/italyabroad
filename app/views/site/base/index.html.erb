@@ -205,10 +205,10 @@
               </td>
             </tr>
             <tr>
-            <td colspan="2" class="recWineName">
-              <%= food.name -%>
-              <br /><p><%= number_to_currency food.price, :unit => "&pound;" -%></p>
-            </td>
+              <td colspan="2" class="recWineName">
+                <%= food.name -%>
+                <br /><p><%= number_to_currency food.price, :unit => "&pound;" -%></p>
+              </td>
             </tr>
           </table>
         </td>
@@ -219,25 +219,69 @@
         <h3 style="text-align: left">Best Seller</h3>
       </td>
     </tr>
-    <% if !@best_sellers.blank? %>
-        <% @best_sellers.each do |food| %>
-            <td>
-              <table>
-                <tr>
-                  <td colspan="2" class="recWine">
-                    <%= link_to show_image_tag(:card, food.image_1, :jpg, food.name), nested_products_uri(food),{:title => food.name} %>
-                  </td>
-                </tr>
-                <tr>
-                <td colspan="2" class="recWineName">
-                  <%= food.name -%>
-                  <br /><p><%= number_to_currency food.price, :unit => "&pound;" -%></p>
-                </td>
-                </tr>
-              </table>
+    <tr>
+      <% if !@best_sellers.blank? %>
+          <% @best_sellers.each do |food| %>
+              <td>
+                <table>
+                  <tr>
+                    <td colspan="2" class="recWine">
+                      <%= link_to show_image_tag(:card, food.image_1, :jpg, food.name), nested_products_uri(food),{:title => food.name} %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="2" class="recWineName">
+                      <%= food.name -%>
+                      <br /><p><%= number_to_currency food.price, :unit => "&pound;" -%></p>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+          <% end %>
+      <% end %>
+    </tr>
+    <tr>
+      <td colspan="4">
+        <h3 style="text-align: left">Find Wine</h3>
+      </td>
+    </tr>
+    <tr>
+      <td  colspan="4">
+        <table>
+          <tr>
+            <td class="recWine">
+              <%#= show_image_tag(:card, @recommended_wines.first.image_1, :jpg, @recommended_wines.first.name) %>
+              Wine
             </td>
-        <% end %>
-    <% end %>
+            <td class="recWine">
+              <%#= show_image_tag(:card, @other_drinks.first.image_1, :jpg, @other_drinks.first.name) %>
+              Other Drinks
+            </td>
+            <td class="recWine">
+              <%#= show_image_tag(:card, @food_counter.first.image_1, :jpg, @food_counter.first.name) %>
+              Food
+            </td>
+            <td class="recWine">
+              <%#= show_image_tag(:card, @recommended_wines.first.image_1, :jpg, @recommended_wines.first.name) %>
+              Hampers
+            </td>
+          </tr>
+          <tr>
+            <td class="recWine">
+              <%= radio_button :new_search, "", "wine" %>
+            </td>
+            <td class="recWine">
+              <%= radio_button :new_search, "", "other_drinks" %>
+            </td>
+            <td class="recWine">
+              <%= radio_button :new_search, "", "food" %>
+            </td>
+            <td class="recWine">
+              <%= radio_button :new_search, "", "hampers" %>
+            </td>
+          </tr>
+        </table>
+      </td>
     </tr>
   </table>
 </div>

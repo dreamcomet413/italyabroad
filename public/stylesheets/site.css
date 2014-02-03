@@ -345,7 +345,7 @@ a {
 }
 
 #reviews {
-    width:275px;
+    width:400px;
     overflow: hidden;
     margin-top:2px;
     float:left;
@@ -366,7 +366,7 @@ a {
 
 #about {
     position:relative;
-    width:420px;
+    /*width:420px;*/
     overflow: hidden;
     margin-top:2px;
     float:right;
