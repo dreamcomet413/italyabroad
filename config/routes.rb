@@ -21,7 +21,7 @@ ItalyabroadNew::Application.routes.draw do
   match 'help/contact-details' => 'site/base#contact_details', :as => :contact_details
   match 'sitemap' => 'site/base#sitemap', :as => :sitemap
   #match 'sitemap.xml' => 'site/base#google_sitemap', :defaults => {:format => :xml}
-  match 'wine-franchising' => 'site/base#franchise', :as => :franchise
+  match 'guarantee_of_satisfaction' => 'site/base#guarantee_of_satisfaction', :as => :guarantee_of_satisfaction
   match 'enable_disable_chat' => 'admin/base#enable_disable_chat', :as => :enable_disable_chat
   match 'testimonial' => 'site/testimonials#index', :as => :testimonial
   match 'popular' => 'site/base#popular', :as => :popular
@@ -231,7 +231,7 @@ ItalyabroadNew::Application.routes.draw do
     end
   end
 
-  match 'admin/settings/update_franchise_details' => 'admin/settings#update_franchise_details', :as => :update_franchise_details
+  match 'admin/settings/update_guarantee_of_satisfaction_details' => 'admin/settings#update_guarantee_of_satisfaction_details', :as => :update_guarantee_of_satisfaction_details
   match 'admin/products/:id/meta' => 'admin/products#meta', :as => :product_meta
   match 'admin/products/:id/categories' => 'admin/products#categories', :as => :product_categories
   match 'admin/products/:id/extra' => 'admin/products#extra', :as => :product_extra

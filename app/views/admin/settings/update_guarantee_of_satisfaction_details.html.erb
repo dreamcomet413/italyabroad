@@ -4,14 +4,14 @@
 <%- @breadcrumbs = "Administration &raquo; #{link_to "Settings", admin_settings_path}" -%>
 
 <div class="inner_content settings" id="admin_settings_edit">
-  <h2>Settings - Franchise Details</h2>
+  <h2>Settings - Guarantee of Satisfaction Details</h2>
   <br />
-  <% form_tag 'update_franchise_details' do |form| %>
+  <% form_tag 'update_guarantee_of_satisfaction_details' do |form| %>
   <table>
 
     <tr>
-    <td>Shop Franchise Details:</td>
-    <td style="padding-left:50px;"><%= text_area_tag :franchise,@setting.franchise,:size => "35x15", :class=>"widgEditor" %>
+    <td style="width: 220px">Shop Guarantee of Satisfaction Details:</td>
+    <td style="padding-left:50px;"><%= text_area_tag :guarantee_of_satisfaction, @setting.guarantee_of_satisfaction, :size => "35x15", :class=>"widgEditor" %>
     </td>
   </tr>
     <tr>

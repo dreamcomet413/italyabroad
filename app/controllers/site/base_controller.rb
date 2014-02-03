@@ -175,7 +175,7 @@ class Site::BaseController < ApplicationController
 
   end
 
-  def franchise
+  def guarantee_of_satisfaction
   end
 
 end

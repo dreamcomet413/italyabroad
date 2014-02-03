@@ -167,7 +167,6 @@
   <!--1st drop down menu -->
   <div id="dropmenu1" class="dropmenudiv">
     <span <%= "class='active'" if @current_controller == "settings" %>><%= link_to "Settings", admin_settings_path, :class => ('active' if @current_controller == "settings") %></span>
-    <span <%= "class='active'" if @current_controller == "settings" %>><%= link_to "Franchise",{:controller=>'admin/settings',:action=>'update_franchise_details'}, { :class => ('active' if @current_controller == "settings")} %></span>
     <span <%= "class='active'" if @current_controller == "users" %>><%= link_to "Administrators", admin_users_path, :class => ('active' if @current_controller == "users") %></span>
     <span <%= "class='active'" if @current_controller == "customers" %>><%= link_to "Customers", admin_customers_path, :class => ('active' if @current_controller == "customers") %></span>
   </div>
@@ -294,6 +293,7 @@
     <span <%= "class='active'" if @current_controller == "about_us" %>>
       <%= link_to "Community", admin_about_us_path(:type => "community"), :class => ('active' if @current_controller == "about_us") %>
     </span>
+    <span <%= "class='active'" if @current_controller == "settings" %>><%= link_to "Guarantee of Satisfaction",{:controller=>'admin/settings',:action=>'update_guarantee_of_satisfaction_details'}, { :class => ('active' if @current_controller == "settings")} %></span>
   </div>
 
   <div id="dropmenu9" class="dropmenudiv" style="width:130px">

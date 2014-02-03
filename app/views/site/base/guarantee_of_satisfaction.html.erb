@@ -1,11 +1,11 @@
-<% @title = "Shop Franchise"; @class = "help no-padding"; @breadcrumbs = "#{link_to("Home", root_url)} &raquo; Franchise" %>
+<% @title = "Guarantee of Satisfaction"; @class = "help no-padding"; @breadcrumbs = "#{link_to("Home", root_url)} &raquo; Guarantee of Satisfaction" %>
 
 
 <!-- div id="header"><strong>Italyabroad.com</strong> – Franchising</div -->
 <div id="header"><strong>Italyabroad.com</strong>-About us</div>
 <div class="help-container">
 
-  <%= @setting.franchise if !@setting.nil? %>
+  <%= @setting.guarantee_of_satisfaction.html_safe() if !@setting.nil? %>
 
 </div>
 

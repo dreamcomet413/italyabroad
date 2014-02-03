@@ -36,11 +36,11 @@ class Admin::SettingsController < ApplicationController
     redirect_to :action => :index
   end
 
-  def update_franchise_details
+  def update_guarantee_of_satisfaction_details
     @setting = Setting.find(:first)
-    if params[:franchise]
+    if params[:guarantee_of_satisfaction]
 
-      @setting.update_attribute(:franchise,params[:franchise])
+      @setting.update_attribute(:guarantee_of_satisfaction, params[:guarantee_of_satisfaction])
 
     end
   end
