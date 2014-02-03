@@ -115,10 +115,10 @@
       <% if logged_in? %>
 
           <span style="font:bold 13px Arial;"><%#= link_to image_tag(image_name), site_chat_index_path, :popup => ['new_window_name', 'height=540,width=490'] if !image_name.nil?  %></span>
-          <span style="font:bold 13px Arial; margin-left: 200px;" class="fLeft"><%= link_to image_tag(image_name), "#", :class => "chat_available" if !image_name.nil?  %></span>
+          <span style="font:bold 13px Arial; margin-left: 28px;" class="fLeft"><%= link_to image_tag(image_name), "#", :class => "chat_available" if !image_name.nil?  %></span>
 
       <% else %>
-          <span style="font:bold 13px Arial; margin-left: 200px;" class="fLeft"><%= link_to(image_tag(image_name), site_chat_index_path, {:popup => ['new_window_name', 'height=540,width=490,resizable=yes,scrollbars=auto']}) if !image_name.nil? %></span>
+          <span style="font:bold 13px Arial; margin-left: 28px;" class="fLeft"><%= link_to(image_tag(image_name), site_chat_index_path, {:popup => ['new_window_name', 'height=540,width=490,resizable=yes,scrollbars=auto']}) if !image_name.nil? %></span>
 
       <% end %>
 

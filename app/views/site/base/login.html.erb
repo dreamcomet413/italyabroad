@@ -29,7 +29,7 @@
       <% end %>
       <% if current_user != :false%>
         Welcome <%= current_user.name %>!
-        <%= link_to "Sign Out", signout_path %>
+        <%= link_to "Sign Out", logout_path %>
       <% else %>
           <table>
             <tr>

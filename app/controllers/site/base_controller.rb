@@ -30,7 +30,7 @@ class Site::BaseController < ApplicationController
     # params[:user_type] = ""
     if request.post?
       # self.current_user = User.authenticate(params[:login], params[:password])
-      logged_in  = User.authenticate(params[:login], params[:password])
+      logged_in = User.authenticate(params[:login], params[:password])
       if logged_in
         self.current_user = User.authenticate(params[:login], params[:password])
         current_user.set_last_seen_at

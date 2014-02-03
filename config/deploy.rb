@@ -57,6 +57,7 @@ set :branch, 'master'
 
 # if you want to clean up old releases on each deploy uncomment this:
 after "deploy:restart", "deploy:cleanup"
+after "deploy:restart", "deploy:start_juggernaut"
 before "deploy:restart", "deploy:tmp_symlinks"
 #set :deploy_via, :remote_cache
 # if you're still using the script/reaper helper you will need
@@ -86,5 +87,9 @@ namespace :deploy do
 
   task :tmp_symlinks do
     run "cd /srv/italyabroad/current && rm -rf tmp && ln -s /srv/italyabroad/shared/tmp tmp"
+  end
+
+  task :start_juggernaut do
+    run "cd && nvm use 0.6.21 && juggernaut &"
   end
 end
