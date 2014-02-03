@@ -161,89 +161,26 @@
   </div>
   <div style="float:left; margin-right:3px; width: 16px; height: 18px;"><%= link_to "", "javascript:GoNext();", :id => "NextButton" %></div>
 </div>
-<%= render :partial => '/site/shared/box_welcome' %>
 
-<!--<div id="bottomTextBox">-->
-<div id="favWine">
-  <table style="width:100%;">
-    <tr>
-      <td colspan="4">
-        <h3 style="text-align: left">Recommended Wines</h3>
-      </td>
-    </tr>
-    <tr>
-      <% @recommended_wines.each do |wine| %>
-          <td>
-            <table>
-              <tr>
-                <td colspan="2" class="recWine">
-                  <%= link_to show_image_tag(wine.layout_image, wine.image_1, :jpg, wine.name), nested_products_uri(wine) %>
-                  <%#= link_to show_image_tag(:card, wine.image_1, :jpg, wine.name), nested_products_uri(wine), {:title => wine.name} %>
-                </td>
-              </tr>
-              <tr>
-                <td colspan="2" class="recWineName">
-                  <%= wine.name -%>
-                  <br /><p><%= number_to_currency wine.price, :unit => "&pound;" -%></p>
-                </td>
-              </tr>
-            </table>
-          </td>
-      <% end %>
-    </tr>
-    <tr>
-      <td colspan="4">
-        <h3 style="text-align: left">Food Counter</h3>
-      </td>
-    </tr>
-    <% @food_counter.each do |food| %>
-        <td>
-          <table>
-            <tr>
-              <td colspan="2" class="recWine">
-                <%= link_to show_image_tag(:card, food.image_1, :jpg, food.name), nested_products_uri(food),{:title => food.name} %>
-              </td>
-            </tr>
-            <tr>
-              <td colspan="2" class="recWineName">
-                <%= food.name -%>
-                <br /><p><%= number_to_currency food.price, :unit => "&pound;" -%></p>
-              </td>
-            </tr>
-          </table>
-        </td>
-    <% end %>
-    </tr>
-    <tr>
-      <td colspan="4">
-        <h3 style="text-align: left">Best Seller</h3>
-      </td>
-    </tr>
-    <tr>
-      <% if !@best_sellers.blank? %>
-          <% @best_sellers.each do |food| %>
-              <td>
-                <table>
-                  <tr>
-                    <td colspan="2" class="recWine">
-                      <%= link_to show_image_tag(:card, food.image_1, :jpg, food.name), nested_products_uri(food),{:title => food.name} %>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td colspan="2" class="recWineName">
-                      <%= food.name -%>
-                      <br /><p><%= number_to_currency food.price, :unit => "&pound;" -%></p>
-                    </td>
-                  </tr>
-                </table>
-              </td>
-          <% end %>
-      <% end %>
-    </tr>
-  </table>
-</div>
+<table class="new_search">
+  <tr>
+    <td colspan="4">
+      <h3 style="text-align: left">Find Wine</h3>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="4"><h4 class="fLeft">5 simple questions to find your ideal wine.</h4></td>
+  </tr>
+  <tr>
+    <td colspan="4"><h2 class="fLeft">what kind of wine do you prefer to drink?</h2></td>
+  </tr>
+  <tr>
+    <td colspan="4">
+        <%= render :partial => "search_options", :locals => {:item_options => ["Red Wine", "White Wine", "Sparkling Wine", "Surprise Me"], :step => "1"} -%>
+    </td>
+  </tr>
+</table>
 
-<!--</div>-->
 
 <% content_for :right do %>
     <%= render :partial => '/site/shared/box_event' %>
@@ -256,3 +193,21 @@
     <br />
     <%= render :partial => '/site/shared/box_popular' %>
 <% end %>
+<script type="text/javascript">
+  $(".recWine input").click(function(){
+      $.ajax({
+          type: 'POST',
+          url: "/site/sommelier",
+          data: {selected_option: $(this).val(), step: $("#step").val()},
+          cache: false,
+          success: function(data){
+            alert(data)
+          },
+          error:function(xhr,ajaxOptions,thrownError){
+              alert(xhr.status);
+              alert(thrownError);
+          }
+      })
+//      $("#new_search").submit()
+  })
+</script>

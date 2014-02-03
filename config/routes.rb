@@ -143,6 +143,7 @@ ItalyabroadNew::Application.routes.draw do
       match :send_data, :on => :collection
       match :send_message, :on => :collection, :via => :post
     end
+    resources :sommelier
   end
 
   match 'site/image' => 'site/images#show', :path_prefix => ':image_type'

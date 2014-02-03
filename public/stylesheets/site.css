@@ -3172,3 +3172,11 @@ b {
     width: 17px;
 }
 
+.new_search, .new_search table{
+    width: 100%;
+}
+
+.new_search td{
+    text-align: center;
+}
+
