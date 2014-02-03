@@ -1,19 +1,40 @@
-<table class="items">
-  <tr>
-    <% item_options.each do |item| %>
-        <td class="recWine">
-          <%= item -%>
-        </td>
-    <% end %>
-  </tr>
-  <tr>
-    <%#= form_tag("/site/sommelier", :method => "post", :remote => true, :id => "new_search") do -%>
-    <% item_options.each do |item| %>
-        <td class="recWine">
-          <%= radio_button :selected_option, "", "#{item}" %>
-        </td>
-    <% end %>
+<% if item_options.present? %>
+    <table class="items">
+      <tr>
+        <% item_options.each do |item| %>
+            <td class="recWine">
+              <%= item -%>
+            </td>
+        <% end %>
+      </tr>
+      <tr>
+        <%#= form_tag("/site/sommelier", :method => "post", :remote => true, :id => "new_search") do -%>
+        <% item_options.each do |item| %>
+            <td class="recWine">
+              <%= radio_button :selected_option, "", "#{item}" %>
+            </td>
+        <% end %>
         <%= hidden_field_tag :step, step, :id => "step" -%>
-    <%# end %>
-  </tr>
-</table>
+        <%# end %>
+      </tr>
+    </table>
+<% end %>
+
+<script type="text/javascript">
+    $(".recWine input").click(function(){
+        $.ajax({
+            type: 'POST',
+            url: "/site/sommelier",
+            data: {selected_option: $(this).val(), step: $("#step").val()},
+            cache: false,
+            success: function(data){
+//            alert(data)
+            },
+            error:function(xhr,ajaxOptions,thrownError){
+                alert(xhr.status);
+                alert(thrownError);
+            }
+        })
+//      $("#new_search").submit()
+    })
+</script>

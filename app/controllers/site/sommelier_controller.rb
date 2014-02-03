@@ -7,22 +7,34 @@ class Site::SommelierController < ApplicationController
   end
 
   def create
+    session[:search_text] = params[:selected_option] if params[:step] == "1"
     search_options =
         case params[:step]
           when "1"
             ["Light", "Medium", "Full Body"]
+          when "2"
+            ["drink on its own", "with food"]
+          when "3"
+            if params[:selected_option] == "with food"
+              ["red meat", "white meat", "pasta", "fish", "cheeses", "desserts"]
+            else
+              ["under £10", "between £10 and £15", "more than £15"]
+            end
+          when "4"
+            ["under £10", "between £10 and £15", "more than £15"] if ["red meat", "white meat", "pasta", "fish", "cheeses", "desserts"].include?(params[:selected_option])
         end
     respond_to do |format|
       format.html{}
       format.js {
-      render :update do |page|
-        #if params[:step] == "1"
-        #end
-      end
+        render :update do |page|
+          if search_options.present?
+            page[".items"].html("")
+            page[".items"].html(render :partial => "search_options", :locals => {:item_options => search_options, :step => (params[:step].to_i + 1).to_s})
+          else
+            page.redirect_to("/search?text=#{session[:search_text]}&id=wine")
+          end
+        end
       }
     end
-  end
-
-  def new
   end
 end

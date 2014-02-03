@@ -193,21 +193,3 @@
     <br />
     <%= render :partial => '/site/shared/box_popular' %>
 <% end %>
-<script type="text/javascript">
-  $(".recWine input").click(function(){
-      $.ajax({
-          type: 'POST',
-          url: "/site/sommelier",
-          data: {selected_option: $(this).val(), step: $("#step").val()},
-          cache: false,
-          success: function(data){
-            alert(data)
-          },
-          error:function(xhr,ajaxOptions,thrownError){
-              alert(xhr.status);
-              alert(thrownError);
-          }
-      })
-//      $("#new_search").submit()
-  })
-</script>

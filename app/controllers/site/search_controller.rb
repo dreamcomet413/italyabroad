@@ -2,7 +2,6 @@ class Site::SearchController < ApplicationController
   layout 'site'
 
   def index
-
     params[:category] ||= params[:id]
     @searched_text = params[:text]
 
