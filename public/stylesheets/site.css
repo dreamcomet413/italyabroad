@@ -3197,7 +3197,8 @@ b {
 }
 
 .new_search, .new_search table{
-    width: 100%;
+    /*width: 100%;*/
+    width: 723px;
 }
 
 .new_search td{
@@ -3207,5 +3208,9 @@ b {
 
 .font26 {
     font-size: 26px;
+}
+
+.items {
+    width: 723px;
 }
 

@@ -10,14 +10,20 @@
       <tr>
         <% item_options.each do |item| %>
             <td class="recWine" style="width: <%= width -%>%;">
-              <%= item -%>
+              <%= unless params[:step].present?
+                    image_tag("sommilier-image-#{item.upcase.gsub(" WINE", "").gsub(" ", "-")}.jpg", :height => "125", :width => "140")
+                  else
+                    item
+                  end
+                  -%>
+
             </td>
         <% end %>
       </tr>
       <tr>
         <%#= form_tag("/site/sommelier", :method => "post", :remote => true, :id => "new_search") do -%>
         <% item_options.each do |item| %>
-            <td class="recWine" style="width: <%= width -%>%">
+            <td class="recWine" style="width: <%= width -%>%; height: 30px;">
               <%= radio_button :selected_option, "", "#{item}" %>
             </td>
         <% end %>
@@ -45,6 +51,9 @@
             cache: false,
             success: function(data){
 //            alert(data)
+                if ($(".question").length > 1){
+                    $(".question").first().parent().parent().html("")
+                }
             },
             error:function(xhr,ajaxOptions,thrownError){
                 alert(xhr.status);
@@ -66,6 +75,9 @@
                 cache: false,
                 success: function(data){
     //            alert(data)
+                    if ($(".question").length > 1){
+                        $(".question").first().parent().parent().html("")
+                    }
                 },
                 error:function(xhr,ajaxOptions,thrownError){
                     alert(xhr.status);

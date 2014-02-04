@@ -5,7 +5,7 @@ class Site::SommelierController < ApplicationController
   def index
     @questions = [
         "Which wine would you like to drink?",
-        "light, medium or full bodied?",
+        "Light, medium or full bodied?",
         "To accompany food or to drink on its own?",
         "How much would you like to spend?",
         "What type of food is the wine for?"
@@ -15,7 +15,7 @@ class Site::SommelierController < ApplicationController
   def create
     @questions = [
         "Which wine would you like to drink?",
-        "light, medium or full bodied?",
+        "Light, medium or full bodied?",
         "To accompany food or to drink on its own?",
         "How much would you like to spend?",
         "What type of food is the wine for?"
