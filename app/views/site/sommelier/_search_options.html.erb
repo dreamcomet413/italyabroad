@@ -1,3 +1,6 @@
+<% if params[:step].present? %>
+    <div class="fRight" style="margin-right: 12px; padding: 5px;"><%= link_to "Go Back", :back -%></div>
+<% end %>
 <% if item_options.present? %>
     <% width = (100/item_options.size.to_i).to_i %>
     <table class="items">
