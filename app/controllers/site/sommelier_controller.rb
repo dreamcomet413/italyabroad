@@ -3,10 +3,23 @@ class Site::SommelierController < ApplicationController
   layout "site"
 
   def index
-
+    @questions = [
+        "Which wine would you like to drink?",
+        "light, medium or full bodied?",
+        "To accompany food or to drink on its own?",
+        "How much would you like to spend?",
+        "What type of food is the wine for?"
+    ]
   end
 
   def create
+    @questions = [
+        "Which wine would you like to drink?",
+        "light, medium or full bodied?",
+        "To accompany food or to drink on its own?",
+        "How much would you like to spend?",
+        "What type of food is the wine for?"
+    ]
     session[:search_text] = params[:selected_option] if params[:step] == "1"
     search_options =
         case params[:step]

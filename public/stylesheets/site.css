@@ -365,7 +365,7 @@ a {
 
 #topTextBox table td{
     /*border: solid 1px;*/
-    height: 131px;
+    /*height: 131px;*/
 }
 
 #reviews {
@@ -3202,9 +3202,10 @@ b {
 
 .new_search td{
     text-align: center;
+    /*border: solid 1px;*/
 }
 
-.font30 {
-    font-size: 30px;
+.font26 {
+    font-size: 26px;
 }
 

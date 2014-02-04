@@ -1,12 +1,15 @@
-<% if params[:step].present? %>
-    <div class="fRight" style="margin-right: 12px; padding: 5px;"><%= link_to "Go Back", :back -%></div>
-<% end %>
+<tr>
+    <td colspan="4"><h2 class="fLeft question"><%= @questions[params[:step].to_i]-%></h2></td>
+  </tr>
+  <tr>
+    <td colspan="4">
+
 <% if item_options.present? %>
     <% width = (100/item_options.size.to_i).to_i %>
     <table class="items">
       <tr>
         <% item_options.each do |item| %>
-            <td class="recWine" style="width=<%= width -%>px;">
+            <td class="recWine" style="width: <%= width -%>%;">
               <%= item -%>
             </td>
         <% end %>
@@ -14,7 +17,7 @@
       <tr>
         <%#= form_tag("/site/sommelier", :method => "post", :remote => true, :id => "new_search") do -%>
         <% item_options.each do |item| %>
-            <td class="recWine" style="width=<%= width -%>px">
+            <td class="recWine" style="width: <%= width -%>%">
               <%= radio_button :selected_option, "", "#{item}" %>
             </td>
         <% end %>
@@ -23,6 +26,15 @@
       </tr>
     </table>
 <% end %>
+      <% if params[:step].present? %>
+                <div class="fRight" style="margin-right: 12px; padding: 5px;">
+                  <b>
+                    <%= link_to "Go Back", "#", :id => "go_back" -%>
+                  </b>
+                </div>
+            <% end %>
+            </td>
+          </tr>
 
 <script type="text/javascript">
     $(".recWine input").click(function(){
@@ -40,5 +52,28 @@
             }
         })
 //      $("#new_search").submit()
+    })
+
+    $("#go_back").click(function(){
+        if ("<%= params[:step]-%>" == "1"){
+          window.location.href = "/site/sommelier"
+        }
+        else {
+            $.ajax({
+                type: 'POST',
+                url: "/site/sommelier",
+                data: {selected_option: "<%= params[:selected_option] -%>", step: "<%= params[:step].to_i - 1 -%>"},
+                cache: false,
+                success: function(data){
+    //            alert(data)
+                },
+                error:function(xhr,ajaxOptions,thrownError){
+                    alert(xhr.status);
+                    alert(thrownError);
+                }
+            })
+    //      $("#new_search").submit()
+        }
+        return false;
     })
 </script>
