@@ -1,8 +1,9 @@
 <% if item_options.present? %>
+    <% width = (100/item_options.size.to_i).to_i %>
     <table class="items">
       <tr>
         <% item_options.each do |item| %>
-            <td class="recWine">
+            <td class="recWine" style="width=<%= width -%>px;">
               <%= item -%>
             </td>
         <% end %>
@@ -10,7 +11,7 @@
       <tr>
         <%#= form_tag("/site/sommelier", :method => "post", :remote => true, :id => "new_search") do -%>
         <% item_options.each do |item| %>
-            <td class="recWine">
+            <td class="recWine" style="width=<%= width -%>px">
               <%= radio_button :selected_option, "", "#{item}" %>
             </td>
         <% end %>

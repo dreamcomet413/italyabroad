@@ -1,11 +1,16 @@
 <div class="block" id="topTextBox" style= "display:block;">
   <table>
     <tr>
-      <td>
-        <%= image_tag("/images/small-about-us--banner.jpg", :width => "417px", :height => "132px")-%>
+      <td class="banner">
+        <p>
+        Italyabroad.com is the Italian wine and food specialist made by small and passionate producers. We are a bunch of passionate people who love what we do; everything started when I had my first sip of wine sitting on my granddad knees, he was so proud of his wine that wanted to share this moment with his 2 year old grandchild, what a moment for both of us.
+        </p>
+        <%#= image_tag("/images/small-about-us--banner.jpg", :width => "417px", :height => "132px")-%>
       </td>
       <td>
         <%= link_to image_tag("/images/small-wine-search-box-newd.jpg"), site_sommelier_index_path -%>
+      </td>
+        <td>
         <%= link_to image_tag("/images/small-waranty-box-new.jpg"), guarantee_of_satisfaction_path -%>
       </td>
     </tr>

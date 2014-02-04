@@ -43,124 +43,15 @@
 
 
 <%- @breadcrumbs = "Welcome to Italyabroad.com" -%><br />
-<%- @onload = "StartSlideShow()" -%>
-<%#= javascript_tag "document.observe('dom:loaded', function(e){ HomeImageSlideShow.setup() });" %>
 <div id="flashBanner">
   <% if !@setting.nil? %>
       <ul>
         <li id="home_image_1" class="home_image">
-          <%= link_to((show_home_image_tag(@setting.home_image_1) || @setting.home_image_1_title), (@setting.home_image_1_url || root_url)) %>
-        </li>
-        <li id="home_image_2" class="home_image" style="display:none;">
-          <%= link_to((show_home_image_tag(@setting.home_image_2) || @setting.home_image_2_title), (@setting.home_image_2_url || root_url)) %>
-        </li>
-        <li id="home_image_3" class="home_image" style="display:none;">
-          <%= link_to((show_home_image_tag(@setting.home_image_3) || @setting.home_image_3_title), (@setting.home_image_3_url || root_url)) %>
-        </li>
-        <li id="home_image_4" class="home_image" style="display:none;">
-          <%= link_to((show_home_image_tag(@setting.home_image_4) || @setting.home_image_4_title), (@setting.home_image_4_url || root_url)) %>
-        </li>
-        <li id="home_image_5" class="home_image" style="display:none;">
-          <%= link_to((show_home_image_tag(@setting.home_image_5) || @setting.home_image_5_title), (@setting.home_image_5_url || root_url)) %>
+          <%= image_tag("/images/find-your-wine-banner.jpg")-%>
         </li>
       </ul>
   <%end%>
 </div><br />
-<ul class="slideshow_images" id="navmenu">
-
-  <li id="link_number_1" class="white_text">
-    <%= link_to_function "1", "javascript:GoTo('home_image_1');" %></li>
-  <%
-     ln_class = ""
-     if !@setting.nil?
-       if @setting.home_image_1_title.size < 18  #earlier it was 16
-         ln_class = "single-line"
-       elsif @setting.home_image_1_title.size < 32
-         ln_class = "double-line"
-       elsif @setting.home_image_1_title.size < 45
-         ln_class = "three-line"
-       end
-     end
-  %>
-  <li id="link_home_image_1" class="active">
-    <%#= link_to_function @setting.home_image_1_title, "javascript:GoTo('home_image_1');", :class => "slide #{ln_class}" %>
-    <%= link_to @setting.home_image_1_title, @setting.home_image_1_url || root_url , :class => "slide #{ln_class}" if !@setting.nil?  %>
-  </li>
-  <li id="link_number_2" class="white_text">
-    <%= link_to_function "2", "javascript:GoTo('home_image_2');" %></li>
-  <%
-     ln_class = ""
-     if !@setting.nil?
-       if @setting.home_image_2_title.size < 16
-         ln_class = "single-line"
-       elsif @setting.home_image_2_title.size < 32
-         ln_class = "double-line"
-       elsif @setting.home_image_2_title.size < 45
-         ln_class = "three-line"
-       end
-     end
-  %>
-  <li id="link_home_image_2">
-    <%#= link_to_function @setting.home_image_2_title, "javascript:GoTo('home_image_2');", :class => "slide #{ln_class}" %>
-    <%= link_to  @setting.home_image_2_title, @setting.home_image_2_url || root_url, :class => "slide #{ln_class}" if !@setting.nil? %></li>
-  <li id="link_number_3" class="white_text" >
-    <%= link_to_function "3", "javascript:GoTo('home_image_3');" %></li>
-  <%
-     ln_class = ""
-     if !@setting.nil?
-       if @setting.home_image_3_title.size < 16
-         ln_class = "single-line"
-       elsif @setting.home_image_3_title.size < 32
-         ln_class = "double-line"
-       elsif @setting.home_image_3_title.size < 45
-         ln_class = "three-line"
-       end
-     end
-  %>
-<%#= link_to_function @setting.home_image_3_title, "javascript:GoTo('home_image_3');", :class => "slide #{ln_class}" %>
-  <li id="link_home_image_3"><%= link_to @setting.home_image_3_title, (@setting.home_image_3_url || root_url), :class => "slide #{ln_class}" if !@setting.nil? %></li>
-  <li id="link_number_4" class="white_text" >
-    <%= link_to_function "4", "javascript:GoTo('home_image_4');" %></li>
-  <%
-     ln_class = ""
-     if !@setting.nil?
-       if @setting.home_image_4_title.size < 16
-         ln_class = "single-line"
-       elsif @setting.home_image_4_title.size < 32
-         ln_class = "double-line"
-       elsif @setting.home_image_4_title.size < 45
-         ln_class = "three-line"
-       end
-     end
-  %>
-  <%#= link_to_function @setting.home_image_4_title, "javascript:GoTo('home_image_4');", :class => "slide #{ln_class}" %>
-  <li id="link_home_image_4"><%= link_to @setting.home_image_4_title, (@setting.home_image_4_url || root_url), :class => "slide #{ln_class}" if !@setting.nil? %></li>
-  <li id="link_number_5" class="white_text" >
-    <%= link_to_function "5", "javascript:GoTo('home_image_5');" %></li>
-  <%
-     ln_class = ""
-     if !@setting.nil?
-       if @setting.home_image_5_title.size < 16
-         ln_class = "single-line"
-       elsif @setting.home_image_5_title.size < 32
-         ln_class = "double-line"
-       elsif @setting.home_image_5_title.size < 45
-         ln_class = "three-line"
-       end
-     end
-  %>
-  <%#= link_to_function @setting.home_image_5_title, "javascript:GoTo('home_image_5');", :class => "slide #{ln_class}" %>
-  <li id="link_home_image_5"><%= link_to @setting.home_image_5_title, (@setting.home_image_5_url || root_url), :class => "slide #{ln_class}" if !@setting.nil? %></li>
-</ul>
-
-<div style="float:right; width: 60px; margin-top: 13px;">
-  <div style="float:left; margin-right:3px; width: 16px; height: 18px;"><%= link_to "", "javascript:GoPrevious();", :id => "PrevButton" %></div>
-  <div style="float:left; margin-right:3px; width: 16px; height: 18px;">
-    <%= link_to "Stop", "javascript:Stop();", :class => "slide_control", :id => "PauseButton" %>
-    <%= link_to "Play", "javascript:StartSlideShow();", :class => "slide_control", :id => "PlayButton",:style=>"display:none;" %>
-  </div>
-  <div style="float:left; margin-right:3px; width: 16px; height: 18px;"><%= link_to "", "javascript:GoNext();", :id => "NextButton" %></div>
-</div>
 
 <table class="new_search">
   <tr>
@@ -176,7 +67,7 @@
   </tr>
   <tr>
     <td colspan="4">
-        <%= render :partial => "search_options", :locals => {:item_options => ["Red Wine", "White Wine", "Sparkling Wine", "Surprise Me"], :step => "1"} -%>
+        <%= render :partial => "search_options", :locals => {:item_options => ["Red Wine", "Rose Wine", "White Wine", "Sparkling Wine", "Surprise Me"], :step => "1"} -%>
     </td>
   </tr>
 </table>

@@ -344,6 +344,30 @@ a {
     border:none;
 }
 
+#topTextBox .banner{
+    background: url("/images/small-about-us--banner.jpg") no-repeat;
+    height: 131px;
+    width: 421px;
+    text-align: right;
+    font-size: 9px;
+}
+
+#topTextBox .banner p{
+    /*text-align: left;*/
+    text-align:justify;
+    text-justify:inter-word;
+    font-size: 9.5px;
+    width: 205px;
+    float: right;
+    padding: 5px;
+    margin-top: -19px;
+}
+
+#topTextBox table td{
+    /*border: solid 1px;*/
+    height: 131px;
+}
+
 #reviews {
     width:400px;
     overflow: hidden;
