@@ -110,7 +110,7 @@
       <% end %>
     </div>
     <br /><div style="clear: both;"></div>
-    <div>
+    <div style="margin-top: 12px;">
 
       <% if logged_in? %>
 
@@ -123,12 +123,11 @@
       <% end %>
 
 
-    </div>
 
 
 
-    <div style="clear: both;"></div>
-    <div id="search_form">
+    <!--<div style="clear: both;"></div>-->
+    <span id="search_form">
       <%- form_tag search_index_path, :method => :get do -%>
           <table>
             <tbody>
@@ -147,7 +146,7 @@
             </td>
             <td>
               <div id="dropdown_wrapper">
-                <%= select_tag :id, options_for_select([['Wine', 'wine'], ['Food', 'food'], ['Recipe', 'recipe'],['Hampers','hampers'], ['People', 'people'],['Chef', 'chef'],['All Site','all']], (params[:id] || params[:category])) %>
+                <%= select_tag :id, options_for_select([['Wine', 'wine'], ['Rose', 'rose'], ['Food', 'food'], ['Recipe', 'recipe'],['Hampers','hampers'], ['People', 'people'],['Chef', 'chef'],['All Site','all']], (params[:id] || params[:category])) %>
               </div>
             </td>
             <td>
@@ -156,7 +155,9 @@
             </tbody>
           </table>
       <%- end -%>
+    </span>
     </div>
+
 
   </div>
   <div id="nav">

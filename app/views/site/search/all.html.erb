@@ -3,11 +3,17 @@
 <% if @users.blank? and  @producers.blank? and @wines.blank? and @recipes.blank? and @wine_events.blank? and @foods.blank? and @grapes.blank? and @hampers.blank?%>
     <div id="header">Your search returned no results</div><br />
 
+    <div class="fRight" style="margin-right: 12px; padding: 5px;"><%= link_to "Go Back", :back -%></div>
+    <br />
+    <div class="fRight" style="margin-right: 12px;"><%= link_to "Go Back", :back -%></div>
+    <br />
     <div class="search_result" >Sorry the search has not given any result, please check the spelling or <%= mail_to "info@italyabroad.com", "get in touch" %> and will find it for you.<br /><br /</div>
 
 
 <% else %>
     <div id="header">Your search has found the following </div>
+    <div class="fRight" style="margin-right: 12px; padding: 5px;"><%= link_to "Go Back", :back -%></div>
+    <br />
 <% end %>
 
 

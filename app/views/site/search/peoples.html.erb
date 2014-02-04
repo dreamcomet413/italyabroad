@@ -1,6 +1,8 @@
 <%- @title = "Community search result"; @class = "people"; @breadcrumbs = "#{link_to("Home", root_url)} &raquo; Search &raquo; People" -%>
 <% unless @users.blank? %>
 <div id="header">Community search result</div>
+    <div class="fRight" style="margin-right: 12px; padding: 5px;"><%= link_to "Go Back", :back -%></div>
+    <br />
 <div>
  <div align="right" class="pagination_div"><%= will_paginate(@users) %></div>
 
@@ -12,7 +14,7 @@
         <tr>
           <td width="98px;">
 
-            <%= link_to avatar_for_user(people), customer_path(people) %>
+            <%= link_to avatar_for_user(people), site_customer_path(people) %>
           </td>
           <td valign="top">
             <table cellspacing="5">
@@ -60,7 +62,7 @@
       <% end %>
       <% if people.type_id == 4 %>
       <% unless people.recipes.last.nil?%>  <%= people.name %>'s latest Recipe :
-       <%= link_to people.recipes.last.name,recipe_path(people.recipes.last.id)  %>
+       <%= link_to people.recipes.last.name,site_recipe_path(people.recipes.last.id)  %>
       <% end %>
       <% end %>
 
@@ -74,7 +76,9 @@
 </div>
 <% else %>
 <div id="header">Your search returned no results:</div><br />
-<sdiv class="search_result">Sorry no community member has been found.</div>
+    <div class="fRight" style="margin-right: 12px; padding: 5px;"><%= link_to "Go Back", :back -%></div>
+    <br />
+<div class="search_result">Sorry no community member has been found.</div>
 <% end %>
 <% content_for :right do %>
 <%= render :partial => 'site/shared/box_search_people_by_city' %>

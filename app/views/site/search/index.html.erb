@@ -1,8 +1,11 @@
 <% @title = "Search #{params[:text]}"; @class = "no-padding"  %>
 <%- @breadcrumbs = "#{link_to "Home", root_url} &raquo; Search #{ '&raquo; ' + @category.name.titleize unless @category.blank?}" -%>
 
+
 <% if @products && @products.size > 0 %>
     <div id="header">Your search result has found the following products:</div>
+    <div class="fRight" style="margin-right: 12px; padding: 5px;"><%= link_to "Go Back", :back -%></div>
+    <br />
     <div style="margin:10px 0px;padding:5px;background-color:#F3F8DA;">
       <table style="width:100%;" cellpadding="0" cellspacing="0" border="0">
         <tr>
@@ -85,6 +88,8 @@
     <br /><br />
 <% else %>
     <div id="header">Your search returned no result</div>
+    <div class="fRight" style="margin-right: 12px; padding: 5px;"><%= link_to "Go Back", :back -%></div>
+    <br />
     <div style="margin:20px;font-size:14px;">
       <!--Please check the spelling or in case you did not find what you wanted <%= mail_to "info@italyabroad.com", "get in touch" %> and will find it for you -->
       <p><strong style="font-weight:bold;">Sorry - no results match your search. Please try again and see what gems you may find. </strong> </p>

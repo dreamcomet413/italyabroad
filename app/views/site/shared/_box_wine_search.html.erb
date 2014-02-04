@@ -16,7 +16,11 @@
       <table border="0">
         <tr>
           <td>Text:</td>
-          <td><%= text_field_tag :text, params[:text], :id => "search_text" %></td>
+          <td><%= text_field_tag :text, params[:text], {:id => "search_text"} %></td>
+        </tr>
+        <tr>
+          <td style="color: #ff0000;">Mood:</td>
+          <td><%= select_tag :mood, options_for_select([["Any",""],["Neutral","Neutral"],["Happy","Happy"],["Enjoy","Enjoy"],["Tensed","Tensed"],["Depressed","Depressed"],["Provoked","Provoked"],["Angry","Angry"],["Sad","Sad"]],params[:mood]), :id => "search_price" %></td>
         </tr>
         <tr>
           <td>Region:</td>
@@ -53,11 +57,7 @@
         </tr>
         <tr>
           <td>Price:</td>
-          <td><%#= select_tag :price, options_for_select([["Any Price",""],["Less than £7","< 7"],["From £7 to £11","BETWEEN 7 AND 11"],["From £11 to £15","BETWEEN 11 AND 15"],["From £16 to £20","BETWEEN 11 AND 20"],["More than £30","> 30"]], params[:price]), :id => "search_price" %></td>
-        </tr>
-        <tr>
-          <td>Mood:</td>
-          <td><%= select_tag :mood, options_for_select([["Any",""],["Neutral","Neutral"],["Happy","Happy"],["Enjoy","Enjoy"],["Tensed","Tensed"],["Depressed","Depressed"],["Provoked","Provoked"],["Angry","Angry"],["Sad","Sad"]],params[:mood]), :id => "search_price" %></td>
+          <td><%= select_tag :price, options_for_select([["Any Price",""],["Less than £7","< 7"],["From £7 to £11","BETWEEN 7 AND 11"],["From £11 to £15","BETWEEN 11 AND 15"],["From £16 to £20","BETWEEN 11 AND 20"],["More than £30","> 30"]], params[:price]), :id => "search_price" %></td>
         </tr>
         <tr>
           <td colspan="2"></td>

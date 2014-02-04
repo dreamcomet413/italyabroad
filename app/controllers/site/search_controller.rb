@@ -41,7 +41,6 @@ class Site::SearchController < ApplicationController
         format.html { render :action => :grapes }
       end
 
-
       #-------------
     elsif params[:category] == "all"
       @search = Search.new(params || Hash.new)
