@@ -366,6 +366,7 @@ a {
 #topTextBox table td{
     /*border: solid 1px;*/
     height: 131px;
+    /*vertical-align: top;*/
 }
 
 #reviews {
