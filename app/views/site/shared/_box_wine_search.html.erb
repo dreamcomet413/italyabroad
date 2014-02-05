@@ -20,7 +20,10 @@
         </tr>
         <tr>
           <td style="color: #ff0000;">Mood:</td>
-          <td><%= select_tag :mood, options_for_select([["Any",""],["Neutral","Neutral"],["Happy","Happy"],["Enjoy","Enjoy"],["Tensed","Tensed"],["Depressed","Depressed"],["Provoked","Provoked"],["Angry","Angry"],["Sad","Sad"]],params[:mood]), :id => "search_price" %></td>
+          <td>
+          <%#= select :product, :mood_ids, options_from_collection_for_select(Mood.all, 'id', 'name', @product.try(:moods).map(&:id)), {}, {:multiple => true, :style => "width:166px; padding: 2px"} %>
+            <%= select_tag :mood, options_from_collection_for_select(Mood.all, 'id', 'name'), :id => "search_price" %>
+          </td>
         </tr>
         <tr>
           <td>Region:</td>

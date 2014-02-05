@@ -413,3 +413,11 @@ ul.makeMenu, ul.makeMenu ul {
   ul.makeMenu li a:hover, ul.makeMenu li a.CSStoHighLink { color: #000; }
   ul.makeMenu li:hover > a { color: #000; } /* supports links in branch headings - should not be display: block; */
 
+.alt1 {
+    padding: 10px;
+}
+
+#product_mood_ids option {
+    padding: 2px
+}
+

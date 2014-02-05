@@ -48,14 +48,14 @@ class Site::SearchController < ApplicationController
 
       @search = Search.new(params || Hash.new)
       #  @wines = Product.find(:all, :include => [:categories, :grapes] ,:conditions => @search.conditions)
-      @wines = Product.find(:all, :include => [:categories] ,:conditions => ['upper(categories.name) LIKE ? AND products.name LIKE ? AND products.active = ? AND quantity > ? ','WINE',"%#{params[:text]}%",true,0])
+      @wines = Product.find(:all, :include => [:categories] ,:conditions => ['upper(categories.name) LIKE ? AND products.name LIKE ? AND moods.id = ? AND products.active = ? AND quantity > ? ','WINE',"%#{params[:text]}%", "#{params[:mood]}", true,0])
 
-      @hampers = Product.find(:all, :include => [:categories] ,:conditions => ['upper(categories.name) LIKE ? AND products.name LIKE ? AND products.active = ? AND quantity > ? ','HAMPERS',"%#{params[:text]}%",true,0])
+      @hampers = Product.find(:all, :include => [:categories] ,:conditions => ['upper(categories.name) LIKE ? AND products.name LIKE ? AND moods.id = ? AND products.active = ? AND quantity > ? ','HAMPERS',"%#{params[:text]}%", "#{params[:mood]}", true,0])
 
 
-      @foods = Product.find(:all, :include => [:categories] ,:conditions => ['upper(categories.name) LIKE ? AND products.name LIKE ? AND products.active = ? AND quantity > ? ','FOOD',"%#{params[:text]}%",true,0])
+      @foods = Product.find(:all, :include => [:categories] ,:conditions => ['upper(categories.name) LIKE ? AND products.name LIKE ? AND moods.id = ? AND products.active = ? AND quantity > ? ','FOOD',"%#{params[:text]}%", "#{params[:mood]}", true,0])
 
-      @wine_events = Product.find(:all, :include => [:categories] ,:conditions => ['upper(categories.name) LIKE ? AND products.name LIKE ? AND products.active = ?  AND DATE(date) >= ?','EVENTS',"%#{params[:text]}%",true,Date.today])
+      @wine_events = Product.find(:all, :include => [:categories] ,:conditions => ['upper(categories.name) LIKE ? AND products.name LIKE ? AND moods.id = ? AND products.active = ?  AND DATE(date) >= ?','EVENTS',"%#{params[:text]}%","#{params[:mood]}", true,Date.today])
 
       SearchQuery.create(:query => @search.text) unless (@wines.blank? or @foods.blank?)
 
@@ -78,7 +78,7 @@ class Site::SearchController < ApplicationController
       end
       @search = Search.new(params || Hash.new)
       @category = @search.category
-      @products = Product.where(@search.conditions).includes([:categories, :grapes]).order(@sort_by).paginate(:page => params[:page], :per_page => 10)
+      @products = Product.where(@search.conditions).includes([:categories, :grapes, :moods]).order(@sort_by).paginate(:page => params[:page], :per_page => 10)
       SearchQuery.create(:query => @search.text) unless @products.blank?
 
       respond_to do |format|

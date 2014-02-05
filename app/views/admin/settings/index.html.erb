@@ -229,6 +229,10 @@
       <td>% for discount</td>
       <td style="padding-left:40px;"><%= text_field :setting, :wine_discount_amount,:maxlength=>2 %></td>
     </tr>
+    <tr>
+      <td></td>
+      <td><%= link_to "Click here to manage Mood", admin_moods_index_path -%></td>
+    </tr>
      <tr>
       <td colspan="2"><%= submit_tag "Save" %></td>
     </tr>

@@ -1,0 +1,20 @@
+<div class="home" style="padding: 10px; width: 50%">
+  <div class="header"><h3>Moods</h3></div>
+  <div class="nav_link" style="float: right;"><%= link_to 'New Mood', admin_moods_new_path %></div>
+<table cellspacing="1" cellpadding="1" width="50%" class="list_ts" style="border: solid 1px;">
+  <tr>
+    <th class="thead alt1">Name</th>
+    <th colspan="2" class="thead alt1">Actions</th>
+  </tr>
+
+<% for mood in @moods %>
+  <tr>
+    <td class="alt1"><%=h mood.name %></td>
+    <td class="alt1"><%= link_to 'Edit', admin_moods_edit_path(:id => mood.id) %></td>
+    <td class="alt1"><%= link_to 'Destroy', admin_moods_destroy_path(:id => mood.id), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+<br />
+
+</div>

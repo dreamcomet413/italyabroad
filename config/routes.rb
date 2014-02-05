@@ -229,6 +229,16 @@ ItalyabroadNew::Application.routes.draw do
       resources :images, :only => [:destroy]
       resources :resources, :only => [:destroy]
     end
+    get "moods/index"
+
+    get "moods/new"
+
+    post "moods/create"
+
+    get "moods/edit"
+
+    put "moods/update"
+    delete "moods/destroy"
   end
 
   match 'admin/settings/update_guarantee_of_satisfaction_details' => 'admin/settings#update_guarantee_of_satisfaction_details', :as => :update_guarantee_of_satisfaction_details

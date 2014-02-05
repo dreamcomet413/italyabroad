@@ -1,0 +1,14 @@
+<div class="home" style="width: 50%; padding: 10px">
+  <div class="header"><h3>Edit Mood</h3></div>
+  <div class="nav_link" style="float: right"><%= link_to 'Back To Mood Page', admin_moods_index_path %></div>
+  <br />
+
+<fieldset>
+  <legend>Edit Mood</legend>
+<%= form_for(@mood, :url => admin_moods_update_path(:id => @mood.id), :html => {:method => :put}) do |f| %>
+  <%= render :partial => "form", :locals => {:f => f, :btn_text => 'Update'} -%>
+<% end %>
+</fieldset>
+
+&nbsp;
+</div>

@@ -45,6 +45,7 @@ class Product < ActiveRecord::Base
   belongs_to :resource_3, :class_name => "Resource", :foreign_key => "resource_3_id"
 
   has_and_belongs_to_many :cupons
+  has_and_belongs_to_many :moods
 
   has_many :reviews, :as => :reviewer, :dependent => :destroy
 

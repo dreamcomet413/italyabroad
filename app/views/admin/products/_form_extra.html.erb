@@ -37,5 +37,10 @@
 		  <td style="text-align:right">Organic:</td>
 		  <td><%= check_box :product, :organic %></td>
     </tr>
+    </tr>
+		<tr>
+		  <td style="text-align:right">Mood:</td>
+		  <td><%= select :product, :mood_ids, options_from_collection_for_select(Mood.all, 'id', 'name', @product.try(:moods).map(&:id)), {}, {:multiple => true, :style => "width:166px; padding: 2px"} %></td>
+    </tr>
 	</table>
 </fieldset>

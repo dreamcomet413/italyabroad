@@ -40,7 +40,8 @@ class Search
     conditions << "price #{price}" unless price.blank?
     conditions << "grapes.id = #{@grape}" unless grape.blank?
     conditions << "occasion_id = #{@occasion}" unless @occasion.blank?
-    conditions << "products.mood LIKE '%#{mood}%'" unless @mood.blank?
+    conditions << "moods.id = #{@mood}" unless @mood.blank?
+    #conditions << "products.mood LIKE '%#{mood}%'" unless @mood.blank?
    # conditions << "products.quantity > 0"
     conditions = conditions.join(" AND ")
     conditions = nil if conditions.blank?
@@ -58,6 +59,7 @@ class Search
     conditions << "recipe_level_id = #{@difficulty}" unless @difficulty.blank?
     conditions << "user_id = #{@user_id}" unless @user_id.blank?
     conditions << "region_id = #{@region}" unless @region.blank?
+    conditions << "mood_id = #{@mood}" unless @mood.blank?
     conditions = conditions.join(" AND ")
     conditions = nil if conditions.blank?
     return conditions

@@ -27,7 +27,7 @@
         <%#= form_tag("/site/sommelier", :method => "post", :remote => true, :id => "new_search") do -%>
         <% item_options.each do |item| %>
             <td class="recWine" style="width: <%= width -%>%; height: 30px;">
-              <%= radio_button :selected_option, "", "#{item}" %>
+              <%= radio_button :selected_option, "", "#{item}" %><br /></br /><%= item.gsub(" Wine", "") -%>
             </td>
         <% end %>
         <%= hidden_field_tag :step, step, :id => "step" -%>
