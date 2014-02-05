@@ -29,12 +29,12 @@ class Site::SommelierController < ApplicationController
             ["drink on its own", "with food"]
           when "3"
             if params[:selected_option] == "with food"
-              ["red meat", "white meat", "pasta", "fish", "cheeses", "desserts"]
+              ["Red Meat", "White Meat", "Pasta", "Fish", "Cheeses", "Desserts"]
             else
               ["under £10", "between £10 and £15", "more than £15"]
             end
           when "4"
-            ["under £10", "between £10 and £15", "more than £15"] if ["red meat", "white meat", "pasta", "fish", "cheeses", "desserts"].include?(params[:selected_option])
+            ["under £10", "between £10 and £15", "more than £15"] if ["Red Meat", "White Meat", "Pasta", "Fish", "Cheeses", "Desserts"].include?(params[:selected_option])
         end
     respond_to do |format|
       format.html{}

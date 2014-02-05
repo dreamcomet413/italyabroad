@@ -13,8 +13,16 @@
       <tr>
         <% item_options.each do |item| %>
             <td class="recWine" style="width: <%= width -%>%;">
-              <%= unless params[:step].present?
+              <%= if !params[:step].present?
                     image_tag("sommilier-image-#{item.upcase.gsub(" WINE", "").gsub(" ", "-")}.jpg", :height => "125", :width => "140")
+                  elsif params[:step] == "1"
+                    image_tag("sommilier-image-#{item.upcase.gsub(" BODY", "").gsub(" ", "-")}-BODIED-new.jpg", :height => "183", :width => "157")
+                  elsif params[:step] == "2"
+                    image_tag("sommilier-image-#{item.gsub(" ", "-")}.jpg", :height => "183", :width => "157")
+                  elsif params[:step] == "3" and params[:selected_option] == "drink on its own"
+                    image_tag("sommilier-image-price-#{item.gsub("£", "").gsub("and", "to").gsub(" ", "-")}.jpg", :height => "183", :width => "157")
+                  elsif params[:step] == "3" and params[:selected_option] == "with food"
+                    image_tag("sommilier-image-#{item.singularize.gsub(" ", "-")}.jpg", :height => "110", :width => "104")
                   else
                     item
                   end
@@ -27,7 +35,7 @@
         <%#= form_tag("/site/sommelier", :method => "post", :remote => true, :id => "new_search") do -%>
         <% item_options.each do |item| %>
             <td class="recWine" style="width: <%= width -%>%; height: 30px;">
-              <%= radio_button :selected_option, "", "#{item}" %><br /></br /><%= item.gsub(" Wine", "") -%>
+              <%= radio_button :selected_option, "", "#{item}" %><br /></br /><%= item.capitalize.gsub(" Wine", "") -%>
             </td>
         <% end %>
         <%= hidden_field_tag :step, step, :id => "step" -%>
