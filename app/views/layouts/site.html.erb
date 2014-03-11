@@ -108,6 +108,7 @@
       <% else %>
           <%= link_to "Log in", login_path %> | <%= link_to "Sign up", signup_path %>
       <% end %>
+        | <%= link_to "Contact Us", contact_us_path %>
     </div>
     <br /><div style="clear: both;"></div>
     <div style="margin-top: 12px;">
@@ -164,7 +165,7 @@
     <%- active_uri = request.request_uri -%>
     <ul class="nav1" style="z-index:1000;">  <!-- sujith modification z-index altered to try fixing the menu display issue -->
       <!--<li id="link-to-home" class="first<%#= " active" if active_uri == "/"%>"><%#= link_to "Home", root_path %></li>-->
-      <% for category in ["Wine", "Other Drinks", "Food", "Hampers", "Wine Tours", "Events"] do %>
+      <% for category in ["Wine", "Other Drinks", "Food", "Hampers", "Wine Club", "Events"] do %>
           <% category = Category.find_by_name(category)%>
 
           <% if category.present? %>

@@ -45,7 +45,7 @@
     </tr>
   </table> <br />
  Discount<%= text_field_tag 'discount',params[:discount]%><%= submit_tag 'Update',:name=>'update'%>
-  <table id="products-list" class="list sortable">
+  <table id="products-list" class="list tablesorter">
     <thead>
       <tr>
         <th>ID</th>
@@ -91,4 +91,12 @@
   </table>
   <% end %>
 </div>
+
+<script type="text/javascript">
+  $(document).ready(function() 
+  { 
+  $("#products-list").tablesorter(); 
+  } 
+  );
+</script>
 
