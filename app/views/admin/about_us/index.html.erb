@@ -1,6 +1,6 @@
 <h1>Listing about_us</h1>
 
-<table class="list sortable" >
+<table class="list tablesorter" >
   <tr>
     <th>Title</th>
     <th>Description</th>
@@ -23,3 +23,11 @@
 <br />
 
 <%#= link_to 'New about_u', new_about_u_path %>
+
+<script type="text/javascript">
+  $(document).ready(function() 
+  { 
+  $(".tablesorter").tablesorter(); 
+  } 
+  );
+</script>

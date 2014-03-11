@@ -14,7 +14,7 @@
       <td align="right"><%= link_to "New Grape", new_admin_grape_path %></td>
     </tr>
   </table>
-  <table id="grape-list" class="list sortable">
+  <table id="grape-list" class="list tablesorter">
     <thead>
       <tr>
         <th>ID</th>
@@ -76,3 +76,11 @@
   </table>
 </div>
 
+
+<script type="text/javascript">
+  $(document).ready(function() 
+  { 
+  $("#grape-list").tablesorter(); 
+  } 
+  );
+</script>

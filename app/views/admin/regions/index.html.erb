@@ -14,7 +14,7 @@
       <td align="right"><%= link_to "New Region", new_admin_region_path %></td>
     </tr>
   </table>
-  <table id="region-list" class="list sortable">
+  <table id="region-list" class="list tablesorter">
     <thead>
       <tr>
         <th>ID</th>
@@ -62,3 +62,11 @@
   </table>
 </div>
 
+
+<script type="text/javascript">
+  $(document).ready(function() 
+  { 
+  $("#region-list").tablesorter(); 
+  } 
+  );
+</script>

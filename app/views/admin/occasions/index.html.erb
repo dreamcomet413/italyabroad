@@ -10,7 +10,7 @@
       <td align="right"><%= link_to "New Occasion", new_admin_occasion_path %></td>
     </tr>
   </table>
-  <table class="list sortable" id="posts-list">
+  <table class="list tablesorter" id="posts-list">
     <thead>
       <tr>
         <th>ID</th>
@@ -34,3 +34,11 @@
   </table>
 </div>
 
+
+<script type="text/javascript">
+  $(document).ready(function() 
+  { 
+  $("#posts-list").tablesorter(); 
+  } 
+  );
+</script>

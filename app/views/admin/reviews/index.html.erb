@@ -10,7 +10,7 @@
       <td align="right"><%= link_to 'New Review',:controller=>'admin/reviews',:action=>'new' %></td>
     </tr>
   </table>
-  <table id="reviews-list" class="list sortable">
+  <table id="reviews-list" class="list tablesorter">
     <thead>
     <tr>
       <th>User</th>
@@ -91,3 +91,11 @@
     })
 </script>
 
+
+<script type="text/javascript">
+  $(document).ready(function() 
+  { 
+  $("#reviews-list").tablesorter(); 
+  } 
+  );
+</script>

@@ -26,7 +26,7 @@
       <td align="right"><%= link_to "XML", :controller => 'admin/recipes', :action => 'xml' %></td>
     </tr>
   </table>
-  <table id="recipes-list" class="list sortable">
+  <table id="recipes-list" class="list tablesorter">
     <thead>
       <tr>
         <th>ID</th>
@@ -54,3 +54,10 @@
   </table>
 </div>
 
+<script type="text/javascript">
+  $(document).ready(function() 
+  { 
+  $("#recipes-list").tablesorter(); 
+  } 
+  );
+</script>

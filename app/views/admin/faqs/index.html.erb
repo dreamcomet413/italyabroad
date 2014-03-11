@@ -19,7 +19,7 @@
       <td align="right"><%= link_to "New Question", new_admin_faq_path %></td>
     </tr>
   </table>
-  <table id="reviews-list" class="list sortable">
+  <table id="reviews-list" class="list tablesorter">
     <thead>
       <tr>
         <th>Question</th>
@@ -62,3 +62,10 @@
   </table>
 </div>
 
+<script type="text/javascript">
+  $(document).ready(function() 
+  { 
+  $("#reviews-list").tablesorter(); 
+  } 
+  );
+</script>

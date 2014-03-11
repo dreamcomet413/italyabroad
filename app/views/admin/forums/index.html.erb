@@ -10,7 +10,7 @@
       <td align="right"><%= link_to "Add New Forum ", new_forum_path %></td>
     </tr>
   </table>
-  <table id="admin_list" class="list sortable">
+  <table id="admin_list" class="list tablesorter">
     <thead>
       <tr>
         <th>Name</th>
@@ -43,3 +43,12 @@
     </tbody>
   </table>
 </div>
+
+<script type="text/javascript">
+  $(document).ready(function() 
+  { 
+  $("#admin_list").tablesorter(); 
+  } 
+  );
+</script>
+

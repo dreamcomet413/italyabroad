@@ -10,7 +10,7 @@
       <td align="right"><%= link_to "New Subscriber", new_admin_subscription_path %></td>
     </tr>
   </table>
-  <table id="subscriptions-list" class="list sortable">
+  <table id="subscriptions-list" class="list tablesorter">
     <thead>
       <tr>
         <th>ID</th>
@@ -39,3 +39,11 @@
     </tbody>
   </table>
 </div>
+<script type="text/javascript">
+  $(document).ready(function() 
+  { 
+  $("#subscriptions-list").tablesorter(); 
+  } 
+  );
+</script>
+

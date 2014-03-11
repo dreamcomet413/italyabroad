@@ -18,7 +18,7 @@
     </tr>
   </table> <br />
 
-  <table id="products-list" class="list sortable">
+  <table id="products-list" class="list tablesorter">
     <thead>
       <tr>
         <th>ID</th>
@@ -64,3 +64,10 @@
   <% end %>
 </div>
 
+<script type="text/javascript">
+  $(document).ready(function() 
+  { 
+  $("#products-list").tablesorter(); 
+  } 
+  );
+</script>

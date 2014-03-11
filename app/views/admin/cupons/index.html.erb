@@ -10,7 +10,7 @@
       <td align="right"><%= link_to "New Cupon", new_admin_cupon_path %></td>
     </tr>
   </table>
-  <table id="cupons-list" class="list sortable">
+  <table id="cupons-list" class="list tablesorter">
     <thead>
       <tr>
         <th>ID</th>
@@ -51,4 +51,13 @@
     </tbody>
   </table>
 </div>
+
+
+<script type="text/javascript">
+  $(document).ready(function() 
+  { 
+  $("#cupons-list").tablesorter(); 
+  } 
+  );
+</script>
 

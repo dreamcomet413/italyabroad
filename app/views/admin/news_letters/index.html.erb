@@ -10,7 +10,7 @@
       <td align="right"><%= link_to "New Letter", new_admin_news_letter_path %></td>
     </tr>
   </table>
-  <table id="news_letters-list" class="list sortable">
+  <table id="news_letters-list" class="list tablesorter">
     <thead>
       <tr>
         <th>ID</th>
@@ -43,3 +43,11 @@
     </tbody>
   </table>
 </div>
+<script type="text/javascript">
+  $(document).ready(function() 
+  { 
+  $("#news_letters-list").tablesorter(); 
+  } 
+  );
+</script>
+

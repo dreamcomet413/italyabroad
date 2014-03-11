@@ -10,7 +10,7 @@
       <td align="right"><%= link_to "New User", new_admin_user_path %></td>
     </tr>
   </table>
-  <table id="user-list" class="list sortable">
+  <table id="user-list" class="list tablesorter">
     <thead>
       <tr>
         <th>ID</th>
@@ -46,3 +46,11 @@
   <%= will_paginate(@users) %>
 </div>
 
+
+<script type="text/javascript">
+  $(document).ready(function() 
+  { 
+  $("#user-list").tablesorter(); 
+  } 
+  );
+</script>

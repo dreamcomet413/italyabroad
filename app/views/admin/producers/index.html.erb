@@ -14,7 +14,7 @@
       <td align="right"><%= link_to "New Producer", new_admin_producer_path %></td>
     </tr>
   </table>
-  <table id="grape-list" class="list sortable">
+  <table id="grape-list" class="list tablesorter">
     <thead>
       <tr>
         <th>ID</th>
@@ -58,4 +58,12 @@
     </tbody>
   </table>
 </div>
+
+<script type="text/javascript">
+  $(document).ready(function() 
+  { 
+  $("#grape-list").tablesorter(); 
+  } 
+  );
+</script>
 

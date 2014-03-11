@@ -10,7 +10,7 @@
       <td align="right"><%= link_to "New Delivery", new_admin_delivery_path %></td>
     </tr>
   </table>
-  <table id="delivery-list" class="list sortable">
+  <table id="delivery-list" class="list tablesorter">
     <thead>
       <tr>
         <th>ID</th>
@@ -47,3 +47,11 @@
 
 </div>
 
+
+<script type="text/javascript">
+  $(document).ready(function() 
+  { 
+  $("#delivery-list").tablesorter(); 
+  } 
+  );
+</script>

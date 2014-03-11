@@ -4,7 +4,7 @@
 <div class="inner_content comments" id="admin_comments_index">
   <h2>Feedbacks</h2>
   <br /><br />
-  <table id="comments-list" class="list sortable">
+  <table id="comments-list" class="list tablesorter">
     <thead>
       <tr>
         <th>ID</th>
@@ -37,3 +37,11 @@
   </table>
 
 </div>
+
+<script type="text/javascript">
+  $(document).ready(function() 
+  { 
+  $("#comments-list").tablesorter(); 
+  } 
+  );
+</script>

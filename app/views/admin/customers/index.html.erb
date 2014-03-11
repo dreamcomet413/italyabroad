@@ -25,7 +25,7 @@
       </td>
     </tr>
   </table>
-  <table id="user-list" class="list sortable" width="100%">
+  <table id="user-list" class="list tablesorter" width="100%">
     <thead>
       <tr>
         <th class="sortfirstdec">ID</th>
@@ -68,4 +68,13 @@
     </tbody>
   </table>
 </div>
+
+
+<script type="text/javascript">
+  $(document).ready(function() 
+  { 
+  $("#user-list").tablesorter(); 
+  } 
+  );
+</script>
 

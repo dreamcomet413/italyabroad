@@ -3,7 +3,7 @@
 
 <div class="inner_content regions" id="admin_regions_index">
   <h2>Testimonials</h2><div align="right"><%= link_to "New Testimonial", new_admin_testimonial_path %></div>
-  <table id="region-list" class="list sortable">
+  <table id="region-list" class="list tablesorter">
     <thead>
       <tr>
         <th>ID</th>
@@ -35,3 +35,10 @@
   </table>
 </div>
 
+<script type="text/javascript">
+  $(document).ready(function() 
+  { 
+  $("#region-list").tablesorter(); 
+  } 
+  );
+</script>

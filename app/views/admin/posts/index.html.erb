@@ -10,7 +10,7 @@
       <td align="right"><%= link_to "New Post", new_admin_post_path %></td>
     </tr>
   </table>
-  <table class="list sortable" id="posts-list">
+  <table class="list tablesorter" id="posts-list">
     <thead>
       <tr>
         <th>ID</th>
@@ -40,3 +40,12 @@
     </tbody>
   </table>
 </div>
+
+<script type="text/javascript">
+  $(document).ready(function() 
+  { 
+  $("#posts-list").tablesorter(); 
+  } 
+  );
+</script>
+

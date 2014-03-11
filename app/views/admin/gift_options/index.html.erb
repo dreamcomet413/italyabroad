@@ -12,7 +12,7 @@
       <td align="right"><%= link_to "New Gift Option", new_admin_gift_option_path %></td>
     </tr>
   </table>
-  <table id="gift_option-list" class="list sortable">
+  <table id="gift_option-list" class="list tablesorter">
     <thead>
       <tr>
         <th>ID</th>
@@ -44,3 +44,12 @@
   </table>
   <%= will_paginate(@gift_options) %>
 </div>
+
+<script type="text/javascript">
+  $(document).ready(function() 
+  { 
+  $("#gift_option-list").tablesorter(); 
+  } 
+  );
+</script>
+

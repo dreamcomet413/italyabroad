@@ -34,7 +34,7 @@
 
     </tr>
   </table>
-  <table id="cupons-list" class="list sortable" >
+  <table id="cupons-list" class="list tablesorter" >
     <thead>
       <tr>
         <th>No</th><th>Customer</th><th>Cupon</th><th>Gift</th><th>Paid</th><th>Status</th><th>Method</th><th>Sub Total</th><th>Total</th><th>Created</th><th>Updated</th><th class="nosort"></th>
@@ -97,3 +97,10 @@
   </table>
 </div>
 
+<script type="text/javascript">
+  $(document).ready(function() 
+  { 
+  $("#cupons-list").tablesorter(); 
+  } 
+  );
+</script>
