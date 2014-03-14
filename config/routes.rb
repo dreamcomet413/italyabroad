@@ -1,5 +1,7 @@
 ItalyabroadNew::Application.routes.draw do
 
+  namespace(:admin){ resources :wine_sizes }
+
   namespace(:site){ resources :authentications }
 
   match "/auth/:provider/callback" => "site/authentications#create"

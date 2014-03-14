@@ -1,0 +1,9 @@
+  <h2>Edit Wine Size</h2>
+
+<%= form_for(@wine_size, :url => "/admin/wine_sizes/#{@wine_size.id}", :html => {:method => :put}) do |f| %>
+<%= render :partial => 'form', :locals => {:f => f} %>
+<% end %>
+
+<p><%= link_to "Back to List", admin_wine_sizes_path %></p>
+
+
