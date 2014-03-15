@@ -24,17 +24,21 @@ class Site::SommelierController < ApplicationController
     search_options =
         case params[:step]
           when "1"
-            ["Light", "Medium", "Full Body"]
+            WineSize.all.map(&:title)
+            #["Light", "Medium", "Full Body"]
           when "2"
-            ["drink on its own", "with food"]
+            FoodOrDrink.all.map(&:title)
+            #["drink on its own", "with food"]
           when "3"
-            if params[:selected_option] == "with food"
-              ["red meat", "white meat", "pasta", "fish", "cheeses", "desserts"]
+            if params[:selected_option].downcase.strip == "with food"
+              FoodOption.all.map(&:title)
+              #["red meat", "white meat", "pasta", "fish", "cheeses", "desserts"]
             else
-              ["under £10", "between £10 and £20", "more than £20"]
+              DesiredExpenditure.all.map(&:title)
+              #["under £10", "between £10 and £20", "more than £20"]
             end
           when "4"
-            ["under £10", "between £10 and £20", "more than £20"] if ["Red Meat", "White Meat", "Pasta", "Fish", "Cheeses", "Desserts"].include?(params[:selected_option])
+            DesiredExpenditure.all.map(&:title) if FoodOption.all.map(&:title).include?(params[:selected_option])
         end
     respond_to do |format|
       format.html{}

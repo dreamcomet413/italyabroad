@@ -1,5 +1,13 @@
 <tr>
-    <td colspan="4"><h2 class="fLeft question"><%= @questions[params[:step].to_i]-%></h2></td>
+    <td colspan="4"><h2 class="fLeft question">
+      <%= if (params[:selected_option].present? and params[:selected_option].downcase.strip == "with food")
+            @questions[params[:step].to_i + 1]
+          elsif params[:step] == "4"
+            @questions[params[:step].to_i - 1]
+          else
+            @questions[params[:step].to_i]
+      end -%>
+          </h2></td>
   </tr>
 <tr><td>&nbsp;</td></tr>
 <tr><td>&nbsp;</td></tr>
@@ -14,15 +22,17 @@
         <% item_options.each do |item| %>
             <td class="recWine" style="width: <%= width -%>%;">
               <%= if !params[:step].present?
-                    image_tag("sommilier-image-#{item.upcase.gsub(" WINE", "").gsub(" ", "-")}.jpg", :height => "125", :width => "140")
+                    image_tag("sommilier-image-#{item.strip.upcase.gsub(" WINE", "").gsub(" ", "-")}.jpg", :height => "125", :width => "140")
                   elsif params[:step] == "1"
-                    image_tag("sommilier-image-#{item.upcase.gsub(" BODY", "").gsub(" ", "-")}-BODIED-new.jpg", :height => "183", :width => "157")
+                    image_tag("sommilier-image-#{item.strip.upcase.gsub(" BODY", "").gsub(" ", "-")}-BODIED-new.jpg", :height => "183", :width => "157")
                   elsif params[:step] == "2"
-                    image_tag("sommilier-image-#{item.gsub(" ", "-")}.jpg", :height => "183", :width => "157")
-                  elsif params[:step] == "3" and params[:selected_option] == "drink on its own"
-                    image_tag("sommilier-image-price-#{item.gsub("£", "").gsub("and", "to").gsub(" ", "-")}.jpg", :height => "183", :width => "157")
-                  elsif params[:step] == "3" and params[:selected_option] == "with food"
-                    image_tag("sommilier-image-#{item.singularize.gsub(" ", "-")}.jpg", :height => "110", :width => "104")
+                    image_tag("sommilier-image-#{item.strip.gsub(" ", "-")}.jpg", :height => "183", :width => "157")
+                  elsif params[:step] == "3" and params[:selected_option].downcase.strip == "drink on its own"
+                    image_tag("sommilier-image-price-#{item.strip.gsub("£", "").gsub("and", "to").gsub(" ", "-")}.jpg", :height => "183", :width => "157")
+                  elsif params[:step] == "3" and params[:selected_option].downcase.strip == "with food"
+                    image_tag("sommilier-image-#{item.strip.singularize.gsub(" ", "-")}.jpg", :height => "110", :width => "104")
+                  elsif params[:step] == "4"
+                    image_tag("sommilier-image-price-#{item.strip.gsub("£", "").gsub("and", "to").gsub(" ", "-")}.jpg", :height => "183", :width => "157")
                   else
                     item
                   end
@@ -82,7 +92,7 @@
             $.ajax({
                 type: 'POST',
                 url: "/site/sommelier",
-                data: {selected_option: "<%= params[:selected_option] -%>", step: "<%= params[:step].to_i - 1 -%>"},
+                data: {selected_option: "<%= params[:selected_option] -%>", step: "<%= params[:step] == "4" ? params[:step].to_i - 2 : params[:step].to_i - 1 -%>"},
                 cache: false,
                 success: function(data){
     //            alert(data)
