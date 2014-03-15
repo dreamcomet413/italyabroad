@@ -26,7 +26,7 @@
                   elsif params[:step] == "1"
                     image_tag("sommilier-image-#{item.strip.upcase.gsub(" BODY", "").gsub(" ", "-")}-BODIED-new.jpg", :height => "183", :width => "157")
                   elsif params[:step] == "2"
-                    image_tag("sommilier-image-#{item.strip.gsub(" ", "-")}.jpg", :height => "183", :width => "157")
+                    image_tag("sommilier-image-#{item.downcase.strip.gsub(" ", "-")}.jpg", :height => "183", :width => "157")
                   elsif params[:step] == "3" and params[:selected_option].downcase.strip == "drink on its own"
                     image_tag("sommilier-image-price-#{item.downcase.strip.gsub("£", "").gsub("and", "to").gsub(" ", "-")}.jpg", :height => "183", :width => "157")
                   elsif params[:step] == "3" and params[:selected_option].downcase.strip == "with food"
