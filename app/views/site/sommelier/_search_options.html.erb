@@ -28,11 +28,11 @@
                   elsif params[:step] == "2"
                     image_tag("sommilier-image-#{item.strip.gsub(" ", "-")}.jpg", :height => "183", :width => "157")
                   elsif params[:step] == "3" and params[:selected_option].downcase.strip == "drink on its own"
-                    image_tag("sommilier-image-price-#{item.strip.gsub("£", "").gsub("and", "to").gsub(" ", "-")}.jpg", :height => "183", :width => "157")
+                    image_tag("sommilier-image-price-#{item.downcase.strip.gsub("£", "").gsub("and", "to").gsub(" ", "-")}.jpg", :height => "183", :width => "157")
                   elsif params[:step] == "3" and params[:selected_option].downcase.strip == "with food"
-                    image_tag("sommilier-image-#{item.strip.singularize.gsub(" ", "-")}.jpg", :height => "110", :width => "104")
+                    image_tag("sommilier-image-#{item.downcase.strip.singularize.gsub(" ", "-")}.jpg", :height => "110", :width => "104")
                   elsif params[:step] == "4"
-                    image_tag("sommilier-image-price-#{item.strip.gsub("£", "").gsub("and", "to").gsub(" ", "-")}.jpg", :height => "183", :width => "157")
+                    image_tag("sommilier-image-price-#{item.downcase.strip.gsub("£", "").gsub("and", "to").gsub(" ", "-")}.jpg", :height => "183", :width => "157")
                   else
                     item
                   end
