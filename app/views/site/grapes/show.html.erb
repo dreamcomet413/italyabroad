@@ -27,7 +27,7 @@
 <div style="margin-left:10px;margin-right:10px;">
  <!-- <h1 style="text-align:center;font-size:18px;font-weight:bold;color:#666666;margin-bottom:30px">Grape Information</h1> -->
   <div style="float:left;margin-right:20px;"><%#= show_grape_image(@grape) %></div><br />
-  <p style="text-align:justify;margin-left:10px;margin-right:10px;"><%= @grape.description.html_safe() || "No Description" %></p>
+  <p style="text-align:justify;margin-left:10px;margin-right:10px;"><%= @grape.description.try(:html_safe) || "No Description" %></p>
   <div style="clear:both;"></div>
   <br />
 
