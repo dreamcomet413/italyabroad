@@ -1,19 +1,19 @@
 <div class="inner_content producers" id="admin_producers_index">
-  <h2>Wine Sizes</h2>
-  <br />
-  <table id="grape-list" class="list tablesorter">
-    <tr>
-      <th>Title</th>
-      <th colspan="2">Actions</th>
-    </tr>
-    <% for wine_size in @wine_sizes %>
+  <fieldset  style="width: 50%">
+    <legend><h3>Wine Sizes</h3></legend>
+    <p style="text-align: right;"><%= link_to "New Wine Size", new_admin_wine_size_path %></p>
+    <table id="grape-list" class="list tablesorter">
       <tr>
-	<td><%= wine_size.title %></td>
-	<td><%= link_to "Edit", edit_admin_wine_size_path(wine_size.id) %></td>
-	<td><%= link_to "Destroy", "/admin/wine_sizes/#{wine_size.id}", :confirm => 'Are you sure?', :method => :delete %></td>
+        <th>Title</th>
+        <th colspan="2">Actions</th>
       </tr>
-    <% end %>
-  </table>
-
-  <p><%= link_to "New Wine Size", new_admin_wine_size_path %></p>
+      <% for wine_size in @wine_sizes %>
+          <tr>
+            <td style="width: 50%"><%= wine_size.title %></td>
+            <td><%= link_to "Edit", edit_admin_wine_size_path(wine_size.id) %> |
+              <%= link_to "Destroy", "/admin/wine_sizes/#{wine_size.id}", :confirm => 'Are you sure?', :method => :delete %></td>
+          </tr>
+      <% end %>
+    </table>
+  </fieldset>
 </div>

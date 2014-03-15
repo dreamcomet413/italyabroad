@@ -1,6 +1,14 @@
 ItalyabroadNew::Application.routes.draw do
 
-  namespace(:admin){ resources :wine_sizes }
+
+
+  namespace(:admin){
+    resources :wine_sizes
+    resources :sommeliers
+    resources :food_or_drinks
+    resources :desired_expenditures
+    resources :food_options
+  }
 
   namespace(:site){ resources :authentications }
 

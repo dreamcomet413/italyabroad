@@ -1,0 +1,6 @@
+<h2>Create New Food or Drink Option</h2>
+<%= form_for @food_or_drink, :url => "/admin/food_or_drinks", :html => {:method => :post} do |f| %>
+    <%= render :partial => 'form', :locals => {:f => f } %>
+<% end %>
+
+<p><%= link_to "Back to List", admin_sommeliers_path %></p>

@@ -1,0 +1,14 @@
+<%- @title = "Administration - Sommelier"; @page_id = "Other Stuff" -%>
+<%- @breadcrumbs = "Other Stuff &raquo; #{link_to "sommeliers", admin_sommeliers_path}" -%>
+
+<div class="inner_content recipes" id="admin_recipes_index">
+  <h2>Manage Sommelier</h2>
+  <br />
+  <%= render :template => "admin/wine_sizes/index" -%>
+  <%= render :template => "admin/food_or_drinks/index" -%>
+  <%= render :template => "admin/desired_expenditures/index" -%>
+  <%= render :template => "admin/food_options/index" -%>
+</div>
+
+
+

@@ -1,0 +1,12 @@
+<% title "Food Or Drink" %>
+
+<p>
+  <strong>Name:</strong>
+  <%= @food_or_drink.name %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_food_or_drink_path(@food_or_drink) %> |
+  <%= link_to "Destroy", @food_or_drink, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", food_or_drinks_path %>
+</p>

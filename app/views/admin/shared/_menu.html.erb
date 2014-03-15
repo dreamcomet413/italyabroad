@@ -1,178 +1,178 @@
 <style>
-  /*-----NEW MENU----*/
-  .menu_wrap {
-    width:100%;
-    height:21px;
-    border-bottom:4px solid #AEBB45;
-    float:left;
-  }
-  .menu_leftwrap {
-    width:900px;
-    float:left;
-  }
-  .menu_leftwrap ul {
-    margin:0;
-    padding:0;
-    list-style-type:none;
-  }
-  .menu_leftwrap ul li {
-    float:left;
-    padding:0;
-    line-height:21px;
-    margin:0 2px 0 0;
-    font-weight:bold;
-    color:white;
-  }
-  .menu_leftwrap ul li a {
-    color:black;
-    text-decoration:none;
-  }
-  .menu_leftwrap ul li.big {
-    background:url(/images/admin/menu_big.gif) no-repeat;
-    width:101px;
-    text-align:center;
-  }
-  .menu_leftwrap ul li.big a {
-    display:block;
-    width:101px;
-    text-decoration:none;
-    color:white;
-  }
-  .menu_leftwrap ul li.big a:hover {
-    background:url(/images/admin/menu_big_hover.gif) no-repeat;
-    color:black;
-  }
-  .menu_leftwrap ul li.small {
-    background:url(/images/admin/menu_sml.gif) no-repeat;
-    width:62px;
-    text-align:center;
-  }
-  .menu_leftwrap ul li.small a {
-    display:block;
-    width:62px;
-    text-decoration:none;
-    color:white;
-  }
-  .menu_leftwrap ul li.small a:hover {
-    background:url(/images/admin/menu_sml_hover.gif) no-repeat;
-    color:black;
-  }
+    /*-----NEW MENU----*/
+    .menu_wrap {
+        width:100%;
+        height:21px;
+        border-bottom:4px solid #AEBB45;
+        float:left;
+    }
+    .menu_leftwrap {
+        width:900px;
+        float:left;
+    }
+    .menu_leftwrap ul {
+        margin:0;
+        padding:0;
+        list-style-type:none;
+    }
+    .menu_leftwrap ul li {
+        float:left;
+        padding:0;
+        line-height:21px;
+        margin:0 2px 0 0;
+        font-weight:bold;
+        color:white;
+    }
+    .menu_leftwrap ul li a {
+        color:black;
+        text-decoration:none;
+    }
+    .menu_leftwrap ul li.big {
+        background:url(/images/admin/menu_big.gif) no-repeat;
+        width:101px;
+        text-align:center;
+    }
+    .menu_leftwrap ul li.big a {
+        display:block;
+        width:101px;
+        text-decoration:none;
+        color:white;
+    }
+    .menu_leftwrap ul li.big a:hover {
+        background:url(/images/admin/menu_big_hover.gif) no-repeat;
+        color:black;
+    }
+    .menu_leftwrap ul li.small {
+        background:url(/images/admin/menu_sml.gif) no-repeat;
+        width:62px;
+        text-align:center;
+    }
+    .menu_leftwrap ul li.small a {
+        display:block;
+        width:62px;
+        text-decoration:none;
+        color:white;
+    }
+    .menu_leftwrap ul li.small a:hover {
+        background:url(/images/admin/menu_sml_hover.gif) no-repeat;
+        color:black;
+    }
 
-  .dropmenudiv{
-    position:absolute;
-    top: 0;
-    font:normal 11px Arial, Helvetica, sans-serif;
-    line-height:18px;
-    z-index:100;
-    background:#f3f8da;
-    width: 110px;
-    visibility: hidden;
-    filter: progid:DXImageTransform.Microsoft.Shadow(color=#CACACA,direction=135,strength=4); /*Add Shadow in IE. Remove if desired*/
-    padding-bottom:5px;
-    color:#000000;
-  }
-
-
-  .dropmenudiv a{
-    width: auto;
-    display: block;
-    padding:5px 0 0 15px;
-    text-decoration: none;
-    color: #000000;
-  }
-
-  * html .dropmenudiv a{ /*IE only hack*/
-                         width: 100%;
-  }
-
-  .dropmenudiv a:hover{ /*THEME CHANGE HERE*/
-                        text-decoration:underline;
-  }
-
-  .dropmenudiv a:visited{
-    color: #000000;
-  }
+    .dropmenudiv{
+        position:absolute;
+        top: 0;
+        font:normal 11px Arial, Helvetica, sans-serif;
+        line-height:18px;
+        z-index:100;
+        background:#f3f8da;
+        width: 110px;
+        visibility: hidden;
+        filter: progid:DXImageTransform.Microsoft.Shadow(color=#CACACA,direction=135,strength=4); /*Add Shadow in IE. Remove if desired*/
+        padding-bottom:5px;
+        color:#000000;
+    }
 
 
-  .menu_rightwrap {
-    width:auto;
-    float:right;
-  }
-  .menu_rightwrap ul {
-    margin:0;
-    padding:0;
-    list-style-type:none;
-  }
-  .menu_rightwrap ul li {
-    float:left;
-    margin:0 5px 0 0;
-    font-weight:bold;
-  }
-  .menu_rightwrap ul li a {
-    color:black;
-    text-decoration:none;
-  }
-  .menu_rightwrap ul li a:hover {
-    text-decoration:underline;
-  }
-  .menu_rightwrap a{
-    color:black;
-    text-decoration:none;
-    font-weight:bold;
-  }
+    .dropmenudiv a{
+        width: auto;
+        display: block;
+        padding:5px 0 0 15px;
+        text-decoration: none;
+        color: #000000;
+    }
+
+    * html .dropmenudiv a{ /*IE only hack*/
+        width: 100%;
+    }
+
+    .dropmenudiv a:hover{ /*THEME CHANGE HERE*/
+        text-decoration:underline;
+    }
+
+    .dropmenudiv a:visited{
+        color: #000000;
+    }
+
+
+    .menu_rightwrap {
+        width:auto;
+        float:right;
+    }
+    .menu_rightwrap ul {
+        margin:0;
+        padding:0;
+        list-style-type:none;
+    }
+    .menu_rightwrap ul li {
+        float:left;
+        margin:0 5px 0 0;
+        font-weight:bold;
+    }
+    .menu_rightwrap ul li a {
+        color:black;
+        text-decoration:none;
+    }
+    .menu_rightwrap ul li a:hover {
+        text-decoration:underline;
+    }
+    .menu_rightwrap a{
+        color:black;
+        text-decoration:none;
+        font-weight:bold;
+    }
 </style>
 
 
 
 <div class="menu_wrap">
-  <div class="menu_leftwrap" id="chromemenu">
-    <ul>
-      <li class="small"><a href="#">Home</a></li>
-      <li class="big"><a href="#" rel="dropmenu1">Administration</a></li>
-      <li class="small" id="catalog-nav" <%= ("class='active'" if @page_id == "Catalog") %>>
-        <%= link_to "Catalog", admin_deliveries_path, :class => ('active' if @page_id == "Catalog"),:rel => "dropmenu2" %>
-      </li>
+<div class="menu_leftwrap" id="chromemenu">
+  <ul>
+    <li class="small"><a href="#">Home</a></li>
+    <li class="big"><a href="#" rel="dropmenu1">Administration</a></li>
+    <li class="small" id="catalog-nav" <%= ("class='active'" if @page_id == "Catalog") %>>
+      <%= link_to "Catalog", admin_deliveries_path, :class => ('active' if @page_id == "Catalog"),:rel => "dropmenu2" %>
+    </li>
 
-      <li class="small" id="sales-nav" <%= ("class='active'" if @page_id == "Sales") %>>
-        <%= link_to "Sales", admin_cupons_path, :class => ('active' if @page_id == "Sales") ,:rel => "dropmenu3" %>
-      </li>
+    <li class="small" id="sales-nav" <%= ("class='active'" if @page_id == "Sales") %>>
+      <%= link_to "Sales", admin_cupons_path, :class => ('active' if @page_id == "Sales") ,:rel => "dropmenu3" %>
+    </li>
 
-      <li class="small" id="blog-nav" <%= ("class='active'" if @page_id == "Blog") %>>
-        <%= link_to "Blog", admin_posts_path, :class => ('active' if @page_id == "Blog"),:rel=> "dropmenu4" %>
-      </li>
-      <li class="big" id="other-stuff-nav" <%= ("class='active'" if @page_id == "Other Stuff") %>>
-        <%= link_to "Other Stuff", admin_recipes_path, :class => ('active' if @page_id == "Other Stuff"), :rel => "dropmenu5" %>
-      </li>
-      <li class="big" id="newsletters-nav" <%= ("class='active'" if @page_id == "News Letters") %>>
-        <%= link_to "News Letters", admin_news_letters_path, :class => ('active' if @page_id == "News Letters"),:rel =>"dropmenu6" %>
-      </li>
-      <li class="small" id="grapes-nav" <%= ("class='active'" if @page_id == "Grapes") %>>
-        <%= link_to "Grapes", admin_grapes_path, :class => ('active' if @page_id == "Grapes"),:rel => "dropmenu7" %>
-      </li>
-      <li class="big" id="forum-nav" <%= ("class='active'" if @page_id == "Forum") %>>
-        <%= link_to "Forum", admin_forums_path, :class => ('active' if @page_id == "Forum") %>
-      </li>
+    <li class="small" id="blog-nav" <%= ("class='active'" if @page_id == "Blog") %>>
+      <%= link_to "Blog", admin_posts_path, :class => ('active' if @page_id == "Blog"),:rel=> "dropmenu4" %>
+    </li>
+    <li class="big" id="other-stuff-nav" <%= ("class='active'" if @page_id == "Other Stuff") %>>
+      <%= link_to "Other Stuff", admin_recipes_path, :class => ('active' if @page_id == "Other Stuff"), :rel => "dropmenu5" %>
+    </li>
+    <li class="big" id="newsletters-nav" <%= ("class='active'" if @page_id == "News Letters") %>>
+      <%= link_to "News Letters", admin_news_letters_path, :class => ('active' if @page_id == "News Letters"),:rel =>"dropmenu6" %>
+    </li>
+    <li class="small" id="grapes-nav" <%= ("class='active'" if @page_id == "Grapes") %>>
+      <%= link_to "Grapes", admin_grapes_path, :class => ('active' if @page_id == "Grapes"),:rel => "dropmenu7" %>
+    </li>
+    <li class="big" id="forum-nav" <%= ("class='active'" if @page_id == "Forum") %>>
+      <%= link_to "Forum", admin_forums_path, :class => ('active' if @page_id == "Forum") %>
+    </li>
 
-      <li class="big"  <%= ("class='active'" if @page_id == "About us") %>>
-        <%= link_to "Content Mngt.",admin_about_us_path(:type => "who we are", :page_type =>"Content Management"), :class => ('active' if @current_controller == "about_us"),:rel => "dropmenu8" %>
-      </li>
+    <li class="big"  <%= ("class='active'" if @page_id == "About us") %>>
+      <%= link_to "Content Mngt.",admin_about_us_path(:type => "who we are", :page_type =>"Content Management"), :class => ('active' if @current_controller == "about_us"),:rel => "dropmenu8" %>
+    </li>
 
-      <li class="small"  <%= ("class='active'" if @page_id == "About us") %>>
-        <%= link_to "Help",admin_about_us_path(:type => "terms_conditions", :page_type => "Help"), :class => ('active' if @current_controller == "about_us"),:rel => "dropmenu9" %>
-      </li>
+    <li class="small"  <%= ("class='active'" if @page_id == "About us") %>>
+      <%= link_to "Help",admin_about_us_path(:type => "terms_conditions", :page_type => "Help"), :class => ('active' if @current_controller == "about_us"),:rel => "dropmenu9" %>
+    </li>
 
-    </ul>
-  </div>
+  </ul>
+</div>
 
-  <!--1st drop down menu -->
-  <div id="dropmenu1" class="dropmenudiv">
-    <span <%= "class='active'" if @current_controller == "settings" %>><%= link_to "Settings", admin_settings_path, :class => ('active' if @current_controller == "settings") %></span>
-    <span <%= "class='active'" if @current_controller == "users" %>><%= link_to "Administrators", admin_users_path, :class => ('active' if @current_controller == "users") %></span>
-    <span <%= "class='active'" if @current_controller == "customers" %>><%= link_to "Customers", admin_customers_path, :class => ('active' if @current_controller == "customers") %></span>
-  </div>
-  <!--1st drop down menu -->
-  <!--2nd drop down menu -->
-  <div id="dropmenu2" class="dropmenudiv">
+<!--1st drop down menu -->
+<div id="dropmenu1" class="dropmenudiv">
+  <span <%= "class='active'" if @current_controller == "settings" %>><%= link_to "Settings", admin_settings_path, :class => ('active' if @current_controller == "settings") %></span>
+  <span <%= "class='active'" if @current_controller == "users" %>><%= link_to "Administrators", admin_users_path, :class => ('active' if @current_controller == "users") %></span>
+  <span <%= "class='active'" if @current_controller == "customers" %>><%= link_to "Customers", admin_customers_path, :class => ('active' if @current_controller == "customers") %></span>
+</div>
+<!--1st drop down menu -->
+<!--2nd drop down menu -->
+<div id="dropmenu2" class="dropmenudiv">
     <span <%= "class='active'" if @current_controller == "deliveries" %>>
       <%= link_to "Deliveries", admin_deliveries_path, :class => ('active' if @current_controller == "deliveries") %>
     </span>
@@ -197,38 +197,41 @@
     <span <%= "class='active'" if @current_controller == "shipping_agencies" %>>
       <%= link_to "Shipping Agencies", admin_shipping_agencies_path, :class => ('active' if @current_controller == "shipping_agencies") %>
     </span>
-  </div>
-  <!--2nd drop down menu -->
-  <!--3rd drop down menu -->
-  <div id="dropmenu3" class="dropmenudiv">
-    <span <%= "class='active'" if @current_controller == "cupons" %>><%= link_to "Coupons", admin_cupons_path, :class => ('active' if @current_controller == "cupons") %></span>
-    <span <%= "class='active'" if @current_controller == "orders" %>><%= link_to "Orders", admin_orders_path, :class => ('active' if @current_controller == "orders") %></span>
-  </div>
-  <!--3rd drop down menu -->
-  <!--4th drop down menu -->
-  <div id="dropmenu4" class="dropmenudiv">
-    <span <%= "class='active'" if @current_controller == "posts" %>><%= link_to "Posts", admin_posts_path, :class => ('active' if @current_controller == "posts") %></span>
-    <span <%= "class='active'" if @current_controller == "comments" %>><%= link_to "Feedbacks", admin_comments_path, :class => ('active' if @current_controller == "comments") %></span>
-  </div>
-  <!--4th drop down menu -->
-  <!--5th drop down menu -->
-  <div id="dropmenu5" class="dropmenudiv">
-    <span <%= "class='active'" if @current_controller == "recipes" %>><%= link_to "Recipes", admin_recipes_path, :class => ('active' if @current_controller == "recipes") %></span>
-    <span <%= "class='active'" if @current_controller == "reviews" %>><%= link_to "Reviews", admin_reviews_path, :class => ('active' if @current_controller == "reviews") %></span>
-    <span <%= "class='active'" if @current_controller == "xml" %>><%= link_to "XML", xml_path , :class => ('active' if @current_controller == "xml") %></span>
-    <span <%= "class='active'" if @current_controller == "faqs" %>><%= link_to "Faqs", admin_faqs_path , :class => ('active' if @current_controller == "faqs") %></span>
+</div>
+<!--2nd drop down menu -->
+<!--3rd drop down menu -->
+<div id="dropmenu3" class="dropmenudiv">
+  <span <%= "class='active'" if @current_controller == "cupons" %>><%= link_to "Coupons", admin_cupons_path, :class => ('active' if @current_controller == "cupons") %></span>
+  <span <%= "class='active'" if @current_controller == "orders" %>><%= link_to "Orders", admin_orders_path, :class => ('active' if @current_controller == "orders") %></span>
+</div>
+<!--3rd drop down menu -->
+<!--4th drop down menu -->
+<div id="dropmenu4" class="dropmenudiv">
+  <span <%= "class='active'" if @current_controller == "posts" %>><%= link_to "Posts", admin_posts_path, :class => ('active' if @current_controller == "posts") %></span>
+  <span <%= "class='active'" if @current_controller == "comments" %>><%= link_to "Feedbacks", admin_comments_path, :class => ('active' if @current_controller == "comments") %></span>
+</div>
+<!--4th drop down menu -->
+<!--5th drop down menu -->
+<div id="dropmenu5" class="dropmenudiv">
+  <span <%= "class='active'" if @current_controller == "recipes" %>><%= link_to "Recipes", admin_recipes_path, :class => ('active' if @current_controller == "recipes") %></span>
+  <span <%= "class='active'" if @current_controller == "reviews" %>><%= link_to "Reviews", admin_reviews_path, :class => ('active' if @current_controller == "reviews") %></span>
+  <span <%= "class='active'" if @current_controller == "xml" %>><%= link_to "XML", xml_path , :class => ('active' if @current_controller == "xml") %></span>
+         <span <%= "class='active'" if @current_controller == "sommeliers" %>>
+      <%= link_to "Sommelier", admin_sommeliers_path, :class => ('active' if @current_controller == "sommeliers") %>
+    </span>
+  <span <%= "class='active'" if @current_controller == "faqs" %>><%= link_to "Faqs", admin_faqs_path , :class => ('active' if @current_controller == "faqs") %></span>
 
-    <!--<span <%#= "class='active'" if @current_controller == "about_us" %>><%#= link_to "Wine Club", admin_about_us_path(:type => "wine club") , :class => ('active' if @current_controller == "about_us") %></span>-->
-  </div>
-  <!--5th drop down menu -->
-  <!--6th drop down menu -->
-  <div id="dropmenu6" class="dropmenudiv">
-    <span <%= "class='active'" if @current_controller == "news_letters" %>><%= link_to "Letters", admin_news_letters_path, :class => ('active' if @current_controller == "news_letters") %></span>
-    <span <%= "class='active'" if @current_controller == "subscriptions" %>><%= link_to "Subscriptions", admin_subscriptions_path, :class => ('active' if @current_controller == "subscriptions") %></span>
-  </div>
-  <!--6th drop down menu -->
-  <!--7th drop down menu -->
-  <div id="dropmenu7" class="dropmenudiv">
+  <!--<span <%#= "class='active'" if @current_controller == "about_us" %>><%#= link_to "Wine Club", admin_about_us_path(:type => "wine club") , :class => ('active' if @current_controller == "about_us") %></span>-->
+</div>
+<!--5th drop down menu -->
+<!--6th drop down menu -->
+<div id="dropmenu6" class="dropmenudiv">
+  <span <%= "class='active'" if @current_controller == "news_letters" %>><%= link_to "Letters", admin_news_letters_path, :class => ('active' if @current_controller == "news_letters") %></span>
+  <span <%= "class='active'" if @current_controller == "subscriptions" %>><%= link_to "Subscriptions", admin_subscriptions_path, :class => ('active' if @current_controller == "subscriptions") %></span>
+</div>
+<!--6th drop down menu -->
+<!--7th drop down menu -->
+<div id="dropmenu7" class="dropmenudiv">
     <span <%= "class='active'" if @current_controller == "grapes" %>>
       <%= link_to "Grapes", admin_grapes_path, :class => ('active' if @current_controller == "grapes") %>
     </span>
@@ -238,9 +241,9 @@
     <span <%= "class='active'" if @current_controller == "regions" %>>
       <%= link_to "Regions", admin_regions_path, :class => ('active' if @current_controller == "regions") %>
     </span>
-  </div>
-  <!--7th drop down menu -->
-  <div id="dropmenu8" class="dropmenudiv" style="width:170px">
+</div>
+<!--7th drop down menu -->
+<div id="dropmenu8" class="dropmenudiv" style="width:170px">
     <span <%= "class='active'" if @current_controller == "about_us" %>>
       <%= link_to "Who we are", admin_about_us_path(:type => "who we are"), :class => ('active' if @current_controller == "about_us") %>
     </span>
@@ -250,7 +253,7 @@
     <span <%= "class='active'" if @current_controller == "about_us" %>>
       <%= link_to "Meet us", admin_about_us_path(:type=> "meet us"), :class => ('active' if @current_controller == "about_us") %>
     </span>
-    <!--<span <%#= "class='active'" if @current_controller == "about_us" %>>
+  <!--<span <%#= "class='active'" if @current_controller == "about_us" %>>
       <%#= link_to "Contact us", admin_about_us_path(:type=> "contact us"), :class => ('active' if @current_controller == "about_us") %>
     </span>-->
     <span <%= "class='active'" if @current_controller == "about_us" %>>
@@ -281,7 +284,7 @@
       <span <%= "class='active'" if @current_controller == "about_us" %>>
       <%= link_to "Grape Guides", admin_about_us_path(:type=> "grape-guide"), :class => ('active' if @current_controller == "about_us") %>
       </span>
-   <!--   <span <%= "class='active'" if @current_controller == "about_us" %>>
+  <!--   <span <%= "class='active'" if @current_controller == "about_us" %>>
       <%#= link_to "Wine Events", admin_about_us_path(:type => "events"), :class => ('active' if @current_controller == "about_us") %>
     </span>
     <span <%= "class='active'" if @current_controller == "about_us" %>>
@@ -293,10 +296,10 @@
     <span <%= "class='active'" if @current_controller == "about_us" %>>
       <%= link_to "Community", admin_about_us_path(:type => "community"), :class => ('active' if @current_controller == "about_us") %>
     </span>
-    <span <%= "class='active'" if @current_controller == "settings" %>><%= link_to "Guarantee of Satisfaction",{:controller=>'admin/settings',:action=>'update_guarantee_of_satisfaction_details'}, { :class => ('active' if @current_controller == "settings")} %></span>
-  </div>
+  <span <%= "class='active'" if @current_controller == "settings" %>><%= link_to "Guarantee of Satisfaction",{:controller=>'admin/settings',:action=>'update_guarantee_of_satisfaction_details'}, { :class => ('active' if @current_controller == "settings")} %></span>
+</div>
 
-  <div id="dropmenu9" class="dropmenudiv" style="width:130px">
+<div id="dropmenu9" class="dropmenudiv" style="width:130px">
     <span <%= "class='active'" if @current_controller == "about_us" %>>
       <%= link_to "Terms & Conditions", admin_about_us_path(:type => "terms_conditions", :page_type => "Help" ), :class => ('active' if @current_controller == "about_us") %>
     </span>
@@ -315,23 +318,23 @@
     <span <%= "class='active'" if @current_controller == "about_us" %>>
       <%= link_to "Sitemap", admin_about_us_path(:type => "sitemap", :page_type => "Help"), :class => ('active' if @current_controller == "about_us") %>
     </span>
-  </div>
+</div>
 
 
-  <script type="text/javascript">cssdropdown.startchrome("chromemenu")</script>
-  <div class="menu_rightwrap" style="color:black;">
-    <% @setting = Setting.find(:first)
-      @support_status = (@setting.chat_available == true) ? true : false
-      if @support_status == true
-    %>
-        <%= link_to "Chat Disable", enable_disable_chat_url %>&nbsp;&nbsp;&nbsp;
-      <% else %>
-        <%= link_to "Chat Enable", enable_disable_chat_url %>&nbsp;&nbsp;&nbsp;
-      <% end %>
-    <%= link_to "Live chat",site_chat_index_path, :popup => ['new_window_name', 'height=540,width=490'] %>&nbsp;&nbsp;&nbsp;
-    <%= link_to "Logout", logout_url %>&nbsp;&nbsp;&nbsp;
-    <%= link_to "Store", root_url %>
-  </div>
+<script type="text/javascript">cssdropdown.startchrome("chromemenu")</script>
+<div class="menu_rightwrap" style="color:black;">
+  <% @setting = Setting.find(:first)
+     @support_status = (@setting.chat_available == true) ? true : false
+     if @support_status == true
+  %>
+      <%= link_to "Chat Disable", enable_disable_chat_url %>&nbsp;&nbsp;&nbsp;
+  <% else %>
+      <%= link_to "Chat Enable", enable_disable_chat_url %>&nbsp;&nbsp;&nbsp;
+  <% end %>
+  <%= link_to "Live chat",site_chat_index_path, :popup => ['new_window_name', 'height=540,width=490'] %>&nbsp;&nbsp;&nbsp;
+  <%= link_to "Logout", logout_url %>&nbsp;&nbsp;&nbsp;
+  <%= link_to "Store", root_url %>
+</div>
 </div>
 <!--Menu Ends -->
 

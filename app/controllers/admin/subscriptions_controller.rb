@@ -11,7 +11,7 @@ class Admin::SubscriptionsController < ApplicationController
   end
   
   def new
-    @subscription = Subscription.new
+    @subscription = Subscription.n  ew
     
     respond_to do |format|
       format.html

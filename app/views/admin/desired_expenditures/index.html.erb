@@ -1,0 +1,19 @@
+<div class="inner_content producers" id="admin_producers_index">
+  <fieldset  style="width: 50%">
+    <legend><h3>Desired Expenditures</h3></legend>
+    <p style="text-align: right;"><%= link_to "New Desired Expenditure", new_admin_desired_expenditure_path %></p>
+    <table id="grape-list" class="list tablesorter">
+      <tr>
+        <th>Title</th>
+        <th colspan="2">Actions</th>
+      </tr>
+      <% for desired_expenditures in @desired_expenditures %>
+          <tr>
+            <td style="width: 50%"><%= desired_expenditures.title %></td>
+            <td><%= link_to "Edit", edit_admin_desired_expenditure_path(desired_expenditures.id) %> |
+              <%= link_to "Destroy", "/admin/desired_expenditures/#{desired_expenditures.id}", :confirm => 'Are you sure?', :method => :delete %></td>
+          </tr>
+      <% end %>
+    </table>
+  </fieldset>
+</div>

@@ -1,0 +1,20 @@
+<div class="inner_content producers" id="admin_producers_index">
+  <fieldset  style="width: 50%">
+    <legend><h3>Food or Drink Options</h3></legend>
+    <p style="text-align: right;"><%= link_to "New Food or Drink Option", new_admin_food_or_drink_path %></p>
+    <table id="grape-list" class="list tablesorter">
+      <tr>
+        <th>Title</th>
+        <th colspan="2">Actions</th>
+      </tr>
+      <% for food_or_drink in @food_or_drinks %>
+          <tr>
+            <td style="width: 50%"><%= food_or_drink.title %></td>
+            <td><%= link_to "Edit", edit_admin_food_or_drink_path(food_or_drink) %> |
+              <%= link_to "Destroy", "admin/food_or_drink/#{food_or_drink.id}", :confirm => 'Are you sure?', :method => :delete %></td>
+          </tr>
+      <% end %>
+    </table>
+  </fieldset>
+
+</div>

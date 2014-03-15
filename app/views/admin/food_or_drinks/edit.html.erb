@@ -1,0 +1,7 @@
+<h2>Edit Food Or Drink Option</h2>
+
+<%= form_for(@food_or_drink, :url => "/admin/food_or_drinks/#{@food_or_drink.id}", :html => {:method => :put}) do |f| %>
+    <%= render :partial => 'form', :locals => {:f => f} %>
+<% end %>
+
+<p><%= link_to "Back to List", admin_sommeliers_path %></p>
