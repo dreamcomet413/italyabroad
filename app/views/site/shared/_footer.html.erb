@@ -1,6 +1,7 @@
 <div id="siteMap">
+  <% width = (100/7).to_i %>
   <ul>
-    <li class="list" style="width: 15%">
+    <li class="list" style="width: <%=width-%>%">
       <h3><%= link_to"About Us","/about-us", :style => "font-size:14px;color:#9b0707" %></h3>
       <ul>
         <li><%= link_to "Who We Are", about_us_path %></li>
@@ -13,7 +14,7 @@
         <li><%= link_to "Guarantee of Satisfaction", guarantee_of_satisfaction_path %></li>
       </ul>
     </li>
-    <li class="list">
+    <li class="list" style="width: <%=width-%>%">
       <h3><%= link_to"Wine","/wine", :style => "font-size:14px;color:#9b0707;" %></h3>
       <ul>
         <%- parent_category = Category.find('wine') -%>
@@ -26,10 +27,24 @@
             <%- end -%>
         <%- end -%>
         <li><%= link_to("more", "/wine", :style => "color:#9b0707;") %></li>
-        <li><h3><%= link_to "Other Drinks","/other-drinks", :style => "font-size:14px;color:#9b0707" %></h3></li>
       </ul>
     </li>
-    <li class="list">
+    <li class="list" style="width: <%=width-%>%">
+      <h3><%= link_to "Other Drinks","/other-drinks", :style => "font-size:14px;color:#9b0707" %></h3>
+      <ul>
+        <%- parent_category = Category.find_by_name('Other Drinks') -%>
+        <%- if !parent_category.nil? -%>
+            <%- parent_category.children[0..5].each do |category| -%>
+                <% num_products  = find_any_active_product_exists(category.products) %>
+                <%# if num_products > 0 %>
+                    <li><%= link_to category.name.html_safe().split(" ").map{|w| w.capitalize}.join(" ").html_safe(), nested_categories_url(parent_category, category) %></li>
+                <%# end %>
+            <%- end -%>
+        <%- end -%>
+        <li><%= link_to("more", "/other-drinks", :style => "color:#9b0707;") %></li>
+      </ul>
+    </li>
+    <li class="list" style="width: <%=width-%>%">
       <h3><%= link_to"Food","/food", :style => "font-size:14px;color:#9b0707" %></h3>
       <ul>
         <%- parent_category = Category.find('food') -%>
@@ -48,7 +63,7 @@
         <li><%= link_to("more", "/food", :style => "color:#9b0707;") %></li>
       </ul>
     </li>
-    <li class="list">
+    <li class="list" style="width: 10%">
       <h3><%= link_to"Hampers","/hampers", :style => "font-size:14px;color:#9b0707" %></h3>
       <ul>
         <%- parent_category = Category.find('hampers') -%>
@@ -84,25 +99,10 @@
         <%#- end -%>-->
       </ul>
     </li>
-    <li class="list" style="width:15%">
+    <li class="list" style="width: 6%">
       <h3><%= link_to"Recipes","/recipes", :style => "font-size:14px;color:#9b0707" %></h3>
-      <ul>
-        <% # @words = [] %>
-        <% Recipe.find(:all, :order => "created_at DESC", :limit => 5).each do |recipe| %>
-            <%# (recipe.name).split.each do |word|%>
-            <%# @words << word.capitalize %>
-            <%#end%>
-            <%# recipe.name.split.map{|w| w.capitalize}.join(" ") %>
-            <li>
-              <%= link_to (recipe.name[0..20]).split(" ").map{|w| w.capitalize}.join(" "), site_recipe_path(recipe.id) %>
-            </li>
-
-            <%# @words = " " %>
-        <% end %>
-        <li><%= link_to("more", "/recipes", :style => "color:#9b0707;") %></li>
-      </ul>
     </li>
-    <li class="list" style="width:13%">
+    <li class="list" style="width: <%=width-%>%">
       <h3><%= link_to"Community","/wine-community", :style => "font-size:14px;color:#9b0707" %></h3>
       <ul>
         <li><%= link_to "Andrea's Blog", site_blog_index_path %></li>
@@ -117,7 +117,7 @@
         <li><%= link_to "Testimonials", testimonial_path %></li>
       </ul>
     </li>
-    <li class="list" style="width:13%">
+    <li class="list" style="width: <%=width-%>%">
       <h3><%= link_to"Help","/help/terms-and-conditions", :style => "font-size:14px;color:#9b0707" %></h3>
       <ul>
         <li><%= link_to "Terms & Conditions", terms_and_conditions_path %></li>
