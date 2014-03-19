@@ -1,7 +1,6 @@
 <div id="siteMap">
-  <% width = (100/7).to_i %>
   <ul>
-    <li class="list" style="width: <%=width-%>%">
+    <li class="list">
       <h3><%= link_to"About Us","/about-us", :style => "font-size:14px;color:#9b0707" %></h3>
       <ul>
         <li><%= link_to "Who We Are", about_us_path %></li>
@@ -14,7 +13,7 @@
         <li><%= link_to "Guarantee of Satisfaction", guarantee_of_satisfaction_path %></li>
       </ul>
     </li>
-    <li class="list" style="width: <%=width-%>%">
+    <li class="list">
       <h3><%= link_to"Wine","/wine", :style => "font-size:14px;color:#9b0707;" %></h3>
       <ul>
         <%- parent_category = Category.find('wine') -%>
@@ -29,7 +28,7 @@
         <li><%= link_to("more", "/wine", :style => "color:#9b0707;") %></li>
       </ul>
     </li>
-    <li class="list" style="width: <%=width-%>%">
+    <li class="list">
       <h3><%= link_to "Other Drinks","/other-drinks", :style => "font-size:14px;color:#9b0707" %></h3>
       <ul>
         <%- parent_category = Category.find_by_name('Other Drinks') -%>
@@ -44,7 +43,7 @@
         <li><%= link_to("more", "/other-drinks", :style => "color:#9b0707;") %></li>
       </ul>
     </li>
-    <li class="list" style="width: <%=width-%>%">
+    <li class="list">
       <h3><%= link_to"Food","/food", :style => "font-size:14px;color:#9b0707" %></h3>
       <ul>
         <%- parent_category = Category.find('food') -%>
@@ -93,16 +92,16 @@
             <%- end -%>
         <%- end -%>
         <li><h3><%= link_to"Wine Club","/wine-club", :style => "font-size:14px;color:#9b0707" %></h3></li>
+        <li>
+          <h3><%= link_to"Recipes","/recipes", :style => "font-size:14px;color:#9b0707" %></h3>
+        </li>
         <!--<%#- parent_category = Category.find('wine-club') -%>
         <%#- parent_category.children.each do |category| -%>
           <li><%#= link_to category.name, nested_categories_url(parent_category, category) %></li>
         <%#- end -%>-->
       </ul>
     </li>
-    <li class="list" style="width: 6%">
-      <h3><%= link_to"Recipes","/recipes", :style => "font-size:14px;color:#9b0707" %></h3>
-    </li>
-    <li class="list" style="width: <%=width-%>%">
+    <li class="list">
       <h3><%= link_to"Community","/wine-community", :style => "font-size:14px;color:#9b0707" %></h3>
       <ul>
         <li><%= link_to "Andrea's Blog", site_blog_index_path %></li>
@@ -117,7 +116,7 @@
         <li><%= link_to "Testimonials", testimonial_path %></li>
       </ul>
     </li>
-    <li class="list" style="width: <%=width-%>%">
+    <li class="list">
       <h3><%= link_to"Help","/help/terms-and-conditions", :style => "font-size:14px;color:#9b0707" %></h3>
       <ul>
         <li><%= link_to "Terms & Conditions", terms_and_conditions_path %></li>
