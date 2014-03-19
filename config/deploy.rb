@@ -72,6 +72,7 @@ namespace :deploy do
     run "touch #{File.join(current_path,'tmp','restart.txt')}"
   end
 end
+
 namespace :deploy do
 
   #desc "Restarting httpd "
@@ -89,7 +90,8 @@ namespace :deploy do
     run "cd /srv/italyabroad/current && rm -rf tmp && ln -s /srv/italyabroad/shared/tmp tmp"
   end
 
+  desc "start the juggernaut server"
   task :start_juggernaut do
-    run "cd && nvm use 0.6.21 && juggernaut &"
+    run "cd #{current_path} && nohup /etc/init.d/juggernaut restart &"
   end
 end
