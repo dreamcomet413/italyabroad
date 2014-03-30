@@ -1,0 +1,2 @@
+module ManageSommeliersHelper
+end

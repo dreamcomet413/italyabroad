@@ -1,0 +1,10 @@
+<% [@wine_sizes, @food_or_drinks, @desired_expenditures, @food_options].each do |sommeliers| %>
+    <br />
+    <fieldset>
+      <legend><%= sommeliers.first.class -%></legend>
+      <% sommeliers.each do |sommelier| %>
+          <%= check_box_tag "[sommelier][#{sommelier.class}][]", "#{sommelier.id}", (@category.present? and (@category.send(sommelier.class.to_s + "ids")).present? and (@category.send(sommelier.class.to_s + "ids")).split(",").include?(sommelier.id.to_s)) -%>
+          <%= "#{sommelier.title}" -%>
+      <% end %>
+    </fieldset>
+<% end %>

@@ -122,6 +122,11 @@ class Admin::ProductsController < ApplicationController
 
   def extra
     @product = Product.find(params[:id])
+    @category = @product.categories.find(:all, :conditions => ["parent_id is not NULL"]).first
+    @wine_sizes = WineSize.all
+    @food_or_drinks = FoodOrDrink.all
+    @desired_expenditures = DesiredExpenditure.all
+    @food_options = FoodOption.all
 
     respond_to do |format|
       format.html
@@ -178,6 +183,7 @@ class Admin::ProductsController < ApplicationController
     params[:product][:price] = params[:product][:price].join(", ") if params[:product].present? and params[:product][:price].present?
     params[:product][:quantity] = params[:product][:quantity].join(", ") if params[:product].present? and params[:product][:quantity].present?
     params[:product] ||= {}
+    @category = @product.categories.find(:all, :conditions => ["parent_id is not NULL"]).first
 
     params[:product][:category_ids] = params[:category_ids] if params[:category_ids]
     if params[:category_ids]
@@ -188,6 +194,14 @@ class Admin::ProductsController < ApplicationController
         end
       end
     end
+
+    if params[:sommelier].present?
+      st = ActiveRecord::Base.connection.raw_connection.prepare(
+          "update categories set WineSizeids='#{params[:sommelier]["WineSize"].join(",")}', FoodOrDrinkids='#{params[:sommelier]["FoodOrDrink"].join(",")}', FoodOptionids='#{params[:sommelier]["FoodOption"].join(",")}', DesiredExpenditureids='#{params[:sommelier]["DesiredExpenditure"].join(",")}'")
+      st.execute
+      st.close
+    end
+
     # params[:product][:correlation_ids] = params[:correlation_ids] if params[:correlation_ids]
 
     # this is not restful. if params[:h_corelation] condition added to avoid deletion of inlcuded product_ids while updating correlation or any other attribute of product throught his interface

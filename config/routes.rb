@@ -8,6 +8,7 @@ ItalyabroadNew::Application.routes.draw do
     resources :food_or_drinks
     resources :desired_expenditures
     resources :food_options
+    resources :manage_sommeliers, :only => [:index, :create]
   }
 
   namespace(:site){ resources :authentications }

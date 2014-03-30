@@ -46,6 +46,7 @@ class Product < ActiveRecord::Base
 
   has_and_belongs_to_many :cupons
   has_and_belongs_to_many :moods
+  has_and_belongs_to_many :wine_sizes
 
   has_many :reviews, :as => :reviewer, :dependent => :destroy
 
