@@ -16,12 +16,17 @@ class User < ActiveRecord::Base
   validates_presence_of     :address,                    :if => :customer?
   validates_presence_of     :cap,                        :if => :customer?
   validates_presence_of     :city,                       :if => :customer?
+  validates_presence_of     :dob,                       :if => :customer?
   validates_length_of       :login,                      :within => 3..40
   validates_length_of       :email,                      :within => 3..100
   validates_uniqueness_of   :login,  :case_sensitive => false
   validates_format_of       :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
 
+
   validate :validate_telephone, :on => :create
+  validate :validate_dob, :on => :update
+  validate :validate_dob, :on => :save
+  validate :validate_dob, :on => :create
 
   # validate :validate_phone_number,:on=>:create
 
@@ -56,6 +61,7 @@ class User < ActiveRecord::Base
   has_many :authentications
 
   before_save :encrypt_password
+  before_save :validate_dob
 
   # Relations with other tables
   belongs_to :type
@@ -282,6 +288,12 @@ class User < ActiveRecord::Base
     return if password.blank?
     self.salt = Digest::SHA1.hexdigest("--#{Time.now.to_s}--#{login}--") if new_record?
     self.crypted_password = encrypt(password.strip)
+  end
+
+  def validate_dob
+    if self.dob.present?
+      self.errors.add_to_base("You must be over 18 to be able to order from our website") if ((Date.today - self.dob).to_s.split("/").first.to_i/365).to_i < 18
+    end
   end
 
   def password_required?

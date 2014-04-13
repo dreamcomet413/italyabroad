@@ -21,7 +21,7 @@
                  end
       %>
       <td><span style="color:red;font-size:14px;"> * </span> Name:</td>
-      <td><%= text_field :user, :name, :value => first_name %></td>
+      <td><%= text_field :user, :name, :value => first_name || @user.try(:name) %></td>
     </tr>
     <tr>
       <td><span style="color:red;font-size:14px;"> * </span> Surname:</td>
@@ -36,7 +36,7 @@
                    nil
                  end
       %>
-      <td><%= text_field :user, :surname, :value => last_name %></td>
+      <td><%= text_field :user, :surname, :value => last_name || @user.try(:name) %></td>
     </tr>
     <tr>
       <td> <span style="color:red;font-size:14px;"> * </span> Email:</td>
@@ -49,10 +49,10 @@
                    nil
                  end
       %>
-      <td><%= text_field :user, :email, :value => email %></td>
+      <td><%= text_field :user, :email, :value => email || @user.try(:email) %></td>
     </tr>
     <tr>
-      <td>DOB:</td>
+      <td><span style="color:red;font-size:14px;"> * </span> DOB:</td>
       <% birthday =
                  if session[:omniauth].present?
                    if session[:omniauth]["provider"] == 'facebook'
@@ -75,7 +75,7 @@
   <table>
     <tr>
       <td><span style="color:red;font-size:14px;"> * </span> User Name:</td>
-      <td><%= text_field :user, :login, :value => session[:omniauth].present? ? session[:omniauth]["info"]["nickname"] : nil, :disabled => (true unless @user.new_record?) %></td>
+      <td><%= text_field :user, :login, :value => session[:omniauth].present? ? session[:omniauth]["info"]["nickname"] :  @user.try(:login), :disabled => (true unless @user.new_record?) %></td>
     </tr>
     <% unless session[:omniauth].present? %>
         <tr>
@@ -107,11 +107,11 @@
   <table>
     <tr>
       <td><span style="color:red;font-size:14px;"> * </span> Address #1:</td>
-      <td><%= text_field :user, :address %></td>
+      <td><%= text_field :user, :address, :value => @user.try(:address) %></td>
     </tr>
     <tr>
       <td>Address #2:</td>
-      <td><%= text_field :user, :address_2 %></td>
+      <td><%= text_field :user, :address_2, :value => @user.try(:address_2) %></td>
     </tr>
 
     <tr>
@@ -125,11 +125,11 @@
                         nil
                       end
            %>
-      <td><%= text_field :user, :city, :value => address %></td>
+      <td><%= text_field :user, :city, :value => address || @user.try(:city) %></td>
     </tr>
     <tr>
       <td><span style="color:red;font-size:14px;"> * </span> Postcode:</td>
-      <td><%= text_field :user, :cap %></td>
+      <td><%= text_field :user, :cap, :value => @user.try(:cap) %></td>
     </tr>
     <tr>
       <td>Country:</td>
@@ -146,11 +146,11 @@
   <table>
     <tr>
       <td><span style="color:red;font-size:14px;"> * </span> Telephone:</td>
-      <td><%= text_field :user, :telephone %><br /><small id="blog_rss">Please supply a phone number so we can call if there are any problems using this address</small></td>
+      <td><%= text_field :user, :telephone, :value => @user.try(:telephone) %><br /><small id="blog_rss">Please supply a phone number so we can call if there are any problems using this address</small></td>
     </tr>
     <tr>
       <td>Mobile:</td>
-      <td><%= text_field :user, :mobile %></td>
+      <td><%= text_field :user, :mobile, :value => @user.try(:mobile) %></td>
     </tr>
   </table>
 </div>

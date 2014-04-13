@@ -5,7 +5,8 @@
 <div id="header"><%= render :partial => 'site/shared/box_login' %></div>
 <h4 class="account-title">My Account</h4>
 <div style="padding:0 10px;">
-  <% form_tag "/customers/update", :method => :put, :multipart => true do %>
+  <%= form_tag("/site/customers/#{@user.id}", :method => :put, :multipart => true) do %>
+      <%= errors_for(@user) -%>
     <%= render :partial => 'form' %>
     <p style="text-align:right;">
       <%= image_submit_tag "buttons/update_button.png" %>

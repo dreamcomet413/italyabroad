@@ -314,13 +314,16 @@ module ApplicationHelper
         html << "<h5>#{message}</h5>"
       end
       html << "\t\t<ul>\n"
-      object.errors.full_messages.each do |error|
-        html << "\t\t\t<li>#{error}</li>\n"
+      object.errors.keys.each do |key|
+        object.errors[key].each do |value|
+          key = "" if key == :base
+          html << "\t\t\t<li style='color: red'>#{key} #{value}</li>\n"
+        end
       end
       html << "\t\t</ul>\n"
       html << "\t</div>\n"
     end
-    html
+    html.html_safe()
   end
 
 end

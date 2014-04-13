@@ -43,7 +43,8 @@ class Site::BaseController < ApplicationController
           current_user.authentications.create!(:provider => params[:provider], :uid => params[:uid], :token => params[:token])
         end
 
-        redirect_back_or_default(root_url)
+        redirect_to root_path
+        #redirect_back_or_default(root_url)
       else
         flash[:notice] = "Wrong password or username " #+ "<br />"
         #flash[:notice] += "or <br />"

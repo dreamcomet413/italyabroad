@@ -69,10 +69,9 @@ class Site::CustomersController < ApplicationController
 
     @user.provider = session[:omniauth][:provider] if session[:omniauth].present?
     #@user.activation_code = ActivePassword.new #Customers don't wont activations
-
-    if @user.valid_with_captcha?
-      if  !params[:conditions].nil?
-        @user.save_obj(session[:omniauth])
+    #if @user.valid_with_captcha?
+    if  !params[:conditions].nil?
+      if @user.save_obj(session[:omniauth])
         #.save_with_captcha
         Notifier.deliver_new_account_created(@user,AppConfig.admin_email)
         flash[:title] = "Congratulations"
@@ -85,19 +84,24 @@ class Site::CustomersController < ApplicationController
           #  flash[:notice] = "The profile will be reviewed by a member of our team before being published"
 
         end
-        redirect_back_or_default(root_url)
+        redirect_to root_path
       else
         flash[:notice] = @user.show_errors
-        flash[:notice] +=  ('<br />' + "You have to accept the terms and conditions").html_safe()
         render :action => :new
       end
+      #redirect_back_or_default(root_url)
     else
       flash[:notice] = @user.show_errors
-      if params[:conditions].nil?
-        flash[:notice] +=  ('<br />' + "You have to accept the terms and conditions").html_safe()
-      end
+      flash[:notice] +=  ('<br />' + "You have to accept the terms and conditions").html_safe()
       render :action => :new
     end
+    #else
+    #  flash[:notice] = @user.show_errors
+    #  if params[:conditions].nil?
+    #    flash[:notice] +=  ('<br />' + "You have to accept the terms and conditions").html_safe()
+    #  end
+    #  render :action => :new
+    #end
   end
 
   def confirmation
