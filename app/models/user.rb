@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   # Virtual attribute for the unencrypted password
   attr_accessor :password, :provider
 
-  apply_simple_captcha :message => " image and text were different", :add_to_base => true
+  #apply_simple_captcha :message => " image and text were different", :add_to_base => true
 
   validates_presence_of     :login, :email, :name, :surname
   # validates_presence_of :telephone,:on=>:create,:message=>'Please supply a phone number so that we can call'
