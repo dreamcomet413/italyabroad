@@ -1,50 +1,54 @@
 <% products = Product.find(:all, :limit => 5, :order => "RAND()", :conditions => "id IN (#{@category.all_products_ids.join(',')}) AND rating =5 AND active = true AND quantity > 0 ") %>
 <% unless products.blank? %>
-<div id="topSellingWine">
-<%=
-  case products[0].categories.root.name
-  when "Wine"
-    image_tag("topSellingWine.png")
-  when "Food"
-    image_tag("topSellingFood.png")
-  when "Hampers"
-   # image_tag("topSellingHampers.png")
-   image_tag("topSellingWine.png")
-  when "Wine Tours"
-  else
-    "Andrea recommends"
-  end
-%>
-  <ul>
-    <%- products.each do |product| -%>
-    <li><%= link_to product.name, nested_products_uri(product) if product.categories.root.name.upcase != 'WINE TOURS'%></li>
-    <%- end -%>
-  </ul>
-</div>
+    <div id="topSellingWine">
+      <%=
+          case products[0].categories.root.name
+            when "Wine"
+              image_tag("topSellingWine.png")
+            when "Food"
+              image_tag("topSellingFood.png")
+            when "Hampers"
+              # image_tag("topSellingHampers.png")
+              image_tag("topSellingWine.png")
+            when "Wine Tours"
+            when "Other Drinks"
+              image_tag("topSellingWine.png")
+            else
+              "Andrea recommends"
+          end
+      %>
+      <ul>
+        <%- products.each do |product| -%>
+            <li><%= link_to product.name, nested_products_uri(product) if product.categories.root.name.upcase != 'WINE TOURS'%></li>
+        <%- end -%>
+      </ul>
+    </div>
 <% end %>
 
 
 <% products = Product.find(:all, :limit => 5, :order => "RAND()", :conditions => "id IN (#{@category.all_products_ids.join(',')}) AND raccomanded = true AND active = true AND quantity > 0 ") %>
 <% unless products.blank? %>
-<div id="andreasWine">
-<%=
-	case products[0].categories.root.name
-	when "Wine"
-	  image_tag("andreasWine.png")
-	when "Food"
-		image_tag("deliChoise.png")
-	when "Hampers"
-		image_tag("hamperChoice.png")
-	when "Wine Tours"
-	else
-		"Andrea recommends"
-	end
- %>
-  <ul>
-    <%- products.each do |product| -%>
-    <li><%= link_to product.name, nested_products_uri(product) if product.categories.root.name.upcase != 'WINE TOURS'%></li>
-    <%- end -%>
-  </ul>
-</div>
+    <div id="andreasWine">
+      <%=
+          case @category.name
+            when "Wine"
+              image_tag("andreasWine.png")
+            when "Food"
+              image_tag("deliChoise.png")
+            when "Hampers"
+              image_tag("hamperChoice.png")
+            when "Wine Tours"
+            when "Other Drinks"
+              "<b>Phillipe's recommendations</b>".html_safe
+            else
+              "Andrea recommends"
+          end
+      %>
+      <ul>
+        <%- products.each do |product| -%>
+            <li><%= link_to product.name, nested_products_uri(product) if product.categories.root.name.upcase != 'WINE TOURS'%></li>
+        <%- end -%>
+      </ul>
+    </div>
 <% end %>
 

@@ -283,6 +283,7 @@ ItalyabroadNew::Application.routes.draw do
   match 'hampers/all_mixedcase_image/:parent' => 'site/categories#all_mixedcase_image'
   match 'hampers/special_offer/:parent' => 'site/categories#special_offer', :parent => 'hampers'
   match '/wine-tours' => 'site/categories#show', :category => 'wine-tours'
+  match '/other-drinks' => 'site/categories#show', :category => 'other-drinks'
   match '/wine-tours/invite_a_friend' => 'site/products#invite_a_friend', :category => 'wine-tours'
   match '/wine-tours/:id' => 'site/products#show', :category => 'wine-tours'
   match '/wine-events' => 'site/categories#show', :category => 'events'
