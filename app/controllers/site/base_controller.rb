@@ -102,15 +102,15 @@ class Site::BaseController < ApplicationController
   def contact
     if request.post?
       @contact = Contact.new(params[:contact])
-      if @contact.save_with_captcha
-        #        @contact.save_with_captcha
+      if @contact.valid_with_captcha?
+         @contact.save_with_captcha
         flash[:title] = "Thank you"
         flash[:message] = "Your request has been submitted, we aim to respond within 48hr"
         Notifier.deliver_contact(@contact)
         @hide = true
       else
         flash[:title] = "Sorry"
-        flash[:message] = "Your request couldn't be submitted because<p>#{@contact.show_errors}</p>"
+        flash[:message] = "Your request couldn't be submitted because #{@contact.show_errors}"
       end
 
       redirect_to contact_us_path and return
