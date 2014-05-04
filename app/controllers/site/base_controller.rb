@@ -110,7 +110,7 @@ class Site::BaseController < ApplicationController
         @hide = true
       else
         flash[:title] = "Sorry"
-        flash[:message] = "Your request couldn't be submitted because #{@contact.show_errors}"
+        flash[:message] = "Your request couldn't be submitted because #{@contact.show_errors}".html_safe
       end
 
       redirect_to contact_us_path and return
