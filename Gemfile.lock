@@ -1,8 +1,8 @@
 GIT
-  remote: git://github.com/galetahub/simple-captcha.git
-  revision: 2602bf19a63df25929960b5a7721a9d265281ec1
+  remote: git://github.com/arcadi/simple-captcha.git
+  revision: d928df7934f50b2736b280ace93f6c5af67678ec
   specs:
-    simple_captcha (0.1.6)
+    simple_captcha (0.1.1)
 
 GEM
   remote: http://rubygems.org/
