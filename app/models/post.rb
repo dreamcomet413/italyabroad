@@ -20,7 +20,7 @@ class Post < ActiveRecord::Base
   has_many :posts_tags
   has_many :tags, :through => :posts_tags
 
-  friendly_identifier :name,:keep_updated=>true
+  friendly_identifier :name,:keep_updated => true
 
   scope :most_read, :order => "view_count DESC", :limit => 5
 

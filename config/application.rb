@@ -35,7 +35,7 @@ module ItalyabroadNew
     config.gem 'rails'
     config.gem "mysql2"
     config.gem 'simple_captcha'
-  
+
     config.gem "capistrano" 
     #config.gem "capistrano-ext"
     config.middleware.use "PDFKit::Middleware"

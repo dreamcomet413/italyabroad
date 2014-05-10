@@ -5,8 +5,8 @@
 	<% if post %>
 	<ul>
 	  <li>
-  		<span class="title"><%= link_to post.name, site_blog_path(post.id) %></span>
-      <div class="teaser" style="padding-top:5px;"><%= post.description_short[0..200].html_safe() %>... <%= link_to "(Continue reading)", site_blog_path(post.id) %></div>
+  		<span class="title"><%= link_to post.name, site_blog_path(post) %></span>
+      <div class="teaser" style="padding-top:5px;"><%= post.description_short[0..200].html_safe() %>... <%= link_to "(Continue reading)", site_blog_path(post) %></div>
     </li>
   </ul>
 	<% end %>

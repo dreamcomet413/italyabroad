@@ -1,0 +1,53 @@
+-- MySQL dump 10.13  Distrib 5.6.16, for osx10.9 (x86_64)
+--
+-- Host: localhost    Database: italyabroad_dev
+-- ------------------------------------------------------
+-- Server version	5.6.16
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `moods`
+--
+
+DROP TABLE IF EXISTS `moods`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `moods` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `moods`
+--
+
+LOCK TABLES `moods` WRITE;
+/*!40000 ALTER TABLE `moods` DISABLE KEYS */;
+INSERT INTO `moods` VALUES (1,'Sad','2014-02-05 15:24:17','2014-02-05 15:24:17'),(2,'Over the moon','2014-02-05 16:41:13','2014-02-05 16:41:13'),(3,'In the dumps','2014-02-05 16:41:27','2014-02-05 16:41:27'),(4,'Knackered','2014-02-05 16:41:38','2014-02-05 16:41:38'),(5,'Irritated','2014-02-05 16:41:50','2014-02-05 16:41:50'),(6,'Chilled','2014-02-05 16:42:01','2014-02-05 16:42:01'),(7,'Blue','2014-02-05 16:42:11','2014-02-05 16:42:11'),(8,'Anxious','2014-02-05 16:42:23','2014-02-05 16:42:23');
+/*!40000 ALTER TABLE `moods` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2014-05-10 15:46:17
