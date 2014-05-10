@@ -75,7 +75,7 @@
 
       <tr>
         <% for mood in @moods %>
-            <td><%= image_tag("mood-#{mood.name.gsub(" ", "-")}.jpg", :height => "154", :width => "86")-%></td>
+            <td><%= image_tag("mood-#{mood.name.upcase.gsub(" ", "-")}.jpg", :height => "154", :width => "86")-%></td>
         <% end %>
       </tr>
 
