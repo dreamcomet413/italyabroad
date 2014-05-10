@@ -22,7 +22,7 @@
           <td style="color: #ff0000;">Mood:</td>
           <td>
           <%#= select :product, :mood_ids, options_from_collection_for_select(Mood.all, 'id', 'name', @product.try(:moods).map(&:id)), {}, {:multiple => true, :style => "width:166px; padding: 2px"} %>
-            <%= select_tag :mood, options_from_collection_for_select(Mood.all, 'id', 'name') + content_tag(:option,'Any',:value=>""), :id => "search_price" %>
+            <%= select_tag :mood, options_from_collection_for_select(Mood.all, 'id', 'name', :selected => params[:mood]) + content_tag(:option,'Any',:value=>""), :id => "search_price" %>
           </td>
         </tr>
         <tr>

@@ -47,22 +47,49 @@
   <% if !@setting.nil? %>
       <ul>
         <li id="home_image_1" class="home_image">
-          <%= image_tag("/images/find-your-wine-banner.jpg")-%>
+          <%= image_tag("/images/mood-banner.jpg")-%>
         </li>
       </ul>
   <%end%>
-</div><br />
+</div><br /><br /><br /><br />
+
+<%- if !params[:category].blank?
+      @category = Category.find(params[:category])
+    else
+      @category = Category.find(:first,:conditions=>['LOWER(name = ?)','wine'])
+    end %>
+<%- @parent = Category.find(params[:parent] || "wine") -%>
+
+<%- search_url ||= @category == @parent ? search_index_path(:id => @parent) : nested_categories_url(@parent, @category) -%>
 
 <table class="new_search">
-  <tr>
-    <td colspan="4"><div class="fLeft font26">5 simple questions to find your ideal wine</div></td>
-  </tr>
-  <tr><td>&nbsp;</td></tr>
-  <tr><td>&nbsp;</td></tr>
-  <tr><td>&nbsp;</td></tr>
-  <tr><td>&nbsp;</td></tr>
-  <%= render :partial => "search_options", :locals => {:item_options => ["Red Wine", "Rose Wine", "White Wine", "Sparkling Wine", "Dessert Wine", "Surprise Me"], :step => "1"} -%>
+  <% form_tag search_url, :method => :get do %>
+      <%= hidden_field_tag :id,@category.name.downcase if !@category.nil? %>
+      <tr>
+        <td colspan="8"><div class="fLeft font26">Select Drink According to Your Mood</div></td>
+      </tr>
+      <tr><td>&nbsp;</td></tr>
+      <tr><td>&nbsp;</td></tr>
+      <tr><td>&nbsp;</td></tr>
+      <tr><td>&nbsp;</td></tr>
+
+      <tr>
+        <% for mood in @moods %>
+            <td><%= image_tag("mood-#{mood.name.gsub(" ", "-")}.jpg", :height => "154", :width => "86")-%></td>
+        <% end %>
+      </tr>
+
+      <tr><td>&nbsp</td></tr>
+
+      <tr>
+        <% for mood in @moods %>
+            <td><%= radio_button_tag :mood, mood.id %><br /></br /><%= mood.name.upcase-%></td>
+        <% end %>
+      </tr>
+  <% end %>
+
 </table>
+
 
 
 <% content_for :right do %>
@@ -76,3 +103,11 @@
     <br />
     <%= render :partial => '/site/shared/box_popular' %>
 <% end %>
+
+<script type="application/javascript">
+  $(".new_search input").change(function(){
+      if($(this).is(":checked")){
+          $(".new_search form").submit()
+      }
+  })
+</script>

@@ -2,6 +2,8 @@ ItalyabroadNew::Application.routes.draw do
 
 
 
+  get "moods/index"
+
   namespace(:admin){
     resources :wine_sizes
     resources :sommeliers
@@ -155,6 +157,7 @@ ItalyabroadNew::Application.routes.draw do
       match :send_message, :on => :collection, :via => :post
     end
     resources :sommelier
+    resources :moods, :only => :index
   end
 
   match 'site/image' => 'site/images#show', :path_prefix => ':image_type'
