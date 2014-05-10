@@ -52,11 +52,11 @@
       <p>
         <%= link_to image_tag("buttons/register_button.png"), signup_url %>
       </p>
-      <p style="padding-left:45px;font:normal 16px Arial">–OR–</p>
-      <h1>Login as Guest</h1>
-      <div>
-        <%= error_messages_for 'user' if params[:user_type] == "guest" %>
-      </div>
+      <!--<p style="padding-left:45px;font:normal 16px Arial">–OR–</p>-->
+      <!--<h1>Login as Guest</h1>-->
+      <!--<div>-->
+        <%#= error_messages_for 'user' if params[:user_type] == "guest" %>
+      <!--</div>-->
       <%# form_tag guest_login_url do %>
         <!-- <span style="font:italic 12px Arial;color:red"><%#= content_tag :p, flash[:guest_login] if flash[:guest_login] %></span>
         <p>Name</p>
