@@ -31,6 +31,7 @@ gem 'omniauth-twitter'
 gem 'json'
 #gem 'eventmachine'
 gem 'juggernaut'
+gem 'jwt', '~> 0.1.11'
 
 group :development do
   #gem 'thin'
