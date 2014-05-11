@@ -6,7 +6,15 @@
 <div style="margin:20px;">
   <% unless @hide %>
     <h2>Contact us</h2>
-    <%= show_messages flash[:message].try(:html_safe) %>
+    <%= show_messages flash[:message] %>
+
+    <p>
+     <%= @contact_message.try(:header) %>
+    </p>
+    <p>
+     <%= @contact_message.try(:message).try(:html_safe) %>
+    </p>
+
     <p>
       If you have any queries regarding your order or its delivery, or if you are unable to find what you are looking for please fill the form below or alternatively call us on the number below.
     </p>

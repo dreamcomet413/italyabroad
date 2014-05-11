@@ -34,6 +34,15 @@ class Admin::ContactMessagesController < ApplicationController
   def edit
     @contact_message = ContactMessage.find(params[:id])
   end
-
+  
+  def update
+    @contact_message = ContactMessage.find(params[:id])
+    if @contact_message.update_attributes(params[:contact_message])
+      flash[:alert] = "Contact Us info is updated successfully"
+      redirect_to admin_contact_message_path
+    else
+      flash[:notice] = @contact_message.show_errors
+    end
+  end
 end
 
