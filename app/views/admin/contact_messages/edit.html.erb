@@ -1,0 +1,22 @@
+<h1>Editing <%= params[:type] %></h1>
+<% form_tag admin_contact_messages_path,:id => @contact_message.id, :method => 'post' ,:multipart=>true do  %>
+  <%= error_messages_for :contact_message %>
+    <p>
+     Title:<br /><%= text_field :contact_message, :header %>
+    </p>
+    <p>
+      Message:<br /><%= text_area :contact_message, :message, :rows => 8, :style => "width:60%" %>
+    </p>
+    <p>
+      Phone:<br /><%= text_field :contact_message, :phone %>
+    </p>
+    <p>
+      Email:<br /><%= text_field :contact_message, :email %>
+    </p>
+    <p>
+      Short text:<br /><%= text_field :contact_message, :footer %>
+    </p>      
+    <p>
+      <%= submit_tag "Update" %>
+    </p>
+<% end %>

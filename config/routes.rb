@@ -188,6 +188,7 @@ ItalyabroadNew::Application.routes.draw do
     resources :shipping_agencies
     resources :occasions
     resources :about_us
+    resources :contact_messages
     resources :regions do
       resources :images, :only => [:destroy]
     end
