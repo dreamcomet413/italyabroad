@@ -1,0 +1,19 @@
+<%= stylesheet_link_tag 'widgEditor' %>
+<%= javascript_include_tag "widgEditor" %>
+<% @title = "New #{params[:type]}"; @page_id = "contact_message" %>
+<%- @breadcrumbs = "Content Management &raquo; #{link_to params[:type]}" -%>
+<br/>
+  <h2><%= params[:type] %></h2>
+  <br />
+<% form_tag admin_contact_messages_path,:multipart=>true do %>
+  <div><%= flash[:notice] %></div>
+    <p>
+     Header:<br /><%= text_field :contact_message, :header %>
+    </p>
+    <p>
+      Message:<br /><%= text_area :contact_message, :message, :rows => 12, :class=>"widgEditor" %>
+    </p>
+    <p>
+      <%= submit_tag "Save" %>
+    </p>
+<% end %>

@@ -1,0 +1,15 @@
+<%= stylesheet_link_tag 'widgEditor' %>
+<%= javascript_include_tag "widgEditor" %>
+<h1>Edit Contact Us</h1>
+<% form_tag admin_contact_message_path(@contact_message), :action => "update", :method => 'put' ,:multipart=>true do  %>
+  <div><%= flash[:notice] %></div>
+    <p>
+     Title:<br /><%= text_field :contact_message, :header %>
+    </p>
+    <p>
+      Message:<br /><%= text_area :contact_message, :message, :rows => 12, :class=>"widgEditor" %>
+    </p>
+    <p>
+      <%= submit_tag "Update" %>
+    </p>
+<% end %>

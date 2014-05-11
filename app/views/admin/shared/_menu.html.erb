@@ -299,7 +299,12 @@
     <span <%= "class='active'" if @current_controller == "about_us" %>>
       <%= link_to "Community", admin_about_us_path(:type => "community"), :class => ('active' if @current_controller == "about_us") %>
     </span>
-  <span <%= "class='active'" if @current_controller == "settings" %>><%= link_to "Guarantee of Satisfaction",{:controller=>'admin/settings',:action=>'update_guarantee_of_satisfaction_details'}, { :class => ('active' if @current_controller == "settings")} %></span>
+    <span <%= "class='active'" if @current_controller == "settings" %>>
+      <%= link_to "Guarantee of Satisfaction",{:controller=>'admin/settings',:action=>'update_guarantee_of_satisfaction_details'}, { :class => ('active' if @current_controller == "settings")} %>
+    </span>
+    <span <%= "class='active'" if @current_controller == "contact_message" %>>
+      <%= link_to "Contact Us", admin_contact_messages_path(:type => "Contact Us", :page_type => "Help"), :class => ('active' if @current_controller == "contact_message") %>
+    </span>
 </div>
 
 <div id="dropmenu9" class="dropmenudiv" style="width:130px">
@@ -328,7 +333,7 @@
 <div class="menu_rightwrap" style="color:black;">
   <% @setting = Setting.find(:first)
      @support_status = (@setting.chat_available == true) ? true : false
-     if @support_status == true
+     if #@support_status == true
   %>
       <%= link_to "Chat Disable", enable_disable_chat_url %>&nbsp;&nbsp;&nbsp;
   <% else %>
