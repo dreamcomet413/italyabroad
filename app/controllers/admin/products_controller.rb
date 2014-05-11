@@ -196,10 +196,14 @@ class Admin::ProductsController < ApplicationController
     end
 
     if params[:sommelier].present?
-      st = ActiveRecord::Base.connection.raw_connection.prepare(
-          "update categories set WineSizeids='#{params[:sommelier]["WineSize"].join(",")}', FoodOrDrinkids='#{params[:sommelier]["FoodOrDrink"].join(",")}', FoodOptionids='#{params[:sommelier]["FoodOption"].join(",")}', DesiredExpenditureids='#{params[:sommelier]["DesiredExpenditure"].join(",")}'")
-      st.execute
-      st.close
+      if Rails.env == "production"
+        ActiveRecord::Base.connection.raw_connection.query("update categories set WineSizeids='#{params[:sommelier]["WineSize"].join(",")}', FoodOrDrinkids='#{params[:sommelier]["FoodOrDrink"].join(",")}', FoodOptionids='#{params[:sommelier]["FoodOption"].join(",")}', DesiredExpenditureids='#{params[:sommelier]["DesiredExpenditure"].join(",")}'")
+      else
+        st = ActiveRecord::Base.connection.raw_connection.prepare(
+            "update categories set WineSizeids='#{params[:sommelier]["WineSize"].join(",")}', FoodOrDrinkids='#{params[:sommelier]["FoodOrDrink"].join(",")}', FoodOptionids='#{params[:sommelier]["FoodOption"].join(",")}', DesiredExpenditureids='#{params[:sommelier]["DesiredExpenditure"].join(",")}'")
+        st.execute
+        st.close
+      end
     end
 
     # params[:product][:correlation_ids] = params[:correlation_ids] if params[:correlation_ids]
