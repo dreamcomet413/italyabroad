@@ -11,18 +11,8 @@
      Header:<br /><%= text_field :contact_message, :header %>
     </p>
     <p>
-      Message:<br /><%= text_area :contact_message, :message, :rows => 8, :class=>"widgEditor" %><br />
-      You can also use HTML tag.
+      Message:<br /><%= text_area :contact_message, :message, :rows => 12, :class=>"widgEditor" %>
     </p>
-    <p>
-      Phone:<br /><%= text_field :contact_message, :phone %>
-    </p>
-    <p>
-      Email:<br /><%= text_field :contact_message, :email %>
-    </p>
-    <p>
-      Short text:<br /><%= text_field :contact_message, :footer %>
-    </p>      
     <p>
       <%= submit_tag "Save" %>
     </p>
