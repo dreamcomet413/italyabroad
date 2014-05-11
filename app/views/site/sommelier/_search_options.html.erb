@@ -65,26 +65,30 @@
 
 <script type="text/javascript">
     $(".recWine input").click(function(){
-        $.ajax({
-            type: 'POST',
-            url: "/site/sommelier",
-            data: {selected_option: $(this).val(), step: $("#step").val()},
-            cache: false,
-            success: function(data){
+        if($(this).is(":checked")){
+            $.ajax({
+                type: 'POST',
+                url: "/site/sommelier",
+                data: {selected_option: $(this).val(), step: $("#step").val()},
+                cache: false,
+                success: function(data){
 //            alert(data)
-                if ($(".question").length > 1){
-                    $(".question").first().parent().parent().html("")
+                    if ($(".question").length > 1){
+                        $(".question").first().parent().parent().html("")
+                    }
+                },
+                error:function(xhr,ajaxOptions,thrownError){
+                    alert(xhr.status);
+                    alert(thrownError);
                 }
-            },
-            error:function(xhr,ajaxOptions,thrownError){
-                alert(xhr.status);
-                alert(thrownError);
-            }
-        })
+            })
+        }
+
 //      $("#new_search").submit()
     })
 
     $("#go_back").click(function(){
+        debugger
         if ("<%= params[:step]-%>" == "1"){
           window.location.href = "/site/sommelier"
         }
