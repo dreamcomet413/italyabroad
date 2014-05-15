@@ -223,6 +223,7 @@
       <%= link_to "Sommelier", admin_sommeliers_path, :class => ('active' if @current_controller == "sommeliers") %>
     </span>
   <span <%= "class='active'" if @current_controller == "faqs" %>><%= link_to "Faqs", admin_faqs_path , :class => ('active' if @current_controller == "faqs") %></span>
+  <span <%= "class='active'" if @current_controller == "moods" %>><%= link_to "Manage Moods", admin_moods_index_path , :class => ('active' if @current_controller == "moods") %></span>
 
   <!--<span <%#= "class='active'" if @current_controller == "about_us" %>><%#= link_to "Wine Club", admin_about_us_path(:type => "wine club") , :class => ('active' if @current_controller == "about_us") %></span>-->
 </div>
