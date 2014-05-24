@@ -62,34 +62,24 @@
 
 <%- search_url ||= @category == @parent ? search_index_path(:id => @parent) : nested_categories_url(@parent, @category) -%>
 
-<table class="new_search">
+<div class="new_search">
   <% form_tag search_url, :method => :get do %>
       <%= hidden_field_tag :id,@category.name.downcase if !@category.nil? %>
-      <tr>
-        <td colspan="8"><div class="fLeft font26">Select Wine According to Your Mood</div></td>
-      </tr>
-      <tr><td>&nbsp;</td></tr>
-      <tr><td>&nbsp;</td></tr>
-      <tr><td>&nbsp;</td></tr>
-      <tr><td>&nbsp;</td></tr>
+      <div class="fLeft font26">Select Wine According to Your Mood</div>
 
-      <tr>
+      <dl>
         <% for mood in @moods %>
-            <td><%= image_tag("mood-#{mood.name.upcase.gsub(" ", "-")}.jpg", :height => "154", :width => "86")-%></td>
+            <dt>
+              <%= image_tag("mood-#{mood.name.upcase.gsub(" ", "-")}.jpg", :height => "154", :width => "86")-%><br /></br />
+              <%= radio_button_tag :mood, mood.id %><br /></br />
+              <%= mood.name.upcase-%>
+            </dt>
         <% end %>
-      </tr>
+      </dl>
 
-      <tr><td>&nbsp</td></tr>
-
-      <tr>
-        <% for mood in @moods %>
-            <td><%= radio_button_tag :mood, mood.id %><br /></br /><%= mood.name.upcase-%></td>
-        <% end %>
-      </tr>
   <% end %>
 
-</table>
-
+</div>
 
 
 <% content_for :right do %>

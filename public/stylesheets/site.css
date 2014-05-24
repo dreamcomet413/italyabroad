@@ -292,7 +292,7 @@ a {
    position:relative;
     text-align:center;
     margin:auto;
-    margin-top:0px;
+    margin-top:2px;
     margin-bottom:auto;
     padding-top:0px;
     padding-bottom:auto;
@@ -3215,3 +3215,22 @@ b {
     width: 723px;
 }
 
+dl {
+    float: left;
+    text-align: center;
+}
+dt,
+dd {
+    width: 8.5em;
+    float: left;
+}
+dt {
+    margin-bottom: 1em;
+}
+/* vertical space between the images */
+dd {margin: 20px 0 0 -8.5em;
+}
+img {
+    vertical-align: bottom;
+    border: 0;
+}
