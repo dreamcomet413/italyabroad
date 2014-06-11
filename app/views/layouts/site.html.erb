@@ -165,7 +165,7 @@
     <%- active_uri = request.request_uri -%>
     <ul class="nav1" style="z-index:1000;">  <!-- sujith modification z-index altered to try fixing the menu display issue -->
       <!--<li id="link-to-home" class="first<%#= " active" if active_uri == "/"%>"><%#= link_to "Home", root_path %></li>-->
-      <% for category in ["Wine", "Other Drinks", "Food", "Hampers", "Wine Club", "Events"] do %>
+      <% for category in ["Wine", "Other Drinks", "Food", "Hampers", "Wine Tours", "Wine Club", "Events"] do %>
           <% category = Category.find_by_name(category)%>
 
           <% if category.present? %>
@@ -193,7 +193,6 @@
 
       <!--<li class="<%#= " active" if active_uri == "/wine-club" %>"><%#= link_to "Wine Club", :action=>"wine_club", :controller=>"site/base" %></li>-->
       <li id="link-to-forum" class="<%= "active" if active_uri == "/wine-community" %>"><%= link_to "Community", wine_community_path %></li><!-- earlier it was if active_uri == "/forums" problem when mouser hover in this case -->
-      <li id="link-to-recipes" class="<%= "active" if active_uri == "/site/recipes" %>"><%= link_to "Recipes", site_recipes_path  %>
       </li>
       <li id="link-to-blog" class="last<%= " active" if active_uri == "/site/blog" %>"><%= link_to "Blog", site_blog_index_path %></li>
 
