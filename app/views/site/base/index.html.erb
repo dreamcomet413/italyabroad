@@ -165,7 +165,7 @@
 
 <!--<div id="bottomTextBox">-->
 <div id="favWine">
-  <table style="width:100%;">
+  <table style="width:100%; border: solid 1px;">
     <tr>
       <td colspan="4">
         <h3 style="text-align: left">Recommended Wines</h3>
@@ -174,7 +174,7 @@
     <tr>
       <% @recommended_wines.each do |wine| %>
           <td style="width:177px">
-            <table>
+            <table style="width:100%; border: solid 1px;">
               <tr>
                 <td colspan="2" class="recWine" style="width:25%">
                   <%= link_to show_image_tag(wine.layout_image, wine.image_1, :jpg, wine.name), nested_products_uri(wine) %>
@@ -198,7 +198,7 @@
     </tr>
     <% @food_counter.each do |food| %>
         <td style="width:177px">
-          <table>
+          <table style="width:100%; border: solid 1px;">
             <tr>
               <td colspan="2" class="recWine" style="width:25%">
                 <%= link_to show_image_tag(:card, food.image_1, :jpg, food.name), nested_products_uri(food),{:title => food.name} %>
@@ -223,7 +223,7 @@
       <% if !@best_sellers.blank? %>
           <% @best_sellers.each do |food| %>
               <td style="width:177px">
-                <table>
+                <table style="width:100%; border: solid 1px;">
                   <tr>
                     <td colspan="2" class="recWine" style="width:25%">
                       <%= link_to show_image_tag(:card, food.image_1, :jpg, food.name), nested_products_uri(food),{:title => food.name} %>
