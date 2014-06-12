@@ -176,13 +176,13 @@
           <td style="width:25%">
             <table>
               <tr>
-                <td colspan="2" class="recWine">
+                <td colspan="2" class="recWine" style="width:25%">
                   <%= link_to show_image_tag(wine.layout_image, wine.image_1, :jpg, wine.name), nested_products_uri(wine) %>
                   <%#= link_to show_image_tag(:card, wine.image_1, :jpg, wine.name), nested_products_uri(wine), {:title => wine.name} %>
                 </td>
               </tr>
               <tr>
-                <td colspan="2" class="recWineName">
+                <td colspan="2" class="recWineName" style="width:25%">
                   <%= wine.name -%>
                   <br /><p><%= number_to_currency wine.price, :unit => "&pound;" -%></p>
                 </td>
@@ -200,12 +200,12 @@
         <td style="width:25%">
           <table>
             <tr>
-              <td colspan="2" class="recWine">
+              <td colspan="2" class="recWine" style="width:25%">
                 <%= link_to show_image_tag(:card, food.image_1, :jpg, food.name), nested_products_uri(food),{:title => food.name} %>
               </td>
             </tr>
             <tr>
-              <td colspan="2" class="recWineName">
+              <td colspan="2" class="recWineName" style="width:25%">
                 <%= food.name -%>
                 <br /><p><%= number_to_currency food.price, :unit => "&pound;" -%></p>
               </td>
@@ -225,12 +225,12 @@
               <td style="width:25%">
                 <table>
                   <tr>
-                    <td colspan="2" class="recWine">
+                    <td colspan="2" class="recWine" style="width:25%">
                       <%= link_to show_image_tag(:card, food.image_1, :jpg, food.name), nested_products_uri(food),{:title => food.name} %>
                     </td>
                   </tr>
                   <tr>
-                    <td colspan="2" class="recWineName">
+                    <td colspan="2" class="recWineName" style="width:25%">
                       <%= food.name -%>
                       <br /><p><%= number_to_currency food.price, :unit => "&pound;" -%></p>
                     </td>
