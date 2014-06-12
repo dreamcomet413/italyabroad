@@ -4,12 +4,14 @@
 <table cellspacing="1" cellpadding="1" width="50%" class="list_ts" style="border: solid 1px;">
   <tr>
     <th class="thead alt1">Name</th>
+    <th class="thead alt1">Image</th>
     <th colspan="2" class="thead alt1">Actions</th>
   </tr>
 
 <% for mood in @moods %>
   <tr>
     <td class="alt1"><%=h mood.name %></td>
+    <td class="alt1"><%= image_tag("mood-#{mood.name.downcase.gsub(" ", "-")}.jpg", :height => "124", :width => "66")-%></td>
     <td class="alt1"><%= link_to 'Edit', admin_moods_edit_path(:id => mood.id) %></td>
     <td class="alt1"><%= link_to 'Destroy', admin_moods_destroy_path(:id => mood.id), :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>

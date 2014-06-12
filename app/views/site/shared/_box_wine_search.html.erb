@@ -10,7 +10,11 @@
 
 
 <div class="block center" id="box_wine_search">
-  <h3>Wine Search</h3>
+  <% if request.path =~ /wine/ %>
+    <h3>Wine Search</h3>
+  <% else %>
+    <h3>Other Drink Search</h3>
+  <% end %>
   <% form_tag search_url, :method => :get do %>
       <%= hidden_field_tag :id,@category.name.downcase if !@category.nil? %>
       <table border="0">
@@ -19,7 +23,7 @@
           <td><%= text_field_tag :text, params[:text], {:id => "search_text"} %></td>
         </tr>
         <tr>
-          <td style="color: #ff0000;">Mood:</td>
+          <td style="color: #ff0000; font-size: 14px;">Mood:</td>
           <td>
           <%#= select :product, :mood_ids, options_from_collection_for_select(Mood.all, 'id', 'name', @product.try(:moods).map(&:id)), {}, {:multiple => true, :style => "width:166px; padding: 2px"} %>
             <%= select_tag :mood, options_from_collection_for_select(Mood.all, 'id', 'name', :selected => params[:mood]) + content_tag(:option,'Any',:value=>""), :id => "search_price" %>
