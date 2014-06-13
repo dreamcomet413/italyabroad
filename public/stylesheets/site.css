@@ -3150,12 +3150,20 @@ b {
 
 #favWine table {
     width: 100%;
+    table-layout: inline;
 }
 
 #favWine table td {
     /*border: solid 1px;*/
     text-align: center;
-    vertical-align: middle;
+    margin: 0;
+    padding: 2px;
+    width: 25%;
+    vertical-align: top;
+}
+
+#favWine table td:first-child {
+    width: 1px;
 }
 
 .recWine {
