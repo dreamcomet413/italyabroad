@@ -176,7 +176,7 @@
           <td>
             <table>
               <tr>
-                <td colspan="2" class="recWine">
+                <td class="recWine">
                   <%= link_to show_image_tag(wine.layout_image, wine.image_1, :jpg, wine.name), nested_products_uri(wine) %>
                   <%#= link_to show_image_tag(:card, wine.image_1, :jpg, wine.name), nested_products_uri(wine), {:title => wine.name} %>
                 </td>
@@ -200,7 +200,7 @@
         <td>
           <table>
             <tr>
-              <td colspan="2" class="recWine">
+              <td class="recWine">
                 <%= link_to show_image_tag(:card, food.image_1, :jpg, food.name), nested_products_uri(food),{:title => food.name} %>
               </td>
             </tr>
@@ -225,12 +225,12 @@
               <td>
                 <table>
                   <tr>
-                    <td colspan="2" class="recWine">
+                    <td class="recWine">
                       <%= link_to show_image_tag(:card, food.image_1, :jpg, food.name), nested_products_uri(food),{:title => food.name} %>
                     </td>
                   </tr>
                   <tr>
-                    <td colspan="2" class="recWineName">
+                    <td class="recWineName">
                       <%= food.name -%>
                       <br /><p><%= number_to_currency food.price, :unit => "&pound;" -%></p>
                     </td>
