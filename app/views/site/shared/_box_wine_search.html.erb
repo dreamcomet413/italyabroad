@@ -10,7 +10,7 @@
 
 
 <div class="block center" id="box_wine_search">
-  <% if request.path =~ /wine/ %>
+  <% if params[:category] == "wine" || ~ /search/ %>
     <h3>Wine Search</h3>
   <% else %>
     <h3>Other Drink Search</h3>
@@ -22,13 +22,15 @@
           <td>Text:</td>
           <td><%= text_field_tag :text, params[:text], {:id => "search_text"} %></td>
         </tr>
-        <tr>
-          <td style="color: #ff0000; font-size: 14px;">Mood:</td>
-          <td>
-          <%#= select :product, :mood_ids, options_from_collection_for_select(Mood.all, 'id', 'name', @product.try(:moods).map(&:id)), {}, {:multiple => true, :style => "width:166px; padding: 2px"} %>
-            <%= select_tag :mood, options_from_collection_for_select(Mood.all, 'id', 'name', :selected => params[:mood]) + content_tag(:option,'Any',:value=>""), :id => "search_price" %>
-          </td>
-        </tr>
+        <% if params[:category] == "wine" %>
+          <tr>
+            <td style="color: #ff0000; font-size: 14px;">Mood:</td>
+            <td>
+              <%#= select_tag :mood, options_from_collection_for_select(Mood.all, 'id', 'name', :selected => params[:mood]) + content_tag(:option,'Any',:value=>""), :id => "search_price" %>
+              <%= select_tag :mood, options_for_select([["Any",""]]+Mood.all.map{ |x| [x.name,x.id]}, :selected => params[:mood]), :id => "search_price" %>
+            </td>
+          </tr>
+        <% end %>
         <tr>
           <td>Region:</td>
           <td><%= select_tag :region_id, options_for_select(@category.products.regions.inject([["Any", ""]]) {|rs, r| rs << [r.name, r.id]}, params[:region_id].to_i), :id => "search_region" if !@category.nil? %></td>

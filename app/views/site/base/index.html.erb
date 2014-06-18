@@ -164,92 +164,65 @@
 <%= render :partial => '/site/shared/box_welcome' %>
 
 <!--<div id="bottomTextBox">-->
-<div id="favWine">
-  <table style="width: 100%;">
-    <tr>
-      <td colspan="4">
-        <h3 style="text-align: left">Recommended Wines</h3>
-      </td>
-    </tr>
-    
-    <tr>
-      <% @recommended_wines.each do |wine| %>
-        <td>
-          <table>
-            <tr>
-              <td class="recWine">
-                <%= link_to show_image_tag(wine.layout_image, wine.image_1, :jpg, wine.name), nested_products_uri(wine) %>
-                <%#= link_to show_image_tag(:card, wine.image_1, :jpg, wine.name), nested_products_uri(wine), {:title => wine.name} %>
-              </td>
-            </tr>
-            <tr>
-              <td colspan="2" class="recWineName">
-                <%= wine.name -%>
-                <br /><p><%= number_to_currency wine.price, :unit => "&pound;" -%></p>
-              </td>
-            </tr>
-          </table>
-        </td>
-      <% end %>
-    </tr>
-    
-    <tr>
-      <td colspan="4">
-        <h3 style="text-align: left">Food Counter</h3>
-      </td>
-    </tr>
-    
-    <tr>
-      <% @food_counter.each do |food| %>
-        <td>
-          <table>
-            <tr>
-              <td class="recWine">
-                <%= link_to show_image_tag(:card, food.image_1, :jpg, food.name), nested_products_uri(food),{:title => food.name} %>
-              </td>
-            </tr>
-            <tr>
-              <td colspan="2" class="recWineName">
-                <%= food.name -%>
-                <br /><p><%= number_to_currency food.price, :unit => "&pound;" -%></p>
-              </td>
-            </tr>
-          </table>
-        </td>
-      <% end %>
-    </tr>
-    
-    <tr>
-      <td colspan="4">
-        <h3 style="text-align: left">Best Seller</h3>
-      </td>
-    </tr>
 
-    <tr>
-      <% if !@best_sellers.blank? %>
-        <% @best_sellers.each do |food| %>
-            <td>
-              <table>
-                <tr>
-                  <td class="recWine">
-                    <%= link_to show_image_tag(:card, food.image_1, :jpg, food.name), nested_products_uri(food),{:title => food.name} %>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="recWineName">
-                    <%= food.name -%>
-                    <br /><p><%= number_to_currency food.price, :unit => "&pound;" -%></p>
-                  </td>
-                </tr>
-              </table>
-            </td>
-        <% end %>
-      <% end %>
-    </tr>
-    
-  </table>
+<!--<div id="bottomTextBox">-->
+<div class="new_search">
+  <div class="fLeft font26">
+    <dt style="width: 27.8em;">
+      <h3 style="margin-left: 15px;">Recommended Wines</h3>
+    </dt>
+  </div>
+  
+  <dl style="width: 100%;">
+    <% @recommended_wines.each do |wine| %>
+      <dt style="width: 15em;">
+        <%= link_to show_image_tag(wine.layout_image, wine.image_1, :jpg, wine.name), nested_products_uri(wine) %><br /><br />
+        <%#= link_to show_image_tag(:card, wine.image_1, :jpg, wine.name), nested_products_uri(wine), {:title => wine.name} %>
+        <%= wine.name -%><br /><br />
+        <p style="color:#C40909; font-weight:bold; font-size: 13px;"><%= number_to_currency wine.price, :unit => "&pound;" -%></p>
+      </dt>
+    <% end %>
+  </dt>
 </div>
 
+
+<div class="new_search">
+  <div class="fLeft font26">
+    <dt style="width: 27.8em;">
+      <h3 style="margin-left: 15px;">Food Counter</h3>
+    </dt>
+  </div>
+  
+  <dl style="width: 100%;">
+    <% @food_counter.each do |food| %>
+      <dt style="width: 15em;">
+        <%= link_to show_image_tag(:card, food.image_1, :jpg, food.name), nested_products_uri(food),{:title => food.name} %><br /><br />
+        <%= food.name -%><br /><br />
+        <p style="color:#C40909; font-weight:bold; font-size: 13px;"><%= number_to_currency food.price, :unit => "&pound;" -%></p>
+      </dt>
+    <% end %>
+  </dt>
+</div>
+
+<div class="new_search">
+  <div class="fLeft font26">
+    <dt style="width: 27.8em;">
+      <h3 style="margin-left: 15px;">Best Seller</h3>
+    </dt>
+  </div>
+
+  <dl style="width: 100%;">
+    <% if !@best_sellers.blank? %>
+      <% @best_sellers.each do |food| %>
+        <dt style="width: 15em;">
+          <%= link_to show_image_tag(:card, food.image_1, :jpg, food.name), nested_products_uri(food),{:title => food.name} %><br /><br />
+          <%= food.name -%><br /><br />
+          <p style="color:#C40909; font-weight:bold; font-size: 13px;"><%= number_to_currency food.price, :unit => "&pound;" -%></p>
+        </dt>
+      <% end %>
+    <% end %>
+  </dt>
+</div>
 <!--</div>-->
 
 <% content_for :right do %>
