@@ -10,7 +10,8 @@
 
 
 <div class="block center" id="box_wine_search">
-  <% if params[:category] == "wine" || ~ /search/ %>
+  <%# if params[:category] == "wine" || ~ /search/ %>
+  <% if params[:parent] != "other-drinks" %>
     <h3>Wine Search</h3>
   <% else %>
     <h3>Other Drink Search</h3>
@@ -22,7 +23,7 @@
           <td>Text:</td>
           <td><%= text_field_tag :text, params[:text], {:id => "search_text"} %></td>
         </tr>
-        <% if params[:category] == "wine" %>
+        <% if params[:parent] != "other-drinks" %>
           <tr>
             <td style="color: #ff0000; font-size: 14px;">Mood:</td>
             <td>

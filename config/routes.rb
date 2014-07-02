@@ -276,6 +276,7 @@ ItalyabroadNew::Application.routes.draw do
   match 'admin/news_letters/:id/images' => 'admin/news_letters#images', :as => :news_letter_images
   match 'wine' => 'site/categories#show', :category => 'wine'
   match 'wine/:category/' => 'site/categories#show_sub', :parent => 'wine'
+  match 'other-drinks/:category/' => 'site/categories#show_sub', :parent => 'other-drinks'
   match 'wine/all_mixedcase_image/:parent' => 'site/categories#all_mixedcase_image'
   match 'wine/special_offer/:parent' => 'site/categories#special_offer', :parent => 'wine'
   match 'food' => 'site/categories#show', :category => 'food'
