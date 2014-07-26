@@ -11,7 +11,7 @@
 
 <div class="block center" id="box_wine_search">
   <%# if params[:category] == "wine" || ~ /search/ %>
-  <% if params[:parent] != "other-drinks" %>
+  <% if params[:parent] != "other-drinks" && params[:category] != "other-drinks" %>
     <h3>Wine Search</h3>
   <% else %>
     <h3>Other Drink Search</h3>
