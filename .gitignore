@@ -6,7 +6,10 @@ tmp/
 .idea/*
 .idea/*.xml
 .idea/*.iml
+<<<<<<< HEAD
 .idea/italyabroad_new.iml
+=======
+>>>>>>> added .idea useless files into gitignore
 .idea/italyabroad_new.iml
 db/schema.rb
 node_modules
