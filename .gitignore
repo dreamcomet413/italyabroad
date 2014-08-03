@@ -5,6 +5,7 @@ tmp/
 .idea/
 .idea/*
 .idea/*.xml
+.idea/*.iml
 .idea/italyabroad_new.iml
 .idea/italyabroad_new.iml
 db/schema.rb
