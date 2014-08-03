@@ -32,6 +32,7 @@ gem 'json'
 #gem 'eventmachine'
 gem 'juggernaut'
 gem 'jwt', '~> 0.1.11'
+gem 'carrierwave'
 
 group :development do
   #gem 'thin'

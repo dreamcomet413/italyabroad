@@ -24,7 +24,7 @@ module ItalyabroadNew
     # config.gem "rmagick"
    #  config.gem "xml-simple", :version => '1.0.12'
     # config.gem " mime-types"
-    
+
     config.gem 'prawn'
     config.gem "activemerchant", :version => ">= 1.5.1", :lib => "active_merchant"
     config.gem 'fleximage'
@@ -67,5 +67,6 @@ module ItalyabroadNew
 end
 require "custom_country_select"
 require 'simple_captcha'
+require 'carrierwave/orm/activerecord'
 ActiveRecord::Base.logger = Logger.new STDOUT
 

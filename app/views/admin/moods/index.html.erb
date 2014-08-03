@@ -11,7 +11,8 @@
 <% for mood in @moods %>
   <tr>
     <td class="alt1"><%=h mood.name %></td>
-    <td class="alt1"><%= image_tag("mood-#{mood.name.downcase.gsub(" ", "-")}.jpg", :height => "124", :width => "66")-%></td>
+    <!--<td class="alt1"><%#= image_tag("mood-#{mood.name.downcase.gsub(" ", "-")}.jpg", :height => "124", :width => "66")-%></td>-->
+    <td class="alt1"><%= image_tag(mood.image.url, :height => "124", :width => "66") if mood.image.present? -%></td>
     <td class="alt1"><%= link_to 'Edit', admin_moods_edit_path(:id => mood.id) %></td>
     <td class="alt1"><%= link_to 'Destroy', admin_moods_destroy_path(:id => mood.id), :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
