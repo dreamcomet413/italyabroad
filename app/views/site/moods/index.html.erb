@@ -70,7 +70,7 @@
       <dl>
         <% for mood in @moods %>
             <dt>
-              <%= image_tag("mood-#{mood.name.downcase.gsub(" ", "-")}.jpg", :height => "154", :width => "86")-%><br /></br />
+              <%= image_tag("#{mood.try(:image).url}", :height => "154", :width => "86")-%><br /></br />
               <%= radio_button_tag :mood, mood.id %><br /></br />
               <%= mood.name.upcase-%>
             </dt>
