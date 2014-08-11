@@ -157,7 +157,7 @@ function display_chef_details(){
 function add_prices(){
     var html = ""
     html += "<tr id='product_prices'><td></td><td>"
-    html += "<input type='text' value='' size='20' name='product[price][]' id='product_prices_'>"
+    html += "<input type='text' value='0' size='20' name='product[price]' id='product_price'>"
     html += "<a href='#' onclick='remove_element(this); return false;'> remove</a></td></tr>"
     document.getElementById("product_prices").insertAdjacentHTML('afterend', html);
     return false;
@@ -171,7 +171,7 @@ function remove_element(element){
 function add_quantities(){
     var html = ""
     html += "<tr class='product_quantities'><td></td><td>"
-    html += "<input type='text' value='' size='3' name='product[quantity][]' maxlength='3' id='product_quantity'>"
+    html += "<input type='text' value='1' size='3' name='product[quantity]' maxlength='3' id='product_quantity'>"
     html += "<a href='#' onclick='remove_element(this); return false;'> remove</a></td></tr>"
     document.getElementById("product_quantities").insertAdjacentHTML('afterend', html);
     return false;

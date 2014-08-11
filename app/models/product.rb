@@ -13,6 +13,9 @@ class Product < ActiveRecord::Base
   validates_uniqueness_of :code, :message => "must be unique"
    
   has_many :product_sizes
+  has_many :product_prices, :dependent => :destroy
+  attr_accessor :price, :quantity
+
   has_many :categorizations, :dependent => :destroy
   has_many :categories, :through => :categorizations
 
@@ -52,15 +55,19 @@ class Product < ActiveRecord::Base
 
   friendly_identifier :name
 
+  after_create :make_product_prices
+
   scope :featured, :conditions => {:featured => true}, :limit => 5
   scope :on_offer, :conditions => ["active = ? AND discount > ?", true, 0], :limit => 5, :order => "RAND()"
   scope :other_events, lambda { |product|
     { :conditions => ["categories.name LIKE 'Events' AND products.id <> ? AND DATE(products.date) > ? AND active", product.id, Date.today], :include => {:categorizations => :category}, :order => "date", :limit => 3 }
   }
 
-
-  def validate
-    errors.add(:price, "must be positive !") if price.blank?
+  def make_product_prices
+    temp = self.product_prices.build
+    temp.price = price ||= 0
+    temp.quantity = quantity ||= 1
+    temp.save
   end
 
   def name_short(len)

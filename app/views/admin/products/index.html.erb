@@ -71,9 +71,13 @@
         <td><%= product.sub_categories.join(" &raquo; ") unless product.sub_categories.blank? %></td>
         <td><%= link_to product.name, nested_products_uri(product) %></td>
         <td><%= product.discount %>%</td>
-        <td><%= number_to_currency product.price, :unit => "&pound;" %></td>
-        <td><%= product.quantity %></td>
-        <td><%= product.quantity == 0 %></td>
+
+        <% product.product_prices.each do |p|  %>
+          <td><%= number_to_currency p.price, :unit => "&pound;" %></td>
+          <td><%= p.quantity %></td>
+          <td><%= p.quantity == 0 %></td>
+        <% end %>
+      
         <td><%= product.active %></td>
         <td>
           <%= link_to "Edit", edit_admin_product_path(product.id), :popup => ['Edit #{product.name}', 'height=1000,width=1000,scrollbars=yes']%> |
