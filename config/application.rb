@@ -27,7 +27,6 @@ module ItalyabroadNew
 
     config.gem 'prawn'
     config.gem "activemerchant", :version => ">= 1.5.1", :lib => "active_merchant"
-    config.gem 'fleximage'
     config.gem 'will_paginate', :version => '>= 2.3.12'
     config.gem "RedCloth"
     config.gem "pdfkit"

@@ -43,10 +43,6 @@ GEM
     afm (0.2.1)
     arel (2.0.10)
     attr_required (1.0.0)
-    aws-s3 (0.6.3)
-      builder
-      mime-types
-      xml-simple
     better_nested_set (0.1.1)
     builder (2.1.2)
     capistrano (2.12.0)
@@ -74,9 +70,6 @@ GEM
       multi_json (>= 1.3)
       rack-oauth2 (>= 0.14.4)
       tzinfo
-    fleximage (1.0.4)
-      aws-s3
-      rmagick
     hashery (2.1.1)
     hashie (2.1.2)
     highline (1.6.21)
@@ -190,7 +183,6 @@ GEM
     ttfunk (1.0.3)
     tzinfo (0.3.39)
     will_paginate (3.0.5)
-    xml-simple (1.1.3)
 
 PLATFORMS
   ruby
@@ -204,7 +196,6 @@ DEPENDENCIES
   carrierwave
   debugger
   fb_graph
-  fleximage
   jquery-rails
   json
   juggernaut

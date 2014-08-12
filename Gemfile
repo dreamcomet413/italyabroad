@@ -1,7 +1,6 @@
 source 'http://rubygems.org'
 
 gem 'prawn', '0.11.1'
-gem 'fleximage'#, :git => 'git://github.com/SysMO-DB/fleximage.git'
 gem 'RedCloth'
 gem 'pdfkit'
 gem 'rails', '3.0.6'
