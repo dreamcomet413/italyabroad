@@ -140,11 +140,11 @@
     
     <tr id="product_prices">
       <td style="text-align:right">Price:</td>
-      <td><%= text_field :product, :price, :size => 20, :value => 0 %>  <%= link_to "Add more prices for duplicate products", "#", :onclick => "add_prices(); return false;" -%></td>
+      <td><%= text_field_tag "product[price][]", (@product.product_prices.map(&:price).join(", ") if @product.present? && @product.product_prices.present?), :size => 20 %>  <%= link_to "Add more prices for duplicate products", "#", :onclick => "add_prices(); return false;" -%></td>
     </tr>
     <tr id="product_quantities">
       <td style="text-align:right">Quantity:</td>
-      <td><%= text_field :product, :quantity, :size => 3, :value => 1 %>  <%= link_to "Add more quantities for duplicate products", "#", :onclick => "add_quantities(); return false;" -%></td>
+      <td><%= text_field_tag "product[quantity][]", (@product.product_prices.map(&:quantity).join(", ") if @product.present? && @product.product_prices.present?), :size => 20, :maxlength => 3 %>  <%= link_to "Add more quantities for duplicate products", "#", :onclick => "add_quantities(); return false;" -%></td>
     </tr>
 
 

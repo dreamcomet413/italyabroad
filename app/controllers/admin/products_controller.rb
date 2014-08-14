@@ -180,8 +180,11 @@ class Admin::ProductsController < ApplicationController
 
   def update
     @product = Product.find(params[:id])
-    params[:product][:price] = params[:product][:price]#.join(", ") if params[:product].present? and params[:product][:price].present?
-    params[:product][:quantity] = params[:product][:quantity]#.join(", ") if params[:product].present? and params[:product][:quantity].present?
+    params[:product][:price].each_with_index do |price, i|
+      @product.product_prices << ProductPrice.create(:price => price, :quantity => params[:product][:quantity][i], :product_id => @product.id)
+    end
+    #params[:product][:price] = params[:product][:price].join(", ") if params[:product].present? and params[:product][:price].present?
+    #params[:product][:quantity] = params[:product][:quantity].join(", ") if params[:product].present? and params[:product][:quantity].present?
     params[:product] ||= {}
     @category = @product.categories.find(:all, :conditions => ["parent_id is not NULL"]).first
 

@@ -165,7 +165,7 @@ class Product < ActiveRecord::Base
   end
 
   def discounted_prices
-    self.price.split(",").collect do |p|
+    self.product_prices.map(&:price).collect do |p|
       self.discount.to_i > 0 ? [(p.to_f - (p.to_f * self.discount / 100)), p.to_f] : [p.to_f, p.to_f]
     end
   end
@@ -303,8 +303,9 @@ class Product < ActiveRecord::Base
   end
 
   def out_of_stock?
-    quantity = self.quantity.is_a?(String) ? self.quantity.split(",").first.to_i : self.quantity
-    quantity == 0 or quantity < 0
+    #quantity = self.quantity.is_a?(String) ? self.quantity.split(",").first.to_i : self.quantity
+    #quantity == 0 or quantity < 0
+    self.product_prices.empty?
   end
 
 	# Calculates the average rating. Calculation based on the already given scores.

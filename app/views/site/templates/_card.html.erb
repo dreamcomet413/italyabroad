@@ -154,7 +154,7 @@
     <td>
       <div class="box_price_product">
         <ul>
-          <% prices = @product.price.split(",") %>
+          <% prices = @product.product_prices.map(&:price).join(", ") %>
           <li class="price_info <%= prices.size > 1 ? 'width-145' : ''-%>">
             <% if prices.size > 1 %>
                 <% price = params[:actual_price].present? ? params[:actual_price] : prices.first %>
@@ -231,7 +231,7 @@
   <%= (@product.description.html_safe().gsub("\n","<br />")) rescue "Product has no description" %>
 </div>
 
-<!--<div style="float: left;" id ="other-image"></div>
+<!--<div style="float:  left in stock.;" id ="other-image"></div>
 
 <div style="font:normal 16px Arial;padding:0 0 0 10px"><%= link_to(("Other images"),:url => { :controller => "site/categories",:action => "all_mixedcase_image", :parent =>@product.categories.root.name }, :remote => true) %></div>
 -->
