@@ -6,8 +6,9 @@ tmp/
 .idea/*
 .idea/*.xml
 .idea/italyabroad_new.iml
+.idea/italyabroad_new.iml
 db/schema.rb
 node_modules
 node_modules/*
 public/.DS_store
-
+public/uploads/*
