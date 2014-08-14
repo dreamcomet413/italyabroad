@@ -4,7 +4,7 @@ class Admin::ImagesController < ApplicationController
 
   def destroy
     @image.destroy
-    redirect_back_or_default(default_url)
+    redirect_to default_url
   end
 
   private

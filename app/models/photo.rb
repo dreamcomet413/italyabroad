@@ -1,9 +1,6 @@
 class Photo < ActiveRecord::Base
 
-  acts_as_fleximage do
-    image_directory 'public/resources/photos'
-    image_storage_format :jpg
-  end
+  mount_uploader :image_filename, ProductUploader
 
   def show_errors
     return "- " + self.errors.full_messages.join("<br />- ")

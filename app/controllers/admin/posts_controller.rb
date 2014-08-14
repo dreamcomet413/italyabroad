@@ -29,13 +29,13 @@ class Admin::PostsController < ApplicationController
     @post.tag_ids = Tag.find_or_create_by_names(params[:tags])
 
     @post.image_1.destroy if @post.image_1 && !params[:image_1].blank?
-    @post.build_image_1(:image_file => params[:image_1]) unless params[:image_1].blank?
+    @post.build_image_1(:image_filename => params[:image_1]) unless params[:image_1].blank?
 
     @post.image_2.destroy if @post.image_2 && !params[:image_2].blank?
-    @post.build_image_2(:image_file => params[:image_2]) unless params[:image_2].blank?
+    @post.build_image_2(:image_filename => params[:image_2]) unless params[:image_2].blank?
 
     @post.image_3.destroy if @post.image_3 && !params[:image_3].blank?
-    @post.build_image_3(:image_file => params[:image_3]) unless params[:image_3].blank?
+    @post.build_image_3(:image_filename => params[:image_3]) unless params[:image_3].blank?
 
     @post.resource_1.destroy if @post.resource_1 && !params[:resource_1].blank?
     @post.build_resource_1(params[:resource_1]) unless params[:resource_1].blank?
@@ -98,13 +98,13 @@ class Admin::PostsController < ApplicationController
     @post.tag_ids = Tag.find_or_create_by_names(params[:tags])
 
     @post.image_1.destroy if @post.image_1 && !params[:image_1].blank?
-    @post.build_image_1(:image_file => params[:image_1]) unless params[:image_1].blank?
+    @post.build_image_1(:image_filename => params[:image_1]) unless params[:image_1].blank?
 
     @post.image_2.destroy if @post.image_2 && !params[:image_2].blank?
-    @post.build_image_2(:image_file => params[:image_2]) unless params[:image_2].blank?
+    @post.build_image_2(:image_filename => params[:image_2]) unless params[:image_2].blank?
 
     @post.image_3.destroy if @post.image_3 && !params[:image_3].blank?
-    @post.build_image_3(:image_file => params[:image_3]) unless params[:image_3].blank?
+    @post.build_image_3(:image_filename => params[:image_3]) unless params[:image_3].blank?
 
     @post.resource_1.destroy if @post.resource_1 && !params[:resource_1].blank?
     @post.build_resource_1(params[:resource_1]) unless params[:resource_1].blank?

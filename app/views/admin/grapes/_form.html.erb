@@ -13,11 +13,11 @@
     </tr>
   <tr>
     <td>Image</td>
-    <% fields_for :image do %>
-    <td><%= file_field :image,:image_file %>
-    <%= image_tag(image_url('product_thumb', @grape.image, :jpg)) if @grape && @grape.image %>
-    <%= link_to "Destroy", admin_grape_image_url(@grape, @grape.image), :confirm => "Are you sure?", :method => :delete if @grape && @grape.image %>
-
+    <td>
+      <%= fields_for :image do %>
+      <%= file_field :image,:image_filename %>
+      <%= image_tag(@grape.image.image_filename.url, height: '150', width: '220') if @grape && @grape.image %>
+      <%= link_to "Destroy", admin_grape_image_path(@grape, @grape.image_id), :confirm => "Are you sure?", :method => :delete if @grape && @grape.image %>
     </td>
      <% end %>
   </tr>

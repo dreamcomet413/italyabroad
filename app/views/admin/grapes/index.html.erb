@@ -57,15 +57,15 @@
         </td>
 
 
-        <td valign="top"><%#= show_grape_image(grape) %>
-         <% if grape && grape.image %>
-
-        <%= image_tag(image_url('grape_thumb', grape.image, :jpg, :width=>"100px;")) %>
+        <td valign="top">
+        <% if grape && grape.image %>
+          <%= image_tag(grape.image.image_filename.url, height: '150', width: '120') %>
         <% else %>
-        <%= image_tag("grape_default.png",:width => "100px;") %>
+          <%= image_tag("grape_default.png",:width => "100px;") %>
         <!--#show_producer_image(producer) -->
         <% end %>
         </td>
+
         <td valign="top">
           <%= link_to "Edit", edit_admin_grape_path(grape) %> |
           <%= link_to "Destroy", admin_grape_path(grape), :method => :delete, :confirm => "Are you sure want to delete this grape?" %>

@@ -32,13 +32,13 @@ class Admin::GrapesController < ApplicationController
 
   def create
     @grape = Grape.new(params[:grape])
-    # @grape.image.destroy if @grape.image && !params[:grape][:image_file].blank?
-   # @grape.build_image(:image_file => params[:image]) unless params[:image].blank?
-   unless params[:image].nil?
-    @image = Image.new(params[:image])
-     @image.save
-    @grape.image_id = @image.id
-  end
+    @grape.image.destroy if @grape.image && !params[:grape][:image_file].blank?
+    @grape.build_image(:image_filename => params[:image]) unless params[:image].blank?
+    unless params[:image].nil?
+      @image = Image.new(params[:image])
+      @image.save
+      @grape.image_id = @image.id
+    end
 
     if @grape.save
       redirect_to :action => :index
