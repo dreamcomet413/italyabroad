@@ -1,4 +1,5 @@
 <table>
+  <%= show_messages(flash[:notice]) %>
   <tr>
     <td>Name</td>
     <td><%= text_field :producer, :name %></td>
@@ -16,14 +17,10 @@
 		  <td><%= check_box :producer, :active %>
     </tr>
   <tr>
-    <td valign="top">Image</td>
-    <% fields_for :image do %>
-    <td><%= file_field :image,:image_file %>
-    <%= image_tag(image_url('product_thumb', @producer.image, :jpg)) if @producer && @producer.image %>
-    <%= link_to "Destroy", admin_producer_image_url(@producer, @producer.image), :confirm => "Are you sure?", :method => :delete if @producer && @producer.image %>
-    </td>
-    <% end %>
-
+    <td>Image</td>
+    <td><%= file_field_tag :image %></td>
+    <td><%= image_tag(@producer.image.image_filename.url, height: '150', width: '220') if @producer && @producer.image %></td>
+    <td><%= link_to "Destroy", admin_producer_image_path(@producer, @producer.image_id), :confirm => "Are you sure?", :method => :delete if @producer && @producer.image %></td>
   </tr>
   <tr>
     <td>Region</td>

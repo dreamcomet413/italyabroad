@@ -32,7 +32,6 @@ class Admin::GrapesController < ApplicationController
 
   def create
     @grape = Grape.new(params[:grape])
-    @grape.image.destroy if @grape.image && !params[:grape][:image_file].blank?
     @grape.build_image(:image_filename => params[:image]) unless params[:image].blank?
     unless params[:image].nil?
       @image = Image.new(params[:image])
@@ -51,20 +50,17 @@ class Admin::GrapesController < ApplicationController
   def update
     @grape = Grape.find(params[:id])
 
-    if @grape.update_attributes(params[:grape])
-      unless params[:image].nil?
-    @image = Image.new(params[:image])
-    @image.save
-    @grape.update_attribute('image_id',@image.id)
-  end
-
-      flash[:notice] = "Grape updated successfully"
-    else
-      flash[:notice] = "Grape is not updated successfully"
-    end
+    @grape.image.destroy if @grape.image && !params[:image].blank?
+    @grape.build_image(:image_filename => params[:image]) unless params[:image].blank?
 
     respond_to do |format|
-      format.html { render :action => :edit }
+      if @grape.update_attributes(params[:grape])
+        format.html { render action: "edit" }
+        flash[:notice] = "Grape updated successfully"
+      else
+        format.html { render action: "edit" }
+        flash[:notice] = "Grape is not updated successfully"
+      end
     end
   end
 

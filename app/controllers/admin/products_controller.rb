@@ -222,7 +222,6 @@ class Admin::ProductsController < ApplicationController
     # this is not restful. if params[:h_inc_products] condition added to avoid deletion of correlation_ids while updating included products or any other attribute of product throught his interface
     params[:product][:included_product_ids] = params[:included_product_ids] if params[:h_inc_products]
 
-
     @product.image_1.destroy if @product.image_1 && !params[:image_1].blank?
     @product.build_image_1(:image_filename => params[:image_1]) unless params[:image_1].blank?
 
@@ -260,7 +259,7 @@ class Admin::ProductsController < ApplicationController
       end
       @product.update_attribute('color',"#{color}")
       flash.now[:notice] = "Product is updated successfully"
-      redirect_back_or_default(admin_products_path)
+      redirect_to admin_products_path
     else
       @product.image_1 = nil
       @product.image_2 = nil
@@ -271,7 +270,7 @@ class Admin::ProductsController < ApplicationController
       @product.resource_3 = nil
 
       flash.now[:notice] = @product.show_errors
-      redirect_back_or_default(admin_products_path)
+      redirect_to admin_products_path
     end
   end
 

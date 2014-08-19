@@ -31,6 +31,7 @@ class Admin::ProducersController < ApplicationController
 
   def create
     @producer = Producer.new(params[:producer])
+    @producer.build_image(:image_filename => params[:image]) unless params[:image].blank?
     unless params[:image].nil?
       @image = Image.new(params[:image])
       @image.save
@@ -46,35 +47,30 @@ class Admin::ProducersController < ApplicationController
 
   def update
     @producer = Producer.find(params[:id])
-       unless params[:image].nil?
-    @image = Image.new(params[:image])
-     @image.save
-    @producer.image_id = @image.id
-  end
-    if @producer.update_attributes(params[:producer])
-
-      flash[:notice] = "Producer updated successfully"
-    else
-      flash[:notice] = "Producer is not updated successfully"
-    end
+    @producer.image.destroy if @producer.image && !params[:image].blank?
+    @producer.build_image(:image_filename => params[:image]) unless params[:image].blank?
 
     respond_to do |format|
-      format.html { render :action => :edit }
+      if @producer.update_attributes(params[:producer])
+        format.html { render action: "edit" }
+        flash[:notice] = "Producer updated successfully"
+      else
+        format.html { render action: "edit" }
+        flash[:notice] = "Producer is not updated successfully"
+      end
     end
   end
 
   def destroy
       @producer = Producer.find(params[:id])
 
-      if @producer.products.nil?
-          if @producer.destroy
-          flash[:alert] = "Producer is deleted!"
-          end
+      if !@producer.products.present?
+        if @producer.destroy
+          flash[:notice] = "Producer is deleted!"
+        end
       else
-          flash[:alert] = "We have products from this producer displayed in the site, So this producer cannot be deleted!"
+        flash[:notice] = "We have products from this producer displayed in the site, So this producer cannot be deleted!"
       end
-
-
 
       respond_to do |format|
       format.html { redirect_to :action => :index }

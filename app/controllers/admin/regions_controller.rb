@@ -31,13 +31,12 @@ class Admin::RegionsController < ApplicationController
 
   def create
     @region = Region.new(params[:region])
-  unless params[:image].nil? and !@region.valid?
-    @image = Image.new(params[:image])
-     @image.save
-    @region.image_id = @image.id
-  end
-
-
+    @region.build_image(:image_filename => params[:image]) unless params[:image].blank?
+    unless params[:image].nil?
+      @image = Image.new(params[:image])
+      @image.save
+      @region.image_id = @image.id
+    end
     if @region.save
       flash[:notice] = "Region is created successfully"
       redirect_to :action => :index
@@ -49,19 +48,18 @@ class Admin::RegionsController < ApplicationController
 
   def update
     @region = Region.find(params[:id])
-    unless params[:image].nil?
-    @image = Image.new(params[:image])
-     @image.save
-    @region.image_id = @image.id
-  end
+    @region.image.destroy if @region.image && !params[:image].blank?
+    @region.build_image(:image_filename => params[:image]) unless params[:image].blank?
 
-    if @region.update_attributes(params[:region])
-      flash[:notice] = "Region is updated successfully"
-    else
-      flash[:notice] = "There are something wrong"
+    respond_to do |format|
+      if @region.update_attributes(params[:region])
+        format.html { render action: "edit" }
+        flash[:notice] = "Region updated successfully"
+      else
+        format.html { render action: "edit" }
+        flash[:notice] = "Region is not updated successfully"
+      end
     end
-
-    render :action => :edit
   end
 
   def destroy

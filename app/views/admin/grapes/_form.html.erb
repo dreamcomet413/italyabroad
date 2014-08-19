@@ -1,4 +1,5 @@
 <table>
+  <%= show_messages(flash[:notice]) %>
   <tr>
     <td>Name</td>
     <td><%= text_field :grape, :name %></td>
@@ -13,17 +14,12 @@
     </tr>
   <tr>
     <td>Image</td>
-    <td>
-      <%= fields_for :image do %>
-      <%= file_field :image,:image_filename %>
-      <%= image_tag(@grape.image.image_filename.url, height: '150', width: '220') if @grape && @grape.image %>
-      <%= link_to "Destroy", admin_grape_image_path(@grape, @grape.image_id), :confirm => "Are you sure?", :method => :delete if @grape && @grape.image %>
-    </td>
-     <% end %>
+    <td><%= file_field_tag :image %></td>
+    <td><%= image_tag(@grape.image.image_filename.url, height: '150', width: '220') if @grape && @grape.image %></td>
+    <td><%= link_to "Destroy", admin_grape_image_path(@grape, @grape.image_id), :confirm => "Are you sure?", :method => :delete if @grape && @grape.image %></td>
   </tr>
   <tr>
     <td valign="top">Producers</td>
     <td valign="top"><%= select :grape, :producer_ids, Producer.find(:all,:order=>'name').collect {|p| [p.name, p.id]}, {}, {:multiple => true} %></td>
   </tr>
 </table>
-
