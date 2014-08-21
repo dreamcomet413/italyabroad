@@ -4,7 +4,7 @@ class Admin::ResourcesController < ApplicationController
   
   def destroy
     @resource.destroy
-    redirect_back_or_default default_url
+    redirect_to action: 'index', :controller => "settings"
   end
   
   private

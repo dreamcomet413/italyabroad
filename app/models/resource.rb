@@ -1,6 +1,8 @@
 class Resource < ActiveRecord::Base
-  has_attachment :max_size => 10.megabytes, :storage => :file_system, :path_prefix => 'public/resources/files'
-  validates_as_attachment
+
+  mount_uploader :filename, ProductUploader
+
+  validates_size_of :filename, maximum: 2.megabytes, message: "should be less than 2 MB"
 
   def show_errors
     return "- " + self.errors.full_messages.join("<br />- ")
