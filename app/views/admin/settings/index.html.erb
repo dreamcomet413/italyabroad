@@ -53,7 +53,7 @@
         <%= file_field :wine_pdf, :filename %> <em>(2mb limit)</em>
         <% if @setting && @setting.wine_pdf %>
         <p>
-          <%= link_to "#{@setting.wine_pdf.filename.to_s}".last(20), @setting.wine_pdf.filename.path %>
+          <%= link_to "#{@setting.wine_pdf.filename}".last(20), @setting.wine_pdf.filename.path %>
           (<%= link_to "Destroy", admin_setting_resource_path(@setting, @setting.wine_pdf), :confirm => "Are you sure?", :method => :delete %>)
         </p>
         <% end %>

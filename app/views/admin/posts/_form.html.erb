@@ -57,19 +57,19 @@
   	  <tr>
   	    <td style="width:100px;text-align:right">Image 1:</td>
         <td><%= file_field_tag :image_1 %></td>
-        <td><%= image_tag(image_url("post_thumb", @post.image_1, :jpg)) if @post && @post.image_1 %></td>
+        <td><%= image_tag(@post.image_1.image_filename.url, height: '120', width: '200') if @post && @post.image_1 %></td>
         <td style="text-align:center"><%= link_to("Destroy", {:action => :destroy_image, :id => @post, :img => 1 }, :confirm => "Are you sure?", :method => :delete) if @post && @post.image_1 %></td>
       </tr>
   	  <tr>
   	    <td style="text-align:right">Image 2:</td>
   	    <td><%= file_field_tag :image_2 %></td>
-  	    <td><%= image_tag(image_url("post_thumb", @post.image_2, :jpg)) if @post && @post.image_2  %></td>
+  	    <td><%= image_tag(@post.image_2.image_filename.url, height: '120', width: '200') if @post && @post.image_2  %></td>
   	    <td style="text-align:center"><% if @post && @post.image_2 %> <%= link_to "Destroy", {:action => :destroy_image, :id => @post, :img => 2 }, :confirm => "Are you sure?", :method => :delete %> <% end %></td>
       </tr>
   	  <tr>
   	    <td style="text-align:right">Image 3:</td>
   	    <td><%= file_field_tag :image_3 %></td>
-  	    <td><%= image_tag(image_url("post_thumb", @post.image_3, :jpg)) if @post && @post.image_3 %></td>
+  	    <td><%= image_tag(@post.image_3.image_filename.url, height: '120', width: '200') if @post && @post.image_3 %></td>
   	    <td style="text-align:center"><% if @post && @post.image_3 %> <%= link_to "Destroy", {:action => :destroy_image, :id => @post, :img => 3 }, :confirm => "Are you sure?", :method => :delete %> <% end %></td>
       </tr>
   	</table>
@@ -82,20 +82,20 @@
     <table border="0" cellspacing="5" cellpadding="5">
   	  <tr>
   	    <td style="width:100px;text-align:right">Resource 1:</td>
-  	    <td><%= file_field :resource_1, :uploaded_data %></td>
-  	    <td><%= link_to(@post.resource_1.filename, @post.resource_1.public_filename) if @post && @post.resource_1 %></td>
+  	    <td><%= file_field :resource_1, :filename %></td>
+  	    <td><%= link_to("#{@post.resource_1.filename}".last(20), @post.resource_1.filename.path) if @post && @post.resource_1 %></td>
   			<td><% if @post && @post.resource_1 %><%= link_to "Destroy", {:action => :destroy_resource, :id => @post, :rsc => 1 }, :confirm => "Are you sure?", :method => :delete %><% end %></td>
       </tr>
   	  <tr>
   	    <td style="text-align:right">Resource 2:</td>
-  	    <td><%= file_field :resource_2, :uploaded_data %></td>
-  	    <td><% if @post && @post.resource_2 %><%= link_to @post.resource_2.filename, @post.resource_2.public_filename %><% end %></td>
+  	    <td><%= file_field :resource_2, :filename %></td>
+  	    <td><% if @post && @post.resource_2 %><%= link_to("#{@post.resource_2.filename}".last(20), @post.resource_2.filename.path) %><% end %></td>
   			<td><% if @post && @post.resource_2 %><%= link_to "Destroy", {:action => :destroy_resource, :id => @post, :rsc => 2 }, :confirm => "Are you sure?", :method => :delete %><% end %></td>
       </tr>
   	  <tr>
   	    <td style="text-align:right">Resource 3:</td>
-  	    <td><%= file_field :resource_3, :uploaded_data %></td>
-  	    <td><% if @post && @post.resource_3 %><%= link_to @post.resource_3.filename, @post.resource_3.public_filename %><% end %></td>
+  	    <td><%= file_field :resource_3, :filename %></td>
+  	    <td><% if @post && @post.resource_3 %><%= link_to("#{@post.resource_3.filename}".last(20), @post.resource_3.filename.path) %><% end %></td>
   			<td><% if @post && @post.resource_3 %><%= link_to "Destroy", {:action => :destroy_resource, :id => @post, :rsc => 3 }, :confirm => "Are you sure?", :method => :delete %><% end %></td>
       </tr>
   	</table>
