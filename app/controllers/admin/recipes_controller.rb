@@ -59,13 +59,13 @@ class Admin::RecipesController < ApplicationController
 
 
     @recipe.image_1.destroy if @recipe.image_1 && !params[:image_1].blank?
-    @recipe.build_image_1(:image_file => params[:image_1]) unless params[:image_1].blank?
+    @recipe.build_image_1(:image_filename => params[:image_1]) unless params[:image_1].blank?
 
     @recipe.image_2.destroy if @recipe.image_2 && !params[:image_2].blank?
-    @recipe.build_image_2(:image_file => params[:image_2]) unless params[:image_2].blank?
+    @recipe.build_image_2(:image_filename => params[:image_2]) unless params[:image_2].blank?
 
     @recipe.image_3.destroy if @recipe.image_3 && !params[:image_3].blank?
-    @recipe.build_image_3(:image_file => params[:image_3]) unless params[:image_3].blank?
+    @recipe.build_image_3(:image_filename => params[:image_3]) unless params[:image_3].blank?
 
 
     @recipe.resource_1.destroy if @recipe.resource_1 && !params[:resource_1].blank?
@@ -92,7 +92,7 @@ class Admin::RecipesController < ApplicationController
     end
 
     #redirect_back_or_default(admin_recipes_path)
-    redirect_to admin_recipes_path
+    redirect_to edit_admin_recipe_path(@recipe)
   end
 
   def destroy

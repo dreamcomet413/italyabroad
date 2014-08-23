@@ -5,7 +5,7 @@
 
 <fieldset>
   <legend>Create New Mood</legend>
-<%= form_for(@mood, :url => admin_moods_create_path, :html => {:method => :post}) do |f| %>
+<%= form_for(@mood, :url => admin_moods_create_path, :html => {:method => :post, :multipart => true}) do |f| %>
   <%= render :partial => "form", :locals => {:f => f, :btn_text => 'Create'} -%>
 <% end %>
 </fieldset>

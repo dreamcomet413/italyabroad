@@ -6,13 +6,13 @@
 	<table border="0" cellspacing="5" cellpadding="5">
 		<tr>
 			<td>
-		    <%= image_tag(image_url(:recipe_thumb, @recipe.image_1, :jpg)) if @recipe && @recipe.image_1 %>
+		    <%= image_tag(@recipe.image_1.image_filename.url, height: '150', width: '220') if @recipe && @recipe.image_1 %>
       </td>
 			<td>
-		    <%= image_tag(image_url(:recipe_thumb, @recipe.image_2)) if @recipe && @recipe.image_2 %>
+		    <%= image_tag(@recipe.image_2.image_filename.url, height: '150', width: '220') if @recipe && @recipe.image_2 %>
       </td>
 			<td>
-		    <%= image_tag(image_url(:recipe_thumb, @recipe.image_3)) if @recipe && @recipe.image_3 %>
+		    <%= image_tag(@recipe.image_3.image_filename.url, height: '150', width: '220') if @recipe && @recipe.image_3 %>
       </td>
 		</tr>
 		<tr>
