@@ -82,8 +82,9 @@ namespace :deploy do
   #end
 
   task :create_symlink do
-    run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
-    run "ln -nfs #{shared_path}/public/uploads #{release_path}/public/uploads"
+    run "ln -nfs #{shared_path}/config/database.yml #{current_path}/config/database.yml"
+    run "ln -nfs #{shared_path}/public/uploads #{current_path}/public"
+    run "ln -nfs #{shared_path}/public/resources #{current_path}/public"
     #run "cd #{current_path} && chmod -R 777 tmp/"
   end
 
