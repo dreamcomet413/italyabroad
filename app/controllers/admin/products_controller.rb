@@ -93,7 +93,6 @@ class Admin::ProductsController < ApplicationController
         render :action => :new
       end
     elsif @product.save
-
       redirect_to edit_admin_product_path(@product)
     else
       flash[:notice] = @product.show_errors
@@ -180,8 +179,13 @@ class Admin::ProductsController < ApplicationController
 
   def update
     @product = Product.find(params[:id])
-    params[:product][:price].each_with_index do |price, i|
-      @product.product_prices << ProductPrice.create(:price => price, :quantity => params[:product][:quantity][i], :product_id => @product.id)
+    
+    if params[:product].present? && params[:product][:price].present?
+      params[:product][:price].each_with_index do |price, i|
+        price = "0" if !price.present?
+        params[:product][:quantity][i] = "1" if !params[:product][:quantity][i].present?
+        @product.product_prices << ProductPrice.create(:price => price, :quantity => params[:product][:quantity][i], :product_id => @product.id)
+      end
     end
     #params[:product][:price] = params[:product][:price].join(", ") if params[:product].present? and params[:product][:price].present?
     #params[:product][:quantity] = params[:product][:quantity].join(", ") if params[:product].present? and params[:product][:quantity].present?
@@ -259,7 +263,7 @@ class Admin::ProductsController < ApplicationController
       end
       @product.update_attribute('color',"#{color}")
       flash.now[:notice] = "Product is updated successfully"
-      redirect_to admin_products_path
+      redirect_to edit_admin_product_path(@product)
     else
       @product.image_1 = nil
       @product.image_2 = nil
@@ -270,7 +274,7 @@ class Admin::ProductsController < ApplicationController
       @product.resource_3 = nil
 
       flash.now[:notice] = @product.show_errors
-      redirect_to admin_products_path
+      redirect_to edit_admin_product_path(@product)
     end
   end
 
