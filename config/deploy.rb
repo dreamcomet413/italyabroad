@@ -59,6 +59,7 @@ set :branch, 'master'
 after "deploy:restart", "deploy:cleanup"
 after "deploy:restart", "deploy:start_juggernaut"
 before "deploy:restart", "deploy:tmp_symlinks"
+before "deploy:restart", "deploy:create_symlink"
 #set :deploy_via, :remote_cache
 # if you're still using the script/reaper helper you will need
 # these http://github.com/rails/irs_process_scripts
@@ -83,8 +84,8 @@ namespace :deploy do
 
   task :create_symlink do
     run "ln -nfs #{shared_path}/config/database.yml #{current_path}/config/database.yml"
-    run "cd #{shared_path}/public && sudo chmod -R 777 uploads/ && ln -nfs #{shared_path}/public/uploads #{current_path}/public"
-    run "cd #{shared_path}/public && sudo chmod -R 777 resources/ && ln -nfs #{shared_path}/public/resources #{current_path}/public"
+    run "ln -nfs #{shared_path}/public/uploads #{current_path}/public"
+    run "ln -nfs #{shared_path}/public/resources #{current_path}/public"
     #run "cd #{current_path} && chmod -R 777 tmp/"
   end
 
