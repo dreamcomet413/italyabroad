@@ -25,7 +25,7 @@ set :keep_releases,       5
 default_run_options[:pty] = true
 #set :use_sudo, true
 
-after "deploy:update_code", "deploy:symlinks"
+after "deploy:update_code", "deploy:create_symlink"
 before 'deploy:setup', 'rvm:install_rvm'
 
 after "deploy:update_code" do
@@ -59,7 +59,6 @@ set :branch, 'master'
 after "deploy:restart", "deploy:cleanup"
 after "deploy:restart", "deploy:start_juggernaut"
 before "deploy:restart", "deploy:tmp_symlinks"
-before "deploy:restart", "deploy:create_symlink"
 #set :deploy_via, :remote_cache
 # if you're still using the script/reaper helper you will need
 # these http://github.com/rails/irs_process_scripts
