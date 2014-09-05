@@ -4,7 +4,7 @@ class Admin::ResourcesController < ApplicationController
   
   def destroy
     @resource.destroy
-    redirect_to action: 'index', :controller => "settings"
+    redirect_to default_url
   end
   
   private
@@ -26,8 +26,13 @@ class Admin::ResourcesController < ApplicationController
   end
 
   def default_url
-    admin_settings_url if setting?
-    admin_products_url if product?
-    admin_recipes_url if recipe?
+    return admin_settings_url unless params[:setting_id].blank?
+    return admin_products_url unless params[:product_id].blank?
+    return admin_recipes_url unless params[:recipe_id].blank?
+    return admin_producers_url unless params[:producer_id].blank?
+    return admin_regions_url unless params[:region_id].blank?
+    return admin_grapes_url unless params[:grape_id].blank?
+    return news_letter_images_url(NewsLetter.find(params[:news_letter_id])) unless params[:news_letter_id].blank?
+    return siteadmin_url
   end
 end

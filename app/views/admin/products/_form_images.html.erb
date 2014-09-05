@@ -3,19 +3,19 @@
 		<tr>
 		  <td style="text-align:right;width:150px;">Image 1:</td>
 		  <td><%= file_field_tag :image_1 %></td>
-			<td><%= image_tag(@product.image_1.image_filename.url,  height: '150', width: '220') if @product && @product.image_1 %></td>
+			<td><%= image_tag(@product.image_1.image_filename.try(:url),  height: '150', width: '220') if @product && @product.image_1 && @product.image_1.image_filename.present? %></td>
 			<td style="text-align:center"><% if @product && @product.image_1 %> <%= link_to "Destroy", admin_product_image_url(@product, @product.image_1), :confirm => "Are you sure?", :method => :delete %> <% end %></td>
 		</tr>
 		<tr>
 		  <td style="text-align:right;width:150px;">Image 2:</td>
 		  <td><%= file_field_tag :image_2 %></td>
-		  <td><%= image_tag(@product.image_2.image_filename.url, height: '150', width: '220') if @product && @product.image_2 %></td>
+		  <td><%= image_tag(@product.image_2.image_filename.try(:url), height: '150', width: '220') if @product && @product.image_2 && @product.image_2.image_filename.present? %></td>
 		  <td style="text-align:center"><% if @product && @product.image_2 %> <%= link_to "Destroy", admin_product_image_url(@product, @product.image_2), :confirm => "Are you sure?", :method => :delete %> <% end %></td>
 		</tr>
 		<tr>
 		  <td style="text-align:right;width:150px;">Image 3:</td>
 		  <td><%= file_field_tag :image_3 %></td>
-		  <td><%= image_tag(@product.image_3.image_filename.url, height: '150', width: '220') if @product && @product.image_3 %></td>
+		  <td><%= image_tag(@product.image_3.image_filename.try(:url), height: '150', width: '220') if @product && @product.image_3 && @product.image_3.image_filename.present? %></td>
 			<td style="text-align:center"><% if @product && @product.image_3 %> <%= link_to "Destroy", admin_product_image_url(@product, @product.image_3), :confirm => "Are you sure?", :method => :delete %> <% end %></td>
 		</tr>
 	</table>
