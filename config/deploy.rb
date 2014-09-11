@@ -12,7 +12,7 @@ set :user, "root"
 set :domain, "192.241.165.181"
 server domain, :app, :web
 role :db, domain, :primary => true
-set :rvm_ruby_string, 'ruby-2.0.0'
+set :rvm_ruby_string, 'ruby-2.0.0-p353'
 $:.unshift(File.expand_path('./lib', ENV['rvm_path']))
 set :rvm_type, :system
 
@@ -25,7 +25,6 @@ set :keep_releases,       5
 default_run_options[:pty] = true
 #set :use_sudo, true
 
-after "deploy:update_code", "deploy:create_symlink"
 before 'deploy:setup', 'rvm:install_rvm'
 
 after "deploy:update_code" do
@@ -84,7 +83,7 @@ namespace :deploy do
   task :create_symlink do
     run "ln -nfs #{shared_path}/config/database.yml #{current_path}/config/database.yml"
     run "ln -nfs #{shared_path}/public/uploads #{current_path}/public"
-    run "ln -nfs #{shared_path}/public/resources #{current_path}/public"
+    run "cd #{current_path}/public && rm -rf resources && ln -nfs #{shared_path}/public/resources #{current_path}/public"
     #run "cd #{current_path} && chmod -R 777 tmp/"
   end
 
@@ -96,4 +95,11 @@ namespace :deploy do
   task :start_juggernaut do
     run "cd #{current_path} && nohup /etc/init.d/juggernaut restart &"
   end
+
+  desc "Recreate symlink"
+  task :resymlink, :roles => :app do
+    run "rm -f #{current_path} && ln -s #{release_path} #{current_path}"
+  end
 end
+after "deploy", "deploy:create_symlink"
+after "deploy:create_symlink", "deploy:resymlink"
