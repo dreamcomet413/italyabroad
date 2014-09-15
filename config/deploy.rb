@@ -102,4 +102,4 @@ namespace :deploy do
   end
 end
 after "deploy", "deploy:create_symlink"
-after "deploy:create_symlink", "deploy:resymlink"
+before "deploy:create_symlink", "deploy:resymlink"
