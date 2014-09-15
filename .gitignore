@@ -17,3 +17,4 @@ node_modules
 node_modules/*
 public/.DS_store
 public/uploads/*
+config/database.yml
