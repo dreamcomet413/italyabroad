@@ -144,7 +144,7 @@
     </tr>
     <tr id="product_quantities">
       <td style="text-align:right">Quantity:</td>
-      <td><%= text_field_tag "product[quantity][]", (@product.product_prices.map(&:quantity).join(", ") if @product.present? && @product.product_prices.present?), :size => 20, :maxlength => 3 %>  <%= link_to "Add more quantities for duplicate products", "#", :onclick => "add_quantities(); return false;" -%></td>
+      <td><%= text_field_tag "product[quantity][]", (@product.product_prices.map(&:quantity).join(", ") if @product.present? && @product.product_prices.present?), :size => 20 %>  <%= link_to "Add more quantities for duplicate products", "#", :onclick => "add_quantities(); return false;" -%></td>
     </tr>
 
 

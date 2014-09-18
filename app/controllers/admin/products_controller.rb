@@ -179,18 +179,33 @@ class Admin::ProductsController < ApplicationController
 
   def update
     @product = Product.find(params[:id])
+
+    if params[:product].present?
+      if params[:product][:price] == [""]
+        @product.product_prices.delete_all
+      elsif !@product.product_prices.blank? && params[:product][:price].present?
+        params[:product][:price].each_with_index do |price, i|
+          @product.product_prices.each_with_index do |product_prices|
+            product_prices.update_attributes(:price => price, :quantity => params[:product][:quantity][i], :product_id => @product.id)
+          end
+        end
+      elsif @product.product_prices.blank?
+        params[:product][:price].each_with_index do |price, i|
+          @product.product_prices << ProductPrice.create(:price => price, :quantity => params[:product][:quantity][i], :product_id => @product.id)
+        end
+      end
+    end
     
 # if params[:product].present? && params[:product][:price].present?
-# 
 #    if params[:product].present? && params[:product][:price].present?
 #      params[:product][:price].each_with_index do |price, i|
 #        price = "0" if !price.present?
 #        params[:product][:quantity][i] = "1" if !params[:product][:quantity][i].present?
 #        @product.product_prices << ProductPrice.create(:price => price, :quantity => params[:product][:quantity][i], :product_id => @product.id)
 #      end
-    params[:product][:price].each_with_index do |price, i|
-      @product.product_prices << ProductPrice.create(:price => price, :quantity => params[:product][:quantity][i], :product_id => @product.id)
-    end
+    # params[:product][:price].each_with_index do |price, i|
+    #   @product.product_prices << ProductPrice.create(:price => price, :quantity => params[:product][:quantity][i], :product_id => @product.id)
+    # end
     #params[:product][:price] = params[:product][:price].join(", ") if params[:product].present? and params[:product][:price].present?
     #params[:product][:quantity] = params[:product][:quantity].join(", ") if params[:product].present? and params[:product][:quantity].present?
 #    end
@@ -201,11 +216,10 @@ class Admin::ProductsController < ApplicationController
 #    end
 #    #params[:product][:price] = params[:product][:price].join(", ") if params[:product].present? and params[:product][:price].present?
 #    #params[:product][:quantity] = params[:product][:quantity].join(", ") if params[:product].present? and params[:product][:quantity].present?
-    params[:product][:price] = params[:product][:price]#.join(", ") if params[:product].present? and params[:product][:price].present?
-    params[:product][:quantity] = params[:product][:quantity]#.join(", ") if params[:product].present? and params[:product][:quantity].present?
+    # params[:product][:price] = params[:product][:price]#.join(", ") if params[:product].present? and params[:product][:price].present?
+    # params[:product][:quantity] = params[:product][:quantity]#.join(", ") if params[:product].present? and params[:product][:quantity].present?
     params[:product] ||= {}
     @category = @product.categories.find(:all, :conditions => ["parent_id is not NULL"]).first
-
     params[:product][:category_ids] = params[:category_ids] if params[:category_ids]
     if params[:category_ids]
       params[:category_ids].each do |cat_id|
