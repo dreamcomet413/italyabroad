@@ -184,9 +184,9 @@ class Admin::ProductsController < ApplicationController
       if params[:product][:price] == [""]
         @product.product_prices.delete_all
       elsif !@product.product_prices.blank? && params[:product][:price].present?
-        data = @product.product_prices
+        @product.product_prices.delete_all
         params[:product][:price].each_with_index do |price, i|
-          data[i].update_attributes(:price => price.to_i, :quantity => params[:product][:quantity][i], :product_id => @product.id)
+          ProductPrice.create(:price => price, :quantity => params[:product][:quantity][i], :product_id => @product.id)
         end
       elsif @product.product_prices.blank?
         params[:product][:price].each_with_index do |price, i|
