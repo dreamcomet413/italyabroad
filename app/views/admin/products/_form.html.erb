@@ -138,15 +138,43 @@
     </tr>
 
     
-    <tr id="product_prices">
-      <td style="text-align:right">Price:</td>
-      <td><%= text_field_tag "product[price][]", (@product.product_prices.map(&:price).join(", ") if @product.present? && @product.product_prices.present?), :size => 20 %>  <%= link_to "Add more prices for duplicate products", "#", :onclick => "add_prices(); return false;" -%></td>
-    </tr>
-    <tr id="product_quantities">
-      <td style="text-align:right">Quantity:</td>
-      <td><%= text_field_tag "product[quantity][]", (@product.product_prices.map(&:quantity).join(", ") if @product.present? && @product.product_prices.present?), :size => 20 %>  <%= link_to "Add more quantities for duplicate products", "#", :onclick => "add_quantities(); return false;" -%></td>
-    </tr>
+    <% if @product.product_prices.present? %>
+      <% @product.product_prices.each do |product_price| %>
+      <tr id="product_prices">
+        <td style="text-align:right">Price:</td>
+          <td><%= text_field_tag "product[price][]", (product_price.price), :size => 20 %></td>
+        </tr>
+      <% end %>
+      <tr id="product_prices">
+        <td style="text-align:right"></td>
+        <td><%= link_to "Add more prices for duplicate products", "#", :onclick => "add_prices(); return false;" %></td>
+      </tr>
+    <% else %>
+      <tr id="product_prices">
+        <td style="text-align:right">Price:</td>
+          <td><%= text_field_tag "product[price][]", (@product.product_prices.map(&:price).join(", ") if @product.present? && @product.product_prices.present?), :size => 20 %>  <%= link_to "Add more prices for duplicate products", "#", :onclick => "add_prices(); return false;" -%></td>
+      </tr>
+    <% end %>
 
+
+
+    <% if @product.product_prices.present? %>
+      <% @product.product_prices.each do |product_price| %>
+        <tr id="product_quantities">
+          <td style="text-align:right">Quantity:</td>
+            <td><%= text_field_tag "product[quantity][]", (product_price.quantity), :size => 20 %></td>
+        </tr>
+      <% end %>
+        <tr id="product_quantities">
+          <td style="text-align:right"></td>
+          <td><%= link_to "Add more quantities for duplicate products", "#", :onclick => "add_quantities(); return false;"%></td>
+        </tr>
+    <% else %>
+      <tr id="product_quantities">
+        <td style="text-align:right">Quantity:</td>
+        <td><%= text_field_tag "product[quantity][]", (@product.product_prices.map(&:quantity).join(", ") if @product.present? && @product.product_prices.present?), :size => 20 %>  <%= link_to "Add more quantities for duplicate products", "#", :onclick => "add_quantities(); return false;" -%></td>
+      </tr>
+    <% end %>
 
     <tr>
       <td style="text-align:right">Rate:</td><td>
