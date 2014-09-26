@@ -9,7 +9,8 @@ set :deploy_to, "/srv/italyabroad"
 set :user, "root"
 #set :password, "italyabroad1"
 #set :domain, "89.145.121.178"
-set :domain, "192.241.165.181"
+#set :domain, "192.241.165.181"
+set :domain, "104.131.110.105"
 server domain, :app, :web
 role :db, domain, :primary => true
 set :rvm_ruby_string, 'ruby-2.0.0-p353'
