@@ -1,16 +1,10 @@
 .bundle
 db/*.sqlite3
 log/*.log
-tmp/
 .idea/
 .idea/*
 .idea/*.xml
 .idea/*.iml
-<<<<<<< HEAD
-.idea/italyabroad_new.iml
-=======
->>>>>>> added .idea useless files into gitignore
-.idea/italyabroad_new.iml
 .idea/italyabroad_new.iml
 db/schema.rb
 node_modules
