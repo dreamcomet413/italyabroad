@@ -179,7 +179,13 @@
         <%= link_to show_image_tag(wine.layout_image, wine.image_1, :jpg, wine.name), nested_products_uri(wine) %><br /><br />
         <%#= link_to show_image_tag(:card, wine.image_1, :jpg, wine.name), nested_products_uri(wine), {:title => wine.name} %>
         <%= wine.name -%><br /><br />
-        <p style="color:#C40909; font-weight:bold; font-size: 13px;"><%= number_to_currency wine.price, :unit => "&pound;" -%></p>
+        <% if wine.present? && wine.product_prices.present? %>
+          <% wine.product_prices.each do |w| %>
+            <p style="color:#C40909; font-weight:bold; font-size: 13px;"><%= number_to_currency w.price, :unit => "&pound;" -%></p>
+          <% end %>
+        <% else %>
+          <p style="color:#C40909; font-weight:bold; font-size: 13px;">Not Available</p>
+        <% end %>
       </dt>
     <% end %>
   </dt>
@@ -198,7 +204,13 @@
       <dt style="width: 15em;">
         <%= link_to show_image_tag(:card, food.image_1, :jpg, food.name), nested_products_uri(food),{:title => food.name} %><br /><br />
         <%= food.name -%><br /><br />
-        <p style="color:#C40909; font-weight:bold; font-size: 13px;"><%= number_to_currency food.price, :unit => "&pound;" -%></p>
+        <% if food.present? && food.product_prices.present? %>
+          <% food.product_prices.each do |f| %>
+            <p style="color:#C40909; font-weight:bold; font-size: 13px;"><%= number_to_currency f.price, :unit => "&pound;" -%></p>
+          <% end %>
+        <% else %>
+          <p style="color:#C40909; font-weight:bold; font-size: 13px;">Not Available</p>
+        <% end %>
       </dt>
     <% end %>
   </dt>
@@ -217,7 +229,13 @@
         <dt style="width: 15em;">
           <%= link_to show_image_tag(:card, food.image_1, :jpg, food.name), nested_products_uri(food),{:title => food.name} %><br /><br />
           <%= food.name -%><br /><br />
-          <p style="color:#C40909; font-weight:bold; font-size: 13px;"><%= number_to_currency food.price, :unit => "&pound;" -%></p>
+          <% if food.present? && food.product_prices.present? %>
+            <% food.product_prices.each do |best_food| %>
+              <p style="color:#C40909; font-weight:bold; font-size: 13px;"><%= number_to_currency best_food.price, :unit => "&pound;" -%></p>
+            <% end %>
+        <% else %>
+          <p style="color:#C40909; font-weight:bold; font-size: 13px;">Not Available</p>
+        <% end %>
         </dt>
       <% end %>
     <% end %>
