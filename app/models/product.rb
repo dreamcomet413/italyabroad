@@ -11,7 +11,7 @@ class Product < ActiveRecord::Base
 
   # validates_uniqueness_of :name, :message => "of product must be unique"
   validates_uniqueness_of :code, :message => "must be unique"
-   
+
   has_many :product_sizes
   has_many :product_prices, :dependent => :destroy
   attr_accessor :price, :quantity
@@ -149,10 +149,14 @@ class Product < ActiveRecord::Base
   end
 
   def price_discounted
-    if discount.to_i > 0
-      return price.to_f - (price.to_f * discount / 100)
+    if (discount.to_i > 0 && product_prices.present?)
+      price = []
+      product_prices.each do |pp|
+        price << pp.price.to_f - (pp.price.to_f * discount / 100)
+      end
+      return price
     else
-      return price.to_f
+      return product_prices.price.first.to_f
     end
   end
 

@@ -25,6 +25,7 @@
 
     <table style="padding-bottom:20px;width:100%;" cellpadding="0" border="0" cellspacing="0" class="sub-categories-list">
 
+
       <% @products.each do |product| %>
           <%# if product.quantity > 0 %><!--commented this condition to avoid error in pagination(page without a product)-->
           <tr>
@@ -41,17 +42,36 @@
               <%= product.description_short.html_safe() %>
               <br />
               <br />
-              Quantity : <%= product.quantity %>
+              <% if product.product_prices.present? %>
+                <% product.product_prices.each do |pp| %>
+                  Quantity : <%= pp.quantity %> </br>
+                <% end %>
+              <% else %>
+                Not Available
+              <% end %>
             </td>
             <td style="padding:20px 10px 5px 10px;" valign="top">
               <div class="box_price_product">
                 <ul>
                   <li class="price_info">
-                    <% if product.discounted? %>
-                        <div style="font-size:14px;color:black;">Was <span style="text-decoration: line-through;"><%= number_to_currency product.price, :unit => "&pound;" %></span></div>
-                        <span class="price red" style="color:#003300;">Now&nbsp;<span style="color:red;"><%= number_to_currency product.price_discounted, :unit => "&pound;" %></span></span>
-                    <% else %>
-                        <span class="price" style="color:black;"><%= number_to_currency product.price, :unit => "&pound;" %></span>
+                    <% if product.product_prices.present? %>
+                      <% if product.discounted? && product.discount > 0.0 %>
+                        <% product.product_prices.each do |pp| %>
+                        <div style="font-size:14px;color:black;">Was <span style="text-decoration: line-through;">
+                          <%= number_to_currency pp.price, :unit => "&pound;" %></span></div>
+                        <% end %>
+                        <span class="price red" style="color:#003300;">Now&nbsp;<span style="color:red;">
+                          <% product.price_discounted.each do |price| %>
+                            <%= number_to_currency price, :unit => "&pound;" %>
+                          <% end %>
+                        </span></span>
+                      <% else %>
+                        <span class="price" style="color:black;">
+                          <% product.product_prices.each do |pp| %>
+                            <%= number_to_currency pp.price, :unit => "&pound;" %>
+                          <% end %>
+                          </span>
+                      <% end %>
                     <% end %>
                   </li>
 

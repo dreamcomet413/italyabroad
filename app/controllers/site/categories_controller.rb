@@ -19,9 +19,8 @@ class Site::CategoriesController < ApplicationController
       if params[:parent].blank? || params[:category].blank?
         redirect_to root_url and return
       else
-
         #@sort_by = available_sorting.include?(params[:sort_by]) ? params[:sort_by] : "products.price DESC"
-        @sort_by = available_sorting.include?(params[:sort_by]) ? params[:sort_by] : "products.price ASC"
+        @sort_by = available_sorting.include?(params[:sort_by]) ? params[:sort_by] : "products.id ASC"
         if @sort_by.to_s.upcase == 'NAME'
           @sort_by = 'products.name'
         end
@@ -47,7 +46,7 @@ class Site::CategoriesController < ApplicationController
     else
 
       #@sort_by = available_sorting.include?(params[:sort_by]) ? params[:sort_by] : "products.price DESC"
-      @sort_by = available_sorting.include?(params[:sort_by]) ? params[:sort_by] : "products.price ASC"
+      @sort_by = available_sorting.include?(params[:sort_by]) ? params[:sort_by] : "products.id ASC"
       if @sort_by.to_s.upcase == 'NAME'
         @sort_by = 'products.name'
       end
@@ -57,7 +56,7 @@ class Site::CategoriesController < ApplicationController
 #      @products = @category.blank? ? [] : @category.products.find(:all, :order => @sort_by, :include => [:categories, :grapes], :conditions => @search.conditions).paginate(:page => (params[:page] ||=1), :per_page => 10)
 #@products = @category.blank? ? [] : @category.products.find(:all, :order => 'products.id desc', :include => [:categories, :grapes], :conditions => [@search.conditions << " and discount != 0"]).paginate(:page => (params[:page] ||=1), :per_page => 10)
       @products = @category.blank? ? [] : @category.products.where([@search.conditions << " and discount != 0"]).includes([:categories, :grapes]).
-          order('products.price ASC').paginate(:page => (params[:page] ||=1), :per_page => 10)
+          order('products.id ASC').paginate(:page => (params[:page] ||=1), :per_page => 10)
       SearchQuery.create(:query => @search.text) unless @search.text.blank?
     end
 

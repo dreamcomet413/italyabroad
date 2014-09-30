@@ -63,7 +63,7 @@
 </div>
 <div style="clear:both;"></div>
 <%# products = @category.products.find(:all, :conditions => ["active = ?", true], :order => "date ").paginate(:page => params[:page], :per_page => 3) %>
-<% products = @category.products.where(["active = ?", true]).order("price ASC ").paginate(:page => params[:page], :per_page => 3) %>
+<% products = @category.products.where(["active = ?", true]).order("name ASC ").paginate(:page => params[:page], :per_page => 3) %>
 <%- unless products.blank? -%>
     <div id="featured_wine_tours" style="margin:6px;text-align:justify;margin-right:20px;">
       <br />
@@ -74,7 +74,13 @@
               <h1><%= link_to product.name, nested_products_uri(product), :class => "product_title" %></h1>
               <div><%= product.description_short.html_safe() %></div>
               <div style="font-size:18px;color:#9b0707;text-align:right;">
-                <!-- Price:&nbsp;--><%= number_to_currency product.price, :unit => "&pound;" %><br />
+                <% if product.product_prices.present? %>
+                  <% product.product_prices.each do |p| %>
+                  <div style="margin-bottom:15px;">
+                    <%= number_to_currency p.price, :unit => "&pound;" %><br />
+                  </div>
+                  <% end %>
+                <% end %>
                 <%= link_to(image_tag("buttons/add_to_cart_button.png"), "/site/cart?product_id=#{product.id}", :remote => true, :method => :post) %>
               </div>
             </li>

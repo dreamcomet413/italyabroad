@@ -20,7 +20,7 @@ end
 <% end %>
 <%= render :partial => '/site/shared/box_food_search' %>
 <%= render :partial => '/site/templates/category' %>
-<% products = Product.find(:all, :limit => 3, :order => "created_at DESC", :conditions => "id IN (#{@category.all_products_ids.join(',')}) AND quantity > 0") %>
+<% products = Product.find(:all, :limit => 3, :order => "created_at DESC", :conditions => "id IN (#{@category.all_products_ids.join(',')})") %>
 <%- products.each do |product| -%>
 <div class="wineList">
   <table width="100%">
@@ -38,7 +38,13 @@ end
       </td>
       <td style="width:100px;vertical-align:top;padding-top:15px;">
         <div style="font-size:18px;color:#9b0707;text-align:right;vertical-align: top">
-          <div><%= number_to_currency product.price, :unit => "&pound;" %></div>
+          <% if product.product_prices.present? %>
+            <% product.product_prices.each do |p| %>
+            <div style="margin-bottom:15px;">
+              <%= number_to_currency p.price, :unit => "&pound;" %><br />
+            </div>
+            <% end %>
+          <% end %>
             <%- if product.out_of_stock? -%>
             <%= image_tag('out_of_stock.png') %>
           <%- else -%>

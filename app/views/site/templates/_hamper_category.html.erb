@@ -21,7 +21,7 @@ end
 <%= render :partial => '/site/shared/box_hamper_search' %>
 <%= render :partial => '/site/templates/category' %>
 <%# products = Product.find(:all, :limit => 3, :order => "created_at DESC", :conditions => "id IN (#{@category.all_products_ids.join(',')}) AND quantity > 0 AND active") %>
-<% products = Product.find(:all, :limit => 3, :order => "price ASC", :conditions => "id IN (#{@category.all_products_ids.join(',')}) AND quantity > 0 AND active") %>
+<% products = Product.find(:all, :limit => 3, :conditions => "id IN (#{@category.all_products_ids.join(',')}) AND active") %>
 <%- products.each do |product| -%>
 <div  class="wineList">
   <br />
@@ -38,7 +38,13 @@ end
       </td>
       <td valign="top" style="padding:10px 0;width:100px;">
         <div style="font-size:18px;color:#9b0707;text-align:right;">
-          <div style="margin-bottom:15px;"><%= number_to_currency product.price, :unit => "&pound;" %></div>
+          <% if product.product_prices.present? %>
+            <% product.product_prices.each do |p| %>
+            <div style="margin-bottom:15px;">
+              <%= number_to_currency p.price, :unit => "&pound;" %><br />
+            </div>
+            <% end %>
+          <% end %>
            <%- if product.out_of_stock? -%>
             <%= image_tag('out_of_stock.png') %>
           <%- else -%>
