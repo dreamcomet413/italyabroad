@@ -1387,9 +1387,9 @@ ul li.product_listing h1 a.recipe_title:hover {
     top:30px;
     right:10px;
     font-size:18px;
-    width:57px;
-    font-size: 10px;
-    height: 15px;
+    width:auto;
+    font-size: 14px;
+    height: 25px;
     vertical-align: middle;
 }
 
