@@ -22,16 +22,24 @@
           <div class="box_price_product" style="float:left;">
             <ul>
               <li class="price_info">
-                <% if product.discounted? %>
-                    <div style="font-size:14px">Was <span style="text-decoration: line-through;">
-                      <%= number_to_currency product.price, :unit => "&pound;" %>
-                    </span>
-                    </div>
-                    <span class="price red" style="color:#003300;">Now&nbsp;<span class="promotion" style="color:red;">
-                      <%= number_to_currency product.price_discounted, :unit => "&pound;" %>
+                <% if product.product_prices.present? %>
+                  <% if product.discounted? && product.discount > 0.0 %>
+                    <% product.product_prices.each do |pp| %>
+                    <div style="font-size:14px;color:black;">Was <span style="text-decoration: line-through;">
+                      <%= number_to_currency pp.price, :unit => "&pound;" %></span></div>
+                    <% end %>
+                    <span class="price red" style="color:#003300;">Now&nbsp;<span style="color:red;">
+                      <% product.price_discounted.each do |price| %>
+                        <%= number_to_currency price, :unit => "&pound;" %>
+                      <% end %>
                     </span></span>
-                <% else %>
-                    <span class="price" style="color:black;"><%= number_to_currency product.price, :unit => "&pound;" %></span>
+                  <% else %>
+                    <span class="price" style="color:black;">
+                      <% product.product_prices.each do |pp| %>
+                        <%= number_to_currency pp.price, :unit => "&pound;" %>
+                      <% end %>
+                      </span>
+                  <% end %>
                 <% end %>
               </li>
 

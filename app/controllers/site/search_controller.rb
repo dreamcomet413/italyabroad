@@ -72,7 +72,7 @@ class Site::SearchController < ApplicationController
     else
       #@sort_by = available_sorting.include?(params[:sort_by]) ? params[:sort_by] : "products.price DESC"
 
-      @sort_by = available_sorting.include?(params[:sort_by]) ? params[:sort_by] : "products.price ASC"
+      @sort_by = available_sorting.include?(params[:sort_by]) ? params[:sort_by] : "products.id ASC"
       if @sort_by.to_s.upcase == 'NAME'
         @sort_by = 'products.name'
       end
