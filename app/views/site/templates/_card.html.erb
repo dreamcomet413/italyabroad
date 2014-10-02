@@ -154,10 +154,11 @@
     <td>
       <div class="box_price_product">
         <ul>
-          <% prices = @product.product_prices.map(&:price).join(", ") %>
+          <% p = @product.product_prices.map(&:price) %>
+          <% p.each do |prices| %>
           <li class="price_info <%= prices.size > 1 ? 'width-145' : ''-%>">
             <% if prices.size > 1 %>
-                <% price = params[:actual_price].present? ? params[:actual_price] : prices.first %>
+                <% price = params[:actual_price].present? ? params[:actual_price] : prices %>
                 <div style="font-size:14px;color:#003300;">Was
                       <span style="text-decoration: line-through;" id="actual_price">
                         <%= number_to_currency price, :unit => "&pound;" %>
@@ -189,11 +190,12 @@
                 <% end %>
 
             <% end %>
+          <% end %>
           </li>
-          <% if @product.from_quantity > 0 && @product.from_quantity_price > 0 %>
+          <% if (@product.from_quantity.to_f > 0.0) && (@product.from_quantity_price.to_f > 0.0) %>
               <li>
                 <% if @product.categories.root.name == "Wine" %>
-                    <span style="color:red;">Buy a case of <%= @product.from_quantity %> and save <span><%= number_to_currency @product.from_quantity_price, :unit => "&pound;" %><br/>(price per bottle <%= number_to_currency @product.price_per_bottle, :unit => "&pound;" %>)</span></span>
+                    <span style="color:red;">Buy a case of <%= @product.from_quantity %> and save <span><%= number_to_currency @product.from_quantity_price.to_f, :unit => "&pound;" %><br/>(price per bottle <%= number_to_currency @product.price_per_bottle, :unit => "&pound;" %>)</span></span>
                 <% elsif @product.categories.root.name == "Food" %>
                     <span style="color:red;">Buy <%= @product.from_quantity %> and save <span><%= number_to_currency @product.from_quantity_price, :unit => "&pound;" %></span></span>
                 <% end %>

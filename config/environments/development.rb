@@ -18,6 +18,9 @@ ItalyabroadNew::Application.configure do
   config.action_mailer.raise_delivery_errors = false
   config.action_mailer.perform_deliveries = false
 
+  # to avoid I18 message
+  I18n.enforce_available_locales = false
+
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
 

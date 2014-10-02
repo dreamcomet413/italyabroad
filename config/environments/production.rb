@@ -44,6 +44,9 @@ ItalyabroadNew::Application.configure do
   # the I18n.default_locale when a translation can not be found)
   config.i18n.fallbacks = true
 
+  # to avoid i18 message related to price, euro etc.
+  I18n.enforce_available_locales = false
+
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
   config.action_mailer.perform_deliveries = true # need to change

@@ -156,7 +156,7 @@ class Product < ActiveRecord::Base
       end
       return price
     else
-      return product_prices.price.first.to_f
+      false
     end
   end
 
@@ -190,7 +190,13 @@ class Product < ActiveRecord::Base
 
 
   def price_per_bottle
-  	return price_discounted - from_quantity_price / from_quantity
+    if price_discounted.present?
+      price_discounted.each do |price|
+    	  return price - from_quantity_price / from_quantity_price
+      end
+    else
+      return price = 0
+    end
   end
 
   def root_category(object = false)
