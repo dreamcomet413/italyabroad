@@ -51,7 +51,7 @@
       <td valign="top">Wine PDF:</td>
       <td style="padding-left:40px;">
         <%= file_field :wine_pdf, :filename %> <em>(2mb limit)</em>
-        <% if @setting && @setting.wine_pdf %>
+        <% if @setting && @setting.wine_pdf.present? %>
         <p>
           <%= link_to "#{@setting.wine_pdf.filename}".last(20), @setting.wine_pdf.filename.path %>
           (<%= link_to "Destroy", admin_setting_resource_path(@setting, @setting.wine_pdf), :confirm => "Are you sure?", :method => :delete %>)
@@ -69,11 +69,11 @@
               <%= file_field_tag :home_image_1 %> <em>(must 723x284px)</em>
             </td>
           </tr>
-          <% if @setting && @setting.home_image_1 %>
+          <% if @setting && @setting.home_image_1.present? %>
           <tr>
             <td>&nbsp;</td>
             <td valign="top" style="padding:0;">
-              <%= image_tag(@setting.home_image_1.image_filename.url, height: '150', width: '120') %>
+              <%= image_tag(@setting.home_image_1.try(:image_filename).try(:url), height: '150', width: '120') %>
               <%= link_to "Destroy", admin_setting_image_url(@setting, @setting.home_image_1), :confirm => "Are you sure?", :method => :delete %>
             </td>
           </tr>
@@ -99,11 +99,11 @@
               <%= file_field_tag :home_image_2 %> <em>(must 723x284px)</em>
             </td>
           </tr>
-          <% if @setting && @setting.home_image_2 %>
+          <% if @setting && @setting.home_image_2.present? %>
           <tr>
             <td>&nbsp;</td>
             <td valign="top" style="padding:0;">
-              <%= image_tag(@setting.home_image_2.image_filename.url, height: '150', width: '120') %>
+              <%= image_tag(@setting.home_image_2.try(:image_filename).try(:url), height: '150', width: '120') %>
               <%= link_to "Destroy", admin_setting_image_url(@setting, @setting.home_image_2), :confirm => "Are you sure?", :method => :delete %>
             </td>
           </tr>
@@ -129,11 +129,11 @@
               <%= file_field_tag :home_image_3 %> <em>(must 723x284px)</em>
             </td>
           </tr>
-          <% if @setting && @setting.home_image_3 %>
+          <% if @setting && @setting.home_image_3.present? %>
           <tr>
             <td>&nbsp;</td>
             <td valign="top" style="padding:0;">
-              <%= image_tag(@setting.home_image_3.image_filename.url, height: '150', width: '120') %>
+              <%= image_tag(@setting.home_image_3.try(:image_filename).try(:url), height: '150', width: '120') %>
               <%= link_to "Destroy", admin_setting_image_url(@setting, @setting.home_image_3), :confirm => "Are you sure?", :method => :delete %>
             </td>
           </tr>
@@ -159,11 +159,11 @@
               <%= file_field_tag :home_image_4 %> <em>(must 723x284px)</em>
             </td>
           </tr>
-          <% if @setting && @setting.home_image_4 %>
+          <% if @setting && @setting.home_image_4.present? %>
           <tr>
             <td>&nbsp;</td>
             <td valign="top" style="padding:0;">
-              <%= image_tag(@setting.home_image_4.image_filename.url, height: '150', width: '120') %>
+              <%= image_tag(@setting.home_image_4.try(:image_filename).try(:url), height: '150', width: '120') %>
               <%= link_to "Destroy", admin_setting_image_url(@setting, @setting.home_image_4), :confirm => "Are you sure?", :method => :delete %>
             </td>
           </tr>
@@ -189,11 +189,11 @@
               <%= file_field_tag :home_image_5 %> <em>(must 723x284px)</em>
             </td>
           </tr>
-          <% if @setting && @setting.home_image_5 %>
+          <% if @setting && @setting.home_image_5.present? %>
           <tr>
             <td>&nbsp;</td>
             <td valign="top" style="padding:0;">
-              <%= image_tag(@setting.home_image_5.image_filename.url, height: '150', width: '120') %>
+              <%= image_tag(@setting.home_image_5.try(:image_filename).try(:url), height: '150', width: '120') %>
               <%= link_to "Destroy", admin_setting_image_url(@setting, @setting.home_image_5), :confirm => "Are you sure?", :method => :delete %>
             </td>
           </tr>
@@ -239,4 +239,3 @@
   </table>
   <% end %>
 </div>
-
