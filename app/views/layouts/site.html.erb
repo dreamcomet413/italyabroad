@@ -176,7 +176,7 @@
                     <ul>
                       <% wine_category = Category.find_by_name("Wine") %>
                       <% children = Category.find(:all,:conditions=>['parent_id = ? and show_in_menu = ?',category.id,true] ) %>
-                      <% children = children.sort{|x,y| y.id <=> x.id } %>
+                      <%# children = children.sort{|x,y| y.id <=> x.id } %>
                       <%#- for child in category.children(:order=>"(lft1-rgt) asc") -%>
                       <%- for child in children -%>
                           <%# num_products = find_any_active_product_exists(child.products)  %>
