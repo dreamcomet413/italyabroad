@@ -104,11 +104,6 @@ class Site::BaseController < ApplicationController
 
   def contact
     @contact_message = ContactMessage.last
-    if @contact_message.present?
-      respond_to do |format|
-        format.html
-      end
-    end
     if request.post?
       @contact = Contact.new(params[:contact])
       if @contact.valid_with_captcha?

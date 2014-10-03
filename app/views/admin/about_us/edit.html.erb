@@ -1,6 +1,5 @@
 <h1>Editing <%= params[:type] %></h1>
 <% form_tag admin_about_u_path,:id => @about_u.id, :method => 'put' ,:multipart=>true do  %>
-  <%= error_messages_for :about_u %>
 <fieldset>
   <%= hidden_field(:about_u, :link_type, :value => params[:type]) %>
     <p>
@@ -14,10 +13,11 @@
   <p>
   <p>
     <span style="font:normal 15px Arial;padding-right:60px">Image</span>
-    <% fields_for :image do %>
-    <%= file_field :image,:image_file %>
-    <% end %>
-
+    <tr>
+      <td><%= file_field_tag :image %></td>
+        <td><%= image_tag(@about_u.image.image_filename.try(:url), height: '150', width: '220') if @about_u && @about_u.image && @about_u.image.image_filename.present? %></td>
+        <td style="text-align:center"><% if @about_u && @about_u.image %> <%= link_to "Destroy", edit_admin_about_u_url(@about_u, @about_u.image), :confirm => "Are you sure?", :method => :delete %> <% end %></td>
+    </tr>
   </p>
     <%= submit_tag 'Update' %> or <%= link_to "Cancel", admin_about_us_path(:type => @about_u.link_type) %>
   </p>

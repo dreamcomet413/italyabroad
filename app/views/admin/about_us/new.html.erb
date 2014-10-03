@@ -6,8 +6,6 @@
   <h2><%= params[:type] %></h2>
   <br />
 <% form_tag admin_about_us_path,:multipart=>true do %>
-
-  <%= error_messages_for %>
   <fieldset>
   <%= hidden_field(:about_u, :link_type, :value => params[:type]) %>
     <p>
@@ -20,14 +18,13 @@
     </div></p>
  <p>
     <span style="font:normal 15px Arial;padding-right:60px">Image</span>
-    <% fields_for :image do %>
-    <%= file_field :image,:image_file %>
-    <% end %>
-
+    <tr>
+      <td><%= file_field_tag :image %></td>
+        <td><%= image_tag(@about_u.image.image_filename.try(:url), height: '150', width: '220') if @about_u && @about_u.image && @about_u.image.image_filename.present? %></td>
+    </tr>
   </p>
   <p>
     <%= submit_tag 'Create' %> or <%= link_to "Cancel", siteadmin_path %>
   </p>
   </fieldset>
 <% end %>
-
