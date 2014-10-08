@@ -17,3 +17,11 @@ namespace :product do
     ActiveRecord::Migration.remove_column :products, :price, :quantity
   end
 end
+
+namespace :special_offers do
+  desc "Remove Special Offers entry from Category table"
+  task :remove => :environment do
+    s = Category.find_by_name("Special Offers")
+    s.delete
+  end
+end
