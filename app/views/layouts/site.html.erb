@@ -180,10 +180,16 @@
                       <%#- for child in category.children(:order=>"(lft1-rgt) asc") -%>
                       <%- for child in children -%>
                           <%# num_products = find_any_active_product_exists(child.products)  %>
-                          <%#- if num_products > 0  -%>
-                          <li><%#= link_to(child.name.html_safe(), nested_categories_url(%w(Beers Vodka Grappas Gin Amaro Vermouth).include?(child.name) ? wine_category : category, child)) %></li>
-                          <li><%= link_to(child.name.html_safe(), nested_categories_url(category, child)) %></li>
-                          <%#- end -%>
+                          <%#- if num_products > 0  -%><!--
+                          <li><%#= link_to(child.name.html_safe(), nested_categories_url(%w(Beers Vodka Grappas Gin Amaro Vermouth).include?(child.name) ? wine_category : category, child)) %></li> -->
+                          <% if child.name == "Wine Vouchers" %>
+                            <% temp = child %>
+                          <% elsif child.name == "Wine accessories" %>
+                            <li><%= link_to(child.name.html_safe(), nested_categories_url(category, child)) %></li>
+                            <li><%= link_to(temp.name.html_safe(), nested_categories_url(category, temp)) %></li>
+                          <% else %>
+                            <li><%= link_to(child.name.html_safe(), nested_categories_url(category, child)) %></li>
+                          <%- end -%>
                       <%-  end -%>
                       <li style="font-weight:bold;">
                         <%= link_to("Special Offers", nested_categories_url(category.name == "Other Drinks" ? wine_category : category, "offer"), :type => "special_offer", :class => "red-text") %>
