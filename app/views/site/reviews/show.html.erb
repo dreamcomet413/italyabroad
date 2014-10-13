@@ -36,7 +36,7 @@
                       <li class="price_info">
 
                         <div style="font-size:14px;color:#003300;">Was <span style="text-decoration: line-through;"><%= number_to_currency @review.reviewer.price, :unit => "&pound;" %></span></div>
-                        <span class="price red" style="color:#003300;">Now&nbsp;<span style="color:red;"><%= number_to_currency @review.reviewer.price_discounted, :unit => "&pound;" %></span></span>
+                        <span class="price red" style="color:#003300;">Now&nbsp;<span style="color:red;"><%= number_to_currency @review.reviewer.price_discounted.first, :unit => "&pound;" %></span></span>
                         <br />(save <span style="color:red;"><%= number_to_currency (@review.reviewer.price * @review.reviewer.discount / 100), :unit => "&pound;" %></span>)
               <% else %>
                   <span class="price" style="color:#003300;"><%= number_to_currency @review.reviewer.price, :unit => "&pound;" %></span>

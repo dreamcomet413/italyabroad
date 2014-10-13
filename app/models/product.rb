@@ -182,9 +182,9 @@ class Product < ActiveRecord::Base
     #	end
 
   if rate == "0%"
-  	   return price_discounted
+  	   return price_discounted.first
   else
-     	return price_discounted / (1 + (rate.to_f)/100) if rate != "0%"
+     	return price_discounted.first / (1 + (rate.to_f)/100) if rate != "0%"
   end
   end
 
