@@ -155,10 +155,10 @@
       <div class="box_price_product">
         <ul>
           <% p = @product.product_prices.map(&:price) %>
-          <% p.each do |prices| %>
-          <li class="price_info <%= prices.size > 1 ? 'width-145' : ''-%>">
-            <% if prices.size > 1 %>
-                <% price = params[:actual_price].present? ? params[:actual_price] : prices %>
+          <%# p.each do |prices| %>
+          <li class="price_info <%= p.size > 1 ? 'width-145' : ''-%>">
+            <% if p.size > 1 %>
+                <% price = params[:actual_price].present? ? params[:actual_price] : p.first %>
                 <div style="font-size:14px;color:#003300;">Was
                       <span style="text-decoration: line-through;" id="actual_price">
                         <%= number_to_currency price, :unit => "&pound;" %>
@@ -175,22 +175,22 @@
                 <% if @product.discount > 0 %>
                     <div style="font-size:14px;color:#003300;">Was
                       <span style="text-decoration: line-through;">
-                        <%= number_to_currency @product.price, :unit => "&pound;" %>
+                        <%= number_to_currency @product.product_prices.first.price.to_f, :unit => "&pound;" %>
                       </span>
                     </div>
                     <span class="price red" style="color:#003300;">Now&nbsp;
                       <span style="color:red;">
-                        <%= number_to_currency @product.price_discounted, :unit => "&pound;" %>
+                        <%= number_to_currency @product.price_discounted.first, :unit => "&pound;" %>
                       </span>
                     </span>
-                    (save <span style="color:red;"><%= number_to_currency (@product.price.to_f * @product.discount / 100), :unit => "&pound;" %>
+                    (save <span style="color:red;"><%= number_to_currency (@product.product_prices.first.price.to_f * @product.discount / 100), :unit => "&pound;" %>
                     </span>)
                 <% else %>
-                    <span class="price" style="color:black;"><%= number_to_currency @product.price, :unit => "&pound;" %></span>
+                    <span class="price" style="color:black;"><%= number_to_currency @product.product_prices.first.price.to_f, :unit => "&pound;" %></span>
                 <% end %>
 
             <% end %>
-          <% end %>
+          <%# end %>
           </li>
           <% if (@product.from_quantity.to_f > 0.0) && (@product.from_quantity_price.to_f > 0.0) %>
               <li>
@@ -209,7 +209,7 @@
                     Qty: <%#= select :cart, :quantity, [1,2,3,4,5,6,7,8,9] %>
                     <%= text_field :cart, :quantity,:value=> 1, :size => '4' %><br /><br />
                     <%= hidden_field_tag :product_id, @product.id-%>
-                    <%= hidden_field_tag(:discounted_price, @product.discounted_price(params[:actual_price]), :id => "actual_price") if params[:actual_price].present? -%>
+                    <%= hidden_field_tag(:discounted_price, @product.discounted_price(params[:actual_price]) || @product.product_prices.first.price, :id => "actual_price") -%>
                     <%= image_submit_tag("buttons/add_to_cart_button.png") %>
 
                 <%- end -%>
