@@ -9,24 +9,28 @@ class Site::ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id]) || Product.find_by_id(params[:id])
-    quantity =
-      if params[:actual_price].present?
-        @product.product_prices.find_by_price(params[:actual_price]).quantity.to_s
-      else
-        @product.product_prices.map(&:quantity).try(:first)
+    if @product.present?
+      quantity =
+        if params[:actual_price].present?
+          @product.product_prices.find_by_price(params[:actual_price]).quantity.to_s
+        else
+          @product.product_prices.map(&:quantity).try(:first)
+        end
+      @limited_stock =
+        if @product.product_prices.empty?
+          ""
+        elsif @product.quantity.to_i < 12
+          "Only #{quantity} left in stock."
+        end
+          #(@product.present? and @product.quantity.to_i < 12) ? "Only #{quantity} left in stock." : ""
+      unless @product.nil?
+        if !@product.active
+          flash[:alert]  = 'The Product is not available now'
+          redirect_to root_url
+        end
       end
-    @limited_stock =
-      if @product.product_prices.empty?
-        ""
-      elsif @product.quantity.to_i < 12
-        "Only #{quantity} left in stock."
-      end
-        #(@product.present? and @product.quantity.to_i < 12) ? "Only #{quantity} left in stock." : ""
-    unless @product.nil?
-      if !@product.active
-        flash[:alert]  = 'The Product is not available now'
-        redirect_to root_url
-      end
+    else
+      flash[:alert]  = 'Product not found'
     end
 
     unless @product

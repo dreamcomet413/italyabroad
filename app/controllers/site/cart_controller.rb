@@ -12,7 +12,7 @@ class Site::CartController < ApplicationController
   end
 
   def create
-    discounted_price = params[:discounted_price] == "0.0" ? product.product_prices.first.price : params[:discounted_price]
+    discounted_price = "0.0" ? product.product_prices.first.price : params[:discounted_price]
     created = @cart.create(product, quantity, discounted_price)
     if created
       session[:free_delivery] = false
