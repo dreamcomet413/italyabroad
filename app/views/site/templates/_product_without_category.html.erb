@@ -87,10 +87,10 @@
       <div class="box_price_product">
         <ul>
           <li class="price_info">
-            <% if @product.discount > 0 %>
+            <% if @product.discount.to_i > 0 %>
                 <div style="font-size:14px;color:#003300;">Was <span style="text-decoration: line-through;"><%= number_to_currency @product.price, :unit => "&pound;" %></span></div>
                 <span class="price red" style="color:#003300;">Now&nbsp;<span style="color:red;"><%= number_to_currency @product.price_discounted.first, :unit => "&pound;" %></span></span>
-                (save <span style="color:red;"><%= number_to_currency (@product.price * @product.discount / 100), :unit => "&pound;" %></span>)
+                (save <span style="color:red;"><%= number_to_currency (@product.price * @product.discount.to_f / 100), :unit => "&pound;" %></span>)
             <% else %>
                 <span class="price" style="color:#003300;"><%= number_to_currency @product.price, :unit => "&pound;" %></span>
             <% end %>

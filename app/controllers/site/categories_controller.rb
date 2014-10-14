@@ -30,7 +30,7 @@ class Site::CategoriesController < ApplicationController
           @search = Search.new(params || Hash.new)
           @products = @category.blank? ?
               [] :
-              @category.products.where(@search.conditions).includes([:categories, :grapes]).order(@sort_by).paginate(:page => (params[:page] ||=1), :per_page => 10)
+              @category.products.where(@search.conditions).includes([:categories, :grapes, :moods]).order(@sort_by).paginate(:page => (params[:page] ||=1), :per_page => 10)
           #@category.products.find(:all, :order => @sort_by, :include => [:categories, :grapes], :conditions => @search.conditions).
           #    paginate(:page => (params[:page] ||=1), :per_page => 10)
           SearchQuery.create(:query => @search.text) unless @search.text.blank?

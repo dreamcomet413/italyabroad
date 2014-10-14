@@ -154,6 +154,7 @@
     <td>
       <div class="box_price_product">
         <ul>
+        <% if @product.product_prices.present? %>
           <% p = @product.product_prices.map(&:price) %>
           <%# p.each do |prices| %>
           <li class="price_info <%= p.size > 1 ? 'width-145' : ''-%>">
@@ -169,10 +170,10 @@
                         &pound; <%= select_tag(:price, options_for_select(@product.discounted_prices, price.to_f), :onchange => "change_price(this); return false;") -%>
                       </span>
                     </span>
-                (save <span style="color:red;" id="saved_price"><%= number_to_currency (price.to_f * @product.discount / 100), :unit => "&pound;" %>
+                (save <span style="color:red;" id="saved_price"><%= number_to_currency (price.to_f * @product.discount.to_f / 100), :unit => "&pound;" %>
                     </span>)
             <% else %>
-                <% if @product.discount > 0 %>
+                <% if @product.discount.to_i > 0 %>
                     <div style="font-size:14px;color:#003300;">Was
                       <span style="text-decoration: line-through;">
                         <%= number_to_currency @product.product_prices.first.price.to_f, :unit => "&pound;" %>
@@ -183,7 +184,7 @@
                         <%= number_to_currency @product.price_discounted.first, :unit => "&pound;" %>
                       </span>
                     </span>
-                    (save <span style="color:red;"><%= number_to_currency (@product.product_prices.first.price.to_f * @product.discount / 100), :unit => "&pound;" %>
+                    (save <span style="color:red;"><%= number_to_currency (@product.product_prices.first.price.to_f * @product.discount.to_f / 100), :unit => "&pound;" %>
                     </span>)
                 <% else %>
                     <span class="price" style="color:black;"><%= number_to_currency @product.product_prices.first.price.to_f, :unit => "&pound;" %></span>
@@ -218,6 +219,13 @@
             <% if  @product.categories.root.name.downcase == 'wine' %>
                 <%= link_to image_tag("WINE_LIST.jpg"), "/site/wine_lists?product_id=#{@product.id}", :remote => true, :method => :post, :style => "color:#464646;" %>
             <% end %>
+          <% else %>
+            <div style="font-size:14px;color:#003300;">
+              <span style="text-decoration: line-through;">
+                Product Not Available
+              </span>
+            </div>
+          <% end %>
           </li>
         </ul>
       </div>
