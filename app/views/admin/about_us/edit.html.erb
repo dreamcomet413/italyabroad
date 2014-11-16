@@ -1,5 +1,6 @@
 <h1>Editing <%= params[:type] %></h1>
 <% form_tag admin_about_u_path,:id => @about_u.id, :method => 'put' ,:multipart=>true do  %>
+  <%= error_messages_for :about_u %>
 <fieldset>
   <%= hidden_field(:about_u, :link_type, :value => params[:type]) %>
     <p>

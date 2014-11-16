@@ -35,7 +35,6 @@ class ApplicationController < ActionController::Base
   end
 
 
-
   protected
   def active
     {

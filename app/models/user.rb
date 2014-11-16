@@ -22,7 +22,6 @@ class User < ActiveRecord::Base
   validates_uniqueness_of   :login,  :case_sensitive => false
   validates_format_of       :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
 
-
   validate :validate_telephone, :on => :create
   validate :validate_dob, :on => :update
   validate :validate_dob, :on => :save

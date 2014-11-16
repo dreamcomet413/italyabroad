@@ -6,6 +6,7 @@
   <h2><%= params[:type] %></h2>
   <br />
 <% form_tag admin_about_us_path,:multipart=>true do %>
+
   <fieldset>
   <%= hidden_field(:about_u, :link_type, :value => params[:type]) %>
     <p>

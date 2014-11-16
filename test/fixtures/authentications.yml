@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  user_id: 1
+  provider: MyString
+  uid: MyString
+  auth_token: MyString
+  auth_secret: MyString
+  user_name: MyString
+
+two:
+  user_id: 1
+  provider: MyString
+  uid: MyString
+  auth_token: MyString
+  auth_secret: MyString
+  user_name: MyString

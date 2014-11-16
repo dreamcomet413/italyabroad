@@ -98,7 +98,6 @@ class Admin::ProductsController < ApplicationController
       flash[:notice] = @product.show_errors
       render :action => :new
     end
-
   end
 
   def meta
@@ -306,8 +305,6 @@ class Admin::ProductsController < ApplicationController
   end
 
 
-
-  def included_products
     p_ids = []
     @product = Product.find(params[:id])
     if !params[:search_name].blank?

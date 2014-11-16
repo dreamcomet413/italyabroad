@@ -207,7 +207,7 @@ class Notifier < ActionMailer::Base
     from "info@italyabroad.com"
     subject  "New order from  " + user.name
     body      :order  => order,
-              :user=>user
+             :user=>user
   end
 
   def new_account_created(user,admin_email)
