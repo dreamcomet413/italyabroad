@@ -90,7 +90,7 @@ namespace :deploy do
   end
 
   task :tmp_symlinks do
-    run "cd /srv/italyabroad/current && rm -rf tmp && ln -s /srv/italyabroad/shared/tmp tmp"
+    run "cd #{current_path} && rm -rf tmp && ln -s #{shared_path}/tmp tmp"
   end
 
   desc "start the juggernaut server"
