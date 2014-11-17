@@ -18,6 +18,7 @@ class Search
     @category         = params[:category].nil? ? nil : Category.find(params[:category])
     @user_id          = params[:chef] ||= ""
     @mood             = params[:mood] ||= ""
+  end
 
   def conditions(products=true)
     text   = @text.gsub("'","''")
