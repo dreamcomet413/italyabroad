@@ -1,9 +1,9 @@
 class AddActieToProducersAndRegions < ActiveRecord::Migration
   def self.up
-    unless RAILS_ENV == "production"
+    #unless RAILS_ENV == "production"
       add_column :producers,:active,:boolean,:default=>true
       add_column :regions,:active,:boolean,:default=>true
-    end
+    #end
   end
 
   def self.down

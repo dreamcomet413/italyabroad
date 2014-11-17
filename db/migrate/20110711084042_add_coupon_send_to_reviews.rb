@@ -1,6 +1,6 @@
 class AddCouponSendToReviews < ActiveRecord::Migration
   def self.up
-    add_column :reviews,:cupon_send,:boolean,:default=>false unless RAILS_ENV == "production"
+    add_column :reviews,:cupon_send,:boolean,:default=>false #unless RAILS_ENV == "production"
   end
 
   def self.down

@@ -1,6 +1,6 @@
 class AddRegionIdToRecipes < ActiveRecord::Migration
   def self.up
-    add_column :recipes,:region_id,:integer unless RAILS_ENV == "production"
+    add_column :recipes,:region_id,:integer #unless RAILS_ENV == "production"
   end
 
   def self.down

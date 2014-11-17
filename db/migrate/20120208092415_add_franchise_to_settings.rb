@@ -1,6 +1,6 @@
 class AddFranchiseToSettings < ActiveRecord::Migration
   def self.up
-    add_column :settings,:franchise,:text unless RAILS_ENV == "production"
+    add_column :settings,:franchise,:text #unless RAILS_ENV == "production"
   end
 
   def self.down

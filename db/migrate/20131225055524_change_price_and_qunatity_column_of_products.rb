@@ -1,9 +1,9 @@
 class ChangePriceAndQunatityColumnOfProducts < ActiveRecord::Migration
   def self.up
-    unless RAILS_ENV == "production"
+    #unless RAILS_ENV == "production"
       change_column :products, :price, :string, :default => 0
       change_column :products, :quantity, :string, :default => 1
-    end
+    #end
   end
 
   def self.down

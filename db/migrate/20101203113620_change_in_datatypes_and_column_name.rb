@@ -1,7 +1,6 @@
 class ChangeInDatatypesAndColumnName < ActiveRecord::Migration
   def self.up
-    unless RAILS_ENV=="production"
-      rename_column :about_us, :type, :link_type
+      rename_column :about_us, :type, :link_type unless RAILS_ENV=="production"
       change_column :categories, :show_in_menu,:boolean,:defualt=>true
       change_column :categories, :show_in_boxes,:boolean,:defualt=>true
       change_column :cupons,:active,:boolean,:defualt=>true
@@ -40,7 +39,6 @@ class ChangeInDatatypesAndColumnName < ActiveRecord::Migration
       change_column :users,:activation_sent,:boolean,:default=>0
       change_column :users,:news_letters,:boolean,:default=>1
       change_column :users,:ship_a_gift,:boolean,:default=>0
-    end
   end
 
   def self.down
