@@ -1,9 +1,11 @@
 class CreateMoods < ActiveRecord::Migration
   def self.up
-    create_table :moods do |t|
-      t.string :name
+    unless ActiveRecord::Base.connection.table_exists? :moods
+      create_table :moods do |t|
+        t.string :name
 
-      t.timestamps
+        t.timestamps
+      end
     end
   end
 

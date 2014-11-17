@@ -1,8 +1,10 @@
 class CreateOccasions < ActiveRecord::Migration
   def self.up
-    create_table :occasions do |t|
-      t.string :name
-      t.timestamps
+    unless ActiveRecord::Base.connection.table_exists? :occasions
+      create_table :occasions do |t|
+        t.string :name
+        t.timestamps
+      end
     end
   end
 

@@ -1,6 +1,8 @@
 class AddShippingAgencyIdToOrders < ActiveRecord::Migration
   def self.up
-    add_column :orders, :shipping_agency_id, :integer
+    unless RAILS_ENV == "production"
+      add_column :orders, :shipping_agency_id, :integer
+    end
   end
 
   def self.down

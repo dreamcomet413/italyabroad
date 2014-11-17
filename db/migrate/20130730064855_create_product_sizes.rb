@@ -1,11 +1,13 @@
 class CreateProductSizes < ActiveRecord::Migration
   def self.up
-    create_table :product_sizes do |t|
-      t.string :size
-      t.decimal :price
-      t.integer :product_id
-      t.boolean  :default   
-      t.timestamps
+    unless ActiveRecord::Base.connection.table_exists? :product_sizes
+      create_table :product_sizes do |t|
+        t.string :size
+        t.decimal :price
+        t.integer :product_id
+        t.boolean  :default
+        t.timestamps
+      end
     end
   end
 

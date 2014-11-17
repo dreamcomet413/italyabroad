@@ -1,6 +1,6 @@
 class ChangeVatColumnTypeInSettings < ActiveRecord::Migration
   def self.up
-    change_column :settings, :vat_rate,:string,:defualt=>0
+    change_column :settings, :vat_rate,:string,:defualt=>0 unless RAILS_ENV == "production"
   end
 
   def self.down

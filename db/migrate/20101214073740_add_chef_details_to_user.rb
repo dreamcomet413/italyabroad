@@ -1,7 +1,9 @@
 class AddChefDetailsToUser < ActiveRecord::Migration
   def self.up
-    add_column :users, :chef_bio, :string
-    add_column :users, :establishment_link, :string
+    unless RAILS_ENV == "production"
+      add_column :users, :chef_bio, :string
+      add_column :users, :establishment_link, :string
+    end
   end
 
   def self.down

@@ -1,8 +1,10 @@
 class CreateShippingAgencies < ActiveRecord::Migration
   def self.up
-    create_table :shipping_agencies do |t|
-      t.string :name
-      t.timestamps
+    unless ActiveRecord::Base.connection.table_exists? :shipping_agencies
+      create_table :shipping_agencies do |t|
+        t.string :name
+        t.timestamps
+      end
     end
   end
 

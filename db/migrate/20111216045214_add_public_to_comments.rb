@@ -1,6 +1,6 @@
 class AddPublicToComments < ActiveRecord::Migration
   def self.up
-      add_column :comments,:public,:boolean,:default=>false,:null=>false
+      add_column :comments,:public,:boolean,:default=>false,:null=>false unless RAILS_ENV == "production"
   end
 
   def self.down

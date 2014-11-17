@@ -1,7 +1,9 @@
 class AddDescOfFoodAndProductOfTheWeek < ActiveRecord::Migration
   def self.up
-    add_column :settings,:desc_wine_of_the_week,:string
-    add_column :settings,:desc_food_of_the_week,:string
+    unless RAILS_ENV == "production"
+      add_column :settings,:desc_wine_of_the_week,:string
+      add_column :settings,:desc_food_of_the_week,:string
+    end
   end
 
   def self.down

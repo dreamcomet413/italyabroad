@@ -1,8 +1,10 @@
 class CreateAdminWineSizes < ActiveRecord::Migration
   def self.up
-    create_table :wine_sizes do |t|
-      t.string :title
-      t.timestamps
+    unless ActiveRecord::Base.connection.table_exists? :wine_sizes
+      create_table :wine_sizes do |t|
+        t.string :title
+        t.timestamps
+      end
     end
   end
 

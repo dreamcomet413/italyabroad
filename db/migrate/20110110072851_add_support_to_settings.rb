@@ -1,6 +1,6 @@
 class AddSupportToSettings < ActiveRecord::Migration
   def self.up
-      add_column :settings,:support,:string,:default=>'admin'
+      add_column :settings,:support,:string,:default=>'admin' unless RAILS_ENV == "production"
   end
 
   def self.down

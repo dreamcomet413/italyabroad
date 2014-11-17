@@ -1,7 +1,9 @@
 class AddGrapeAndRegionPageQuote < ActiveRecord::Migration
   def self.up
-    add_column :settings,:grape_page_quote,:string
-    add_column :settings,:region_page_quote,:string
+    unless RAILS_ENV == "production"
+      add_column :settings,:grape_page_quote,:string
+      add_column :settings,:region_page_quote,:string
+    end
   end
 
   def self.down
