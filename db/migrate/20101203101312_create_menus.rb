@@ -1,6 +1,6 @@
 class CreateMenus < ActiveRecord::Migration
   def self.up
-    unless RAILS_ENV == "production"
+    unless ActiveRecord::Base.connection.table_exists? :menus
       create_table :menus do |t|
         t.integer :parent_id
         t.integer :lft
@@ -13,7 +13,7 @@ class CreateMenus < ActiveRecord::Migration
   end
 
   def self.down
-    remove_table :menus unless RAILS_ENV == "production"
+    remove_table :menus if ActiveRecord::Base.connection.table_exists? :menus
   end
 end
 
