@@ -302,130 +302,129 @@ class Admin::ProductsController < ApplicationController
       flash.now[:notice] = @product.show_errors
       redirect_to edit_admin_product_path(@product)
     end
-  end
 
 
-  p_ids = []
-  @product = Product.find(params[:id])
-  if !params[:search_name].blank?
-    if @product.root_category == 'Hampers' || @product.sub_categories.include?('Mixed case')
-      @products = Product.find(:all, :conditions => ["products.id NOT IN (?)  AND quantity > ? AND active = ? AND products.name LIKE ? ", @product.id,0,true,"%#{params[:search_name]}%"])
-    else
-      @products = Product.find(:all, :include=>['categories'],:conditions => ["products.id NOT IN (?) AND LOWER(categories.name) = ? AND quantity > ? AND active = ? AND products.name LIKE ? ", @product.id,'wine',0,true,"%#{params[:search_name]}%"])
-    end
+    p_ids = []
+    @product = Product.find(params[:id])
+    if !params[:search_name].blank?
+      if @product.root_category == 'Hampers' || @product.sub_categories.include?('Mixed case')
+        @products = Product.find(:all, :conditions => ["products.id NOT IN (?)  AND quantity > ? AND active = ? AND products.name LIKE ? ", @product.id,0,true,"%#{params[:search_name]}%"])
+      else
+        @products = Product.find(:all, :include=>['categories'],:conditions => ["products.id NOT IN (?) AND LOWER(categories.name) = ? AND quantity > ? AND active = ? AND products.name LIKE ? ", @product.id,'wine',0,true,"%#{params[:search_name]}%"])
+      end
 
-    @products.each do |p|
-      p_ids.push(p.id)
-    end
-    if @product.included_product_ids
-      for included_product_id in @product.included_product_ids
-        unless p_ids.include?(included_product_id)
-          @products << Product.find_by_id(included_product_id)
+      @products.each do |p|
+        p_ids.push(p.id)
+      end
+      if @product.included_product_ids
+        for included_product_id in @product.included_product_ids
+          unless p_ids.include?(included_product_id)
+            @products << Product.find_by_id(included_product_id)
+          end
         end
       end
-    end
 
-    # @products = Product.find(:all,:conditions => ["products.id NOT IN (?)", @product.id])
-  else
-    if @product.root_category == 'Hampers' || @product.sub_categories.include?('Mixed case')
-      @products = Product.find(:all,:conditions => ["products.id NOT IN (?) AND quantity > ? AND active = ?", @product.id,0,true])
+      # @products = Product.find(:all,:conditions => ["products.id NOT IN (?)", @product.id])
     else
-      @products = Product.find(:all, :include=>'categories',:conditions => ["products.id NOT IN (?) AND LOWER(categories.name) = ? AND quantity > ? AND active = ?", @product.id,'wine',0,true])
+      if @product.root_category == 'Hampers' || @product.sub_categories.include?('Mixed case')
+        @products = Product.find(:all,:conditions => ["products.id NOT IN (?) AND quantity > ? AND active = ?", @product.id,0,true])
+      else
+        @products = Product.find(:all, :include=>'categories',:conditions => ["products.id NOT IN (?) AND LOWER(categories.name) = ? AND quantity > ? AND active = ?", @product.id,'wine',0,true])
+      end
+
+
     end
 
-
-  end
-
-  respond_to do |format|
-    format.html
-  end
-end
-
-def xml
-  item_string = ""
-  whole_product = ""
-  @products = Product.find(:all)
-  header_string = '<?xml version="1.0" encoding="UTF-8" ?>'
-  header_string += '<rss version ="2.0" xmlns:g="http://base.google.com/ns/1.0">'
-  header_string += '<channel>'
-  header_string += '<title>Products Data</title>'
-  # header_string += '<description>Details of the product</description>'
-  header_string += '<link>http://www.example.com</link>'
-  footer_string = '</channel>'
-  footer_string +='</rss>'
-  #   @xml = @products.to_xml(:only => [:name, :description_short,:price])
-  #  File.open("products.xml", 'w') {|f| f.write(@xml) }
-  for product in @products
-    item_string += '<item>'
-    item_string += '<g:id>'+ product.id.to_s + '</g:id>'
-    item_string += '<title>Title</title>'
-    item_string += '<g:condition>new</g:condition>'
-    item_string += '<g:quantity>'+ product.quantity.to_s + '</g:quantity>'
-    item_string += '<name>'+ h(product.name) + '</name>'
-    item_string += '<description>'+ h(product.description) + '</description>'
-
-    item_string += '<link>' + h(url_for(:only_path => false, :controller => "site/products", :action => "show", :id =>"#{product.friendly_identifier}"))  + '</link>'
-    item_string += '<g:price>'+ product.price.to_s + '</g:price>'
-    item_string += '<rate>'+ product.rate.to_s + '</rate>'
-    item_string += '</item>'
-  end
-
-  whole_product = header_string + item_string + footer_string
-  File.open("products.xml", 'w') {|f| f.write(whole_product) }
-  send_file File.join(Rails.root,"products.xml" ), :type => "xml"
-end
-
-def update_discount(products,discount)
-  for product in products
-
-    @product = Product.find(product.id)
-    @product.update_attribute('discount',discount)
-
-  end
-end
-
-def products_of_the_week
-  #  @products = Product.all
-  # @week_product_ids = WeekProduct.find(:all)
-  categories = Category.find_by_sql("select * from categories where parent_id is null")
-  @categories_data = Admin::CategoriesController.new
-  @data = @categories_data.get_tree(categories,nil)
-
-
-  if !params[:search].blank?
-
-    @products = Product.where(["categories.id = ? AND products.name LIKE ? AND(UPPER(categories.name) = ? OR UPPER(categories.name = ?)) and products.id NOT IN (select week_product_id from week_products), #{params[:search]} ,'%#{params[:search_name]}%','WINE','FOOD'"]).
-        includes([:categories]).paginate(:page => params[:page], :per_page => 20)
-    #@products = Product.find(:all, :include => [:categories],:conditions=>['categories.id = ? AND products.name LIKE ? AND(UPPER(categories.name) = ? OR UPPER(categories.name = ?)) and products.id NOT IN (select week_product_id from week_products) ',"#{params[:search]}" ,"%#{params[:search_name]}%",'WINE','FOOD']).paginate(:page => params[:page], :per_page => 20)
-  elsif params[:search].blank?
-    @products = Product.where(["products.name LIKE '%#{params[:search_name]}%' AND (UPPER(categories.name) = 'WINE' OR UPPER(categories.name = 'FOOD')) and products.id NOT IN (select week_product_id from week_products)"]).includes([:categories]).paginate(:page => params[:page], :per_page => 20)
-    #@products = Product.find(:all, :include => [:categories],:conditions=>['products.name LIKE ? AND(UPPER(categories.name) = ? OR UPPER(categories.name = ?)) and products.id NOT IN (select week_product_id from week_products)',"%#{params[:search_name]}%",'WINE','FOOD']).paginate(:page => params[:page], :per_page => 20)
-
-  else
-    @products = Product.where(['UPPER(categories.name) = ? OR UPPER(categories.name = ?) and products.id NOT IN (select week_product_id from week_products)','Wine','FOOD']).includes([:categories]).paginate(:page => params[:page], :per_page => 20)
-
-  end
-  if params[:id] and request.xhr?
-    WeekProduct.find_or_create_by_week_product_id(params[:id])
-  end
-end
-
-def delete_products_of_the_week
-  @week_products = WeekProduct.find(:all)
-  if params[:id] and request.xhr?
-    @week_product = WeekProduct.find_by_week_product_id(params[:id])
-    @week_product.destroy
-  end
-end
-
-def remove_all_correlations
-  @product = Product.find(params[:id])
-  unless @product.correlation_ids.nil?
-    @product.correlation_ids.each do |inc_id|
-      @relation = ProductCorrelation.find_by_correlation_id_and_product_id(inc_id,@product.id)
-      @relation.delete
+    respond_to do |format|
+      format.html
     end
   end
-  redirect_to product_correlation_path(@product)
-end
 
+  def xml
+    item_string = ""
+    whole_product = ""
+    @products = Product.find(:all)
+    header_string = '<?xml version="1.0" encoding="UTF-8" ?>'
+    header_string += '<rss version ="2.0" xmlns:g="http://base.google.com/ns/1.0">'
+    header_string += '<channel>'
+    header_string += '<title>Products Data</title>'
+    # header_string += '<description>Details of the product</description>'
+    header_string += '<link>http://www.example.com</link>'
+    footer_string = '</channel>'
+    footer_string +='</rss>'
+    #   @xml = @products.to_xml(:only => [:name, :description_short,:price])
+    #  File.open("products.xml", 'w') {|f| f.write(@xml) }
+    for product in @products
+      item_string += '<item>'
+      item_string += '<g:id>'+ product.id.to_s + '</g:id>'
+      item_string += '<title>Title</title>'
+      item_string += '<g:condition>new</g:condition>'
+      item_string += '<g:quantity>'+ product.quantity.to_s + '</g:quantity>'
+      item_string += '<name>'+ h(product.name) + '</name>'
+      item_string += '<description>'+ h(product.description) + '</description>'
+
+      item_string += '<link>' + h(url_for(:only_path => false, :controller => "site/products", :action => "show", :id =>"#{product.friendly_identifier}"))  + '</link>'
+      item_string += '<g:price>'+ product.price.to_s + '</g:price>'
+      item_string += '<rate>'+ product.rate.to_s + '</rate>'
+      item_string += '</item>'
+    end
+
+    whole_product = header_string + item_string + footer_string
+    File.open("products.xml", 'w') {|f| f.write(whole_product) }
+    send_file File.join(Rails.root,"products.xml" ), :type => "xml"
+  end
+
+  def update_discount(products,discount)
+    for product in products
+
+      @product = Product.find(product.id)
+      @product.update_attribute('discount',discount)
+
+    end
+  end
+
+  def products_of_the_week
+    #  @products = Product.all
+    # @week_product_ids = WeekProduct.find(:all)
+    categories = Category.find_by_sql("select * from categories where parent_id is null")
+    @categories_data = Admin::CategoriesController.new
+    @data = @categories_data.get_tree(categories,nil)
+
+
+    if !params[:search].blank?
+
+      @products = Product.where(["categories.id = ? AND products.name LIKE ? AND(UPPER(categories.name) = ? OR UPPER(categories.name = ?)) and products.id NOT IN (select week_product_id from week_products), #{params[:search]} ,'%#{params[:search_name]}%','WINE','FOOD'"]).
+          includes([:categories]).paginate(:page => params[:page], :per_page => 20)
+      #@products = Product.find(:all, :include => [:categories],:conditions=>['categories.id = ? AND products.name LIKE ? AND(UPPER(categories.name) = ? OR UPPER(categories.name = ?)) and products.id NOT IN (select week_product_id from week_products) ',"#{params[:search]}" ,"%#{params[:search_name]}%",'WINE','FOOD']).paginate(:page => params[:page], :per_page => 20)
+    elsif params[:search].blank?
+      @products = Product.where(["products.name LIKE '%#{params[:search_name]}%' AND (UPPER(categories.name) = 'WINE' OR UPPER(categories.name = 'FOOD')) and products.id NOT IN (select week_product_id from week_products)"]).includes([:categories]).paginate(:page => params[:page], :per_page => 20)
+      #@products = Product.find(:all, :include => [:categories],:conditions=>['products.name LIKE ? AND(UPPER(categories.name) = ? OR UPPER(categories.name = ?)) and products.id NOT IN (select week_product_id from week_products)',"%#{params[:search_name]}%",'WINE','FOOD']).paginate(:page => params[:page], :per_page => 20)
+
+    else
+      @products = Product.where(['UPPER(categories.name) = ? OR UPPER(categories.name = ?) and products.id NOT IN (select week_product_id from week_products)','Wine','FOOD']).includes([:categories]).paginate(:page => params[:page], :per_page => 20)
+
+    end
+    if params[:id] and request.xhr?
+      WeekProduct.find_or_create_by_week_product_id(params[:id])
+    end
+  end
+
+  def delete_products_of_the_week
+    @week_products = WeekProduct.find(:all)
+    if params[:id] and request.xhr?
+      @week_product = WeekProduct.find_by_week_product_id(params[:id])
+      @week_product.destroy
+    end
+  end
+
+  def remove_all_correlations
+    @product = Product.find(params[:id])
+    unless @product.correlation_ids.nil?
+      @product.correlation_ids.each do |inc_id|
+        @relation = ProductCorrelation.find_by_correlation_id_and_product_id(inc_id,@product.id)
+        @relation.delete
+      end
+    end
+    redirect_to product_correlation_path(@product)
+  end
+end
