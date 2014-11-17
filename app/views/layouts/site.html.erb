@@ -186,7 +186,7 @@
                             <% temp = child %>
                           <% elsif child.name == "Wine accessories" %>
                             <li><%= link_to(child.name.html_safe(), nested_categories_url(category, child)) %></li>
-                            <li><%= link_to(temp.name.html_safe(), nested_categories_url(category, temp)) %></li>
+                            <li><%= link_to(temp.name.html_safe(), nested_categories_url(category, temp)) if temp.present? %></li>
                           <% else %>
                             <li><%= link_to(child.name.html_safe(), nested_categories_url(category, child)) %></li>
                           <%- end -%>
