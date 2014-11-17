@@ -1,21 +1,21 @@
 #require 'capistrano/ext/multistage'
 require 'rvm/capistrano'
 set :application, "italyabroad"
-#set :deploy_to, "/home/italy/italyabroad"
-set :deploy_to, "/srv/italyabroad"
+set :deploy_to, "/home/italy/italyabroad"
+#set :deploy_to, "/srv/italyabroad"
 
-#set :user, "italy"
+set :user, "italy"
 #set :scm_passphrase, "italyabroad1"
-set :user, "root"
+#set :user, "root"
 #set :password, "italyabroad1"
-#set :domain, "89.145.121.178"
+set :domain, "89.145.121.178"
 #set :domain, "192.241.165.181"
-set :domain, "104.131.110.105"
+#set :domain, "104.131.110.105"
 server domain, :app, :web
 role :db, domain, :primary => true
 set :rvm_ruby_string, 'ruby-2.0.0-p353'
 $:.unshift(File.expand_path('./lib', ENV['rvm_path']))
-set :rvm_type, :system
+#set :rvm_type, :system
 
   
 # set :scm, :git # You can set :scm explicitly or Capistrano will make an intelligent guess based on known version control directory names
@@ -26,7 +26,7 @@ set :keep_releases,       5
 default_run_options[:pty] = true
 #set :use_sudo, true
 
-before 'deploy:setup', 'rvm:install_rvm'
+#before 'deploy:setup', 'rvm:install_rvm'
 
 after "deploy:update_code" do
   run "ls -al #{fetch(:release_path)} && which ruby"
@@ -37,8 +37,9 @@ after "deploy:update_code" do
 end
 
 set :scm, :git
-#set :repository, "git@github.com:italyabroad/italyabroad.git"
-set :repository, "ssh://git@bitbucket.org/neerajkumar/italyabroad_new.git"
+set :repository, "git@github.com:italyabroad/italyabroad.git"
+#set :repository, "https://github.com/italyabroad/italyabroad.git"
+#set :repository, "ssh://git@bitbucket.org/neerajkumar/italyabroad_new.git"
 set :rake, 'bundle exec rake'
 #set :repository, "https://github.com/italyabroad/italyabroad.git"
 #set :git_enable_submodules, 1
