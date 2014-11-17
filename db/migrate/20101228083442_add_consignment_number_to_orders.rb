@@ -1,6 +1,6 @@
 class AddConsignmentNumberToOrders < ActiveRecord::Migration
   def self.up
-    add_column :orders,:consignment_no,:string #unless RAILS_ENV == "production"
+    add_column :orders,:consignment_no,:string unless column_exists?(:orders, :consignment_no)
   end
 
   def self.down

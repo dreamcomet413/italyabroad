@@ -1,6 +1,6 @@
 class AddPublishReviews < ActiveRecord::Migration
   def self.up
-    add_column :reviews,:publish,:boolean,:default=>false #unless RAILS_ENV == "production"
+    add_column :reviews,:publish,:boolean,:default=>false unless column_exists?(:reviews, :publish)
   end
 
   def self.down
