@@ -25,3 +25,14 @@ namespace :special_offers do
     s.delete
   end
 end
+
+namespace :product_price do
+  desc "Move product price and quantity in Product price table"
+  task :move => :environment do
+    class Product < ActiveRecord::Base
+      establish_connection "nov18"
+      sql = "INSERT INTO product_prices (product_id,price,quantity) SELECT DISTINCT id,price,quantity FROM italyabroad_production_18Nov2014.products;"
+      ActiveRecord::Base.connection.execute(sql)
+    end
+  end
+end

@@ -35,4 +35,8 @@ staging:
   username: root
   password: italyabroad
 
-
+nov18:
+  adapter: mysql
+  database: italyabroad_production_18Nov2014
+  username: root
+  password: italyabroad
