@@ -12,7 +12,7 @@
         <%#= testimonial.title %>
       </td> -->
       <td valign="top"><%#= truncate testimonial.description, 30 %>
-      <%= link_to testimonial.description,testimonial_path %><br /><br />
+      <%= link_to testimonial.description.html_safe,testimonial_path %><br /><br />
       </td>
     </tr>
     <%- end -%>

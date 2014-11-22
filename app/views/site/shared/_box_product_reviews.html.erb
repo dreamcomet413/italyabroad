@@ -11,7 +11,7 @@
         <%= avatar_for_user(review.user, 'small') %><br />
         <%= review.user.name %>
       </td>
-      <td valign="top"><%= truncate review.description, 20 %></td>
+      <td valign="top"><%= truncate review.description.html_safe, 20 %></td>
     </tr>
     <%- end -%>
   <%- else -%>

@@ -42,7 +42,7 @@
       final_wine = ""
       index = 0
       wine_index = 0
-      @producer_products = @producer.products.find(:all,:conditions=>['active = ? and quantity > ?',true,0])
+      @producer_products = @producer.products.find(:all, :include => 'product_prices', :conditions=>['active = ? and product_prices.quantity > ?',true,0])
 
       @producer_products.each do |product|
         if product.categories.root.root.name == "Food"

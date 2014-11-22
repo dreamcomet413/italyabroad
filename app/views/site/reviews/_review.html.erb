@@ -8,11 +8,11 @@
         <%= User.find_by_id(review.user_id).name %> Wrote:
         <% end %>
         </strong><br /><br />
-        <%= review.description %><br /><br />
+        <%= review.description.html_safe %><br /><br />
         <table width="100%">
           <tr>
             <td style="width:150px;"><strong>You Rated this product:</strong></td>
-            <td><%= show_ratings(review.reviewer, review.score) unless review.reviewer.nil? %></td>
+            <td><%= show_ratings(review.reviewer, review.score).html_safe unless review.reviewer.nil? %></td>
             <td align="right">
               <%- if review.reviewer_type == "Product" -%>
               <%= image_tag("WINE_LIST.jpg") if review.reviewer.is_wine? unless review.reviewer.nil?%>

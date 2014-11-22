@@ -23,7 +23,10 @@ end
 <%= render :partial => '/site/templates/category' %>
 
 <%# products = Product.find(:all, :limit => 3, :order => "created_at DESC", :conditions => "id IN (#{@category.all_products_ids.join(',')}) AND quantity > 0") %>
-<% products = Product.find(:all, :limit => 3, :conditions => "id IN (#{@category.all_products_ids.join(',')}) AND active ") %>
+<% condition = "active" %>
+<% condition += " AND id IN (#{@category.all_products_ids.join(',')})" unless @category.all_products_ids.blank? %>
+
+<% products = Product.find(:all, :limit => 3, :conditions => condition) %>
 <%- products.each do |product| -%>
 <div class="wineList">
   <br />

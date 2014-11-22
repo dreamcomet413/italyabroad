@@ -31,7 +31,7 @@ alert("Description must be filled out");
 
   <div class="comment_icon">&nbsp;&nbsp;<%= @post.comments.find(:all,:conditions=>['public=?',true]).size %> comments</div>
 
-  <div><%= @post.description_cleared %></div><br />
+  <div><%= @post.description_cleared.html_safe %></div><br />
 
   <div style="float:left;">
         Tags:

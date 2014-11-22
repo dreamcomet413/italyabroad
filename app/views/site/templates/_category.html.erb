@@ -1,4 +1,6 @@
-<% products = Product.find(:all, :limit => 5, :order => "RAND()", :conditions => "id IN (#{@category.all_products_ids.join(',')}) AND rating =5 AND active = true ") %>
+<% condition = "rating = 5 AND active = true" %>
+<% condition += " AND id IN (#{@category.all_products_ids.join(',')})" unless @category.all_products_ids.blank? %>
+<% products = Product.find(:all, :limit => 5, :order => "RAND()", :conditions => condition) %>
 <% unless products.blank? %>
     <div id="topSellingWine">
       <%=
@@ -25,8 +27,9 @@
     </div>
 <% end %>
 
-
-<% products = Product.find(:all, :limit => 5, :order => "RAND()", :conditions => "id IN (#{@category.all_products_ids.join(',')}) AND raccomanded = true AND active = true ") %>
+<% condition = "raccomanded = true AND active = true" %>
+<% condition += " AND id IN (#{@category.all_products_ids.join(',')})" unless @category.all_products_ids.blank? %>
+<% products = Product.find(:all, :limit => 5, :order => "RAND()", :conditions => condition) %>
 <% unless products.blank? %>
     <div id="andreasWine">
       <%=

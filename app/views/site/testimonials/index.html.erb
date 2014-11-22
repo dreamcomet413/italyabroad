@@ -94,8 +94,8 @@
   <ul>
   <% @testimonials.each do |testimonial| %>
     <li>
-        <div style="font-size:12px;"><%= testimonial.description %></div>
-        <div style="font-size:10px;width:100%;text-align:right;right-margin:10px;left-margin:auto;"><%= testimonial.title %></div>
+        <div style="font-size:12px;"><%= testimonial.description.html_safe %></div>
+        <div style="font-size:10px;width:100%;text-align:right;right-margin:10px;left-margin:auto;"><%= testimonial.title.html_safe %></div>
     </li>
   <% end %>
   </ul>

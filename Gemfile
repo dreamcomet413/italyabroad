@@ -19,8 +19,8 @@ gem 'rvm-capistrano'
 gem 'rake', '~> 0.8.7'
 gem 'better_nested_set'
 gem 'rmagick', :require => false
-#gem 'simple_captcha', :git => 'git://github.com/arcadi/simple-captcha.git'
-gem "galetahub-simple_captcha", :require => "simple_captcha"
+gem 'simple_captcha', :git => 'git://github.com/arcadi/simple-captcha.git'
+#gem "galetahub-simple_captcha", :require => "simple_captcha"
 
 gem 'jquery-rails'
 gem 'active_record_base_without_table'

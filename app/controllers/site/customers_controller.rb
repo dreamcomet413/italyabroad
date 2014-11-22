@@ -180,7 +180,7 @@ class Site::CustomersController < ApplicationController
       flash[:title] = "Congratulations"
       flash[:message] = "Your account has been update, you will now receive an email"
       #   render :action => :messages
-      redirect_to customer_path(@user.id)
+      redirect_to site_customer_path(@user.id)
       #  redirect_to root_url
     else
 
@@ -209,9 +209,9 @@ class Site::CustomersController < ApplicationController
 
     respond_to do |format|
       if follower
-        format.html { redirect_to(customer_path(follower)) }
+        format.html { redirect_to(site_customer_path(follower)) }
       else
-        format.html { redirect_to(customer_path(current_user)) }
+        format.html { redirect_to(site_customer_path(current_user)) }
       end
     end
   end
@@ -220,10 +220,10 @@ class Site::CustomersController < ApplicationController
     @message = Message.new(:name=>params[:name],:user_id=>params[:user_id],:send_by_id=>params[:send_by_id])
     if @message.save
       Notifier.deliver_new_message_received(params[:name],User.find(params[:user_id]),User.find(params[:send_by_id]))
-      redirect_to customer_path(params[:user_id])
+      redirect_to site_customer_path(params[:user_id])
     else
       flash[:notice] = @message.show_errors
-      redirect_to customer_path(params[:user_id])
+      redirect_to site_customer_path(params[:user_id])
     end
   end
 
@@ -238,10 +238,10 @@ class Site::CustomersController < ApplicationController
         unless session[:return_to].blank?
           format.html { redirect_to(session[:return_to]) }
         else
-          format.html { redirect_to(customer_path(user)) }
+          format.html { redirect_to(site_customer_path(user)) }
         end
       else
-        format.html { redirect_to(customer_path(current_user)) }
+        format.html { redirect_to(site_customer_path(current_user)) }
       end
     end
   end
