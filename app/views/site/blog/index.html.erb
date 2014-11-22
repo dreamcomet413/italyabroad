@@ -1,4 +1,4 @@
-<% @title = "Andrea’s wine Blog"; @description = "Andrea’s Wine Blog, The Italian Wine Blog, A Guide to Italian Wines, Journey Through Italian Wines"; @keys = "Wine Blog,Italian Wine Blog,Italian Red and White Wine,Italian Food,Wine Tasting,Wine Expert" %>
+<% @title = "Andrea's wine Blog"; @description = "Andrea's Wine Blog, The Italian Wine Blog, A Guide to Italian Wines, Journey Through Italian Wines"; @keys = "Wine Blog,Italian Wine Blog,Italian Red and White Wine,Italian Food, Wine Tasting,Wine Expert"%>
 <%- @breadcrumbs = "#{link_to("Home", root_url)}&raquo; #{link_to('Community',wine_community_path)} &raquo; #{link_to("Blog", site_blog_index_path)}" -%>
 
 <% @about = AboutU.find(:first, :conditions => {:link_type => "blog"} ) %>

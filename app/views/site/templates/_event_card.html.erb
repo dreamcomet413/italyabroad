@@ -45,16 +45,16 @@
       <li style="margin-bottom:10px;text-align:right;">
       	<% if @product.discount > 0 %>
       		Was <span style="text-decoration: line-through;"><%= number_to_currency @product.price, :unit => "&pound;" %></span><br />
-      		Now <span class="red"><%= number_to_currency(@product.price - (@product.price * @product.discount.to_f / 100)), :unit => "&pound;" %></span>
-      		(save <span class="red"><%= number_to_currency(@product.price * @product.discount.to_f / 100), :unit => "&pound;" %></span>)
+      		Now <span class="red"><%= number_to_currency (@product.price - (@product.price * @product.discount.to_f / 100)), :unit => "&pound;" %></span>
+      		(save <span class="red"><%= number_to_currency (@product.price * @product.discount.to_f / 100), :unit => "&pound;" %></span>)
       	<% else %>
       		<!--Price:--> <span style="font-size:18px;color:#9b0707;text-align:right;" class="red"><%= number_to_currency @product.price, :unit => "&pound;" %></span>
       	<% end %>
       </li>
 
       <li style="text-align:right;">
-      <% if @product.quantity > 0 %>
-      	<%- form_remote_for :cart, :url => product_cart_index_path(@product), :html => {:method => :post} do  -%>
+      <% if @product.product_prices.first.quantity > 0 %>
+      	<%- form_for :cart, :url => product_cart_index_path(@product), :html => {:method => :post}, :remote => true do  -%>
       	  <table cellspacing="0" border="0">
 
       	    <tr>

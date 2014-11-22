@@ -1,7 +1,7 @@
 class Category < ActiveRecord::Base
   validates_presence_of :name
 
-  has_many :wine_sizes
+  has_and_belongs_to_many :wine_sizes
   belongs_to :image
 
   has_many :categorizations, :dependent => :destroy

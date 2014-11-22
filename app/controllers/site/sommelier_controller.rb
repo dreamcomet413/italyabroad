@@ -25,20 +25,20 @@ class Site::SommelierController < ApplicationController
     search_options =
         case params[:step]
           when "1"
-            WineSize.find(:all, :conditions => ["id in (?)", session[:category].present? ? session[:category].WineSizeids.split(",") : []]).map(&:title)
+            WineSize.find(:all, :conditions => ["id in (?)", session[:category].present? && session[:category].WineSizeids.present? ? session[:category].WineSizeids.split(",") : []]).map(&:title)
             #WineSize.all.map(&:title)
             #["Light", "Medium", "Full Body"]
           when "2"
-            FoodOrDrink.find(:all, :conditions => ["id in (?)", session[:category].present? ? session[:category].FoodOrDrinkids.split(",") : []]).map(&:title)
+            FoodOrDrink.find(:all, :conditions => ["id in (?)", session[:category].present? && session[:category].FoodOrDrinkids.present? ? session[:category].FoodOrDrinkids.split(",") : []]).map(&:title)
             #FoodOrDrink.all.map(&:title)
             #["drink on its own", "with food"]
           when "3"
             if params[:selected_option].downcase.strip == "with food"
-              FoodOption.find(:all, :conditions => ["id in (?)", session[:category].present? ? session[:category].FoodOptionids.split(",") : []]).map(&:title)
+              FoodOption.find(:all, :conditions => ["id in (?)", session[:category].present? && session[:category].FoodOptionids.present? ? session[:category].FoodOptionids.split(",") : []]).map(&:title)
               #FoodOption.all.map(&:title)
               #["red meat", "white meat", "pasta", "fish", "cheeses", "desserts"]
             else
-              DesiredExpenditure.find(:all, :conditions => ["id in (?)", session[:category].present? ? session[:category].DesiredExpenditureids.split(",") : []]).map(&:title)
+              DesiredExpenditure.find(:all, :conditions => ["id in (?)", session[:category].present? && session[:category].DesiredExpenditureids.present? ? session[:category].DesiredExpenditureids.split(",") : []]).map(&:title)
               #DesiredExpenditure.all.map(&:title)
               #["under £10", "between £10 and £20", "more than £20"]
             end

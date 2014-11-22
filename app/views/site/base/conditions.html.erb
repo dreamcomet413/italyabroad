@@ -1,10 +1,9 @@
 <% @title = "Terms and Condition"; @class = "help no-padding"; @breadcrumbs = "#{link_to("Home", root_url)} &raquo; Help &raquo; Terms and Condition" %>
-
 <div id="header"><strong>Italyabroad.com</strong>-Help</div>
 <% @about = AboutU.find(:first, :conditions => {:link_type => "terms_conditions"} ) %>
 <div class="help-container">
   <% if @about %>
-  <h2><%= @about.title %></h2>
+  <h2><%= @about.title.html_safe %></h2>
 	<!--<p>
   	The following are the terms “Terms” that govern use of the Italyabroad.com ("Site"). By using or visiting the Site, you expressly agree to be bound by these Terms and to follow these Terms and all applicable laws and regulations governing the Site. Italyabroad.com “Italyabroad” reserve the right to change these Terms at any time, effective immediately upon posting on the Site. If you violate these Terms of Use, Italyabroad may terminate your use of the Site and/or take appropriate legal action against you.
 	</p>
@@ -61,8 +60,7 @@
 	</p>-->
 
 
-
-  <%= @about.description %>
+      <%#= @about.description.html_safe -%>
   <% end %>
 </div>
 

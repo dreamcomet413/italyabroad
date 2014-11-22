@@ -10,10 +10,10 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141122065701) do
+ActiveRecord::Schema.define(:version => 20141122134424) do
 
   create_table "about_us", :force => true do |t|
-    t.string   "title"
+    t.text     "title"
     t.text     "description"
     t.string   "link_type"
     t.datetime "created_at"
@@ -71,11 +71,11 @@ ActiveRecord::Schema.define(:version => 20141122065701) do
     t.string  "layout_search"
     t.string  "layout_card"
     t.string  "layout_image"
-    t.boolean "show_in_menu",          :default => true
-    t.boolean "show_in_boxes",         :default => true
+    t.boolean "show_in_menu",                         :default => true
+    t.boolean "show_in_boxes",                        :default => true
     t.string  "image_url"
     t.string  "friendly_identifier"
-    t.string  "text_on_image"
+    t.string  "text_on_image",         :limit => 250
     t.string  "page_heading"
     t.string  "image_link"
     t.string  "WineSizeids"
@@ -122,7 +122,7 @@ ActiveRecord::Schema.define(:version => 20141122065701) do
     t.integer "product_id"
     t.boolean "public"
     t.string  "cupon_type",       :default => "price"
-    t.date    "created_at",       :default => '2014-01-21'
+    t.date    "created_at",       :default => '2014-11-17'
     t.date    "expiry_date"
     t.boolean "created_by_admin", :default => false
     t.integer "no_of_times",      :default => 1
@@ -172,6 +172,11 @@ ActiveRecord::Schema.define(:version => 20141122065701) do
     t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "food_or_drinks_wine_sizes", :id => false, :force => true do |t|
+    t.integer "food_or_drink_id"
+    t.integer "wine_size_id"
   end
 
   create_table "forum_posts", :force => true do |t|
@@ -324,6 +329,28 @@ ActiveRecord::Schema.define(:version => 20141122065701) do
     t.datetime "updated_at"
   end
 
+  create_table "old_users", :force => true do |t|
+    t.string "first_name",           :limit => 100
+    t.string "last_name",            :limit => 100
+    t.string "address_1",            :limit => 100
+    t.string "address_2",            :limit => 100
+    t.string "country",              :limit => 100
+    t.string "town",                 :limit => 100
+    t.string "post_code",            :limit => 100
+    t.string "telephone",            :limit => 100
+    t.string "email",                :limit => 100
+    t.string "password",             :limit => 100
+    t.string "title",                :limit => 3
+    t.string "know_us",              :limit => 100
+    t.string "type_id",              :limit => 10,  :default => "personal"
+    t.string "b2b_delivery_address",                :default => "",         :null => false
+    t.string "b2b_company_name",                    :default => "",         :null => false
+    t.string "b2b_company_number",                  :default => "",         :null => false
+    t.string "b2b_vat_number",                      :default => "",         :null => false
+    t.string "b2b_fax",                             :default => "",         :null => false
+    t.float  "b2b_balance",                         :default => 1.0,        :null => false
+  end
+
   create_table "order_items", :force => true do |t|
     t.string  "name"
     t.decimal "price",        :precision => 8, :scale => 2, :default => 0.0
@@ -333,8 +360,10 @@ ActiveRecord::Schema.define(:version => 20141122065701) do
     t.integer "order_id"
     t.string  "product_code"
     t.integer "product_id"
-    t.boolean "reviewed",                                   :default => false
+    t.boolean "reviewed",                                   :default => false, :null => false
   end
+
+  add_index "order_items", ["product_id"], :name => "index_order_items_on_product_id"
 
   create_table "orders", :force => true do |t|
     t.integer  "user_id"
@@ -360,7 +389,7 @@ ActiveRecord::Schema.define(:version => 20141122065701) do
     t.text     "gift_note"
     t.string   "ship_telephone"
     t.integer  "shipping_agency_id"
-    t.string   "consignment_no"
+    t.text     "consignment_no"
     t.float    "points_used",                                              :default => 0.0,   :null => false
   end
 
@@ -420,6 +449,11 @@ ActiveRecord::Schema.define(:version => 20141122065701) do
   create_table "producers_products", :force => true do |t|
     t.integer "producer_id"
     t.integer "product_id"
+  end
+
+  create_table "productCorrelations", :force => true do |t|
+    t.integer "product_id"
+    t.integer "correlation_id"
   end
 
   create_table "product_correlations", :force => true do |t|
@@ -511,6 +545,11 @@ ActiveRecord::Schema.define(:version => 20141122065701) do
     t.datetime "updated_at"
   end
 
+  create_table "products_wine_sizes", :id => false, :force => true do |t|
+    t.integer "product_id"
+    t.integer "wine_size_id"
+  end
+
   create_table "rates", :force => true do |t|
     t.integer  "score"
     t.datetime "created_at"
@@ -594,13 +633,13 @@ ActiveRecord::Schema.define(:version => 20141122065701) do
     t.string   "weekend_lunch"
     t.string   "weekend_dinner"
     t.string   "reservation"
-    t.decimal  "cost",               :precision => 10, :scale => 0, :default => 0
+    t.decimal  "cost",               :precision => 8, :scale => 2, :default => 0.0
     t.string   "closed"
     t.text     "happy_hour"
     t.text     "regional_cuisine"
     t.text     "address"
     t.text     "description"
-    t.boolean  "online_reservation"
+    t.boolean  "online_reservation",                               :default => true
     t.string   "page_title"
     t.string   "meta_keys"
     t.text     "meta_description"
@@ -618,12 +657,12 @@ ActiveRecord::Schema.define(:version => 20141122065701) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "google_map_link"
-    t.boolean  "raccomanded",                                       :default => false
+    t.boolean  "raccomanded",                                      :default => false
     t.integer  "rating"
     t.string   "city"
     t.string   "cap"
     t.string   "style"
-    t.boolean  "active",                                            :default => false
+    t.boolean  "active",                                           :default => false
   end
 
   create_table "reviews", :force => true do |t|
@@ -634,14 +673,13 @@ ActiveRecord::Schema.define(:version => 20141122065701) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "rate_id"
     t.integer  "score"
-    t.boolean  "publish",       :default => false
+    t.boolean  "publish",                          :null => false
     t.boolean  "cupon_send",    :default => false
   end
 
-  create_table "schemaInfo", :id => false, :force => true do |t|
-    t.integer "version"
-  end
+  add_index "reviews", ["rate_id"], :name => "index_reviews_on_rate_id"
 
   create_table "search_queries", :force => true do |t|
     t.string   "query"
@@ -680,19 +718,19 @@ ActiveRecord::Schema.define(:version => 20141122065701) do
     t.string  "home_image_5_title"
     t.string  "home_image_5_url"
     t.string  "promotion"
-    t.integer "reorder_quantity",                                         :default => 10
-    t.string  "vat_rate",                                                 :default => "0.0"
+    t.integer "reorder_quantity",                                         :default => 10,      :null => false
+    t.string  "vat_rate",                                                 :default => "20"
     t.string  "support",                                                  :default => "admin"
     t.float   "points_per_pound",                                         :default => 0.0,     :null => false
     t.float   "points_to_pound",                                          :default => 0.0,     :null => false
     t.string  "desc_wine_of_the_week"
     t.string  "desc_food_of_the_week"
     t.text    "guarantee_of_satisfaction"
+    t.string  "home_page_meta_description"
+    t.string  "home_page_meta_key"
     t.boolean "chat_available",                                           :default => false
     t.integer "wine_discount_number",                                     :default => 0
     t.float   "wine_discount_amount",                                     :default => 0.0
-    t.string  "home_page_meta_description"
-    t.string  "home_page_meta_key"
   end
 
   create_table "ship_addresses", :force => true do |t|
@@ -730,6 +768,9 @@ ActiveRecord::Schema.define(:version => 20141122065701) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "slugs", ["name", "sluggable_type"], :name => "index_slugs_on_name_and_sluggable_type", :unique => true
+  add_index "slugs", ["sluggable_id"], :name => "index_slugs_on_sluggable_id"
 
   create_table "status_news_letters", :force => true do |t|
     t.string "name"
@@ -856,6 +897,14 @@ ActiveRecord::Schema.define(:version => 20141122065701) do
 
   create_table "wine_sizes", :force => true do |t|
     t.string   "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "wishLists", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "product_id"
+    t.integer  "quantity",   :default => 1
     t.datetime "created_at"
     t.datetime "updated_at"
   end

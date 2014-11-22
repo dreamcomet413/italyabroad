@@ -1,4 +1,3 @@
-
 namespace :product do
   desc "Move all product price and quantity in Product price table"
   task :price_quantity => :environment do
