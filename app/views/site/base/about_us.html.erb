@@ -23,8 +23,8 @@
 <% @about = AboutU.find(:first, :conditions => {:link_type => "who we are"} ) %>
 <div style="margin:20px;">
   <% if @about %>
-  <h2><%= @about.title %></h2>
-  <%= @about.description %>
+  <h2><%= @about.title.html_safe %></h2>
+  <%= @about.description.html_safe %>
   <% end %>
 </div>
 

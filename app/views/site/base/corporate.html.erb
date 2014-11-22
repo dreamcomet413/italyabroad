@@ -1,4 +1,5 @@
-<% @title = "Corporate services"; @description = "Corporate services, corporate gifts in the UK"; @keys = "corporate services, corporate gifts, corporate hampers" %>
+<%# @title = "Corporate services"; @description = "Corporate services, corporate gifts in the UK"; @keys = "corporate services, corporate gifts, corporate hampers" %>
+<% @title = "Corporate services"; @description = "Corporate services, corporate gifts in the UK"; @key = "corporate services, corporate gifts, corporate hampers" %>
 <% @class = "about-us no-padding" %>
 <% @breadcrumbs = "#{link_to("Home", root_url)} &raquo; About us &raquo; Corporate services" %>
 
@@ -36,8 +37,9 @@
   <% @about = AboutU.find(:first, :conditions => {:link_type => "corporate services"} ) %>
     <div style="margin:20px;">
       <% if @about %>
-        <h2><%= @about.title if @about %></h2>
-        <%= @about.description if @about %>
+        <h2><%= @about.title.html_safe if @about %></h2>
+        <%#= @about.description.html_safe if @about %>
+        <%= " Corporate Wine Tastings<br><br>\r\nWe love sharing our passion and knowledge for wine with others. We offer several wine tasting events that are ideal for corporate gatherings and celebrations. We customize our tasting events to our clients' needs, from small companies to large blue chip. In the past we have hosted wine and chocolate tasting events, sparkling wine tasting events, and team building wine tasting events. We also offer more traditional tastings that focus on region, producer and grape type. Let us help design the ideal wine tasting event for your company! <br><br><br>\r\nCorporate Gifts <br><br>\r\nWe offer a wide variety of corporate gifts that are perfect for the holidays or a simple \xC3\xA2\xE2\x82\xAC\xCB\x9Cthanks\xC3\xA2\xE2\x82\xAC\xE2\x84\xA2.  Our corporate gifts are very customisable. Show your appreciation with a large luxury Italian food & wine gift basket or with a simple, elegant hand wrapped bottle of wine. Our quality products paired with a loving sense of attention to detail are the best ways to show your appreciation. \r\n".html_safe %>
       <% else %>
         <p style="padding:30px 0 30px 0;text-align:center;font: bold 16px Arial">Coming soon...</p>
       <% end %>
