@@ -106,8 +106,9 @@ class Site::BaseController < ApplicationController
     @contact_message = ContactMessage.last
     if request.post?
       @contact = Contact.new(params[:contact])
-      if @contact.valid_with_captcha?
-         @contact.save_with_captcha
+      #if @contact.valid_with_captcha?
+      #   @contact.save_with_captcha
+      if @contact.save
         flash[:title] = "Thank you"
         flash[:message] = "Your request has been submitted, we aim to respond within 48hr"
         Notifier.deliver_contact(@contact)
