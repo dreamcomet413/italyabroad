@@ -114,21 +114,21 @@
               </td>
             </tr>
             <% if @product.size || (@product.product_sizes && @product.product_sizes.size > 0)  %>
-                <% if @product.multiple? %>
-                    <% if @product.product_sizes && @product.product_sizes.size > 0 %>
-                        <% @product.product_sizes.each do |p|  %>
-                            <tr>
-                              <td valign="top">Size:</td>
-                              <td class="data">
-                                <%= p.size   %>
-                              </td>
-                              <td valign="top">Price:</td>
-                              <td class="data">
-                                <%= p.price   %>
-                              </td>
-                            </tr>
-                        <% end %>
+                <%# if @product.multiple? %>
+                <% if @product.product_sizes && @product.product_sizes.size > 0 %>
+                    <% @product.product_sizes.each do |p|  %>
+                        <tr>
+                          <td valign="top">Size:</td>
+                          <td class="data">
+                            <%= p.size   %>
+                          </td>
+                          <td valign="top">Price:</td>
+                          <td class="data">
+                            <%= p.price   %>
+                          </td>
+                        </tr>
                     <% end %>
+                    <%# end %>
                 <% else %>
                     <tr>
                       <td valign="top">Size:</td>
@@ -137,13 +137,13 @@
                       </td>
                     </tr>
                     <% if @product.quantity.to_i < 12 %>
-                    <tr>
-                      <td valign="top" style="color: red"><b>Quantity:</b></td>
-                      <td class="data" style="color: red">
-                        <b><%=  @limited_stock %></b>
-                      </td>
-                    </tr>
-                        <% end %>
+                        <tr>
+                          <td valign="top" style="color: red"><b>Quantity:</b></td>
+                          <td class="data" style="color: red">
+                            <b><%=  @limited_stock %></b>
+                          </td>
+                        </tr>
+                    <% end %>
                 <% end %>
             <% end %>
           </table>
