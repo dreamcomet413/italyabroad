@@ -1,15 +1,16 @@
-# This file is auto-generated from the current state of the database. Instead of editing this file, 
-# please use the migrations feature of Active Record to incrementally modify your database, and
-# then regenerate this schema definition.
+# This file is auto-generated from the current state of the database. Instead
+# of editing this file, please use the migrations feature of Active Record to
+# incrementally modify your database, and then regenerate this schema definition.
 #
-# Note that this schema.rb definition is the authoritative source for your database schema. If you need
-# to create the application database on another system, you should be using db:schema:load, not running
-# all the migrations from scratch. The latter is a flawed and unsustainable approach (the more migrations
+# Note that this schema.rb definition is the authoritative source for your
+# database schema. If you need to create the application database on another
+# system, you should be using db:schema:load, not running all the migrations
+# from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130903102140) do
+ActiveRecord::Schema.define(:version => 20141122065701) do
 
   create_table "about_us", :force => true do |t|
     t.string   "title"
@@ -34,6 +35,21 @@ ActiveRecord::Schema.define(:version => 20130903102140) do
     t.integer "attribute_set_id"
   end
 
+  create_table "authentications", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "token"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "available_chat_users", :force => true do |t|
+    t.string   "user_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "blog_types", :force => true do |t|
     t.string "name"
   end
@@ -55,13 +71,22 @@ ActiveRecord::Schema.define(:version => 20130903102140) do
     t.string  "layout_search"
     t.string  "layout_card"
     t.string  "layout_image"
-    t.boolean "show_in_menu",        :default => true
-    t.boolean "show_in_boxes",       :default => true
+    t.boolean "show_in_menu",          :default => true
+    t.boolean "show_in_boxes",         :default => true
     t.string  "image_url"
     t.string  "friendly_identifier"
     t.string  "text_on_image"
     t.string  "page_heading"
     t.string  "image_link"
+    t.string  "WineSizeids"
+    t.string  "FoodOrDrinkids"
+    t.string  "DesiredExpenditureids"
+    t.string  "FoodOptionids"
+  end
+
+  create_table "categories_wine_sizes", :id => false, :force => true do |t|
+    t.integer "category_id"
+    t.integer "wine_size_id"
   end
 
   create_table "categorizations", :force => true do |t|
@@ -82,6 +107,13 @@ ActiveRecord::Schema.define(:version => 20130903102140) do
     t.boolean  "public",      :default => false, :null => false
   end
 
+  create_table "contact_messages", :force => true do |t|
+    t.string   "header"
+    t.text     "message"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "cupons", :force => true do |t|
     t.string  "code"
     t.integer "price"
@@ -90,21 +122,28 @@ ActiveRecord::Schema.define(:version => 20130903102140) do
     t.integer "product_id"
     t.boolean "public"
     t.string  "cupon_type",       :default => "price"
-    t.date    "created_at",       :default => '2013-09-02'
+    t.date    "created_at",       :default => '2014-01-21'
     t.date    "expiry_date"
     t.boolean "created_by_admin", :default => false
     t.integer "no_of_times",      :default => 1
     t.integer "no_of_times_used", :default => 0
   end
 
-  create_table "cupons_products", :force => true do |t|
+  create_table "cupons_products", :id => false, :force => true do |t|
     t.integer "cupon_id"
     t.integer "product_id"
   end
 
   create_table "deliveries", :force => true do |t|
     t.string  "name"
-    t.decimal "price", :precision => 8, :scale => 2, :default => 0.0
+    t.decimal "price",            :precision => 8, :scale => 2, :default => 0.0
+    t.float   "bulk_order_price",                               :default => 0.0
+  end
+
+  create_table "desired_expenditures", :force => true do |t|
+    t.string   "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "faqs", :force => true do |t|
@@ -119,6 +158,18 @@ ActiveRecord::Schema.define(:version => 20130903102140) do
   create_table "followers", :force => true do |t|
     t.integer  "user_id"
     t.integer  "follower_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "food_options", :force => true do |t|
+    t.string   "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "food_or_drinks", :force => true do |t|
+    t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -216,6 +267,18 @@ ActiveRecord::Schema.define(:version => 20130903102140) do
     t.integer "topic_id"
     t.integer "user_id"
     t.boolean "active",   :default => true
+  end
+
+  create_table "moods", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "image"
+  end
+
+  create_table "moods_products", :id => false, :force => true do |t|
+    t.integer "mood_id"
+    t.integer "product_id"
   end
 
   create_table "news_letter_types", :force => true do |t|
@@ -371,10 +434,19 @@ ActiveRecord::Schema.define(:version => 20130903102140) do
     t.datetime "updated_at"
   end
 
+  create_table "product_prices", :force => true do |t|
+    t.decimal  "price",      :precision => 10, :scale => 0
+    t.decimal  "quantity",   :precision => 10, :scale => 0
+    t.integer  "product_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "product_sizes", :force => true do |t|
     t.string   "size"
-    t.integer  "price",      :limit => 10, :precision => 10, :scale => 0
+    t.decimal  "price",      :precision => 10, :scale => 0
     t.integer  "product_id"
+    t.boolean  "default"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -384,7 +456,6 @@ ActiveRecord::Schema.define(:version => 20130903102140) do
     t.string   "code"
     t.text     "description_short"
     t.text     "description"
-    t.decimal  "price",                 :precision => 8, :scale => 2, :default => 0.0
     t.string   "rate",                                                :default => "17.5%"
     t.decimal  "cost",                  :precision => 8, :scale => 2, :default => 0.0
     t.integer  "image_1_id"
@@ -394,7 +465,6 @@ ActiveRecord::Schema.define(:version => 20130903102140) do
     t.integer  "resource_2_id"
     t.integer  "resource_3_id"
     t.boolean  "active",                                              :default => true
-    t.integer  "quantity",                                            :default => 1
     t.boolean  "raccomanded",                                         :default => false
     t.string   "region"
     t.boolean  "vegetarian",                                          :default => false
@@ -431,6 +501,7 @@ ActiveRecord::Schema.define(:version => 20130903102140) do
     t.boolean  "multiple",                                            :default => false
     t.integer  "defalult_product_size"
     t.string   "mood"
+    t.boolean  "is_best_seller"
   end
 
   create_table "products_grapes", :force => true do |t|
@@ -523,7 +594,7 @@ ActiveRecord::Schema.define(:version => 20130903102140) do
     t.string   "weekend_lunch"
     t.string   "weekend_dinner"
     t.string   "reservation"
-    t.integer  "cost",               :limit => 10, :precision => 10, :scale => 0, :default => 0
+    t.decimal  "cost",               :precision => 10, :scale => 0, :default => 0
     t.string   "closed"
     t.text     "happy_hour"
     t.text     "regional_cuisine"
@@ -547,12 +618,12 @@ ActiveRecord::Schema.define(:version => 20130903102140) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "google_map_link"
-    t.boolean  "raccomanded",                                                     :default => false
+    t.boolean  "raccomanded",                                       :default => false
     t.integer  "rating"
     t.string   "city"
     t.string   "cap"
     t.string   "style"
-    t.boolean  "active",                                                          :default => false
+    t.boolean  "active",                                            :default => false
   end
 
   create_table "reviews", :force => true do |t|
@@ -616,10 +687,12 @@ ActiveRecord::Schema.define(:version => 20130903102140) do
     t.float   "points_to_pound",                                          :default => 0.0,     :null => false
     t.string  "desc_wine_of_the_week"
     t.string  "desc_food_of_the_week"
-    t.text    "franchise"
+    t.text    "guarantee_of_satisfaction"
+    t.boolean "chat_available",                                           :default => false
+    t.integer "wine_discount_number",                                     :default => 0
+    t.float   "wine_discount_amount",                                     :default => 0.0
     t.string  "home_page_meta_description"
     t.string  "home_page_meta_key"
-    t.boolean "chat_available",                                           :default => false
   end
 
   create_table "ship_addresses", :force => true do |t|
@@ -647,6 +720,8 @@ ActiveRecord::Schema.define(:version => 20130903102140) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "simple_captcha_data", ["key"], :name => "idx_key"
 
   create_table "slugs", :force => true do |t|
     t.string   "name"
@@ -775,6 +850,12 @@ ActiveRecord::Schema.define(:version => 20130903102140) do
     t.integer  "user_id"
     t.integer  "product_id"
     t.integer  "quantity"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "wine_sizes", :force => true do |t|
+    t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
