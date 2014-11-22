@@ -48,9 +48,9 @@ class Admin::ProductsController < ApplicationController
 
     if !params[:search_name].blank?
 
-      @products = Product.where(['quantity <= ? ',"#{params[:search_name]}"]).order("quantity DESC").paginate(:page => params[:page], :per_page => 20)
+      @products = Product.where(['product_prices.quantity <= ? ',"#{params[:search_name]}"]).includes([:product_prices]).order("quantity DESC").paginate(:page => params[:page], :per_page => 20)
     else
-      @products = Product.where("").order("quantity DESC").paginate(:page => params[:page], :per_page => 20)
+      @products = Product.where("").order("product_prices.quantity DESC").includes([:product_prices]).paginate(:page => params[:page], :per_page => 20)
     end
   end
 

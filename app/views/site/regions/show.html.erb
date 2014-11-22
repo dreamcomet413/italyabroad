@@ -36,14 +36,14 @@
   <%- end -%>
   </ul>
  <!-- <h3 style="font-size:16px;color:#013300;border:none;">Wine and Food from <%#= @region.name %></h3> -->
- <% unless  @region.products.find(:all,:conditions=>['active = ? and quantity > ?',true,0]).blank? %>
+ <% unless  @region.products.find(:all,:include => 'product_prices', :conditions=>['active = ? and product_prices.quantity > ?',true,0]).blank? %>
  <h3 style="font-size:16px;color:#013300;border:none;margin-left:13px;">Produce from the region <%= @region.name %></h3>
  <% end %>
       <%-
       region_products = ""
       final_region_products = ""
       index = 0
-     @region.products.find(:all,:conditions=>['active = ? and quantity > ?',true,0]).each do |product|
+     @region.products.find(:all,:include => 'product_prices', :conditions=>['active = ? and product_prices.quantity > ?',true,0]).each do |product|
           if index == 0
             region_products += "<tr>"
           end

@@ -13,10 +13,10 @@
                 <% end %>
                 </span><br/>
                   <span style="font:10px Arial"> <%= review.created_at.strftime("%d/%m/%Y") %></span><!-- %H:%M %p"--><br/>
-                   <span ><%= show_review_ratings(review.reviewer, review.score) %></span>
+                   <span ><%= show_review_ratings(review.reviewer, review.score).html_safe %></span>
               </div>
               <div style="clear:both"></div>
-              <div class="description"> <span style="font:10px Arial"><%= review.description.gsub("\n","<br />") rescue "No description" %></span></div><br />
+              <div class="description"> <span style="font:10px Arial"><%#= review.description.gsub("\n","<br />") rescue "No description" %></span></div><br />
 
 
             </div>
