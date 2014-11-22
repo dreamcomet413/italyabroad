@@ -32,13 +32,11 @@ gem 'json'
 gem 'juggernaut'
 gem 'jwt', '~> 0.1.11'
 gem 'carrierwave'
+gem 'byebug'
 
 group :development do
   #gem 'thin'
   gem "nifty-generators"
 end
 
-group :development, :test do
-  gem 'byebug'
-end
 gem "mocha", :group => :test

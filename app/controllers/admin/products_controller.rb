@@ -327,17 +327,17 @@ class Admin::ProductsController < ApplicationController
       # @products = Product.find(:all,:conditions => ["products.id NOT IN (?)", @product.id])
     else
       if @product.root_category == 'Hampers' || @product.sub_categories.include?('Mixed case')
-        @products = Product.find(:all,:conditions => ["products.id NOT IN (?) AND quantity > ? AND active = ?", @product.id,0,true])
+        @products = Product.find(:all, :include => 'product_prices', :conditions => ["products.id NOT IN (?) AND product_prices.quantity > ? AND active = ?", @product.id,0,true])
       else
-        @products = Product.find(:all, :include=>'categories',:conditions => ["products.id NOT IN (?) AND LOWER(categories.name) = ? AND quantity > ? AND active = ?", @product.id,'wine',0,true])
+        @products = Product.find(:all, :include=>['categories', 'product_prices'],:conditions => ["products.id NOT IN (?) AND LOWER(categories.name) = ? AND product_prices.quantity > ? AND active = ?", @product.id,'wine', 0, true])
       end
 
 
     end
 
-    respond_to do |format|
-      format.html
-    end
+    #respond_to do |format|
+    #  format.html
+    #end
   end
 
   def xml

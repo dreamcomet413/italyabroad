@@ -112,7 +112,9 @@ module ApplicationHelper
   end
 
   def show_image_tag(image_type, image, format = :jpg, image_alt = "italyabroad.com")
-    if image_type && image && format
+    if image.present? && image.image_filename.present? && image.image_filename.is_a?(ProductUploader)
+      return image_tag(image.image_filename.try(:url), image_dimensions(image_type).merge!(:alt => image_alt, :title => image_alt))
+    elsif image_type && image && format
 
       #return image_tag(image_url(image_type, image, format), {:alt => image_alt, :title => image_alt, :height => "80"})
       #"http://localhost:3000/site/image/product_wine/541.jpg"
