@@ -38,7 +38,7 @@
         </tr>
         <tr>
           <td>Grape:</td>
-          <td><%= select_tag(:grape_id, options_for_select(@category.products.grapes.inject([["Any", ""]]) {|gs, g| gs << [g.name.include?("Avola") ? "Nero d’ Avola": g.name, g.id]}, params[:grape_id].to_i), :id => "search_grape") if !@category.nil? %></td>
+          <td><%= select_tag(:grape_id, options_for_select(@category.products.grapes.inject([["Any", ""]]) {|gs, g| gs << [g.name.include?("Avola") ? "Nero d' Avola": g.name, g.id]}, params[:grape_id].to_i), :id => "search_grape") if !@category.nil? %></td>
         </tr>
         <tr>
           <td>Colour:</td>
@@ -67,7 +67,17 @@
         </tr>
         <tr>
           <td>Price:</td>
-          <td><%= select_tag :price, options_for_select([["Any Price",""],["Less than £7","< 7"],["From £7 to £11","BETWEEN 7 AND 11"],["From £11 to £15","BETWEEN 11 AND 15"],["From £16 to £20","BETWEEN 11 AND 20"],["More than £30","> 30"]], params[:price]), :id => "search_price" %></td>
+          <td>
+            <%= select_tag :price, options_for_select(
+                    [
+                            ["Any Price", ""],
+                            ["Less than #{number_to_currency(7,{:unit => "&pound;", :precision => 0})}".html_safe, "< 7"],
+                            ["From #{number_to_currency(7,{:unit => "&pound;", :precision => 0})} to #{number_to_currency(11,{:unit => "&pound;", :precision => 0})}".html_safe, "BETWEEN 7 AND 11"],
+                            ["From #{number_to_currency(11,{:unit => "&pound;", :precision => 0})} to #{number_to_currency(15,{:unit => "&pound;", :precision => 0})}".html_safe, "BETWEEN 11 AND 15"],
+                            ["From #{number_to_currency(16,{:unit => "&pound;", :precision => 0})} to #{number_to_currency(20,{:unit => "&pound;", :precision => 0})}".html_safe, "BETWEEN 16 AND 20"],
+                            ["More than #{number_to_currency(30,{:unit => "&pound;", :precision => 0})}".html_safe, "> 30"]
+                    ], params[:price]), :id => "search_price" -%>
+          </td>
         </tr>
         <tr>
           <td colspan="2"></td>

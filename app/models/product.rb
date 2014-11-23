@@ -75,6 +75,10 @@ class Product < ActiveRecord::Base
     name >= len ? name[0,len] + " ..." : name
   end
 
+  def multiple
+    return self.product_prices.size > 1
+  end
+
   def self.grapes(category, search=nil)
     grapes = [[" Any",""]]
     for i in (1..6)

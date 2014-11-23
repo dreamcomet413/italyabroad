@@ -69,7 +69,7 @@
 
         </table>
     <%- else -%>
-        There are no reviews yet, why not write one and get £10 voucher
+        There are no reviews yet, why not write one and get <%= number_to_currency(10,{:unit => "&pound;", :precision => 0}) -%> voucher
     <%- end -%>
 
   </div>

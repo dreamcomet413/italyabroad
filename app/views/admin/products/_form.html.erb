@@ -62,9 +62,9 @@
         $('product_multiple_false').observe('click', handler2);
         $('addmore').observe('click', handler3);
         <% if @product.multiple == true %>
-        <% @product.product_sizes.each do |gr| %>
-        addInput2(<%= gr.size %>,<%= gr.price %>)
-        displayField();
+            <% @product.product_sizes.each do |gr| %>
+            addInput2(<%= gr.size %>,<%= gr.price %>)
+            displayField();
         <% end %>
         <% end %>
     });

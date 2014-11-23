@@ -50,7 +50,17 @@
     </tr>
 		<tr>
 		  <td>Price:</td>
-		  <td><%= select_tag :price, options_for_select([["Any Price",""],["Less than 5","< 5"],["From £5 to £10","BETWEEN 5 AND 10"],["From £11 to £20","BETWEEN 11 AND 20"],["From £21 to £30","BETWEEN 21 AND 30"],["More than £30","> 30"]], params[:price]), :id => "search_price" %></td>
+		  <td>
+            <%= select_tag :price, options_for_select(
+                    [
+                            ["Any Price", ""],
+                            ["Less than #{number_to_currency(5,{:unit => "&pound;", :precision => 0})}".html_safe, "< 5"],
+                            ["From #{number_to_currency(5,{:unit => "&pound;", :precision => 0})} to #{number_to_currency(10,{:unit => "&pound;", :precision => 0})}".html_safe, "BETWEEN 5 AND 10"],
+                            ["From #{number_to_currency(11,{:unit => "&pound;", :precision => 0})} to #{number_to_currency(20,{:unit => "&pound;", :precision => 0})}".html_safe, "BETWEEN 11 AND 20"],
+                            ["From #{number_to_currency(21,{:unit => "&pound;", :precision => 0})} to #{number_to_currency(30,{:unit => "&pound;", :precision => 0})}".html_safe, "BETWEEN 21 AND 30"],
+                            ["More than #{number_to_currency(30,{:unit => "&pound;", :precision => 0})}".html_safe, "> 30"]
+                    ], params[:price]), :id => "search_price" -%>
+		  </td>
     </tr>
 		<tr>
 		  <td colspan="2"></td>

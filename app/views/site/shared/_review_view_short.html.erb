@@ -45,8 +45,7 @@
 	</ul>
 <%- else -%>
     <ul id="no_review">
-
-	    <li>Be the first to review this product and you will receive a £10 voucher</span></li>
+      <li><span>Be the first to review this product and you will receive a <%= number_to_currency(10, {:precision => 0, :unit => "&pound;"}) -%> voucher</span></li>
 	  </ul>
 <%- end -%>
 <h3>&nbsp;</h3>

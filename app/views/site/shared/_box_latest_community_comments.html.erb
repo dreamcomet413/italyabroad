@@ -4,7 +4,7 @@
   <h1><%= link_to "Latest Review", "/wine-community" %></h1>
   <br />
   <% if latest_review.blank? %>
-      There are no reviews yet, why not write one and get £10 voucher
+      There are no reviews yet, why not write one and get <%= number_to_currency(10,{:unit => "&pound;", :precision => 0}) -%> voucher
   <% else %>
       <table width="100%">
         <tr>

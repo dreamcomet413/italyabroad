@@ -40,7 +40,7 @@
         <%#= link_to post.name, post.friendly_identifier.blank? ? "blog/#{post.id}" : "blog/#{post.friendly_identifier}", :class => "product_title" %>
         <%= link_to post.name, (post.friendly_identifier.blank? ? "blog/#{post.id}" : "/site/blog/#{post.friendly_identifier}"), :class => "product_title" %>
         </h1>
-      <div><%= post.description_short_cleared %></div>
+      <div><%= post.description_short_cleared.html_safe %></div>
       <table width="100%">
         <tr>
           <td>
@@ -49,7 +49,7 @@
             <%
             @tag_list = "" %>
             <% post.tags.each do |p| %>
-            <% @tag_list =  @tag_list + link_to(p.name, blog_index_path(:tag_id=>p.id)) + ", "%>
+            <% @tag_list =  (@tag_list + link_to(p.name, site_blog_index_path(:tag_id=>p.id)) + ", ").html_safe%>
             <% end %>
              <%= @tag_list.chop![0..-2] if !@tag_list.empty? %>
           </td>

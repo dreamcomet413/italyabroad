@@ -1,5 +1,5 @@
 <%- @title = "Administration - Products"; @page_id = "Catalog" -%>
-<%- @breadcrumbs = "Catalog » #{link_to "Products", admin_products_path}" -%>
+<%- @breadcrumbs = "Catalog >> #{link_to "Products", admin_products_path}" -%>
 
 <div class="inner_content products" id="admin_products_index">
   <h2>Products</h2>
@@ -72,7 +72,7 @@
         <td><%= link_to product.name, nested_products_uri(product) %></td>
         <td><%= product.discount %>%</td>
         <td>
-          <%= product.product_prices.collect{|product_price| (number_to_currency product_price.price, :unit => "£" )}.join(", ") %>
+          <%= product.product_prices.collect{|product_price| (number_to_currency product_price.price, :unit => "&pound;" )}.join(", ") %>
         </td>
         <td>
           <%= product.product_prices.collect{|product_price| (number_to_currency product_price.quantity)}.join(", ") %>

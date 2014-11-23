@@ -43,13 +43,13 @@ will be with you according to the delivery option chosen.<br />
 <tr>
 <td style="text-align:left;padding-right:5px;"><%= order_item.name %></td><td></td>
 <td style="text-align:right;padding-right:5px;"><%= order_item.quantity %></td><td></td>
-<td style="text-align:right;padding-right:5px;"><%= number_to_currency order_item.price, :unit => '£' %></td><td></td>
-<td style="text-align:right;padding-right:5px;"><%= number_to_currency order_item.total , :unit => '£' %></td>
+<td style="text-align:right;padding-right:5px;"><%= number_to_currency order_item.price, :unit => "&pound;" %></td><td></td>
+<td style="text-align:right;padding-right:5px;"><%= number_to_currency order_item.total , :unit => "&pound;" %></td>
 </tr>
 <% end %>
 
 <tr>
-<td colspan="6" style="text-align:right;">Total Amount : </td><td><strong><%= number_to_currency @order.total , :unit => '£' %></strong></td>
+<td colspan="6" style="text-align:right;">Total Amount : </td><td><strong><%= number_to_currency @order.total , :unit => "&pound;" %></strong></td>
 </tr>
 </table>
 <br />
