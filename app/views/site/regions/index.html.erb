@@ -1,4 +1,4 @@
-<% @title = "Regions"; @description = "Andrea’s Wine Blog, The Italian Wine Blog, A Guide to Italian Wines, Journey Through Italian Wines"; @keys = "Wine Blog,Italian Wine Blog,Italian Red and White Wine,Italian Food,Wine Tasting,Wine Expert" %>
+<% @title = "Regions"; @description = "Andrea's Wine Blog, The Italian Wine Blog, A Guide to Italian Wines, Journey Through Italian Wines"; @keys = "Wine Blog,Italian Wine Blog,Italian Red and White Wine,Italian Food,Wine Tasting,Wine Expert" %>
 <%- @breadcrumbs = "#{link_to("Home", root_url)}  &raquo; #{link_to("Community", wine_community_path)} &raquo; #{link_to("Regions", site_regions_path)}" -%>
 
 <% @about = AboutU.find(:first, :conditions => {:link_type => "region"} ) %>
@@ -26,7 +26,7 @@
 <h3 style="border:none;"  align="center">Italy and its regions</h3>
 <div id="blog_container">
   <div id="blog_introduction" style="text-align:justify;">
-    <%= @about.description if @about %>
+    <%= @about.description.html_safe() if @about %>
     <!--I had my first sip of wine when I was 2, I can still recall that moment like it was yesterday. Sitting on my grandpa knees, sipping the wine he had produced from his glass.
     <br/><br/>
     That was the moment where my passion for italian food & wine was born.

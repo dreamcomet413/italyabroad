@@ -149,7 +149,7 @@
       <%- @user.reviews.all(:order=>' id desc', :limit => 5, :conditions=>['publish = ?',true],:select => 'DISTINCT reviewer_id' ).each do |review| -%>
 
 
-          <%= link_to '<li>' +  Product.find_by_id(review.reviewer_id).name + '</li>', product_path(review.reviewer_id) rescue "" %>
+          <%= link_to ('<li>' +  Product.find_by_id(review.reviewer_id).name + '</li>').html_safe(), product_path(review.reviewer_id) rescue "" %>
 
       <%- end -%>
       <% if @user.reviews.size > 5 %>

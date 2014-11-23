@@ -295,7 +295,7 @@ module ApplicationHelper
   def find_any_active_product_exists(products)
     num_products = 0
     for p in products
-      num_products = num_products + 1 if p.active == true and p.quantity.to_i > 0
+      num_products = num_products + 1 if p.active == true and p.product_prices.first.quantity.to_i > 0
     end
     num_products
   end

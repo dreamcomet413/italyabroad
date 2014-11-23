@@ -40,8 +40,8 @@ class Order < ActiveRecord::Base
     @setting = Setting.first
     @number_of_wines_in_cart = 0
     for order_item in order_items
-      @p = order_item.product_id.present? ? Product.find(order_item.product.id) : Product.find_by_code(order_item.product_code)
-      if @p.categories.root.name == "Wine"
+      @p = order_item.product.present? ? Product.find(order_item.product.id) : Product.find_by_code(order_item.product_code)
+      if @p.present? && @p.categories.root.name == "Wine"
         if order_item.quantity >= 1 and @setting.wine_discount_number.to_i != 0 and @setting.wine_discount_amount.to_i != 0
           @number_of_wines_in_cart = @number_of_wines_in_cart + order_item.quantity.to_i
         end

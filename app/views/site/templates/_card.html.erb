@@ -273,7 +273,7 @@
                           <%#= image_tag(image_url(image.layout_image, image.image_1, "jpg")) %>
                         </td></tr>
                         <tr>
-                          <td style="vertical-align:bottom;"><%= link_to truncate(inc_product.name,80), nested_products_uri(inc_product) %></td>
+                          <td style="vertical-align:bottom;"><%= link_to truncate(inc_product.name, {:length => 80}), nested_products_uri(inc_product) %></td>
                         </tr>
                         <tr>
                           <td><%#= number_to_currency inc_product.price, :unit => "&pound;" %></td>
