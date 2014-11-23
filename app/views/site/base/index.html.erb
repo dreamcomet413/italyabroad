@@ -174,7 +174,7 @@
     </dt>
   </div>
   
-  <dl style="width: 100%;">
+  <dt style="width: 100%;">
     <% @recommended_wines.each do |wine| %>
       <dt style="width: 15em;">
         <%= link_to show_image_tag(wine.layout_image, wine.image_1, :jpg, wine.name), nested_products_uri(wine) %><br /><br />
@@ -200,10 +200,10 @@
     </dt>
   </div>
   
-  <dl style="width: 100%;">
+  <dt style="width: 100%;">
     <% @food_counter.each do |food| %>
       <dt style="width: 15em;">
-        <%= link_to show_image_tag(:card, food.image_1, :jpg, food.name), nested_products_uri(food),{:title => food.name} %><br /><br />
+        <%= link_to show_image_tag(:card, food.image_1, :jpg, food.name), nested_products_uri(food), {:title => food.name} %><br /><br />
         <%= food.name -%><br /><br />
         <% if food.present? && food.product_prices.present? %>
           <% food.product_prices.each do |f| %>
@@ -224,7 +224,7 @@
     </dt>
   </div>
 
-  <dl style="width: 100%;">
+  <dt style="width: 100%;">
     <% if !@best_sellers.blank? %>
       <% @best_sellers.each do |food| %>
         <dt style="width: 15em;">

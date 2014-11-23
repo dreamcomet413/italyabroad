@@ -8,8 +8,9 @@ class Site::BaseController < ApplicationController
     wine_categories = Category.find_by_sql("select * from categories where friendly_identifier LIKE 'white-wines'")
     @recommended_wines = Product.where("categories.id = ? AND products.raccomanded = ? AND product_prices.quantity > ?", wine_categories.last.try(:id), true, 0).includes([:categories, :product_prices]).order("products.created_at ASC").limit(4)
 
-    food_categories = Category.find_by_sql("select * from categories where parent_id is null and name='Food'")
-    @food_counter = Product.where("categories.id = ? AND products.raccomanded = ? AND product_prices.quantity > ?", food_categories.first.try(:id), true, 0).includes([:categories, :product_prices]).order("products.created_at ASC").limit(4)
+    #food_categories = Category.find_by_sql("select * from categories where friendly_identifier LIKE 'Balasmic vinegar'")
+    food_categories = Category.find(:all, :conditions => ["friendly_identifier LIKE 'pasta-and-pasta-sauces' OR friendly_identifier LIKE 'extra-virgin-olive-oil' OR friendly_identifier LIKE 'balsamic-vinegar'"])
+    @food_counter = Product.where("categories.id IN (?) AND products.raccomanded = ? AND product_prices.quantity > ?", food_categories.map(&:id), true, 0).includes([:categories, :product_prices]).order("products.created_at ASC").limit(4)
 
     @best_sellers = Product.where("products.is_best_seller = ? AND product_prices.quantity > ?", true, 0).includes([:product_prices]).order("products.created_at ASC").limit(4) if Product.attribute_method?("is_best_seller")
 

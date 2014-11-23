@@ -24,7 +24,9 @@ class Site::CategoriesController < ApplicationController
         if @sort_by.to_s.upcase == 'NAME'
           @sort_by = 'products.name'
         end
+
         @category = Category.find(params[:category])
+
 
         unless @category.blank?
           @search = Search.new(params || Hash.new)
