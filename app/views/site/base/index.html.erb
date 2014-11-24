@@ -50,19 +50,19 @@
   <% if !@setting.nil? %>
       <ul>
         <li id="home_image_1" class="home_image">
-          <%= link_to((show_home_image_tag(@setting.home_image_1) || @setting.home_image_1_title), (@setting.home_image_1_url || root_url)) %>
+          <%= link_to((image_tag(@setting.home_image_1.image_filename.url) || @setting.home_image_1_title), (@setting.home_image_1_url || root_url)) %>
         </li>
         <li id="home_image_2" class="home_image" style="display:none;">
-          <%= link_to((show_home_image_tag(@setting.home_image_2) || @setting.home_image_2_title), (@setting.home_image_2_url || root_url)) %>
+          <%= link_to((image_tag(@setting.home_image_2.image_filename.url) || @setting.home_image_2_title), (@setting.home_image_2_url || root_url)) %>
         </li>
         <li id="home_image_3" class="home_image" style="display:none;">
-          <%= link_to((show_home_image_tag(@setting.home_image_3) || @setting.home_image_3_title), (@setting.home_image_3_url || root_url)) %>
+          <%= link_to((image_tag(@setting.home_image_3.image_filename.url) || @setting.home_image_3_title), (@setting.home_image_3_url || root_url)) %>
         </li>
         <li id="home_image_4" class="home_image" style="display:none;">
-          <%= link_to((show_home_image_tag(@setting.home_image_4) || @setting.home_image_4_title), (@setting.home_image_4_url || root_url)) %>
+          <%= link_to((image_tag(@setting.home_image_4.image_filename.url) || @setting.home_image_4_title), (@setting.home_image_4_url || root_url)) %>
         </li>
         <li id="home_image_5" class="home_image" style="display:none;">
-          <%= link_to((show_home_image_tag(@setting.home_image_5) || @setting.home_image_5_title), (@setting.home_image_5_url || root_url)) %>
+          <%= link_to((image_tag(@setting.home_image_5.image_filename.url) || @setting.home_image_5_title), (@setting.home_image_5_url || root_url)) %>
         </li>
       </ul>
   <%end%>
@@ -173,7 +173,7 @@
       <h3 style="margin-left: 15px;">Recommended Wines</h3>
     </dt>
   </div>
-  
+
   <dt style="width: 100%;">
     <% @recommended_wines.each do |wine| %>
       <dt style="width: 15em;">
@@ -199,7 +199,7 @@
       <h3 style="margin-left: 15px;">Food Counter</h3>
     </dt>
   </div>
-  
+
   <dt style="width: 100%;">
     <% @food_counter.each do |food| %>
       <dt style="width: 15em;">
