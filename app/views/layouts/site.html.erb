@@ -260,7 +260,7 @@
         </script>
     <% end %>
     <% @content_for_right = true %>
-    <%= content_tag(:div, (yield :right), :id => "rightColumn") if @content_for_right -%>
+    <%= content_tag(:div, (yield :right), :id => "rightColumn").force_encoding("UTF-8") if @content_for_right -%>
 
     <div id="leftColumnContent" class="<%= "widescreen" unless @content_for_right %>">
       <%= yield %>

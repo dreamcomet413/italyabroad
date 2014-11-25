@@ -95,7 +95,7 @@ GEM
     multi_xml (0.5.5)
     multipart-post (2.0.0)
     mysql (2.8.1)
-    mysql2 (0.2.6)
+    mysql2 (0.2.24)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-sftp (2.1.2)
@@ -203,7 +203,7 @@ DEPENDENCIES
   mime-types (= 1.23)
   mocha
   mysql (= 2.8.1)
-  mysql2 (= 0.2.6)
+  mysql2 (~> 0.2.7)
   nifty-generators
   omniauth
   omniauth-facebook

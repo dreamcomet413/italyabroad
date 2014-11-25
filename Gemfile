@@ -8,7 +8,7 @@ gem 'rails', '3.0.6'
 gem 'capistrano', '2.12.0'
 gem 'mime-types', '1.23'
 gem 'mysql', '2.8.1'
-gem 'mysql2', '0.2.6'
+gem 'mysql2', '~> 0.2.7'
 #gem 'activerecord-mysql2-adapter'
 gem 'rdoc'
 gem "activemerchant", "1.5.1"
