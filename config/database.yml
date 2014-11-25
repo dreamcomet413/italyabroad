@@ -26,6 +26,7 @@ test:
 production:
   adapter: mysql
   database: italyabroad_production
+  encoding: utf8
   username: root
   password: italyabroad
 
