@@ -30,7 +30,7 @@ namespace :product_price do
   task :move => :environment do
     class Product < ActiveRecord::Base
       establish_connection "nov18"
-      sql = "INSERT INTO product_prices (product_id,price,quantity) SELECT DISTINCT id,price,quantity FROM italyabroad_production_18Nov2014.products;"
+      sql = "INSERT INTO product_prices (product_id,price,quantity) SELECT DISTINCT id,price,quantity FROM italyabroad_production.products;"
       ActiveRecord::Base.connection.execute(sql)
     end
   end

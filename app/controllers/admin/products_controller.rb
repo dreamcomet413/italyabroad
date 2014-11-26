@@ -185,14 +185,15 @@ class Admin::ProductsController < ApplicationController
       elsif !@product.product_prices.blank? && params[:product][:price].present?
         @product.product_prices.delete_all
         params[:product][:price].each_with_index do |price, i|
-          ProductPrice.create(:price => price, :quantity => params[:product][:quantity][i], :product_id => @product.id)
+          ProductPrice.create(:price => price.to_f, :quantity => params[:product][:quantity][i], :product_id => @product.id)
         end
       elsif @product.product_prices.blank?
         params[:product][:price].each_with_index do |price, i|
-          @product.product_prices << ProductPrice.create(:price => price, :quantity => params[:product][:quantity][i], :product_id => @product.id)
+          @product.product_prices << ProductPrice.create(:price => price.to_f, :quantity => params[:product][:quantity][i], :product_id => @product.id)
         end
       end
     end
+
 
 # if params[:product].present? && params[:product][:price].present?
 #    if params[:product].present? && params[:product][:price].present?
@@ -201,7 +202,6 @@ class Admin::ProductsController < ApplicationController
 #        params[:product][:quantity][i] = "1" if !params[:product][:quantity][i].present?
 #        @product.product_prices << ProductPrice.create(:price => price, :quantity => params[:product][:quantity][i], :product_id => @product.id)
 #      end
-# params[:product][:price].each_with_index do |price, i|
 #   @product.product_prices << ProductPrice.create(:price => price, :quantity => params[:product][:quantity][i], :product_id => @product.id)
 # end
 #params[:product][:price] = params[:product][:price].join(", ") if params[:product].present? and params[:product][:price].present?

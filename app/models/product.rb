@@ -75,7 +75,7 @@ class Product < ActiveRecord::Base
     name >= len ? name[0,len] + " ..." : name
   end
 
-  def multiple
+  def multiple?
     return self.product_prices.size > 1
   end
 
