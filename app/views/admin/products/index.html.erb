@@ -72,10 +72,13 @@
         <td><%= link_to product.name, nested_products_uri(product) %></td>
         <td><%= product.discount %>%</td>
         <td>
-          <%= product.product_prices.collect{|product_price| (number_to_currency product_price.price, :unit => "&pound;" )}.join(", ") %>
+          <% product_prices = []
+             product.product_prices.each{|product_price| product_prices << number_to_currency(product_price.price.to_f, :unit => "£").to_s}
+          %>
+          <%= product_prices.join(", ") %>
         </td>
         <td>
-          <%= product.product_prices.collect{|product_price| (number_to_currency product_price.quantity)}.join(", ") %>
+          <%= product.product_prices.map(&:quantity).join(", ") %>
         </td>
         <td><%= product.product_prices.empty? %></td>
 
