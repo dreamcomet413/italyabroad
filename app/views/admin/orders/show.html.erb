@@ -67,7 +67,7 @@
           %>
 
 
-              <% fields_for "order_item", order_item do |f| %>
+              <%= fields_for "order_item", order_item do |f| %>
                   <% if !Product.find(order_item.product.id).out_of_stock? %>
                       <tr>
                         <td style="text-align:left"><%= order_item.product_code %></td>
