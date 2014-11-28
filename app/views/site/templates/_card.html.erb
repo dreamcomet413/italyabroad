@@ -202,23 +202,27 @@
                 <% end %>
               </li>
           <% end %>
+
           <li class="cart_form">
-            <%- if @product.out_of_stock? -%>
-                <%= image_tag('out_of_stock.png') %>
-            <%- else -%>
+            <% @product.product_prices.each do |quantity| %>
+              <%- if !quantity.out_of_stock -%>
                 <%= form_for :cart, :url => "/site/cart", :remote => true, :html => {:method => :post} do  -%>
                     Qty: <%#= select :cart, :quantity, [1,2,3,4,5,6,7,8,9] %>
                     <%= text_field :cart, :quantity,:value=> 1, :size => '4' %><br /><br />
                     <%= hidden_field_tag :product_id, @product.id-%>
                     <%= hidden_field_tag(:discounted_price, @product.discounted_price(params[:actual_price]) || @product.product_prices.first.price, :id => "actual_price") -%>
                     <%= image_submit_tag("buttons/add_to_cart_button.png") %>
-
                 <%- end -%>
-            <%- end -%>
+              <%- else -%>
+                <b>&pound; <%= quantity.price %> is <%= image_tag('out_of_stock.png') %></b>
+              <%- end -%>
+            <% end %>
+
             <%= link_to image_tag("add_to_wish_list.png"), "/site/wish_list?product_id=#{@product.id}", :remote => true, :method => :post if @product.categories.root.name == 'Wine'%>
             <% if  @product.categories.root.name.downcase == 'wine' %>
                 <%= link_to image_tag("WINE_LIST.jpg"), "/site/wine_lists?product_id=#{@product.id}", :remote => true, :method => :post, :style => "color:#464646;" %>
             <% end %>
+
           <% else %>
             <div style="font-size:14px;color:#003300;">
               <span style="text-decoration: line-through;">
@@ -227,6 +231,9 @@
             </div>
           <% end %>
           </li>
+
+
+
         </ul>
       </div>
     </td>
@@ -418,4 +425,3 @@
         window.location.href = href
     })
 </script>
-
