@@ -136,11 +136,11 @@
                         <%=  @product.size   %>
                       </td>
                     </tr>
-                    <% if @product.quantity.to_i < 12 %>
+                    <% if @limited_stock.present? %>
                         <tr>
                           <td valign="top" style="color: red"><b>Quantity:</b></td>
                           <td class="data" style="color: red">
-                            <b><%=  @limited_stock %></b>
+                            <b><%= @limited_stock %></b>
                           </td>
                         </tr>
                     <% end %>

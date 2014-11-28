@@ -19,7 +19,7 @@ class Site::ProductsController < ApplicationController
       @limited_stock =
         if @product.product_prices.empty?
           ""
-        elsif @product.quantity.to_i < 12
+        elsif quantity.to_i <= 24
           "Only #{quantity} left in stock."
         end
           #(@product.present? and @product.quantity.to_i < 12) ? "Only #{quantity} left in stock." : ""
