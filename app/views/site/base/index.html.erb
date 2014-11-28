@@ -70,7 +70,7 @@
 <ul class="slideshow_images" id="navmenu">
 
   <li id="link_number_1" class="white_text">
-    <%= link_to_function "1", "javascript:GoTo('home_image_1');" %></li>
+    <%= link_to "1", "#" %></li>
   <%
      ln_class = ""
      if !@setting.nil?
@@ -85,10 +85,10 @@
   %>
   <li id="link_home_image_1" class="active">
     <%#= link_to_function @setting.home_image_1_title, "javascript:GoTo('home_image_1');", :class => "slide #{ln_class}" %>
-    <%= link_to @setting.home_image_1_title, @setting.home_image_1_url || root_url , :class => "slide #{ln_class}" if !@setting.nil?  %>
+    <%= link_to @setting.home_image_1_title, "#", :class => "slide #{ln_class}" if !@setting.nil?  %>
   </li>
   <li id="link_number_2" class="white_text">
-    <%= link_to_function "2", "javascript:GoTo('home_image_2');" %></li>
+    <%= link_to "2", "#" %></li>
   <%
      ln_class = ""
      if !@setting.nil?
@@ -103,9 +103,9 @@
   %>
   <li id="link_home_image_2">
     <%#= link_to_function @setting.home_image_2_title, "javascript:GoTo('home_image_2');", :class => "slide #{ln_class}" %>
-    <%= link_to  @setting.home_image_2_title, @setting.home_image_2_url || root_url, :class => "slide #{ln_class}" if !@setting.nil? %></li>
+    <%= link_to  @setting.home_image_2_title, "#", :class => "slide #{ln_class}" if !@setting.nil? %></li>
   <li id="link_number_3" class="white_text" >
-    <%= link_to_function "3", "javascript:GoTo('home_image_3');" %></li>
+    <%= link_to "3", "#" %></li>
   <%
      ln_class = ""
      if !@setting.nil?
@@ -119,9 +119,9 @@
      end
   %>
 <%#= link_to_function @setting.home_image_3_title, "javascript:GoTo('home_image_3');", :class => "slide #{ln_class}" %>
-  <li id="link_home_image_3"><%= link_to @setting.home_image_3_title, (@setting.home_image_3_url || root_url), :class => "slide #{ln_class}" if !@setting.nil? %></li>
+  <li id="link_home_image_3"><%= link_to @setting.home_image_3_title, "#", :class => "slide #{ln_class}" if !@setting.nil? %></li>
   <li id="link_number_4" class="white_text" >
-    <%= link_to_function "4", "javascript:GoTo('home_image_4');" %></li>
+    <%= link_to "4", "#" %></li>
   <%
      ln_class = ""
      if !@setting.nil?
@@ -135,9 +135,9 @@
      end
   %>
   <%#= link_to_function @setting.home_image_4_title, "javascript:GoTo('home_image_4');", :class => "slide #{ln_class}" %>
-  <li id="link_home_image_4"><%= link_to @setting.home_image_4_title, (@setting.home_image_4_url || root_url), :class => "slide #{ln_class}" if !@setting.nil? %></li>
+  <li id="link_home_image_4"><%= link_to @setting.home_image_4_title, "#", :class => "slide #{ln_class}" if !@setting.nil? %></li>
   <li id="link_number_5" class="white_text" >
-    <%= link_to_function "5", "javascript:GoTo('home_image_5');" %></li>
+    <%= link_to "5", "#" %></li>
   <%
      ln_class = ""
      if !@setting.nil?
@@ -151,7 +151,7 @@
      end
   %>
   <%#= link_to_function @setting.home_image_5_title, "javascript:GoTo('home_image_5');", :class => "slide #{ln_class}" %>
-  <li id="link_home_image_5"><%= link_to @setting.home_image_5_title, (@setting.home_image_5_url || root_url), :class => "slide #{ln_class}" if !@setting.nil? %></li>
+  <li id="link_home_image_5"><%= link_to @setting.home_image_5_title, "#", :class => "slide #{ln_class}" if !@setting.nil? %></li>
 </ul>
 
 <div style="float:right; width: 60px; margin-top: 13px;">
@@ -264,3 +264,17 @@
    	<%= render :partial => '/site/shared/box_mood' %>
 
 <% end %>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+      $(".slideshow_images").find("li a").click(function(){
+//    var toggleBanner = function(elem){
+        var element_id = $(this).parent().attr("id").split("_")[$(this).parent().attr("id").split("_").length - 1];
+          $("#flashBanner ul li").attr("style", "display: none;");
+        var element = $("#home_image_" + element_id);
+        element.attr("style", "display: list-item;");
+        return false;
+//    }
+  })
+  })
+</script>
