@@ -199,7 +199,7 @@ class Product < ActiveRecord::Base
     	  return price - from_quantity_price / from_quantity_price
       end
     else
-      return price = 0
+      return self.product_prices.first.price
     end
   end
 
