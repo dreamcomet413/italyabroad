@@ -1,0 +1,90 @@
+<div id="header">Your search has found the following Hampers</div>
+<div align="right" class="pagination_div"><%= will_paginate(@hampers) %></div>
+<% for product in @hampers %><br />
+    <div class="wineList">
+      <table width="100%">
+        <tr>
+          <td style="padding:0;width:100px;height:100px;text-align:center;"><br />
+            <%= link_to show_image_tag(product.layout_image, product.image_1, :jpg, :alt=>product.name), nested_products_uri(product) %><br /><br />
+          </td>
+          <td valign="top" style="padding:0;width:630px;padding-top:15px;">
+
+            <%= link_to product.name, nested_products_uri(product), :style => "font-size:15px;" %><br />
+            <%= show_review_ratings(product).html_safe() %>
+            <%= product.description_short.html_safe() %>
+
+
+          </td>
+          <td style="width:100px;vertical-align:top;padding-top:15px;">
+
+
+            <div class="box_price_product" style="float:left;">
+              <ul>
+                <li class="price_info">
+                  <% if product.product_prices.present? %>
+                      <% if product.discounted? && product.discount > 0.0 %>
+                          <% product.product_prices.each do |pp| %>
+                              <div style="font-size:14px;color:black;">Was <span style="text-decoration: line-through;">
+                    <%= number_to_currency pp.price, :unit => "&pound;" %></span></div>
+                          <% end %>
+                          <span class="price red" style="color:#003300;">Now&nbsp;<span style="color:red;">
+                    <% product.price_discounted.each do |price| %>
+                      <%= number_to_currency price, :unit => "&pound;" %>
+                    <% end %>
+                  </span></span>
+                      <% else %>
+                  <span class="price" style="color:black;">
+                    <% product.product_prices.each do |pp| %>
+                      <%= number_to_currency pp.price, :unit => "&pound;" %>
+                    <% end %>
+                    </span>
+                      <% end %>
+                  <% end %>
+                </li>
+
+                <li>
+                  <%- if product.out_of_stock? -%>
+                      <%= image_tag('out_of_stock.png') %>
+                  <%- else -%>
+                      <%= link_to(image_tag("buttons/add_to_cart_button.png"), "/site/cart?product_id=#{product.id}", :remote => true, :method => :post) %>
+                  <%- end -%>
+                </li>
+
+                <li style="margin-bottom:5px;">
+                  <%= link_to(image_tag("add_to_wish_list.png"), "/site/wish_list?product_id=#{product.id}", :remote => true, :method => :post, :style => "color:#464646;") %>
+                </li>
+
+
+              </ul>
+            </div>
+
+
+
+
+
+          </td>
+        </tr>
+      </table><br />
+    </div><br />
+
+<% end %>
+<div style="clear:both;"></div>
+<div align="right" class="pagination_div"><%= will_paginate(@hampers) %></div>
+
+<% content_for :right do %>
+    <%#= render :partial => 'site/shared/box_wine_search', :locals => {:search_url => search_index_path} %>
+    <%= render :partial => 'site/shared/box_hamper_search', :locals => {:search_url => search_index_path} %>
+
+    <br />
+    <%= render :partial => 'site/shared/box_products_on_offer' %>
+    <br />
+    <%= render :partial => '/site/shared/box_event' %>
+    <br />
+    <%= render :partial => '/site/shared/box_subscriptions' %>
+    <br />
+    <%= render :partial => '/site/shared/box_grape_guide' %>
+    <br />
+    <%= render :partial => '/site/shared/box_mood' %>
+
+<% end %>
+

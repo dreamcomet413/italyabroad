@@ -47,15 +47,16 @@ class Site::SearchController < ApplicationController
       @recipes = Recipe.find(:all, :conditions =>     @search.conditions_for_recipes)
 
       @search = Search.new(params || Hash.new)
-      #  @wines = Product.find(:all, :include => [:categories, :grapes] ,:conditions => @search.conditions)
-      @wines = Product.find(:all, :include => [:categories, :moods] ,:conditions => ['upper(categories.name) LIKE ? AND products.name LIKE ? AND moods.id = ? AND products.active = ? AND quantity > ? ','WINE',"%#{params[:text]}%", "#{params[:mood]}", true,0])
 
-      @hampers = Product.find(:all, :include => [:categories, :moods] ,:conditions => ['upper(categories.name) LIKE ? AND products.name LIKE ? AND moods.id = ? AND products.active = ? AND quantity > ? ','HAMPERS',"%#{params[:text]}%", "#{params[:mood]}", true,0])
+      wine_conditions = ["upper(categories.name) LIKE ? AND products.name LIKE ? #{('AND moods.id = ' + params[:mood].strip) if params[:mood.present?]} AND products.active = ? AND quantity > ? ",'WINE',"%#{params[:text].strip}%", true,0]
+      hamper_conditions = ["upper(categories.name) LIKE ? AND products.name LIKE ? #{('AND moods.id = ' + params[:mood].strip) if params[:mood.present?]} AND products.active = ? AND quantity > ? ",'HAMPERS',"%#{params[:text].strip}%", true,0]
+      food_conditions = ["upper(categories.name) LIKE ? AND products.name LIKE ? #{('AND moods.id = ' + params[:mood].strip) if params[:mood.present?]} AND products.active = ? AND quantity > ? ",'FOOD',"%#{params[:text].strip}%", true,0]
+      wine_events_conditions = ["upper(categories.name) LIKE ? AND products.name LIKE ? #{('AND moods.id = ' + params[:mood].strip) if params[:mood.present?]} AND products.active = ?  AND DATE(date) >= ?", 'EVENTS', "%#{params[:text].strip}%", true, Date.today]
+      @wines = Product.find(:all, :include => [:categories, :moods] ,:conditions => wine_conditions)
+      @hampers = Product.find(:all, :include => [:categories, :moods] ,:conditions => hamper_conditions)
+      @foods = Product.find(:all, :include => [:categories, :moods] ,:conditions => food_conditions)
 
-
-      @foods = Product.find(:all, :include => [:categories, :moods] ,:conditions => ['upper(categories.name) LIKE ? AND products.name LIKE ? AND moods.id = ? AND products.active = ? AND quantity > ? ','FOOD',"%#{params[:text]}%", "#{params[:mood]}", true,0])
-
-      @wine_events = Product.find(:all, :include => [:categories, :moods] ,:conditions => ['upper(categories.name) LIKE ? AND products.name LIKE ? AND moods.id = ? AND products.active = ?  AND DATE(date) >= ?','EVENTS',"%#{params[:text]}%","#{params[:mood]}", true,Date.today])
+      @wine_events = Product.find(:all, :include => [:categories, :moods] ,:conditions => wine_events_conditions)
 
       SearchQuery.create(:query => @search.text) unless (@wines.blank? or @foods.blank?)
 

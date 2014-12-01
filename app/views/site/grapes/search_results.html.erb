@@ -1,5 +1,5 @@
 <% @title = "Guide to Italian wines and Italian grapes"; @description = "Guide to Italian wines and Italian grapes"; @keys = ", Italian wine information,Italian wine guide,Italian wine,Italian red and white wine,italian grapes,wine grapes,wine expert,guide to Italian wines,aglianico,barbera,montepulciano,nero d'avola,nebbiolo" %>
-<% @breadcrumbs = "#{link_to("Home", root_url)}&raquo; #{link_to ('Community',wine_community_path)} &raquo; Guide to Italian wines and Italian grapes" %>
+<% @breadcrumbs = "#{link_to("Home", root_url)} &raquo; #{link_to('Community', wine_community_path)} &raquo; Guide to Italian wines and Italian grapes".html_safe %>
 <% @about = AboutU.find(:first, :conditions => {:link_type => "grape-guide"} ) %>
 <div style="text-align:center;padding-top:10px;"></div>
 <div id="blog_home">
@@ -7,7 +7,7 @@
   <span class="title">
   <% unless @about.title.blank? %>
   <div style="color:white;width:350px;height:100px;background:black;opacity: 0.6zz;filter:alpha(opacity=40);text-align:left">
-    <%= @about.title if @about %>
+    <%= @about.title.html_safe if @about %>
   </div>
   <% end %>
   </span>
@@ -21,7 +21,7 @@
 
 <div id="blog_container"  style="text-align:justify;">
     <p style="text-align:justify;">
-    <%= @about.description rescue 'The wine and grape details ...' %> <br />
+    <%= @about.description.html_safe rescue 'The wine and grape details ...' %> <br />
     </p>
    <div style="float:right;">
 
@@ -34,10 +34,10 @@
 	<ul>
 	<% for grape in @grapes %>
 	  <li>
-      <h2><%= link_to grape.name, grape.friendly_identifier.blank? ? "grapes/#{grape.id}" : "#{grape.friendly_identifier}" %><%#= show_region_image(region) %></h2>
+      <h2><%= link_to grape.name.html_safe, grape.friendly_identifier.blank? ? "grapes/#{grape.id}" : "#{grape.friendly_identifier}" %><%#= show_region_image(region) %></h2>
       <%#= show_region_image(region) %>
       <div><% unless grape.description.blank? %>
-      <%= grape.description[0,250] %>
+      <%= grape.description[0,250].html_safe %>
        <%- end -%>
       </div>
 
@@ -55,7 +55,7 @@
 <div><%= will_paginate_(@grapes) %></div>
 <%- end -%><br />
 <% end %>
-<%= link_to "grapes", grapes_path %>
+<%= link_to "grapes", site_grapes_path %>
 
 </div>
 
