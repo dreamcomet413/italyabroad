@@ -160,7 +160,7 @@ class Product < ActiveRecord::Base
       end
       return price
     else
-      false
+      product_prices.map(&:price)
     end
   end
 
