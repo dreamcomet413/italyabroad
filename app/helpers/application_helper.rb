@@ -252,9 +252,12 @@ module ApplicationHelper
     return %Q(<span class="ratings" style="#{"background:transparent url(/images/#{ratings_icon}) no-repeat -#{(86 - (score.to_f/5.to_f * 86)).round}px center;"}">&nbsp;</span>)
   end
 
+  def site_image_url(image_version, image, format = :jpg)
+    image.image_filename.url
+  end
 
   def show_grape_image(grape)
-    return image_tag(site_image_url(:grape_original, grape.image, :jpg), :width => "300px") if grape.image
+    return image_tag(site_image_path(:grape_original, grape.image, :jpg), :width => "300px") if grape.image
     return image_tag("grape_default.png", :width => "300px")
   end
 
