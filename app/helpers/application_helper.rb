@@ -195,7 +195,7 @@ module ApplicationHelper
       when :product_category
         {:height => '254'}
       when :wine
-        {:height => '220px', :width => '160px'}
+        {:height => '220px', :width => '100px'}
       else
         {}
     end
