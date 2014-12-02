@@ -37,9 +37,9 @@ class Site::CategoriesController < ApplicationController
           #    paginate(:page => (params[:page] ||=1), :per_page => 10)
           SearchQuery.create(:query => @search.text) unless @search.text.blank?
         else
-          @product = Product.find(:first,:conditions=>['friendly_identifier = ? AND mood= ?',params[:category], params[:mood]])
-          unless @product.blank?
-            redirect_to product_path(@product.friendly_identifier)
+          @product = Product.find(:first,:conditions=>['friendly_identifier = ? OR mood= ?',params[:category], params[:mood]])
+          if !@product.blank?
+            redirect_to product_path(@product.friendly_identifier) # need to be fixed
           else
             redirect_to root_url and return
           end
