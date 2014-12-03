@@ -46,12 +46,9 @@ class Admin::CategoriesController < ApplicationController
   def update
     @category = Category.find(params[:id])
 
-    if @category.valid? and  !params[:image].nil?
+    if @category.valid? and  params[:image].present?
       @category.image.destroy unless @category.image.nil?
-      @image = Image.new(params[:image])
-      @image.save
-      @category.image_id = @image.id
-      @category.image_url = params[:image][:image_file]
+      @category.build_image(:image_filename => params[:image])
      end
     if @category.update_attributes(params[:category])
       unless params[:category][:parent_id].blank?

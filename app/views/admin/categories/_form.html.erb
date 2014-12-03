@@ -78,16 +78,11 @@
   </tr>
   <tr>
     <td>Home Image</td>
-    <td valign="top"><%#= file_field :category, :home_image %>&nbsp;URL&nbsp;<%#= file_field :category, :image_url %>
-    <% fields_for :image do %>
-   <%= file_field :image,:image_file %>
-    <% end %>
-
-    </td>
+    <td valign="top"><%= file_field_tag :image %></td>
   </tr>
   <tr>
     <td></td>
-    <td><%= image_tag image_url(:home_image_thumb, @category.image, :jpg) rescue "No image" %></td>
+    <td><%= image_tag(site_image_url(:home_image_thumb, @category.image, :jpg), :alt => @category.name) rescue "No image" %></td>
   </tr>
 </table>
 
