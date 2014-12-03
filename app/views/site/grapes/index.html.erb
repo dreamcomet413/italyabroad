@@ -13,8 +13,8 @@
     <% end %>
   <% end %>
   </span>
-  <% if  @about and !@about.image_id.nil? %>
-  <%= link_to image_tag(image_url(:about_thumb, @about.image, :jpg),:alt=>@about.title) , search_index_path(:id => "grapes") unless @about.blank? %>
+  <% if @about.present? and @about.image.present? %>
+  <%= link_to image_tag(site_image_url(:about_thumb, @about.image, :jpg),:alt=>@about.title) , search_index_path(:id => "grapes") unless @about.blank? %>
   <% else %>
   <%= link_to image_tag("guide_home_image.jpg",:alt=>'Grape guide'), search_index_path(:id => "grapes") %>
   <% end %>

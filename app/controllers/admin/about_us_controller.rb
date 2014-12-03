@@ -5,13 +5,12 @@ class Admin::AboutUsController < ApplicationController
   # GET /about_us.xml
   def index
     p params
-    p params[:type]
-    @about_us = AboutU.find(:first,:conditions => {:link_type => params[:type]})
-    if @about_us.blank?
-      redirect_to new_admin_about_u_path(:type => params[:type], :page_type => params[:page_type])
+    p params[:link_type]
+    @about_us = AboutU.find_by_link_type(params[:link_type])
+    unless @about_us.present?
+      redirect_to new_admin_about_u_path(:type => params[:link_type], :page_type => params[:page_type])
     else
-      #      @about_us = AboutU.all
-      redirect_to edit_admin_about_u_path(:id => @about_us.id, :type => params[:type])
+      redirect_to edit_admin_about_u_path(:id => @about_us.id, :type => params[:link_type])
     end
 
   end
@@ -48,11 +47,10 @@ class Admin::AboutUsController < ApplicationController
   # POST /about_us.xml
   def create
     @about_u = AboutU.new(params[:about_u])
-    unless params[:image].nil?
-          @image = Image.new(params[:image])
-          @image.save
-          @about_u.image_id = @image.id
-        end
+    if params[:image].present?
+      @about_u.image.destroy unless @about_u.image.nil?
+      @about_u.build_image(:image_filename => params[:image])
+    end
     respond_to do |format|
       if @about_u.save
 
@@ -70,13 +68,11 @@ class Admin::AboutUsController < ApplicationController
   # PUT /about_us/1.xml
   def update
     @about_u = AboutU.find(params[:id])
-     unless params[:image].nil?
-          @image = Image.new(params[:image])
-          @image.save
-          @about_u.image_id = @image.id
-        end
+    if @about_u.valid? and  params[:image].present?
+      @about_u.image.destroy unless @about_u.image.nil?
+      @about_u.build_image(:image_filename => params[:image])
+    end
     if @about_u.update_attributes(params[:about_u])
-
       flash[:notice] = 'Data is successfully updated.'
       redirect_to admin_about_us_path(:type => @about_u.link_type)
     else
