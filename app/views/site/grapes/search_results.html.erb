@@ -5,9 +5,9 @@
 <div id="blog_home">
 
   <span class="title">
-  <% unless @about.title.blank? %>
+  <% if @about.present? %>
   <div style="color:white;width:350px;height:100px;background:black;opacity: 0.6zz;filter:alpha(opacity=40);text-align:left">
-    <%= @about.title.html_safe if @about %>
+    <%= @about.title.html_safe if !@about.title.blank? %>
   </div>
   <% end %>
   </span>
