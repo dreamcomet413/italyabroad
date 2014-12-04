@@ -168,7 +168,6 @@
   <div id="box_grape_guide_forum">
     <h1 style="color:#9b0707;font-size:14px;text-align:center;">Grape Guide</h1>
     <%- grapes = Grape.find(:all, :limit => 1, :order => "RAND()") -%>
-    <%#- grapes = Grape.find(:all, :limit => 1, :conditions => "id = 1") -%>
     <%- for grape in grapes -%>
 
         <div class="box_grape_guide"><%= link_to grape.name, site_grape_path(grape) %>&nbsp;<%= link_to "(more grapes)", grape_guide_path %><br /><br />

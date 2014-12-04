@@ -17,7 +17,7 @@
                 <%= hidden_field_tag :page, (params[:page] || 1) %>
                 <%= hidden_field_tag :text, params[:text] %>
                 <%= hidden_field_tag :id, params[:id] %>
-                <strong>Sort by:</strong>&nbsp;<%= select_tag("sort_by", options_for_select([["Name", "name"], ["Region", "region_id"]], @sort_by), :onchange => "$('#sort_by_form').submit()") %>
+                <strong>Sort by:</strong>&nbsp;<%= select_tag("sort_by", options_for_select([["Price: Low to high", "price asc"],["Price: High to low", "price desc"], ["Name", "name"], ["Region", "region_id"]], @sort_by), :onchange => "$('#sort_by_form').submit()") %>
             <%- end -%>
           </td>
         </tr>
@@ -26,7 +26,7 @@
 
 
     <% for product in @products %>
-        <%- product = Product.find(product.id) -%>
+        <%#- product = Product.find(product.id) -%>
         <table style="width:100%;" cellpadding="0" border="0" cellspacing="0">
           <tr>
             <td style="width: 80px;margin:0 0 0 0px;margin-left:15px;margin-right:15px;padding:0 0 0 0px;padding-left:10px;padding-right:10px;">

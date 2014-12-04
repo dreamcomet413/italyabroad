@@ -8,11 +8,11 @@
 <%- search_url ||= @category == @parent ? search_index_path(:id => @parent) : nested_categories_url(@parent, @category) -%>
 
 
-
 <div class="block center" id="box_wine_search">
   <%# if params[:category] == "wine" || ~ /search/ %>
   <% if params[:parent] != "other-drinks" && params[:category] != "other-drinks" %>
-    <h3>Wine Search</h3>
+    <!--<h3>Wine Search</h3>-->
+    <h3><%= (@product.present? && @product.root_category.present?) ? @product.root_category : "Wine" -%> Search</h3>
   <% else %>
     <h3>Other Drink Search</h3>
   <% end %>

@@ -15,7 +15,9 @@
             <%= show_ratings(product).html_safe() %>
             <%= product.description_short.html_safe() %>
             <br /><br />
-            Quantity : <%= product.quantity %>
+            <% if product.product_prices.present? && product.product_prices.first.try(:quantity) > 0 %>
+                Quantity : <%= product.product_prices.first.try(:quantity) %>
+            <% end %>
           </div>
         </td>
 
