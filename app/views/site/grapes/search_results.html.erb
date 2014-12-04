@@ -34,7 +34,8 @@
 	<ul>
 	<% for grape in @grapes %>
 	  <li>
-      <h2><%= link_to grape.name.html_safe, grape.friendly_identifier.blank? ? "grapes/#{grape.id}" : "#{grape.friendly_identifier}" %><%#= show_region_image(region) %></h2>
+      <!--<h2><%#= link_to grape.name.html_safe, grape.friendly_identifier.blank? ? "grapes/#{grape.id}" : "#{grape.friendly_identifier}" %><%#= show_region_image(region) %></h2>-->
+      <h2><%= link_to grape.name.html_safe, site_grape_path(grape) %><%#= show_region_image(region) %></h2>
       <%#= show_region_image(region) %>
       <div><% unless grape.description.blank? %>
       <%= grape.description[0,250].html_safe %>
