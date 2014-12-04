@@ -140,6 +140,7 @@ ItalyabroadNew::Application.routes.draw do
         post :send_message
       end
     end
+    resources :products, :only => [:show]
     resources :regions, :only => [:show, :index]
     resources :checkouts, :only => [:index] do
       collection do
