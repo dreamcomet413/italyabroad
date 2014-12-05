@@ -36,7 +36,8 @@
               <br /><br /><br />
               <%= link_to product.name, nested_products_uri(product), :style => "font-size:17px;color:black;" %>
               <br />
-              <% if product.categories.root.name.downcase == "food" || product.categories.root.name.downcase == "hampers"  %>
+              <%# if product.categories.root.name.downcase == "food" || product.categories.root.name.downcase == "hampers"  %>
+              <% if product.root_category.present? && %w(Food Hampers).include?(product.root_category) %>
                   <%= show_review_ratings(product, product.average_rating_round).html_safe() %>
               <% else %>
                   <%= show_ratings(product, product.average_rating_round).html_safe() %>
