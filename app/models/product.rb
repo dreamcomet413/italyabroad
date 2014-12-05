@@ -63,6 +63,8 @@ class Product < ActiveRecord::Base
     { :conditions => ["categories.name LIKE 'Events' AND products.id <> ? AND DATE(products.date) > ? AND active", product.id, Date.today], :include => {:categorizations => :category}, :order => "date", :limit => 3 }
   }
 
+  LIMITED_QUANTITY = 24
+
   def make_product_prices
     temp = self.product_prices.build
     temp.price = price ||= 0

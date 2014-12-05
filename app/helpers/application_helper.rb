@@ -246,7 +246,8 @@ module ApplicationHelper
     ratings_icon = "ratings_icon.png"
     ratings_icon = "ratings_recipe_icon.png" if product.class.to_s == "Recipe"
     if product.class.to_s != "Recipe"
-      ratings_icon = "ratings_stars.png" if product.categories.root.name.downcase == "food" or product.categories.root.name.downcase == "hampers"
+      category_name = product.categories.detect{|category| ["Wine", "Food", "Hampers", "Wine Tours", "Other Drinks"].include?(category.name)}.name
+      ratings_icon = "ratings_stars.png" if category_name.downcase == "food" or category_name.downcase == "hampers"
     end
     return %Q(<span class="ratings" style="#{"background:transparent url(/images/#{ratings_icon}) no-repeat -#{(86 - (product.average_rating.to_f/5.to_f * 86)).round}px center;" if product.average_rating > 0}">&nbsp;</span>) if score.nil?
     return %Q(<span class="ratings" style="#{"background:transparent url(/images/#{ratings_icon}) no-repeat -#{(86 - (score.to_f/5.to_f * 86)).round}px center;"}">&nbsp;</span>)
@@ -329,6 +330,14 @@ module ApplicationHelper
       html << "\t</div>\n"
     end
     html.html_safe()
+  end
+
+  def limited_stock(product)
+    if product.out_of_stock? || (product.product_prices.first.try(:quantity).to_i == 0)
+      "#{image_tag('out_of_stock.png')}".html_safe
+    elsif (quantity = product.product_prices.first.try(:quantity).to_i) <= Product::LIMITED_QUANTITY
+      "<b style='color: red'>Quantity: Only #{quantity} left in stock.</b>".html_safe
+    end
   end
 
 end

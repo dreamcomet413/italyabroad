@@ -44,7 +44,8 @@
               <br />
               <% if product.product_prices.present? %>
                 <% product.product_prices.each do |pp| %>
-                  Quantity : <%= pp.quantity %> </br>
+                  <!--Quantity : <%#= pp.quantity %> </br>-->
+                      <%= limited_stock(product) -%>
                 <% end %>
               <% else %>
                 Not Available

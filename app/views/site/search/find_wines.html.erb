@@ -14,10 +14,8 @@
             <%= link_to product.name, nested_products_uri(product), :style => "font-size:17px;color:black;" %><br />
             <%= show_ratings(product).html_safe() %>
             <%= product.description_short.html_safe() %>
-            <br /><br />
-            <% if product.product_prices.present? && product.product_prices.first.try(:quantity) > 0 %>
-                Quantity : <%= product.product_prices.first.try(:quantity) %>
-            <% end %>
+            <br />
+            <% limited_stock(product) %>
           </div>
         </td>
 
