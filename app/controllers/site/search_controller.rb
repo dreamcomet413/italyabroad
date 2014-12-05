@@ -112,7 +112,7 @@ class Site::SearchController < ApplicationController
     end
   end
 
-  def find_other_drink
+  def find_other_drinks
     # @search = Search.new(params || Hash.new)
     @other_drinks = Product.where(['products.name LIKE ? AND upper(categories.name) LIKE ? AND products.active = ? AND product_prices.quantity > ?',"%#{params[:text]}%",'OTHER DRINKS',true,0]).includes([:categories,:grapes, :product_prices]).paginate(:page => params[:page], :per_page => 10)
     respond_to do |format|
