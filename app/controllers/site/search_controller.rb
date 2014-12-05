@@ -49,10 +49,12 @@ class Site::SearchController < ApplicationController
       @search = Search.new(params || Hash.new)
 
       wine_conditions = ["upper(categories.name) LIKE ? AND products.name LIKE ? #{('AND moods.id = ' + params[:mood].strip) if params[:mood.present?]} AND products.active = ? AND quantity > ? ",'WINE',"%#{params[:text].strip}%", true,0]
+      other_drinks_conditions = ["upper(categories.name) LIKE ? AND products.name LIKE ? #{('AND moods.id = ' + params[:mood].strip) if params[:mood.present?]} AND products.active = ? AND quantity > ? ",'Other Drinks',"%#{params[:text].strip}%", true,0]
       hamper_conditions = ["upper(categories.name) LIKE ? AND products.name LIKE ? #{('AND moods.id = ' + params[:mood].strip) if params[:mood.present?]} AND products.active = ? AND quantity > ? ",'HAMPERS',"%#{params[:text].strip}%", true,0]
       food_conditions = ["upper(categories.name) LIKE ? AND products.name LIKE ? #{('AND moods.id = ' + params[:mood].strip) if params[:mood.present?]} AND products.active = ? AND quantity > ? ",'FOOD',"%#{params[:text].strip}%", true,0]
       wine_events_conditions = ["upper(categories.name) LIKE ? AND products.name LIKE ? #{('AND moods.id = ' + params[:mood].strip) if params[:mood.present?]} AND products.active = ?  AND DATE(date) >= ?", 'EVENTS', "%#{params[:text].strip}%", true, Date.today]
       @wines = Product.find(:all, :include => [:categories, :moods] ,:conditions => wine_conditions)
+      @other_drinks = Product.find(:all, :include => [:categories, :moods] ,:conditions => other_drinks_conditions)
       @hampers = Product.find(:all, :include => [:categories, :moods] ,:conditions => hamper_conditions)
       @foods = Product.find(:all, :include => [:categories, :moods] ,:conditions => food_conditions)
 
@@ -105,6 +107,14 @@ class Site::SearchController < ApplicationController
   def find_wines
     # @search = Search.new(params || Hash.new)
     @wines = Product.where(['products.name LIKE ? AND upper(categories.name) LIKE ? AND products.active = ? AND product_prices.quantity > ?',"%#{params[:text]}%",'WINE',true,0]).includes([:categories,:grapes, :product_prices]).paginate(:page => params[:page], :per_page => 10)
+    respond_to do |format|
+      format.html
+    end
+  end
+
+  def find_other_drink
+    # @search = Search.new(params || Hash.new)
+    @other_drinks = Product.where(['products.name LIKE ? AND upper(categories.name) LIKE ? AND products.active = ? AND product_prices.quantity > ?',"%#{params[:text]}%",'OTHER DRINKS',true,0]).includes([:categories,:grapes, :product_prices]).paginate(:page => params[:page], :per_page => 10)
     respond_to do |format|
       format.html
     end

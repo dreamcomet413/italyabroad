@@ -53,6 +53,17 @@
     <h3>&nbsp;</h3>
 <% end %>
 
+<% unless @other_drinks.blank? %>
+    <div style="margin:0 0 0 0px; padding-left:15px;">
+      <!--<div id="header">Your search has found the following wines:</div>-->
+      <h1>Other Drinks</h1>
+      <%#= link_to_remote @wines.count.to_s + 'Wines' , :url => { :action => "find_wines",:text=>params[:text]} %>
+      <%= link_to((@other_drinks.count.to_s + '&nbsp;&nbsp; Wines').html_safe(), :action => "find_other_drinks", :text=>params[:text]) %>
+      <div id="all_wines"></div> <br /><br /><br />
+    </div>
+    <h3>&nbsp;</h3>
+<% end %>
+
 <% unless @hampers.blank? %>
     <div style="margin:0 0 0 0px; padding-left:15px;">
       <!--<div id="header">Your search has found the following wines:</div>-->
