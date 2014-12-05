@@ -90,6 +90,7 @@ ItalyabroadNew::Application.routes.draw do
   resources :comments
   match "/search" => "site/search#index", :as => "search_index"
   match "/search/find_wines" => "site/search#find_wines", :as => "find_wines"
+  match "/search/find_other_drinks" => "site/search#find_other_drinks", :as => "find_other_drinks"
   match "/search/find_users" => "site/search#find_users", :as => "find_users"
   match "/search/find_producers" => "site/search#find_producers", :as => "find_producers"
   match "/search/find_hampers" => "site/search#find_hampers", :as => "find_hampers"
