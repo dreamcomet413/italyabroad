@@ -242,7 +242,8 @@
   <table align="center">
     <tr>
       <%- for product in products -%>
-          <% if product.root_category.upcase == 'WINE' or product.root_category.upcase == 'FOOD' or product.root_category.upcase == 'HAMPERS' %>
+          <%# if product.root_category.upcase == 'WINE' or product.root_category.upcase == 'FOOD' or product.root_category.upcase == 'HAMPERS' %>
+          <% if product.root_category.present? && %w(Wine Food Hampers).include?(product.root_category) %>
               <td valign="top">
                 <div style="float:left;width:130px;">
                   <div style="height:120px;vertical-align:bottom;v-align:bottom;margin-bottom:0px;">
