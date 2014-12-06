@@ -195,6 +195,8 @@
                           <li><%#= link_to(child.name.html_safe(), nested_categories_url(%w(Beers Vodka Grappas Gin Amaro Vermouth).include?(child.name) ? wine_category : category, child)) %></li> -->
                           <% if child.name == "Wine Vouchers" %>
                             <% temp = child %>
+                          <% elsif child.name == "Wine Tours" %>
+                            <!-- Hiding Wine Tours -->
                           <% elsif child.name == "Wine accessories" %>
                             <li><%= link_to(child.name.html_safe(), nested_categories_url(category, child)) %></li>
                             <li><%= link_to(temp.name.html_safe(), nested_categories_url(category, temp)) if temp.present? %></li>
