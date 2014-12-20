@@ -112,7 +112,7 @@ module ApplicationHelper
   end
 
   def show_image_tag(image_type, image, format = :jpg, image_alt = "italyabroad.com")
-    if image.present? && image.image_filename.present? && image.image_filename.is_a?(ProductUploader)
+    if image.present? && image_type.present? && image.image_filename.present? && image.image_filename.is_a?(ProductUploader)
       return image_tag(image.image_filename.try(:url), image_dimensions(image_type).merge!(:alt => image_alt, :title => image_alt))
     elsif image_type && image && format
 
@@ -225,6 +225,11 @@ module ApplicationHelper
   def nested_products_uri(product)
     return nested_products_path(product.root_category_id, product.sub_category_id, product) if (product && !product.root_category_id.blank? && !product.sub_category_id.blank?)
     return nested_product_path(product.root_category_id, product) if (product && !product.root_category_id.blank? && product.sub_category_id.blank?)
+    if (product && product.root_category_id.blank? && !product.sub_category_id.blank? && Category.find(product.categories.first.parent_id).name == "Food")
+      return nested_products_path(Category.find_by_name("Food"), product.sub_category_id, product)
+    elsif (product && product.root_category_id.blank? && !product.sub_category_id.blank?)
+      return nested_products_path(Category.find(product.categories.first.parent_id), product.sub_category_id, product)
+    end
     return product_path(product)
   end
 

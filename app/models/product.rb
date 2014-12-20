@@ -255,6 +255,8 @@ class Product < ActiveRecord::Base
 
   def layout
     return categories.root.layout_card if categories && categories.size > 0 && categories.root
+    return Category.find(categories.first.parent_id).layout_card if categories && categories.size > 0 && ((categories.first.name == "Food") || (Category.find(categories.first.parent_id).name == "Food"))
+    return Category.find(categories.first.parent_id).layout_card if categories && categories.size > 0
   end
 
   def layout_image

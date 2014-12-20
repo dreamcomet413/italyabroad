@@ -43,7 +43,7 @@
       <% end %>
     </td>
     <td class="properties" valign="top">
-      <% if @product.categories.root.name.downcase == "food" || @product.categories.root.name.downcase == "hampers" || @product.categories.root.name.downcase == "wine" || @product.categories.root.name.downcase == "other drinks" %>
+      <% if ((@product.categories.first.name == "Food" || "Hampers") || (Category.find(@product.categories.first.parent_id).name == "Food")) || @product.categories.root.name.downcase == "hampers" || @product.categories.root.name.downcase == "wine" || @product.categories.root.name.downcase == "other drinks" %>
           <table>
             <tr>
               <td>Avg.Rating:</td>
@@ -196,9 +196,9 @@
           </li>
           <% if (@product.from_quantity.to_f > 0.0) && (@product.from_quantity_price.to_f > 0.0) %>
               <li>
-                <% if @product.categories.root.name == "Wine" %>
+                <% if @product.categories.root.present? && @product.categories.root.name == "Wine" %>
                     <span style="color:red;">Buy a case of <%= @product.from_quantity %> and save <span><%= number_to_currency @product.from_quantity_price.to_f, :unit => "&pound;" %><br/>(price per bottle <%= number_to_currency @product.price_per_bottle, :unit => "&pound;" %>)</span></span>
-                <% elsif @product.categories.root.name == "Food" %>
+                <% elsif @product.categories.root.present? && @product.categories.root.name == "Food" %>
                     <span style="color:red;">Buy <%= @product.from_quantity %> and save <span><%= number_to_currency @product.from_quantity_price, :unit => "&pound;" %></span></span>
                 <% end %>
               </li>
@@ -219,8 +219,8 @@
               <%- end -%>
             <% end %>
 
-            <%= link_to image_tag("add_to_wish_list.png"), "/site/wish_list?product_id=#{@product.id}", :remote => true, :method => :post if @product.categories.root.name == 'Wine'%>
-            <% if  @product.categories.root.name.downcase == 'wine' %>
+            <%= link_to image_tag("add_to_wish_list.png"), "/site/wish_list?product_id=#{@product.id}", :remote => true, :method => :post if @product.categories.root.present? && @product.categories.root.name == 'Wine'%>
+            <% if  @product.categories.root.present? && @product.categories.root.name.downcase == 'wine' %>
                 <%= link_to image_tag("WINE_LIST.jpg"), "/site/wine_lists?product_id=#{@product.id}", :remote => true, :method => :post, :style => "color:#464646;" %>
             <% end %>
 
@@ -251,7 +251,7 @@
 
 <!--<div style="float:  left in stock.;" id ="other-image"></div>
 
-<div style="font:normal 16px Arial;padding:0 0 0 10px"><%= link_to(("Other images"),:url => { :controller => "site/categories",:action => "all_mixedcase_image", :parent =>@product.categories.root.name }, :remote => true) %></div>
+<div style="font:normal 16px Arial;padding:0 0 0 10px"><%= link_to(("Other images"),:url => { :controller => "site/categories",:action => "all_mixedcase_image", :parent =>@product.categories.root.name }, :remote => true) if @product.categories.root.present? %></div>
 -->
 
 <!-- Included products for mixed case and hampers added on november 14, 2011 !-->
@@ -342,7 +342,7 @@
 
     <br />
     </div>
-<% if @product.categories.root.name.downcase == "wine" and !@product.sub_categories.include?('Mixed case') %>
+<% if @product.categories.root.present? && @product.categories.root.name.downcase == "wine" and !@product.sub_categories.include?('Mixed case') %>
 <%# if @product.categories.root.name.downcase == "wine" %>
     <% @includes = @product.product_includeds.all(:limit => 5) %>
     <% if !@includes.blank? %>

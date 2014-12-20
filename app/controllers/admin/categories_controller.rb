@@ -17,11 +17,12 @@ class Admin::CategoriesController < ApplicationController
 
   def create
     @category = Category.new(params[:category])
-    if  @category.valid? and !params[:image].nil?
-      @image = Image.new(params[:image])
-      @image.save
-      @category.image_id = @image.id
-      @category.image_url = params[:image][:image_file]
+    if @category.valid? and params[:image].present?
+      #@image = Image.new(params[:image])
+      #@image.save
+      #@category.image_id = @image.id
+      #@category.image_url = params[:image][:image_file]
+      @category.build_image(:image_filename => params[:image])
     end
     if @category.save
       unless params[:category][:parent_id].blank?

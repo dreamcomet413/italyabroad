@@ -42,18 +42,24 @@ class Site::ProductsController < ApplicationController
       p "**************************"
       p params[:category]
       p "*************************"
-      unless Category.find(@product.categories.map(&:id)).blank?
+      if !@product.root_category_id.blank? && !Category.find(@product.categories.map(&:id)).blank?
         @category = Category.find(@product.categories.root.name)
+      end
+      if (@product && @product.root_category_id.blank? && !@product.sub_category_id.blank? && Category.find(@product.categories.first.parent_id).name == "Food")
+        @category = Category.find(params[:category])
       end
       p "******hjjh********************"
       p YAML::dump(@category)
       p "**************************"
-      unless Category.find(@product.categories.map(&:id)).blank?
+      if !@product.root_category_id.blank? && Category.find(@product.categories.map(&:id)).blank?
         if @product.categories.root.name == "Hampers" or params[:category] == "mixed-case" or params[:category] == "wine-hampers"
           @images = @category.blank? ? [] : @category.products.where("id is not null").includes([:categories, :grapes]).order("products.price DESC").
               paginate(:page => params[:page], :per_page => 10)
         end
-      end
+      elsif (@product && @product.root_category_id.blank? && !@product.sub_category_id.blank? && Category.find(@product.categories.first.parent_id).name == "Food")
+          @images = @category.blank? ? [] : @category.products.includes([:categories, :grapes]).order("products.price DESC").
+              paginate(:page => params[:page], :per_page => 10)
+        end
     end
 
   end

@@ -1,0 +1,51 @@
+diff a/app/views/site/templates/_product_without_category.html.erb b/app/views/site/templates/_product_without_category.html.erb	(rejected hunks)
+@@ -18,7 +18,7 @@
+         <tr>
+           <td>Avg.Rating:</td>
+           <td class="data">
+-            <%= show_ratings(@product, @product.average_rating_round) %>
++            <%= show_ratings(@product, @product.average_rating_round).html_safe() %>
+           </td>
+         </tr>
+ 
+@@ -28,10 +28,11 @@
+               <td class="data">
+                 <% if @product.region %>
+                     <% if @product.region.active %>
+-                        <%= link_to (@product.region.name, region_path(@product.region))   %>
++                        <%= link_to(@product.region.name, region_path(@product.region))   %>
+                     <% else %>
+                         "No region"
+-                    <% end  else %>
++                    <% end %>
++                <% else %>
+                     "No region"
+                 <% end %>
+               </td>
+@@ -114,7 +115,7 @@
+                     <%= image_submit_tag("buttons/add_to_cart_button.png") %>
+                 <%- end -%>
+             <%- end -%>
+-            <%= link_to(image_tag("add_to_wish_list.png"), "/site/wish_list?product_id=#{product.id}", :remote => true, :method => :post) %>
++            <%= link_to(image_tag("add_to_wish_list.png"), "/site/wish_list?product_id=#{@product.id}", :remote => true, :method => :post) %>
+             <%# if  @product.categories.root.name.downcase == 'wine' %>
+             <%#= link_to_remote image_tag("WINE_LIST.jpg"), :url => product_wine_list_index_path(@product), :html => {:style => "color:#464646;", :method => :post} %>
+             <%# end %>
+@@ -130,7 +131,7 @@
+ <div id="wineDesc">
+   <br />
+   <h3>Description</h3>
+-  <%= @product.description.gsub("\n","<br />") rescue "Product has no description" %>
++  <%= @product.description.gsub("\n","<br />").html_safe rescue "Product has no description" %>
+ </div>
+ 
+ <!--<div style="float: left;" id ="other-image"></div>
+@@ -181,7 +182,7 @@
+                 </tr>
+                 <tr>
+                   <td>
+-                    <%= link_to(image_tag("buttons/add_to_cart_button.png"), "/site/cart?product_id=#{product.id}", :remote => true, :method => :post) %>
++                    <%= link_to(image_tag("buttons/add_to_cart_button.png"), "/site/cart?product_id=#{@product.id}", :remote => true, :method => :post) %>
+                   </td>
+                 </tr>
+               </table>
