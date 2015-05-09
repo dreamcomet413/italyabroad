@@ -7,7 +7,7 @@ set :deploy_to, "/home/italy/italyabroad"
 set :user, "italy"
 #set :scm_passphrase, "italyabroad1"
 #set :user, "root"
-#set :password, "italyabroad1"
+set :password, "Knili55Yorac38"
 set :domain, "89.145.121.178"
 #set :domain, "192.241.165.181"
 #set :domain, "104.131.110.105"
@@ -37,9 +37,10 @@ after "deploy:update_code" do
 end
 
 set :scm, :git
-set :repository, "git@github.com:italyabroad/italyabroad.git"
+#set :repository, "git@github.com:italyabroad/italyabroad.git"
 #set :repository, "https://github.com/italyabroad/italyabroad.git"
 #set :repository, "ssh://git@bitbucket.org/neerajkumar/italyabroad_new.git"
+set :repository, "https://happywithrails@bitbucket.org/happywithrails/italyabroad_pro.git"
 set :rake, 'bundle exec rake'
 #set :repository, "https://github.com/italyabroad/italyabroad.git"
 #set :git_enable_submodules, 1

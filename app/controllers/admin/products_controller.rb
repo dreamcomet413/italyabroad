@@ -427,4 +427,17 @@ class Admin::ProductsController < ApplicationController
     end
     redirect_to product_correlation_path(@product)
   end
+  
+  def included_products
+    @product = Product.find(params[:id])
+    if params[:search_name].blank?
+    @products = Product.find(:all, :conditions => ["products.id NOT IN (?)", @product.id])
+    else
+    @products = Product.find(:all, :conditions => ["name like ?", "%#{params[:search_name]}%"])  
+    end
+    
+    respond_to do |format|
+      format.html
+    end
+  end
 end
