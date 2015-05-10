@@ -1,5 +1,5 @@
 class Admin::CuponsController < ApplicationController
-  #  auto_complete_for :product, :name, :limit => 15, :order => 'created_at DESC'
+  auto_complete_for :product, :name, :limit => 15, :order => 'created_at DESC'
   before_filter :admin_login_required
   layout "admin"
 

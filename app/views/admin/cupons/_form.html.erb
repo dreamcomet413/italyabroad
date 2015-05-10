@@ -51,7 +51,7 @@ end
   <tr>
     <td valign="top">Limit to product: </td>
     <td>
-      <%= text_field 'product', 'search' %><br/>
+      <%#= text_field 'product', 'search' %><br/>
       <%#= text_field_with_auto_complete :product, :name , :name=>"cupon[product_id]"%>
 
 
@@ -65,7 +65,7 @@ end
 
 
 
-<%#= text_field_with_auto_complete "product", "name" , { :size => 81 }, { :url => formatted_product_list_admin_cupons_path(:js), :method => :get, :param_name => 'search',:multiple => true } %>
+<%= text_field_with_auto_complete "product", "name" , { :size => 81 }, { :url => product_list_admin_cupons_path(:js), :method => :get, :param_name => 'search',:multiple => true } %>
 <%#= select_tag("cupon[product_ids][]", options_from_collection_for_select(Product.find(:all).collect, "id", "name", @cupon.products.collect{|p| p.id}), {:multiple=>true, :size=>6})%>
 <ul>
           <%- for product in @cupon.products -%>
