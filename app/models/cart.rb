@@ -173,6 +173,7 @@ class Cart
 
   def total
     total  = sub_total
+    puts "----------def total: #{total}"
     @setting = Setting.first
     @number_of_wines_in_cart = 0
     @items.each do  |t|
@@ -188,10 +189,9 @@ class Cart
      total  -= ((total*(@setting.wine_discount_amount))/100).round(1)
     end
 
-    total += total < Setting.order_delivery_amount && @delivery ? @delivery.price : 0
+    #total += total < Setting.order_delivery_amount && @delivery ? @delivery.price : 0
 
-
-
+     puts "---total += total: #{total}"
 
     cart_contains_not_only_events = false
 
@@ -206,19 +206,20 @@ class Cart
 
     end
 
-
-
+    puts "----before delivary-----total: #{total}"
     #  if total > Setting.find(:first).order_delivery_amount and @delivery.bulk_order_price == 0
     #   @delivery.price = 0
     #  els
     if cart_contains_not_only_events
       @delivery = Delivery.find(self.delivery.id)
       total += @delivery.price
+      
     else
-      @delivery.price = 0
-      total += @delivery.price
+      #@delivery.price = 0
+      #total += @delivery.price
+      total += total < Setting.order_delivery_amount && @delivery ? @delivery.price : 0
     end
-
+    puts "----after delivery------total: #{total}"
     # if total > Setting.find(:first).order_delivery_amount and @delivery.bulk_order_price == 0
     #    @delivery.price = 0
     # else
@@ -231,6 +232,7 @@ class Cart
     if self.gift.present? and !self.gift[:gift_option_id].blank?
       total += GiftOption.find(self.gift[:gift_option_id]).price
     end
+    puts "----------total: #{total}"
     return total
   end
 
