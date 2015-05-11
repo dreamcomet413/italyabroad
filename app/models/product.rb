@@ -197,10 +197,13 @@ class Product < ActiveRecord::Base
 
   def price_per_bottle
     if price_discounted.present?
+      puts "--- if  price_discounted.present?"
       price_discounted.each do |price|
-    	  return price - from_quantity_price / from_quantity_price
+        #puts "---price: #{price} from_quantity #{from_quantity}, from_quantity_price:#{from_quantity_price}"
+    	  return price - from_quantity_price / from_quantity
       end
     else
+      puts "--- else "
       return self.product_prices.first.price
     end
   end

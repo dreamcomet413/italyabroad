@@ -12,8 +12,10 @@ class Site::CartController < ApplicationController
   end
 
   def create
-    discounted_price = "0.0" ? product.product_prices.first.price : params[:discounted_price]
-    created = @cart.create(product, quantity, discounted_price)
+    #discounted_price = "0.0" ? product.product_prices.first.price : params[:discounted_price]
+    #puts "####################discounted_price #{discounted_price}"
+    #raise discounted_price and return
+    created = @cart.create(product, quantity, params[:discounted_price])
     if created
       session[:free_delivery] = false
       if @cart.sub_total > Setting.order_delivery_amount and session[:free_delivery] == false

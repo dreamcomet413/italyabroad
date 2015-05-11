@@ -34,11 +34,11 @@
                     <div style="color:red">
                       <% if product.categories.root.name == "Wine" %>
 
-                          <%= link_to "(Buy a case of #{product.from_quantity} and save #{number_to_currency(product.from_quantity_price, :unit=>"&pound;")} )",  '#', :onclick => "$('txt_qty_#{cart_item.product.id }').value=#{product.from_quantity}; $('form_cart').submit(); " %>
+                          <%= link_to "(Buy a case of #{product.from_quantity} and save #{number_to_currency(product.from_quantity_price, {:unit=> '£'} )} )",  '#', :onclick => "$('txt_qty_#{cart_item.product.id }').value=#{product.from_quantity}; $('form_cart').submit(); " %>
 
                       <% elsif product.categories.root.name == "Food" %>
 
-                          <%= link_to "(Buy #{product.from_quantity} and save  #{number_to_currency product.from_quantity_price, :unit => "&pound;"} )",  '#', :onclick => "$('txt_qty_#{cart_item.product.id }').value=#{product.from_quantity}; $('form_cart').submit();" %>
+                          <%= link_to "(Buy #{product.from_quantity} and save  #{number_to_currency product.from_quantity_price, :unit => '£'} )",  '#', :onclick => "$('txt_qty_#{cart_item.product.id }').value=#{product.from_quantity}; $('form_cart').submit();" %>
 
                       <% end %>
                     </div>
