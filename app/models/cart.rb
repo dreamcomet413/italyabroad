@@ -52,8 +52,8 @@ class Cart
       if current_item
         if item[:quantity].to_i < 1
           @show_warnings = "Quantity of #{current_item.product.name} must be greater than one."
-        elsif item[:quantity].to_i > current_item.product.quantity.to_i
-          @show_warnings = "Sorry, we only have #{current_item.product.quantity} #{current_item.product.name} left"
+        elsif item[:quantity].to_i > current_item.product.product_prices.sum(:quantity).to_i
+          @show_warnings = "Sorry, we only have #{current_item.product.product_prices.sum(:quantity)} #{current_item.product.name} left"
           current_item.quantity = current_item.product.quantity
         else
           current_item.quantity = item[:quantity]
