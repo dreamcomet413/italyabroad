@@ -67,8 +67,29 @@
     <div id="googleplus_lg">
       <!--&lt;!&ndash; Place this tag where you want the +1 button to render &ndash;&gt;<g:plusone></g:plusone>-->
     </div>
-    <table id="cart" style="margin-top: -7px;">
+    <table style="margin-top: -7px;float:right;">
+    	<tr><td>
+    <table >
       <tr>
+      	<td>
+        <% if logged_in? %>
+          Welcome <%= current_user.name %> <% if current_user.type_id == 1 %> | <%= link_to "Admin Site",siteadmin_path %><% end %> |
+          <% if Message.find(:all,:conditions=>['user_id = ?',current_user.id]).count > 0 %>
+              <%= link_to "My Account",  :controller=>'site/customers',:action=>'show',:id=>current_user.id  %> |
+          <% else %>
+              <%= link_to "My Account", account_path %> |
+          <% end %>
+          <%= link_to "Log out", logout_path %>
+      <% else %>
+          <%= link_to "Log in", login_path %> | <%= link_to "Sign up", signup_path %>
+      <% end %>
+        | <%= link_to "Contact Us", contact_us_path %></td>
+        </tr>
+        </table>
+        </td>
+        <td>
+	<table id="cart" style="float:left;">
+		<tr>
         <td>
           <%= render :partial => "/site/shared/cart" %>
         </td>
@@ -77,6 +98,7 @@
         <td><%= link_to image_tag("/images/googleplus.ico", :height => "23px", :width => "23px"), "https://plus.google.com/105030552023597415239/posts" -%></td>
       </tr>
     </table>
+    </td></tr></table>
 
     <div id="logIn">
       <!-- Remove this line and uncomment the other lines when u go live -->
@@ -96,19 +118,6 @@
               end
           %>
       <%end%>
-      <% if logged_in? %>
-          Welcome <%= current_user.name %> <% if current_user.type_id == 1 %> | <%= link_to "Admin Site",siteadmin_path %><% end %> |
-
-          <% if Message.find(:all,:conditions=>['user_id = ?',current_user.id]).count > 0 %>
-              <%= link_to "My Account",  :controller=>'site/customers',:action=>'show',:id=>current_user.id  %> |
-          <% else %>
-              <%= link_to "My Account", account_path %> |
-          <% end %>
-          <%= link_to "Log out", logout_path %>
-      <% else %>
-          <%= link_to "Log in", login_path %> | <%= link_to "Sign up", signup_path %>
-      <% end %>
-        | <%= link_to "Contact Us", contact_us_path %>
     </div>
     <br /><div style="clear: both;"></div>
     <div style="margin-top: 12px;">
@@ -146,7 +155,7 @@
               </div>
             </td>
             <td>
-              <div id="dropdown_wrapper">
+              <div id="dropdown_wrapper" style="width:105px;">
                 <%= select_tag :id, options_for_select([['Wine', 'wine'], ['Other Drinks', 'Other Drinks'], ['Food', 'food'], ['Recipe', 'recipe'],['Hampers','hampers'], ['People', 'people'],['Chef', 'chef'],['All Site','all']], (params[:id] || params[:category] || "all")) %>
               </div>
             </td>
