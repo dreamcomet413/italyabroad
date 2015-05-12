@@ -141,12 +141,13 @@ class Site::CartController < ApplicationController
   end
 
   def gift_options
-    session[:return_to] = '/site/cart/gift_options'
+    
     if @cart.sub_total < 10
       flash[:notice] = "Sorry, but there is a miminum order of £#{@setting.order_amount}"
       redirect_to :controller=>'cart',:action=>'index'
     end
     if !logged_in? and @cart.sub_total > 10
+      session[:return_to] = '/site/cart/gift_options'
       redirect_to login_path
     end
     if logged_in?

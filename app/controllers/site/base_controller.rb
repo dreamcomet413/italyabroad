@@ -46,8 +46,15 @@ class Site::BaseController < ApplicationController
         if current_user.omniauth?(params)
           current_user.authentications.create!(:provider => params[:provider], :uid => params[:uid], :token => params[:token])
         end
-
-        redirect_to root_path
+        
+        if !session[:return_to].blank? && session[:return_to] == '/site/cart/gift_options'
+          return_to = session[:return_to]
+          session[:return_to] = ""
+          redirect_to return_to and return
+        else
+          redirect_to root_path 
+        end
+        
         #redirect_back_or_default(root_url)
       else
         flash[:notice] = "Wrong password or username " #+ "<br />"
