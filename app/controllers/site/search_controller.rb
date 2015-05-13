@@ -48,17 +48,17 @@ class Site::SearchController < ApplicationController
 
       @search = Search.new(params || Hash.new)
 
-      wine_conditions = ["upper(categories.name) LIKE ? AND products.name LIKE ? #{('AND moods.id = ' + params[:mood].strip) if params[:mood.present?]} AND products.active = ? AND quantity > ? ",'WINE',"%#{params[:text].strip}%", true,0]
-      other_drinks_conditions = ["upper(categories.name) LIKE ? AND products.name LIKE ? #{('AND moods.id = ' + params[:mood].strip) if params[:mood.present?]} AND products.active = ? AND quantity > ? ",'Other Drinks',"%#{params[:text].strip}%", true,0]
-      hamper_conditions = ["upper(categories.name) LIKE ? AND products.name LIKE ? #{('AND moods.id = ' + params[:mood].strip) if params[:mood.present?]} AND products.active = ? AND quantity > ? ",'HAMPERS',"%#{params[:text].strip}%", true,0]
-      food_conditions = ["upper(categories.name) LIKE ? AND products.name LIKE ? #{('AND moods.id = ' + params[:mood].strip) if params[:mood.present?]} AND products.active = ? AND quantity > ? ",'FOOD',"%#{params[:text].strip}%", true,0]
+      wine_conditions = ["upper(categories.name) LIKE ? AND products.name LIKE ? #{('AND moods.id = ' + params[:mood].strip) if params[:mood.present?]} AND products.active = ? AND product_prices.quantity > ? ",'WINE',"%#{params[:text].strip}%", true,0]
+      other_drinks_conditions = ["upper(categories.name) LIKE ? AND products.name LIKE ? #{('AND moods.id = ' + params[:mood].strip) if params[:mood.present?]} AND products.active = ? AND product_prices.quantity > ? ",'Other Drinks',"%#{params[:text].strip}%", true,0]
+      hamper_conditions = ["upper(categories.name) LIKE ? AND products.name LIKE ? #{('AND moods.id = ' + params[:mood].strip) if params[:mood.present?]} AND products.active = ? AND product_prices.quantity > ? ",'HAMPERS',"%#{params[:text].strip}%", true,0]
+      food_conditions = ["upper(categories.name) LIKE ? AND products.name LIKE ? #{('AND moods.id = ' + params[:mood].strip) if params[:mood.present?]} AND products.active = ? AND product_prices.quantity > ? ",'FOOD',"%#{params[:text].strip}%", true,0]
       wine_events_conditions = ["upper(categories.name) LIKE ? AND products.name LIKE ? #{('AND moods.id = ' + params[:mood].strip) if params[:mood.present?]} AND products.active = ?  AND DATE(date) >= ?", 'EVENTS', "%#{params[:text].strip}%", true, Date.today]
-      @wines = Product.find(:all, :include => [:categories, :moods] ,:conditions => wine_conditions)
-      @other_drinks = Product.find(:all, :include => [:categories, :moods] ,:conditions => other_drinks_conditions)
-      @hampers = Product.find(:all, :include => [:categories, :moods] ,:conditions => hamper_conditions)
-      @foods = Product.find(:all, :include => [:categories, :moods] ,:conditions => food_conditions)
+      @wines = Product.find(:all, :include => [:categories, :moods, :product_prices] ,:conditions => wine_conditions)
+      @other_drinks = Product.find(:all, :include => [:categories, :moods, :product_prices] ,:conditions => other_drinks_conditions)
+      @hampers = Product.find(:all, :include => [:categories, :moods, :product_prices] ,:conditions => hamper_conditions)
+      @foods = Product.find(:all, :include => [:categories, :moods, :product_prices] ,:conditions => food_conditions)
 
-      @wine_events = Product.find(:all, :include => [:categories, :moods] ,:conditions => wine_events_conditions)
+      @wine_events = Product.find(:all, :include => [:categories, :moods, :product_prices] ,:conditions => wine_events_conditions)
 
       SearchQuery.create(:query => @search.text) unless (@wines.blank? or @foods.blank?)
 
@@ -75,13 +75,13 @@ class Site::SearchController < ApplicationController
     else
       #@sort_by = available_sorting.include?(params[:sort_by]) ? params[:sort_by] : "products.price DESC"
 
-      @sort_by = available_sorting.include?(params[:sort_by]) ? params[:sort_by] : "products.id ASC"
+      @sort_by = available_sorting.include?(params[:sort_by]) ? params[:sort_by] : "product_prices.price asc"
       if @sort_by.to_s.upcase == 'NAME'
         @sort_by = 'products.name'
       end
       @search = Search.new(params || Hash.new)
       @category = @search.category
-      @products = Product.where(@search.conditions).includes([:categories, :grapes, :moods]).order(@sort_by).paginate(:page => params[:page], :per_page => 10)
+      @products = Product.where(@search.conditions).includes([:categories, :grapes, :moods, :product_prices]).order(@sort_by).paginate(:page => params[:page], :per_page => 10)
       SearchQuery.create(:query => @search.text) unless @products.blank?
 
       respond_to do |format|
@@ -149,7 +149,7 @@ class Site::SearchController < ApplicationController
   end
 
   def available_sorting
-    ["price asc", "price desc", "name", "region_id"]
+    ["product_prices.price asc", "product_prices.price desc", "name", "region_id"]
   end
 end
 

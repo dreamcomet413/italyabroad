@@ -1,6 +1,6 @@
-<%= image_tag "cart10.gif" %>
+<%#= image_tag "cart10.gif" %>
 <span style="color:red;font-weight:bold;"><%= @cart.items.size.to_i %></span>
-items in your shopping cart:
+items in your <%= image_tag "cart10.gif" %>:
 <%- if @cart.items.size > 0 -%>
 <strong>Sub Total: </strong><%= number_to_currency(@cart.sub_total, :unit => "&pound;") %>
 <%- end -%>
