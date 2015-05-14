@@ -193,10 +193,13 @@
           <td colspan="6">&nbsp;</td>
         </tr>
         <tr>
-          <td colspan="3"></td>
-          <td align="right">
+          <td colspan="4" align="right">
+          	<span style="padding-right: 10px;">
             <%= link_to image_tag("buttons/continue_shopping_button.png"), continue_shopping_site_cart_index_path %>
+            </span>
+            <span>
             <%= link_to image_tag("buttons/pay_now_btn.png"),:controller=>'cart',:action=>'gift_options' %>
+            </span>
             <%#= link_to image_tag("buttons/continue_button.png"), checkouts_url %>
             <%#= link_to image_tag("buttons/pay_now_btn.png"), checkouts_url %>
 
@@ -204,7 +207,7 @@
           <!-- <td align="right">
           <%#= link_to image_tag("buttons/continue_button.png"), checkouts_url %>
         </td>-->
-          <td align="right">
+          <td align="left">
             or <%= link_to "Empty", empty_site_cart_index_path, :confirm => "Are you sure want to empty this cart?" %>
           </td>
         </tr>
