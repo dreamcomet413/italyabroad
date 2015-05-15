@@ -2,8 +2,8 @@
   <%- active_uri = request.request_uri -%>
   <h3>About Us</h3>
   <ul>
+    <li><%= link_to("Our manifesto", our_principles_path, :class => ('active' if active_uri == our_principles_path)) %></li>
     <li><%= link_to("Who we are", about_us_path, :class => ('active' if active_uri == about_us_path)) %></li>
-    <li><%= link_to("Our principles and philosophy", our_principles_path, :class => ('active' if active_uri == our_principles_path)) %></li>
     <li><%= link_to("Meet us", meet_us_path, :class => ('active' if active_uri == meet_us_path)) %></li>
     <li><%= link_to("Contact us", contact_us_path, :class => ('active' if active_uri == contact_us_path)) %></li>
     <li><%= link_to("Wholesale", wholesale_enquiry_path, :class => ('active' if active_uri == wholesale_enquiry_path)) %></li>

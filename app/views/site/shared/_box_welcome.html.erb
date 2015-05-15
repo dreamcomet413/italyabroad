@@ -5,25 +5,16 @@
         <table>
           <tr>
             <td colspan="2" style="height: 0px;">
-              <h3 style="padding-bottom: 0; margin-bottom: 3px;">About italyabroad.com</h3>
+              <h3 style="padding-bottom: 0; margin-bottom: 3px;">Our manifesto</h3>
             </td>
           </tr>
           <tr>
-            <td class="banner" style="margin-top: 0px;" >
-              <%= image_tag("/images/about.png",  :style =>"margin-top: -6px;") -%>
-            </td>
             <td class="banner" style="margin-top: -5px; font-size: 12px;">
-              Italyabroad.com is the Italian wine and food specialist made by small and passionate producers. We are a bunch of passionate people who love what we do; everything started when I had my first sip of wine sitting on my granddad knees, he was so proud of his wine that wanted to share this moment with his 2 year old grandchild, what a moment for both of us.
-              <br /><div class="fRight" style="color: #ff0000;"><%= link_to "read more", "/about-us"-%></div>
+              <% @about = AboutU.find(:first, :conditions => {:link_type => "pricipal and philosophy"} ) %>
+              <%= @about.description.html_safe  %><br /><div class="fRight" style="color: #ff0000;"><%= link_to "read more", "/our-principles"-%></div>
             </td>
             </tr>
         </table>
-      </td>
-      <td>
-        <%= link_to image_tag("/images/small-wine-search-box-newd.jpg", :style => "margin-top: 21px;"), site_sommelier_index_path -%>
-      </td>
-        <td>
-        <%= link_to image_tag("/images/small-waranty-box-new.jpg", :style => "margin-top: 21px;"), guarantee_of_satisfaction_path -%>
       </td>
     </tr>
   </table>
