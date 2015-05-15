@@ -45,14 +45,17 @@ total_points_used = current_user.orders.sum('points_used')
       <%= hidden_field_tag :payment_method, 2 %>
       <%= render :partial => 'site/orders/cc_form' %>
     </div>
-    <p style="text-align:right;">
-    	<%= link_to image_tag("buttons/back_button.png"),:controller=>'checkouts',:action=>'index' %>&nbsp;
-      <%= image_submit_tag "buttons/pay_now_btn.png" %>
-
-  		<%#= image_submit_tag "buttons/checkout.png" %><!--&nbsp;&nbsp;--><%#= link_to image_tag("buttons/continue_shopping_button.png"), continue_shopping_cart_path %>
-  	</p>
-
-</div>
+    
+    	
+    	<div style="text-align:right;font-size:10px;padding-top:10px;">
+		<div style="float: right;padding-right: 10px;">
+		<%= image_submit_tag "buttons/pay_now_btn.png" %>		
+	    </div>
+	    <div style="float: right;padding-right: 10px;">
+	    <%= link_to image_tag("buttons/back_button.png"),:controller=>'checkouts',:action=>'index' %>
+	    </div>
+	    </div>
+	    </div>
   <%- end -%>
 <% content_for :right do %>
 	<%= render :partial => '/site/shared/box_subscriptions' %>
