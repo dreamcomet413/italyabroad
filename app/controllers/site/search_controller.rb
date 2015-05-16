@@ -106,7 +106,7 @@ class Site::SearchController < ApplicationController
 
   def find_wines
     # @search = Search.new(params || Hash.new)
-    @wines = Product.where(['products.name LIKE ? AND upper(categories.name) LIKE ? AND products.active = ? AND product_prices.quantity > ?',"%#{params[:text]}%",'WINE',true,0]).includes([:categories,:grapes, :product_prices]).paginate(:page => params[:page], :per_page => 10)
+    @wines = Product.where(['products.name LIKE ? AND upper(categories.name) LIKE ? AND products.active = ? ',"%#{params[:text]}%",'WINE',true]).includes([:categories,:grapes, :product_prices]).paginate(:page => params[:page], :per_page => 10)
     respond_to do |format|
       format.html
     end
@@ -121,11 +121,11 @@ class Site::SearchController < ApplicationController
   end
 
   def find_foods
-    @foods = Product.where(['upper(categories.name) LIKE ? AND products.name LIKE ? AND products.active = ? AND products.quantity > ?','FOOD',"%#{params[:text]}%",true,0]).includes([:categories,:grapes]).paginate(:page => params[:page], :per_page => 10)
+    @foods = Product.where(['upper(categories.name) LIKE ? AND products.name LIKE ? AND products.active = ? AND product_prices.quantity > ?','FOOD',"%#{params[:text]}%",true,0]).includes([:categories,:grapes, :product_prices]).paginate(:page => params[:page], :per_page => 10)
   end
 
   def find_hampers
-    @hampers = Product.where(['upper(categories.name) LIKE ? AND products.name LIKE ? AND products.active = ? AND products.quantity > ?','HAMPERS',"%#{params[:text]}%",true,0]).includes([:categories]).paginate(:page => params[:page], :per_page => 10)
+    @hampers = Product.where(['upper(categories.name) LIKE ? AND products.name LIKE ? AND products.active = ? AND product_prices.quantity > ?','HAMPERS',"%#{params[:text]}%",true,0]).includes([:categories, :product_prices]).paginate(:page => params[:page], :per_page => 10)
 
   end
 

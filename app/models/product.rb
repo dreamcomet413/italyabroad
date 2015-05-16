@@ -326,7 +326,13 @@ class Product < ActiveRecord::Base
   def out_of_stock?
     #quantity = self.quantity.is_a?(String) ? self.quantity.split(",").first.to_i : self.quantity
     #quantity == 0 or quantity < 0
-    self.product_prices.empty?
+    out_of_stock = true
+    self.product_prices.each do |quantity|
+      if !quantity.out_of_stock
+        out_of_stock = false
+      end
+    end
+    out_of_stock
   end
 
 	# Calculates the average rating. Calculation based on the already given scores.
