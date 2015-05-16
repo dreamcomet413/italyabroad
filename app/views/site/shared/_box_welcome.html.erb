@@ -12,7 +12,7 @@
             <td class="banner" style="font-size: 12px;">
                <% @about = AboutU.find(:first, :conditions => {:link_type => "pricipal and philosophy"} ) %>
                <%= truncate(@about.description, length: 460).html_safe  %><br /><div class="fRight" style="color: #ff0000;">
-               <%= link_to "read more", "/our-principles"-%></div>
+               <%= link_to "read more", "/about-us"-%></div>
               </td>
             </tr>
         </table>

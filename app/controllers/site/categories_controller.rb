@@ -20,7 +20,7 @@ class Site::CategoriesController < ApplicationController
         redirect_to root_url and return
       else
         #@sort_by = available_sorting.include?(params[:sort_by]) ? params[:sort_by] : "products.price DESC"
-        @sort_by = available_sorting.include?(params[:sort_by]) ? params[:sort_by] : "products.id ASC"
+        @sort_by = available_sorting.include?(params[:sort_by]) ? params[:sort_by] : "product_prices.price asc"
         if @sort_by.to_s.upcase == 'NAME'
           @sort_by = 'products.name'
         end
@@ -32,7 +32,7 @@ class Site::CategoriesController < ApplicationController
           @search = Search.new(params || Hash.new)
           @products = @category.blank? ?
               [] :
-              @category.products.where(@search.conditions).includes([:categories, :grapes, :moods]).order(@sort_by).paginate(:page => (params[:page] ||=1), :per_page => 10)
+              @category.products.where(@search.conditions).includes([:categories, :grapes, :moods, :product_prices]).order(@sort_by).paginate(:page => (params[:page] ||=1), :per_page => 10)
           #@category.products.find(:all, :order => @sort_by, :include => [:categories, :grapes], :conditions => @search.conditions).
           #    paginate(:page => (params[:page] ||=1), :per_page => 10)
           SearchQuery.create(:query => @search.text) unless @search.text.blank?
@@ -92,7 +92,7 @@ class Site::CategoriesController < ApplicationController
 
   private
   def available_sorting
-    ["price asc", "price desc", "name", "region_id"]
+    ["product_prices.price asc", "product_prices.price desc", "name", "region_id"]
   end
 end
 
