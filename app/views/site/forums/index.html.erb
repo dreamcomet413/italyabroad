@@ -92,7 +92,7 @@
           <%#= avatar_for_user(producer, "small") %>
           <%#= show_producer_image(producer) %>
           <% if producer.image %>
-              <%=  image_tag(site_image_url(:community_producer_thumb, producer.image, :jpg),:alt=>producer.name) %>
+              <%=  image_tag(site_image_url(:community_producer_thumb, producer.image, :jpg),:alt=> producer.name, :width => "150",) %>
           <% else %>
               <%= image_tag("default.jpg",:width => "150",:alt=>producer.name) %>
           <% end %>
@@ -173,7 +173,7 @@
         <div class="box_grape_guide"><%= link_to grape.name, site_grape_path(grape) %>&nbsp;<%= link_to "(more grapes)", grape_guide_path %><br /><br />
           <%#= image_tag("grape_guide_small.png",:alt=>'Grape guide') %>
           <% if grape && grape.image %>
-              <%= image_tag(site_image_url(:recipe, grape.image, :jpg),:alt=>grape.name) if grape && grape.image %>
+              <%= image_tag(site_image_url(:recipe, grape.image, :jpg),:alt=>grape.name, :width=> "150px") if grape && grape.image %>
           <% else %>
               <%= image_tag("grape_guide_small.png", :alt=>grape.name, :width=> "150px") %>
           <%- end -%><br /><br />
@@ -188,11 +188,7 @@
                     grape.description.html_safe()
                   end
                 else
-                  "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".html_safe()
+                  
                 end
             %>
           </div>
@@ -208,7 +204,7 @@
         <div class="box_grape_guide"><%= link_to region.name, site_region_path(region) %>&nbsp;<%= link_to "(more regions)", site_regions_path %><br /><br /><br />
 
           <% if region && region.image %>
-              <%= image_tag(site_image_url(:recipe, region.image, :jpg), :alt=>region.name) if region && region.image %>
+              <%= image_tag(site_image_url(:recipe, region.image, :jpg), :alt=>region.name, :width=> "150px") if region && region.image %>
           <% else %>
               <%= image_tag("get_to_know_italy.png", :alt=>region.name, :width=> "150px") %>
           <%- end -%><br />
@@ -222,11 +218,7 @@
                     region.description.html_safe()
                   end
                 else
-                  " &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".html_safe()
+                  
                 end%>
 
           </div>
