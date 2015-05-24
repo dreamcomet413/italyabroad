@@ -7,7 +7,7 @@
 </head>
 <body>
 <div id="container">
-  <% if flash[:alert] %>
+  <% if flash[:alert] && flash[:alert] != "Product not found"%>
       <script type="text/javascript">
           document.observe('dom:loaded', function() {
               alert("<%= flash[:alert] %>");
