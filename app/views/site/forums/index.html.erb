@@ -86,15 +86,16 @@
     <%- producers = Producer.find(:all, :limit => 1,:conditions=>['active = ?',true] ,:order => "RAND()") %>
     <%# producers = Producer.find(:all, :limit => 1, :conditions => "id=39") %>
     <%- for producer in producers -%>
-        <div id="get_to_know_our_producers_avatar" style="padding-top:0px;">
+        <div id="get_to_know_our_producers_avatar" style=" padding-top:0px;padding-bottom:20px;">
           <%= link_to producer.name, site_producer_path(producer) %>
           <%= link_to "(more producers)", site_producers_path %><br /><br />
           <%#= avatar_for_user(producer, "small") %>
           <%#= show_producer_image(producer) %>
           <% if producer.image %>
-              <%=  image_tag(site_image_url(:community_producer_thumb, producer.image, :jpg),:alt=> producer.name, :width => "190",) %>
+          
+              <%=  image_tag(site_image_url(:community_producer_thumb, producer.image, :jpg),:alt=> producer.name, :width => "190px",) %>
           <% else %>
-              <%= image_tag("default.jpg",:width => "190",:alt=>producer.name) %>
+              <%= image_tag("default.jpg",:width => "190px",:alt=>producer.name) %>
           <% end %>
           <br />
         </div>
