@@ -86,16 +86,16 @@
     <%- producers = Producer.find(:all, :limit => 1,:conditions=>['active = ?',true] ,:order => "RAND()") %>
     <%# producers = Producer.find(:all, :limit => 1, :conditions => "id=39") %>
     <%- for producer in producers -%>
-        <div id="get_to_know_our_producers_avatar" style=" padding-top:0px;padding-bottom:20px;">
+        <div id="get_to_know_our_producers_avatar" style=" padding-top:0px;padding-bottom:10px;">
           <%= link_to producer.name, site_producer_path(producer) %>
           <%= link_to "(more producers)", site_producers_path %><br /><br />
           <%#= avatar_for_user(producer, "small") %>
           <%#= show_producer_image(producer) %>
           <% if producer.image %>
           
-              <%=  image_tag(site_image_url(:community_producer_thumb, producer.image, :jpg),:alt=> producer.name, :width => "190px",) %>
+              <%=  image_tag(site_image_url(:community_producer_thumb, producer.image, :jpg),:alt=> producer.name, :width => "210px",) %>
           <% else %>
-              <%= image_tag("default.jpg",:width => "190px",:alt=>producer.name) %>
+              <%= image_tag("default.jpg",:width => "210px",:alt=>producer.name) %>
           <% end %>
           <br />
         </div>
@@ -174,9 +174,9 @@
         <div class="box_grape_guide"><%= link_to grape.name, site_grape_path(grape) %>&nbsp;<%= link_to "(more grapes)", grape_guide_path %><br /><br />
           <%#= image_tag("grape_guide_small.png",:alt=>'Grape guide') %>
           <% if grape && grape.image %>
-              <%= image_tag(site_image_url(:recipe, grape.image, :jpg),:alt=>grape.name, :width=> "190px") if grape && grape.image %>
+              <%= image_tag(site_image_url(:recipe, grape.image, :jpg),:alt=>grape.name, :width=> "210px") if grape && grape.image %>
           <% else %>
-              <%= image_tag("grape_guide_small.png", :alt=>grape.name, :width=> "190px") %>
+              <%= image_tag("grape_guide_small.png", :alt=>grape.name, :width=> "210px") %>
           <%- end -%><br /><br />
 
           <%#= grape.description %>
@@ -205,9 +205,9 @@
         <div class="box_grape_guide"><%= link_to region.name, site_region_path(region) %>&nbsp;<%= link_to "(more regions)", site_regions_path %><br /><br /><br />
 
           <% if region && region.image %>
-              <%= image_tag(site_image_url(:recipe, region.image, :jpg), :alt=>region.name, :width=> "190px") if region && region.image %>
+              <%= image_tag(site_image_url(:recipe, region.image, :jpg), :alt=>region.name, :width=> "210px") if region && region.image %>
           <% else %>
-              <%= image_tag("get_to_know_italy.png", :alt=>region.name, :width=> "190px") %>
+              <%= image_tag("get_to_know_italy.png", :alt=>region.name, :width=> "210px") %>
           <%- end -%><br />
 
           <div style="text-align:justify;">
