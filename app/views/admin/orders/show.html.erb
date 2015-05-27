@@ -57,18 +57,19 @@
             <th style="width:100px">Price<span style="font-size:10px">(inc VAT)</span></th>
             <th style="text-align:right; width:75px">Total</th>
           </tr>
-          <% number_of_wines = 0
-             for order_item in @order.order_items
-               product = Product.find(order_item.product.id)
-               if product.categories.root.name == "Wine"
-                 number_of_wines += order_item.quantity
-               end
-
-          %>
+     
+          
+    <%-  number_of_wines = 0
+         for order_item in @order.order_items
+           product = Product.find(order_item.product.id) if order_item.product.present?
+           if product.present? and product.categories.root.name == "Wine"
+             number_of_wines += order_item.quantity
+           end
+    -%>
 
 
               <%= fields_for "order_item", order_item do |f| %>
-                  <% if !Product.find(order_item.product.id).out_of_stock? %>
+                  <% if order_item.product.present? && !Product.find(order_item.product.id).out_of_stock?  %>
                       <tr>
                         <td style="text-align:left"><%= order_item.product_code %></td>
                         <td style="text-align:center"><%= order_item.quantity %></td>

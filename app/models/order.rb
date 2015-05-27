@@ -35,7 +35,13 @@ class Order < ActiveRecord::Base
 
   def total
     total  = sub_total
-    total += delivery_price if total < Setting.order_delivery_amount
+    if total < Setting.order_delivery_amount
+      total += delivery_price
+    elsif  total > Setting.order_delivery_amount
+      if delivery_price > 0
+        total += delivery_price
+      end 
+    end
     total -= cupon_price
     @setting = Setting.first
     @number_of_wines_in_cart = 0

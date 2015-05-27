@@ -58,16 +58,16 @@
         <th style="border-bottom: 1px solid black;padding-bottom: 8px;text-align:right; width:100px;">Total</th>
         <!--<th style="border-bottom: 3px solid black;padding-bottom: 8px;text-align:right; width:150px;"></th>-->
       </tr>
-      <% number_of_wines = 0
-
+      
+    <%-  number_of_wines = 0
          for order_item in @order.order_items
-           product = Product.find(order_item.product.id)
-           if product.categories.root.name == "Wine"
+           product = Product.find(order_item.product.id) if order_item.product.present?
+           if product.present? and product.categories.root.name == "Wine"
              number_of_wines += order_item.quantity
            end
-
-
-      %>
+    -%>
+      
+      
           <% fields_for "order_item", order_item do |f| %>
               <tr>
                 <td style="padding-top:5px;text-align:left"><%= order_item.product_code %></td>
