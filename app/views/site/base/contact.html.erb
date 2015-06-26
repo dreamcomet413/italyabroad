@@ -20,21 +20,17 @@
       <p>
 
                   <!-- Live Chat Start -->
-                   <div style="float:right;margin-right:25px;"><%= link_to image_tag('LiveChatHelpIcon.jpg'), "/site/chat", :popup => ['new_window_name', 'height=400,width=300'] %> <br />
+                   <div style="float:right;margin-right:25px;"><%= link_to image_tag('LiveChatHelpIcon.jpg'), "#",:onclick=>"popupwindow('/chat_messages', 300, 700)" %> <br />
                     <% if !Setting.first.blank?%>
-                      <%  @support_user = Setting.find(:first).support %>
-                                 <%# @support_status = Juggernaut.show_client(@support_user) ? true : false %>
-                                 <%# @support_status = (Juggernaut.show_client(@support_user) and @setting.chat_available == true) ? true : false %>
                                  <%
-                                    #support_link = "Closed"      #remove this when you go live and uncomment above comment
-                                 if @support_status == true
+                                 if Setting.first.chat_available
                                     support_link = "Open"
                                  else
                                     support_link = "Closed"
                                  end
                                   %>
                     <% end %>
-                    <span style="font:bold 13px Arial"><%= link_to "Live chat (#{support_link})","/site/chat", :popup => ['new_window_name', 'height=540,width=490'] %></span>
+                    <span style="font:bold 13px Arial"><%= link_to "Live chat (#{support_link})","#", :onclick=>"popupwindow('/chat_messages', 300, 700)" %></span>
 
                     </div>
                   <!-- Live Chat End -->
@@ -70,4 +66,12 @@
   <%= render :partial => 'site/shared/box_about_us' %>
 
 <% end %>
+
+<script type="text/javascript">
+    function popupwindow(url, w, h) {
+        var left = (screen.width/2)-(w/2);
+        var top = (screen.height/2)-(h/2);
+        return window.open(url, "Italyabroad Chat", 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
+    }
+</script>
 

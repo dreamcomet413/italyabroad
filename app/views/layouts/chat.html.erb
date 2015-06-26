@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Italyabroad Chat</title>
+  <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+  <%= javascript_include_tag "private_pub" %>
+  <%= javascript_include_tag "jquery_ujs" %>
+
+  <%= csrf_meta_tag %>
+</head>
+<body>
+<div id="container">
+  <a href="/" id="logo"><img alt="Italian wine and food" src="/images/logo_hi_res.gif?1434487455" title="Italian wine and food"></a>
+  <%= yield %>
+</div>
+</body>
+</html>

@@ -163,7 +163,7 @@ module ApplicationHelper
       when :category
         {:height => '270', :width => '500'}
       when :product
-        {:height => '200', :width => '200'}
+        {:height => '266px', :width => '200px'} # Change Here
       when :product_wine_tour_left_images
         {:height => '200'}
       when :product_display
@@ -195,7 +195,7 @@ module ApplicationHelper
       when :product_category
         {:height => '254'}
       when :wine
-        {:height => '220px', :width => '100px'}
+        {:height => '266px', :width => '200px'}   # change here
       else
         {}
     end

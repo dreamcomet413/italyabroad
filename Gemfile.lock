@@ -40,6 +40,7 @@ GEM
       activemodel (= 3.0.6)
       activesupport (= 3.0.6)
     activesupport (3.0.6)
+    addressable (2.3.8)
     afm (0.2.2)
     arel (2.0.10)
     attr_required (1.0.0)
@@ -59,11 +60,33 @@ GEM
       activesupport (~> 3.0)
     colorize (0.7.3)
     columnize (0.8.9)
+    cookiejar (0.3.2)
+    daemons (1.2.2)
     debugger-linecache (1.2.0)
+    em-http-request (1.1.2)
+      addressable (>= 2.3.4)
+      cookiejar
+      em-socksify (>= 0.3)
+      eventmachine (>= 1.0.3)
+      http_parser.rb (>= 0.6.0)
+    em-socksify (0.3.0)
+      eventmachine (>= 1.0.0.beta.4)
     erubis (2.6.6)
       abstract (>= 1.0.0)
+    eventmachine (1.0.7)
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
+    faye (1.1.1)
+      cookiejar (>= 0.3.0)
+      em-http-request (>= 0.3.0)
+      eventmachine (>= 0.12.0)
+      faye-websocket (>= 0.9.1)
+      multi_json (>= 1.0.0)
+      rack (>= 1.0.0)
+      websocket-driver (>= 0.5.1)
+    faye-websocket (0.9.2)
+      eventmachine (>= 0.12.0)
+      websocket-driver (>= 0.5.1)
     fb_graph (2.7.17)
       httpclient (>= 2.4)
       multi_json (>= 1.3)
@@ -72,6 +95,7 @@ GEM
     hashery (2.1.1)
     hashie (3.3.1)
     highline (1.6.21)
+    http_parser.rb (0.6.0)
     httpclient (2.5.3.3)
     i18n (0.5.4)
     jquery-rails (3.1.2)
@@ -138,6 +162,8 @@ GEM
     prawn (0.11.1)
       pdf-reader (>= 0.9.0)
       ttfunk (~> 1.0.0)
+    private_pub (1.0.3)
+      faye
     rack (1.2.8)
     rack-mount (0.6.14)
       rack (>= 1.0.0)
@@ -167,7 +193,6 @@ GEM
       json (~> 1.4)
     redis (3.1.0)
     require_relative (1.0.3)
-    rmagick (2.13.3)
     ruby-rc4 (0.1.5)
     rvm-capistrano (1.4.1)
       capistrano (>= 2.0.0)
@@ -176,12 +201,19 @@ GEM
       colorize
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
+    thin (1.6.3)
+      daemons (~> 1.0, >= 1.0.9)
+      eventmachine (~> 1.0)
+      rack (~> 1.0)
     thor (0.14.6)
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
     ttfunk (1.0.3)
     tzinfo (0.3.42)
+    websocket-driver (0.5.4)
+      websocket-extensions (>= 0.1.0)
+    websocket-extensions (0.1.2)
     will_paginate (3.0.7)
 
 PLATFORMS
@@ -210,12 +242,13 @@ DEPENDENCIES
   omniauth-twitter
   pdfkit
   prawn (= 0.11.1)
+  private_pub
   rails (= 3.0.6)
   rake (~> 0.8.7)
   rdoc
   require_relative
-  rmagick
   rvm-capistrano
   simple_captcha!
   sshkit
+  thin
   will_paginate (>= 2.3.12)

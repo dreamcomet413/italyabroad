@@ -1,0 +1,98 @@
+<h2>Welcome to Italyabroad Live Chat !! </h2>
+
+<ul id="chat" style="border: 1px solid #000000; background: #DEDEDE;min-height: 300px;height: 300px;overflow: auto ">
+
+  <% @chat_messages.each do |chat_message| %>
+
+      <%
+         if chat_message.message_from != "admin"
+           message_from_user = chat_message.message_from
+         else
+           message_from_user = "Support"
+         end
+
+         if chat_message.message_to != "admin"
+           message_to_user = chat_message.message_to
+         else
+           message_to_user = "Support"
+         end
+      %>
+
+      <li><span class='created_at'><%= chat_message.created_at.strftime("%H:%M") %>
+        : <i class='auto'><%= message_from_user %></i> to  <i class='auto'><%= message_to_user %></i> </span> :=>
+        <strong><%= chat_message.content %></strong></li>
+  <% end %>
+
+</ul>
+
+<%= form_for ChatMessage.new, remote: true do |f| %>
+
+    <%= f.text_area :content, :placeholder => "Type Message Here", :rows => 3, :style => "width : 70%" %>
+    <% if current_user.instance_of?(User) && current_user.admin? %>
+        <br/> Send To : <%= f.text_field :message_to , :readonly => true, :class => "message_to_user"%>
+    <% else %>
+        <%= f.hidden_field :message_to, :value => "admin", :placeholder => "Message To" %>
+    <% end %>
+    <%#= f.submit "Send" %>
+    <button type="submit" id="chat_message_submit">Send</button>
+
+    <% if !(current_user == :false) %>
+        <%= f.hidden_field :message_from, :value => current_user.admin? ? "admin" : current_user.name.parameterize, :placeholder => "Message From" %>
+    <% else %>
+        <%= f.hidden_field :message_from, :value => params[:with].parameterize, :placeholder => "Message From" %>
+    <% end %>
+
+
+<% end %>
+
+
+<% if !(current_user == :false) %>
+    <% if current_user.admin? %>
+        <%= subscribe_to "/chat_messages/new/*" %>
+    <% else %>
+        <%= subscribe_to "/chat_messages/new/#{current_user.name.parameterize}" %>
+    <% end %>
+<% else %>
+    <%= subscribe_to "/chat_messages/new/#{params[:with].parameterize}" %>
+<% end %>
+
+
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        if ($('ul li').length) {
+        $('#chat').scrollTop($('ul li').last().position().top + $('ul li').last().height());
+        }
+
+        $(".auto").click(function (event) {
+            $(".message_to_user").val(event.target.innerHTML)
+        });
+
+                $('#chat_message_content').keypress(function(e) {
+                    // Enter pressed?
+                    if(e.which == 10 || e.which == 13) {
+                        $('#chat_message_submit').click()
+                    }
+                });
+
+
+    });
+
+    window.onunload = refreshParent;
+    function refreshParent() {
+        window.opener.location.reload();
+    }
+
+
+</script>
+
+
+<style type="text/css">
+  .auto {
+      cursor: pointer;
+  }
+</style>
+
+

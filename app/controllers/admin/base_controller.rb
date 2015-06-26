@@ -45,7 +45,7 @@ class Admin::BaseController < ApplicationController
     elsif @setting.chat_available == true
       @setting.update_attribute('chat_available',false)
     end
-    redirect_back_or_default(:controller => '/admin/base', :action => 'index')
+    redirect_to siteadmin_url and return
   end
 end
 

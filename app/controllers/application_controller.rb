@@ -34,6 +34,11 @@ class ApplicationController < ActionController::Base
     return "#{user} says: #{msg}"
   end
 
+  #def default_url_options(options={})
+  #  https =  { :protocol => "https" }
+  #  options.merge https
+  #end
+
 
   protected
   def active

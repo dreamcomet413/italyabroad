@@ -18,7 +18,7 @@ gem 'sshkit'
 gem 'rvm-capistrano'
 gem 'rake', '~> 0.8.7'
 gem 'better_nested_set'
-gem 'rmagick', :require => false
+#gem 'rmagick', :require => false
 gem 'simple_captcha', :git => 'git://github.com/arcadi/simple-captcha.git'
 #gem "galetahub-simple_captcha", :require => "simple_captcha"
 
@@ -39,5 +39,8 @@ group :development do
   #gem 'thin'
   gem "nifty-generators"
 end
+gem 'private_pub'
+gem "thin"
 
 gem "mocha", :group => :test
+

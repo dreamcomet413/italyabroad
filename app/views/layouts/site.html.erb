@@ -104,10 +104,10 @@
       <!-- Remove this line and uncomment the other lines when u go live -->
       <%# support_link = "Closed" -%>
       <% if !Setting.first.nil? %>
-          <%  @support_user = Setting.find(:first).support
+          <%  @support_user = Setting.first.support
               #@support_status = Juggernaut.show_client(@support_user) ? true : false
               #   @support_status = (Juggernaut.show_client(@support_user) and @setting.chat_available == true) ? true : false
-              @support_status = (@setting.chat_available == true) ? true : false
+              @support_status = (Setting.first.chat_available == true) ? true : false
               #  @support_status = false
               if @support_status == true
                 support_link = "available"
@@ -122,16 +122,14 @@
     <br /><div style="clear: both;"></div>
     <div style="margin-top: 12px;">
 
-      <% if logged_in? %>
-
+      <% if Setting.first.chat_available %>
+          <span style="font:bold 13px Arial; margin-left: 28px;" class="fLeft"><%= link_to(image_tag(image_name), "#", {:onclick=>"popupwindow('/chat_messages', 300, 700)"}) if !image_name.nil? %></span>
+      <% else %>
           <span style="font:bold 13px Arial;"><%#= link_to image_tag(image_name), site_chat_index_path, :popup => ['new_window_name', 'height=540,width=490'] if !image_name.nil?  %></span>
           <span style="font:bold 13px Arial; margin-left: 28px;" class="fLeft"><%= link_to image_tag(image_name), "#", :class => "chat_available" if !image_name.nil?  %></span>
 
-      <% else %>
-          <span style="font:bold 13px Arial; margin-left: 28px;" class="fLeft"><%= link_to(image_tag(image_name), site_chat_index_path, {:popup => ['new_window_name', 'height=540,width=490,resizable=yes,scrollbars=auto']}) if !image_name.nil? %></span>
-
       <% end %>
-
+    </div>
 
 
 
@@ -275,7 +273,7 @@
 </div>
 
 
-<div style="clear:both;"><div>
+<div style="clear:both;"></div>
   <br /><br />
   <div style="font-size:10px;text-align:center;color:#000;">
     &copy; Copyright 2004-<%= Date.today.strftime("%Y") %> Italy Abroad Network Ltd, registered in England & Wales No. 4962185. All rights reserved.<br />
@@ -304,6 +302,12 @@
                   return false;
               }
       );
+
+      function popupwindow(url, w, h) {
+          var left = (screen.width/2)-(w/2);
+          var top = (screen.height/2)-(h/2);
+          return window.open(url, "Italyabroad Chat", 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
+      }
   </script>
 </body>
 </html>

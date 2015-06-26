@@ -4,6 +4,12 @@ ItalyabroadNew::Application.routes.draw do
 
   get "moods/index"
 
+  resources :chat_messages do
+    collection do
+      get "take_username" => "chat_messages#take_username"
+    end
+  end
+
   namespace(:admin){
     resources :wine_sizes
     resources :sommeliers
