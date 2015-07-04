@@ -21,7 +21,7 @@ end
 <%= render :partial => '/site/shared/box_hamper_search' %>
 <%= render :partial => '/site/templates/category' %>
 <%# products = Product.find(:all, :limit => 3, :order => "created_at DESC", :conditions => "id IN (#{@category.all_products_ids.join(',')}) AND active") %>
-<% products = Product.find(:all, :limit => 3, :conditions => "#{('id IN' + (@category.all_products_ids.join(',')) + 'AND ') if @category.all_products_ids.present? }active") %>
+<% products = Product.find(:all, :limit => 3, :conditions => "#{('id IN (' + (@category.all_products_ids.join(',')) + ') AND ') if @category.all_products_ids.present? }active") %>
 <%- products.each do |product| -%>
 <div  class="wineList">
   <br />

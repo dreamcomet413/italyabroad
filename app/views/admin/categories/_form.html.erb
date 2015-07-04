@@ -43,9 +43,9 @@
     <td>Parent category</td>
     <td>
     <% if !@category.new_record? %>
-    <%= select :category, :parent_id, Category.find(:all,:conditions=>['upper(name) = ? OR upper(name) = ? OR upper(name) = ? OR upper(name) = ? ' ,'WINE','FOOD','HAMPERS', 'OTHER DRINKS']).inject([]) {|categories, category| categories << [category.name, category.id] } %><!--, { :include_blank => true }-->
+    <% if !@category.parent_id.present? %><em style="font-size:100%">This is root category</em> <% else %> <%= select :category, :parent_id, Category.find(:all,:conditions=>['upper(name) = ? OR upper(name) = ? OR upper(name) = ? OR upper(name) = ? ' ,'WINE','FOOD','HAMPERS', 'OTHER DRINKS']).inject([]) {|categories, category| categories << [category.name, category.id] }, {:include_blank => true}  %> <% end %>
     <% else %>
-     <%= select :category, :parent_id, Category.find(:all,:conditions=>['upper(name) = ? OR upper(name) = ? OR upper(name) = ? OR upper(name) = ? ' ,'WINE','FOOD','HAMPERS', 'OTHER DRINKS']).inject([]) {|categories, category| categories << [category.name, category.id] } ,{ :include_blank => true } %><em style="font-size:85%">blank is root</em>
+     <%= select :category, :parent_id, Category.find(:all,:conditions=>['upper(name) = ? OR upper(name) = ? OR upper(name) = ? OR upper(name) = ? ' ,'WINE','FOOD','HAMPERS', 'OTHER DRINKS']).inject([]) {|categories, category| categories << [category.name, category.id] } ,{ :include_blank => true } %><em style="font-size:85%">blank is root category</em>
     <% end %>
 
     </td>
