@@ -19,7 +19,7 @@ class Site::CartController < ApplicationController
     if created
       session[:free_delivery] = false
       if @cart.sub_total > Setting.order_delivery_amount and session[:free_delivery] == false
-        @delivery = Delivery.first()
+        @delivery = Delivery.find(11)
         @cart.delivery  = @delivery
         session[:free_delivery] = true
       end
