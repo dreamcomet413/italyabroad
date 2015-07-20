@@ -9,7 +9,7 @@
 
 <% if flash[:notice] %>
 		<div style="text-align:center;margin:10px 0px 10px 0px;padding:5px;font-size:12px;color:red;">
-			<%= flash[:notice] %>
+			<%= flash[:notice].to_s.html_safe rescue flash[:notice] %>
 		</div>
 	<% end %>
 <div style="text-align:center;margin-top:40px;"><%= image_tag("cart_step_3.png") %></div>

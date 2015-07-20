@@ -59,7 +59,7 @@ class Site::OrdersController < ApplicationController
                                                              @cart.total, params[:points_to_be_used], params[:total_points])
 
       if (@payment_method && !@payment_method.external) or total_amount == 0      #### 0001
-        production = RAILS_ENV == "production"
+        production = true
         @credit_card = ActiveMerchant::Billing::CreditCard.new(params[:credit_card])
 
         # @sujith=true
@@ -203,7 +203,13 @@ class Site::OrdersController < ApplicationController
       redirect_to :controller=>'checkouts',:action=>'payment'
 
     end
+    begin
+    readable_notice = ""
+    flash[:notice].is_a?(Hash)?  flash[:notice].each{ |f,v| readable_notice = readable_notice + "#{f} #{v[0]}".humanize + "<br/>"}  : flash[:notice]
+    flash[:notice] = readable_notice if readable_notice.present?
+    rescue
 
+    end
   end
 
   def invoice
