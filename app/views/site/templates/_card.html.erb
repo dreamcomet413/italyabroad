@@ -313,7 +313,7 @@
       <h3>Producer</h3>
       <%  if @product.producer
             if @product.producer.active %>
-              <%= @product.producer.description.gsub("\n","<br />") if @product.producer.description.present? %>
+              <%= @product.producer.description.html_safe if @product.producer.description.present? %>
           <% else %>
               Product has no producer description
           <% end %>
