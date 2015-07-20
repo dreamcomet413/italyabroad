@@ -6,16 +6,34 @@ class Site::BaseController < ApplicationController
     @setting = Setting.first
     #@best_sellers = Product.find(:all, :select => "id, rating", :order => "rating desc", :limit => 3)
     wine_categories = Category.find_by_sql("select * from categories where friendly_identifier LIKE 'white-wines'")
-    @recommended_wines = Product.where("categories.id = ? AND products.raccomanded = ? AND product_prices.quantity > ?", wine_categories.last.try(:id), true, 0).includes([:categories, :product_prices]).order("products.created_at ASC").limit(4)
+    @recommended_wines = Product
+    .where("categories.id = ? AND products.raccomanded = ? AND product_prices.quantity > ? AND products.active = ?", wine_categories.last.try(:id), true, 0,true)
+    .includes([:categories, :product_prices]).order("products.created_at ASC").limit(10)
 
     #food_categories = Category.find_by_sql("select * from categories where friendly_identifier LIKE 'Balasmic vinegar'")
     food_categories = Category.find(:all, :conditions => ["friendly_identifier LIKE 'pasta-and-pasta-sauces' OR friendly_identifier LIKE 'extra-virgin-olive-oil' OR friendly_identifier LIKE 'balsamic-vinegar'"])
-    @food_counter = Product.where("categories.id IN (?) AND products.raccomanded = ? AND product_prices.quantity > ?", food_categories.map(&:id), true, 0).includes([:categories, :product_prices]).order("products.created_at ASC").limit(4)
+    @food_counter = Product
+    .where("categories.id IN (?) AND products.raccomanded = ? AND product_prices.quantity > ? AND products.active = ?", food_categories.map(&:id), true, 0,true)
+    .includes([:categories, :product_prices]).order("products.created_at ASC").limit(10)
 
-    @best_sellers = Product.where("products.is_best_seller = ? AND product_prices.quantity > ?", true, 0).includes([:product_prices]).order("products.created_at ASC").limit(4) if Product.attribute_method?("is_best_seller")
+    @best_sellers = Product
+    .where("products.is_best_seller = ? AND product_prices.quantity > ? AND products.active = ?", true, 0,true)
+    .includes([:product_prices]).order("products.created_at ASC").limit(4) if Product.attribute_method?("is_best_seller")
 
     other_categories = Category.find_by_sql("select * from categories where friendly_identifier LIKE 'other-drinks'")
-    @other_drinks = Product.where("categories.id = ? AND products.raccomanded = ? AND product_prices.quantity > ?", other_categories.last.try(:id), true, 0).includes([:categories, :product_prices]).order("products.created_at ASC").limit(4)
+    @other_drinks = Product
+    .where("categories.id = ? AND products.raccomanded = ? AND product_prices.quantity > ? AND products.active = ?", other_categories.last.try(:id), true, 0,true)
+    .includes([:categories, :product_prices]).order("products.created_at ASC").limit(10)
+
+    @recommended_wines = @recommended_wines.collect{|product| product if !product.out_of_stock? }.compact
+    @food_counter = @food_counter.collect{|product| product if !product.out_of_stock? }.compact
+    @best_sellers = @best_sellers.collect{|product| product if !product.out_of_stock? }.compact
+    @other_drinks = @other_drinks.collect{|product| product if !product.out_of_stock? }.compact
+
+    @recommended_wines = @recommended_wines[0..3]
+    @food_counter = @food_counter[0..3]
+    @best_sellers = @best_sellers[0..3]
+    @other_drinks = @other_drinks[0..3]
 
     @reviews = Review.where("").order("created_at DESC").limit(2)
   end
