@@ -14,6 +14,7 @@ class Site::SommelierController < ApplicationController
 
   def create
     session[:category] = Category.find(params[:selected_option].gsub(" ", "-").downcase.pluralize) if params[:step] == "1"
+
     @questions = [
         "Which wine would you like to drink?",
         "Light, medium or full bodied?",
@@ -25,27 +26,17 @@ class Site::SommelierController < ApplicationController
     search_options =
         case params[:step]
           when "1"
-            WineSize.find(:all, :conditions => ["id in (?)", session[:category].present? && session[:category].WineSizeids.present? ? session[:category].WineSizeids.split(",") : []]).map(&:title)
-            #WineSize.all.map(&:title)
-            #["Light", "Medium", "Full Body"]
+            ["Light", "Medium", "Full Body"]
           when "2"
-            FoodOrDrink.find(:all, :conditions => ["id in (?)", session[:category].present? && session[:category].FoodOrDrinkids.present? ? session[:category].FoodOrDrinkids.split(",") : []]).map(&:title)
-            #FoodOrDrink.all.map(&:title)
-            #["drink on its own", "with food"]
+            ["drink on its own", "with food"]
           when "3"
-            if params[:selected_option].downcase.strip == "with food"
-              FoodOption.find(:all, :conditions => ["id in (?)", session[:category].present? && session[:category].FoodOptionids.present? ? session[:category].FoodOptionids.split(",") : []]).map(&:title)
-              #FoodOption.all.map(&:title)
-              #["red meat", "white meat", "pasta", "fish", "cheeses", "desserts"]
+            if params[:selected_option] == "with food"
+              ["red meat", "white meat", "pasta", "fish", "cheeses", "desserts"]
             else
-              DesiredExpenditure.find(:all, :conditions => ["id in (?)", session[:category].present? && session[:category].DesiredExpenditureids.present? ? session[:category].DesiredExpenditureids.split(",") : []]).map(&:title)
-              #DesiredExpenditure.all.map(&:title)
-              #["under £10", "between £10 and £20", "more than £20"]
+              ["under £10", "between £10 and £20", "more than £20"]
             end
           when "4"
-            if FoodOption.find(:all, :conditions => ["id in (?)", session[:category].present? ? session[:category].FoodOptionids.split(",") : []]).map(&:title).include?(params[:selected_option])
-              DesiredExpenditure.find(:all, :conditions => ["id in (?)", session[:category].present? ? session[:category].DesiredExpenditureids.split(",") : []]).map(&:title)
-            end
+            ["under £10", "between £10 and £20", "more than £20"] if ["Red Meat", "White Meat", "Pasta", "Fish", "Cheeses", "Desserts"].include?(params[:selected_option])
         end
     respond_to do |format|
       format.html{}

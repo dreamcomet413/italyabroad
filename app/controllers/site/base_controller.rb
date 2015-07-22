@@ -11,7 +11,7 @@ class Site::BaseController < ApplicationController
     .includes([:categories, :product_prices]).order("products.created_at ASC").limit(10)
 
     #food_categories = Category.find_by_sql("select * from categories where friendly_identifier LIKE 'Balasmic vinegar'")
-    food_categories = Category.find(:all, :conditions => ["friendly_identifier LIKE 'pasta-and-pasta-sauces' OR friendly_identifier LIKE 'extra-virgin-olive-oil' OR friendly_identifier LIKE 'balsamic-vinegar'"])
+    food_categories = Category.find(:all, :conditions => ["friendly_identifier LIKE 'pasta-and-pasta-sauces' OR friendly_identifier LIKE 'extra-virgin-olive-oil' OR friendly_identifier LIKE 'balsamic-vinegar' OR friendly_identifier LIKE 'specialties' OR friendly_identifier LIKE 'jams-and-marmalades'" ])
     @food_counter = Product
     .where("categories.id IN (?) AND products.raccomanded = ? AND product_prices.quantity > ? AND products.active = ?", food_categories.map(&:id), true, 0,true)
     .includes([:categories, :product_prices]).order("products.created_at ASC").limit(10)

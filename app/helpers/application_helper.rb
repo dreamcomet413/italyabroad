@@ -143,7 +143,7 @@ module ApplicationHelper
       when :product_food
         {:height => '100'}
       when :wine_category_producers_page, :product_food
-        {:height => '150', :width => '80'}
+        {:height => '133', :width => '100'}
       when :food_category, :food_sub_category, :hamper_sub_category
         {:height => '150', :width => '120'}
       when :hamper_category, :product_hamper, :product_wine
