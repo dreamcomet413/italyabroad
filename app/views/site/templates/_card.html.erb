@@ -18,9 +18,11 @@
     <td class="image" style ="padding:0 10px 0 0">
       <% if !(@product.image_1).blank? %>
           <% if @product.categories.first.name == ("Wine" || "wine")  %>
-            <%= show_image_tag(:wine, @product.image_1, :jpg) %>
+            <%#= show_image_tag(:wine, @product.image_1, :jpg) %>
+              <%= link_to show_image_tag(:wine, @product.image_1, :jpg, @product.name), (@product.image_1.image_filename.present? ? @product.image_1.image_filename : "/resources/images/#{@product.image_1.id}.jpg") ,{:rel => "lightbox", :title => @product.name} %>
           <% else %>
-            <%= show_image_tag('product', @product.image_1, :jpg) %>
+            <%#= show_image_tag('product', @product.image_1, :jpg) %>
+              <%= link_to show_image_tag('product', @product.image_1, :jpg), (@product.image_1.image_filename.present? ? @product.image_1.image_filename : "/resources/images/#{@product.image_1.id}.jpg") ,{:rel => "lightbox", :title => @product.name} %>
           <% end %>
       <% else %>
           <% if params[:root_category] == "wine" %>

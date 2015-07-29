@@ -53,13 +53,13 @@
         <th style="border-bottom: 1px solid black;text-align:left">Product</th>
         <th style="border-bottom: 1px solid black;width:100px;text-align:center">Quantity</th></tr>
       <% for order_item in @order.order_items %>
-          <% fields_for "order_item", order_item do |f| %>
+          <%# fields_for "order_item", order_item do |f| %>
               <tr>
                 <td style="text-align:left"><%= order_item.product_code %></td>
                 <td style="text-align:left"><%= order_item.name %></td>
                 <td style="text-align:center"><%= order_item.quantity %></td>
               </tr>
-          <% end %>
+          <%# end %>
       <% end %>
     </table>
     <br style="clear:both"/>
