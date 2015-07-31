@@ -1,14 +1,13 @@
-
 <script>
     fields = 0;
 
     function addInput() {
 
-        var id =  fields
+        var id = fields
 
-        var size_field = "mul["+id+"][size]"
-        var price_field = "mul["+id+"][price]"
-        str = "<div> Size  <input type='text' name='"+size_field+"' />" + "<br />" + "Price <input type='text' name='"+price_field+"' />" + " <a href='javascript:void()' onclick='removeInput(this.parentNode)' >remove</a></div>";
+        var size_field = "mul[" + id + "][size]"
+        var price_field = "mul[" + id + "][price]"
+        str = "<div> Size  <input type='text' name='" + size_field + "' />" + "<br />" + "Price <input type='text' name='" + price_field + "' />" + " <a href='javascript:void()' onclick='removeInput(this.parentNode)' >remove</a></div>";
 
         $('text').insert(str);
         // bottom: new Element('img', {src: 'logo.png'})
@@ -18,13 +17,13 @@
     }
 
 
-    function addInput2(size,price) {
+    function addInput2(size, price) {
         //  alert(5)
-        var id =  fields
+        var id = fields
 
-        var size_field = "mul["+id+"][size]"
-        var price_field = "mul["+id+"][price]"
-        str = "<div> Size  <input type='text' name='"+size_field+"' value='"+size+"'/>" + "<br />" + "Price <input type='text' name='"+price_field+"' value='"+price+"'/>" + " <a href='javascript:void()' onclick='removeInput(this.parentNode)' >remove</a></div>";
+        var size_field = "mul[" + id + "][size]"
+        var price_field = "mul[" + id + "][price]"
+        str = "<div> Size  <input type='text' name='" + size_field + "' value='" + size + "'/>" + "<br />" + "Price <input type='text' name='" + price_field + "' value='" + price + "'/>" + " <a href='javascript:void()' onclick='removeInput(this.parentNode)' >remove</a></div>";
 
         $('text').insert(str);
         // alert(str)
@@ -35,7 +34,7 @@
     }
 
 
-    function removeInput( el ) {
+    function removeInput(el) {
         if (fields > 0) {
             document.getElementById('warning').innerHTML = "";
             var parent = document.getElementById('text');
@@ -56,15 +55,15 @@
         document.getElementById('addmore').show();
 
     }
-    document.observe('dom:loaded', function(){
+    document.observe('dom:loaded', function () {
 
         $('product_multiple_true').observe('click', handler1);
         $('product_multiple_false').observe('click', handler2);
         $('addmore').observe('click', handler3);
         <% if @product.multiple == true %>
-            <% @product.product_sizes.each do |gr| %>
-            addInput2(<%= gr.size %>,<%= gr.price %>)
-            displayField();
+        <% @product.product_sizes.each do |gr| %>
+        addInput2(<%= gr.size %>, <%= gr.price %>)
+        displayField();
         <% end %>
         <% end %>
     });
@@ -78,7 +77,6 @@
     function handler3(event) {
         addInput();
     }
-
 
 
 </script>
@@ -107,14 +105,14 @@
     </tr>
     <tr>
       <td style="text-align:right">Producer Name:</td>
-      <td><%= select :product, :producer_id, Producer.find(:all,:order=>'name asc').inject([["No Producer", ""]]) {|ps, p| ps << [p.name, p.id]} %></td>
+      <td><%= select :product, :producer_id, Producer.find(:all, :order => 'name asc').inject([["No Producer", ""]]) { |ps, p| ps << [p.name, p.id] } %></td>
     </tr>
     <tr>
       <td style="text-align:right"> Multiple purchases :</td>
 
       <td>
-        <%= radio_button("product", "multiple", true)  %> Yes
-        <%= radio_button("product", "multiple", false)  %>  No
+        <%= radio_button("product", "multiple", true) %> Yes
+        <%= radio_button("product", "multiple", false) %>  No
 
       </td>
     </tr>
@@ -134,54 +132,56 @@
     </tr>
     <tr>
       <td style="text-align:right">Size:</td>
-      <td><%= text_field :product, :size, :size => 20 %><em>(ex: 50 cl. or 130x150)</em></td>
+      <td><%= text_field :product, :size, :size => 20 %>
+        <em>(ex: 50 cl. or 130x150)</em></td>
     </tr>
 
-    
+
     <% if @product.product_prices.present? %>
-      <% @product.product_prices.each do |product_price| %>
-      <tr id="product_prices">
-        <td style="text-align:right">Price:</td>
-          <td><%= text_field_tag "product[price][]", (product_price.price), :size => 20 %></td>
+        <% @product.product_prices.each do |product_price| %>
+            <tr id="product_prices">
+              <td style="text-align:right">Price:</td>
+              <td><%= text_field_tag "product[price][]", (product_price.price), :size => 20 %></td>
+            </tr>
+        <% end %>
+        <tr id="product_prices">
+          <td style="text-align:right"></td>
+          <td><%= link_to "Add more prices for duplicate products", "#", :onclick => "add_prices(); return false;" %></td>
         </tr>
-      <% end %>
-      <tr id="product_prices">
-        <td style="text-align:right"></td>
-        <td><%= link_to "Add more prices for duplicate products", "#", :onclick => "add_prices(); return false;" %></td>
-      </tr>
     <% else %>
-      <tr id="product_prices">
-        <td style="text-align:right">Price:</td>
+        <tr id="product_prices">
+          <td style="text-align:right">Price:</td>
           <td><%= text_field_tag "product[price][]", (@product.product_prices.map(&:price).join(", ") if @product.present? && @product.product_prices.present?), :size => 20 %>  <%= link_to "Add more prices for duplicate products", "#", :onclick => "add_prices(); return false;" -%></td>
-      </tr>
+        </tr>
     <% end %>
 
 
 
     <% if @product.product_prices.present? %>
-      <% @product.product_prices.each do |product_price| %>
-        <tr id="product_quantities">
-          <td style="text-align:right">Quantity:</td>
-            <td><%= text_field_tag "product[quantity][]", (product_price.quantity), :size => 20 %></td>
-        </tr>
-      <% end %>
+        <% @product.product_prices.each do |product_price| %>
+            <tr id="product_quantities">
+              <td style="text-align:right">Quantity:</td>
+              <td><%= text_field_tag "product[quantity][]", (product_price.quantity), :size => 20 %></td>
+            </tr>
+        <% end %>
         <tr id="product_quantities">
           <td style="text-align:right"></td>
-          <td><%= link_to "Add more quantities for duplicate products", "#", :onclick => "add_quantities(); return false;"%></td>
+          <td><%= link_to "Add more quantities for duplicate products", "#", :onclick => "add_quantities(); return false;" %></td>
         </tr>
     <% else %>
-      <tr id="product_quantities">
-        <td style="text-align:right">Quantity:</td>
-        <td><%= text_field_tag "product[quantity][]", (@product.product_prices.map(&:quantity).join(", ") if @product.present? && @product.product_prices.present?), :size => 20 %>  <%= link_to "Add more quantities for duplicate products", "#", :onclick => "add_quantities(); return false;" -%></td>
-      </tr>
+        <tr id="product_quantities">
+          <td style="text-align:right">Quantity:</td>
+          <td><%= text_field_tag "product[quantity][]", (@product.product_prices.map(&:quantity).join(", ") if @product.present? && @product.product_prices.present?), :size => 20 %>  <%= link_to "Add more quantities for duplicate products", "#", :onclick => "add_quantities(); return false;" -%></td>
+        </tr>
     <% end %>
 
     <tr>
-      <td style="text-align:right">Rate:</td><td>
-      <%= select :product, :rate, ["0.0%","20.0%"] %>
-      
-      <%# @setting = Setting.find(:first) %>
-      <!--select name="product[rate]" id="prodct_rate" >
+      <td style="text-align:right">Rate:</td>
+      <td>
+        <%= select :product, :rate, ["0.0%", "20.0%"] %>
+
+        <%# @setting = Setting.find(:first) %>
+        <!--select name="product[rate]" id="prodct_rate" >
         <%# vat = @setting.vat_rate.to_s.split(",") %>
         <%# vat.length.times do |i| %>
           <%#-if vat[i].strip.to_s + "%" == @product.rate
@@ -197,11 +197,12 @@
         <%# end %>
       </select-->
 
-    </td>
+      </td>
     </tr>
     <tr>
       <td style="text-align:right">From Quantity:</td>
-      <td><%= text_field :product, :from_quantity, :size => 2 %> customer save: <%= text_field :product, :from_quantity_price, :size => 20 %></td>
+      <td><%= text_field :product, :from_quantity, :size => 2 %> customer
+        save: <%= text_field :product, :from_quantity_price, :size => 20 %></td>
     </tr>
     <tr>
       <td style="text-align:right">Cost:</td>
@@ -218,7 +219,7 @@
          else
            checked = @product.active
          end %>
-      <td><%= check_box :product, :active,:checked => checked %>
+      <td><%= check_box :product, :active, :checked => checked %>
     </tr>
     <tr>
       <td style="text-align:right">Recommended:</td>
@@ -238,8 +239,28 @@
     </tr>
     <tr>
       <td style="text-align:right">Occasion Name:</td>
-      <td><%= select :product, :occasion_id, Occasion.all.inject([["No Occasion", "0"]]) {|ps, p| ps << [p.name, p.id]} %></td>
+      <td><%= select :product, :occasion_id, Occasion.all.inject([["No Occasion", "0"]]) { |ps, p| ps << [p.name, p.id] } %></td>
     </tr>
   </table>
+
+  <fieldset>
+    <legend>Cercavino Settings</legend>
+    <table border="0" cellspacing="5" cellpadding="5">
+      <tr>
+        <td style="text-align:right;width: 230px">Surprise Me?:</td>
+        <td><%= check_box :product, :surprise_me %></td>
+      </tr>
+      <tr>
+        <td style="text-align:right;width: 230px">Body Type:</td>
+        <td><%= select :product, :body_type, ([["Please Select", " "],["Light","Light"],["Medium","Medium"],["Full Body","Full Body"]]) %></td>
+      </tr>
+      <tr>
+        <td style="text-align:right;width: 230px">With Food Type:</td>
+        <td><%= select :product, :with_food_type, ([["Please Select", " "],["Red meat","Red meat"],["White meat","White meat"],["Pasta","Pasta"],["Fish","Fish"],["Cheeses","Cheeses"],["Desserts","Desserts"]]) %></td>
+      </tr>
+    </table>
+
+  </fieldset>
+
 </fieldset>
 

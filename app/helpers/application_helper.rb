@@ -197,7 +197,7 @@ module ApplicationHelper
       when :wine
         {:height => '266px', :width => '200px'}   # change here
       when :mixed_or_food
-        {:height => '300px', :width => '400px'}   # change here
+        {:height => '200px'}   # change here
       else
         {}
     end
