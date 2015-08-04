@@ -61,7 +61,13 @@
   <tr><td>&nbsp;</td></tr>
   <tr><td>&nbsp;</td></tr>
   <tr><td>&nbsp;</td></tr>
-  <%= render :partial => "search_options", :locals => {:item_options => ["Red Wine", "Rose Wine", "White Wine", "Sparkling Wine", "Surprise Me"], :step => "1"} -%>
+  <% locale = {:item_options => ["Red Wine", "Rose Wine", "White Wine", "Sparkling Wine", "Surprise Me"], :step => "1"}%>
+  <%
+     if params[:st].present?
+       locale = {:item_options => ["under £10", "between £10 and £20", "more than £20"], :step => "4"}
+     end
+  %>
+  <%= render :partial => "search_options", :locals => locale -%>
 </table>
 
 

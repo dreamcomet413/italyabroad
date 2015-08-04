@@ -56,7 +56,7 @@
       <% if params[:step].present? %>
                 <div class="fRight" style="margin-right: 12px; padding: 5px;">
                   <b>
-                    <%= link_to "&lt;&ndash; Go Back".html_safe, "#", :id => "go_back" -%>
+                    <%= link_to "&lt;&ndash; Go Back".html_safe, "#", :id => "go_back" if !params[:st].present? -%>
                   </b>
                 </div>
             <% end %>
