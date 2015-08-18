@@ -53,7 +53,7 @@
 
   <%- if ship_address.is_new -%>
       <tr>
-        <td colspan="2"><%= image_submit_tag("buttons/save_address.png") %></td>
+        <td colspan="2"><%= image_submit_tag("buttons/save_address.png",:id=>"save_me",:ship_id => (ship_address.id || "0")) %></td>
       </tr>
   <%- end -%>
 </table>
