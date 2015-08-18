@@ -35,10 +35,10 @@ class Admin::ProductsController < ApplicationController
 
     if params[:active]
       if !params[:search].blank?
-        Product.where("categories.id = ? AND products.name LIKE ? AND active = ?", "#{params[:search]}", "%#{params[:search_name]}%", true).includes([:categories]).order("created_at DESC").paginate(:page => params[:page], :per_page => 20)
+        @products = Product.where("categories.id = ? AND products.name LIKE ? AND active = ?", "#{params[:search]}", "%#{params[:search_name]}%", true).includes([:categories]).order("created_at DESC").paginate(:page => params[:page], :per_page => 20)
         #@products = Product.find(:all, :include => [:categories],:conditions=>['categories.id = ? AND products.name LIKE ? and active = ? ',"#{params[:search]}" ,"%#{params[:search_name]}%",true], :order => "created_at DESC").paginate(:page => params[:page], :per_page => 20)
       elsif params[:search].blank?
-        Product.where("products.name LIKE ? AND active = ?", "%#{params[:search_name]}%", true).includes([:categories]).order("created_at DESC").paginate(:page => params[:page], :per_page => 20)
+        @products = Product.where("products.name LIKE ? AND active = ?", "%#{params[:search_name]}%", true).includes([:categories]).order("created_at DESC").paginate(:page => params[:page], :per_page => 20)
         #@products = Product.find(:all, :include => [:categories],:conditions=>['products.name LIKE ? and active = ? ',"%#{params[:search_name]}%",true], :order => "created_at DESC").paginate(:page => params[:page], :per_page => 20)
       end
     end
