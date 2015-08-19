@@ -4,7 +4,7 @@
    @breadcrumbs += " &raquo; #{@product.name[0..25]+ '...'}"
 %>
 <%#= params[:category] %>
-<% products = Product.find_by_sql("select * from products where name like '%#{@product.name.gsub(/\(([^)]*)\)/, "").gsub("'", "").strip}%'") %>
+<% products = Product.find_by_sql("select * from products where name like '%#{@product.name.gsub(/\(([^)]*)\)/, "").gsub("'", "").strip}%' and active = 1") %>
 <% if products.size > 1 %>
     <div id="header">
       <%= select_tag :products, options_from_collection_for_select(products, "id", "name", :selected => @product.id), :nested_url => nested_products_uri(@product) %>
