@@ -4,8 +4,8 @@
 
 <% if @products && @products.size > 0 %>
     <div id="header">Your search result has found the following products:</div>
-    <% if params[:wine_type].present? && params[:body_type].present?%>
-        <div class="fRight" style="margin-right: 12px; padding: 5px;"><%= link_to "Go Back", site_sommelier_index_url(:st=>1,:step => 4) -%></div>
+    <% if params[:wine_type].present? || params[:body_type].present? || params[:price_type].present? || params[:food_type].present? %>
+        <!--<div class="fRight" style="margin-right: 12px; padding: 5px;"><%#= link_to "Go Back", site_sommelier_index_url(:st=>1,:step => 4) -%></div>-->
     <% else %>
         <div class="fRight" style="margin-right: 12px; padding: 5px;"><%= link_to "Go Back", :back -%></div>
     <% end %>
@@ -109,14 +109,22 @@
     <% end %>
 
     <%= content_tag(:div, will_paginate(@products), :style => "padding:5px;text-align:right;background-color:#F3F8DA") unless will_paginate(@products).blank? %>
-    <br /><br />
+    <% if params[:wine_type].present? || params[:body_type].present? || params[:price_type].present? || params[:food_type].present? %>
+        <div style="text-align: center">
+        <%= link_to "Discover more wines with Cercavino", site_sommelier_index_url, :style => "font-size:21px;color:blue;font-style:italic" -%>
+        </div>
+        <% else %>
+        <br /><br />
+    <% end %>
+
 <% else %>
     <div id="header">Your search returned no result</div>
-    <% if params[:wine_type].present? && params[:body_type].present?%>
-        <div class="fRight" style="margin-right: 12px; padding: 5px;"><%= link_to "Go Back", site_sommelier_index_url(:st=>1,:step => 4) -%></div>
+    <% if params[:wine_type].present? || params[:body_type].present? || params[:price_type].present? || params[:food_type].present? %>
+        <div class="" style="margin-right: 12px; padding: 45px;font-size:14px;">
+            <strong>Sorry, there are no wines in your chosen price range, <%= link_to "go back", site_sommelier_index_url(:st=>1,:step => 4) -%> to the previous page and try a different range</strong>
+        </div>
         <% else %>
     <div class="fRight" style="margin-right: 12px; padding: 5px;"><%= link_to "Go Back", :back -%></div>
-        <% end %>
     <br />
     <div style="margin:20px;font-size:14px;">
       <!--Please check the spelling or in case you did not find what you wanted <%= mail_to "info@italyabroad.com", "get in touch" %> and will find it for you -->
@@ -130,6 +138,7 @@
       <p><strong style="font-weight:bold;"> Why not browse the categories?</strong><br />
         If you're looking for something specific try looking through our categories.</p>
     </div>
+    <% end %>
 <% end %>
 
 
