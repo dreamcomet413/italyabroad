@@ -45,7 +45,7 @@
         <%#= form_tag("/site/sommelier", :method => "post", :remote => true, :id => "new_search") do -%>
         <% item_options.each do |item| %>
             <td class="recWine" style="width: <%= width -%>%; height: 30px;">
-              <%= radio_button :selected_option, "", "#{item}" %><br /></br /><%= item.capitalize.gsub(" Wine", "") -%>
+              <%= radio_button :selected_option, "", "#{item}",:checked => (session[:selected_search_options].values.flatten.include?(item)) %><br /></br /><%= item.capitalize.gsub(" Wine", "") -%>
             </td>
         <% end %>
         <%= hidden_field_tag :step, step, :id => "step" -%>
@@ -54,7 +54,7 @@
     </table>
 <% end %>
       <% if params[:step].present? %>
-                <div class="fRight" style="margin-right: 12px; padding: 5px;">
+                <div class="fRight" style="margin-right: -10px; padding: 5px;">
                   <b>
                     <%= link_to "&lt;&ndash; Go Back".html_safe, "#", :id => "go_back" if !params[:st].present? -%>
                   </b>
@@ -90,7 +90,7 @@
     $("#go_back").click(function(){
         debugger
         if ("<%= params[:step]-%>" == "1"){
-          window.location.href = "/site/sommelier"
+          window.location.href = "/site/sommelier?rt=1"
         }
         else {
             $.ajax({

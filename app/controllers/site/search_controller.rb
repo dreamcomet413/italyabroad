@@ -5,21 +5,21 @@ class Site::SearchController < ApplicationController
     params[:category] ||= params[:id]
     @searched_text = params[:text]
 
-    if params[:wine_type].present? && params[:body_type].present?
+    if params[:wine_type].present? || params[:body_type].present? || params[:price_type].present? || params[:food_type].present?
       @sort_by = available_sorting.include?(params[:sort_by]) ? params[:sort_by] : "product_prices.price asc"
       @sort_by = 'products.name' if @sort_by.to_s.upcase == 'NAME'
 
       if params[:price_type].present?
         #Under £10	Between £10 and £20	More than £20
         price_query_text = "? < 10" if params[:price_type] == "under 10"
-        price_query_text = "10 < ? < 20" if params[:price_type] == "between 10 and 20"
+        price_query_text = "? > 10 AND ? < 20" if params[:price_type] == "between 10 and 20"
         price_query_text = " ? > 20 " if params[:price_type] == "more than 20"
         price_query_text= price_query_text.gsub("?","product_prices.price")
       end
       @category =  Category.find_by_name(params[:wine_type]+"s")
       @products = @category.present? ? @category.products : Product.where("surprise_me = ?",true)
-      @products = @products.where("products.body_type = ?",params[:body_type].to_s)
-      @products = @products.where("products.with_food_type = ?",params[:food_type].to_s)
+      @products = @products.where("products.body_type = ?",params[:body_type].to_s)  if params[:body_type].present?
+      @products = @products.where("products.with_food_type like ?","%#{params[:food_type].to_s}%") if params[:food_type].present?
       @products = @products.joins(:product_prices).where(price_query_text) if params[:price_type].present?
       @products = @products.order(@sort_by)
       @products = @products.paginate(:page => params[:page], :per_page => 10)

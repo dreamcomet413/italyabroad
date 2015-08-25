@@ -111,7 +111,7 @@
     <%= content_tag(:div, will_paginate(@products), :style => "padding:5px;text-align:right;background-color:#F3F8DA") unless will_paginate(@products).blank? %>
     <% if params[:wine_type].present? || params[:body_type].present? || params[:price_type].present? || params[:food_type].present? %>
         <div style="text-align: center">
-        <%= link_to "Discover more wines with Cercavino", site_sommelier_index_url, :style => "font-size:21px;color:blue;font-style:italic" -%>
+        <%= link_to "Discover more wines with Cercavino", site_sommelier_index_url, :style => "font-size:15px;color:red;" -%>
         </div>
         <% else %>
         <br /><br />

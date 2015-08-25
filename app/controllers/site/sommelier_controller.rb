@@ -3,7 +3,7 @@ class Site::SommelierController < ApplicationController
   layout "site"
 
   def index
-    session[:selected_search_options] = {}  unless params[:st].present?
+    session[:selected_search_options] = {} unless (params[:st].present? || params[:rt].present?)
     @questions = [
         "Which wine would you like to drink?",
         "Light, medium or full bodied?",
@@ -14,8 +14,6 @@ class Site::SommelierController < ApplicationController
   end
 
   def create
-    session[:category] = Category.find(params[:selected_option].gsub(" ", "-").downcase.pluralize) if params[:step] == "1"
-
     @questions = [
         "Which wine would you like to drink?",
         "Light, medium or full bodied?",
@@ -23,13 +21,15 @@ class Site::SommelierController < ApplicationController
         "How much would you like to spend?",
         "What type of food is the wine for?"
     ]
-    session[:search_text] = params[:selected_option] if params[:step] == "1"
+    session[:selected_search_options][:wine_type] = params[:selected_option] if ["Red Wine", "Rose Wine", "White Wine", "Sparkling Wine", "Surprise Me"].include?(params[:selected_option])
+    session[:selected_search_options][:body_type] = params[:selected_option] if ["Light", "Medium", "Full Body"].include?(params[:selected_option])
+    session[:selected_search_options][:price_type] = params[:selected_option].to_s.gsub("£", "") if ["under £10", "between £10 and £20", "more than £20"].include?(params[:selected_option])
+    session[:selected_search_options][:food_type] = params[:selected_option] if ["red meat", "white meat", "pasta", "fish", "cheeses", "desserts"].include?(params[:selected_option])
+    session[:selected_search_options][:choice] = params[:selected_option] if ["drink on its own","with food"].include?(params[:selected_option])
 
-    session[:selected_search_options][:wine_type] = params[:selected_option]  if ["Red Wine", "Rose Wine", "White Wine", "Sparkling Wine", "Surprise Me"].include?(params[:selected_option])
-    session[:selected_search_options][:body_type] = params[:selected_option]  if ["Light", "Medium", "Full Body"].include?(params[:selected_option])
-    session[:selected_search_options][:price_type] = params[:selected_option].gsub("£","")  if ["under £10", "between £10 and £20", "more than £20"].include?(params[:selected_option])
-    session[:selected_search_options][:food_type] = params[:selected_option]  if ["red meat", "white meat", "pasta", "fish", "cheeses", "desserts"].include?(params[:selected_option])
-
+     if params[:selected_option] == "Sparkling Wine"
+       params[:step] = "2"
+     end
 
     search_options =
         case params[:step]
@@ -48,12 +48,17 @@ class Site::SommelierController < ApplicationController
         end
 
     respond_to do |format|
-      format.html{}
+      format.html {}
       format.js {
         render :update do |page|
           if search_options.present?
+            sleep(2)
+            session[:selected_search_options][:wine_type] = params[:selected_option] if ["Red Wine", "Rose Wine", "White Wine", "Sparkling Wine", "Surprise Me"].include?(params[:selected_option])
+            session[:selected_search_options][:body_type] = params[:selected_option] if ["Light", "Medium", "Full Body"].include?(params[:selected_option])
+            session[:selected_search_options][:price_type] = params[:selected_option].to_s.gsub("£", "") if ["under £10", "between £10 and £20", "more than £20"].include?(params[:selected_option])
+            session[:selected_search_options][:food_type] = params[:selected_option] if ["red meat", "white meat", "pasta", "fish", "cheeses", "desserts"].include?(params[:selected_option])
             page[".items"].html("")
-            page[".items"].html(render :partial => "search_options", :locals => {:item_options => search_options, :step => (params[:step].to_i + 1).to_s, :category => session[:category]})
+            page[".items"].html(render :partial => "search_options", :locals => {:item_options => search_options, :step => (params[:step].to_i + 1).to_s})
           else
             page.redirect_to search_index_url(session[:selected_search_options])
           end
