@@ -53,6 +53,8 @@
       <p>
       <!--<div style="float:left">Verification code:<%#= show_simple_captcha :label => "Please type the verification code", :image_style => "simply_green", :object => "contact" %></div>-->
       </p>
+          <%= recaptcha_tags %>
+
       <div style="clear: both"></div>
       <p>
         <%= submit_tag "Send" %>

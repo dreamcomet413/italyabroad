@@ -134,7 +134,7 @@ class Site::BaseController < ApplicationController
       @contact = Contact.new(params[:contact])
       #if @contact.valid_with_captcha?
       #   @contact.save_with_captcha
-      if @contact.save
+      if verify_recaptcha(:model => @contact, :message => "It's error with reCAPTCHA!") && @contact.save
         flash[:title] = "Thank you"
         flash[:message] = "Your request has been submitted, we aim to respond within 48hr"
         Notifier.deliver_contact(@contact)
