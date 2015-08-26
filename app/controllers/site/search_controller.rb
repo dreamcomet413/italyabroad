@@ -21,7 +21,7 @@ class Site::SearchController < ApplicationController
       @products = @products.where("products.body_type = ?",params[:body_type].to_s)  if params[:body_type].present?
       @products = @products.where("products.with_food_type like ?","%#{params[:food_type].to_s}%") if params[:food_type].present?
       @products = @products.joins(:product_prices).where(price_query_text) if params[:price_type].present?
-      @products = @products.order(@sort_by)
+      @products = @products.where("active = ?",true).order(@sort_by)
       @products = @products.paginate(:page => params[:page], :per_page => 10)
     elsif params[:category] == "recipe"
       @search = Search.new(params || {})
