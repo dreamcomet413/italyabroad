@@ -256,7 +256,11 @@
       </tr>
       <tr>
         <td style="text-align:right;width: 230px">With Food Type:</td>
-        <td><%= select :product, :with_food_type, ([["Please Select", " "],["Red meat","Red meat"],["White meat","White meat"],["Pasta","Pasta"],["Fish","Fish"],["Cheeses","Cheeses"],["Desserts","Desserts"]]) %></td>
+        <td>
+          <% ["Red meat","White meat","Pasta","Fish","Cheeses","Desserts"].each do |food|%>
+              <%= check_box_tag "product[with_food_type][]", food ,((@product.present?&&!@product.with_food_type.nil?) ? @product.with_food_type.include?(food) : false)%>  <%= food %> &nbsp;&nbsp;&nbsp;&nbsp;
+          <% end %>
+        </td>
       </tr>
     </table>
 

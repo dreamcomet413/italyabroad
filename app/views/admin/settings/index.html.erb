@@ -73,7 +73,7 @@
           <tr>
             <td>&nbsp;</td>
             <td valign="top" style="padding:0;">
-              <%#= image_tag(@setting.home_image_1.try(:image_filename).try(:url), height: '150', width: '120')%>
+              <%= image_tag(@setting.home_image_1.try(:image_filename).try(:url), height: '150', width: '120')%>
               <%= link_to "Destroy", admin_setting_image_url(@setting, @setting.home_image_1), :confirm => "Are you sure?", :method => :delete %>
             </td>
           </tr>

@@ -5,7 +5,7 @@ gem 'RedCloth'
 gem 'pdfkit'
 gem 'rails', '3.0.6'
 #gem 'rails', '2.3.5'
-gem 'capistrano', '2.12.0'
+gem 'capistrano', '2.12.0',:require => false
 gem 'mime-types', '1.23'
 gem 'mysql', '2.8.1'
 gem 'mysql2', '~> 0.2.7'
@@ -21,6 +21,7 @@ gem 'better_nested_set'
 #gem 'rmagick', :require => false
 gem 'simple_captcha', :git => 'git://github.com/arcadi/simple-captcha.git'
 #gem "galetahub-simple_captcha", :require => "simple_captcha"
+gem "recaptcha", :require => "recaptcha/rails"
 
 gem 'jquery-rails'
 gem 'active_record_base_without_table'
@@ -43,4 +44,5 @@ gem 'private_pub'
 gem "thin"
 
 gem "mocha", :group => :test
+gem "letter_opener"
 

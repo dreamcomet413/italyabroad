@@ -106,6 +106,10 @@ GEM
       redis
     jwt (0.1.13)
       multi_json (>= 1.5)
+    launchy (2.4.3)
+      addressable (~> 2.3)
+    letter_opener (1.4.1)
+      launchy (~> 2.2)
     mail (2.2.20)
       activesupport (>= 2.3.6)
       i18n (>= 0.4.0)
@@ -191,6 +195,7 @@ GEM
     rake (0.8.7)
     rdoc (4.1.2)
       json (~> 1.4)
+    recaptcha (0.4.0)
     redis (3.1.0)
     require_relative (1.0.3)
     ruby-rc4 (0.1.5)
@@ -232,6 +237,7 @@ DEPENDENCIES
   json
   juggernaut
   jwt (~> 0.1.11)
+  letter_opener
   mime-types (= 1.23)
   mocha
   mysql (= 2.8.1)
@@ -246,9 +252,13 @@ DEPENDENCIES
   rails (= 3.0.6)
   rake (~> 0.8.7)
   rdoc
+  recaptcha
   require_relative
   rvm-capistrano
   simple_captcha!
   sshkit
   thin
   will_paginate (>= 2.3.12)
+
+BUNDLED WITH
+   1.10.6

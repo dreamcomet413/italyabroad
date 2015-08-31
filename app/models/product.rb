@@ -1,4 +1,5 @@
 class Product < ActiveRecord::Base
+  serialize :with_food_type, Array
   validates_presence_of :name, :message => "of product can't be blank"
   validates_presence_of :code, :message => "can't be blank"
 

@@ -84,7 +84,16 @@ class Site::CustomersController < ApplicationController
           #  flash[:notice] = "The profile will be reviewed by a member of our team before being published"
 
         end
-        redirect_to root_path
+        #redirect_to root_path
+        #New added
+        if !session[:return_to].blank? && session[:return_to] == '/site/cart/gift_options'
+          return_to = session[:return_to]
+          session[:return_to] = ""
+          redirect_to return_to and return
+        else
+          redirect_to root_path
+        end
+        #New Added
       else
         flash[:notice] = @user.show_errors
         render :action => :new
