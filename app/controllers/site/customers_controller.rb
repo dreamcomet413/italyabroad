@@ -86,8 +86,8 @@ class Site::CustomersController < ApplicationController
         end
         #redirect_to root_path
         #New added
-        if !session[:return_to].blank? && session[:return_to] == '/site/cart/gift_options'
-          return_to = session[:return_to]
+        if (!session[:return_to].blank? && session[:return_to] == '/site/cart/gift_options') || @cart.present?
+          return_to = "/site/cart/gift_options"
           session[:return_to] = ""
           redirect_to return_to and return
         else
