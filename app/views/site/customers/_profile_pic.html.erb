@@ -19,7 +19,7 @@
           %>
           <%#= avatar_for_user(@user, "big") %>
           <% if !@photo.nil? and current_user %>
-              <%= embedded_image_tag(@photo.operate { |img| img.resize 100 }) if @photo.has_image? %>
+              <%= image_tag(@photo.image_filename.url,:width => "100px") if @photo.image_filename.present? %>
           <% elsif @user.new_record? %>
               <% if session[:omniauth].present? %>
                   <%#= image_tag(session[:omniauth]["info"]["image"]) -%>
@@ -42,36 +42,36 @@
           <div id="loader-image" style="display:none" align="center"><%= image_tag "loading.gif" %></div>
         </td>
         <td>
-          <% fields_for :photo do %>
-              <%= file_field :photo, :image_file %>
+          <%= fields_for :photo do %>
+              <%= file_field :photo, :image_filename %>
               <%#= hidden_field :user, :photo_default %>
           <% end %>
           <p>
             Or if you would not like to upload an image please select your preferred color from the default images below.
-          <ul class="photo_list">
+          <ul class="photo_list" style="text-align: center">
             <li>
-              <%= link_to (image_tag('default.jpg')), :url => update_default_pic_site_customers_path(:kind => "1"),
-                          :method => :get, :remote => true, :update => "profile_pic", :loading => "$('loader-image').show();$('user_photo').hide();" %>
+              <%= image_tag('default.jpg') %> <br/>
+              <input type=radio value="1" name=kind >
             </li>
             <li>
-              <%= link_to (image_tag('default_a.jpg')), :url => update_default_pic_site_customers_path(:kind => "a"),
-                          :method => :get, :remote => true, :update => "profile_pic", :loading => "$('loader-image').show();$('user_photo').hide();" %>
+              <%= image_tag('default_a.jpg') %>  <br/>
+              <input type=radio value="a" name=kind >
             </li>
             <li>
-              <%= link_to (image_tag('default_b.jpg')), :url => update_default_pic_site_customers_path(:kind => "b"),
-                          :method => :get, :remote => true, :update => "profile_pic", :loading => "$('loader-image').show();$('user_photo').hide();" %>
+              <%= image_tag('default_b.jpg') %>  <br/>
+              <input type=radio value="b" name=kind >
             </li>
             <li>
-              <%= link_to (image_tag('default_c.jpg')), :url => update_default_pic_site_customers_path(:kind => "c"),
-                          :method => :get, :remote => true, :update => "profile_pic", :loading => "$('loader-image').show();$('user_photo').hide();" %>
+              <%= image_tag('default_c.jpg') %> <br/>
+              <input type=radio value="c" name=kind >
             </li>
             <li>
-              <%= link_to (image_tag('default_d.jpg')), :url => update_default_pic_site_customers_path(:kind => "d"),
-                          :method => :get, :remote => true, :update => "profile_pic", :loading => "$('loader-image').show();$('user_photo').hide();" %>
+              <%= image_tag('default_d.jpg') %> <br/>
+              <input type=radio value="d" name=kind >
             </li>
             <li>
-              <%= link_to (image_tag('default_e.jpg')), :url => update_default_pic_site_customers_path(:kind => "e"),
-                          :method => :get, :remote => true, :update => "profile_pic", :loading => "$('loader-image').show();$('user_photo').hide();" %>
+              <%= image_tag('default_e.jpg') %>  <br/>
+              <input type=radio value="e" name=kind >
             </li>
           </ul>
     </p>

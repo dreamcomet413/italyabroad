@@ -64,9 +64,9 @@ class Site::BaseController < ApplicationController
         if current_user.omniauth?(params)
           current_user.authentications.create!(:provider => params[:provider], :uid => params[:uid], :token => params[:token])
         end
-        
-        if !session[:return_to].blank? && session[:return_to] == '/site/cart/gift_options'
-          return_to = session[:return_to]
+
+        if (!session[:return_to].blank? && session[:return_to] == '/site/cart/gift_options') || @cart.try(:items).try(:size).to_i > 0
+          return_to = "/site/cart/gift_options"
           session[:return_to] = ""
           redirect_to return_to and return
         else
