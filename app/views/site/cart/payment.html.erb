@@ -18,7 +18,7 @@
 		<% end %>
 		<table id="credit_card" border="0" cellspacing="2" cellpadding="2" style="text-align:left;margin-top:20px;display:<%= @payment_method && !@payment_method.external ? "" : "none" %>">
 			<tr><td colspan="2" style="padding-bottom:20px;text-align:justify;background-image:url('/images/padlock.png');background-position: top left; background-repeat: no-repeat;padding-left:55px">Italyabroad.com has in place a high security system available to process your payment and to ensure that the information you enter are safe, Italyabroad.com does not store them on our servers</td></tr>
-			<tr><td style="text-align:right">Credit Card Type:</td><td><%= select :credit_card, :type, [["Visa", "visa"], ["Visa Debit", "delta"], ["Visa Electron", "electron"], ["Mastercard", "master"], ["Solo", "solo"], ["Switch / Maestro", "maestro"]] %></td></tr>
+			<tr><td style="text-align:right">Credit Card Type:</td><td><%= select :credit_card, :type, [["Visa Debit", "DELTA"],["Visa Credit", "VISA"], ["Visa Delta","DELTA"],["Visa Electron", "UKE"], ["Mastercard Debit", "MCDEBIT"],["Mastercard Credit", "MC "], ["UK Maestro", "MAESTRO"]] %></td></tr>
 			<tr><td style="text-align:right">First Name:</td><td><%= text_field :credit_card, :first_name %></td></tr>
 			<tr><td style="text-align:right">Last Name:</td><td><%= text_field :credit_card, :last_name %></td></tr>
 			<tr><td style="text-align:right">Card Number:</td><td><%= text_field :credit_card, :number %></td></tr>
