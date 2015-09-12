@@ -28,7 +28,7 @@
     <ul>
       <%- for user in users -%>
           <li>
-            <%= link_to user.try(:photo).try(:image_filename).present? ? image_tag(user.photo.image_filename.url,:width => "100px") : avatar_for_user(user, 'small'), site_customer_path(user), :title => user.name  %>
+            <%= link_to user.try(:photo).try(:image_filename).present? ? image_tag(user.photo.image_filename.url,:width => "100px", :height => "100px") : avatar_for_user(user, 'small'), site_customer_path(user), :title => user.name  %>
             <%#= link_to (user.name.length > 10 ? user.name[0..10] + '<br />' + user.name[11..20] : user.name ), customer_path(user), :class=>'data', :title => user.name %>
             <%= link_to user.name, site_customer_path(user), :class=>'data', :title => user.name %>
           </li>
