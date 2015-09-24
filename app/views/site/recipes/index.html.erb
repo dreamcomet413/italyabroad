@@ -23,7 +23,7 @@
 <div id="recipes_introduction">
   <h3>About Italian food</h3>
   <%= image_tag("aboutItalianFood.png", :style => "float:left;",:alt=>'About Italian Food') %>
-  <%= @about.description if @about %>
+  <%= @about.description.html_safe if @about %>
 </div>
 <div style="clear:both;"></div>
 <div id="latestRecipes">
@@ -54,7 +54,7 @@
             </td>
             <td align="right">
               <% if !recipe.image_1.blank? %>
-              <%= link_to image_tag(site_image_url('recipe_thumb', recipe.image_1, :jpg),:alt=>recipe.name), site_recipe_path(recipe) %>
+              <%= link_to image_tag(site_image_url('recipe_thumb', recipe.image_1, :jpg), :alt=>recipe.name), site_recipe_path(recipe) %>
               <% else %>
               <%= link_to image_tag("no_images/PastaRecipe.jpg",:size => "100x75",:alt=>recipe.name), recipe_path(recipe) %>
               <% end %>

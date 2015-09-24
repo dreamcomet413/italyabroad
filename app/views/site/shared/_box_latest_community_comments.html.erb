@@ -23,7 +23,7 @@
                     <%= link_to "(Continue reading)", nested_products_uri(Product.find(latest_review.reviewer_id)  ) %>"
                 <% elsif latest_review.reviewer_type == 'Recipe' %>
                     "<%= link_to latest_review.description[0..120].html_safe() + "...", site_recipe_path(Recipe.find(latest_review.reviewer_id)  ),:class=>'data' %>"
-                    <%= link_to "(Continue reading)", recipe_path(Recipe.find(latest_review.reviewer_id)  ) %>"
+                    <%#= link_to "(Continue reading)", recipe_path(Recipe.find(latest_review.reviewer_id)  ) %>"
                 <% end %>
             <% else %>
                 "<%= 'Added a new review' %>"
