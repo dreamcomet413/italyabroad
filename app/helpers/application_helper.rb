@@ -8,14 +8,10 @@ module ApplicationHelper
       if user.has_default_photo?
         image = user.get_photo_default(size)
       elsif user.has_photo?
-        if size=="big"
-          image = image_url("avatar_thumb", user.photo, :jpg)
-        else
-          image = image_url("avatar_thumb_small", user.photo, :jpg)
-        end
+        image = user.photo.image_filename.url if user.photo.image_filename.present? && user.photo.image_filename.url.present?
       end
     end
-    content_tag(:div, image_tag(image), :class => "user_photo_#{size}", :id => "user_photo")
+    content_tag(:div, image_tag(image,:style => "width:100px"), :class => "user_photo_#{size}", :id => "user_photo")
   end
 
   def humanize_date(date)
