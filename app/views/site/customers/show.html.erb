@@ -13,7 +13,7 @@
 <table width="100%" cellpadding="0" cellspacing="0">
   <tr>
     <td valign="top" width="98px" style='text-align:center;'>
-      <%= image_tag(@user.photo.image_filename.url,:width => "100px") if @user.photo.image_filename.present? %><br />
+      <%= image_tag(@user.photo.image_filename.url,:width => "100px") if @user.photo.present? && @user.photo.image_filename.present? && @user.photo.image_filename.url.present?%> <br />
       <% unless @my_profile %>
           <%- if @user.followed_by?(current_user) -%>
               <%= link_to image_tag("buttons/unfollow.png"), unfollow_path(@user) %>
