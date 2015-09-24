@@ -39,7 +39,7 @@ alert("Description must be filled out");
         <% @post.tags.each do |p| %>
         <% @tag_list =  @tag_list + link_to(p.name, site_blog_index_path(:tag_id=>p.id)) + ", "%>
         <% end %>
-        <%= @tag_list.chop![0..-2] if !@tag_list.empty? %>
+        <%= @tag_list.chop![0..-2].html_safe if !@tag_list.empty? %>
   </div>
 
 
