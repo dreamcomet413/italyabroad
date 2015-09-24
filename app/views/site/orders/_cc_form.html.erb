@@ -6,7 +6,8 @@
 	  <td style="text-align:right">Card Type:</td>
 	  <td>
 	    <%#= select :credit_card, :type, [["Visa", "visa"], ["Visa Debit", "delta"], ["Visa Electron", "electron"], ["Mastercard", "master"], ["Solo", "solo"], ["Switch / Maestro", "maestro"]] %>
-        <%= select :credit_card, :type, [["Visa Debit", "DELTA"],["Visa Credit", "VISA"], ["Visa Delta","DELTA"],["Visa Electron", "UKE"], ["Mastercard Debit", "MCDEBIT"],["Mastercard Credit", "MC "], ["UK Maestro", "MAESTRO"]], :selected => session[:credit_card_type] %>
+        <%#= select :credit_card, :type, [["Visa Debit", "delta"],["Visa Credit", "visa"], ["Visa Delta","delta"],["Visa Electron", "uke"], ["Mastercard Debit", "mcdebit"],["Mastercard Credit", "mc"], ["UK Maestro", "maestro"]], :selected => session[:credit_card_type] %>
+        <%= select :credit_card, :type, [["Visa", "visa"], ["Visa Delta","delta"],["Visa Electron", "electron"], ["Mastercard", "master"],["Mastercard Debit", "master"], ["UK Maestro", "maestro"]], :selected => session[:credit_card_type] %>
       </td>
   </tr>
 	<tr>
