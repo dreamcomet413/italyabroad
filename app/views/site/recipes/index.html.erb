@@ -12,7 +12,7 @@
   <% end %>
 
   <% if  @about and !@about.image_id.nil? %>
-  <%= link_to image_tag(image_url(:about_thumb, @about.image, :jpg),:alt=>@about.title) , search_index_path(:id => "recipe") unless @about.blank? %>
+  <%= link_to image_tag(@about.image.image_filename.url,:alt=>@about.title) , search_index_path(:id => "recipe") unless @about.blank? %>
   <% else %>
   <%= link_to image_tag("recipes.jpg",:alt=>'Recipes'), search_index_path(:id => "recipe") %>
   <% end %>
