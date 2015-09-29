@@ -48,14 +48,14 @@ class Admin::AboutUsController < ApplicationController
   def create
     @about_u = AboutU.new(params[:about_u])
     if params[:image].present?
-      @about_u.image.destroy unless @about_u.image.nil?
+      #@about_u.image.destroy unless @about_u.image.nil?
       @about_u.build_image(:image_filename => params[:image])
     end
     respond_to do |format|
       if @about_u.save
 
         flash[:notice] = 'Content is successfully created.'
-        format.html { redirect_to admin_about_us_path(:type =>@about_u.link_type ) }
+        format.html { redirect_to admin_about_us_path(:link_type =>@about_u.link_type ) }
         format.xml  { render :xml => admin_about_us_path, :status => :created, :location => @about_u }
       else
         format.html { render :action => "new" }
@@ -69,12 +69,12 @@ class Admin::AboutUsController < ApplicationController
   def update
     @about_u = AboutU.find(params[:id])
     if @about_u.valid? and  params[:image].present?
-      @about_u.image.destroy unless @about_u.image.nil?
+      #@about_u.image.destroy unless @about_u.image.nil?
       @about_u.build_image(:image_filename => params[:image])
     end
     if @about_u.update_attributes(params[:about_u])
       flash[:notice] = 'Data is successfully updated.'
-      redirect_to admin_about_us_path(:type => @about_u.link_type)
+      redirect_to admin_about_us_path(:link_type => @about_u.link_type)
     else
       render :action => "edit"
        
