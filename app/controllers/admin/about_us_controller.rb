@@ -6,11 +6,12 @@ class Admin::AboutUsController < ApplicationController
   def index
     p params
     p params[:link_type]
-    @about_us = AboutU.find_by_link_type(params[:link_type])
+    @about_us = AboutU.find_by_link_type(params[:type])
+
     unless @about_us.present?
-      redirect_to new_admin_about_u_path(:type => params[:link_type], :page_type => params[:page_type])
+      redirect_to new_admin_about_u_path(:type => params[:type], :page_type => params[:page_type])
     else
-      redirect_to edit_admin_about_u_path(:id => @about_us.id, :type => params[:link_type])
+      redirect_to edit_admin_about_u_path(:id => @about_us.id, :type => params[:type])
     end
 
   end
@@ -29,7 +30,6 @@ class Admin::AboutUsController < ApplicationController
   # GET /about_us/new
   # GET /about_us/new.xml
   def new
-
     @about_u = AboutU.new
 
     respond_to do |format|
@@ -55,7 +55,7 @@ class Admin::AboutUsController < ApplicationController
       if @about_u.save
 
         flash[:notice] = 'Content is successfully created.'
-        format.html { redirect_to admin_about_us_path(:link_type =>@about_u.link_type ) }
+        format.html { redirect_to admin_about_us_path(:type =>@about_u.link_type ) }
         format.xml  { render :xml => admin_about_us_path, :status => :created, :location => @about_u }
       else
         format.html { render :action => "new" }

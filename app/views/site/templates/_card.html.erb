@@ -355,7 +355,7 @@
             <%= 'Leave your review' %>
           </h3>
 
-          <%= render(:partial => 'site/reviews/new', :locals => {:create_url => product_reviews_path(@product, :return_to => nested_products_uri(@product))}) %>
+          <%= render(:partial => 'site/reviews/new', :locals => {:create_url => site_reviews_path(@product, :return_to => nested_products_uri(@product)), :product_id => @product.id, :recipe_id => ''}) %>
 
         </div>
     <%- end -%>

@@ -20,6 +20,9 @@ alert("Description must be filled out");
 <!-- div class="add_new_review" -->
   Title:<br />
   <%= text_field :review, :name %><br />
+  <% if product_id.present? %>
+        <input type="hidden" name="product_id" value="<%=product_id %>">
+  <% end %>
   <% if recipe_id.present? %>
         <input type="hidden" name="recipe_id" value="<%=recipe_id %>">
   <% end %>
