@@ -222,8 +222,8 @@ class Admin::ProductsController < ApplicationController
     if params[:category_ids]
       params[:category_ids].each do |cat_id|
         @c = Category.find(cat_id)
-        unless params[:category_ids].include?(@c.root.id)
-          params[:product][:category_ids].push(@c.root.id)
+        unless params[:category_ids].include?(@c.parent_id)
+          params[:product][:category_ids].push(@c.parent_id)
         end
       end
     end

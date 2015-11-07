@@ -27,11 +27,11 @@ class Site::CartController < ApplicationController
       if logged_in?
         IncompletePurchase.find_or_create_by_email(current_user.email)
       end
-      @setting = Setting.find(:first)
-      if (product.quantity.to_i - quantity.to_i) < @setting.reorder_quantity.to_i and product.active
+      # @setting = Setting.find(:first)
+      # if (product.quantity.to_i - quantity.to_i) < @setting.reorder_quantity.to_i and product.active
         # Commented by Sujith since UserName and Password of SMTP is not correct now
-        Notifier.deliver_reorder_quantity_notification(product,AppConfig.admin_email)
-      end
+        #Notifier.deliver_reorder_quantity_notification(product,AppConfig.admin_email)
+      # end
 
       status = "#{product.name.gsub("'", "\\'")} correctly added to your cart."
     else
@@ -94,13 +94,13 @@ class Site::CartController < ApplicationController
     @cupon = Cupon.find_by_code( params[:cupon][:code])
 
 
-    @setting = Setting.find(:first)
-    for cart_item in @cart.items
+    # @setting = Setting.find(:first)
+    # for cart_item in @cart.items
       #if cart_item.quantity < @setting.reorder_quantity
-      if (cart_item.product.quantity.to_i - cart_item.quantity.to_i) < @setting.reorder_quantity and cart_item.product.active
-        Notifier.deliver_reorder_quantity_notification(cart_item.product,AppConfig.admin_email)
-      end
-    end
+      # if (cart_item.product.quantity.to_i - cart_item.quantity.to_i) < @setting.reorder_quantity and cart_item.product.active
+      #   Notifier.deliver_reorder_quantity_notification(cart_item.product,AppConfig.admin_email)
+      # end
+    # end
     unless  params[:cupon][:code].blank?
       if @cupon.nil? or @cupon.blank?
         flash[:notice] = "The promotional code is not valid,please enter a valid one."

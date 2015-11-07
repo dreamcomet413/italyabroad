@@ -15,7 +15,7 @@ class Product < ActiveRecord::Base
 
   has_many :product_sizes
   has_many :product_prices, :dependent => :destroy
-  #attr_accessor :price, :quantity
+  attr_accessor :price, :quantity
 
   has_many :categorizations, :dependent => :destroy
   has_many :categories, :through => :categorizations

@@ -59,10 +59,8 @@ class Site::OrdersController < ApplicationController
                                                              @cart.total, params[:points_to_be_used], params[:total_points])
 
       if (@payment_method && !@payment_method.external) or total_amount == 0      #### 0001
-        production = true
+        production = false
         @credit_card = ActiveMerchant::Billing::CreditCard.new(params[:credit_card])
-
-        # @sujith=true
 
         if (@credit_card.valid? or !production) or total_amount == 0               #### 0002
 
@@ -71,6 +69,17 @@ class Site::OrdersController < ApplicationController
 
           if saved                                                                            #### 0003
             create_order_items
+
+            # Check product reorder..send email to admin.. Harshad Patel
+            @setting = Setting.find(:first)
+            for cart_item in @cart.items
+              if cart_item.quantity < @setting.reorder_quantity
+                if cart_item.product.quantity.to_i < @setting.reorder_quantity and cart_item.product.active
+                  Notifier.deliver_reorder_quantity_notification(cart_item.product,AppConfig.admin_email)
+                end
+              end
+            end
+
             #total_amount, points_used = find_total_and_points_used(params[:points_to_be_used], @cart.total, params[:points_to_be_used], params[:total_points])
             @incomplete_purchase = IncompletePurchase.find_by_email(current_user.email)
             @incomplete_purchase.destroy if @incomplete_purchase.present?
