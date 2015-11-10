@@ -8,20 +8,45 @@
 <%- product_on_offers = @category.products.on_offer || Product.on_offer -%>
 <% unless product_on_offers.blank? %>
 
-<div id="box_products_on_offer" class="block">
-  <h1  style="color:#9b0707;">Special Offers</h1>
-  <br />
-  <%- if product_on_offers.size > 0 -%>
-  <ul style="list-style:none;margin:0;padding:0;">
-  <%- product_on_offers.each do |product| -%>
-    <li style="margin-bottom:3px;padding-top:6px;padding-bottom:6px;">
-    <%= link_to product.name, nested_products_uri(product),:class=>'data', :style=>"color: red;" %></li>
-  <%- end -%>
-  </ul>
-  <%- else -%>
-  No products
-  <%- end -%>
+<div class="block" id="box_products_on_offer" >
+ <table>
+  <tr>
+    <td style="text-align:center;" colspan="2"><img src="/images/special_offer.png" width="150"></td>
+  </tr>
+   <tr>
+    <%- product_on_offers.each_with_index do |product, index| -%>
+      <%
+        if index > 1
+          break
+        end
+      %>
+      <td style="margin-bottom:10px; vertical-align:bottom;" width="50%">
+        <table>
+          <tr>
+            <td style="vertical-align:top; text-align:center;">
+              <%= link_to product.name,nested_products_uri(product) %>
+            </td>
+          </tr>
+          <tr>
+            <td style="text-align:center;"><%= show_image_tag(product.layout_image, product.image_1,:jpg,product.name) %>
+            </td>
+          </tr>
+          <tr>
+            <td style="text-align:center; font-weight:bold;"><%=product.discount%>%</td>
+          </tr>
+          <tr>
+            <td style="text-align:center;"><%= link_to(image_tag("buttons/add_to_cart_button.png"), "/site/cart?product_id=#{product.id}", :remote => true, :method => :post) -%></td>
+          </tr>
+        </table>
+      </td>
+    <%- end -%>
+   </tr>
+ </table>
+</div>
+<% else %>
+<div class="block" id="box_event" >
+  <div><%#= image_tag("upcomingEvents1.png", :alt => "Upcoming Events") %></div>
+  <div style="padding:10px 10px 10px 10px;">Sorry there are currently no secial offers planned please come back later.</div>
 </div>
 <% end %>
 <%end %>
-

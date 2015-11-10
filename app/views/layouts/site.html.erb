@@ -96,6 +96,7 @@
         <td><%= link_to image_tag("/images/twitter.png", :height => "23px", :width => "23px"), "https://twitter.com/Italyabroad", :id => "b", :class => "btn" -%></td>
         <td><%= link_to image_tag("/images/facebook.gif", :height => "23px", :width => "23px"), "https://www.facebook.com/pages/Italyabroadcom/144011672282174" -%></td>
         <td><%= link_to image_tag("/images/googleplus.ico", :height => "23px", :width => "23px"), "https://plus.google.com/105030552023597415239/posts" -%></td>
+        <td><%= link_to image_tag("/images/instagram.jpeg", :height => "23px", :width => "23px"), "https://instagram.com/italyabroad" -%></td>
       </tr>
     </table>
     </td></tr></table>
@@ -123,7 +124,7 @@
     <div style="margin-top: 12px;">
 
       <% if Setting.first.chat_available %>
-          <span style="font:bold 13px Arial; margin-left: 60px;" class="fLeft"><%= link_to(image_tag(image_name), "#", {:onclick=>"popupwindow('/chat_messages', 300, 700)"}) if !image_name.nil? %></span>
+          <span style="font:bold 13px Arial; margin-left: 60px; margin-top:-20px;" class="fLeft"><%= link_to(image_tag(image_name), "#", {:onclick=>"popupwindow('/chat_messages', 300, 700)"}) if !image_name.nil? %></span>
       <% else %>
           <span style="font:bold 13px Arial;"><%#= link_to image_tag(image_name), site_chat_index_path, :popup => ['new_window_name', 'height=540,width=490'] if !image_name.nil?  %></span>
           <span style="font:bold 13px Arial; margin-left: 28px;" class="fLeft"><%= link_to image_tag(image_name), "#", :class => "chat_available" if !image_name.nil?  %>
