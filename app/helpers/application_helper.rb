@@ -109,13 +109,13 @@ module ApplicationHelper
 
   def show_image_tag(image_type, image, format = :jpg, image_alt = "italyabroad.com")
     if image.present? && image_type.present? && image.image_filename.present? && image.image_filename.is_a?(ProductUploader)
-      return image_tag(image.image_filename.try(:url), image_dimensions(image_type).merge!(:alt => image_alt, :title => image_alt))
+      return image_tag(image.image_filename.try(:url), image_dimensions(image_type).merge!(:alt => image_alt, :title => image_alt, :style => "max-width:95px !important;"))
     elsif image_type && image && format
 
       #return image_tag(image_url(image_type, image, format), {:alt => image_alt, :title => image_alt, :height => "80"})
       #"http://localhost:3000/site/image/product_wine/541.jpg"
       #return image_tag(site_image_url(image_type, image, format), {:alt => image_alt, :title => image_alt})
-      return image_tag("/resources/images/#{image.id}.#{format}", image_dimensions(image_type).merge!(:alt => image_alt, :title => image_alt))
+      return image_tag("/resources/images/#{image.id}.#{format}", image_dimensions(image_type).merge!(:alt => image_alt, :title => image_alt, :style => "max-width:95px !important;"))
       #return image_tag("/site/image?id=#{image.id}&image_type=#{image_type}&format=#{format}")
       #return image_tag(url_for(:controller => "site/images", :action => "show", :id => image.id, :format => format))
 
