@@ -1,12 +1,34 @@
 <div class="block" id="box_suggested_wines">
   <h1  style="color:#9b0707;padding-top:8px;">Suggested Wines</h1><br />
   <% category_wine = Category.find(:first, :conditions => ["name like (?) AND parent_id is ?","%wine%", nil]) %>
-  <% products = Product.find(:all, :limit => 5, :order => "RAND()", :conditions => "id IN (#{category_wine.all_products_ids.join(',')}) AND raccomanded = true AND active = true") %>
-  <ul>
-    <%- for product in products do -%>
-    <li style="margin-bottom:3px;padding-top:6px;padding-bottom:6px;"><%= link_to product.name, nested_products_uri(product) %></li>
-    <%- end -%>
-  </ul>
+  <% products = Product.find(:all, :limit => 2, :order => "RAND()", :conditions => "id IN (#{category_wine.all_products_ids.join(',')}) AND raccomanded = true AND active = true") %>
 
+	<% unless products.blank? %>
+		 <table>
+		   <tr>
+		    <%- products.each_with_index do |product, index| -%>
+		      <td style="margin-bottom:10px; vertical-align:bottom;" width="50%">
+		        <table>
+		          <tr>
+		            <td style="vertical-align:top; text-align:center;">
+		              <%= link_to product.name,nested_products_uri(product) %>
+		            </td>
+		          </tr>
+		          <tr>
+		            <td style="text-align:center;"><%= show_image_tag(product.layout_image, product.image_1,:jpg,product.name) %>
+		            </td>
+		          </tr>
+		          <tr>
+		            <td style="text-align:center;"><%= link_to(image_tag("buttons/add_to_cart_button.png"), "/site/cart?product_id=#{product.id}", :remote => true, :method => :post) -%></td>
+		          </tr>
+		        </table>
+		      </td>
+		    <%- end -%>
+		   </tr>
+		 </table>
+		<% else %>
+		<div class="block" id="box_event" >
+		  <div style="padding:10px 10px 10px 10px;">Sorry there are currently no suggested wines. Please come back later.</div>
+		</div>
+	<% end %>
 </div>
-
