@@ -11,7 +11,8 @@ gem 'mysql', '2.8.1'
 gem 'mysql2', '~> 0.2.7'
 #gem 'activerecord-mysql2-adapter'
 gem 'rdoc'
-gem "activemerchant", "1.5.1"
+# gem "activemerchant", "1.5.1"
+gem "activemerchant"
 gem 'will_paginate', '>= 2.3.12'
 gem 'require_relative'
 gem 'sshkit'

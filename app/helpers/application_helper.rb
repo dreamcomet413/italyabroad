@@ -2,7 +2,7 @@
 # nasty hack used to handle new category routes
 module ApplicationHelper
 
-  def avatar_for_user(user, size="big")
+  def avatar_for_user(user, size="big", imgSize="100px")
     image = (size=="big") ? "default_big.jpg" : "default.jpg"
     unless user.nil?
       if user.has_default_photo?
@@ -11,7 +11,7 @@ module ApplicationHelper
         image = user.photo.image_filename.url if user.photo.image_filename.present? && user.photo.image_filename.url.present?
       end
     end
-    content_tag(:div, image_tag(image,:style => "width:100px"), :class => "user_photo_#{size}", :id => "user_photo")
+    content_tag(:div, image_tag(image,:style => "width:#{imgSize}"), :class => "user_photo_#{size}", :id => "user_photo")
   end
 
   def humanize_date(date)

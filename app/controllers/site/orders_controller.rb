@@ -80,11 +80,18 @@ class Site::OrdersController < ApplicationController
               end
             end
 
+            # Credit card session removed after payment done...Harshad Patel
+            session[:credit_card_type] = ""
+            session[:card_first_name] = ""
+            session[:card_last_name] = ""
+            session[:credit_card_number] = ""
+            session[:card_expiry_month] = ""
+            session[:card_expiry_year] = ""
+            session[:card_verification_value] = ""
+            
             #total_amount, points_used = find_total_and_points_used(params[:points_to_be_used], @cart.total, params[:points_to_be_used], params[:total_points])
             @incomplete_purchase = IncompletePurchase.find_by_email(current_user.email)
             @incomplete_purchase.destroy if @incomplete_purchase.present?
-
-
 
             if production and total_amount > 0                                                          #### 0004
 
@@ -123,6 +130,7 @@ class Site::OrdersController < ApplicationController
 
               end
               @order.update_attributes(:paid => true, :points_used => points_used, :status_order_id => 3)
+              
               if @order.status_order_id == 3
                 logger.info "venu"
                 Notifier.deliver_new_order_placed(@order,current_user,AppConfig.admin_email)

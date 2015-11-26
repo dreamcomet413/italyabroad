@@ -721,8 +721,8 @@ a {
 #box_newest_members ul li {
     float:left;
     margin-bottom:20px;
-    margin-right:10px;
-    margin-left:10px;
+    margin-right:2px;
+    margin-left:2px;
     width:50px;
     font-size:10px;
     overflow:hidden;

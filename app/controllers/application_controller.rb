@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   include ApplicationHelper
   include AuthenticatedSystem
   include PdfHelper
-  include SslRequirement
+  # include SslRequirement
   include SimpleCaptcha::ControllerHelpers
 
   helper :all # include all helpers, all the time
