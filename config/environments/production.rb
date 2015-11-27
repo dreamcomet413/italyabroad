@@ -35,7 +35,7 @@ ItalyabroadNew::Application.configure do
   # config.action_controller.asset_host = "http://assets.example.com"
 
   # Disable delivery errors, bad email addresses will be ignored
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   # Enable threaded mode
   # config.threadsafe!
@@ -49,5 +49,8 @@ ItalyabroadNew::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
-  config.action_mailer.perform_deliveries = true # need to change
+  # config.action_mailer.perform_deliveries = true # need to change
+  config.action_mailer.delivery_method = :smtp 
+
+
 end
