@@ -1,7 +1,7 @@
-<% category = params[:category]
-    if category == "wine-club" or category == "wine-tours"
+<% #category = params[:category]
+    #if category == "wine-club" or category == "wine-tours"
     @category = Category.find("wine")
-    end
+    #end
 %>
 
 <% unless @category.blank? %>
