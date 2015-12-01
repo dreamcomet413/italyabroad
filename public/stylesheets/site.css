@@ -620,6 +620,10 @@ a {
   border:1px solid #999999;
 }
 
+#box_products_on_offer .productImgOfOffer img {
+    max-width: 90px !important;
+}
+
 #box_latest_review {
     width:205px;
     float:right;
