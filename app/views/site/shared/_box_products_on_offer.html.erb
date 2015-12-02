@@ -1,11 +1,11 @@
-<% #category = params[:category]
-    #if category == "wine-club" or category == "wine-tours"
-    @category = Category.find("wine")
-    #end
+<% category = params[:category]
+    if category == "wine-club" or category == "wine-tours"
+      @category = Category.find("wine")
+    end
 %>
 
 <% unless @category.blank? %>
-<%- product_on_offers = @category.products.on_offer -%>
+<%- product_on_offers = @category.products.on_offer || Product.on_offer -%>
 <% unless product_on_offers.blank? %>
 
 <div class="block" id="box_products_on_offer" >
@@ -24,7 +24,7 @@
         <table>
           <tr>
             <td style="vertical-align:top; text-align:center;">
-              <%= link_to product.name,nested_products_uri(product) %> -- <%=product.id%>
+              <%= link_to product.name,nested_products_uri(product) %>
             </td>
           </tr>
           <tr>

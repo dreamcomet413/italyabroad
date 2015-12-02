@@ -26,6 +26,10 @@ class Category < ActiveRecord::Base
     def grapes
       find(:all, :select => ["products.id"], :include => [:grapes], :order => "grapes.name ASC", :group => "grapes.id").inject([]) { |all_grapes, product| all_grapes << product.grapes }.flatten
     end
+
+    def on_suggested
+      find(:all, :conditions => ["products.discount > ? AND products.raccomanded = ? AND active = ?", 0, true, true], :limit => 2, :order => "RAND()")
+    end
   end
 
   friendly_identifier :name
