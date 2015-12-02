@@ -624,6 +624,10 @@ a {
     max-width: 90px !important;
 }
 
+#box_suggested_wines .productImgOfSuggestion img {
+    max-width: 90px !important;   
+}
+
 #box_latest_review {
     width:205px;
     float:right;
