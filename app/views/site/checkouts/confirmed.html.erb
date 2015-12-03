@@ -47,7 +47,12 @@ Payment Method : <%= number_to_currency(@order.total - (@order.points_used * @se
 <%= render :partial => 'site/shared/box_cart_form' %>
 </div>
 <br />
-<p style="margin: 10px 20px;font-weight:bold; color:#ff0000;">Points have been added</p>
+
+<% 
+	total_points_earned = @order.total * Setting.find(:first).points_per_pound
+%>
+
+<p style="margin: 10px 20px;font-weight:bold; color:#ff0000;"><%=total_points_earned%> Points earned. Points have been added.</p>
 <br />
   <p style="margin: 10px 20px;font-weight:bold;">
   Thank you for shopping at Italyabroad.com
