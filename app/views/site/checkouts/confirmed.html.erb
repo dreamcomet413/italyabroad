@@ -44,7 +44,7 @@ Payment Method : <%= number_to_currency(@order.total - (@order.points_used * @se
 <br /><br />
 </p><br />
 <div style="margin: 10px 20px;">
-<%= render :partial => 'site/shared/box_cart_form' %>
+
 </div>
 <br />
 
@@ -61,4 +61,6 @@ Payment Method : <%= number_to_currency(@order.total - (@order.points_used * @se
 
 <%- content_for :right do -%>
   <%= render :partial => 'site/shared/box_subscriptions' %>
+  <br />
+  <%= render :partial => '/site/shared/social_follow' %>
 <%- end -%>

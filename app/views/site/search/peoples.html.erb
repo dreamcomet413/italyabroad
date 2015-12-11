@@ -4,7 +4,7 @@
     <div class="fRight" style="margin-right: 12px; padding: 5px;"><%= link_to "Go Back", :back -%></div>
     <br />
 <div>
- <div align="right" class="pagination_div"><%= will_paginate(@users) %></div>
+<!--  <div align="right" class="pagination_div"><%= will_paginate(@users) %></div> -->
 
 
   <ul style="margin:0;list-style:none;padding-left:0px;">
@@ -86,5 +86,7 @@
 	<%= render :partial => '/site/shared/box_popular' %>
 	<br />
 	<%= render :partial => '/site/shared/box_grape_guide' %>
+  <br />
+  <%= render :partial => '/site/shared/social_follow' %>
 <% end %>
 

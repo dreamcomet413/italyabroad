@@ -181,7 +181,7 @@ ItalyabroadNew::Application.routes.draw do
   match 'admin/products/delete_products_of_the_week' => 'admin/products#delete_products_of_the_week'
   match 'admin/products/products_of_the_week' => 'admin/products#products_of_the_week'
   match 'admin/products/xml' => 'admin/products#xml'
-  match 'site/orders/show_order_details' => 'site/orders#show_order_details'
+  match '/show_order_details' => 'site/orders#show_order_details'
   match 'admin/products/products_sortby_quantity' => 'admin/products#products_sortby_quantity'
   match 'site/orders/review' => 'site/orders#review'
   match 'admin/recipes/xml' => 'admin/recipes#xml'

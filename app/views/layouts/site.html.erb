@@ -260,12 +260,13 @@
     <% end %>
     <% @content_for_right = true %>
     <%= content_tag(:div, (yield :right), :id => "rightColumn").force_encoding("ISO-8859-1").encode("UTF-8") if @content_for_right -%>
-
     <div id="leftColumnContent" class="<%= "widescreen" unless @content_for_right %>">
       <%= yield %>
     </div>
+    
 
   </div>
+
   <%= render :partial => 'site/shared/footer' %>
 
 

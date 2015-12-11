@@ -22,15 +22,16 @@ class Site::OrdersController < ApplicationController
 
   def show
     store_location
-
+    
     @order = current_user.orders.find(params[:id])
+    
 
     respond_to do |format|
       format.html { render :layout => 'site' }
     end
   end
 
-  def new
+  def new 
     payment_method = params[:payment_method].to_i
 
     respond_to do |format|

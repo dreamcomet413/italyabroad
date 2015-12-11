@@ -1,5 +1,5 @@
 <div id="header">Your search has found the following Hampers</div>
-<div align="right" class="pagination_div"><%= will_paginate(@hampers) %></div>
+<!-- <div align="right" class="pagination_div"><%= will_paginate(@hampers) %></div> -->
 <% for product in @hampers %><br />
     <div class="wineList">
       <table width="100%">
@@ -85,6 +85,8 @@
     <%= render :partial => '/site/shared/box_grape_guide' %>
     <br />
     <%= render :partial => '/site/shared/box_mood' %>
+    <br />
+    <%= render :partial => '/site/shared/social_follow' %>
 
 <% end %>
 

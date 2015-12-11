@@ -108,7 +108,7 @@
 
 <!-- Alphabetical listing of producers added by Sujith on 2011.jan.28 END --> <br />
  <% if params[:search] %>
-  <div><%= will_paginate_(@producers) %></div>
+  <!-- <div><%= will_paginate_(@producers) %></div> -->
 <% if @producers && @producers.size > 0 %>
 	<ul>
 	<% for producer in @producers %>
@@ -153,11 +153,13 @@
 	<%= render :partial => '/site/blog/box_most_read_blog' %>
 	<br />
 	<%= render :partial => 'site/shared/box_popular' %>
-		<br />
+		
 	<%#= render :partial => '/site/shared/box_upcoming_events' %>
-	<br />
+	
 	<%#= render :partial => 'box_latest_blog_comments' %>
-	<br />
+	
 	<%#= render :partial => 'box_archives' %>
+  <br />
+  <%= render :partial => '/site/shared/social_follow' %>
 <% end %>
 

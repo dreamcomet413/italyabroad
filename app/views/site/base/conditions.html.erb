@@ -8,10 +8,12 @@
   <% end %>
 </div>
 
-<% content_for :right do %>
+  <% content_for :right do %>
   <%= render :partial => '/site/shared/box_help' %>
-    <br />
-   	<%= render :partial => '/site/shared/box_mood' %>
+  <br />
+  <%= render :partial => '/site/shared/box_mood' %>
+  <br />
+  <%= render :partial => '/site/shared/social_follow' %>
 
-<% end %>
+  <% end %>
 

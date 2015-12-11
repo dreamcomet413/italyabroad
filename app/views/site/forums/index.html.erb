@@ -23,7 +23,7 @@
 
 <div style="margin:10px;float:left;width:475;"> <!-- Newest Members START-->
   <div id="box_newest_members">
-    <% users = User.find(:all, :order => "created_at DESC", :limit => 16) %>
+    <% users = User.find(:all, :order => "created_at DESC", :limit => 16 ) %>
     <h1 style="color:#9b0707;font-size:14px;">Our Newest Members</h1>
     <ul>
       <%- for user in users -%>
@@ -85,6 +85,7 @@
     <h1 style="color:#9b0707;font-size:14px;">Get to know our producers</h1>
     <%- producers = Producer.find(:all, :limit => 1,:conditions=>['active = ?',true] ,:order => "RAND()") %>
     <%# producers = Producer.find(:all, :limit => 1, :conditions => "id=39") %>
+    
     <%- for producer in producers -%>
         <div id="get_to_know_our_producers_avatar" style=" padding-top:0px;padding-bottom:10px;">
           <%= link_to producer.name, site_producer_path(producer) %>
@@ -239,5 +240,7 @@
     <%= render :partial => '/site/shared/box_grape_guide' %>
     <br />
     <%= render :partial => '/site/shared/box_subscriptions' %>
+    <br />
+    <%= render :partial => '/site/shared/social_follow' %>
 <% end %>
 

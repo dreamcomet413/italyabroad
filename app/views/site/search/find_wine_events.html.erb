@@ -1,5 +1,5 @@
 <div id="header">Your search result has found the following events:</div>
-<div align="right" class="pagination_div"><%= will_paginate_(@wine_events) %></div>
+<!-- <div align="right" class="pagination_div"><%= will_paginate_(@wine_events) %></div> -->
 <% for product in @wine_events %>
     <table style="margin:0 0 0 0px; margin-left:10px; margin-right:10px; padding-left:10px; padding-right:10px;width:98%;" cellpadding="0" border="0" cellspacing="0">
       <tr>
@@ -80,6 +80,7 @@
     </table>
     <h3>&nbsp;</h3>
 <% end %>
+<div align="right" class="pagination_div"><%= will_paginate_(@wine_events) %></div>
 
 
 
@@ -94,6 +95,8 @@
     <%= render :partial => '/site/shared/box_grape_guide' %>
     <br />
    	<%= render :partial => '/site/shared/box_mood' %>
+    <br />
+    <%= render :partial => '/site/shared/social_follow' %>
 
 <% end %>
 

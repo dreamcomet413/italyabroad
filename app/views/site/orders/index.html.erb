@@ -25,5 +25,7 @@ total_points_used = current_user.orders.sum('points_used')
 <br /><br /><br />
 <% content_for :right do %>
 	<%= render :partial => '/site/shared/box_grape_guide' %>
+	<br />
+	<%= render :partial => '/site/shared/social_follow' %>
 <% end %>
 
