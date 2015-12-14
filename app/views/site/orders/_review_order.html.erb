@@ -9,10 +9,11 @@
 
   						<td><td style="text-align:left">
               	<% if order_item.reviewed == false %>
-              <%= link_to "Write Review",
+              <%#= link_to "Write Review",
                :update =>"write_review#{product.id}" , :remote => true,
-                        :url => {:controller=>'site/orders', :action => "write_review", :id => product.id,:order_id=>order.id}
-  %>          <% end %>
+                        :url => {:controller=>'site/orders', :action => "write_review", :id => product.id,:order_id=>order.id}%>
+              <%= link_to "Write Review", nested_products_uri(product) %>
+            <% end %>
   						</td>
 
   						<tr><td>
@@ -24,4 +25,3 @@
 
 
 <% end %>
-
