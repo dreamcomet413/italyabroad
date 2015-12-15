@@ -137,14 +137,14 @@ class Admin::CategoriesController < ApplicationController
     categories.each { |category|
       if !category.leaf?
         if data.empty?
-          data =   [{"text"  =>  category.name, "frd" => category.friendly_identifier, "id"  => category.id, "leaf"  => false,
+          data =   [{"text"  =>  category.name, "id"  => category.id, "leaf"  => false,
                      "children" => get_tree(category.children,category) }]
         else
-          data.concat([{"text"  =>  category.name, "frd" => category.friendly_identifier, "id"  => category.id, "leaf"  => false,
+          data.concat([{"text"  =>  category.name, "id"  => category.id, "leaf"  => false,
                          "children" => get_tree(category.children,category)}])
         end
       else
-        data.concat([{"text" => category.name, "frd" => category.friendly_identifier, "id" => category.id, "cls" => "folder", "leaf" => false, "children" => []}])
+        data.concat([{"text" => category.name, "id" => category.id, "cls" => "folder", "leaf" => false, "children" => []}])
       end
     }
     return data
