@@ -66,6 +66,17 @@ class Category < ActiveRecord::Base
     return "- " + self.errors.full_messages.join("<br />- ")
   end
 
+  def all_children
+    child = []
+    all_categories = Category.find(:all, :conditions => ["parent_id = ?", self.id])
+    child << self.id 
+    all_categories.each do |c|
+      child << c.id 
+    end
+
+    return child
+  end
+
   def all_products
     tmp = []
     products.each {|t| tmp << t unless tmp.include? t}
@@ -80,7 +91,8 @@ class Category < ActiveRecord::Base
   def all_products_ids
     tmp = []
     products.each {|t| tmp << t.id unless tmp.include? t.id}
-    for category in all_children
+    for cat in all_children
+      category = Category.find(cat)
       for product in category.products
         tmp << product.id unless tmp.include? product.id
       end
