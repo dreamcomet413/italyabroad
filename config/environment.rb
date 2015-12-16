@@ -8,9 +8,9 @@ Encoding.default_external = Encoding::UTF_8
 Encoding.default_internal = Encoding::UTF_8
 
 ActionMailer::Base.smtp_settings = {
-:address => "smtp.aruba.it",
-:port => 465,
+:address => "smtp.gmail.com",
+:port => 587,
 :authentication => :plain,
-:user_name => "info@italyabroad.com",
-:password => "infoinfo"
-}
+:user_name => "itserviceyouth@gmail.com",
+:password => "harshad@456"
+} 
