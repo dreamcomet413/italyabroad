@@ -23,13 +23,19 @@
       <tr class="<%= cycle("even", "odd") %>">
         <td><%= category["id"] %></td>
         <td><%= category["text"].html_safe() %></td>
-        <td><%= link_to "Edit", edit_admin_category_path(category["id"]) %> | <%= link_to "Delete", admin_category_path(category["id"]), :method => :delete, :confirm => "Are you sure want to delete this category?" %></td>
+        <td><%= link_to "Edit", edit_admin_category_path(category["id"]) %> 
+        <!-- | <%= link_to "Delete", admin_category_path(category["id"]), :method => :delete, :confirm => "Are you sure want to delete this category?" %> -->
+        </td>
       </tr>
       <%- category["children"].each do |children| -%>
       <tr class="<%= cycle("even", "odd") %>">
         <td><%= category["id"] %></td>
         <td>&nbsp;&nbsp;&nbsp;&nbsp;<%= children["text"].html_safe() %></td>
-        <td><%= link_to "Edit", edit_admin_category_path(children["id"]) %> | <%= link_to "Delete", admin_category_path(children["id"]), :method => :delete, :confirm => "Are you sure want to delete this category?" %></td>
+        <td><%= link_to "Edit", edit_admin_category_path(children["id"]) %>
+        <!--   
+        | <% link_to "Delete", admin_category_path(children["id"]), :method => :delete, :confirm => "Are you sure want to delete this category?" %>
+         -->
+        </td>
       </tr>
       <%- end -%>
       <%- end -%>
