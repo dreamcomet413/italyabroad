@@ -12,3 +12,4 @@ node_modules
 node_modules/*
 public/.DS_store
 public/uploads/*
+public/resources/*
