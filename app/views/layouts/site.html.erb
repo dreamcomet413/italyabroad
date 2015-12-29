@@ -58,7 +58,11 @@
 
 </head>
 <body <%= @paypal_redirect %> <%= "id='#{@page_id}'" if @page_id %> class="<%= @current_controller %><%= " #{@class}" if @class %>" <%= "onload='#{@onload}'" if @onload %>>
+
+<%= render :partial => "/site/shared/help_button_overlay" %>
+
 <div id="content">
+
 <div id="topContent">
   <%#= link_to image_tag('logo.png', :alt => "Italian wine and food", :title => "Italian wine and food"), root_path, :id => "logo" %>
   <%= link_to image_tag('logo_hi_res.gif', :alt => "Italian wine and food", :title => "Italian wine and food"), root_path, :id => "logo" %>
