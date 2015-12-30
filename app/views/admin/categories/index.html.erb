@@ -32,9 +32,9 @@
         <td><%= category["id"] %></td>
         <td>&nbsp;&nbsp;&nbsp;&nbsp;<%= children["text"].html_safe() %></td>
         <td><%= link_to "Edit", edit_admin_category_path(children["id"]) %>
-        <!--   
-        | <% link_to "Delete", admin_category_path(children["id"]), :method => :delete, :confirm => "Are you sure want to delete this category?" %>
-         -->
+          
+        | <%= link_to "Delete", admin_category_path(children["id"]), :method => :delete, :confirm => "Are you sure want to delete this category?" %>
+        
         </td>
       </tr>
       <%- end -%>
