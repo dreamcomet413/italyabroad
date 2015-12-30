@@ -5,7 +5,7 @@
   </span>
   <span style="height:21px;">
 
-  <a title="tweet about this product" href="https://twitter.com/share?text=<%="#{@product.name.to_s} - italyabroad.com"%>&url=<%=request.url%>" target="_blank">
+  <a title="tweet about this product" href="https://twitter.com/share?text=<%="#{@product.name.to_s} - @italyabroad"%>&hashtags=<%="#{tweet_hashes(@product)}"%>&url=<%=request.url%>" target="_blank">
   	<img src="/images/twitter-button1.png" height="22"/>
   </a>
 
