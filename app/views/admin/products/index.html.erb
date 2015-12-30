@@ -69,7 +69,7 @@
         <td><%= product.code %></td>
         <td><%= product.root_category unless product.root_category.blank? %></td>
         <td><%= product.sub_categories.join(" &raquo; ").html_safe unless product.sub_categories.blank? %></td>
-        <td><%= link_to "#{product.name.html_safe}", nested_products_uri(product) %></td>
+        <td><%= link_to "#{product.name.to_s.force_encoding("UTF-8").html_safe}", nested_products_uri(product) %></td>
         <td><%= product.discount %>%</td>
         <td>
           <% product_prices = []
