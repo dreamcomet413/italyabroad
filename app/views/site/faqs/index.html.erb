@@ -4,8 +4,25 @@
 %>
 <%- @breadcrumbs = "#{link_to("Home", root_url)} &raquo; #{link_to('Community',wine_community_path)} &raquo; #{link_to("Ask our Experts", site_faqs_path)}".html_safe() -%>
 
+<% @about = AboutU.find(:first, :conditions => {:link_type => "faqs"} ) %>
+
 <div id="blog_home">
-  <%= image_tag("blog_home.jpg") %>
+  
+  <% if !@about.nil? %>
+    <% unless @about.title.blank? %>
+      <span class="title">
+        <div style="color:white;width:350px;height:100px;background:black;opacity: 0.6;filter:alpha(opacity=40);text-align:left">
+          <%= @about.title %>
+         </div>
+      </span>       
+    <% end %>
+  <% end %>
+  
+  <% if  @about and !@about.image_id.nil? %>
+    <%= link_to image_tag(site_image_url('region_card', @about.image, :jpg),:alt=>@about.title), search_index_path(:id => "producers") unless @about.blank? %>
+  <% else %>
+    <%= image_tag("blog_home.jpg",:alt=>'Producers') %>
+  <% end %>
 </div>
 <div id="blog_container">
   <%= show_messages(flash[:notice]) %>

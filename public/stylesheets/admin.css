@@ -421,3 +421,7 @@ ul.makeMenu, ul.makeMenu ul {
     padding: 2px
 }
 
+
+.settings table td{
+  padding-bottom:15px;
+}

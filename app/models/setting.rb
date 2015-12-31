@@ -5,8 +5,16 @@ class Setting < ActiveRecord::Base
   belongs_to :home_image_3,   :class_name => "Image",     :foreign_key => "home_image_3_id"
   belongs_to :home_image_4,   :class_name => "Image",     :foreign_key => "home_image_4_id"
   belongs_to :home_image_5,   :class_name => "Image",     :foreign_key => "home_image_5_id"
-
+  
+  belongs_to :producers_image,    :class_name => "Image", :foreign_key => "producers_image_id"
+  belongs_to :faqs_image,         :class_name => "Image", :foreign_key => "faqs_image_id"
+  belongs_to :grape_guide_image,  :class_name => "Image", :foreign_key => "grape_guide_image_id"
+  belongs_to :blog_image,         :class_name => "Image", :foreign_key => "blog_image_id"
+  belongs_to :regions_image,      :class_name => "Image", :foreign_key => "regions_image_id"
+  
   attr_accessor :home_page_1_title
+  
+  IMAGE_NAMES = %w{home_image_1 home_image_2 home_image_3 home_image_4 home_image_5}
   
   def self.order_amount
     s = Setting.find(:first)

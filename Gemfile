@@ -24,6 +24,7 @@ gem 'simple_captcha', :git => 'git://github.com/arcadi/simple-captcha.git'
 #gem "galetahub-simple_captcha", :require => "simple_captcha"
 gem "recaptcha", :require => "recaptcha/rails"
 
+gem 'dynamic_form'
 gem 'jquery-rails'
 gem 'active_record_base_without_table'
 gem 'omniauth'
