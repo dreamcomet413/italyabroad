@@ -22,7 +22,7 @@ class Admin::UsersController < ApplicationController
   def create
     @user = User.admins.new(params[:user])
     
-    if @user.save
+    if @user.save(false)
       redirect_to :action => :index
     else
       flash[:notice] = @user.show_errors
