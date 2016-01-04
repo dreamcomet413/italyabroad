@@ -11,7 +11,8 @@ class Site::BaseController < ApplicationController
     .includes([:categories, :product_prices]).order("products.created_at ASC").limit(10)
 
     #food_categories = Category.find_by_sql("select * from categories where friendly_identifier LIKE 'Balasmic vinegar'")
-    food_categories = Category.find(:all, :conditions => ["friendly_identifier LIKE 'balsamic-vinegar' OR friendly_identifier LIKE 'bittersweet-mousse' OR friendly_identifier LIKE 'bittersweet-pearls' OR friendly_identifier LIKE 'jams' OR friendly_identifier LIKE 'chilli-sauce' OR friendly_identifier LIKE 'chutneys-and-condiments' OR friendly_identifier LIKE 'christmas-panettones' OR friendly_identifier LIKE 'cchristmas-treats'" ])
+    # food_categories = Category.find(:all, :conditions => ["friendly_identifier LIKE 'balsamic-vinegar' OR friendly_identifier LIKE 'bittersweet-mousse' OR friendly_identifier LIKE 'bittersweet-pearls' OR friendly_identifier LIKE 'jams' OR friendly_identifier LIKE 'chilli-sauce' OR friendly_identifier LIKE 'chutneys-and-condiments' OR friendly_identifier LIKE 'christmas-panettones' OR friendly_identifier LIKE 'cchristmas-treats'" ])
+    food_categories = Category.find_by_name('Food').children
     @food_counter = Product.where("categories.id IN (?) AND products.raccomanded = ? AND product_prices.quantity > ? AND products.active = ?", food_categories.map(&:id), true, 0,true).includes([:categories, :product_prices]).limit(10).order("RAND()")
 
     @best_sellers = Product
