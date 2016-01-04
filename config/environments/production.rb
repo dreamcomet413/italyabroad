@@ -52,5 +52,14 @@ ItalyabroadNew::Application.configure do
   # config.action_mailer.perform_deliveries = true # need to change
   config.action_mailer.delivery_method = :smtp 
 
+  config.action_mailer.smtp_settings = {
+    address:              'smtp.sendgrid.net',
+    port:                 25,
+    domain:               'italyabroad.com',
+    user_name:            'italyabroad',
+    password:             'andrea75',
+    authentication:       :plain,
+    enable_starttls_auto: true  
+  }
 
 end
