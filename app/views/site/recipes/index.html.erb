@@ -53,7 +53,7 @@
                 <% end %>
             </td>
             <td align="right">
-              <% if !recipe.image_1.blank? %>
+              <% if !recipe.image_1 and !recipe.image_1.blank? %>
               <%= link_to image_tag(site_image_url('recipe_thumb', recipe.image_1, :jpg), :alt=>recipe.name), site_recipe_path(recipe) %>
               <% else %>
               <%= link_to image_tag("no_images/PastaRecipe.jpg",:size => "100x75",:alt=>recipe.name), site_recipe_path(recipe) %>
