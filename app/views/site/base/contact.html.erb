@@ -20,7 +20,7 @@
       <p>
 
                   <!-- Live Chat Start -->
-                   <div style="float:right;margin-right:25px;"><%= link_to image_tag('LiveChatHelpIcon.jpg'), "#",:onclick=>"popupwindow('/chat_messages', 700, 650)" %> <br />
+                   <div style="float:right;margin-right:25px;"><%= link_to image_tag('LiveChatHelpIcon.jpg'), "#",:onclick=>"popupwindow('http://#{Rails.env == 'production' ? 'www.italyabroad.com' : 'localhost:3000'}/chat_messages', 700, 650)" %> <br />
                     <% if !Setting.first.blank?%>
                                  <%
                                  if Setting.first.chat_available
@@ -30,7 +30,7 @@
                                  end
                                   %>
                     <% end %>
-                    <span style="font:bold 13px Arial"><%= link_to "Live chat (#{support_link})","#", :onclick=>"popupwindow('/chat_messages', 700, 650)" %></span>
+                    <span style="font:bold 13px Arial"><%= link_to "Live chat (#{support_link})","#", :onclick=>"popupwindow('http://#{Rails.env == 'production' ? 'www.italyabroad.com' : 'localhost:3000'}/chat_messages', 700, 650)" %></span>
 
                     </div>
                   <!-- Live Chat End -->

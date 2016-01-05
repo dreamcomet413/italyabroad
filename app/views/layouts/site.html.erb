@@ -128,7 +128,8 @@
     <div style="margin-top: 12px; display:none;">
 
       <% if Setting.first.chat_available %>
-          <span style="font:bold 13px Arial; margin-left: 270px; margin-top:-20px;" class="fLeft"><%= link_to(image_tag(image_name), "#", {:onclick=>"popupwindow('/chat_messages', 700, 650)"}) if !image_name.nil? %></span>
+          <span style="font:bold 13px Arial; margin-left: 270px; margin-top:-20px;" class="fLeft"><%= 
+            link_to(image_tag(image_name), "#", {:onclick=>"popupwindow('http://#{Rails.env == 'production' ? 'www.italyabroad.com' : 'localhost:3000'}/chat_messages', 700, 650)"}) if !image_name.nil? %></span>
       <% else %>
           <span style="font:bold 13px Arial;"><%#= link_to image_tag(image_name), site_chat_index_path, :popup => ['new_window_name', 'height=540,width=490'] if !image_name.nil?  %></span>
           <span style="font:bold 13px Arial; margin-left: 28px;" class="fLeft"><%= link_to image_tag(image_name), "#", :class => "chat_available" if !image_name.nil?  %>
