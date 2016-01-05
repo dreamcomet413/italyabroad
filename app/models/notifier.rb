@@ -22,7 +22,7 @@ class Notifier < ActionMailer::Base
   def news_letter(email, name, news_letter)
     recipients    email
     from          "Italyabroad.com <info@italyabroad.com>"
-    subject       "#{news_letter.name}"
+    subject       "[Italyabroad.com] #{news_letter.name}"
     content_type  "text/html"
     body          :news_letter => news_letter,
                   :name => name,
@@ -34,7 +34,7 @@ class Notifier < ActionMailer::Base
     recipients    email
        from          "Italyabroad.com <info@italyabroad.com>"
     bcc           "info@italyabroad.com"
-    subject       "[News Letters Italyabroad.com] Subscription Complete!"
+    subject       "[Italyabroad.com] Newsletter Subscription Complete!"
     body          :email => email,
                   :url   => url_for(:host => AppConfig.site_url, :controller => "site/base", :action => "unsubscribe")
   end
@@ -42,7 +42,7 @@ class Notifier < ActionMailer::Base
   def activation(user)
     recipients    user.email
     from          "Italyabroad.com <info@italyabroad.com>"
-    subject       "[recipients Italyabroad.com] Activation Code"
+    subject       "[Italyabroad.com] User Activation Code"
     body          :user => user,
                   :url  => url_for(:host => AppConfig.site_url, :controller => "site/customers", :action => "confirmation", :id=>user, :code=>user.activation_code)
   end
@@ -50,7 +50,7 @@ class Notifier < ActionMailer::Base
   def change_mail(user)
     recipients    user.email
     from          "Italyabroad.com <info@italyabroad.com>"
-    subject       "[recipients Italyabroad.com] Change Mail"
+    subject       "[Italyabroad.com] User Account Information Changed"
     body          :user => user,
                   :url  => url_for(:host => AppConfig.site_url, :controller => "site/customers", :action => "confirmation", :id=>user, :code=>user.activation_code)
   end
@@ -70,14 +70,14 @@ class Notifier < ActionMailer::Base
     recipients    user.email
     bcc           "info@italyabroad.com"
     from          "Italyabroad.com <info@italyabroad.com>"
-    subject       "[recipients Italyabroad.com] recipients Created"
+    subject       "[Italyabroad.com] Welcome, Your account has been created"
     body          :user => user
   end
 
   def account_data(user)
     recipients    user.email
     from          "Italyabroad.com <info@italyabroad.com>"
-    subject       "[recipients Italyabroad.com] recipients Data"
+    subject       "[Italyabroad.com] User Account Information"
     body          :user => user
   end
 
@@ -85,14 +85,14 @@ class Notifier < ActionMailer::Base
     recipients    "info@italyabroad.com"
     bcc           "info@italyabroad.com"
     from          contact.email
-    subject       "[Request Italyabroad.com] Request from site"
+    subject       "[Italyabroad.com] Contact Request from site"
     body          :contact => contact
   end
 
   def new_review(review)
     recipients    "info@italyabroad.com"
     from          "Italyabroad.com <info@italyabroad.com>"
-    subject       "[Review Italyabroad.com] New review"
+    subject       "[Italyabroad.com] New review"
     body          :review => review,
                   :url  => url_for(:host => AppConfig.site_url, :controller => "site/#{review.reviewer_type.pluralize.downcase}", :action => "show", :id=>review.reviewer.id)
   end
@@ -101,7 +101,7 @@ class Notifier < ActionMailer::Base
     recipients    reservation.user.email
     bcc           "info@italyabroad.com"
     from          "Italyabroad.com <info@italyabroad.com>"
-    subject       "[Reservation Italyabroad.com] Reservation Accepted"
+    subject       "[Italyabroad.com] Reservation Accepted"
     body          :reservation => reservation
   end
 
@@ -109,7 +109,7 @@ class Notifier < ActionMailer::Base
     recipients    reservation.user.email
     bcc           "info@italyabroad.com"
     from          "Italyabroad.com <info@italyabroad.com>"
-    subject       "[Reservation Italyabroad.com] Reservation Status"
+    subject       "[Italyabroad.com] Reservation Status" 
     body          :reservation => reservation
   end
 
@@ -117,7 +117,7 @@ class Notifier < ActionMailer::Base
     recipients    order.user.email
     bcc           "info@italyabroad.com"
     from          "Italyabroad.com <info@italyabroad.com>"
-    subject       "[Order Italyabroad.com] Order Accepted"
+    subject       "[Italyabroad.com] Order Accepted"
 #body          :order => order,
 #              :tasting_url => url_for(:host => AppConfig.site_url, :controller => "site/customers", :action => "print_tasting", :id=>order.id),
 #              :invoice_url => url_for(:host => AppConfig.site_url, :controller => "site/customers", :action => "print_invoice", :id=>order.id),
@@ -136,7 +136,7 @@ class Notifier < ActionMailer::Base
     recipients    order.user.email
     bcc           "info@italyabroad.com"
     from          "Italyabroad.com <info@italyabroad.com>"
-    subject       "[Order Italyabroad.com] Order Status"
+    subject       "[Italyabroad.com] Order Status"
     body          :order => order
   end
 
@@ -144,7 +144,7 @@ class Notifier < ActionMailer::Base
     recipients    order.user.email
     bcc           "info@italyabroad.com"
     from          "Italyabroad.com <info@italyabroad.com>"
-    subject       "[Order Italyabroad.com] Order Paid"
+    subject       "[Italyabroad.com] Order Paid"
     body          :order => order
   end
 
@@ -152,7 +152,7 @@ class Notifier < ActionMailer::Base
     recipients    comment.email
     bcc           "info@italyabroad.com"
     from          "info@italyabroad.com"
-    subject       "[Request Italyabroad.com] Request from site"
+    subject       "[Italyabroad.com] Comment from site"
     body           :comment => comment,
                    :user => user
   end
@@ -162,7 +162,7 @@ class Notifier < ActionMailer::Base
     bcc           "info@italyabroad.com"
     from          "Italyabroad.com <info@italyabroad.com>"
 #subject       "[Order Italyabroad.com] Order Paid"
-    subject       "Italyabroad.com Order shipped"
+    subject        "[Italyabroad.com] Order shipped"
     body          :order=>order
     content_type "text/html"
   end
@@ -170,7 +170,7 @@ class Notifier < ActionMailer::Base
   def reorder_quantity_notification(product,admin_email)
     recipients "#{admin_email}"
     from "info@italyabroad.com"
-    subject  "Reorder quantity alert :" + product.name
+    subject  "[Itallyabroad.com] Reorder quantity alert: #{product.name}"
     body    :product=>product
   end
 
@@ -178,7 +178,7 @@ class Notifier < ActionMailer::Base
   def product_information(user,admin_email)
     recipients "#{user.email}"
     from "info@italyabroad.com"
-    subject  "Need some help to sort your wine"
+    subject  "[Italyabroad.com] Need some help to sort your wine"
     body    :user=>user
     content_type "text/html"
   end
@@ -186,7 +186,7 @@ class Notifier < ActionMailer::Base
   def faq_notification(faq,user)
     recipients  AppConfig.admin_email
     from        "info@italyabroad.com"
-    subject     "A Question asked by #{user.name}"
+    subject     "[Italyabroad.com] A Question asked by #{user.name}"
     body        :faq=>faq,
                 :url  => url_for(:host => AppConfig.site_url, :controller => "admin/faqs", :action => "edit", :id=>faq.id),
                 :user=>user
@@ -196,7 +196,7 @@ class Notifier < ActionMailer::Base
   def new_review_added(product,user,admin_email,review)
     recipients "#{admin_email}"
     from "info@italyabroad.com"
-    subject  "A review of " + product.name + "added"
+    subject  "[Italyabroad.com] A review of #{product.name} added"
     body      :product  => product,
               :review=>review,
               :user=>user
@@ -205,7 +205,7 @@ class Notifier < ActionMailer::Base
   def new_order_placed(order,user,admin_email)
     recipients "#{admin_email}"
     from "info@italyabroad.com"
-    subject  "New order from  " + user.name
+    subject  "[Italyabroad.com] New order from #{user.name}"
     body      :order  => order,
              :user=>user
   end
@@ -213,7 +213,7 @@ class Notifier < ActionMailer::Base
   def new_account_created(user,admin_email)
     recipients "#{admin_email}"
     from "info@italyabroad.com"
-    subject  "New recipients created by  " + user.name
+    subject  "[Italyabroad.com] New recipients created by #{user.name}"
     body     :user=>user,
              :url  => url_for(:host => AppConfig.site_url, :controller => "site/customers", :action => "show", :id=>user.id)
   end
@@ -221,16 +221,17 @@ class Notifier < ActionMailer::Base
   def invite_a_friend(email,name,friend_name,message)
     recipients "#{email}"
     from "info@italyabroad.com"
-    subject  "An invitation from  " + "#{name}"
+    subject  "[Italyabroad.com] An invitation from #{name}"
     body  :message =>message,:your_name=>name,:friend_name=>friend_name
 
   end
+
   def coupon_notification_for_first_review (product,user,coupon_code)
 
     recipients "#{user.email}"
     from AppConfig.admin_email
     cc       ["info@italyabroad.com"]
-    subject  "First review of " + product.name + " added"
+    subject  "[Italyabroad.com] First review of #{product.name} added"
     body      :product  => product,
               :user=>user,
               :coupon_code=>coupon_code
@@ -241,7 +242,7 @@ class Notifier < ActionMailer::Base
     recipients "#{recipient.email}"
     from AppConfig.admin_email
     cc       ["info@italyabroad.com"]
-    subject  "Italyabroad Product(s) #{reviews.collect{|x| Product.find(x.reviewer_id).name if x.reviewer_id.present?}.join(",")} - Review Request"
+    subject  "[Italyabroad.com] Product(s) #{reviews.collect{|x| Product.find(x.reviewer_id).name if x.reviewer_id.present?}.join(",")} - Review Request"
     body      :products  => reviews.collect{|x| Product.find(x.reviewer_id)},
               :user => recipient
     content_type "text/html"
@@ -257,7 +258,7 @@ class Notifier < ActionMailer::Base
   def faq_answered_notification(faq)
     recipients "#{faq.user.email}"
     from "info@italyabroad.com"
-    subject  "Your Question is answered by Italyabroad Team"
+    subject "[Italyabroad.com] Your Question is answered by Italyabroad Team" 
     body  :faq =>faq
   end
 
