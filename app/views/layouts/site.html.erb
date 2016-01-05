@@ -125,7 +125,7 @@
       <%end%>
     </div>
     <br /><div style="clear: both;"></div>
-    <div style="margin-top: 12px;">
+    <div style="margin-top: 12px; display:none;">
 
       <% if Setting.first.chat_available %>
           <span style="font:bold 13px Arial; margin-left: 270px; margin-top:-20px;" class="fLeft"><%= link_to(image_tag(image_name), "#", {:onclick=>"popupwindow('/chat_messages', 700, 650)"}) if !image_name.nil? %></span>
