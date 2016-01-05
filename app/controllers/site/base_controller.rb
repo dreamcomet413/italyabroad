@@ -5,9 +5,11 @@ class Site::BaseController < ApplicationController
   def index
     @setting = Setting.first
     #@best_sellers = Product.find(:all, :select => "id, rating", :order => "rating desc", :limit => 3)
-    wine_categories = Category.find_by_sql("select * from categories where friendly_identifier LIKE 'white-wines'")
+    # wine_categories = Category.find_by_sql("select * from categories where friendly_identifier LIKE 'white-wines'")
+    
+    wine_categories = Category.where("friendly_identifier IN (?)",%w{white-wines red-wine rose-wine})    
     @recommended_wines = Product
-    .where("categories.id = ? AND products.raccomanded = ? AND product_prices.quantity > ? AND products.active = ?", wine_categories.last.try(:id), true, 0,true)
+    .where("categories.id IN (?) AND products.raccomanded = ? AND product_prices.quantity > ? AND products.active = ?", wine_categories.collect(&:id), true, 0,true)
     .includes([:categories, :product_prices]).order("products.created_at ASC").limit(10)
 
     #food_categories = Category.find_by_sql("select * from categories where friendly_identifier LIKE 'Balasmic vinegar'")
