@@ -60,7 +60,7 @@ class Site::OrdersController < ApplicationController
                                                              @cart.total, params[:points_to_be_used], params[:total_points])
 
       if (@payment_method && !@payment_method.external) or total_amount == 0      #### 0001
-        production = false
+        production = true
         @credit_card = ActiveMerchant::Billing::CreditCard.new(params[:credit_card])
 
         if (@credit_card.valid? or !production) or total_amount == 0               #### 0002
@@ -76,7 +76,7 @@ class Site::OrdersController < ApplicationController
             for cart_item in @cart.items
               if cart_item.quantity < @setting.reorder_quantity
                 if cart_item.product.quantity.to_i < @setting.reorder_quantity and cart_item.product.active
-                  Notifier.deliver_reorder_quantity_notification(cart_item.product,AppConfig.admin_email)
+                  #Notifier.deliver_reorder_quantity_notification(cart_item.product,AppConfig.admin_email)
                 end
               end
             end
@@ -112,6 +112,9 @@ class Site::OrdersController < ApplicationController
 
             end   #END OF IF PRODUCTION                                                   #### 0004
             #logger.info "TESTING_SITE__  RESULT #{response.success?}"
+	logger.info '=============================== RESPONSE FROM SERVER ========================================='
+	logger.info response.to_json
+	logger.info '=============================================================================================='
 
             if (!response.nil? && response.success?) or total_amount == 0 or !production
               logger.info "entered response block"
@@ -166,8 +169,16 @@ class Site::OrdersController < ApplicationController
           # END OF IF @credit_card.valid? or !production
           # Invalid Credit Card
           logger.info " CREDIT CARD NOT VALID ##########################################################"
+	logger.info @credit_card.errors.to_json
           flash[:notice] = @credit_card.errors
-          redirect_to payment_site_checkouts_path
+	  if(flash[:notice][:brand])
+		flash[:notice].delete(:brand)
+		flash[:notice][:card_type]=["does not match the card number"]
+          end
+	  if(flash[:notice][:number].length==0)
+		flash[:notice].delete(:number)
+	  end
+	  redirect_to payment_site_checkouts_path
         end
 
 
