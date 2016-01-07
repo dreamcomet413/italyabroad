@@ -76,7 +76,7 @@ class Site::OrdersController < ApplicationController
             for cart_item in @cart.items
               if cart_item.quantity < @setting.reorder_quantity
                 if cart_item.product.quantity.to_i < @setting.reorder_quantity and cart_item.product.active
-                  #Notifier.deliver_reorder_quantity_notification(cart_item.product,AppConfig.admin_email)
+                  Notifier.deliver_reorder_quantity_notification(cart_item.product,AppConfig.admin_email)
                 end
               end
             end
@@ -117,6 +117,7 @@ class Site::OrdersController < ApplicationController
 	logger.info '=============================================================================================='
 
             if (!response.nil? && response.success?) or total_amount == 0 or !production
+              
               logger.info "entered response block"
               if  @cart.cupon
                 logger.info "44444"
