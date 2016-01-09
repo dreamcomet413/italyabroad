@@ -207,7 +207,7 @@
                           <%- end -%>
                       <%-  end -%>
                       <li style="font-weight:bold;">
-                        <%= link_to("Special Offers", nested_categories_url(category.name == "Other Drinks" ? wine_category : category, "offer"), :type => "special_offer", :class => "red-text") %>
+                        <%= link_to("Special Offers", nested_categories_url(category.name == "Other Drinks" ? category : category, "offer"), :type => "special_offer", :class => "red-text") %>
                       </li>
                     </ul>
                 <%- end -%>
