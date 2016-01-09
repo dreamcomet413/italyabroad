@@ -170,16 +170,16 @@ class Site::OrdersController < ApplicationController
           # END OF IF @credit_card.valid? or !production
           # Invalid Credit Card
           logger.info " CREDIT CARD NOT VALID ##########################################################"
-	logger.info @credit_card.errors.to_json
+          logger.info @credit_card.errors.to_json
           flash[:notice] = @credit_card.errors
-	  if(flash[:notice][:brand])
-		flash[:notice].delete(:brand)
-		flash[:notice][:card_type]=["does not match the card number"]
+          if(flash[:notice][:brand])
+		        flash[:notice].delete(:brand)
+		        flash[:notice][:card_type]=["does not match the card number"]
           end
-	  if(flash[:notice][:number].length==0)
-		flash[:notice].delete(:number)
-	  end
-	  redirect_to payment_site_checkouts_path
+          if(flash[:notice][:number].length==0)
+            flash[:notice].delete(:number)
+          end
+          redirect_to payment_site_checkouts_path
         end
 
 
