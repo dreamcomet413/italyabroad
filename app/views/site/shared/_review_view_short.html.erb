@@ -21,25 +21,6 @@
 
             </div>
 
-	    <!--<table>
-	      <tr>
-	        <td><%= avatar_for_user(review.user, "small") %></td>
-          <td>
-            <table>
-              <tr>
-                <td style="font:bold 12px Arial"><%= review.user.name %> </td></tr>
-                <tr><td><%= review.created_at.strftime("%m/%d/%Y %H:%M %p") %></td></tr>
-                <tr><td><%= show_ratings(review.reviewer, review.score) %></td>
-              </tr>
-
-            </table>
-          </td>
-        </tr>
-
-        <tr>
-          <td colspan="2"><div class="description">"<%= review.description.gsub("\n","<br />").html_safe rescue "No description" %>"</div></td>
-       </tr>
-      </table>-->
     </li>
 	  <%- end -%>
 	</ul>
