@@ -83,7 +83,7 @@
           <%= product.description_short.html_safe() %>
           <div style="font-size:18px;color:#9b0707;text-align:right;">
             <!--Price:&nbsp;--><%= number_to_currency product.price, :unit => "&pound;" %><br />
-            <% if product.quantity and product.quantity > 0 %>
+            <% if product.quantity? #and product.quantity > 0 %>
                 <%= link_to(image_tag("buttons/add_to_cart_button.png"), "/site/cart?product_id=#{product.id}", :remote => true, :method => :post) %>
             <% else %>
                 <span style="color:red;font-size:14px;">Sorry no places left</span>
