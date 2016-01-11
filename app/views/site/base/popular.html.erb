@@ -22,7 +22,7 @@
   end
   %>
   <% @popular_searches.each do |result| %>
-    <span style="font-size:<%= (((1.5*pmax - pmin) * (Math.log(result.popularity)) / (Math.log(vmax)) + pmin)/100 * 12).round.to_s %>px"><%= link_to result.query.titleize, search_index_path(:text => result.query), :style => "color:black;" %>, &nbsp;</span> &nbsp;&nbsp;
+    <span style="font-size:<%= (((1.5*pmax - pmin) * (Math.log(result.popularity.to_f)) / (Math.log(vmax)) + pmin)/100 * 12).round.to_s %>px"><%= link_to result.query.titleize, search_index_path(:text => result.query), :style => "color:black;" %>, &nbsp;</span> &nbsp;&nbsp;
   <% end %>
 </div>
 
