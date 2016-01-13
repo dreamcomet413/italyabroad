@@ -44,6 +44,7 @@ class Cart
     region_ids = Product.where(["id IN (?)",self.product_ids]).collect(&:region_id).select{|s| !s.nil?}
     producer_ids = Product.where(["id IN (?)",self.product_ids]).collect(&:producer_id).select{|s| !s.nil?}
     products = Product.where(["region_id IN (?) and producer_id IN (?)",region_ids,producer_ids])
+    # debugger
     if products.length < 5 
       products = Product.where(["region_id IN (?) or producer_id IN (?)",region_ids,producer_ids])
     end

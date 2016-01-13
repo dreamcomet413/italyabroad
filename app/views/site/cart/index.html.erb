@@ -227,6 +227,7 @@
 
 <!-- div style="border:1px solid #ccc;margin:10px 20px;background-color:#f3f3f3;padding:5px;float:left;text-align:center;width:690px;" -->
 
+<% if @cart.items.length !=0 %>
 <div style="border:1px solid #ccc;margin:10px 20px;padding:5px;float:left;text-align:center;width:690px;">
 
   <div style="font-size:14px;font-weight:bold;color:#003400;text-align:left;">Other products you may be interested in</div><br /><br />
@@ -244,7 +245,7 @@
     <tr>
       <%- for product in products -%>
           <%# if product.root_category.upcase == 'WINE' or product.root_category.upcase == 'FOOD' or product.root_category.upcase == 'HAMPERS' %>
-          <% if product.root_category.present? && %w(Wine Food Hampers).include?(product.root_category) %>
+          <% #if product.root_category.present? && %w(Wine Food Hampers).include?(product.root_category) %>
               <td valign="top">
                 <div style="float:left;width:130px;">
                   <div style="height:120px;vertical-align:bottom;v-align:bottom;margin-bottom:0px;">
@@ -257,11 +258,12 @@
                 </div>
 
               </td>
-          <% end %>
+          <% #end %>
       <% end %>
     </tr>
   </table>
 </div>
+<% end %>
 
 <% content_for :right do %>
     <%= render :partial => '/site/shared/box_subscriptions' %>
