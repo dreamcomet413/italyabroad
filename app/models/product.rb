@@ -66,6 +66,11 @@ class Product < ActiveRecord::Base
 
   LIMITED_QUANTITY = 24
 
+
+  def self.wine_tours
+    Product.find(:all, :limit => 2, :include => {:categorizations => :category}, :conditions => ["categories.name LIKE ? AND DATE(date) > ? AND active" ,'Wine Tours',Date.today],:order=>'date')
+  end
+
   def make_product_prices
     temp = self.product_prices.build
     temp.price = price ||= 0
