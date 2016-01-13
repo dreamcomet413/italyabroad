@@ -72,9 +72,9 @@ class Product < ActiveRecord::Base
   end
 
   def get_quantity(actual_price)
-    if actual_price
+    begin
       self.product_prices.find_by_price(actual_price).quantity.to_s
-    else
+    rescue
       self.product_prices.map(&:quantity).try(:first)
     end
   end
