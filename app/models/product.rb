@@ -71,6 +71,14 @@ class Product < ActiveRecord::Base
     Product.find(:all, :limit => 2, :include => {:categorizations => :category}, :conditions => ["categories.name LIKE ? AND DATE(date) > ? AND active" ,'Wine Tours',Date.today],:order=>'date')
   end
 
+  def get_quantity(actual_price)
+    if actual_price
+      self.product_prices.find_by_price(actual_price).quantity.to_s
+    else
+      self.product_prices.map(&:quantity).try(:first)
+    end
+  end
+
   def make_product_prices
     temp = self.product_prices.build
     temp.price = price ||= 0

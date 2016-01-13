@@ -156,6 +156,15 @@
                         <b><%= @limited_stock %></b>
                       </td>
                     </tr>
+                <% else %>
+                  <tr>
+                    <td valign="top" style="">
+                      Quantity:
+                    </td>
+                    <td class="data" style="">
+                      <%= @quantity %>
+                    </td>
+                  </tr>
                 <% end %>
             <% end %>
         <% end %>
