@@ -12,7 +12,7 @@
       <% if @grape && @grape.image %>
 
      <div style="height:300px;width:300px;overflow:hidden;"><% @image_id = @grape.image.id.to_s + ".jpg" %>
-      <%= image_tag("/resources/images/#{@image_id}",:alt=>@grape.name, :height=> "300px") %>
+      <%= image_tag(site_image_url('home_image', @grape.image, :jpg),:alt=>@grape.name, :height=> "300px") %>
      </div>
       <% else %>
       <%= image_tag("grape_default.png",:alt=>@grape.name, :height=> "300px") %>
