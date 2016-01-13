@@ -11,7 +11,7 @@
   <div class="banner-left">
       <% if @grape && @grape.image %>
 
-     <div style="height:300px;width:300px;overflow:hidden;"><% @image_id = @grape.image.id.to_s + ".jpg" %>
+     <div style="height:300px;width:300px;overflow:hidden;">
       <%= image_tag(site_image_url('home_image', @grape.image, :jpg),:alt=>@grape.name, :height=> "300px") %>
      </div>
       <% else %>
