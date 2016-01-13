@@ -133,22 +133,13 @@
                     <tr>
                       <td valign="top">Size:</td>
                       <td class="data">
-                        <%= p.size %>
+                        <%= p.size %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        Price: <%= p.price %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        Quantity: <%= @product.get_quantity(p.price.to_s) %>
                       </td>
-                      <td valign="top">Price:</td>
-                      <td class="data">
-                        <%= p.price %>
-                      </td>                      
+                </tr>                      
                     </tr>
                 <% end %>
-                <tr>
-                    <td valign="top" style="">
-                      Quantity:
-                    </td>
-                    <td class="data" style="">
-                      <%= @quantity %>
-                    </td>
-                </tr>
                 <%# end %>
             <% else %>
                 <tr>
