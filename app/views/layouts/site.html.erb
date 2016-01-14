@@ -195,16 +195,18 @@
                           <%# num_products = find_any_active_product_exists(child.products)  %>
                           <%#- if num_products > 0  -%><!--
                           <li><%#= link_to(child.name.html_safe(), nested_categories_url(%w(Beers Vodka Grappas Gin Amaro Vermouth).include?(child.name) ? wine_category : category, child)) %></li> -->
-                          <% if child.name == "Wine Vouchers" %>
-                            <% temp = child %>
-                          <% elsif child.name == "Wine Tours" %>
-                            <!-- Hiding Wine Tours -->
-                          <% elsif child.name == "Wine accessories" %>
-                            <li><%= link_to(child.name.html_safe(), nested_categories_url(category, child)) %></li>
-                            <li><%= link_to(temp.name.html_safe(), nested_categories_url(category, temp)) if temp.present? %></li>
-                          <% else %>
-                            <li><%= link_to(child.name.html_safe(), nested_categories_url(category, child)) %></li>
-                          <%- end -%>
+                          <% if child.products.count > 0 %>
+                            <% if child.name == "Wine Vouchers" %>
+                              <% temp = child %>
+                            <% elsif child.name == "Wine Tours" %>
+                              <!-- Hiding Wine Tours -->
+                            <% elsif child.name == "Wine accessories" %>
+                              <li><%= link_to(child.name.html_safe(), nested_categories_url(category, child)) %></li>
+                              <li><%= link_to(temp.name.html_safe(), nested_categories_url(category, temp)) if temp.present? %></li>
+                            <% else %>
+                              <li><%= link_to(child.name.html_safe(), nested_categories_url(category, child)) %></li>
+                            <%- end -%>
+                          <% end %>
                       <%-  end -%>
                       <% if category.products.where(["discount > 0"]).length > 0 %>
                         <li style="font-weight:bold;">
