@@ -112,9 +112,10 @@
 <% content_for :right do %>
   <%= render :partial => '/site/shared/box_latest_recipe_reviews' %>
   <%= link_to image_tag("shareRecipe.png"), new_site_recipe_path  %>
-  <br />
+  
+  <div style="clear:both;"></div> <br />
   <%= link_to image_tag("chefProfile.png"), account_path %>
-  <br />
+  <div style="clear:both;"></div><br />
   <%= render :partial => '/site/shared/box_subscriptions' %>
   <br />
 	<%= render :partial => '/site/shared/box_mood' %>
