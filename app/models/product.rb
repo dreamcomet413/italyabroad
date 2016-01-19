@@ -80,10 +80,12 @@ class Product < ActiveRecord::Base
   end
 
   def make_product_prices
-    temp = self.product_prices.build
-    temp.price = price ||= 0
-    temp.quantity = quantity ||= 1
-    temp.save
+    if self.product_prices.length == 0
+      temp = self.product_prices.build
+      temp.price = price ||= 0
+      temp.quantity = quantity ||= 1
+      temp.save
+    end
   end
 
   def name_short(len)

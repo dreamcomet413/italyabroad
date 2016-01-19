@@ -81,8 +81,16 @@ class Admin::ProductsController < ApplicationController
 
     @product.friendly_identifier = @product.name
 
-    if !Product.all(:conditions => ["name LIKE ?", @product.name]).blank?
-      @like_products = Product.all(:conditions => ["name LIKE ?", @product.name])
+    # added by fahad to store price & quantity first time in product_prices only on create 
+    temp = @product.product_prices.build 
+    temp.price = (params[:product][:price][0].to_f rescue 0)
+    temp.quantity = (params[:product][:quantity][0].to_f rescue 1)
+    temp.quantity = 1 if temp.quantity==0
+    # end setting product_prices
+
+
+    @like_products = Product.all(:conditions => ["name LIKE ?", @product.name])
+    if !@like_products.blank?
       if @like_products.collect(&:quantity).include?(@product.quantity) && @like_products.collect(&:price).include?(@product.price)
         flash[:notice] = "Product's Quantity and Price already exists for the same name"
         render :action => :new
@@ -98,6 +106,8 @@ class Admin::ProductsController < ApplicationController
       flash[:notice] = @product.show_errors
       render :action => :new
     end
+
+
   end
 
   def meta
