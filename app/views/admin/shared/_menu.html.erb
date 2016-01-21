@@ -166,9 +166,15 @@
 
 <!--1st drop down menu -->
 <div id="dropmenu1" class="dropmenudiv">
-  <span <%= "class='active'" if @current_controller == "settings" %>><%= link_to "Settings", admin_settings_path, :class => ('active' if @current_controller == "settings") %></span>
-  <span <%= "class='active'" if @current_controller == "users" %>><%= link_to "Administrators", admin_users_path, :class => ('active' if @current_controller == "users") %></span>
-  <span <%= "class='active'" if @current_controller == "customers" %>><%= link_to "Customers", admin_customers_path, :class => ('active' if @current_controller == "customers") %></span>
+  <% is_active = @current_controller == "settings" and params[:action]=="index" %>
+  <span <%= "class='active'" if is_active %> ><%= link_to "Settings", admin_settings_path, :class => ('active' if is_active) %></span>
+  <% is_active = @current_controller == "users" %>
+  <span <%= "class='active'" if is_active %>><%= link_to "Administrators", admin_users_path, :class => ('active' if is_active) %></span>
+  <% is_active = @current_controller == "customers" %>
+  <span <%= "class='active'" if is_active %>><%= link_to "Customers", admin_customers_path, :class => ('active' if is_active) %></span>
+  <% is_active = @current_controller == "settings" and params[:action]=='available_backups' %>
+  <span <%= "class='active'" if is_active %>><%= link_to "Database Backups", available_backups_admin_settings_path, :class=> ( 'active' if is_active) %></span>
+
 </div>
 <!--1st drop down menu -->
 <!--2nd drop down menu -->

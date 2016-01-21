@@ -2,6 +2,91 @@ ItalyabroadNew::Application.routes.draw do
 
 
 
+    namespace :admin do
+    resources :testimonials
+    resources :faqs
+    resources :shipping_agencies
+    resources :occasions
+    resources :about_us
+    resources :contact_messages
+    resources :regions do
+      resources :images, :only => [:destroy]
+    end
+    resources :producers do
+      resources :images, :only => [:destroy]
+    end
+    resources :grapes do
+      resources :images, :only => [:destroy]
+    end
+    resources :forums
+    resources :categories
+    resources :deliveries
+    resources :cupons do
+      match :product_list, :on => :collection
+    end
+    resources :forums
+    resources :posts
+    resources :comments
+    resources :reviews do
+      match :send_mails, :on => :collection
+    end
+    resources :orders, :only => [:index, :show, :destroy] do
+      member do
+        get :print_tasting
+        get :print_invoice
+        get :print_picking_list
+        get :delivery_details
+        get :cancel_delivery_charge
+      end
+    end
+    resources :users
+    resources :customers do
+      collection do
+        get :print_user_details
+      end
+    end
+    resources :gift_options
+    resources :subscriptions
+    resources :news_letters do
+      resources :images, :only => [:destroy]
+    end
+    resources :recipes do
+      resources :images, :only => [:destroy]
+      resources :resources, :only => [:destroy]
+    end
+    resources :resources, :only => [:destroy]
+    resources :images, :only => [:destroy]
+    resources :products do
+      resources :images, :only => [:destroy]
+      resources :resources, :only => [:destroy]
+    end
+    resources :settings, :only => [:index, :update] do
+      
+      collection do 
+        get 'available_backups'
+        get 'restore'
+        get 'take_manual_database_backup'
+        get 'download'
+
+      end
+
+      resources :images, :only => [:destroy]
+      resources :resources, :only => [:destroy]
+    end
+    get "moods/index"
+
+    get "moods/new"
+
+    post "moods/create"
+
+    get "moods/edit"
+
+    put "moods/update"
+    delete "moods/destroy"
+  end
+
+
+
   get "moods/index"
 
   resources :chat_messages do
@@ -190,79 +275,7 @@ ItalyabroadNew::Application.routes.draw do
   match 'admin/xml/eval_xml' => 'admin/xml#eval_xml', :as => :eval_xml
   match 'admin/xml/eval_xml_g_comptible' => 'admin/xml#eval_xml_g_comptible', :as => :eval_xml_g_comptible
   match 'admin/comments/approve_comment' => 'admin/comments#approve_comment'
-  namespace :admin do
-    resources :testimonials
-    resources :faqs
-    resources :shipping_agencies
-    resources :occasions
-    resources :about_us
-    resources :contact_messages
-    resources :regions do
-      resources :images, :only => [:destroy]
-    end
-    resources :producers do
-      resources :images, :only => [:destroy]
-    end
-    resources :grapes do
-      resources :images, :only => [:destroy]
-    end
-    resources :forums
-    resources :categories
-    resources :deliveries
-    resources :cupons do
-      match :product_list, :on => :collection
-    end
-    resources :forums
-    resources :posts
-    resources :comments
-    resources :reviews do
-      match :send_mails, :on => :collection
-    end
-    resources :orders, :only => [:index, :show, :destroy] do
-      member do
-        get :print_tasting
-        get :print_invoice
-        get :print_picking_list
-        get :delivery_details
-        get :cancel_delivery_charge
-      end
-    end
-    resources :users
-    resources :customers do
-      collection do
-        get :print_user_details
-      end
-    end
-    resources :gift_options
-    resources :subscriptions
-    resources :news_letters do
-      resources :images, :only => [:destroy]
-    end
-    resources :recipes do
-      resources :images, :only => [:destroy]
-      resources :resources, :only => [:destroy]
-    end
-    resources :resources, :only => [:destroy]
-    resources :images, :only => [:destroy]
-    resources :products do
-      resources :images, :only => [:destroy]
-      resources :resources, :only => [:destroy]
-    end
-    resources :settings, :only => [:index, :update] do
-      resources :images, :only => [:destroy]
-      resources :resources, :only => [:destroy]
-    end
-    get "moods/index"
 
-    get "moods/new"
-
-    post "moods/create"
-
-    get "moods/edit"
-
-    put "moods/update"
-    delete "moods/destroy"
-  end
 
   match 'admin/settings/update_guarantee_of_satisfaction_details' => 'admin/settings#update_guarantee_of_satisfaction_details', :as => :update_guarantee_of_satisfaction_details
   match 'admin/products/:id/meta' => 'admin/products#meta', :as => :product_meta

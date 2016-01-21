@@ -3,7 +3,7 @@ source 'http://rubygems.org'
 gem 'prawn', '0.11.1'
 gem 'RedCloth'
 gem 'pdfkit'
-gem 'rails', '3.0.6'
+gem 'rails', '3.0.9'
 #gem 'rails', '2.3.5'
 gem 'capistrano', '2.12.0',:require => false
 gem 'mime-types', '1.23'
@@ -37,6 +37,8 @@ gem 'juggernaut'
 gem 'jwt', '~> 0.1.11'
 gem 'carrierwave'
 gem 'byebug'
+
+gem 'whenever', :require => false
 
 group :development do
   #gem 'thin'

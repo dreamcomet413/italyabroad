@@ -2,6 +2,10 @@ class Admin::SettingsController < ApplicationController
   before_filter :admin_login_required
   layout "admin"
 
+  require "database_backup"
+  include DatabaseBackup
+
+
   def index
     @setting = Setting.find(:first) || Setting.create
   end
@@ -37,6 +41,40 @@ class Admin::SettingsController < ApplicationController
 
     end
   end
+
+
+  def available_backups
+  
+  end
+
+  def take_manual_database_backup
+
+  end
+
+  def download
+    send_file params[:name]
+  end
+  
+  def manual_database_backup
+    notice_txt= "internal_server error"
+    if params[:admin] == 'special' or current_user.is_admin?   
+      db_out_path = take_database_backup
+      if params[:admin] == 'special'
+        render :text => "true"
+      else
+        if db_out_path != "failed"
+          notice_txt= ""
+          send_file db_out_path
+        else
+          redirect_to "/admin/take_manual_database_backup", :notice=>notice_txt
+        end
+
+      end
+    end
+  end
+
+
+
 
 end
 
