@@ -65,7 +65,7 @@ ItalyabroadNew::Application.routes.draw do
       collection do 
         get 'available_backups'
         get 'restore'
-        get 'take_manual_database_backup'
+        get 'take_backup_now'
         get 'download'
 
       end
