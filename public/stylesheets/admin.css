@@ -425,3 +425,13 @@ ul.makeMenu, ul.makeMenu ul {
 .settings table td{
   padding-bottom:15px;
 }
+
+
+.hint-grey{
+    color: grey;
+}
+
+.instruction_box{
+  border: 1px solid #ccc;
+  padding: 20px;
+}
