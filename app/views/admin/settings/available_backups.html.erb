@@ -2,7 +2,7 @@
 <%- @breadcrumbs = "Administration &raquo; #{link_to "Database Backups", available_backups_admin_settings_path}" -%>
 
 <div class="inner_content settings" id="admin_settings_edit">
-  <h2>Database Backups</h2>
+  <span><h2 style="display:inline;">Database Backups</h2> ( <%= link_to "Take Backup Now", "#", :onclick=> "alert('comming soon'); return false;" %> )</span>
   <div class="hint-grey"> (30 Recent backups with one backup after every 3 hours)</div>
   <br />
 
@@ -29,7 +29,7 @@
 	      All Available local backup recovery points are listed to the left. To restore the database to the time listed, click the 'Restore" link next to the desired backup, please note that this action will remove all changes made after the time stamp on the backup.
 	      <br />
 	      <br />
-	      Changes made after the time stamp on the backup will be lost.
+	      Changes made after the time stamp on the backup will be lost. So its recommended to take a backup before you restore anything.
 	    </p></div></div>
 	<div class="clr"></div>
 </div>
