@@ -14,7 +14,7 @@
 	    &nbsp;&nbsp;
 	    <%= link_to 'Download', "/admin/settings/download?name=backups/#{File.basename(backup)}" %>
 	    &nbsp;&nbsp;
-	    <%= link_to 'Restore', "#", :onclick => "alert('comming soon'); return false; "%>
+	    <%= link_to 'Restore', "/admin/settings/restore?name=backups/#{File.basename(backup)}" %>
 	    <br />
 	 <% end %>
 	</div>

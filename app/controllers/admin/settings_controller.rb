@@ -60,22 +60,28 @@ class Admin::SettingsController < ApplicationController
     send_file params[:name]
   end
   
-  def manual_database_backup
-    notice_txt= "internal_server error"
-    if params[:admin] == 'special' or current_user.is_admin?   
-      db_out_path = take_database_backup
-      if params[:admin] == 'special'
-        render :text => "true"
-      else
-        if db_out_path != "failed"
-          notice_txt= ""
-          send_file db_out_path
-        else
-          redirect_to "/admin/take_manual_database_backup", :notice=>notice_txt
-        end
 
+  def restore
+    if config = YAML::load(ERB.new(IO.read(Rails.root.to_s + "/config/database.yml")).result)[Rails.env]      
+      tempdb_directory = File.join(Rails.root,'/tempdb')
+      if !File.exists? tempdb_directory
+        Dir.mkdir tempdb_directory
       end
+      
+      file_path = File.join(tempdb_directory,"temp.sql")
+      file_size = File.size("#{tempdb_directory}")
+      if file_size > 0
+      system "gunzip -c #{params[:name]} > 'tempdb/temp.sql'"
+      system "mysql -u #{config['username']} -p'#{config['password']}' #{config['database']} < tempdb/temp.sql"
+      # schedule_backup
+      else
+        system "rm #{file_path}"
+      end
+
+    else
+      render :text => "No database is configured for the environment '#{Rails.env}'"
     end
+    redirect_to available_backups_admin_settings_path
   end
 
 
