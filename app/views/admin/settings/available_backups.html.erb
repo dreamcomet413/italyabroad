@@ -11,6 +11,7 @@
 	 <% backups.each do |backup| %>
 	    <%= File.basename(backup) %>
 	    <%= link_to 'Download', "/admin/settings/download?name=backups/#{File.basename(backup)}" %>
+	    <%= link_to 'Restore', "#", :onclick => "alert('comming soon'); return false; "%>
 	    <br />
 	 <% end %>
 	</div>
