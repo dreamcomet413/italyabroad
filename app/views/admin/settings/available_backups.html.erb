@@ -11,7 +11,9 @@
 	 <% backups = Dir.glob(File.join(backup_directory,'/*')).select{|file| File.file?(file)}.sort_by{|f| File.mtime f}.reverse %>
 	 <% backups.each do |backup| %>
 	    <%= File.basename(backup) %>
+	    &nbsp;&nbsp;
 	    <%= link_to 'Download', "/admin/settings/download?name=backups/#{File.basename(backup)}" %>
+	    &nbsp;&nbsp;
 	    <%= link_to 'Restore', "#", :onclick => "alert('comming soon'); return false; "%>
 	    <br />
 	 <% end %>
