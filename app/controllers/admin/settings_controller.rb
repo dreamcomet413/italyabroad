@@ -47,8 +47,13 @@ class Admin::SettingsController < ApplicationController
   
   end
 
-  def take_manual_database_backup
+  def take_backup_now
 
+    # Thread.new do 
+      Setting.take_database_backup
+    # end
+
+    redirect_to available_backups_admin_settings_path
   end
 
   def download

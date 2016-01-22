@@ -2,7 +2,7 @@
 <%- @breadcrumbs = "Administration &raquo; #{link_to "Database Backups", available_backups_admin_settings_path}" -%>
 
 <div class="inner_content settings" id="admin_settings_edit">
-  <span><h2 style="display:inline;">Database Backups</h2> ( <%= link_to "Take Backup Now", "#", :onclick=> "alert('comming soon'); return false;" %> )</span>
+  <span><h2 style="display:inline;">Database Backups</h2> ( <%= link_to "Take Backup Now", "/admin/settings/take_backup_now" %> )</span>
   <div class="hint-grey"> (30 Recent backups with one backup after every 3 hours)</div>
   <br />
 
