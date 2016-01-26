@@ -22,7 +22,7 @@ class Site::PostsController < ApplicationController
 
   def search		
     conditions = params[:q].blank? ? nil : ForumPost.send(:sanitize_sql, ["LOWER(#{ForumPost.table_name}.body) LIKE ?", "%#{params[:q]}%"])
-    @posts = ForumPost.paginate @@query_options.merge(:conditions => conditions, :page => params[:page], :count => {:select => "#{ForumPost.table_name}.id"}, :order => post_order)
+    @posts = ForumPost.paginate @@query_options.merge(:conditions => conditions, :page => params[:page], :count => {:select => "#{ForumPost.table_name}.id"}).order(post_order)
     @users = User.find(:all, :select => 'distinct *', :conditions => ['id in (?)', @posts.collect(&:user_id).uniq]).index_by(&:id)
     render_posts_or_xml :index
   end
