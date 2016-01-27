@@ -5,13 +5,11 @@ class Admin::SettingsController < ApplicationController
   require "database_backup"
   include DatabaseBackup
 
-  before_filter :http_basic_auth, :only => [:available_backups, :restore, :take_backup_now, :download]
+  before_filter :authenticate, :only => [:available_backups, :restore, :take_backup_now, :download]
 
-  def http_basic_auth
-    if ENV['HTTP_AUTH'] =~ %r{(.+)\:(.+)}
-      unless authenticate_with_http_basic { |user, password|  user == $1 && password == $2 }
-        request_http_basic_authentication
-      end
+  def authenticate
+    authenticate_or_request_with_http_basic('Administration') do |username, password|
+      username == 'db_admin' && password == 'andrea321!'
     end
   end
 
