@@ -64,3 +64,7 @@ Payment Method : <%= number_to_currency(@order.total - (@order.points_used * @se
   <br />
   <%= render :partial => '/site/shared/social_follow' %>
 <%- end -%>
+
+<% #reset session here once the view is done %>
+<% session[:ship_address] = nil %>
+<% session[:cart] = nil; @cart=Cart.new %>
