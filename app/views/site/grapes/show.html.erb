@@ -6,19 +6,21 @@
 <div id="header"><%= @grape.name %></div>
 <br />
 
-<div id="page_banners">
+<div id="page_banners" style="border:none;">
 
-  <div class="banner-left">
+  <div class="banner-left" style="text-align:left; max-width:300px;width:auto;height:auto;margin-right:15px;">
       <% if @grape && @grape.image %>
 
-     <div style="height:300px;width:300px;overflow:hidden;">
+     <div style="heigh:auto;">
       <%= image_tag(site_image_url('home_image', @grape.image, :jpg),:alt=>@grape.name, :height=> "300px") %>
      </div>
       <% else %>
       <%= image_tag("grape_default.png",:alt=>@grape.name, :height=> "300px") %>
       <% end %>
   </div>
-  <div class="banner-right"><%=@grape.grape_quote %></div>
+  <div class="" style="padding:10px 5px;font-size:20px;"><%=@grape.grape_quote %></div>
+  <p style="text-align:justify;margin-left:10px;margin-right:10px;"><%= @grape.description.try(:html_safe) || "No Description" %></p>
+  <!-- <div class="banner-right"><%=@grape.grape_quote %></div> -->
 
 </div>
 
@@ -27,7 +29,6 @@
 <div style="margin-left:10px;margin-right:10px;">
  <!-- <h1 style="text-align:center;font-size:18px;font-weight:bold;color:#666666;margin-bottom:30px">Grape Information</h1> -->
   <div style="float:left;margin-right:20px;"><%#= show_grape_image(@grape) %></div><br />
-  <p style="text-align:justify;margin-left:10px;margin-right:10px;"><%= @grape.description.try(:html_safe) || "No Description" %></p>
   <div style="clear:both;"></div>
   <br />
 
