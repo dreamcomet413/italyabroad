@@ -16,8 +16,8 @@ var google_conversion_value = 0;
 <img height="1" width="1" style="border-style:none;" alt="" src="https://www.googleadservices.com/pagead/conversion/998283630/?value=0&amp;label=KNvKCJLbrwMQ7rKC3AM&amp;guid=ON&amp;script=0"/>
 </div>
 </noscript>
-<% @title = "Complete Order" %>
-<%- @breadcrumbs = "#{link_to "Home", root_url} &raquo; Checkout &raquo; Complete Order" -%>
+<% @title = "Order Completed" %>
+<%- @breadcrumbs = "#{link_to "Home", root_url} &raquo; Checkout &raquo; Order Complete" -%>
 <% @class = "no-padding" %>
 <!--Response - <%#= session[:response] %><br />
 Success or failure - <%#= session[:response_success] %>
@@ -30,32 +30,35 @@ Response Params is <%#= session[:response_params] %>-->
   Your Order has been successfully received by our team and you will shortly receive an acknowledgement by email.
   </p><br />
 <div style="margin: 10px 20px;font-size:16px;font-weight:bold;">
-Order Details
+Thank you for shopping with us, your order details are
 </div>
 
 <p style="margin: 10px 20px;">
-Order Reference : <%= @order.id %><br /><br />
+Order number: <%= @order.id %><br /><br />
 <!--Total order Value : <span style="font-size:16px;"><%#= number_to_currency (@order.total - (@order.points_used * Setting.find(:first).points_to_pound), :unit => "&pound;") %></span>
 ( + Points: <%#= number_to_currency (@order.points_used * Setting.find(:first).points_to_pound, :unit => "&pound;") %>)
 <br /><br />
 You will shortly receive an order acknowledgement by email.-->
+
+<div style="display:none;">
 Payment Method : <%= number_to_currency(@order.total - (@order.points_used * @setting.points_to_pound), :unit => "&pound;") %> Credit Card
  + Points equivalent to : <%= number_to_currency(@order.points_used * @setting.points_to_pound, :unit => "&pound;") %>
 <br /><br />
+</div>
+
 </p><br />
-<div style="margin: 10px 20px;">
+<div style="margin: 10px 10px;">
 
 </div>
-<br />
 
 <% 
 	total_points_earned = @order.total * Setting.find(:first).points_per_pound
 %>
 
-<p style="margin: 10px 20px;font-weight:bold; color:#ff0000;"><%=total_points_earned%> Points earned. Points have been added.</p>
+<p style="margin: 10px 20px;font-weight:bold; color:#ff0000;"> You have earned <%=total_points_earned%> Points. That have been added to your account</p>
 <br />
   <p style="margin: 10px 20px;font-weight:bold;">
-  Thank you for shopping at Italyabroad.com
+	Enjoy your purchase and don't forget to review the product you have just bought 
   </p>
 
 

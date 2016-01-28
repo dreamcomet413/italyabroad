@@ -167,6 +167,15 @@
                 <% end %>
             <% end %>
         <% end %>
+          <tr style="color:red;">
+                  <td valign="top">Points:</td>
+                  <td class="data" style="color:red;">
+                    <%= @product.product_prices.first.price * Setting.find(:first).points_per_pound  rescue 0 %>
+                  </td>
+                </tr>
+
+          
+
       </table>
   <% end %>
   <br/><br/>
@@ -243,7 +252,6 @@
                     <b>&pound; <%= quantity.price %> is <%= image_tag('out_of_stock.png') %></b>
                 <%- end -%>
             <% end %>
-
             <%= link_to image_tag("add_to_wish_list.png"), "/site/wish_list?product_id=#{@product.id}", :remote => true, :method => :post if @product.categories.root.present? && @product.categories.root.name == 'Wine' %>
             <% if  @product.categories.root.present? && @product.categories.root.name.downcase == 'wine' %>
                 <%= link_to image_tag("WINE_LIST.jpg"), "/site/wine_lists?product_id=#{@product.id}", :remote => true, :method => :post, :style => "color:#464646;" %>
@@ -259,7 +267,7 @@
       </li>
 
 
-    </ul>
+    </ul>  
   </div>
 </td>
 </tr>

@@ -38,7 +38,11 @@ module SslRequirement
   protected
     # Returns true if the current action is supposed to run as SSL
     def ssl_required?
-      true #(self.class.read_inheritable_attribute(:ssl_required_actions) || []).include?(action_name.to_sym)
+      if Rails.env == "production"
+        true
+      else
+        (self.class.read_inheritable_attribute(:ssl_required_actions) || []).include?(action_name.to_sym)
+      end
     end
     
     def ssl_allowed?
