@@ -42,7 +42,7 @@
     <%- end -%>
   </ul>
   <br />
-  <% @grape_products = @grape.products.find(:all,:conditions=>['active = ? and quantity > ?',true,0])%>
+  <% @grape_products = @grape.products.find(:all,:include=>:categories,:conditions=>['upper(categories.name)=?','WINE'])%>
   <% if @grape_products.size == 0 %>
   <% @grape_products = Product.find(:all, :include => [:categories] ,:conditions => ['upper(categories.name) LIKE ?  AND products.active = ? AND quantity > ? ','WINE',true,0],:order=>'RAND()',:limit=>6) %>
   <% end %>

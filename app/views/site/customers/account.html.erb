@@ -8,7 +8,7 @@
 total_points_used = current_user.orders.sum('points_used')
     %>
 
-<h4 class="account-title" style="color:red;">You have <%= (total_points - total_points_used).to_i %> points in your credit.  This is equivalent to <%= number_to_currency(((total_points - total_points_used) * Setting.find(:first).points_to_pound.to_f), :unit => "&pound;")%></h4>
+<h4 class="account-title" style="color:red;">You have <%= (total_points - total_points_used).to_i %> points on your account, equivalent to <%= number_to_currency(((total_points - total_points_used) * Setting.find(:first).points_to_pound.to_f), :unit => "&pound;")%></h4>
 <div style="padding:0 10px;">
   <%= form_tag("/site/customers/#{@user.id}", :method => :put, :multipart => true) do %>
       <%= errors_for(@user) -%>

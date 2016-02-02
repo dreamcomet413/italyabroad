@@ -18,7 +18,7 @@
   <%= link_to image_tag("guide_home_image.jpg",:alt=>'Grape guide'), search_index_path(:id => "grapes") %>
   <% end %>
 </div>
-<h3 style="border:none;"  align="center">Italian grapes and wines</h3>
+<h3 style="border:none;display:none;"  align="center">Italian grapes and wines</h3>
 
 <div id="blog_container"  style="text-align:justify;">
     <p style="text-align:justify;">
@@ -27,7 +27,7 @@
    <div style="float:right;">
 
   </div>
-   <h3 style="font-size:16px;border:none;margin-bottom:0;">Grape search result, click for information</h3>
+   <h1 style="font-size:16px;border:none;margin-bottom:0;">Grape search results:</h1>
     <br />
  <% if params[:search] %>
 
@@ -57,7 +57,7 @@
 <div><%= will_paginate_(@grapes) %></div>
 <%- end -%><br />
 <% end %>
-<%= link_to "grapes", site_grapes_path %>
+<%= link_to "Want to know more about Italian grapes? Visit our grape section", site_grapes_path %>
 
 </div>
 

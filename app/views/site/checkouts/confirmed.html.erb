@@ -33,7 +33,7 @@ Response Params is <%#= session[:response_params] %>-->
 Thank you for shopping with us, your order details are
 </div>
 
-<p style="margin: 10px 20px;">
+<p style="margin: 10px 20px;font-size:16px;font-weight:bold">
 Order number: <%= @order.id %><br /><br />
 <!--Total order Value : <span style="font-size:16px;"><%#= number_to_currency (@order.total - (@order.points_used * Setting.find(:first).points_to_pound), :unit => "&pound;") %></span>
 ( + Points: <%#= number_to_currency (@order.points_used * Setting.find(:first).points_to_pound, :unit => "&pound;") %>)
@@ -55,10 +55,10 @@ Payment Method : <%= number_to_currency(@order.total - (@order.points_used * @se
 	total_points_earned = @order.total * Setting.find(:first).points_per_pound
 %>
 
-<p style="margin: 10px 20px;font-weight:bold; color:#ff0000;"> You have earned <%=total_points_earned%> Points. That have been added to your account</p>
+<p style="margin: 10px 20px;font-size:13px; color:#ff0000;"> You have earned <%=total_points_earned%> Points. That have been added to your account</p>
 <br />
-  <p style="margin: 10px 20px;font-weight:bold;">
-	Enjoy your purchase and don't forget to review the product you have just bought 
+  <p style="margin: 10px 20px;font-size:13px;">
+	Enjoy your piece of Italy and let our community know about your experience 
   </p>
 
 

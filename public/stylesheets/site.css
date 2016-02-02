@@ -2995,11 +2995,12 @@ html body#categories_show.categories div#content div#mainContent div#leftColumnC
     padding:15px;
     height:180px;
     width:70px;
+    margin-bottom:10px;
 }
 .wines_made_from_this_wine div.image {
     margin:auto;
     padding:0px;
-    height:128px;
+    height:118px;
 }
 
 .wines_made_from_this_wine div.name {

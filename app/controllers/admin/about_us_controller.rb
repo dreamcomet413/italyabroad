@@ -6,6 +6,10 @@ class Admin::AboutUsController < ApplicationController
   def index
     p params
     p params[:link_type]
+    if params[:link_type] and !params[:type]
+      params[:type]=params[:link_type]
+    end
+    
     @about_us = AboutU.find_by_link_type(params[:type])
 
     unless @about_us.present?
