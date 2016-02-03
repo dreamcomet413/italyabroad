@@ -63,3 +63,10 @@ ItalyabroadNew::Application.configure do
   }
 
 end
+
+Rails.application.config.middleware.use ExceptionNotification::Rack,
+  :email => {
+  :email_prefix => "[Error: Italyabroad.com] ",
+  :sender_address => %{"notifier" <notifier@italyabroad.com>},
+  :exception_recipients => %w{fahad@goodlogics.com}
+}
