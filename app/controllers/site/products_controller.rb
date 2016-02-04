@@ -33,7 +33,6 @@ class Site::ProductsController < ApplicationController
       # end
       #unless @product.blank?
     else
-
       p "**************************"
       p params[:category]
       p "*************************"

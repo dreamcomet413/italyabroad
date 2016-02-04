@@ -1,4 +1,4 @@
-<%- @category = Category.find(params[:category] || "hampers") -%>
+<%- @category ||= Category.find(params[:category] || "hampers") -%>
 <%- @parent = Category.find(params[:parent] || "hampers") -%>
 <%- search_url = @category == @parent ? search_index_path(:id => @parent) : nested_categories_url(@parent, @category) -%>
 <div class="block" id="box_hamper_search">
