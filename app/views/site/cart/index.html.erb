@@ -165,7 +165,7 @@
             <% if cart_contains_not_only_events  %>
                 <tr>
                   <td colspan="6" align="right">
-                    Select delivery method: <%= collection_select :delivery, :id, Delivery.find(:all,:conditions=>['name != ? and id != ?','For ticket events',11]), :id, :name_with_price %>
+                    Select delivery method: <%= collection_select :delivery, :id, Delivery.find(:all,:conditions=>['name != ? and id != ?','For ticket events',12]), :id, :name_with_price %>
                   </td>
                 </tr>
             <% end %>
