@@ -29,6 +29,12 @@ class Site::GrapesController < ApplicationController
 
   def show
     @grape = Grape.find(params[:id])
+    
+    if @grape.nil?
+      redirect_to site_grapes_path
+      flash[:notice]="Sorry the grape you are looking for cannot be found"
+      return
+    end
 
     respond_to do |format|
       format.html

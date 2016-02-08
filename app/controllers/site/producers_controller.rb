@@ -18,6 +18,11 @@ class Site::ProducersController < ApplicationController
   def show
     @producer = Producer.find(params[:id])
 
+    if @producer.nil? 
+      redirect_to site_producers_path
+      return
+    end
+
     respond_to do |format|
       format.html
     end
