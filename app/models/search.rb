@@ -37,7 +37,7 @@ class Search
     conditions << "upper(color) LIKE '%#{color}%'" unless color.blank?
     conditions << "region_id = #{@region}" unless @region.blank?
     conditions << "producer_id = #{@producer}" unless @producer.blank?
-    conditions << "price #{price}" unless price.blank?
+    conditions << "product_prices.price #{price}" unless price.blank?
     conditions << "grapes.id = #{@grape}" unless grape.blank?
     conditions << "occasion_id = #{@occasion}" unless @occasion.blank?
     conditions << "moods.id = #{@mood}" unless @mood.blank?
