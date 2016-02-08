@@ -36,7 +36,7 @@
                    nil
                  end
       %>
-      <td><%= text_field :user, :surname, :value => last_name || @user.try(:name) %></td>
+      <td><%= text_field :user, :surname, :value => last_name || @user.try(:surname) %></td>
     </tr>
     <tr>
       <td> <span style="color:red;font-size:14px;"> * </span> Email:</td>

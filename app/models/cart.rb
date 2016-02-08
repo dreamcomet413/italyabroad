@@ -55,7 +55,7 @@ class Cart
     items.inject([]) {|ids, t| ids << t.product.id}
   end
 
-  def update(items, cupon_code, delivery_id)
+  def update(items, cupon_code)
     @show_warnings = ""
     total_amount = 0
     for item in items
@@ -75,12 +75,12 @@ class Cart
     end
 
 
-    @delivery = Delivery.find_by_id(delivery_id)
+    # @delivery = Delivery.find_by_id(delivery_id)
 
     #if delivery_charge == false and [4,7,10].include?(delivery_id)
-    if total_amount > Setting.find(:first).order_delivery_amount and Delivery.find_by_id(delivery_id).bulk_order_price == 0
-      @delivery.price = 0
-    end
+    # if total_amount > Setting.find(:first).order_delivery_amount and @delivery.bulk_order_price.to_i == 0
+      # @delivery.price = 0
+    # end
 
 
 
@@ -222,13 +222,15 @@ class Cart
     #   @delivery.price = 0
     #  els
     if cart_contains_not_only_events
-      @delivery = Delivery.find(self.delivery.id)
-      total += @delivery.price
+      @delivery = self.delivery
+      # total += @delivery.price if @delivery
+      total += (total < Setting.order_delivery_amount && @delivery) ? @delivery.price : 0
+
       
     else
       #@delivery.price = 0
       #total += @delivery.price
-      total += total < Setting.order_delivery_amount && @delivery ? @delivery.price : 0
+      total += (total < Setting.order_delivery_amount && @delivery) ? @delivery.price : 0
     end
     puts "----after delivery------total: #{total}"
     # if total > Setting.find(:first).order_delivery_amount and @delivery.bulk_order_price == 0

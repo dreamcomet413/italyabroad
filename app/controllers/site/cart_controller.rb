@@ -19,7 +19,7 @@ class Site::CartController < ApplicationController
     if created
       session[:free_delivery] = false
       if @cart.sub_total > Setting.order_delivery_amount and session[:free_delivery] == false
-        @delivery = Delivery.find(11)
+        @delivery = Delivery.find(12)
         @cart.delivery  = @delivery
         session[:free_delivery] = true
       end
@@ -58,17 +58,17 @@ class Site::CartController < ApplicationController
 
   def update
 
-    if @cart.update(params[:cart], params[:cupon][:code],params[:delivery][:id] )
+    if @cart.update(params[:cart], params[:cupon][:code])
       if @cart.sub_total > Setting.order_delivery_amount and session[:free_delivery] == false
 
-        @delivery = Delivery.find(11)
+        @delivery = Delivery.find(12)
         delivery_id = @delivery
         session[:free_delivery] = true
 
         @cart.delivery = @delivery
 
       elsif @cart.sub_total < Setting.order_delivery_amount and session[:free_delivery] == true
-        @delivery = Delivery.find(params[:delivery][:id])
+        @delivery = (Delivery.find(params[:delivery][:id]) rescue Delivery.first)
         if @delivery.id == 11
           @delivery = Delivery.find(:first)
         end
@@ -84,7 +84,7 @@ class Site::CartController < ApplicationController
       end
 
 
-      @cart.update(params[:cart], params[:cupon][:code],delivery_id )
+      # @cart.update(params[:cart], params[:cupon][:code] )
 
 
       flash[:notice] = @cart.show_warnings
