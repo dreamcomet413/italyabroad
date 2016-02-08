@@ -42,7 +42,7 @@
             </li>
         <% end %>
       </ul>
-      <div style="float:left;"><%= will_paginate_(@faqs) %>
+      <div style="float:left;margin-top:40px;"><%= will_paginate_(@faqs).html_safe %>
       </div>
   <% end %>
   <div style="clear:both;"></div>
