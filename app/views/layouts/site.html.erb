@@ -267,10 +267,13 @@
             });
         </script>
     <% end %>
+
+    <% encoding_m = ['site/faqs'].include?(params[:controller]) ? 'UTF-8' : 'ASCII-8BIT' %>
+    
     <% @content_for_right = true %>
-    <%= content_tag(:div, (yield :right), :id => "rightColumn").force_encoding("UTF-8") if @content_for_right -%>
+    <%= content_tag(:div, (yield :right), :id => "rightColumn").force_encoding(encoding_m) if @content_for_right -%>
     <div id="leftColumnContent" class="<%= "widescreen" unless @content_for_right %>">
-      <%= yield.force_encoding("UTF-8") %>
+      <%= yield.force_encoding(encoding_m)  %>
     </div>
     
 
