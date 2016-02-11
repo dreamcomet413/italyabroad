@@ -17,6 +17,11 @@ class Site::RegionsController < ApplicationController
   def show
     @region = Region.find(params[:id])
 
+    if @region.nil?
+      redirect_to site_regions_path
+      return
+    end
+    
     respond_to do |format|
       format.html
     end
