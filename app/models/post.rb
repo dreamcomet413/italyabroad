@@ -57,7 +57,7 @@ class Post < ActiveRecord::Base
         i += 1
         keys << key.to_s.downcase.gsub(/[^a-z0-9]+/, '-').gsub(/-+$/, '').gsub(/^-+$/, '') unless keys.include?(key) || i > 21 || key.length < 4
       end
-      return keys.collect.join(", ")
+      return keys.join(", ")
     else
       return meta_keys
     end
