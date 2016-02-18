@@ -235,6 +235,7 @@ GEM
     whenever (0.9.4)
       chronic (>= 0.6.3)
     will_paginate (3.1.0)
+    wkhtmltopdf (0.1.2)
 
 PLATFORMS
   ruby
@@ -277,6 +278,7 @@ DEPENDENCIES
   thin
   whenever
   will_paginate (>= 2.3.12)
+  wkhtmltopdf
 
 BUNDLED WITH
    1.11.2
