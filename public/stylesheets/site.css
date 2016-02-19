@@ -285,7 +285,7 @@ a {
     width:723px;
     height:284px;
     overflow :hidden;
-    background:transparent url(images/loading.gif) center center;
+    background:transparent url(/images/loading.gif) center center;
 }*/
 
 #flashBanner {
@@ -299,7 +299,7 @@ a {
     width:723px;
     height:284px;
     overflow :hidden;
-    background:transparent url(images/loading.gif) center center;
+    background:transparent url(/images/loading.gif) center center;
     z-index:-1;
 }
 
@@ -324,7 +324,7 @@ a {
     width:723px;
     height:200px;
     overflow :hidden;
-    background:transparent url(images/loading.gif) center center;
+    background:transparent url(/images/loading.gif) center center;
 
 
 
@@ -2879,7 +2879,7 @@ li#link-to-hampers ul li a:hover{
     width:723px;
     height:300px;
     overflow :hidden;
-    background:transparent url(images/loading.gif) center center;
+    background:transparent url(/images/loading.gif) center center;
     border-style:solid;
     border-width:1px;
     border-color:#ccc;
