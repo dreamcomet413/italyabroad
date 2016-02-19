@@ -221,7 +221,7 @@
     <% @food_counter.each do |food| %>
       <dt style="width: 15em;">
         <center>
-          <%= link_to show_image_tag(:card, food.image_1, :jpg, food.name), nested_products_uri(food), {:title => food.name} %><br /><br />
+          <%= link_to show_image_tag(:product_food, food.image_1, :jpg, food.name), nested_products_uri(food), {:title => food.name} %><br /><br />
           <div style="height:25px;">
           <%= food.name -%>
           </div>
@@ -252,7 +252,7 @@
       <% @best_sellers.each do |food| %>
         <dt style="width: 15em;">
           <center>
-            <%= link_to show_image_tag(:card, food.image_1, :jpg, food.name), nested_products_uri(food),{:title => food.name} %><br /><br />
+            <%= link_to show_image_tag(:product_wine, food.image_1, :jpg, food.name), nested_products_uri(food),{:title => food.name} %><br /><br />
             <div style="height:25px;">
             	<%= food.name -%>
             </div>	
