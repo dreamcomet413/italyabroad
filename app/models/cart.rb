@@ -223,8 +223,8 @@ class Cart
     #  els
     if cart_contains_not_only_events
       @delivery = self.delivery
-      # total += @delivery.price if @delivery
-      total += (total < Setting.order_delivery_amount && @delivery) ? @delivery.price : 0
+      total += @delivery.price if @delivery and @delivery.id!=12
+      # total += (total < Setting.order_delivery_amount && @delivery) ? @delivery.price : 0
 
       
     else
