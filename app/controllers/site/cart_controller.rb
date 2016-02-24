@@ -59,7 +59,7 @@ class Site::CartController < ApplicationController
   def update
 
     if @cart.update(params[:cart], params[:cupon][:code])
-      if @cart.sub_total > Setting.order_delivery_amount
+      if @cart.sub_total > Setting.order_delivery_amount and params[:delivery][:id].nil?
 
         @delivery = Delivery.find(12)
         delivery_id = @delivery
@@ -67,7 +67,7 @@ class Site::CartController < ApplicationController
 
         @cart.delivery = @delivery
 
-      elsif @cart.sub_total < Setting.order_delivery_amount
+      elsif @cart.sub_total < Setting.order_delivery_amount and params[:delivery][:id].nil?
         @delivery = (Delivery.find(params[:delivery][:id]) rescue Delivery.first)
         if @delivery.id == 11
           @delivery = Delivery.find(:first)
