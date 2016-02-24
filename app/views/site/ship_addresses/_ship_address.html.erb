@@ -16,39 +16,39 @@
       </tr>
   <%- end -%>
   <tr>
-    <td>Address ID</td>
+    <td><span style="color:red;font-size:14px;"> * </span>Address ID</td>
     <td><%= text_field :ship_address, :code, :style => "width:180px", :disabled => !ship_address.is_new %></td>
   </tr>
   <tr>
-    <td>Full Name</td>
+    <td><span style="color:red;font-size:14px;"> * </span>Full Name</td>
     <td><%= text_field :ship_address, :name, :style => "width:180px", :disabled => !ship_address.is_new %></td>
   </tr>
   <tr>
-    <td>Telephone</td>
+    <td>&nbsp;&nbsp;&nbsp;Telephone</td>
     <td><%= text_field :ship_address, :telephone, :style => "width:180px", :disabled => !ship_address.is_new %></td>
   </tr>
   <tr>
-    <td>Address #1</td>
+    <td><span style="color:red;font-size:14px;"> * </span>Address #1</td>
     <td><%= text_field :ship_address, :address, :style => "width:180px", :disabled => !ship_address.is_new %></td>
   </tr>
   <tr>
-    <td>Address #2</td>
+    <td>&nbsp;&nbsp;&nbsp;Address #2</td>
     <td><%= text_field :ship_address, :address_2, :style => "width:180px", :disabled => !ship_address.is_new %></td>
   </tr>
   <tr>
-    <td>Town</td>
+    <td><span style="color:red;font-size:14px;"> * </span>Town</td>
     <td><%= text_field :ship_address, :city, :style => "width:180px", :disabled => !ship_address.is_new %></td>
   </tr>
   <tr>
-    <td>Postcode</td>
+    <td><span style="color:red;font-size:14px;"> * </span>Postcode</td>
     <td><%= text_field :ship_address, :cap, :style => "width:180px", :disabled => !ship_address.is_new %></td>
   </tr>
   <tr>
-    <td>Country</td>
+    <td>&nbsp;&nbsp;&nbsp;Country</td>
     <td><%= custom_country_select :ship_address, :country, ["United Kingdom"], {}, {:disabled => !ship_address.is_new} %></td>
   </tr>
   <tr>
-    <td colspan="2">Additional notes<br /><%= text_area :ship_address, :note, :rows => 4, :style => "width:100%" %></td>
+    <td colspan="2">&nbsp;&nbsp;&nbsp;Additional notes<br /><%= text_area :ship_address, :note, :rows => 4, :style => "width:100%" %></td>
   </tr>
 
   <%- if ship_address.is_new -%>
