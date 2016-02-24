@@ -4,6 +4,13 @@
 en:
   hello: "Hello world"
 
+  activerecord:
+    attributes:
+      ship_address:
+        cap: "PostCode"
+        code: "Address ID"
+        city: "Town"
+        
   simple_captcha:
     placeholder: "Enter the image code"
     message:
