@@ -48,6 +48,7 @@ class Admin::CustomersController < ApplicationController
         session[:previous_admin_id] = current_user.id
         self.current_user = @user
         session[:user_id] = @user.id
+        session[:ship_address]=nil
         redirect_to '/site/cart/gift_options'
       else
         redirect_to :action => :index
