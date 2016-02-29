@@ -58,8 +58,12 @@ class Site::CartController < ApplicationController
 
   def update
 
+    same_delivery = @cart.delivery.id == params[:delivery][:id].to_i
+
+    # render :text => same_delivery
+    # return 
     if @cart.update(params[:cart], params[:cupon][:code])
-      if @cart.sub_total > Setting.order_delivery_amount
+      if @cart.sub_total > Setting.order_delivery_amount and same_delivery and session[:free_delivery] == false
 
         @delivery = Delivery.find(12)
         delivery_id = @delivery
@@ -67,9 +71,9 @@ class Site::CartController < ApplicationController
 
         @cart.delivery = @delivery
 
-      elsif @cart.sub_total < Setting.order_delivery_amount
+      elsif @cart.sub_total < Setting.order_delivery_amount and same_delivery and session[:free_delivery] == true
         @delivery = (Delivery.find(params[:delivery][:id]) rescue Delivery.first)
-        if @delivery.id == 11
+        if @delivery.id == 12
           @delivery = Delivery.find(:first)
         end
         delivery_id = @delivery
