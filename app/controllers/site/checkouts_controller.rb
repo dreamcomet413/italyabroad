@@ -59,7 +59,15 @@ class Site::CheckoutsController < ApplicationController
     if @cart.items.size == 0
       redirect_to site_cart_index_path
     end
-  @order = Order.find(:last,:conditions=>['user_id=?',current_user.id])
+    @order = Order.find(:last,:conditions=>['user_id=?',current_user.id])
+
+    # is signed by admin as customer then restore admin account after order complete
+    if(session[:previous_admin_id])
+      self.current_user = User.find(session[:previous_admin_id])
+      session[:user_id]=session[:previous_admin_id]
+      session[:previous_admin_id] = nil
+    end
+
   end
 
   def order_confirmation

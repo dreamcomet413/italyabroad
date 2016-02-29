@@ -69,7 +69,8 @@ class User < ActiveRecord::Base
   after_create do |record|
     #Notifier.deliver_activation(record) #Customers don't wont activation by mail hum
     if !record.type.nil?
-      if record.type.name != "Guest"
+      # check on empty since the value are "" in db
+      if record.type.name != "Guest" and !record.email.empty? and !record.login.empty?
         Notifier.deliver_account_created(record)
       end
     end

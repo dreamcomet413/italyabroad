@@ -24,9 +24,34 @@ class Admin::CustomersController < ApplicationController
 
   def create
     @user = User.regulars.new(params[:user])
-
-    if @user.save
-      redirect_to :action => :index
+    from_cart = false
+    if(params[:return_to])
+      from_cart = true
+      u = nil
+      # if from cart then try to find user by login or email ad update existing user.
+      if !params[:user][:login].empty?
+        u = User.find_by_login(params[:user][:login])
+      end
+      if u.nil? and !params[:user][:email].empty? 
+        u = User.find_by_email(params[:user][:email])
+      end
+      if u 
+        # u.update_attributes params[:user]
+        @user=u 
+      end
+    end
+    
+    # dont validate if admin ordering as customer from cart
+    if @user.save(:validate=>!from_cart)
+      # save admin to restore later and redirect to cart after loging in the new user
+      if from_cart
+        session[:previous_admin_id] = current_user.id
+        self.current_user = @user
+        session[:user_id] = @user.id
+        redirect_to '/site/cart/gift_options'
+      else
+        redirect_to :action => :index
+      end
     else
       flash[:notice] = @user.show_errors
       render :action => :new

@@ -1,0 +1,34 @@
+<div id="header"></div>
+	<div style="margin:10px 20px;">	
+		<br />
+		<%= radio_button_tag :role, "Admin" %> Continue as Admin
+		<%= radio_button_tag :role, "User" %> Order as Customer
+
+		<% @user = User.new %>
+		<div class="form_container" style="display:none;">
+			<% form_for :user, :url => admin_customers_path do %>
+				<%= show_messages(flash[:notice]) %>
+				<%= render :partial => "/admin/customers/form" %>
+				<%= hidden_field_tag :return_to, '/cart/gift_options' %>
+				<p><%= submit_tag "Next" %></p>
+			<% end %>
+		</div>
+	</div>
+</div>
+
+<script>
+	$(document).on('click','[name=role]', function(e){
+		role = $('[name="role"]:checked').val();
+
+
+		if(role=="Admin"){
+			// hide form
+			$('.form_container').hide();
+			window.location='/site/cart/gift_options';
+		}
+		else{
+			$('.form_container').show();
+			// show form (default is hidden)
+		}
+	});
+</script>

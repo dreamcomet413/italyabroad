@@ -60,7 +60,7 @@ class Site::OrdersController < ApplicationController
                                                              @cart.total, params[:points_to_be_used], params[:total_points])
 
       if (@payment_method && !@payment_method.external) or total_amount == 0      #### 0001
-        production = true
+        production = false
         @credit_card = ActiveMerchant::Billing::CreditCard.new(params[:credit_card])
 
         if (@credit_card.valid? or !production) or total_amount == 0               #### 0002
@@ -139,7 +139,7 @@ class Site::OrdersController < ApplicationController
               if @order.status_order_id == 3
                 logger.info "venu"
                 Notifier.deliver_new_order_placed(@order,current_user,AppConfig.admin_email)
-                Notifier.deliver_new_order(@order)
+                Notifier.deliver_new_order(@order) if !current_user.email.empty?
               end
               # => :status_order_id => 3 ORDER COMPLETED
               session[:card_last_name] = ""

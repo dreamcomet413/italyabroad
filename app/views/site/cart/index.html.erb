@@ -195,7 +195,16 @@
             <%= link_to image_tag("buttons/continue_shopping_button.png"), continue_shopping_site_cart_index_path %>
             </span>
             <span>
-            <%= link_to image_tag("buttons/pay_now_btn.png"),:controller=>'cart',:action=>'gift_options' %>
+              <% if current_user.admin? 
+                  action = 'user_select'
+                else
+                  action = 'gift_options'
+                end
+              %>
+                
+
+                <%= link_to image_tag("buttons/pay_now_btn.png"),:controller=>'cart',:action=> action %>
+              
             </span>
             or <%= link_to "Empty", empty_site_cart_index_path, :confirm => "Are you sure want to empty this cart?" %>
             <%#= link_to image_tag("buttons/continue_button.png"), checkouts_url %>
