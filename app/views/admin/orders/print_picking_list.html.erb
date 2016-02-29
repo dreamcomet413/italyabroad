@@ -17,7 +17,7 @@
       <%= "<br />Tel. ".html_safe() + @order.user.telephone.to_s unless @order.user.telephone.blank? %>
       <%= "<br />".html_safe() + mail_to(@order.user.email) unless @order.user.email.blank? %>
     </div>
-    <% if @order.different_shipping_address %>
+    <% if @order.different_shipping_address.to_s %>
         <div style="float:left;">
           <b style="font-size:13px;padding-bottom:5px">SHIP TO:</b>
           <%= "<br />".html_safe() + @order.ship_name unless @order.ship_name.blank? %>

@@ -81,7 +81,7 @@
     })
 
     $("#ship_address_form_continue").click(function(e){
-        if ($("#save_me").attr("ship_id") == 0) {
+        if ($("#save_me:visible").attr("ship_id") == 0) {
                 alert("Please fill-up and save shipping address by clicking 'Save Address' button before continue..")
                 e.preventDefault()
         }

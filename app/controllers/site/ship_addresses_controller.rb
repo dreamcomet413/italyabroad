@@ -31,11 +31,20 @@ class Site::ShipAddressesController < ApplicationController
   end
 
   def create
-    @ship_address = current_user.ship_addresses.new(params[:ship_address])
-
-    if @ship_address.save
+    if(params[:ship_address] and !params[:ship_address][:id].blank?)
+      @ship_address = current_user.ship_addresses.find params[:ship_address][:id]
+      result = @ship_address.update_attributes params[:ship_address]
+      success_msg = "#{@ship_address.code} Address updated successfully"
+      
+    else
+      @ship_address = current_user.ship_addresses.new(params[:ship_address])
+      result = @ship_address.save
+      success_msg = "New Address added to list of shipping addresses as #{@ship_address.code}."
+      
+    end
+    if result
       session[:ship_address] = @ship_address
-      flash[:notice] = "The new address has been created successfully."
+      flash[:notice] = success_msg
     else
       flash[:notice] = @ship_address.show_errors
     end

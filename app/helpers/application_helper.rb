@@ -32,7 +32,7 @@ module ApplicationHelper
 
   def options_for_shipping_addresses(user)
     options = []
-    options = user.ship_addresses.inject([["Use Default",0]]) { |options, s| options << [s.code, s.id] }
+    options = user.ship_addresses.inject([["Use Profile Address",0]]) { |options, s| options << [s.code, s.id] }
     options << ["[Create a new address]", -1]
   end
 

@@ -5,7 +5,7 @@
           <table>
             <tr class="edit_delete_shipping_address">
               <td style="background: none repeat scroll 0% 0% rgb(188, 209, 39); text-align: center;">
-                <a target="_blank" href="/my-account" style="color: white;">Edit</a>
+                <a href="#" style="color: white;" class="address_edit_btn">Edit</a>
               </td>
               <td style="background: none repeat scroll 0% 0% rgb(188, 209, 39); text-align: center;" id="delete_shipping_address">
                 <%= link_to(content_tag("p", "Delete"), "/site/ship_addresses/#{ship_address.id}", :method => :delete, :confirm => "Are you sure?", :remote => true)-%>
@@ -15,6 +15,7 @@
         </td>
       </tr>
   <%- end -%>
+  <%= hidden_field :ship_address, :id %>
   <tr>
     <td><span style="color:red;font-size:14px;"> * </span>Address ID</td>
     <td><%= text_field :ship_address, :code, :style => "width:180px", :disabled => !ship_address.is_new %></td>
@@ -51,10 +52,30 @@
     <td colspan="2">&nbsp;&nbsp;&nbsp;Additional notes<br /><%= text_area :ship_address, :note, :rows => 4, :style => "width:100%" %></td>
   </tr>
 
-  <%- if ship_address.is_new -%>
-      <tr>
-        <td colspan="2"><%= image_submit_tag("buttons/save_address.png",:id=>"save_me",:ship_id => (ship_address.id || "0")) %></td>
-      </tr>
-  <%- end -%>
+  <% disp = ship_address.is_new ? 'block' : 'none' -%>
+  <tr style="display:<%=disp%>;">
+    <td colspan="2"><%= image_submit_tag("buttons/save_address.png",:id=>"save_me",:ship_id => (ship_address.id || "0")) %></td>
+  </tr>
+
 </table>
 
+<script>
+  $('.address_edit_btn').unbind('click');
+  $('.address_edit_btn').click(function(e){
+    $('#shipping_address input').removeAttr('disabled');
+    $('#shipping_address select').removeAttr('disabled');
+    
+    $('table tr:last').show();;
+
+    e.preventDefault();
+  })
+  // $('#save_default').unbind('click');
+  // $('#save_default').click(function(e){
+  //   params = {}
+  //   $.post('',,function(){
+
+  //   });
+
+  //   e.preventDefault();
+  // });
+</script>
