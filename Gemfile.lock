@@ -200,6 +200,8 @@ GEM
       activesupport (= 3.0.9)
       bundler (~> 1.0)
       railties (= 3.0.9)
+    rails3-jquery-autocomplete (1.0.14)
+      rails (>= 3.0)
     railties (3.0.9)
       actionpack (= 3.0.9)
       activesupport (= 3.0.9)
@@ -268,6 +270,7 @@ DEPENDENCIES
   prawn (= 0.11.1)
   private_pub
   rails (= 3.0.9)
+  rails3-jquery-autocomplete
   rake (~> 0.8.7)
   rdoc
   recaptcha
@@ -279,6 +282,3 @@ DEPENDENCIES
   whenever
   will_paginate (>= 2.3.12)
   wkhtmltopdf
-
-BUNDLED WITH
-   1.11.2

@@ -70,7 +70,7 @@ class User < ActiveRecord::Base
     #Notifier.deliver_activation(record) #Customers don't wont activation by mail hum
     if !record.type.nil?
       # check on empty since the value are "" in db
-      if record.type.name != "Guest" and !record.email.empty? and !record.login.empty?
+      if record.type.name != "Guest" and !record.email.empty? || !record.login.empty?
         Notifier.deliver_account_created(record)
       end
     end
@@ -90,7 +90,8 @@ class User < ActiveRecord::Base
 
   def full_name
     str = ""
-    str = "#{name.titleize} #{surname.titleize}" unless name.nil? and surname.nil?
+    str = "#{name} #{surname}".titleize
+    str
   end
 
   def set_photo_from_upload(params_photo)

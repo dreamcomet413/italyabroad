@@ -205,9 +205,11 @@ ItalyabroadNew::Application.routes.draw do
         get :empty
         get :continue_shopping
         get :user_select
+        post :user_select
       end
     end
     resources :cart, :only => [:create, :update, :destroy] do
+      get :autocomplete_user_name, :on => :collection
       collection do
         get :empty
       end

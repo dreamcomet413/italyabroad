@@ -2,6 +2,8 @@ class Site::CartController < ApplicationController
   # before_filter :site_login_required, :only => [:gift_options,:update_gift]
   layout "site"
 
+  autocomplete :user, :name, :display_value => :full_name, :extra_data => [:surname ]
+
   def index
     @cupon = @cart.cupon
     @delivery = @cart.delivery
@@ -160,7 +162,16 @@ class Site::CartController < ApplicationController
   end
 
   def user_select
-    
+    if request.post?
+      if params[:reset_user_id]
+        @user = User.find(params[:reset_user_id])
+        revert_session
+      else
+        @user = User.find(params[:user_id])
+        switch_session
+      end
+      redirect_to '/site/cart/gift_options'
+    end
   end
 
   def update_gift

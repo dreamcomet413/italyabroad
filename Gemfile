@@ -1,5 +1,6 @@
 source 'http://rubygems.org'
 
+gem 'rails3-jquery-autocomplete'
 gem 'wkhtmltopdf'
 gem 'prawn', '0.11.1'
 gem 'RedCloth'

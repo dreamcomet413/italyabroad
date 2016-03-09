@@ -61,13 +61,7 @@ class Site::CheckoutsController < ApplicationController
     end
     @order = Order.find(:last,:conditions=>['user_id=?',current_user.id])
 
-    # is signed by admin as customer then restore admin account after order complete
-    if(session[:previous_admin_id])
-      self.current_user = User.find(session[:previous_admin_id])
-      session[:user_id]=session[:previous_admin_id]
-      session[:previous_admin_id] = nil
-    end
-
+    revert_session
   end
 
   def order_confirmation

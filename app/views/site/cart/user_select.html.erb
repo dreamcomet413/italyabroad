@@ -1,9 +1,11 @@
-<div id="header"></div>
+<div id="header">
+	User Select
+</div>
 	<div style="margin:10px 20px;">	
 		<br />
 		<%= radio_button_tag :role, "Admin" %> Continue as Admin
-		<%= radio_button_tag :role, "User" %> Order as Customer
-
+		<%= radio_button_tag :role, "UserNew" %> Order as New Customer
+		<%= radio_button_tag :role, "UserExisting"%> Order as Existing Customer
 		<% @user = User.new %>
 		<div class="form_container" style="display:none;">
 			<% form_for :user, :url => admin_customers_path do %>
@@ -13,8 +15,15 @@
 				<p><%= submit_tag "Next" %></p>
 			<% end %>
 		</div>
+		<div class="form_container_select" style="display:none" >
+			<% form_tag do %>
+				<%= autocomplete_field_tag :name, '', autocomplete_user_name_site_cart_index_path, :id_element=>"#user_id", :placeholder => 'type user name' %>
+				<%= hidden_field_tag 'user_id' %>
+				<%= submit_tag 'Select' %>
+			<% end %>
+		</div>
 	</div>
-</div>
+
 
 <script>
 	$(document).on('click','[name=role]', function(e){
@@ -24,11 +33,16 @@
 		if(role=="Admin"){
 			// hide form
 			$('.form_container').hide();
+			$('.form_container_select').hide();
 			window.location='/site/cart/gift_options';
 		}
-		else{
+		else if(role=='UserNew'){
 			$('.form_container').show();
+			$('.form_container_select').hide();
 			// show form (default is hidden)
+		}else{
+			$('.form_container').hide();
+			$('.form_container_select').show();	
 		}
 	});
 </script>

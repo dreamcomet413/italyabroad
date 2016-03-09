@@ -41,6 +41,24 @@ class ApplicationController < ActionController::Base
 
 
   protected
+
+    def switch_session
+      session[:previous_admin_id] = current_user.id
+      self.current_user = @user
+      session[:user_id] = @user.id
+      session[:ship_address]=nil
+    end
+
+    def revert_session
+      # is signed by admin as customer then restore admin account after order complete
+      if(session[:previous_admin_id])
+        self.current_user = User.find(session[:previous_admin_id])
+        session[:user_id]=session[:previous_admin_id]
+        session[:previous_admin_id] = nil
+      end
+    end
+
+    
   def active
     {
       :find   => {:conditions => ["active = ?", true]}
