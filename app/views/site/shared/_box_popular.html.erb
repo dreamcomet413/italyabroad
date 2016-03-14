@@ -13,7 +13,7 @@
        arr_popular = arr_popular.shuffle
        arr_popular.each do |result| %>
 
-        <span style="font-size:<%= result[:font_size] %>px;line-height:25px;"><%= link_to result[:query].titleize, search_index_path(:text => result[:query]) %></span>, &nbsp;&nbsp;
+        <span style="font-size:<%= result[:font_size] %>px;line-height:25px;"><%= link_to result[:query].titleize, site_search_index_path(:text => result[:query]) %></span>, &nbsp;&nbsp;
     <% end %>
     <span class="more-link"><%= link_to "more", popular_path %></span>
   </div>
