@@ -2,7 +2,7 @@
 <% if @category.image_link
 link = @category.image_link
 else
-link = search_index_path(:id=>@category)
+link = site_search_index_path(:id=>@category)
 end
 
 #abort @category.image.inspect

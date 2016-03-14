@@ -18,7 +18,7 @@
     and our <strong style="font-size:30px;">views</strong> on Italian wine-->
   </span>
   <% if  @about and !@about.image_id.nil? %>
-  <%= link_to image_tag(site_image_url('region_card', @about.image, :jpg),:alt=>@about.title), search_index_path(:id => "producers") unless @about.blank? %>
+  <%= link_to image_tag(site_image_url('region_card', @about.image, :jpg),:alt=>@about.title), site_search_index_path(:id => "producers") unless @about.blank? %>
   <% else %>
  <%= image_tag("blog_home.jpg",:alt=>'Producers') %>
  <% end %>

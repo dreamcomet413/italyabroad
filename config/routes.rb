@@ -179,21 +179,39 @@ ItalyabroadNew::Application.routes.draw do
   end
 
   resources :comments
-  match "/search" => "site/search#index", :as => "search_index"
-  match "/search/find_wines" => "site/search#find_wines", :as => "find_wines"
-  match "/search/find_other_drinks" => "site/search#find_other_drinks", :as => "find_other_drinks"
-  match "/search/find_users" => "site/search#find_users", :as => "find_users"
-  match "/search/find_producers" => "site/search#find_producers", :as => "find_producers"
-  match "/search/find_hampers" => "site/search#find_hampers", :as => "find_hampers"
-  match "/search/find_foods" => "site/search#find_foods", :as => "find_foods"
-  match "/search/find_recipes" => "site/search#find_recipes", :as => "find_recipes"
-  match "/search/find_wine_events" => "site/search#find_wine_events", :as => "find_wine_events"
-  match "/search/find_grapes" => "site/search#find_grapes", :as => "find_grapes"
+  
+  # match "/search" => "site/search#index", :as => "search_index"
+  # match "/search/find_wines" => "site/search#find_wines", :as => "find_wines"
+  # match "/search/find_other_drinks" => "site/search#find_other_drinks", :as => "find_other_drinks"
+  # match "/search/find_users" => "site/search#find_users", :as => "find_users"
+  # match "/search/find_producers" => "site/search#find_producers", :as => "find_producers"
+  # match "/search/find_hampers" => "site/search#find_hampers", :as => "find_hampers"
+  # match "/search/find_foods" => "site/search#find_foods", :as => "find_foods"
+  # match "/search/find_recipes" => "site/search#find_recipes", :as => "find_recipes"
+  # match "/search/find_wine_events" => "site/search#find_wine_events", :as => "find_wine_events"
+  # match "/search/find_grapes" => "site/search#find_grapes", :as => "find_grapes"
+
   match 'site/cart/gift_options' => 'site/cart#gift_options'
   match 'site/checkouts/order_confirmation' => 'site/checkouts#order_confirmation'
   match 'site/cart/update_gift' => 'site/cart#update_gift'
 
   namespace :site do
+    resources :search, :only => [:index] do
+      collection do 
+        get :find_wines
+        get :find_other_drinks
+        get :find_users
+        get :find_producers
+        get :find_hampers
+        get :find_foods
+        get :find_recipes
+        get :find_wine_events
+        get :find_grapes
+        get :autocomplete_search_name
+      end
+    end
+    
+  
     resources :orders, :only => [:index, :new, :create, :show] do
       match :download_pdf, :on => :collection
     end

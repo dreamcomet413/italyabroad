@@ -60,7 +60,7 @@ class Site::SommelierController < ApplicationController
             page[".items"].html("")
             page[".items"].html(render :partial => "search_options", :locals => {:item_options => search_options, :step => (params[:step].to_i + 1).to_s})
           else
-            page.redirect_to search_index_url(session[:selected_search_options])
+            page.redirect_to site_search_index_url(session[:selected_search_options])
           end
         end
       }

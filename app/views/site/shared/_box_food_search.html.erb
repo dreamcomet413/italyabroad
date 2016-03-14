@@ -1,6 +1,6 @@
 <%- @category = Category.find(params[:category] || 'food') -%>
 <%- @parent = Category.find(params[:parent] || "food") -%>
-<%- search_url = @category == @parent ? search_index_path(:id => @parent) : nested_categories_url(@parent, @category) -%>
+<%- search_url = @category == @parent ? site_search_index_path(:id => @parent) : nested_categories_url(@parent, @category) -%>
 <div class="block" id="box_food_search">
 	<h3>Deli Finder</h3>
 	<% form_tag search_url, :method => :get do %>
