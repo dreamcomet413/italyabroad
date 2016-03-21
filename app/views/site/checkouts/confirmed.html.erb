@@ -22,7 +22,11 @@ var google_conversion_value = 0;
 <!--Response - <%#= session[:response] %><br />
 Success or failure - <%#= session[:response_success] %>
 Response Params is <%#= session[:response_params] %>-->
-
+<% if @was_admin %>
+	<p>
+	<%= link_to "Print Invoice", print_invoice_admin_order_path(@order,:format => "pdf") %>
+	</p>
+<% end %>
 <div id="header">Your Order is Complete!</div>
 <!--<div style="text-align:center;margin-top:40px;"><%#= image_tag("cart_step_4.png") %></div> -->
 <%#= render :partial => 'site/shared/box_cart_form' %>

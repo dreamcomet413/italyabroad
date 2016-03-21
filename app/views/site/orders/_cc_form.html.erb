@@ -2,6 +2,13 @@
   Please enter your payment details below
 </p>
 <table border="0" cellspacing="2" cellpadding="2">
+	<% if session[:previous_admin_id] %> 
+	  </tr>
+		<tr>
+		  <td style="text-align:right">Skip Payment? </td>
+		  <td><%= check_box :credit_card, :skip_payment , :value=>'1' %></td>
+	  </tr>	
+	<% end %>  
 	<tr>
 	  <td style="text-align:right">Card Type:</td>
 	  <td>

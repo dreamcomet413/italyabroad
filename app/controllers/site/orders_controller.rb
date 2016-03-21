@@ -60,14 +60,19 @@ class Site::OrdersController < ApplicationController
                                                              @cart.total, params[:points_to_be_used], params[:total_points])
 
       if (@payment_method && !@payment_method.external) or total_amount == 0      #### 0001
-        production = false
-        @credit_card = ActiveMerchant::Billing::CreditCard.new(params[:credit_card])
+        production = true
+        prepaid = false 
+        if !session[:previous_admin_id].nil? && params[:credit_card][:skip_payment].to_i == 1
+          prepaid = true
+        end
 
-        if (@credit_card.valid? or !production) or total_amount == 0               #### 0002
+        params[:credit_card].delete :skip_payment
+        @credit_card = ActiveMerchant::Billing::CreditCard.new(params[:credit_card])
+        if (@credit_card.valid? or !production) or total_amount == 0 or prepaid            #### 0002
 
           new_order
-          saved = @order.save
 
+          saved = @order.save
           if saved                                                                            #### 0003
             create_order_items
 
@@ -94,7 +99,7 @@ class Site::OrdersController < ApplicationController
             @incomplete_purchase = IncompletePurchase.find_by_email(current_user.email)
             @incomplete_purchase.destroy if @incomplete_purchase.present?
 
-            if production and total_amount > 0                                                          #### 0004
+            if production and !prepaid and total_amount > 0                                                          #### 0004
 
               gateway = ActiveMerchant::Billing::SagePayGateway.new(:login =>'italyabroad')
               shipping_address = assign_shipping_address(@order.different_shipping_address, @order, current_user)
@@ -115,8 +120,8 @@ class Site::OrdersController < ApplicationController
 	logger.info '=============================== RESPONSE FROM SERVER ========================================='
 	logger.info response.to_json
 	logger.info '=============================================================================================='
-
-            if (!response.nil? && response.success?) or total_amount == 0 or !production
+            #abort(YAML::dump(prepaid))
+            if (!response.nil? && response.success?) or total_amount == 0 or !production or prepaid
               
               logger.info "entered response block"
               if  @cart.cupon
@@ -145,7 +150,6 @@ class Site::OrdersController < ApplicationController
               session[:card_last_name] = ""
               redirect_to confirmed_site_checkouts_path
             else
-
               if request.remote_ip != "127.0.0.1"
                 flash[:notice] = response.message
                 logger.info request.remote_ip

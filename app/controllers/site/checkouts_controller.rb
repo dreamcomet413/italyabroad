@@ -49,7 +49,6 @@ class Site::CheckoutsController < ApplicationController
       redirect_to site_cart_index_path
     end
     @payment_method = 2 #set default payment method to credit card
-
   end
 
   def paypal
@@ -60,7 +59,10 @@ class Site::CheckoutsController < ApplicationController
       redirect_to site_cart_index_path
     end
     @order = Order.find(:last,:conditions=>['user_id=?',current_user.id])
-
+    @was_admin = false
+    if session[:previous_admin_id]
+      @was_admin = true
+    end  
     revert_session
   end
 
