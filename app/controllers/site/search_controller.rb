@@ -4,8 +4,11 @@ class Site::SearchController < ApplicationController
 
   def autocomplete_search_name
     @products = Product.where("name like '%#{params[:term]}%'").limit(10)
-    
-    render :json => @products.collect {|p|
+    @recipes = Recipe.where("name like '%#{params[:term]}%'").limit(10)
+    @users = User.where("name like '%#{params[:term]}%'").limit(10)
+    @grapes = Grape.where("name like '%#{params[:term]}%'").limit(10)
+    @results = @products + @recipes + @users + @grapes
+    render :json => @results.collect {|p|
       name = p.name.gsub(eval("/#{params[:term]}/i")){|m| "<b>#{m}</b>"}
       {:label => name, :value => p.name, :id => p.id}
     }.to_json.to_s.html_safe

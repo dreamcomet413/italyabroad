@@ -147,7 +147,7 @@ class Site::CartController < ApplicationController
   end
 
   def gift_options
-    
+    puts @cart
     if @cart.sub_total < 10
       flash[:notice] = "Sorry, but there is a miminum order of £#{@setting.order_amount}"
       redirect_to :controller=>'cart',:action=>'index'
