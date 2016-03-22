@@ -22,14 +22,12 @@ var google_conversion_value = 0;
 <!--Response - <%#= session[:response] %><br />
 Success or failure - <%#= session[:response_success] %>
 Response Params is <%#= session[:response_params] %>-->
-
-<div id="header">Your Order is Complete!
 <% if @was_admin %>
-  <span style="float: right;">
+  <span style="display: block;text-align: right;padding: 0px 10px 7px;font-weight: bold;">
   <%= link_to "Print Invoice", print_invoice_admin_order_path(@order,:format => "pdf"), :target => "_blank" %>
   </span>
 <% end %>
-</div>
+<div id="header">Your Order is Complete!</div>
 <!--<div style="text-align:center;margin-top:40px;"><%#= image_tag("cart_step_4.png") %></div> -->
 <%#= render :partial => 'site/shared/box_cart_form' %>
  <p style="margin: 10px 20px">
@@ -77,3 +75,4 @@ Payment Method : <%= number_to_currency(@order.total - (@order.points_used * @se
 <% #reset session here once the view is done %>
 <% session[:ship_address] = nil %>
 <% session[:cart] = nil; @cart=Cart.new %>
+
