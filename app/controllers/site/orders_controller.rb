@@ -64,7 +64,9 @@ class Site::OrdersController < ApplicationController
         prepaid = false 
         if !session[:previous_admin_id].nil? && params[:credit_card][:skip_payment].to_i == 1
           prepaid = true
+          @payment_method = PaymentMethod.find(3)
         end
+
 
         params[:credit_card].delete :skip_payment
         @credit_card = ActiveMerchant::Billing::CreditCard.new(params[:credit_card])

@@ -88,6 +88,13 @@ class User < ActiveRecord::Base
   scope :admins, :conditions => {:type_id => 1}, :order => "created_at DESC"
   scope :regulars, :conditions => ['type_id = ? or type_id = ? or type_id = ?', 2,4,3], :order => "created_at DESC"
 
+  def label
+    full_name
+  end
+  def value
+    full_name
+  end
+  
   def full_name
     str = ""
     str = "#{name} #{surname}".titleize

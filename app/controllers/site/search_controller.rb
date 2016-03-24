@@ -1,9 +1,24 @@
 class Site::SearchController < ApplicationController
   layout 'site'
+  autocomplete :search, :name
+
+  def autocomplete_search_name
+    @products = Product.where("name like '%#{params[:term]}%'").limit(10)
+    @recipes = Recipe.where("name like '%#{params[:term]}%'").limit(10)
+    @users = User.where("name like '%#{params[:term]}%'").limit(10)
+    @grapes = Grape.where("name like '%#{params[:term]}%'").limit(10)
+    @results = @products + @recipes + @users + @grapes
+    render :json => @results.collect {|p|
+      name = p.name.gsub(eval("/#{params[:term]}/i")){|m| "<b>#{m}</b>"}
+      {:label => name, :value => p.name, :id => p.id}
+    }.to_json.to_s.html_safe
+  end
 
   def index
     params[:category] ||= params[:id]
     @searched_text = params[:text]
+    
+    action = false
 
     if params[:wine_type].present? || params[:body_type].present? || params[:price_type].present? || params[:food_type].present?
       @sort_by = available_sorting.include?(params[:sort_by]) ? params[:sort_by] : "product_prices.price asc"
@@ -27,17 +42,14 @@ class Site::SearchController < ApplicationController
       @search = Search.new(params || {})
       @recipes = Recipe.where(@search.conditions_for_recipes).paginate(:page => params[:page], :per_page => 10)
 
-      respond_to do |format|
-        format.html { render :action => :recipes }
-      end
+      action = :recipes
+      
     elsif params[:category] == "people"
       #  if @searched_text.length > 3
       @users = User.where("name LIKE ? AND city LIKE ?", "%#{params[:text]}%","%#{params[:city_text]}%").paginate(:page => params[:page], :per_page => 10)
       #  end
 
-      respond_to do |format|
-        format.html { render :action => :peoples }
-      end
+      action = :peoples
 
     elsif params[:category] == "chef"
       @type = Type.find(:first,:conditions=>['upper(name) = ?',params[:category].upcase])
@@ -45,9 +57,8 @@ class Site::SearchController < ApplicationController
       @users = User.where("name LIKE ? AND type_id = ?", "%#{params[:text]}%",@type.id).paginate(:page => params[:page], :per_page => 10)
       #  end
 
-      respond_to do |format|
-        format.html { render :action => :peoples }
-      end
+      action = :peoples
+
       #-------------
     elsif params[:category] == "grape"
       #@type = Type.find(:first,:conditions=>['upper(name) = ?',params[:category].upcase])
@@ -55,9 +66,7 @@ class Site::SearchController < ApplicationController
       @users = Grape.where("name LIKE ? ", "%#{params[:text]}%").paginate(:page => params[:page], :per_page => 10)
       #  end
 
-      respond_to do |format|
-        format.html { render :action => :grapes }
-      end
+      action = :grapes
 
       #-------------
     elsif params[:category] == "all"
@@ -86,9 +95,7 @@ class Site::SearchController < ApplicationController
 
       @grapes = Grape.find(:all, :conditions => ["name LIKE ? ", "%#{params[:text]}%"])
 
-      respond_to do |format|
-        format.html { render :action => :all }
-      end
+      action = :all
 
     else
       #@sort_by = available_sorting.include?(params[:sort_by]) ? params[:sort_by] : "products.price DESC"
@@ -102,10 +109,14 @@ class Site::SearchController < ApplicationController
       @products = Product.where(@search.conditions).includes([:categories, :grapes, :moods, :product_prices]).order(@sort_by).paginate(:page => params[:page], :per_page => 10)
       SearchQuery.create(:query => @search.text) unless @products.blank?
 
-      respond_to do |format|
+      action=false
 
-        format.html
-      end
+    end
+
+    respond_to do |format|
+        format.html { 
+          render :action => action if action 
+        }
     end
   end
 

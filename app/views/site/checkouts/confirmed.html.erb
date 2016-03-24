@@ -22,11 +22,7 @@ var google_conversion_value = 0;
 <!--Response - <%#= session[:response] %><br />
 Success or failure - <%#= session[:response_success] %>
 Response Params is <%#= session[:response_params] %>-->
-<% if @was_admin %>
-	<p>
-	<%= link_to "Print Invoice", print_invoice_admin_order_path(@order,:format => "pdf") %>
-	</p>
-<% end %>
+
 <div id="header">Your Order is Complete!</div>
 <!--<div style="text-align:center;margin-top:40px;"><%#= image_tag("cart_step_4.png") %></div> -->
 <%#= render :partial => 'site/shared/box_cart_form' %>
@@ -39,6 +35,12 @@ Thank you for shopping with us, your order details are
 
 <p style="margin: 10px 20px;font-size:16px;font-weight:bold">
 Order number: <%= @order.id %><br /><br />
+
+<% if @was_admin %>
+  <span style="display: block;text-align: left;padding: 0px 10px 7px;font-weight: bold;">
+  <%= link_to "Print Invoice", print_invoice_admin_order_path(@order,:format => "pdf"), :target => "_blank" %>
+  </span>
+<% end %>
 <!--Total order Value : <span style="font-size:16px;"><%#= number_to_currency (@order.total - (@order.points_used * Setting.find(:first).points_to_pound), :unit => "&pound;") %></span>
 ( + Points: <%#= number_to_currency (@order.points_used * Setting.find(:first).points_to_pound, :unit => "&pound;") %>)
 <br /><br />
@@ -75,3 +77,4 @@ Payment Method : <%= number_to_currency(@order.total - (@order.points_used * @se
 <% #reset session here once the view is done %>
 <% session[:ship_address] = nil %>
 <% session[:cart] = nil; @cart=Cart.new %>
+

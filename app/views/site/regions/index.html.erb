@@ -18,9 +18,9 @@
     and our <strong style="font-size:30px;">views</strong> on Italian wine-->
   </span>
  <% if  @about and !@about.image_id.nil? %>
-  <%= link_to image_tag(site_image_url('region_card', @about.image, :jpg),:alt=>@about.title) , search_index_path(:id => "regions") unless @about.blank? %>
+  <%= link_to image_tag(site_image_url('region_card', @about.image, :jpg),:alt=>@about.title) , site_search_index_path(:id => "regions") unless @about.blank? %>
   <% else %>
-  <%= link_to image_tag("blog_home.jpg",:alt=>'Regions'),search_index_path(:id => "regions") %>
+  <%= link_to image_tag("blog_home.jpg",:alt=>'Regions'),site_search_index_path(:id => "regions") %>
   <% end %>
 </div>
 <h3 style="border:none;"  align="center">Italy and its regions</h3>
