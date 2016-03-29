@@ -46,7 +46,7 @@
   </tr>
   <tr>
     <td>&nbsp;&nbsp;&nbsp;Country</td>
-    <td><%= custom_country_select :ship_address, :country, ["United Kingdom"], {}, {:disabled => !ship_address.is_new} %></td>
+    <td><%= custom_country_select :ship_address, :country, [["United Kingdom","GB"]], {}, {:disabled => !ship_address.is_new} %></td>
   </tr>
   <tr>
     <td colspan="2">&nbsp;&nbsp;&nbsp;Additional notes<br /><%= text_area :ship_address, :note, :rows => 4, :style => "width:100%" %></td>
