@@ -15,7 +15,9 @@ class Site::SearchController < ApplicationController
   end
 
   def index
+    @search_type = params[:id] 
     params[:category] ||= params[:id]
+    
     @searched_text = params[:text]
     
     action = false

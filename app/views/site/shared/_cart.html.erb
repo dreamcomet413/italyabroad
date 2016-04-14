@@ -1,8 +1,29 @@
-<%#= image_tag "cart10.gif" %>
-<span style="color:red;font-weight:bold;"><%= @cart.items.size.to_i %></span>
-items in your <%= image_tag "cart10.gif" %>:
-<%- if @cart.items.size > 0 -%>
-<strong>Sub Total: </strong><%= number_to_currency(@cart.sub_total, :unit => "&pound;") %>
-<%- end -%>
-<%= link_to "Checkout", site_cart_index_path %>
-
+<div class="hide-tablet cart-top">
+	<div class="cart"><%= image_tag "cart-icon.png" %></div>
+	<div class="total">
+	    <div class="">
+	    	<b><%= @cart.items.size.to_i %></b> item(s)   -  Sub Total: 
+	    	<%- if @cart.items.size > 0 -%>
+	    	<b class="item-total">
+	    		<%= number_to_currency(@cart.sub_total, :unit => "&pound;") %>
+				<%- end -%>
+	    	</b>
+	    </div>
+	    <div class="checkout"><%= link_to "Checkout", site_cart_index_path %></div>
+	</div>
+	<div class="clearfix"></div>
+</div>
+<li class="hide-desktop cart-top">
+  <div class="cart"><%= image_tag "cart-icon-small.png" %></div>
+  <div class="total">
+      <div><b><%= @cart.items.size.to_i %></b> item(s)  -  Sub Total: 
+      	<%- if @cart.items.size > 0 -%>
+    	<b class="item-total">
+    		<%= number_to_currency(@cart.sub_total, :unit => "&pound;") %>
+			<%- end -%>
+    	</b>
+      	</div>
+      <div class="checkout"><%= link_to "Checkout", site_cart_index_path %></div>
+  </div>
+  <div class="clearfix"></div>
+</li>

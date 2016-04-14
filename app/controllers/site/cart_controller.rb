@@ -48,9 +48,9 @@ class Site::CartController < ApplicationController
 
       format.js do
         render :update do |page|
-          page["#cart"].html("")
-          page["#cart"].html(render :partial => '/site/shared/cart')
-          page["#promotion"].html(render :partial => '/site/shared/promotion')
+          page[".cart-top"].html("")
+          page[".cart-top"].html(render :partial => '/site/shared/cart')
+          page[".free-delivery"].html(render :partial => '/site/shared/promotion')
           #page["#cart"].visual_effect :highlight, :startcolor => "#FFA800", :endcolor => "#c1d830"
           page << "alert('#{status}')"
         end

@@ -20,259 +20,214 @@
 
 
 </script> -->
-<style>
 
 
-    #container {
-        position:absolute;
-        top:150px;
-        left:600px;
-        width:380px;
-        height:100px;
-        z-index:auto;
-    }
-</style>
-<!-- <div id="container"></div> -->
-<%#if !cookies[:display]
-            cookies[:display] = {:value => 'true',
-   :expires => 1.days.from_now }
-%>
-<!--<script>
-// win1();
-</script> -->
-<%#end%>
-
-
-<%- @breadcrumbs = "Welcome to Italyabroad.com" -%><br />
-<%- @onload = "StartSlideShow()" -%>
+<%- @breadcrumbs = "Welcome to Italyabroad.com" -%>
 <%#= javascript_tag "document.observe('dom:loaded', function(e){ HomeImageSlideShow.setup() });" %>
-<div id="flashBanner">
-  <% if !@setting.nil? %>
-      <ul>
+  <!-- start carousel-->
+  <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+      <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+      <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+      <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+      <li data-target="#carousel-example-generic" data-slide-to="4"></li>
+    </ol>
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+      <% if !@setting.nil? %>
         <% if @setting.home_image_1 %>
-          <li id="home_image_1" class="home_image">
+          <div class="item active">
             <%= link_to((image_tag(@setting.home_image_1.image_filename.url) || @setting.home_image_1_title), (@setting.home_image_1_url || root_url)) %>
-          </li>
+          </div>
         <% end %>
         <% if @setting.home_image_2 %>
-          <li id="home_image_2" class="home_image" style="display:none;">
-            <%= link_to((image_tag(@setting.home_image_2.image_filename.url) || @setting.home_image_2_title), (@setting.home_image_2_url || root_url)) %>
-          </li>
+        <div class="item">
+          <%= link_to((image_tag(@setting.home_image_2.image_filename.url) || @setting.home_image_2_title), (@setting.home_image_2_url || root_url)) %>
+        </div>
         <% end %>
         <% if @setting.home_image_3 %>
-          <li id="home_image_3" class="home_image" style="display:none;">
-            <%= link_to((image_tag(@setting.home_image_3.image_filename.url) || @setting.home_image_3_title), (@setting.home_image_3_url || root_url)) %>
-          </li>
+        <div class="item">
+          <%= link_to((image_tag(@setting.home_image_3.image_filename.url) || @setting.home_image_3_title), (@setting.home_image_3_url || root_url)) %>
+        </div>
         <% end %>
         <% if @setting.home_image_4 %>
-          <li id="home_image_4" class="home_image" style="display:none;">
-            <%= link_to((image_tag(@setting.home_image_4.image_filename.url) || @setting.home_image_4_title), (@setting.home_image_4_url || root_url)) %>
-          </li>
+        <div class="item">
+          <%= link_to((image_tag(@setting.home_image_4.image_filename.url) || @setting.home_image_4_title), (@setting.home_image_4_url || root_url)) %>
+        </div>
         <% end %>
         <% if @setting.home_image_5 %>
-          <li id="home_image_5" class="home_image" style="display:none;">
-            <%= link_to((image_tag(@setting.home_image_5.image_filename.url) || @setting.home_image_5_title), (@setting.home_image_5_url || root_url)) %>
-          </li>
+        <div class="item">
+          <%= link_to((image_tag(@setting.home_image_5.image_filename.url) || @setting.home_image_5_title), (@setting.home_image_5_url || root_url)) %>
+        </div>
         <% end %>
-      </ul>
-  <%end%>
-</div><br />
-<ul class="slideshow_images" id="navmenu">
-
-  <li id="link_number_1" class="white_text">
-    <%= link_to "1", "#" %></li>
-  <%
-     ln_class = ""
-     if !@setting.nil?
-       if @setting.home_image_1_title.size < 18  #earlier it was 16
-         ln_class = "single-line"
-       elsif @setting.home_image_1_title.size < 32
-         ln_class = "double-line"
-       elsif @setting.home_image_1_title.size < 45
-         ln_class = "three-line"
-       end
-     end
-  %>
-  <li id="link_home_image_1" class="active">
-    <%#= link_to_function @setting.home_image_1_title, "javascript:GoTo('home_image_1');", :class => "slide #{ln_class}" %>
-    <%= link_to @setting.home_image_1_title, "#", :class => "slide #{ln_class}" if !@setting.nil?  %>
-  </li>
-  <li id="link_number_2" class="white_text">
-    <%= link_to "2", "#" %></li>
-  <%
-     ln_class = ""
-     if !@setting.nil?
-       if @setting.home_image_2_title.size < 16
-         ln_class = "single-line"
-       elsif @setting.home_image_2_title.size < 32
-         ln_class = "double-line"
-       elsif @setting.home_image_2_title.size < 45
-         ln_class = "three-line"
-       end
-     end
-  %>
-  <li id="link_home_image_2">
-    <%#= link_to_function @setting.home_image_2_title, "javascript:GoTo('home_image_2');", :class => "slide #{ln_class}" %>
-    <%= link_to  @setting.home_image_2_title, "#", :class => "slide #{ln_class}" if !@setting.nil? %></li>
-  <li id="link_number_3" class="white_text" >
-    <%= link_to "3", "#" %></li>
-  <%
-     ln_class = ""
-     if !@setting.nil?
-       if @setting.home_image_3_title.size < 16
-         ln_class = "single-line"
-       elsif @setting.home_image_3_title.size < 32
-         ln_class = "double-line"
-       elsif @setting.home_image_3_title.size < 45
-         ln_class = "three-line"
-       end
-     end
-  %>
-<%#= link_to_function @setting.home_image_3_title, "javascript:GoTo('home_image_3');", :class => "slide #{ln_class}" %>
-  <li id="link_home_image_3"><%= link_to @setting.home_image_3_title, "#", :class => "slide #{ln_class}" if !@setting.nil? %></li>
-  <li id="link_number_4" class="white_text" >
-    <%= link_to "4", "#" %></li>
-  <%
-     ln_class = ""
-     if !@setting.nil?
-       if @setting.home_image_4_title.size < 16
-         ln_class = "single-line"
-       elsif @setting.home_image_4_title.size < 32
-         ln_class = "double-line"
-       elsif @setting.home_image_4_title.size < 45
-         ln_class = "three-line"
-       end
-     end
-  %>
-  <%#= link_to_function @setting.home_image_4_title, "javascript:GoTo('home_image_4');", :class => "slide #{ln_class}" %>
-  <li id="link_home_image_4"><%= link_to @setting.home_image_4_title, "#", :class => "slide #{ln_class}" if !@setting.nil? %></li>
-  <li id="link_number_5" class="white_text" >
-    <%= link_to "5", "#" %></li>
-  <%
-     ln_class = ""
-     if !@setting.nil?
-       if @setting.home_image_5_title.size < 16
-         ln_class = "single-line"
-       elsif @setting.home_image_5_title.size < 32
-         ln_class = "double-line"
-       elsif @setting.home_image_5_title.size < 45
-         ln_class = "three-line"
-       end
-     end
-  %>
-  <%#= link_to_function @setting.home_image_5_title, "javascript:GoTo('home_image_5');", :class => "slide #{ln_class}" %>
-  <li id="link_home_image_5"><%= link_to @setting.home_image_5_title, "#", :class => "slide #{ln_class}" if !@setting.nil? %></li>
-</ul>
-
-<div style="float:right; width: 60px; margin-top: 13px;">
-  <div style="float:left; margin-right:3px; width: 16px; height: 18px;"><%= link_to "", "javascript:GoPrevious();", :id => "PrevButton" %></div>
-  <div style="float:left; margin-right:3px; width: 16px; height: 18px;">
-    <%= link_to "Stop", "javascript:Stop();", :class => "slide_control", :id => "PauseButton" %>
-    <%= link_to "Play", "javascript:StartSlideShow();", :class => "slide_control", :id => "PlayButton",:style=>"display:none;" %>
+      <% end %>
+    </div>
   </div>
-  <div style="float:left; margin-right:3px; width: 16px; height: 18px;"><%= link_to "", "javascript:GoNext();", :id => "NextButton" %></div>
-</div>
-<%= render :partial => '/site/shared/box_welcome' %>
-
-<!--<div id="bottomTextBox">-->
-
-<!--<div id="bottomTextBox">-->
-<div class="new_search">
-  <div class="fLeft font26">
-    <dt style="width: 27.8em;">
-      <h3 style="margin-left: 15px;">Recommended Wines</h3>
-    </dt>
-  </div>
-
-  <dt style="width: 100%;">
-    <% @recommended_wines.each do |wine| %>
-      <dt style="width: 15em;">
-        <center>
-          <%= link_to show_image_tag(wine.layout_image, wine.image_1, :jpg, wine.name), nested_products_uri(wine) %>
-          <br /><br />
-          <div style="height:25px;">
-          <%#= link_to show_image_tag(:card, wine.image_1, :jpg, wine.name), nested_products_uri(wine), {:title => wine.name} %>
-          <%= wine.name -%>
-          </div>
-          <div style="padding-top: 5px;">
-          <% if wine.present? && wine.product_prices.present? %>
-            <% wine.product_prices.each do |w| %>
-              <p style="color:#C40909; font-weight:bold; font-size: 13px;"><%= number_to_currency w.price, :unit => "&pound;" -%></p>
-            <% end %>
-          <% else %>
-            <p style="color:#C40909; font-weight:bold; font-size: 13px;">Not Available</p>
+  <!-- End Carousel-->
+  <!-- start 3 colum guide boxes-->
+  <div class="guide-row row clearfix">
+    <%= render :partial => '/site/shared/box_grape_guide' %>
+    <%= render :partial => '/site/shared/box_mood' %>
+    <%= render :partial => '/site/shared/box_event' %>
+  </div><!-- end 3 cloum guide boxes-->
+  <!-- Start Best Seller-->
+  <div class="best-seller-wrapper">
+    <h2>Best Sellers</h2>
+    <!-- Start Slider-->
+    <!-- Add Arrows -->
+    <div class="pagi-arrow">
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+    </div>
+    <div class="swiper-container best-seller-swiper" id="firstSwiper">
+      <div class="swiper-wrapper">
+        <% if !@best_sellers.blank? %>
+          <% @best_sellers.each do |food| %>
+            <div class="swiper-slide">
+              <div class="slider-box clearfix ">
+                <div class="col-xs-4"><%= link_to show_image_tag(:product_wine, food.image_1, :jpg, food.name), nested_products_uri(food),{:title => food.name} %></div>
+                <div class="col-xs-8 slider-box-text">
+                  <div class="item-name"><%= food.name -%></div>
+                  <div class="seller-price">
+                    <% if food.present? && food.product_prices.present? %>
+                      <% food.product_prices.each do |best_food| %>
+                        <p><%= number_to_currency best_food.price, :unit => "&pound;" -%></p>
+                    <% end %>
+                    <% else %>
+                      <p>Not Available</p>
+                    <% end %>
+                  </div>
+                  <div class="add-row clearfix">
+                    <div class="seller-field"><input type="text" value="1"></div>
+                    <div class="seller-btn"><a href="#.">Add</a></div>
+                  </div>
+                </div>  
+              </div>
+            </div>
           <% end %>
-          </div>
-        <center>
-      </dt>
-    <% end %>
-  </dt>
-</div>
-
-
-<div class="new_search">
-  <div class="fLeft font26">
-    <dt style="width: 27.8em;">
-      <h3 style="margin-left: 15px;">Food Counter</h3>
-    </dt>
+        <% end %>
+      </div>
+    </div>
+    <!-- End Slider-->
   </div>
-
-  <dt style="width: 100%;">
-    <% @food_counter.each do |food| %>
-      <dt style="width: 15em;">
-        <center>
-          <%= link_to show_image_tag(:product_food, food.image_1, :jpg, food.name), nested_products_uri(food), {:title => food.name} %><br /><br />
-          <div style="height:25px;">
-          <%= food.name -%>
+  <!-- End Best Seller-->
+  <!-- End Best Seller-->
+  <!-- Start Blog and wine club-->
+  <div class="row clearfix">
+    <div class="col-md-6 blog-row">
+      <h2>BLOG</h2>
+      <div class="medium-box">
+        <div class="row clearfix">
+          <div class="col-xs-6"><img src="/images/blog-img-01.png" alt="blog image"></div>
+          <div class="col-xs-6">
+            <h3>Naked Wine's Pinot Grigio - part 2</h3>
+            <div class="medium-box-text">As you may have noticed, I had to change the title of my previous post about Naked Wines' Pinot Grigio because I got a call from someone at their office Naked Wines complaining about my post about their Pinot  ...</div>
+            <div class="read-more"><a href="#.">Read More</a></div>
           </div>
-          <div style="padding-top: 5px;">
-          <% if food.present? && food.product_prices.present? %>
-            <% food.product_prices.each do |f| %>
-              <p style="color:#C40909; font-weight:bold; font-size: 13px;"><%= number_to_currency f.price, :unit => "&pound;" %></p>
-            <% end %>
-          <% else %>
-            <p style="color:#C40909; font-weight:bold; font-size: 13px;">Not Available</p>
-          <% end %>
-         </div> 
-        <center>
-      </dt>
-    <% end %>
-  </dt>
-</div>
-
-<div class="new_search">
-  <div class="fLeft font26">
-    <dt style="width: 27.8em;">
-      <h3 style="margin-left: 15px;">Best Seller</h3>
-    </dt>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 blog-row">
+      <h2>WINE CLUB</h2>
+      <div class="medium-box">
+        <div class="row clearfix">
+          <div class="col-xs-6"><img src="/images/club-img-01.png" alt="Club image"></div>
+          <div class="col-xs-6">
+            <h3>Discover the best Italian wines sat on the confort of your home</h3>
+            <div class="medium-box-text"><span class="red-text">Option 1</span> - Wine Club 2-per-Month<br>
+              <span class="red-text">Option 2</span> -  Wine Club 6-per-Month<br>
+              <span class="red-text">Option 3</span> -  Wine Club Regular Case</div>
+              <div class="read-more"><a href="#.">Read More</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+  <!-- End Blog and wine club-->
+  <!-- Start food counter-->
+  <div class="food-counter-wrapper">
+    <h2>Food Counter</h2>
+    <!-- Start Slider-->
+    <!-- Add Arrows -->
+    <div class="pagi-arrow">
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+    </div>
+    <div class="swiper-container food-counter-swiper" id="secondSwiper">
+      <div class="swiper-wrapper">
+        <% @food_counter.each do |food| %>
+          <div class="swiper-slide">
+            <div class="slider-box clearfix ">
+              <div class="col-xs-4">
+                <div class="counter-image"><%= link_to show_image_tag(:product_food, food.image_1, :jpg, food.name), nested_products_uri(food), {:title => food.name} %></div>
+              </div>
+              <div class="col-xs-8 slider-box-text"><%= food.name -%></div>
+              <div class="seller-price">
+                <% if food.present? && food.product_prices.present? %>
+                  <% food.product_prices.each do |f| %>
+                    <p><%= number_to_currency f.price, :unit => "&pound;" %></p>
+                  <% end %>
+                <% else %>
+                  <p>Not Available</p>
+                <% end %>
+              </div>
+              <div class="row add-row clearfix">
+                <div class="seller-field"><input type="text" value="1"></div>
+                <div class="seller-btn"><a href="#.">Add</a></div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <!-- End Slider-->
+  </div><!--End Food Counter-->
+  <!--<%= render :partial => '/site/shared/box_welcome' %> -->
+  <!-- <div class="new_search">
+    <div class="fLeft font26">
+      <dt style="width: 27.8em;">
+        <h3 style="margin-left: 15px;">Recommended Wines</h3>
+      </dt>
+    </div>
 
-  <dt style="width: 100%;">
-    <% if !@best_sellers.blank? %>
-      <% @best_sellers.each do |food| %>
+    <dt style="width: 100%;">
+      <% @recommended_wines.each do |wine| %>
         <dt style="width: 15em;">
           <center>
-            <%= link_to show_image_tag(:product_wine, food.image_1, :jpg, food.name), nested_products_uri(food),{:title => food.name} %><br /><br />
+            <%= link_to show_image_tag(wine.layout_image, wine.image_1, :jpg, wine.name), nested_products_uri(wine) %>
+            <br /><br />
             <div style="height:25px;">
-            	<%= food.name -%>
-            </div>	
+            <%#= link_to show_image_tag(:card, wine.image_1, :jpg, wine.name), nested_products_uri(wine), {:title => wine.name} %>
+            <%= wine.name -%>
+            </div>
             <div style="padding-top: 5px;">
-            <% if food.present? && food.product_prices.present? %>
-              <% food.product_prices.each do |best_food| %>
-                <p style="color:#C40909; font-weight:bold; font-size: 13px;"><%= number_to_currency best_food.price, :unit => "&pound;" -%></p>
+            <% if wine.present? && wine.product_prices.present? %>
+              <% wine.product_prices.each do |w| %>
+                <p style="color:#C40909; font-weight:bold; font-size: 13px;"><%= number_to_currency w.price, :unit => "&pound;" -%></p>
               <% end %>
             <% else %>
               <p style="color:#C40909; font-weight:bold; font-size: 13px;">Not Available</p>
             <% end %>
             </div>
-            </dt>
-        <center>
+          <center>
+        </dt>
       <% end %>
-    <% end %>
-  </dt>
-</div>
-<!--</div>-->
+    </dt>
+  </div> -->
 
+
+<!-- 3 colume bottom blocks-->
+<% content_for :bottomBlocks do %>
+  <div class="row clearfix">
+    <div class="upcoming-row clearfix">
+      <%= render :partial => '/site/shared/box_event' %>
+      <%= render :partial => '/site/shared/box_hamper' %>
+      <%= render :partial => '/site/shared/box_review_latest' %>
+    </div>
+  </div>
+<% end %><!-- End 3 cloum bottom blocks-->
 <% content_for :right do %>
     <%= render :partial => '/site/shared/box_event' %>
     <br />

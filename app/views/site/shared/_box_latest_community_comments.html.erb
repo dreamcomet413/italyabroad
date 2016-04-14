@@ -14,8 +14,6 @@
             <%= link_to latest_review.user.name, site_customer_path(latest_review.user.id), :class=>'data', :id => 'latest_review_name'%>
           </td>
           <td>
-
-
             <% unless latest_review.description.blank? %> &nbsp;&nbsp;
                 <%#= link_to latest_review.description,review_path(latest_review),:class=>'data' %>
                 <% if latest_review.reviewer_type == 'Product' %>
@@ -34,4 +32,3 @@
       </table>
   <% end %>
 </div>
-
