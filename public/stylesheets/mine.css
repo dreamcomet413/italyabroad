@@ -486,6 +486,10 @@ footer{
 	min-height: 125px;
 	margin-bottom: 5px;
 }
+.item-name a{
+	color: #53565a;
+	text-decoration: none;
+}
 /*=============== About us css ======================*/
 .bread-crumbs{
 	padding: 12px 0px 20px;
@@ -939,6 +943,15 @@ header{
 }
 .left-bar-search .magnifier{
 	top: 11px;
+}
+.left-bar-search .magnifier input{
+	height:25px;
+	padding-right: 0px;
+}
+.left-bar-search .magnifier input:focus, .left-bar-search .magnifier input:active{
+	border: none;
+	outline: none;
+
 }
 .left-bar-search input{
 	width: 100%;
