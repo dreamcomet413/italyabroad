@@ -2,52 +2,144 @@
 <%- @parent = Category.find(params[:parent] || "hampers") -%>
 <%- search_url = @category == @parent ? site_search_index_path(:id => @parent) : nested_categories_url(@parent, @category) -%>
 <div class="block" id="box_hamper_search">
-  <h3>Gift Finder</h3>
+  <div class="green-heading-16">Gift Finder</div>
   <% form_tag search_url, :method => :get do %>
-    <table border="0">
-      <tr>
-        <td>Text:</td>
-        <td><%= text_field_tag :text, params[:text], :id => "search_text" %></td>
-      </tr>
-      <tr>
-        <td>Producer:</td>
-        <td><%= select_tag :producer_id, options_for_select(@category.products.producers.inject([["Any", ""]]) { |ps, p| ps << [p.name, p.id] }, params[:producer_id]), :id => "search_producer_name" %></td>
-      </tr>
-      <tr>
-        <td>Organic:</td>
-        <td><%= check_box_tag :organic %></td>
-      </tr>
-      <tr>
-        <td>Vegan:</td>
-        <td><%= check_box_tag :vegetarian %></td>
-      </tr>
-      <tr>
-        <td colspan="2"></td>
-      </tr>
-      <tr>
-        <td>Price:</td>
-        <td>
-          <%= select_tag :price, options_for_select(
-                  [
+    <div class="left-bar-search">
+      <%= text_field_tag :text, params[:text], :id => "search_text" %>
+      <i class="magnifier"><%= image_submit_tag "magnifier.png" %><%= hidden_field_tag :id,@category.name.downcase %><a href="#."></i>
+    </div>
+    <!-- start search filter-->
+    <div class="sidebar-filter-wrapper">
+      <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="panel">
+          <div class="panel-heading" role="tab" id="heading-1">
+            <h4 class="panel-title">
+              <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-1" aria-expanded="true" aria-controls="collapse-1">
+                Producer: <i></i>
+              </a>
+            </h4>
+          </div>
+          <div id="collapse-1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading-1">
+            <div class="panel-body">
+              <ul>
+                <%= hidden_field_tag :producer_id %>
+                <% @category.products.producers.inject([["Any", ""]]) { |ps, p| ps << [p.name, p.id] }.each do |item| %>
+                  <li><a href="#." value="<%= item[1] %>"> <%= item[0] %></a></li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-heading" role="tab" id="headingTwo">
+            <h4 class="panel-title">
+              <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                Organic: <i></i>
+              </a>
+            </h4>
+          </div>
+          <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
+            <div class="panel-body">
+              <ul>
+                <li>
+                  <%= hidden_field_tag :organic %>
+                  <span><%= check_box_tag :organic %></span>
+                  <span>Organic</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-heading" role="tab" id="headingThree">
+            <h4 class="panel-title">
+              <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                Vegan: <i></i>
+              </a>
+            </h4>
+          </div>
+          <div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
+            <div class="panel-body">
+              <ul>
+                <li>
+                  <%= hidden_field_tag :vegetarian %>
+                  <span><%= check_box_tag :vegetarian %></span>
+                  <span>Vegan:</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="panel">
+          <div class="panel-heading" role="tab" id="headingFour">
+            <h4 class="panel-title">
+              <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                Price <i></i>
+              </a>
+            </h4>
+          </div>
+          <div id="collapseFour" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingFour">
+            <div class="panel-body">
+              <ul>
+                <%= hidden_field_tag :producer_id %>
+                <% [
                           ["Any Price", ""],
                           ["Less than #{number_to_currency(5,{:unit => "&pound;", :precision => 0})}".html_safe, "< 5"],
                           ["From #{number_to_currency(5,{:unit => "&pound;", :precision => 0})} to #{number_to_currency(10,{:unit => "&pound;", :precision => 0})}".html_safe, "BETWEEN 5 AND 10"],
                           ["From #{number_to_currency(11,{:unit => "&pound;", :precision => 0})} to #{number_to_currency(20,{:unit => "&pound;", :precision => 0})}".html_safe, "BETWEEN 11 AND 20"],
                           ["From #{number_to_currency(21,{:unit => "&pound;", :precision => 0})} to #{number_to_currency(30,{:unit => "&pound;", :precision => 0})}".html_safe, "BETWEEN 21 AND 30"],
                           ["More than #{number_to_currency(30,{:unit => "&pound;", :precision => 0})}".html_safe, "> 30"]
-                  ], params[:price]), :id => "search_price" -%>
-        </td>
-      </tr>
-      <tr>
-		  <td>Occasion:</td>
-		  <% @occasions = Occasion.find(:all,:include=>'products',:conditions=>['products.active = ?',true])%>
-		  <td><%= select_tag(:occasion_id,"<option value="">Any</option>" +  options_from_collection_for_select(@occasions, :id, :name,params[:occasion_id].to_i)) %></td>
-    </tr>
-      <tr>
-        <td></td>
-        <td style="padding:0 0 0 17px;"><%= image_submit_tag "search.png" %><%= hidden_field_tag :id,@category.name.downcase %></td>
-      </tr>
-    </table>
+                  ].each do |item| %>
+                  <li><a href="#." value="<%= item[1] %>"> <%= item[0] %></a></li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </div> -->
+        <div class="panel">
+          <div class="panel-heading" role="tab" id="headingFiv">
+            <h4 class="panel-title">
+              <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                Occasion: <i></i>
+              </a>
+            </h4>
+          </div>
+          <div id="collapseFive" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingFive">
+            <div class="panel-body">
+              <ul>
+                <%= hidden_field_tag :occasion_id %>
+                <% @occasions = Occasion.find(:all,:include=>'products',:conditions=>['products.active = ?',true]) %>
+                <% @occasions.collect{|i| [i.name,i.id]}.each do |item| %>
+                  <li><a href="#." value="<%= item[1] %>"> <%= item[0] %></a></li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!-- end search filter-->
+    <div class="range-slider">
+      <div class="black-heading-16"></div>
+      <p>
+        <label for="amount"></label>
+        <input type="text" id="amount" readonly >
+      </p>
+      <div id="slider-range"></div>
+      <div class="row clearfix range-price">
+          <div class="col-xs-4 left">
+              <div>|</div>
+              <div>£0</div>
+          </div>
+          <div class="col-xs-4 center">
+              <div>|</div>
+              <div>£15</div>
+          </div>
+          <div class="col-xs-4 right">
+              <div>|</div>
+              <div>£30+</div>
+          </div>
+      </div>
+    </div>
   <% end %>
 </div>
 

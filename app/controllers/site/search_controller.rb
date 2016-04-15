@@ -33,6 +33,16 @@ class Site::SearchController < ApplicationController
         price_query_text = " ? > 20 " if params[:price_type] == "more than 20"
         price_query_text= price_query_text.gsub("?","product_prices.price")
       end
+
+      if params[:price_start] and params[:price_end]
+        price_query_text = "? > #{params[:price_start]} AND ? < #{params[:price_end]}"
+      elsif params[:price_start] and params[:price_end]==""
+        price_query_text = " ? > #{params[:price_start]}"
+      elsif params[:price_start]=="" and params[:price_end]
+        price_query_text = "? < #{params[:price_end]}"
+      end
+
+      
       @category =  Category.find_by_name(params[:wine_type]+"s")
       @products = @category.present? ? @category.products : Product.where("surprise_me = ?",true)
       @products = @products.where("products.body_type = ?",params[:body_type].to_s)  if params[:body_type].present?

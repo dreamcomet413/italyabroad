@@ -1,0 +1,60 @@
+    <div class="col-md-9">
+     <!-- Start Product list wrapper-->
+     <div class="prdouct-list-wrapper hampers-wrapper-2">
+        <div class="green-heading-with-border">
+          Drinks
+        </div>
+        <!-- Start product list-->
+        <div class="product-list">
+          <div class="row clearfix">
+            <%# products = Product.find(:all, :limit => 3, :order => "created_at DESC", :conditions => "id IN (#{@category.all_products_ids.join(',')}) AND quantity > 0") %>
+            <% condition = "active" %>
+            <% condition += " AND id IN (#{@category.all_products_ids.join(',')})" unless @category.all_products_ids.blank? %>
+            <% products = Product.find(:all, :limit => 3, :conditions => condition) %>
+            <%- products.each do |product| -%>
+            <div class="col-md-4">
+              <div class="small-box">
+                <div class="row clearfix">
+                  <div class="col-xs-4 box-image"><%= link_to show_image_tag(product.layout_image, product.image_1, :jpg,product.name),nested_products_uri(product)  %></div>
+                  <div class="col-xs-8 slider-box-text">
+                    <div class="item-name">
+                      <%= link_to truncate(product.name, :length => 60), nested_products_uri(product) %><br />
+                      <%= product.description_short[0..70].html_safe() %>       
+                    </div>
+                    <div class="seller-price">
+                      <% if product.product_prices.present? %>
+                        <% product.product_prices.each do |p| %>
+                        <div>
+                          <%= number_to_currency p.price, :unit => "&pound;" %>
+                        </div>
+                        <% end %>
+                      <% end %>
+                      <%- if product.out_of_stock? -%>
+                        <%= image_tag('out_of_stock.png') %>
+                      <%- else -%>
+                    </div>
+                    <div class="add-row clearfix">
+                      <div class="seller-field"><input type="text" value="1"></div>
+                      <div class="seller-btn">
+                          <%= link_to "Add", "/site/cart?product_id=#{product.id}", :remote => true, :method => :post %>
+                      <%- end -%>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <%- end -%>
+        </div>
+      </div><!-- End product list-->
+      <%= render :partial => '/site/templates/category' %>
+    </div><!-- End product list Wrapper-->
+  </div>
+</div>
+</div><!-- End category content-->
+<!-- start 3 colum  boxes-->
+<div class="community-row clearfix row">
+  <%= render :partial => '/site/shared/our_community' %>
+  <%= render :partial => '/site/shared/wine_club' %>
+  <%= render :partial => '/site/shared/cercavino' %>
+</div><!-- start 3 colum  boxes-->

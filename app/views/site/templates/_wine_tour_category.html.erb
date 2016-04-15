@@ -8,7 +8,7 @@ end
 
 %>
 <% if @category.image %>
-  <div id="wineBanner">
+  <div id="wineBanner" class="main-banner">
           <span class="title_wine_tours">
           <%# unless @category.text_on_image.blank? %>
          <!-- <div style="color:white;width:350px;height:100px;background:black;opacity: 0.6;filter:alpha(opacity=40);text-align:left;overflow:hidden;">
@@ -19,7 +19,7 @@ end
 	          <%= link_to image_tag(site_image_url('home_image', @category.image, :jpg),:alt=>@category.name),  link %>
 	</div>
 <% else %>
-  <div id="wineBanner">
+  <div id="wineBanner" class="main-banner">
       <span class="title_wine_tours">
             <%#= @about.title if @about %>
             <strong style="font-size:24px;">Experience</strong> firsthand the <strong style="font-size:24px;">passion,</strong><br />
@@ -35,6 +35,24 @@ end
       <%# end %>
 	</div>
 <% end %>
+<!-- start content-->
+<div class="row">
+  <div class="two-colum-row clearfix">
+    <div class="col-md-3 left-side-bar"></div>
+    <div class="col-md-9">
+      <div class="red-heading">
+        <% unless @category.page_heading.blank? %>
+          <%= @category.page_heading %>
+        <% else %>
+          <%= @category.name %>
+        <% end %>
+      </div>
+      <div>
+        <p><%= @category.description.html_safe() %></p>
+      </div>
+    </div>
+  </div>
+</div>
 <h3 style="border:none;"  align="center">
   <% unless @category.page_heading.blank? %>
       <%= @category.page_heading %>

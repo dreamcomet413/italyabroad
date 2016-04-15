@@ -36,7 +36,7 @@
                 <ul>
                   <%= hidden_field_tag :mood %>
                   <% ([["Any",""]]+Mood.all.map{ |x| [x.name,x.id]}).each do |item| %>
-                    <li><a href="#." <%= item[1] %>> <%= item[0] %></a></li>
+                    <li><a href="#." value="<%= item[1] %>"> <%= item[0] %></a></li>
                   <% end %>
                 </ul>
               </div>
@@ -55,7 +55,7 @@
                   <% if !@category.nil? %>
                     <%= hidden_field_tag :region_id %>
                     <% @category.products.regions.inject([["Any", ""]]) {|rs, r| rs << [r.name, r.id]}.each do |item|  %>
-                    <li><a href="#." <%= item[1] %>> <%= item[0] %></a></li>
+                    <li><a href="#." value="<%= item[1] %>"> <%= item[0] %></a></li>
                     <% end %>
                   <% end %>
                 </ul>
@@ -74,7 +74,7 @@
                   <% if !@category.nil? %>
                     <%= hidden_field_tag :grape_id %>
                     <% @category.products.grapes.inject([["Any", ""]]) {|gs, g| gs << [g.name.include?("Avola") ? "Nero d' Avola": g.name, g.id]}.each do |item| %>
-                    <li><a href="#." <%= item[1] %>>  <%= item[0] %></a></li>
+                    <li><a href="#." value="<%= item[1] %>">  <%= item[0] %></a></li>
                     <% end %> 
                   <% end %>
                 </ul>
@@ -93,7 +93,7 @@
                   <% unless Product.all.blank? %>
                     <%= hidden_field_tag :color %>
                       <% Product.colors(@category).each do |item| %>
-                      <li><a href="#." <%= item[1] %>>  <%= item[0] %></a></li>
+                      <li><a href="#." value="<%= item[1] %>">  <%= item[0] %></a></li>
                     <% end %>
                   <% end %>
                 </ul>
@@ -115,7 +115,7 @@
                 <% if !@category.nil? %>
                   <%= hidden_field_tag :producer_id %>
                   <% @category.products.producers.inject([["Any", ""]]) { |ps, p| ps << [p.name, p.id]}.each do |item| %>
-                  <li><a href="#." <%= item[1] %>>  <%= item[0] %></a></li>
+                  <li><a href="#." value="<%= item[1] %>">  <%= item[0] %></a></li>
                   <% end %>
                 <% end %>
               </ul>
@@ -161,7 +161,7 @@
               </div>
             </div>
           </div>
-          <div class="panel">
+          <!-- <div class="panel">
             <div class="panel-heading" role="tab" id="headingEight">
               <h4 class="panel-title">
                 <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
@@ -186,30 +186,31 @@
                 </ul>
               </div>
             </div>
+          </div> -->
+        </div>
+      </div>
+      <div class="range-slider">
+        <div class="black-heading-16">Price </div>
+        <p>
+          <label for="amount"></label>
+          <input type="text" id="amount" readonly >
+        </p>
+        <div id="slider-range"></div>
+        <div class="row clearfix range-price">
+          <div class="col-xs-4 left">
+            <div>|</div>
+            <div>£0</div>
+          </div>
+          <div class="col-xs-4 center">
+            <div>|</div>
+            <div>£15</div>
+          </div>
+          <div class="col-xs-4 right">
+            <div>|</div>
+            <div>£30+</div>
           </div>
         </div>
       </div>
-  <% end %>
-  <div class="range-slider">
-    <div class="black-heading-16">Price </div>
-    <p>
-      <label for="amount"></label>
-      <input type="text" id="amount" readonly >
-    </p>
-    <div id="slider-range"></div>
-    <div class="row clearfix range-price">
-      <div class="col-xs-4 left">
-        <div>|</div>
-        <div>£0</div>
-      </div>
-      <div class="col-xs-4 center">
-        <div>|</div>
-        <div>£15</div>
-      </div>
-      <div class="col-xs-4 right">
-        <div>|</div>
-        <div>£30+</div>
-      </div>
     </div>
-  </div>
-</div>
+  <% end %>
+  
