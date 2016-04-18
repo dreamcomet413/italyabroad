@@ -99,9 +99,13 @@
                       <p>Not Available</p>
                     <% end %>
                   </div>
-                  <div class="add-row clearfix">
-                    <div class="seller-field"><input type="text" value="1"></div>
-                    <div class="seller-btn"><a href="#.">Add</a></div>
+                  <div class="row add-row clearfix">
+                      <%=hidden_field_tag :p_id , food.id , :class=>'p_id'  %>
+                      <%= form_tag("/site/cart?product_id=#{food.id}", method: "post" , :remote=>true) do %>
+                        <%=hidden_field_tag :p_id , food.id , :class=>'p_id'  %>
+                        <div class="seller-field"><%= text_field_tag(:quantity , 1 , :class=>'quantity') %></div>
+                        <div class="seller-btn"><%= image_submit_tag("buttons/add_to_cart_button.png") %></div>
+                      <%end%>
                   </div>
                 </div>  
               </div>
@@ -179,8 +183,11 @@
                 <% end %>
               </div>
               <div class="row add-row clearfix">
-                <div class="seller-field"><input type="text" value="1"></div>
-                <div class="seller-btn"><a href="#.">Add</a></div>
+                <%= form_tag("/site/cart?product_id=#{food.id}", method: "post" , :remote=>true) do %>
+                  <%=hidden_field_tag :p_id , food.id , :class=>'p_id'  %>
+                  <div class="seller-field"><%= text_field_tag(:quantity , 1 , :class=>'quantity') %></div>
+                  <div class="seller-btn"><%= image_submit_tag("buttons/add_to_cart_button.png") %></div>
+                <%end%>  
               </div>
             </div>
           </div>
@@ -251,6 +258,7 @@
 
 <script type="text/javascript">
   $(document).ready(function(){
+      
       $(".slideshow_images").find("li a").click(function(){
 //    var toggleBanner = function(elem){
         var element_id = $(this).parent().attr("id").split("_")[$(this).parent().attr("id").split("_").length - 1];

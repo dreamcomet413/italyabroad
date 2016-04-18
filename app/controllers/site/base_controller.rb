@@ -41,7 +41,7 @@ class Site::BaseController < ApplicationController
       @image = Image.find_by_id(@post.image_1_id)
     end
     @wine_club_products = Product.where("friendly_identifier Like '%wine-club-%'" ).limit(3)
-    @reviews = Review.where("").order("created_at DESC").limit(2)
+    @reviews = Review.where("").order("created_at DESC").limit(5)
   end
 
   def google_sitemap
