@@ -38,7 +38,7 @@ end
 <!-- start content-->
 <div class="row">
   <div class="two-colum-row clearfix">
-    <div class="col-md-3 left-side-bar"></div>
+    <div class="col-md-3 left-side-bar"><%= render :partial => '/site/shared/box_wine_event_testimonials' %> </div>
     <div class="col-md-9">
       <div class="red-heading">
         <% unless @category.page_heading.blank? %>
@@ -53,13 +53,7 @@ end
     </div>
   </div>
 </div>
-<h3 style="border:none;"  align="center">
-  <% unless @category.page_heading.blank? %>
-      <%= @category.page_heading %>
-     <% else %>
-      <%= @category.name %>
-     <% end %>
-  </h3>
+
 <div style="margin:6px;float:left;margin-right:20px;">
   <%= render :partial => '/site/shared/box_upcoming_wine_tours' %>
   <!-- before changing the following div has this id="wine_tours_introduction" -->
@@ -73,10 +67,7 @@ end
       <%#= @category.name %>
      <%# end %>
   </h3>-->
-  <p style="margin:6px;text-align:justify;margin-right:20px;text-indent:0px;">
-  <%= @category.description.html_safe() %>
-  <!--Make your own wine, live the harvesting in one of the most beautiful area of Tuscany-->
-  </p>
+
 <div id="wine_tour_description" style = "float:left;margin-left:10px;">
 </div>
 
@@ -106,20 +97,20 @@ end
   </div>
   <%- end -%>
 <!-- /div --><!-- suspecious div ending removed this div to fix the issue with sitemap-->
-
-<% content_for :right do %>
+<!--
+<#% content_for :right do %>
   <%#= render :partial => 'site/shared/box_product_reviews' %>
-  <%= render :partial => 'site/shared/box_event' %>
+  <%#= render :partial => 'site/shared/box_event' %>
 	<br />  
-	<%= render :partial => '/site/shared/box_subscriptions' %>
+	<%#= render :partial => '/site/shared/box_subscriptions' %>
 	<br />
-	<%= render :partial => 'site/shared/box_products_on_offer' %>
+	<%#= render :partial => 'site/shared/box_products_on_offer' %>
 	<br />
-	<%= render :partial => '/site/shared/box_grape_guide' %>
+	<%#= render :partial => '/site/shared/box_grape_guide' %>
   <br />
-  <%= render :partial => '/site/shared/box_mood' %>
+  <%#= render :partial => '/site/shared/box_mood' %>
   <br />
-  <%= render :partial => '/site/shared/social_follow' %>
+  <#%= render :partial => '/site/shared/social_follow' %>
 
-<% end %>
+<#% end %>
 

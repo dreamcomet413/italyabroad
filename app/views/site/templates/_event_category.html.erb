@@ -8,7 +8,7 @@
 
 %>
 <% if @category.image %>
-    <div id="wineBanner">
+    <div id="wineBanner" class="main-banner">
           <span class="title">
          <!-- <%# unless @category.text_on_image.blank? %>
           <div style="width:260px;height:100px;color:white;background:black;opacity: 0.6;filter:alpha(opacity=40);text-align:left;overflow:hidden;">
@@ -19,19 +19,19 @@
       <%= link_to image_tag(site_image_url('home_image', @category.image, :jpg),:alt=>@category.name), link%>
     </div>
 <% else %>
-    <div id="wineBanner">
-              <span class="title">
-                     <strong style="font-size:25px;">Discover</strong> and <strong style="font-size:24px;">taste</strong> some<br />
-                    of the <strong style="font-size:24px;">finest Italian<br />
-                wines,</strong> unknown, very<br />
-                    small production, fantastic<br />
-                    wines, <strong style="font-size:24px;">learn about<br />
-                Italian wine regions</strong> and<br />
-                    improve <strong style="font-size:24px;">your wine<br />
-                knowledge</strong> at our <strong style="font-size:24px;">wine<br />
-                events</strong>
-                <%#= @about.title if @about %>
-              </span>
+    <div id="wineBanner" class="main-banner">
+      <span class="title">
+             <strong style="font-size:25px;">Discover</strong> and <strong style="font-size:24px;">taste</strong> some<br />
+            of the <strong style="font-size:24px;">finest Italian<br />
+        wines,</strong> unknown, very<br />
+            small production, fantastic<br />
+            wines, <strong style="font-size:24px;">learn about<br />
+        Italian wine regions</strong> and<br />
+            improve <strong style="font-size:24px;">your wine<br />
+        knowledge</strong> at our <strong style="font-size:24px;">wine<br />
+        events</strong>
+        <%#= @about.title if @about %>
+      </span>
       <%# if  @about and !@about.image_id.nil? %>
       <%#= link_to image_tag(site_image_url(:about_thumb, @about.image, :jpg)) , site_search_index_path(:id => @category)  unless @about.blank? %>
       <%# else %>
@@ -40,6 +40,20 @@
       <%= link_to image_tag("events.jpg",:alt=>'Events'), link%>
     </div>
 <% end %>
+<div class="row">
+  <div class="two-colum-row clearfix">
+    <div class="col-md-3 left-side-bar"></div>
+    <div class="col-md-9">
+      <div>
+        <% unless @category.page_heading.blank? %>
+          <%= @category.page_heading %>
+        <% else %>
+          Wine Courses &amp; Events
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
 <h3 align="center" style="border:none;" >
   <% unless @category.page_heading.blank? %>
       <%= @category.page_heading %>
@@ -97,20 +111,5 @@
   </ul>
 </div>
 
-<% content_for :right do %>
-    <%= render :partial => '/site/shared/box_wine_event_testimonials' %>
-    <%#= render :partial => '/site/shared/box_event_reviews' %>
-    <br />
-    <%= render :partial => '/site/shared/box_subscriptions' %>
-    <br />
-    <%= render :partial => '/site/shared/box_wine_tours' %>
-    <%= render :partial => '/site/shared/box_grape_guide' %>
-    <br />
-    <%= render :partial => '/site/shared/box_popular' %>
-    <br />
-   	<%= render :partial => '/site/shared/box_mood' %>
-    <br />
-    <%= render :partial => '/site/shared/social_follow' %>
 
-<% end %>
 

@@ -1,5 +1,5 @@
 <%- @testimonials = Testimonial.find(:all,:conditions=>['UPPER(page_to_display) = ?','WINE EVENTS'],:order=>'id DESC',:limit=>2) -%>
-<%# unless @testimonials.blank? %>
+<!-- <%# unless @testimonials.blank? %>
 <div class="block" id="box_event_reviews" style="background:white;">
   <h1>Wine Events Testimonials</h1>
   <br />
@@ -7,10 +7,10 @@
   <%- if @testimonials.size > 0 -%>
     <%- @testimonials.each do |testimonial| -%>
     <tr>
-     <!-- <td>
+     <td>
         <%#= avatar_for_user(review.user, 'small') %><br />
         <%#= testimonial.title %>
-      </td> -->
+      </td>
       <td valign="top"><%= link_to( truncate(testimonial.description.html_safe, {:length => 100}), testimonial_path) %><%#= link_to testimonial.description.html_safe,testimonial_path %><br /><br /></td>
     </tr>
     <%- end -%>
@@ -21,5 +21,35 @@
   <%- end -%>
   </table>
 </div>
-<%# end %>
+<%# end %> -->
 
+<div class="left-small-box">
+  <div class="small-swiper-heading">Wine Events Testimonials</div>
+  <div  class="review-box">
+    <div class="review-tex">
+      <!-- Swiper -->
+      <div class="swiper-container" id="thirdSwiper">
+        <div class="swiper-wrapper">
+          <%- if @testimonials.size > 0 -%>
+            <%- @testimonials.each do |testimonial| -%>
+              <div class="swiper-slide">
+                <div class="slide-text"><%= link_to( truncate(testimonial.description.html_safe, {:length => 100}), testimonial_path) %></div>
+                <div class="date"><b>Davide</b>  - 29/10/2015</div>
+              </div>
+            <% end %>
+            <% else %>
+              <div class="slide-text">No Testimonial for Wine Events</div>
+            <% end %>
+        </div>
+      </div><!-- End Swiper -->
+    </div>
+    <div class="review-arrow">
+      <!-- Add Arrows -->
+      <div class="pagi-arrow2">
+        <div class="swiper-button-prev"></div>
+          <div class="arrow-sep"></div>
+          <div class="swiper-button-next"></div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -32,11 +32,11 @@
         <div class="row clearfix">
           <%- products.each do |product| -%>
             <div class="col-md-4">
-              <div class="small-box">
+              <div class="small-box-listing">
                 <div class="row clearfix">
                   <div class="col-xs-4 box-image"><%= link_to show_image_tag(product.layout_image, product.image_1, :jpg,product.name),nested_products_uri(product)  %></div>
                   <div class="col-xs-8 slider-box-text">
-                    <div class="item-name"><%= link_to product.name, nested_products_uri(product) if product.categories.root.present? && (product.categories.root.name.upcase != 'WINE TOURS') %><br/>
+                    <div class="item-name"><%= link_to product.name, nested_products_uri(product) if product.categories.root.present? && (product.categories.root.name.upcase != 'WINE TOURS') %>
                       <%= product.description_short[0..70].html_safe() %>
                     </div>
                     <div class="seller-price">
@@ -102,11 +102,11 @@
         <div class="row clearfix">
           <%- products.each do |product| -%>
           <div class="col-md-4">
-              <div class="small-box">
+              <div class="small-box-listing">
                 <div class="row clearfix">
                   <div class="col-xs-4 box-image"><%= link_to show_image_tag(product.layout_image, product.image_1, :jpg,product.name),nested_products_uri(product)  %></div>
                   <div class="col-xs-8 slider-box-text">
-                    <div class="item-name"><%= link_to product.name, nested_products_uri(product) if product.categories.root.present? && product.categories.root.name.upcase != 'WINE TOURS'%><br/>
+                    <div class="item-name"><%= link_to product.name, nested_products_uri(product) if product.categories.root.present? && product.categories.root.name.upcase != 'WINE TOURS'%>
                       <%= product.description_short[0..70].html_safe() %>
                     </div>
                     <div class="seller-price">

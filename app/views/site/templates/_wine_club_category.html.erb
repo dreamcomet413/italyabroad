@@ -8,7 +8,7 @@
 
 %>
 <% if @category.image %>
-    <div id="wineBanner">
+    <div id="wineBanner" class="main-banner">
     <span class="title_wine_tours">
     <%# unless @category.text_on_image.blank? %>
       <!-- <div style="width:260px;height:100px;color:white;background:black;opacity: 0.6;filter:alpha(opacity=40);text-align:left;overflow:hidden;">
@@ -19,7 +19,7 @@
       <%= link_to image_tag(site_image_url('home_image', @category.image, :jpg),:alt=>@category.name), link %>
     </div>
 <% else %>
-    <div id="wineBanner">
+    <div id="wineBanner" class="main-banner">
     <span class="title_wine_tours">
       <strong style="font-size:24px;">Experience</strong> firsthand the <strong style="font-size:24px;">passion,</strong><br />
       talk to the <strong style="font-size:24px;">winemakers</strong>, visit the<br >
@@ -34,35 +34,70 @@
       <%# end %>
     </div>
 <% end %>
-<h3 style="border:none;" align="center">
-  <% unless @category.page_heading.blank? %>
-      <%= @category.page_heading %>
-  <% else %>
-      <%= @category.name %>
-  <% end %>
-</h3>
-
-<% products = Product.find(:all, :limit => 2, :include => {:categorizations => :category}, :conditions => ["categories.name LIKE ? AND DATE(date) > ? AND active" ,'Events',Date.today],:order =>'date') %>
-<% unless products.blank? -%>
-    <div style="margin:6px;float:left;margin-right:20px;">
-      <%= render :partial => '/site/shared/box_upcoming_events' -%>
+ <!-- start content-->
+<div class="row">
+  <div class="two-colum-row clearfix">
+    <div class="col-md-3 left-side-bar">
+      <%= render :partial => '/site/shared/box_wine_club_testimonials' %>
     </div>
-<% end %>
+    <div class="col-md-9">
+      <div class="red-heading">
+        <% unless @category.page_heading.blank? %>
+          <%= @category.page_heading %>
+        <% else %>
+          <%= @category.name %>
+        <% end %>
+      </div>
+      <div>
+        <% products = Product.find(:all, :limit => 2, :include => {:categorizations => :category}, :conditions => ["categories.name LIKE ? AND DATE(date) > ? AND active" ,'Events',Date.today],:order =>'date') %>
+        <% unless products.blank? -%>
+          <div style="margin:6px;float:left;margin-right:20px;">
+            <%= render :partial => '/site/shared/box_upcoming_events' -%>
+          </div>
+        <% end %>
+      </div>
+      <div>
+        <p>
+          <%= @category.description.html_safe() %>
+        </p>
+      </div>
+      <div class="wine-club-option-wrapper">
+        <% products = @category.products.where(["active = ?", true]).order("name ASC ").paginate(:page => params[:page], :per_page => 3) %>
+        <%- unless products.blank? -%>
+          <div class="red-heading">Wine Club Options</div>
+          <%- products.each do |product| -%>
+            <div class="wine-club-box">
+              <div class="row clearfix">
+                <div class="col-md-2">
+                  <div class="box-image"><img src="images/club-img-01.png" class="club image"></div>
+                </div>
+                <div class="col-md-10">
+                  <div class="green-heading-24"><%= link_to product.name, nested_products_uri(product), :class => "product_title" %></div>
+                  <div class="club-detail">
+                    <%= product.description_short.html_safe() %>
+                    <% if product.product_prices.present? %>
+                      <% product.product_prices.each do |p| %>
+                        <div style="margin-bottom:15px;">
+                          <%= number_to_currency p.price, :unit => "&pound;" %><br />
+                        </div>
+                      <% end %>
+                    <% end %>
+                    <div><a href="#.">Discover more</a></div>
+                  </div>
+                  <div class="club-btn">
+                    <div class="green-button"><%= link_to(image_tag("buttons/add_to_cart_button.png"), "/site/cart?product_id=#{product.id}", :remote => true, :method => :post) %></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <%- end -%>
+        </div>
+        <%= will_paginate(products) %>
+        <%- end -%>
+      </div>
+    </div>
+  </div>
 
-<!-- <h3 style="border:none;" align="center">
-    <%# unless @category.page_heading.blank? %>
-<%#= @category.page_heading %>
-<%# else %>
-<%#= @category.name %>
-<%# end %>
-  </h3>-->
-<p style="margin:6px;text-align:justify;margin-right:20px;">
-  <%= @category.description.html_safe() %>
-  <!--Need content to change this static description.-->
-</p><div id="wine_tour_description">
-</div>
-<div style="clear:both;"></div>
-<%# products = @category.products.find(:all, :conditions => ["active = ?", true], :order => "date ").paginate(:page => params[:page], :per_page => 3) %>
 <% products = @category.products.where(["active = ?", true]).order("name ASC ").paginate(:page => params[:page], :per_page => 3) %>
 <%- unless products.blank? -%>
     <div id="featured_wine_tours" style="margin:6px;text-align:justify;margin-right:20px;">
@@ -91,21 +126,4 @@
     </div>
 <%- end -%>
 <!-- /div -->
-
-<% content_for :right do %>
-    <%#= render :partial => 'site/shared/box_product_reviews' %>
-    <%#= render :partial => 'site/shared/box_wine_club_testimonials' %>
-    <%= render :partial => 'site/shared/box_event' %>
-    <br />
-    <%= render :partial => '/site/shared/box_subscriptions' %>
-    <br />
-    <%= render :partial => 'site/shared/box_products_on_offer' %>
-    <br />
-    <%= render :partial => '/site/shared/box_grape_guide' %>
-    <br />
-   	<%= render :partial => '/site/shared/box_mood' %>
-    <br />
-    <%= render :partial => '/site/shared/social_follow' %>
-
-<% end %>
 

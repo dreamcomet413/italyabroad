@@ -4,7 +4,7 @@
 <% form_for [:admin,@review] do %>
 <p>
   Select: <br />
-  <%= select (:review, :reviewer_id, @products.map {|p| [p.name,p.id]},{:include_blank => 'Select ...'}) %>
+  <%= select :review, :reviewer_id, @products.map {|p| [p.name,p.id]},{:include_blank => 'Select ...'} %>
 </p>
 
   <p>
