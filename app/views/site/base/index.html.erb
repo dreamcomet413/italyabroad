@@ -99,9 +99,13 @@
                       <p>Not Available</p>
                     <% end %>
                   </div>
-                  <div class="add-row clearfix">
-                    <div class="seller-field"><input type="text" value="1"></div>
-                    <div class="seller-btn"><a href="#.">Add</a></div>
+                  <div class="row add-row clearfix">
+                      <%=hidden_field_tag :p_id , food.id , :class=>'p_id'  %>
+                      <%= form_tag("/site/cart?product_id=#{food.id}", method: "post" , :remote=>true) do %>
+                        <%=hidden_field_tag :p_id , food.id , :class=>'p_id'  %>
+                        <div class="seller-field"><%= text_field_tag(:quantity , 1 , :class=>'quantity') %></div>
+                        <div class="seller-btn"><%= image_submit_tag("buttons/add_to_cart_button.png") %></div>
+                      <%end%>
                   </div>
                 </div>  
               </div>
@@ -118,16 +122,18 @@
   <div class="row clearfix">
     <div class="col-md-6 blog-row">
       <h2>BLOG</h2>
-      <div class="medium-box">
-        <div class="row clearfix">
-          <div class="col-xs-6"><img src="/images/blog-img-01.png" alt="blog image"></div>
-          <div class="col-xs-6">
-            <h3>Naked Wine's Pinot Grigio - part 2</h3>
-            <div class="medium-box-text">As you may have noticed, I had to change the title of my previous post about Naked Wines' Pinot Grigio because I got a call from someone at their office Naked Wines complaining about my post about their Pinot  ...</div>
-            <div class="read-more"><a href="#.">Read More</a></div>
+      <%if @post%>
+        <div class="medium-box">
+          <div class="row clearfix">
+            <div class="col-xs-6"><img src="<%= @image ? @image.image_filename.url : '/images/default.png' %>" alt="blog image"></div>
+            <div class="col-xs-6">
+              <h3><%=@post.name%></h3>
+              <div class="medium-box-text"><%=truncate(@post.description, length: 250)%></div>
+              <div class="read-more"><a href="#.">Read More</a></div>
+            </div>
           </div>
         </div>
-      </div>
+      <%end%>
     </div>
     <div class="col-md-6 blog-row">
       <h2>WINE CLUB</h2>
@@ -136,9 +142,12 @@
           <div class="col-xs-6"><img src="/images/club-img-01.png" alt="Club image"></div>
           <div class="col-xs-6">
             <h3>Discover the best Italian wines sat on the confort of your home</h3>
-            <div class="medium-box-text"><span class="red-text">Option 1</span> - Wine Club 2-per-Month<br>
-              <span class="red-text">Option 2</span> -  Wine Club 6-per-Month<br>
-              <span class="red-text">Option 3</span> -  Wine Club Regular Case</div>
+            <div class="medium-box-text">
+              <%i=1%>
+              <%@wine_club_products.each do |p|%>
+                <a href="/wine-club/<%=p.friendly_identifier%>" class="wine_link"><span class="red-text">Option <%=i%></span> - <%=p.name%><br></a>
+                <%i+=1%>
+              <%end%>
               <div class="read-more"><a href="#.">Read More</a></div>
           </div>
         </div>
@@ -174,8 +183,11 @@
                 <% end %>
               </div>
               <div class="row add-row clearfix">
-                <div class="seller-field"><input type="text" value="1"></div>
-                <div class="seller-btn"><a href="#.">Add</a></div>
+                <%= form_tag("/site/cart?product_id=#{food.id}", method: "post" , :remote=>true) do %>
+                  <%=hidden_field_tag :p_id , food.id , :class=>'p_id'  %>
+                  <div class="seller-field"><%= text_field_tag(:quantity , 1 , :class=>'quantity') %></div>
+                  <div class="seller-btn"><%= image_submit_tag("buttons/add_to_cart_button.png") %></div>
+                <%end%>  
               </div>
             </div>
           </div>
@@ -246,6 +258,7 @@
 
 <script type="text/javascript">
   $(document).ready(function(){
+      
       $(".slideshow_images").find("li a").click(function(){
 //    var toggleBanner = function(elem){
         var element_id = $(this).parent().attr("id").split("_")[$(this).parent().attr("id").split("_").length - 1];

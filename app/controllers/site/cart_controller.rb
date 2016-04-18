@@ -14,9 +14,6 @@ class Site::CartController < ApplicationController
   end
 
   def create
-    #discounted_price = "0.0" ? product.product_prices.first.price : params[:discounted_price]
-    #puts "####################discounted_price #{discounted_price}"
-    #raise discounted_price and return
     created = @cart.create(product, quantity, params[:discounted_price])
     if created
       session[:free_delivery] = false
@@ -181,8 +178,12 @@ class Site::CartController < ApplicationController
 
   private
   def quantity
-    return params[:cart][:quantity] if params[:cart] && params[:cart][:quantity]
-    return 1
+    if params[:quantity]
+      return params[:quantity]
+    else
+      return params[:cart][:quantity] if params[:cart] && params[:cart][:quantity]
+      return 1
+    end
   end
 
   def product_id
