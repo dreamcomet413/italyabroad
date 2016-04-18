@@ -69,10 +69,10 @@
             <div class="wine-club-box">
               <div class="row clearfix">
                 <div class="col-md-2">
-                  <div class="box-image"><img src="images/club-img-01.png" class="club image"></div>
+                  <div class="box-image"><img src="/images/club-img-01.png" class="club image"></div>
                 </div>
                 <div class="col-md-10">
-                  <div class="green-heading-24"><%= link_to product.name, nested_products_uri(product), :class => "product_title" %></div>
+                  <div class="green-heading-24"><%= product.name %></div>
                   <div class="club-detail">
                     <%= product.description_short.html_safe() %>
                     <% if product.product_prices.present? %>
@@ -82,10 +82,12 @@
                         </div>
                       <% end %>
                     <% end %>
-                    <div><a href="#.">Discover more</a></div>
+                    <div><%= link_to "Discover More", nested_products_uri(product)  %></div>
                   </div>
                   <div class="club-btn">
-                    <div class="green-button"><%= link_to(image_tag("buttons/add_to_cart_button.png"), "/site/cart?product_id=#{product.id}", :remote => true, :method => :post) %></div>
+                    <div class="green-button"> 
+                      <%= link_to "Add to cart", "/site/cart?product_id=#{product.id}", :remote => true, :method => :post %>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -97,33 +99,8 @@
       </div>
     </div>
   </div>
-
-<% products = @category.products.where(["active = ?", true]).order("name ASC ").paginate(:page => params[:page], :per_page => 3) %>
-<%- unless products.blank? -%>
-    <div id="featured_wine_tours" style="margin:6px;text-align:justify;margin-right:20px;">
-      <br />
-      <h3>Wine Club Options</h3>
-      <ul>
-        <%- products.each do |product| -%>
-            <li class="product_listing">
-              <h1><%= link_to product.name, nested_products_uri(product), :class => "product_title" %></h1>
-              <div><%= product.description_short.html_safe() %></div>
-              <div style="font-size:18px;color:#9b0707;text-align:right;">
-                <% if product.product_prices.present? %>
-                  <% product.product_prices.each do |p| %>
-                  <div style="margin-bottom:15px;">
-                    <%= number_to_currency p.price, :unit => "&pound;" %><br />
-                  </div>
-                  <% end %>
-                <% end %>
-                <%= link_to(image_tag("buttons/add_to_cart_button.png"), "/site/cart?product_id=#{product.id}", :remote => true, :method => :post) %>
-              </div>
-            </li>
-        <%- end -%>
-      </ul>
-      <%# products = @category.products.find(:all, :conditions => ["active = ?", true], :order => "price ASC ").paginate(:page => params[:page], :per_page => 3) %>
-      <%= will_paginate(products) %>
-    </div>
-<%- end -%>
-<!-- /div -->
-
+  <div class="community-row clearfix row">
+    <%= render :partial => 'site/shared/community_box' %>
+    <%= render :partial => 'site/shared/wine_club' %>
+    <%= render :partial => 'site/shared/box_blog' %>
+  </div>

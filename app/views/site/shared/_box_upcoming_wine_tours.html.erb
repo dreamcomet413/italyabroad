@@ -1,33 +1,18 @@
 <% products = Product.wine_tours %>
-<% unless products.blank? %>
-<div class="block" id="box_upcoming_wine_tours">
-  <h1 style="color:#9b0707;"><%= "Upcoming Tours" %></h1>
-  <ul>
-    <%- products.each do |product| -%>
-    <li style="margin-bottom:10px;">
-      <span id = "upcomming_tours_date"><%= product.date.strftime("%d %B %Y") if product.date %><br /></span>
-  	  <%= link_to product.name, nested_products_uri(product), :style => "font-size:14px;" %><br />
-
-    </li>
-    <%- end -%>
-  </ul>
-</div>
-<% end %>
-<% products = Product.wine_tours %>
-<% unless products.blank? %>
-<div class="upcoming-event-wrapper" id="box_upcoming_wine_tours">
-    <div class="upcoming-event-box">
+  <% unless products.blank? %>
+    <div class="upcoming-event-wrapper" id="box_upcoming_wine_tours">
+      <div class="upcoming-event-box">
         <div class="red-heading"><%= "Upcoming Tours" %></div>
         <%- products.each do |product| -%>
-	        <div class="green-heading"><%= link_to product.name, nested_products_uri(product) %></div>
-	        <div class="location-row">
-	            <div class="date-n-time"><%= product.date.strftime("%d %B %Y") if product.date %></div>
-	            <div class="location"><i><img src="/images/location-pin.png" alt="location"></i>Ontario Legislative Building</div>
-	        </div>
-	        <div class="event-detail">
-	            <p>Discover Italian wines like you never before. Italy is the country that grows the biggest number of grapes and due to its characteristics is really a unique wine producing country and wine is in the Italian DNA, every family, from north to south, loves wine with the major .... <a href="#.">Discover more</a></p>
-	        </div>
-	    </div>
-    <%- end -%>
-</div>
-<% end %>
+          <div class="green-heading"><%= product.name %></div>
+          <div class="location-row">
+            <div class="date-n-time"><%= product.date.strftime("%d %B %Y") if product.date %></div>
+            <div class="location"><i><img src="/images/location-pin.png" alt="location"></i>Ontario Legislative Building</div>
+          </div>
+          <div class="event-detail">
+            <p><%= product.description_short[0..400].html_safe() %>  <%= link_to "Discover more", nested_products_uri(product) %></p>
+          </div>
+        <%- end -%>
+      </div>
+    </div>
+  <% end %>
