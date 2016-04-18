@@ -2,54 +2,113 @@
 <%- @parent = Category.find(params[:parent] || "food") -%>
 <%- search_url = @category == @parent ? site_search_index_path(:id => @parent) : nested_categories_url(@parent, @category) -%>
 <div class="block" id="box_food_search">
-	<h3>Deli Finder</h3>
+	<div class="green-heading-16">Deli Finder</div>
 	<% form_tag search_url, :method => :get do %>
-	<table border="0">
-		<tr>
-		  <td>Text:</td>
-		  <td><%= text_field_tag :text, params[:text], :id => "search_text" %></td>
-    </tr>
-		<tr>
-		  <td>Region:</td>
-		  <td><%= select_tag :region_id, options_for_select(@category.products.regions.inject([["Any", ""]]) { |rs, r| rs << [r.name, r.id] }, params[:region_id].to_i), :id => "search_region" %></td>
-    </tr>
-    <% @producers =[]
-    producer_ids = []
-     products = @category.products.find(:all,:conditions=>['active = true'])
-    products.each do |p|
-    producer_ids << p.producer_id if p.producer_id and !producer_ids.include?(p.producer_id)
-    end
-    producer_ids.each do |producer_id|
+        <div class="left-bar-search">
+		  <%= text_field_tag :text, params[:text], :id => "search_text" %>
+          <i class="magnifier"><%= image_submit_tag "magnifier.png" %></i>
+        </div>
+        <!-- Start search filter-->
+    	 <div class="sidebar-filter-wrapper">
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                <div class="panel">
+                    <div class="panel-heading" role="tab" id="heading-1">
+                    <h4 class="panel-title">
+                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-1" aria-expanded="true" aria-controls="collapse-1">
+                            Region: <i></i>
+                        </a>
+                    </h4>
+                    </div>
+                    <div id="collapse-1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading-1">
+                        <div class="panel-body">
+                            <ul>
+                                <%= hidden_field_tag :region_id %>
+                                <% @category.products.regions.inject([["Any", ""]]) { |rs, r| rs << [r.name, r.id] }.each do |item| %>
+                                    <li><a href="#." value="<%= item[1] %>"> <%= item[0] %></a></li>
+                                <% end %>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel">
+                    <div class="panel-heading" role="tab" id="headingTwo">
+                        <h4 class="panel-title">
+                            <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                Producer: <i></i>
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
+                        <div class="panel-body">
+                        <% @producers =[]
+                            producer_ids = []
+                             products = @category.products.find(:all,:conditions=>['active = true'])
+                            products.each do |p|
+                            producer_ids << p.producer_id if p.producer_id and !producer_ids.include?(p.producer_id)
+                            end
+                            producer_ids.each do |producer_id|
 
-        producer=Producer.find_by_id(producer_id)
-        if producer
-        @producers << producer
-        end
+                                producer=Producer.find_by_id(producer_id)
+                                if producer
+                                @producers << producer
+                                end
 
-    end
-    %>
-		<tr>
-		  <td>Producer:</td>
-		  <td><%= select_tag :producer_id, options_for_select( @producers.inject([["Any", ""]]) { |ps, p| ps << [p.name, p.id] }, params[:producer_id].to_i), :id => "search_producer_name" %></td>
-    </tr>
-		<tr>
-		  <td colspan="2"></td>
-    </tr>
-		<tr>
-		  <td>Organic:</td>
-      <% checked = (params[:organic] == 'organic') ? true : false %>
-      <td><%= check_box_tag :organic, 'organic',checked  %></td>
-    </tr>
-		<tr>
-		  <td>Vegan:</td>
-      <% checked = (params[:vegetarian] == 'vegetarian') ? true : false %>
-      <td><%= check_box_tag :vegetarian, 'vegetarian', checked  %>
-    </tr>
-		<tr>
-		  <td colspan="2"></td>
-    </tr>
-		<tr>
-		  <td>Price:</td>
+                            end
+                            %>
+                            <ul>
+                                <%= hidden_field_tag :producer_id %>
+                                <% @producers.inject([["Any", ""]]) { |ps, p| ps << [p.name, p.id] }.each do |item| %>
+                                    <li><a href="#." value="<%= item[1] %>"> <%= item[0] %></a></li>
+                                <% end %>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel">
+                    <div class="panel-heading" role="tab" id="headingThree">
+                        <h4 class="panel-title">
+                            <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                Organic: <i></i>
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
+                        <div class="panel-body">
+                            <ul>
+                                <% hidden_field_tag :organic %>
+                                <li>
+                                    <span><% checked = (params[:organic] == 'organic') ? true : false %>
+                                    <%= check_box_tag :organic, 'organic',checked  %></span>
+                                    <span>Organic</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel">
+                    <div class="panel-heading" role="tab" id="headingFour">
+                        <h4 class="panel-title">
+                            <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                Vegan: <i></i>
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseFour" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingFour">
+                        <div class="panel-body">
+                            <ul>
+                                <% hidden_field_tag :vegetarian %>
+                                <li>
+                                    <span><% checked = (params[:vegetarian] == 'vegetarian') ? true : false %>
+                                    <%= check_box_tag :vegetarian, 'vegetarian', checked  %></span>
+                                    <span>Vegan</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- end Search filter-->
+		  <!-- <td>Price:</td>
 		  <td>
             <%= select_tag :price, options_for_select(
                     [
@@ -60,16 +119,32 @@
                             ["From #{number_to_currency(21,{:unit => "&pound;", :precision => 0})} to #{number_to_currency(30,{:unit => "&pound;", :precision => 0})}".html_safe, "BETWEEN 21 AND 30"],
                             ["More than #{number_to_currency(30,{:unit => "&pound;", :precision => 0})}".html_safe, "> 30"]
                     ], params[:price]), :id => "search_price" -%>
-		  </td>
-    </tr>
-		<tr>
-		  <td colspan="2"></td>
-    </tr>
-		<tr>
-		  <td></td>
-		  <td style="padding:0 0 0 17px;"><%= submit_tag "search" ,:class=>"search_btn"%><%= hidden_field_tag :id,@category.name.downcase %></td>
-    </tr>
-	</table>
+		  </td> -->
+		
+		  <!-- <td style="padding:0 0 0 17px;"><%= submit_tag "search" ,:class=>"search_btn"%><%= hidden_field_tag :id,@category.name.downcase %></td> -->
+        <div class="range-slider">
+            <div class="black-heading-16">Price </div>
+            <p>
+                <label for="amount"></label>
+                <input type="text" id="amount" readonly >
+            </p>
+            <div id="slider-range"></div>
+            <div class="row clearfix range-price">
+                <div class="col-xs-4 left">
+                    <div>|</div>
+                    <div>&pound;0</div>
+                </div>
+                <div class="col-xs-4 center">
+                    <div>|</div>
+                    <div>&pound;15</div>
+                </div>
+                <div class="col-xs-4 right">
+                    <div>|</div>
+                    <div>&pound;30+</div>
+                </div>
+            </div>
+        </div>        
 	<% end %>
+
 </div>
 

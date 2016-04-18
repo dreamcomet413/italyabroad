@@ -7,7 +7,7 @@ end
 
 %>
 <% if @category.image  && !@category.image_url.blank? %>
-  <div id="wineBanner">
+  <div id="wineBanner" class="main-banner">
     <span class="title_wine_tours">
     <%#= @category.text_on_image %>
     </span>
@@ -18,58 +18,10 @@ end
   	<%= link_to image_tag("hamper.png",:alt=>@category.name),link %>
 	</div>
 <% end %>
-<%= render :partial => '/site/shared/box_hamper_search' %>
-<%= render :partial => '/site/templates/category' %>
-<%# products = Product.find(:all, :limit => 3, :order => "created_at DESC", :conditions => "id IN (#{@category.all_products_ids.join(',')}) AND active") %>
-<% products = Product.find(:all, :limit => 3, :conditions => "#{('id IN (' + (@category.all_products_ids.join(',')) + ') AND ') if @category.all_products_ids.present? }active") %>
-<%- products.each do |product| -%>
-<div  class="wineList">
-  <br />
-  <table width="100%">
-    <tr>
-      <td style="padding:0;width:100px;height:100px;text-align:center;">
-        <%= link_to show_image_tag(product.layout_image, product.image_1, :jpg,product.name), nested_products_uri(product) %>
-      </td>
-      <td valign="top" style="padding:0;width:630px;">
-        <%= link_to truncate(product.name, :length => 60), nested_products_uri(product) %><br />
-            <%= show_review_ratings(product).html_safe() %>
-        <br />
-        <%= product.description_short[0..200].html_safe() %>
-      </td>
-      <td valign="top" style="padding:10px 0;width:100px;">
-        <div style="font-size:18px;color:#9b0707;text-align:right;">
-          <% if product.product_prices.present? %>
-            <% product.product_prices.each do |p| %>
-            <div style="margin-bottom:15px;">
-              <%= number_to_currency p.price, :unit => "&pound;" %><br />
-            </div>
-            <% end %>
-          <% end %>
-           <%- if product.out_of_stock? -%>
-            <%= image_tag('out_of_stock.png') %>
-          <%- else -%>
-          <%#= link_to image_tag("buttons/add_to_cart_button.png"), product_cart_index_path(product), :method => 'post' %>
-              <%= link_to(image_tag("buttons/add_to_cart_button.png"), "/site/cart?product_id=#{product.id}", :remote => true, :method => :post) %>
-          <%- end -%>
-        </div>
-      </td>
-    </tr>
-  </table>
-  <br />
-</div>
-<%- end -%>
-
-
-<% content_for :right do %>
-	<%= render :partial => '/site/shared/box_event' %>
-	<br />
-	<%= render :partial => '/site/shared/box_subscriptions' %>
-	<br />
-	<%= render :partial => '/site/shared/box_grape_guide' %>
-  <br />
-  <%= render :partial => '/site/shared/box_mood' %>
-  <br />
-  <%= render :partial => '/site/shared/social_follow' %>
-
-<% end %>
-
+<!-- start category content-->
+<div class="row">
+  <div class="two-colum-row clearfix">
+  <div class="col-md-3 left-side-bar">
+  <%= render :partial => '/site/shared/box_hamper_search' %></div>
+  
+  <%= render :partial => '/site/templates/landing' %>

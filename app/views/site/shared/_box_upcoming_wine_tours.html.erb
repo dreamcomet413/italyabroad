@@ -13,4 +13,21 @@
   </ul>
 </div>
 <% end %>
-
+<% products = Product.wine_tours %>
+<% unless products.blank? %>
+<div class="upcoming-event-wrapper" id="box_upcoming_wine_tours">
+    <div class="upcoming-event-box">
+        <div class="red-heading"><%= "Upcoming Tours" %></div>
+        <%- products.each do |product| -%>
+	        <div class="green-heading"><%= link_to product.name, nested_products_uri(product) %></div>
+	        <div class="location-row">
+	            <div class="date-n-time"><%= product.date.strftime("%d %B %Y") if product.date %></div>
+	            <div class="location"><i><img src="/images/location-pin.png" alt="location"></i>Ontario Legislative Building</div>
+	        </div>
+	        <div class="event-detail">
+	            <p>Discover Italian wines like you never before. Italy is the country that grows the biggest number of grapes and due to its characteristics is really a unique wine producing country and wine is in the Italian DNA, every family, from north to south, loves wine with the major .... <a href="#.">Discover more</a></p>
+	        </div>
+	    </div>
+    <%- end -%>
+</div>
+<% end %>

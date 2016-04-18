@@ -2,7 +2,7 @@
 <% unless @category.all_products_ids.blank? %>
   <% condition = "rating = 5 AND active = true" %>
   <% condition += " AND id IN (#{@category.all_products_ids.join(',')})" unless @category.all_products_ids.blank? %>
-  <% products = Product.find(:all, :limit => 5, :order => "RAND()", :conditions => condition) %>
+  <% products = Product.find(:all, :limit => 3, :order => "RAND()",  :conditions => condition) %>
 <% end %>
 <% unless products.blank? %>
     <div id="topSellingWine">
@@ -10,24 +10,61 @@
           category_name = products.first.categories.detect{|category| ["Wine", "Food", "Hampers", "Wine Tours", "Other Drinks"].include?(category.name)}.name
           case category_name
             when "Wine"
-              image_tag("topSellingWine.png")
+              # image_tag("topSellingWine.png")
+              content_tag(:div, "Most Popular", class: ["green-heading-with-border"])
             when "Food"
-              image_tag("topSellingFood.png")
+              #image_tag("topSellingFood.png")
+              content_tag(:div, "Most Popular", class: ["green-heading-with-border"])
             when "Hampers"
               # image_tag("topSellingHampers.png")
-              image_tag("topSellingWine.png")
+              #image_tag("topSellingWine.png")
+              content_tag(:div, "Most Popular", class: ["green-heading-with-border"])
             when "Wine Tours"
             when "Other Drinks"
-              image_tag("most_popular_other_drinks.png")
+              #image_tag("most_popular_other_drinks.png")
+              content_tag(:div, "Most Popular", class: ["green-heading-with-border"])
             else
-              "Andrea recommends"
+              content_tag(:div, "Our Recomendations", class: ["green-heading-with-border"])
+              #"Andrea recommends"
           end
       %>
-      <ul>
-        <%- products.each do |product| -%>
-            <li><%= link_to product.name, nested_products_uri(product) if product.categories.root.present? && (product.categories.root.name.upcase != 'WINE TOURS') %></li>
-        <%- end -%>
-      </ul>
+      <div class="product-list">
+        <div class="row clearfix">
+          <%- products.each do |product| -%>
+            <div class="col-md-4">
+              <div class="small-box">
+                <div class="row clearfix">
+                  <div class="col-xs-4 box-image"><%= link_to show_image_tag(product.layout_image, product.image_1, :jpg,product.name),nested_products_uri(product)  %></div>
+                  <div class="col-xs-8 slider-box-text">
+                    <div class="item-name"><%= link_to product.name, nested_products_uri(product) if product.categories.root.present? && (product.categories.root.name.upcase != 'WINE TOURS') %><br/>
+                      <%= product.description_short[0..70].html_safe() %>
+                    </div>
+                    <div class="seller-price">
+                      <% if product.product_prices.present? %>
+                        <% product.product_prices.each do |p| %>
+                        <div>
+                          <%= number_to_currency p.price, :unit => "&pound;" %>
+                        </div>
+                        <% end %>
+                      <% end %>
+                      <%- if product.out_of_stock? -%>
+                        <%= image_tag('out_of_stock.png') %>
+                      <%- else -%>
+                    </div>
+                    <div class="add-row clearfix">
+                      <div class="seller-field"><input type="text" value="1"></div>
+                      <div class="seller-btn">
+                        <%= link_to "Add", "/site/cart?product_id=#{product.id}", :remote => true, :method => :post %>
+                      <%- end -%>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <%- end -%>
+        </div>
+      </div>
     </div>
 <% end %>
 
@@ -37,30 +74,67 @@
 <% unless @category.all_products_ids.blank? %>
 <% condition = "raccomanded = true AND active = true" %>
 <% condition += " AND id IN (#{@category.all_products_ids.join(',')})" unless @category.all_products_ids.blank? %>
-<% products = Product.find(:all, :limit => 5, :order => "RAND()", :conditions => condition) %>
+<% products = Product.find(:all, :limit => 3, :order => "RAND()", :conditions => condition) %>
 <% end %>
 <% unless products.blank? %>
     <div id="andreasWine">
       <%=
           case @category.name
             when "Wine"
-              image_tag("andreasWine.png")
+              #image_tag("andreasWine.png")
+              content_tag(:div, "Our Recomendations", class: ["green-heading-with-border"])
             when "Food"
-              image_tag("deliChoise.png")
+              #image_tag("deliChoise.png")
+              content_tag(:div, "Our Recomendations", class: ["green-heading-with-border"])
             when "Hampers"
-              image_tag("hamperChoice.png")
+              #image_tag("hamperChoice.png")
+              content_tag(:div, "Our Recomendations", class: ["green-heading-with-border"])
             when "Wine Tours"
             when "Other Drinks"
-              image_tag("recommendations_other_drinks.png")
+              #image_tag("recommendations_other_drinks.png")
+              content_tag(:div, "Our Recomendations", class: ["green-heading-with-border"])
             else
-              "Andrea recommends"
+              #"Andrea recommends"
+              content_tag(:div, "Our Recomendations", class: ["green-heading-with-border"])
           end
       %>
-      <ul>
-        <%- products.each do |product| -%>
-            <li><%= link_to product.name, nested_products_uri(product) if product.categories.root.present? && product.categories.root.name.upcase != 'WINE TOURS'%></li>
-        <%- end -%>
-      </ul>
+      <div class="product-list">
+        <div class="row clearfix">
+          <%- products.each do |product| -%>
+          <div class="col-md-4">
+              <div class="small-box">
+                <div class="row clearfix">
+                  <div class="col-xs-4 box-image"><%= link_to show_image_tag(product.layout_image, product.image_1, :jpg,product.name),nested_products_uri(product)  %></div>
+                  <div class="col-xs-8 slider-box-text">
+                    <div class="item-name"><%= link_to product.name, nested_products_uri(product) if product.categories.root.present? && product.categories.root.name.upcase != 'WINE TOURS'%><br/>
+                      <%= product.description_short[0..70].html_safe() %>
+                    </div>
+                    <div class="seller-price">
+                      <% if product.product_prices.present? %>
+                        <% product.product_prices.each do |p| %>
+                        <div>
+                          <%= number_to_currency p.price, :unit => "&pound;" %>
+                        </div>
+                        <% end %>
+                      <% end %>
+                      <%- if product.out_of_stock? -%>
+                        <%= image_tag('out_of_stock.png') %>
+                      <%- else -%>
+                    </div>
+                    <div class="add-row clearfix">
+                      <div class="seller-field"><input type="text" value="1"></div>
+                      <div class="seller-btn">
+                        <%= link_to "Add", "/site/cart?product_id=#{product.id}", :remote => true, :method => :post %>
+                      <%- end -%>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <%- end -%>  
+        </div>
+      </div>
     </div>
 <% end %>
 
