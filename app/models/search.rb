@@ -64,5 +64,14 @@ class Search
     conditions = nil if conditions.blank?
     return conditions
   end
+  
+  def self.get_products(product_type, params)
+    category_ids = []
+    category_ids = Category.where("name LIKE '%#{product_type}%'").collect &:id
+    categorization_ids = Categorization.where('category_id IN (?)' , category_ids).map(&:product_id).uniq
+    @products = Product.where("name like '%#{params[:term]}%' and id IN (?)" , categorization_ids).limit(10) 
+    return @products
+  end
+  
 end
 

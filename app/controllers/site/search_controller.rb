@@ -8,28 +8,36 @@ class Site::SearchController < ApplicationController
     @users = User.where("name like '%#{params[:term]}%'").limit(10)
     @grapes = Grape.where("name like '%#{params[:term]}%'").limit(10)
     @results = @products + @recipes + @users + @grapes
-    render :json => @results.collect {|p|
+    render_result_data(@results)
+  end
+  def render_result_data(result )
+    render :json => result.collect {|p|
       name = p.name.gsub(eval("/#{params[:term]}/i")){|m| "<b>#{m}</b>"}
       {:label => name, :value => p.name, :id => p.id}
     }.to_json.to_s.html_safe
   end
   def autocomplete_search_wine_name
     # this is to search all the wine products on index pages
-    category_ids = []
-    category_ids = []
-    category_ids = Category.where("name LIKE '%wine%'").collect &:id
-    categorization_ids = Categorization.where('category_id IN (?)' , category_ids).map(&:product_id).uniq
-    @products = Product.where("name like '%#{params[:term]}%' and id IN (?)" , categorization_ids).limit(10) 
-    render :json => @products.collect {|p|
-      name = p.name.gsub(eval("/#{params[:term]}/i")){|m| "<b>#{m}</b>"}
-      {:label => name, :value => p.name, :id => p.id}
-    }.to_json.to_s.html_safe
+    products =  Search.get_products('wine', params)
+    render_result_data(products )
+
   end
-  
+  def autocomplete_search_food_name
+    # this is to search all the food products on index pages
+    products = Search.get_products('food', params)
+    render_result_data(products)
+  end
+  def autocomplete_search_drinks_name
+    # this is to search all the other drinks products on index pages
+    products = Search.get_products('other', params)
+    render_result_data(products)
+  end
+  def autocomplete_search_hamper_name
+    # this is to search all the hampers products on index pages
+    products = Search.get_products('hamper', params)
+    render_result_data(products)
+  end
   def index
-    logger.info('11111111111111111111111111111111111111111111111111111111111111111111')
-    logger.info(params.inspect)
-    logger.info('11111111111111111111111111111111111111111111111111111111111111111111')
     @search_type = params[:id] 
     params[:category] ||= params[:id]
     

@@ -209,6 +209,9 @@ ItalyabroadNew::Application.routes.draw do
         get :find_grapes
         get :autocomplete_search_name
         get :autocomplete_search_wine_name
+        get :autocomplete_search_food_name
+        get :autocomplete_search_hamper_name
+        get :autocomplete_search_drinks_name
       end
     end
     

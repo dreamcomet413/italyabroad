@@ -2,7 +2,16 @@
      <!-- Start Product list wrapper-->
      <div class="prdouct-list-wrapper hampers-wrapper-2">
         <div class="green-heading-with-border">
-          Drinks
+          <%page =  request.request_uri%>
+          <%if page.include?('food')%>
+            Food
+          <%elsif page.include?('wine') %>
+            Wine
+          <%elsif page.include?('hamper') %>
+            Hampers
+          <%elsif page.include?('other') %>
+            Other Drinks
+          <%end%>
         </div>
         <!-- Start product list-->
         <div class="product-list">
