@@ -198,7 +198,7 @@ img{
 .small-box{
 	border: solid 1px #dcdcdc;
 	padding: 18px 8px 10px 18px;
-	min-height: 186px;
+	min-height: 195px;
 	margin-bottom: 15px;}
 .small-box-test{
 	border: solid 1px #dcdcdc;
@@ -654,6 +654,7 @@ footer{
 	margin-top: 15px;
 	float: left;
 }
+
 .subscribe-rss img{
 	margin: -2px 0px 0px 3px;
 }
@@ -687,13 +688,21 @@ footer{
 	width: 30%;
 	margin: 8px 10px 10px 0px;
 }
-.favourite ul li{
-	list-style: none;
+.favourite ol li{
+	margin-left: 15px;
 	color: #5c8018;
 	font-size: 16px;
 	font-family: Georgia;
 	margin-bottom: 13px;
 	padding-right: 4px;
+}
+.favourite ol li a{
+	color: #5c8018;
+	text-decoration: none;
+}
+.favourite ol li a:hover{
+	
+	text-decoration: underline;
 }
 .sidebar-box-heading{
 	font-family: prestigeEliteStd;

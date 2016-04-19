@@ -1,16 +1,27 @@
-<div id="box_archives" class="block">
-  <h1 style="text-align:center;">Previous posts by month</h1>
-  <ul>
-  <%- Post.archives.each_with_index do |archive, i| -%>
-    <li class="collapsible <%= (i==0) ? 'opened' : 'closed' %>">
-      <span><%= link_to(archive[:year], "", :onclick => "if ($($(this).parentNode.parentNode).hasClassName('opened')) {$($(this).parentNode.parentNode).removeClassName('opened');$($(this).parentNode.parentNode).toggleClassName('closed')} else {$($(this).parentNode.parentNode).removeClassName('closed');$($(this).parentNode.parentNode).toggleClassName('opened')};return false;") %></span>
-      <ul>
-        <%- archive[:months].each do |m| -%>
-        <li><%= link_to(Date::MONTHNAMES[m[0]], blog_by_month_page_path(:year => archive[:year], :month => m[0])) %> (<%= m[1] %>)</li>
-        <%- end -%>
-      </ul>
-    </li>
-  <%- end -%>
-  </ul>
+<div class="left-small-box">
+  <div class="sidebar-box-heading">Archives</div>
+  <div class="archives-wrapper">
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+      <%- Post.archives.each_with_index do |archive, i| -%>
+        <div class="panel">
+          <div class="panel-heading" role="tab" id="heading<%= archive[:year] %>">
+            <h4 class="panel-title">
+              <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse<%= archive[:year] %>" aria-expanded="true" aria-controls="collapse<%= archive[:year] %>">
+                <%= archive[:year] %>
+              </a>
+            </h4>
+          </div>
+          <div id="collapse<%= archive[:year] %>" class="panel-collapse collapse " role="tabpanel" aria-labelledby="heading<%= archive[:year] %>">
+            <div class="panel-body">
+              <ul>
+                <%- archive[:months].each do |m| -%>
+                <li><%= link_to(Date::MONTHNAMES[m[0]], blog_by_month_page_path(:year => archive[:year], :month => m[0])) %> (<%= m[1] %>)</li>
+                <%- end -%>
+              </ul>
+            </div>
+          </div>
+        </div>
+      <%- end -%>
+    </div>
+  </div>
 </div>
-

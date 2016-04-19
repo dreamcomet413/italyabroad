@@ -1,4 +1,6 @@
-<div id="box_popular_tags" class="block">
+
+
+<div class="left-small-box" id="box_popular_tags">
   <%- @popular_tags = PostsTag.popular_tags -%>
   <%  pmin = 70 # Minimum font size
   index = 1
@@ -9,10 +11,10 @@
     vmin = tag.popularity.to_f if (tag.popularity.to_f < vmin)
     vmax = tag.popularity.to_f if (tag.popularity.to_f > vmax)
   end  %>
-  <h1 style="text-align:center;">Popular Tags</h1>
-  <br />
-  <% @popular_tags.each do |result| %>
-    <span style="font-size:<%= ((pmax - pmin) * (Math.log(result.popularity.to_f)) / (Math.log(vmax)) + pmin).to_s %>%"><%#= link_to result.tag.name.titleize, "blog/tag/#{result.tag.name}", :style => "color:#454545;" %>
+  <div class="sidebar-box-heading">Tag Cloud</div>
+  <div>
+    <% @popular_tags.each do |result| %>
+    <span style="font-size:<%= ((pmax - pmin) * (Math.log(vmax)==0 ? 0 : (Math.log(result.popularity.to_f)) / (Math.log(vmax))) + pmin).to_s %>%"><%#= link_to result.tag.name.titleize, "blog/tag/#{result.tag.name}", :style => "color:#454545;" %>
     <%# post = Post.find_by_id(result.post_id)%>
     <%#= link_to result.tag.name.titleize, post.friendly_identifier.blank? ? "/blog/#{post.id}" : "/blog/#{post.friendly_identifier}" %>
     <%= link_to result.tag.name.titleize, :controller=>'blog',:action=>"index",:tag_id=>result.tag.id %>
@@ -23,5 +25,5 @@
     <% end %>
 
     <% index = index + 1 end %>
+  </div>
 </div>
-
