@@ -1,13 +1,15 @@
-<div class="block" id="box_blog">
-	<h1><%= link_to "Andrea's Blog", "/site/blog" %></h1>
-	<br />
-	<% post = Post.find(:first, :order => "created_at DESC", :limit => 1) %>
-	<% if post %>
-	<ul>
-	  <li>
-  		<span class="title"><%#= link_to post.name, site_blog_path(post) %></span>
-      <div class="teaser" style="padding-top:5px;"><%= post.description_short[0..200].html_safe() %>... <%= link_to "(Continue reading)", site_blog_path(post) %></div>
-    </li>
-  </ul>
-	<% end %>
+<div class="col-md-4" id="box_blog">
+    <div class="small-box">
+        <div class="small-box-heading">Andrea's Blog</div>
+        <div class="row clearfix">
+            <div class="col-xs-7">
+        		<% post = Post.find(:first, :order => "created_at DESC", :limit => 1) %>
+					<% if post %>        
+                	<div class="small-box-text"><%= post.description_short[0..100].html_safe() %>...  </div>
+                	<% end %>               
+                <div class="read-more"><%= link_to "(Continue reading)", site_blog_path(post) %></div>
+            </div>
+            <div class="col-xs-5"><img src="images/blog-icon.png" alt="blog image"></div>
+        </div>
+    </div>
 </div>

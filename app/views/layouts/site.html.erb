@@ -352,9 +352,7 @@
         </script>
     <% end %>
     <% encoding_m = ['site/faqs','site/cart','site/search', 'site/food'].include?(params[:controller]) ? 'UTF-8' : 'ASCII-8BIT' %>
-    <!--<% @content_for_right = true %>  
-    <%= content_tag(:div, (yield :right), :id => "rightColumn").force_encoding(encoding_m) if @content_for_right -%>
--->
+  
     <div id="leftColumnContent" class="<%= "widescreen" unless @content_for_right %>">
       <%= yield %>
       <%= yield :bottomBlocks %>

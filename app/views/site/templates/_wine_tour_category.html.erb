@@ -50,67 +50,14 @@ end
       <div>
         <p><%= @category.description.html_safe() %></p>
       </div>
+      <%= render :partial => '/site/shared/box_upcoming_wine_tours' %> 
     </div>
   </div>
 </div>
-
-<div style="margin:6px;float:left;margin-right:20px;">
-  <%= render :partial => '/site/shared/box_upcoming_wine_tours' %>
-  <!-- before changing the following div has this id="wine_tours_introduction" -->
+<div class="community-row clearfix">
+  <%= render :partial => 'site/shared/community_box' %>
+  <%= render :partial => 'site/shared/wine_club' %>
+  <%= render :partial => 'site/shared/box_blog' %>
 </div>
 
-
-  <!--<h3 style="border:none;"  align="center">
-  <%# unless @category.page_heading.blank? %>
-      <%#= @category.page_heading %>
-     <%# else %>
-      <%#= @category.name %>
-     <%# end %>
-  </h3>-->
-
-<div id="wine_tour_description" style = "float:left;margin-left:10px;">
-</div>
-
-<div style="clear:both;"></div>
-<% products = @category.products.where(["active = ? AND DATE(date) > ?", true, Date.today]).order("date").paginate(:page => params[:page], :per_page => 3) %>
-<%- unless products.blank? -%>
-
-
-  <div id="featured_wine_tours" style="margin:6px;text-align:justify;margin-right:20px;">
-    <br />
-    <h3>Italyabroad.com Wine Tours</h3>
-    <ul>
-      <%- products.each do |product| -%>
-      <li class="product_listing">
-        <%= product.date.strftime("%d %B %Y") if product.date %>
-        <h1><%= link_to product.name, nested_products_uri(product), :class => "product_title" %></h1>
-        <%#= product.date.strftime("%d %B %Y") if product.date %><!--<br /><br />-->
-        <div><%= product.description_short.html_safe() %></div>
-        <div style="font-size:18px;color:#9b0707;text-align:right;">
-        <!--Price:&nbsp;--><%= number_to_currency product.price, :unit => "&pound;" %><br />
-          <%= link_to(image_tag("buttons/add_to_cart_button.png"), "/site/cart?product_id=#{product.id}", :remote => true, :method => :post) %>
-        </div>
-      </li>
-      <%- end -%>
-    </ul>
-    <%= will_paginate(products) %>
-  </div>
-  <%- end -%>
-<!-- /div --><!-- suspecious div ending removed this div to fix the issue with sitemap-->
-<!--
-<#% content_for :right do %>
-  <%#= render :partial => 'site/shared/box_product_reviews' %>
-  <%#= render :partial => 'site/shared/box_event' %>
-	<br />  
-	<%#= render :partial => '/site/shared/box_subscriptions' %>
-	<br />
-	<%#= render :partial => 'site/shared/box_products_on_offer' %>
-	<br />
-	<%#= render :partial => '/site/shared/box_grape_guide' %>
-  <br />
-  <%#= render :partial => '/site/shared/box_mood' %>
-  <br />
-  <#%= render :partial => '/site/shared/social_follow' %>
-
-<#% end %>
 
