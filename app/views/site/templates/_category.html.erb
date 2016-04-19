@@ -52,12 +52,10 @@
                       <%- else -%>
                     </div>
                     <div class="add-row clearfix">
-                      <div class="seller-field"><input type="text" value="1"></div>
-                      <div class="seller-btn">
-                        <%= link_to "Add", "/site/cart?product_id=#{product.id}", :remote => true, :method => :post %>
-                      <%- end -%>
-                      </div>
+                      <%=render partial: 'site/templates/product_cart_form' ,  locals: {product: product} %>
                     </div>
+                      <%- end -%>
+                      
                   </div>
                 </div>
               </div>
@@ -122,12 +120,9 @@
                       <%- else -%>
                     </div>
                     <div class="add-row clearfix">
-                      <div class="seller-field"><input type="text" value="1"></div>
-                      <div class="seller-btn">
-                        <%= link_to "Add", "/site/cart?product_id=#{product.id}", :remote => true, :method => :post %>
-                      <%- end -%>
-                      </div>
-                    </div>
+                      <%=render partial: 'site/templates/product_cart_form' ,  locals: {product: product} %>
+                    </div>  
+                    <%- end -%>
                   </div>
                 </div>
               </div>

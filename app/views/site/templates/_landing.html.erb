@@ -34,12 +34,14 @@
                       <%- else -%>
                     </div>
                     <div class="add-row clearfix">
-                      <div class="seller-field"><input type="text" value="1"></div>
-                      <div class="seller-btn">
-                          <%= link_to "Add", "/site/cart?product_id=#{product.id}", :remote => true, :method => :post %>
-                      <%- end -%>
-                      </div>
-                    </div>
+                      <%= form_tag("/site/cart?product_id=#{product.id}", method: "post" , :remote=>true) do %>
+                        <%=hidden_field_tag :p_id , product.id , :class=>'p_id'  %>
+                        <div class="seller-field"><%= text_field_tag(:quantity , 1 , :class=>'quantity') %></div>
+                        <div class="seller-btn"><%= image_submit_tag("buttons/add_to_cart_button.png") %></div>
+                      <%end%>
+                    </div>  
+                    <%- end -%>
+                      
                   </div>
                 </div>
               </div>
