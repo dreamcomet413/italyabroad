@@ -354,7 +354,7 @@
     <% encoding_m = ['site/faqs','site/cart','site/search', 'site/food'].include?(params[:controller]) ? 'UTF-8' : 'ASCII-8BIT' %>
   
     <div id="leftColumnContent" class="<%= "widescreen" unless @content_for_right %>">
-      <%= yield %>
+      <%= yield.force_encoding(encoding_m) %>
       <%= yield :bottomBlocks %>
     </div>
 

@@ -594,6 +594,9 @@ footer{
 .event-detail{
 	margin: 18px 0px 0px;
 }
+.member-col{
+	text-align: center;
+}
 /* ===================Producer Detail=======================*/
 .share-row{
 	margin-bottom: 20px;
@@ -792,6 +795,10 @@ footer{
 	text-align: center;
 	font-size: 11px;
 	padding: 10px 5px;
+}
+.member-name a{
+	text-decoration: none;
+	color: #333;
 }
 .border-box{
 	border: solid 1px #dcdcdc;

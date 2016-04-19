@@ -1,7 +1,7 @@
 <%- set_title "Community" -%>
 <% @breadcrumbs = "#{link_to("Home", root_url)} &raquo; #{link_to('Community',wine_community_path)}".html_safe() %>
 <% @about = AboutU.find(:first, :conditions => {:link_type => "community"} ) %>
-<div id="wineBanner">
+<div id="wineBanner" class="main-banner">
   <span class="community_home_title">
     <%#= @about.title rescue "About us"%>
     <% if !@about.nil? %>
@@ -20,199 +20,107 @@
       <%= image_tag("forum_home.jpg",:alt=>'Community') if @about.blank? %>
   <% end %>
 </div><!--div id="wineBanner"-->
-
-<div style="margin:10px;float:left;width:475;"> <!-- Newest Members START-->
-  <div id="box_newest_members">
-    <% users = User.find(:all, :order => "created_at DESC", :limit => 16 ) %>
-    <h1 style="color:#9b0707;font-size:14px;">Our Newest Members</h1>
-    <ul>
+<div class="full-width">
+  <div class="community-wrapper">
+    <div class="green-heading-2">Our Newest Members</div>
+    <!-- Start New Members Row-->
+    <div class="new-member-row clearfix">
+      <% users = User.find(:all, :order => "created_at DESC", :limit => 12 ) %>
       <%- for user in users -%>
-          <li style="width:55px">
-            <%= link_to user.try(:photo).try(:image_filename).present? ? "<div class='user_photo_small' id='user_photo'>#{image_tag(user.photo.image_filename.url,:style => "width :55x;height:55px;")}</div>".html_safe : avatar_for_user(user, 'small', '55px'), site_customer_path(user), :title => user.name  %>
-            <%#= link_to (user.name.length > 10 ? user.name[0..10] + '<br />' + user.name[11..20] : user.name ), customer_path(user), :class=>'data', :title => user.name %> <br/>
-            <%= link_to user.name, site_customer_path(user), :class=>'data', :title => user.name %>
-          </li>
+        <div class="member-col col-md-1 col-xs-3">
+          <div> <%= link_to user.try(:photo).try(:image_filename).present? ? "<div class='user_photo_small' id='user_photo'>#{image_tag(user.photo.image_filename.url,:style => "width :66x;height:66px;")}</div>".html_safe : avatar_for_user(user, 'small', '66px'), site_customer_path(user), :title => user.name  %></div>
+          <div class="member-name"><%= link_to user.name, site_customer_path(user), :class=>'data', :title => user.name %></div>
+        </div>
       <%- end -%>
-    </ul>
-  </div>
-</div>                                          <!-- Newest Members END-->
-
-
-
-<div><!--Latest review START -->
-  <div id="box_latest_review" style="height:100px;">
-    <h1 style="color:#9b0707;font-size:14px;">Latest Review</h1>
-    <% latest_review = Review.last(:conditions=>['publish = ?',true]) %>
-
-
-    <%- unless latest_review.nil? -%>
-        <table cellpadding="0" cellspacing="0" width="100%">
-          <tr>
-            <td  width="1%">
-              <%= link_to avatar_for_user(latest_review.user, 'small'), site_customer_path(latest_review.user.id)%>
-              <%= link_to latest_review.user.name, site_customer_path(latest_review.user.id), :class=>'data', :id => 'latest_review_name'%>
-            </td>
-            <td valign="top"  width="50%"><% unless latest_review.description.blank? %> &nbsp;&nbsp;
-                  <%#= link_to latest_review.description,review_path(latest_review),:class=>'data' %>
-                  <% if latest_review.reviewer_type == 'Product' %>
-                      "<%= link_to latest_review.description[0..120] + "..." ,nested_products_uri(Product.find(latest_review.reviewer_id)  ),:class=>'data' %>"
-                      <%= link_to "(Continue reading)", nested_products_uri(Product.find(latest_review.reviewer_id)  ) %>"
-                  <% elsif latest_review.reviewer_type == 'Recipe' %>
-                      "<%= link_to latest_review.description[0..120] + "...", site_recipe_path(Recipe.find(latest_review.reviewer_id)  ),:class=>'data' %>"
-                      <%= link_to "(Continue reading)", site_recipe_path(Recipe.find(latest_review.reviewer_id)  ) %>"
-                  <% end %>
+    </div><!-- End New Members Row-->
+    <div class="row clearfix bottom-50">
+      <div class="col-md-4">
+        <%- grapes = Grape.find(:all, :limit => 1, :order => "RAND()") -%>
+        <%- for grape in grapes -%>
+          <div class="border-box">
+            <div class="green-heading">Grape Guide</div>
+            <div class="box-image">
+              <% if grape && grape.image %>
+              <%= image_tag(site_image_url(:recipe, grape.image, :jpg),:alt=>grape.name) if grape && grape.image %>
               <% else %>
-                  "<%= 'Added a new review' %>"
-              <% end %>
-            </td>
-          </tr>
-
-        </table>
-    <%- else -%>
-        There are no reviews yet, why not write one and get <%= number_to_currency(10,{:unit => "&pound;", :precision => 0}) -%> voucher
-    <%- end -%>
-
-  </div>
-</div><!--Latest review END -->
-
-<div style="clear:both;"></div>
-<br /><br />
-
-<!-- COLUMN 1 -->
-<div class="three-col-format">
-
-  <div id="box_producer" >
-    <h1 style="color:#9b0707;font-size:14px;">Get to know our producers</h1>
-    <%- producers = Producer.find(:all, :limit => 1,:conditions=>['active = ?',true] ,:order => "RAND()") %>
-    <%# producers = Producer.find(:all, :limit => 1, :conditions => "id=39") %>
-    
-    <%- for producer in producers -%>
-        <div id="get_to_know_our_producers_avatar" style=" padding-top:0px;padding-bottom:10px;">
-          <%= link_to producer.name, site_producer_path(producer) %>
-          <%= link_to "(more producers)", site_producers_path %><br /><br />
-          <%#= avatar_for_user(producer, "small") %>
-          <%#= show_producer_image(producer) %>
-          <% if producer.image %>
-          
-              <%=  image_tag(site_image_url(:community_producer_thumb, producer.image, :jpg),:alt=> producer.name, :width => "210px",) %>
-          <% else %>
-              <%= image_tag("default.jpg",:width => "210px",:alt=>producer.name) %>
-          <% end %>
-          <br />
-        </div>
-
-        <div class = "box_producer_description" >
-          <%- if producer.description
-                if producer.description.length > @enough_chars -%>
-                  <%= producer.description[0..@enough_chars].html_safe() + "... &nbsp;" + link_to('(Continue Reading)', site_producer_path(producer)) %>
-              <%- else -%>
-                  <%= producer.description.html_safe() %>
-              <%end
-                else
-
-                end-%>
-        </div>
-
-
-    <% end -%>
-
-  </div>
-  <br /><br />
-  <div id="box_latest_blog"  style="background-color:#f8f7ef;padding:5px 10px;margin-right:10px;text-align:justify;">
-    <% blog = Post.last %>
-    <h1 style="color:#9b0707;font-size:14px;text-align:center;">Blog</h1>
-    <%= link_to "Latest Entry", site_blog_index_path %><br /><br />
-    <% if !blog.nil? %>
-        <%= link_to blog.name.upcase, site_blog_path(blog.id) %> - <%= blog.created_at.strftime("%d/%m/%Y") %><br /><br />
-        <%= blog.description_short.html_safe() %><br /><br />
-        <div style="text-align:right;"><%= link_to("View all", site_blog_index_path) %></div>
-    <%end%>
-  </div>
-
-</div><!-- END OF COLUMN 1-->   <!--div class="three-col-format"-->
-
-
-
-
-
-<!-- COLUMN 2 -->
-<div class="three-col-format" style="padding-left:5px;">
-  <h1 style="color:#9b0707;font-size:14px;padding-bottom:0px;margin-bottom:0px;">Q&A</h1>
-  <%= link_to '(Ask our experts)', site_faqs_path %>
-  <div style="text-align:left;padding-top:20px;">
-    <% @faqs = Faq.find(:all, :limit => 6, :conditions=>['publish = true and answer != ""']) %>
-    <% unless @faqs.blank? %>
-
-        <% @faqs.each do |faq| %>
-            <span style="color:#000;"><%= faq.question %></span><br />
-            <%= link_to 'Read the answer', site_faqs_path %><br /><br /><!-- TRY THE INDIVIDUAL ANSWER PATH -->
-        <%- end-%>
-
-    <%- end -%>
-
-    <%- ForumPost.find(:all, :order => "created_at DESC", :limit => 14).each do |post| -%>
-        <strong><%= post.body %></strong> in <strong>
-    <%= link_to h(post.forum_name), forum_path(post.forum_id) %></strong>
-        <%= post.user.name %>
-    <%- end -%>
-  </div>
-
-
-</div><!-- END OF COLUMN 2-->
-
-
-
-<!-- COLUMN 3 -->
-<div class="three-col-format" style="float:right;padding-right:5px;">
-
-
-
-  <div id="box_grape_guide_forum">
-    <h1 style="color:#9b0707;font-size:14px;text-align:center;">Grape Guide</h1>
-    <%- grapes = Grape.find(:all, :limit => 1, :order => "RAND()") -%>
-    <%- for grape in grapes -%>
-
-        <div class="box_grape_guide"><%= link_to grape.name, site_grape_path(grape) %>&nbsp;<%= link_to "(more grapes)", grape_guide_path %><br /><br />
-          <%#= image_tag("grape_guide_small.png",:alt=>'Grape guide') %>
-          <% if grape && grape.image %>
-              <%= image_tag(site_image_url(:recipe, grape.image, :jpg),:alt=>grape.name, :width=> "210px") if grape && grape.image %>
-          <% else %>
-              <%= image_tag("grape_guide_small.png", :alt=>grape.name, :width=> "210px") %>
-          <%- end -%><br /><br />
-
-          <%#= grape.description %>
-          <div style="text-align:justify;">
-            <%=
+                <%= image_tag("grape_guide_small.png", :alt=>grape.name) %>
+              <%- end -%>
+            </div>
+            <div class="green-heading-20"><%= grape.name %></div>
+            <div>
+              <%=
                 if grape.description
                   if grape.description.length > @enough_chars
                     grape.description[0..@enough_chars].html_safe() + "..." + link_to('(Continue Reading)', site_grape_path(grape)).html_safe()
                   else
                     grape.description.html_safe()
                   end
-                else
-                  
+                else    
                 end
-            %>
+              %>
+            </div>
+            <div class="right-link"><%= link_to "(More Grapes)", grape_guide_path %></div>
           </div>
-
-    <%- end -%>
-    </div>
-    <!-- AAA -->
-  </div><!-- THIS WAS ADDED BY SUJITH ON JUN 13, 2012 SINCE I FOUND THAT A DIV WAS NOT CLOSED -->
-  <div id="box_get_to_know_italy"><br /><br />
-    <h1 style="color:#9b0707;font-size:14px;text-align:center;">Get to know italy</h1>
-    <%- regions = Region.find(:all,:conditions=>['active = ?',true], :limit => 1, :order => "RAND()") -%>
-    <%- for region in regions -%>
-        <div class="box_grape_guide"><%= link_to region.name, site_region_path(region) %>&nbsp;<%= link_to "(more regions)", site_regions_path %><br /><br /><br />
-
-          <% if region && region.image %>
-              <%= image_tag(site_image_url(:recipe, region.image, :jpg), :alt=>region.name, :width=> "210px") if region && region.image %>
-          <% else %>
-              <%= image_tag("get_to_know_italy.png", :alt=>region.name, :width=> "210px") %>
-          <%- end -%><br /><br />
-
-          <div style="text-align:justify;">
-            <%=
+        <%- end -%>
+        <div class="border-box">
+          <%- producers = Producer.find(:all, :limit => 1,:conditions=>['active = ?',true] ,:order => "RAND()") %>
+          <div class="green-heading">Get to Know our producers</div>
+            <%- for producer in producers -%>
+              <div class="box-image">
+                <% if producer.image %>
+                  <%=  image_tag(site_image_url(:community_producer_thumb, producer.image, :jpg),:alt=> producer.name) %>
+                <% else %>
+                  <%= image_tag("default.jpg", :alt=>producer.name) %>
+                <% end %>
+              </div>
+              <div class="green-heading-20"><%= producer.name %></div>
+              <div>
+                <p>
+                  <%- if producer.description
+                    if producer.description.length > @enough_chars -%>
+                      <%= producer.description[0..@enough_chars].html_safe() + "... " + link_to('(Continue Reading)', site_producer_path(producer)) %>
+                    <%- else -%>
+                      <%= producer.description.html_safe() %>
+                    <%end
+                    else
+                    end-%>
+                </p>
+              <div class="right-link"><%= link_to "More Producers", site_producers_path %></div>
+            </div>
+          <% end -%>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="border-box">
+          <div class="clearfix">
+            <div class="green-heading pull-left">Q&A</div>
+            <div class="heading-link pull-left"><%= link_to '(Ask Our Experts)', site_faqs_path %></div>
+          </div>
+          <% @faqs = Faq.find(:all, :limit => 6, :conditions=>['publish = true and answer != ""']) %>
+          <% unless @faqs.blank? %>
+            <% @faqs.each do |faq| %>
+              <div class="row-30">
+                <div><%= faq.question %></div>
+                <div><%= link_to 'Read the answer', site_faqs_path %></div>
+              </div>
+            <%- end-%>
+          <%- end-%>
+        </div>
+        <%- regions = Region.find(:all,:conditions=>['active = ?',true], :limit => 1, :order => "RAND()") -%>
+        <%- for region in regions -%>
+          <div class="border-box">
+            <div class="green-heading">Get to Know Italy</div>
+            <div class="box-image">
+              <% if region && region.image %>
+                <%= image_tag(site_image_url(:recipe, region.image, :jpg), :alt=>region.name) if region && region.image %>
+              <% else %>
+                  <%= image_tag("get_to_know_italy.png", :alt=>region.name) %>
+              <%- end -%>
+            </div>
+            <div class="green-heading-20"><%= region.name %></div>
+            <div>
+              <p>
+                <%=
                 if region.description and !region.description.empty? and !region.description.nil?
                   if region.description.length > @enough_chars
                     region.description[0..@enough_chars].html_safe() + "..." + link_to('(Continue Reading)', site_region_path(region)).html_safe()
@@ -222,24 +130,121 @@
                 else
                   
                 end%>
-
+              </p>
+            </div>
+            <div class="right-link"><%= link_to "(More Regions)", site_regions_path %></div>
           </div>
-    <%- end -%>
-    </div><!--div class="box_grape_guide"-->
-  </div><!--div id="box_get_to_know_italy"-->
+        <%- end -%>
+      </div>
+      <div class="col-md-4">
+        <div class="border-box">
+          <% latest_review = Review.last(:conditions=>['publish = ?',true]) %>
+          <%- unless latest_review.nil? -%>
+            <div class="clearfix">
+              <div class="green-heading pull-left">Latest Reviews</div>
+              <!-- <div class="heading-link pull-left"><%# link_to 'Added a new review', '#.' %></div> -->
+            </div>
+            <div class="border-box-swiper">
+              <!-- Swiper -->
+                <div class="swiper-container" id="fourthSwiper">
+                  <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                      <div class="slide-text">
+                        <div class="row clearfix">
+                          <div class="col-xs-3">
+                            <%= link_to avatar_for_user(latest_review.user, 'small'), site_customer_path(latest_review.user.id)%>
+                          </div>
+                          <div class="col-xs-9">
+                            <div class="reviewer-name"><b><%= link_to latest_review.user.name, site_customer_path(latest_review.user.id), :class=>'data', :id => 'latest_review_name'%></b> - 29/10/2015</div>
+                            <div class="star-row">
+                              <span><img src="images/star-active.png"></span>
+                              <span><img src="images/star-active.png"></span>
+                              <span><img src="images/star-active.png"></span>
+                              <span><img src="images/star-active.png"></span>
+                              <span><img src="images/star.png"></span>
+                            </div>
+                            <div class="fourth-swiper-text">
+                              <p>
+                                <% unless latest_review.description.blank? %> 
+                                  <% if latest_review.reviewer_type == 'Product' %>
+                                    "<%= link_to latest_review.description[0..300] + "..." ,nested_products_uri(Product.find(latest_review.reviewer_id)  ),:class=>'data' %>"
+                                    <%= link_to "(Continue reading)", nested_products_uri(Product.find(latest_review.reviewer_id)  ) %>"
+                                  <% elsif latest_review.reviewer_type == 'Recipe' %>
+                                    "<%= link_to latest_review.description[0..300] + "...", site_recipe_path(Recipe.find(latest_review.reviewer_id)  ),:class=>'data' %>"
+                                    <%= link_to "(Continue reading)", site_recipe_path(Recipe.find(latest_review.reviewer_id)  ) %>"
+                                  <% end %>
+                                <% end %>
+                              </p>
+                            </div>
+                            <%- else -%>
+                              <div>
+                                <p>
+                                  There are no reviews yet, why not write one and get <%= number_to_currency(10,{:unit => "&pound;", :precision => 0}) -%> voucher
+                                </p>
+                              </div>
+                            <%- end -%>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <!-- End Swiper -->
+              <div class="review-arrow">
+                <!-- Add Arrows -->
+                <div class="pagi-arrow2">
+                  <div class="swiper-button-prev"></div>
+                  <div class="arrow-sep"></div>
+                  <div class="swiper-button-next"></div>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="border-box">
+          <% blog = Post.last %>
+          <div class="green-heading">Blog</div>
+          <% if !blog.nil? %>
+          <div class="box-image">
+            <%= image_tag(site_image_url('blog_banner', (blog.image_1 or blog.image_2 or blog.image_3), :jpg),:alt=>blog.name) if blog.image_1 or blog.image_2 or blog.image_3 %>
+          </div>
+            <div class="green-heading-20"><%=  blog.name.upcase %></div>
+            <div class="blog-date"><%= blog.created_at.strftime("%d/%m/%Y") %></div>
+            <div>
+                <p><%= blog.description_short.html_safe() %>... <%= link_to "(Continue Reading)", site_blog_path(blog.id) %></p>
+            </div>
+            <div class="right-link"><%= link_to("View all", site_blog_index_path) %></div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <% products = Product.find(:all, :limit => 5, :include => {:categorizations => :category}, :conditions => ["categories.name LIKE ? AND DATE(date) > ? AND active" ,'Events',Date.today],:order =>'date') %>
+    <% unless products.blank? -%>
+      <div class="bottom-50">
+        <div class="border-box">
+          <div class="green-heading"><%= "Upcoming Events" %></div>
+          <div class="top-30">
+            <div class="row clearfix">
+              <div class="col-xs-5"><img src="/images/event-image-01.png"></div>
+              <div class="col-xs-7">
+                <%- products.each do |product| -%>
+                  <div class="upcoming-event-box">
+                    <div class="green-heading-20"><%= product.name %></div>
+                    <div class="upcoming-location-row">
+                      <div class="date-n-time"><%= product.date.strftime("%d %B %Y at %H:%M") if product.date %></div>
+                      <div class="location"><i><img src="images/location-pin.png" alt="location"></i>Ontario Legislative Building</div>
+                    </div>
+                  </div>
+                <%- end -%>
+                <div><%= link_to "View All", '/events' %></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %> 
+  </div>
+</div>
 
-</div><!-- END OF COLUMN 3-->
 
 
-<!-- ################################## -->
-
-
-<% content_for :right do %>
-    <%= render :partial => '/site/shared/box_wine_tours' %>
-    <%= render :partial => '/site/shared/box_grape_guide' %>
-    <br />
-    <%= render :partial => '/site/shared/box_subscriptions' %>
-    <br />
-    <%= render :partial => '/site/shared/social_follow' %>
-<% end %>
 
