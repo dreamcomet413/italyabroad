@@ -15,10 +15,11 @@
   <% else %>
     <div class="green-heading-16">Other Drink Search</div>
   <% end %>
-  <% form_tag search_url, :method => :get do %>
+  <% form_tag search_url, :id=>'search_form' ,:method => :get do %>
     <%= hidden_field_tag :id,@category.name.downcase if !@category.nil? %>
     <div class="left-bar-search">
-      <%= text_field_tag :text, params[:text], {:id => "search_text"} %>
+      <%#= text_field_tag :text, params[:text], {:id => "search_text"} %>
+      <%= text_field_tag :text, '', :class=> "form-control",  "data-autocomplete"=>"/site/search/autocomplete_search_wine_name", :placeholder => "Search your favourite Wine", :style=>"" %>
       <i class="magnifier"><%= image_submit_tag "magnifier.png" %></i>
     </div>
     <% if params[:parent] != "other-drinks" %>
@@ -34,9 +35,10 @@
             <div id="collapse-1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading-1">
               <div class="panel-body">
                 <ul>
-                  <%= hidden_field_tag :mood %>
+                  <%= hidden_field_tag :mood , '' , :class=>'field_value' %>
                   <% ([["Any",""]]+Mood.all.map{ |x| [x.name,x.id]}).each do |item| %>
-                    <li><a href="#." value="<%= item[1] %>"> <%= item[0] %></a></li>
+                    <li><a href="#." value="<%= item[1] %>" class='field_text'> <%= item[0] %></a></li>
+                    <%#= link_to "Add", "/site/cart?product_id=#{product.id}", :remote => true, :method => :post %>
                   <% end %>
                 </ul>
               </div>
@@ -53,9 +55,9 @@
               <div class="panel-body">
                 <ul>
                   <% if !@category.nil? %>
-                    <%= hidden_field_tag :region_id %>
+                    <%= hidden_field_tag :region_id , '' , :class=>'field_value' %>
                     <% @category.products.regions.inject([["Any", ""]]) {|rs, r| rs << [r.name, r.id]}.each do |item|  %>
-                    <li><a href="#." value="<%= item[1] %>"> <%= item[0] %></a></li>
+                    <li><a href="#." value="<%= item[1] %>" class='field_text'> <%= item[0] %></a></li>
                     <% end %>
                   <% end %>
                 </ul>
@@ -72,9 +74,9 @@
               <div class="panel-body">
                 <ul>
                   <% if !@category.nil? %>
-                    <%= hidden_field_tag :grape_id %>
+                    <%= hidden_field_tag :grape_id , '', :class=>'field_value' %>
                     <% @category.products.grapes.inject([["Any", ""]]) {|gs, g| gs << [g.name.include?("Avola") ? "Nero d' Avola": g.name, g.id]}.each do |item| %>
-                    <li><a href="#." value="<%= item[1] %>">  <%= item[0] %></a></li>
+                    <li><a href="#." value="<%= item[1] %>" class='field_text'>  <%= item[0] %></a></li>
                     <% end %> 
                   <% end %>
                 </ul>
@@ -91,9 +93,9 @@
               <div class="panel-body">
                 <ul>
                   <% unless Product.all.blank? %>
-                    <%= hidden_field_tag :color %>
+                    <%= hidden_field_tag :color , '', :class=>'field_value' %>
                       <% Product.colors(@category).each do |item| %>
-                      <li><a href="#." value="<%= item[1] %>">  <%= item[0] %></a></li>
+                      <li><a href="#." value="<%= item[1] %>" class = 'field_text'>  <%= item[0] %></a></li>
                     <% end %>
                   <% end %>
                 </ul>
@@ -113,9 +115,9 @@
             <div class="panel-body">
               <ul>
                 <% if !@category.nil? %>
-                  <%= hidden_field_tag :producer_id %>
+                  <%= hidden_field_tag :producer_id , '',  :class=>'field_value' %>
                   <% @category.products.producers.inject([["Any", ""]]) { |ps, p| ps << [p.name, p.id]}.each do |item| %>
-                  <li><a href="#." value="<%= item[1] %>">  <%= item[0] %></a></li>
+                  <li><a href="#." value="<%= item[1] %>" class="field_text" >  <%= item[0] %></a></li>
                   <% end %>
                 <% end %>
               </ul>
@@ -213,4 +215,12 @@
       </div>
     </div>
   <% end %>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('.field_text').click(function(){
+        $(this).parent().siblings('.field_value').val($(this).attr('value'));
+        $('#search_form').submit();
+      });
+    });
+  </script>
   

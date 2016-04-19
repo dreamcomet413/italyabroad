@@ -13,8 +13,23 @@ class Site::SearchController < ApplicationController
       {:label => name, :value => p.name, :id => p.id}
     }.to_json.to_s.html_safe
   end
-
+  def autocomplete_search_wine_name
+    # this is to search all the wine products on index pages
+    category_ids = []
+    category_ids = []
+    category_ids = Category.where("name LIKE '%wine%'").collect &:id
+    categorization_ids = Categorization.where('category_id IN (?)' , category_ids).map(&:product_id).uniq
+    @products = Product.where("name like '%#{params[:term]}%' and id IN (?)" , categorization_ids).limit(10) 
+    render :json => @products.collect {|p|
+      name = p.name.gsub(eval("/#{params[:term]}/i")){|m| "<b>#{m}</b>"}
+      {:label => name, :value => p.name, :id => p.id}
+    }.to_json.to_s.html_safe
+  end
+  
   def index
+    logger.info('11111111111111111111111111111111111111111111111111111111111111111111')
+    logger.info(params.inspect)
+    logger.info('11111111111111111111111111111111111111111111111111111111111111111111')
     @search_type = params[:id] 
     params[:category] ||= params[:id]
     

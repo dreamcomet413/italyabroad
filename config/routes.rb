@@ -208,6 +208,7 @@ ItalyabroadNew::Application.routes.draw do
         get :find_wine_events
         get :find_grapes
         get :autocomplete_search_name
+        get :autocomplete_search_wine_name
       end
     end
     
