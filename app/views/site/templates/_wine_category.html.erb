@@ -15,7 +15,7 @@ end
 	<%= link_to image_tag(site_image_url('home_image', @category.image, :jpg),:alt=>@category.name),link %>
 	</div>
 <% else %>
-  <div id="wineBanner">
+  <div id="wineBanner" class="main-banner">
 	<%= link_to image_tag("flashContent.jpg",:alt=>@category.name), link %>
 	</div>
 <% end %>
@@ -24,3 +24,4 @@ end
   <div class="two-colum-row clearfix">
     <div class="col-md-3 left-side-bar"><%= render :partial => '/site/shared/box_wine_search' %></div>
     <%= render :partial => '/site/templates/landing' %>
+  

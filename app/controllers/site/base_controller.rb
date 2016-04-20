@@ -215,6 +215,9 @@ class Site::BaseController < ApplicationController
 
   def guarantee_of_satisfaction
   end
+  def about_us
+    @reviews = Review.all
+  end
 
 end
 

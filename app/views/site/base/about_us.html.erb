@@ -1,25 +1,4 @@
 <% @title = "About us"; @class="about-us no-padding"; @breadcrumbs = "#{link_to("Home", root_url)} &raquo; About us &raquo; Who we are" %>
-
-<!-- <div id="header"><strong>Italyabroad.com</strong>-About us</div> -->
-<!--<div style="margin:20px;">
-  <h2>Who we are</h2>
-  <p>
-    Italyabroad.com is the place for <b>Italian wine and food made by small and passionate producers</b>. We are a growing group of passionate people who love what we do; everything started more than 30 years ago when I had my first sip of wine sitting on my granddad knees, he was so proud of his wine that gave a 2 year old nephew a taste.
-  </p>
-  <p>
-    We believe that some of the <b>best Italian wines and food are made by small, passionate producers</b> who respect the environment because they know that, without it, they will be unemployed. They are <b>family run</b>, the whole family works in the vineyards or fields, pasticceria (bakery) or pastificio (where the pasta is made); they are following the <b>family tradition</b>, they are at the 3rd, 4th or even more, generation, and they know everything there is to know; they are so proud of their wines and food that name them after their son or daughter, granddad or father. <b>These are the people behind our products.</b>
-  </p>
-  <p>
-    We are knowledgeable, helpful and friendly and we welcome your enquiries and does not matter whether you are an expert in Italian wine or food or a novice, talk to us or better, visit us and enjoy with us some of our products.
-  </p>
-  <h2>Working with us:</h2>
-  <p>
-    We are always looking for passionate people to join our team. If you are passionate about food and wine and would like to work in a challenging and rewarding environment send us your CV at <%= mail_to "recruitment@italyabroad.com" %>
-  </p>
-  <p>
-    We are currently looking, for our wholesale operations, for sales representatives to cover the following areas: London, Wales and Scotland. If you are passionate, with excellent sales and interpersonal skills, possibly with some sales experience, and you are looking for a rewarding, but challenging, career, Italyabroad.com is the right place.
-  </p>
-</div>-->
 <% @about = AboutU.find(:first, :conditions => {:link_type => "who we are"} ) %>
 <!-- start main banner-->
 <% if @about.image %>

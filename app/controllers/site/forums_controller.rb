@@ -10,6 +10,7 @@ class Site::ForumsController < ApplicationController
   def index
     @enough_chars=200 # around 6 lines
     @forums = Forum.find_ordered
+    @reviews = Review.where(:publish=> true).limit(5)
     # reset the page of each forum we have visited when we go back to index
     session[:forum_page] = nil
     respond_to do |format|

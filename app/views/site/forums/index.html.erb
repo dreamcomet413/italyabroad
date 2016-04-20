@@ -138,67 +138,82 @@
       </div>
       <div class="col-md-4">
         <div class="border-box">
-          <% latest_review = Review.last(:conditions=>['publish = ?',true]) %>
-          <%- unless latest_review.nil? -%>
-            <div class="clearfix">
-              <div class="green-heading pull-left">Latest Reviews</div>
-              <!-- <div class="heading-link pull-left"><%# link_to 'Added a new review', '#.' %></div> -->
-            </div>
-            <div class="border-box-swiper">
-              <!-- Swiper -->
-                <div class="swiper-container" id="fourthSwiper">
-                  <div class="swiper-wrapper">
+          <div class="clearfix">
+            <div class="green-heading pull-left">Latest Reviews</div>
+            <!-- <div class="heading-link pull-left"><%# link_to 'Added a new review', '#.' %></div> -->
+          </div>
+          <div class="border-box-swiper">
+            <!-- Swiper -->
+            <div class="swiper-container" id="fourthSwiper">
+              <div class="swiper-wrapper">
+                <%if @reviews.count > 0%>         
+                  <%@reviews.each do |review|%>
                     <div class="swiper-slide">
                       <div class="slide-text">
                         <div class="row clearfix">
                           <div class="col-xs-3">
-                            <%= link_to avatar_for_user(latest_review.user, 'small'), site_customer_path(latest_review.user.id)%>
+                            <%= link_to avatar_for_user(review.user, 'small'), site_customer_path(review.user_id)%>
                           </div>
                           <div class="col-xs-9">
-                            <div class="reviewer-name"><b><%= link_to latest_review.user.name, site_customer_path(latest_review.user.id), :class=>'data', :id => 'latest_review_name'%></b> - 29/10/2015</div>
-                            <div class="star-row">
-                              <span><img src="images/star-active.png"></span>
-                              <span><img src="images/star-active.png"></span>
-                              <span><img src="images/star-active.png"></span>
-                              <span><img src="images/star-active.png"></span>
-                              <span><img src="images/star.png"></span>
-                            </div>
+                            
+                              <div class="reviewer-name">
+                                <%if review.user%>
+                                  <b>
+                                    <%= link_to review.user.name, site_customer_path(review.user.id), :class=>'data', :id => 'latest_review_name'%>
+                                  </b> - 
+                                <%end%>
+                                <%=review.created_at.to_date.to_s(:long)%>
+                              </div>
+                            <%if review.score%>
+                              <div class="star-row">
+                                <%i = 1 %>
+                                <%while i <= 5 %>
+                                  <%if i <= review.score%>
+                                    <span><img src="images/star-active.png"></span>
+                                  <%else%>
+                                    <span><img src="images/star.png"></span>
+                                  <%end%>
+                                  <%i+=1%>
+                                <%end%>
+                              </div>
+                            <%end%>
                             <div class="fourth-swiper-text">
                               <p>
-                                <% unless latest_review.description.blank? %> 
-                                  <% if latest_review.reviewer_type == 'Product' %>
-                                    "<%= link_to latest_review.description[0..300] + "..." ,nested_products_uri(Product.find(latest_review.reviewer_id)  ),:class=>'data' %>"
-                                    <%= link_to "(Continue reading)", nested_products_uri(Product.find(latest_review.reviewer_id)  ) %>"
-                                  <% elsif latest_review.reviewer_type == 'Recipe' %>
-                                    "<%= link_to latest_review.description[0..300] + "...", site_recipe_path(Recipe.find(latest_review.reviewer_id)  ),:class=>'data' %>"
-                                    <%= link_to "(Continue reading)", site_recipe_path(Recipe.find(latest_review.reviewer_id)  ) %>"
+                                <% unless review.description.blank? %> 
+                                  <% if review.reviewer_type == 'Product' %>
+                                    "<%= link_to review.description[0..300] + "..." ,nested_products_uri(Product.find(review.reviewer_id)  ),:class=>'data' %>"
+                                    <%= link_to "(Continue reading)", nested_products_uri(Product.find(review.reviewer_id)  ) %>"
+                                  <% elsif review.reviewer_type == 'Recipe' %>
+                                    "<%= link_to review.description[0..300] + "...", site_recipe_path(Recipe.find(review.reviewer_id)  ),:class=>'data' %>"
+                                    <%= link_to "(Continue reading)", site_recipe_path(Recipe.find(review.reviewer_id)  ) %>"
                                   <% end %>
                                 <% end %>
                               </p>
                             </div>
-                            <%- else -%>
-                              <div>
-                                <p>
-                                  There are no reviews yet, why not write one and get <%= number_to_currency(10,{:unit => "&pound;", :precision => 0}) -%> voucher
-                                </p>
-                              </div>
-                            <%- end -%>
                           </div>
                         </div>
                       </div>
                     </div>
+                    <%end%>
+                    <%- else -%>
+                      <div>
+                        <p>
+                          There are no reviews yet, why not write one and get <%= number_to_currency(10,{:unit => "&pound;", :precision => 0}) -%> voucher
+                        </p>
+                      </div>
+                    <%- end -%>     
                   </div>
                 </div>
-              <!-- End Swiper -->
-              <div class="review-arrow">
-                <!-- Add Arrows -->
-                <div class="pagi-arrow2">
-                  <div class="swiper-button-prev"></div>
-                  <div class="arrow-sep"></div>
-                  <div class="swiper-button-next"></div>
+                <!-- End Swiper -->
+                <div class="review-arrow">
+                  <!-- Add Arrows -->
+                  <div class="pagi-arrow2">
+                    <div class="swiper-button-prev"></div>
+                    <div class="arrow-sep"></div>
+                    <div class="swiper-button-next"></div>
+                  </div>
                 </div>
               </div>
-            </div>
         </div>
         <div class="border-box">
           <% blog = Post.last %>
