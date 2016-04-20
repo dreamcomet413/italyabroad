@@ -8,17 +8,16 @@
   vmin = 1000000000000 #Super large number to init min
   vmax = -1000000000000 #Super small number to init max
   for tag in @popular_tags
+
     vmin = tag.popularity.to_f if (tag.popularity.to_f < vmin)
     vmax = tag.popularity.to_f if (tag.popularity.to_f > vmax)
   end  %>
   <div class="sidebar-box-heading">Tag Cloud</div>
   <div>
     <% @popular_tags.each do |result| %>
-    <span style="font-size:<%= ((pmax - pmin) * (Math.log(vmax)==0 ? 0 : (Math.log(result.popularity.to_f)) / (Math.log(vmax))) + pmin).to_s %>%"><%#= link_to result.tag.name.titleize, "blog/tag/#{result.tag.name}", :style => "color:#454545;" %>
-    <%# post = Post.find_by_id(result.post_id)%>
-    <%#= link_to result.tag.name.titleize, post.friendly_identifier.blank? ? "/blog/#{post.id}" : "/blog/#{post.friendly_identifier}" %>
+    <%=result.popularity%>
+    <span style="font-size:<%= ((pmax - pmin) * (Math.log(vmax)==0 ? 0 : (Math.log(result.popularity.to_f)) / (Math.log(vmax))) + pmin).to_s %>%">
     <%= link_to result.tag.name.titleize, :controller=>'blog',:action=>"index",:tag_id=>result.tag.id %>
-    <!--, :style => "color:#454545;"-->
     </span>
     <% if index != @popular_tags.count %>
       ,

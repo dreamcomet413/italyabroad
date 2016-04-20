@@ -8,4 +8,3 @@ class PostsTag <  ActiveRecord::Base
     end
   end
 end
-

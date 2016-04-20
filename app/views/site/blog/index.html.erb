@@ -46,7 +46,7 @@
                   <%= post.name %>
                 </div>
                 <div class="blog-list-date clearfix">
-                    <span class="list-date"><b>August 13, 2015</b></span> <span class="list-tags"><b>Tags: </b>
+                    <span class="list-date"><b><%=post.created_at.to_date.to_s(:long)%></b></span> <span class="list-tags"><b>Tags: </b>
                       <%
                       @tag_list = "" %>
                       <% post.tags.each do |p| %>
