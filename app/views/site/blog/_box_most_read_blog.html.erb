@@ -1,11 +1,11 @@
 <%- posts = Post.most_read -%>
-<div class="block" id="box_most_read_blog">
-  <h1>Most read blog posts</h1><br />
-  <table>
-    <%- posts.each do |post| -%>
-    <tr><td style="text-align:left;"><%#= link_to post.name, site_blog_path(post.id),:class=>'data' %></td></tr>
-    <tr><td style="height:10px;"></td></tr>
-    <%- end -%>
-  </table>
+<div class="left-small-box">
+	<div class="sidebar-box-heading"><%= "Favourite" %></div>
+	<div class="favourite">
+	  <ol>
+	  	<%- posts.each do |post| -%>
+	    	<li><%= link_to post.name, site_blog_path(post.id),:class=>'data' %></li>
+	    <%- end -%>
+	  </ol>
+	</div>
 </div>
-
