@@ -1,29 +1,4 @@
 <%- @testimonials = Testimonial.find(:all,:conditions=>['UPPER(page_to_display) = ?','WINE TOUR'],:order=>'id DESC',:limit=>2) -%>
-<%# unless @testimonials.blank? %>
-<!-- MALIK<div class="block" id="box_event_reviews" style="background:white;">
-  <h1>Wine Tour Testimonials</h1>
-  <br />
-  <table>
-  <%- if @testimonials.size > 0 -%>
-    <%- @testimonials.each do |testimonial| -%>
-    <tr>-->
-     <!-- ALREADY COMMENTED FORM HERE <td>
-        <%#= avatar_for_user(review.user, 'small') %><br />
-        <%#= testimonial.title %>
-      </td>  TO HERE-->
-      <!--MALIK <td valign="top"><%#= truncate testimonial.description, 30 %>
-      <%= link_to testimonial.description.html_safe,testimonial_path %><br /><br />
-      </td>
-    </tr>
-    <%- end -%>
-  <%- else -%>
-    <tr>
-      <td>No Testimonial for Wine Tour</td>
-    </tr>
-  <%- end -%>
-  </table>
-</div> MALIK -->
-<%# end %>
 
 <div class="left-small-box" id="box_event_reviews">
   <div class="small-swiper-heading">Wine Tour Testimonials</div>
@@ -36,7 +11,7 @@
             <%- @testimonials.each do |testimonial| -%>
               <div class="swiper-slide">
                 <div class="slide-text"><%= link_to testimonial.description.html_safe,testimonial_path %></div>
-                <div class="date"><b>Davide</b>  - 29/10/2015</div>
+                <!-- <div class="date"><b>Davide</b>  - 29/10/2015</div> -->
               </div>
             <%- end -%>
             <%- else -%>

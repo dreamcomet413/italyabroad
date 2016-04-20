@@ -43,11 +43,7 @@
                       <%- else -%>
                     </div>
                     <div class="add-row clearfix">
-                      <%= form_tag("/site/cart?product_id=#{product.id}", method: "post" , :remote=>true) do %>
-                        <%=hidden_field_tag :p_id , product.id , :class=>'p_id'  %>
-                        <div class="seller-field"><%= text_field_tag(:quantity , 1 , :class=>'quantity') %></div>
-                        <div class="seller-btn"><%= image_submit_tag("buttons/add_to_cart_button.png") %></div>
-                      <%end%>
+                      <%=render partial: 'site/templates/product_cart_form' ,  locals: {product: product} %>
                     </div>  
                     <%- end -%>
                       

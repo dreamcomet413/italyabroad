@@ -10,7 +10,7 @@
               <%- @testimonials.each do |testimonial| -%>
                 <div class="swiper-slide">
                   <div class="slide-text"><%= truncate(testimonial.description.html_safe, {:length => 100}) %></div>
-                    <div class="date"><b>Davide</b>  - 29/10/2015</div>
+                    <!-- <div class="date"><b>Davide</b>  - 29/10/2015</div> -->
                 </div>
               <%- end -%>
             <%- else -%>

@@ -34,7 +34,7 @@
             <%- @testimonials.each do |testimonial| -%>
               <div class="swiper-slide">
                 <div class="slide-text"><%= link_to( truncate(testimonial.description.html_safe, {:length => 100}), testimonial_path) %></div>
-                <div class="date"><b>Davide</b>  - 29/10/2015</div>
+                <!-- <div class="date"><b>Davide</b>  - 29/10/2015</div> -->
               </div>
             <% end %>
             <% else %>

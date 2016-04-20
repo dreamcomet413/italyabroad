@@ -14,6 +14,7 @@ class Site::CartController < ApplicationController
   end
 
   def create
+    
     created = @cart.create(product, quantity, params[:discounted_price])
     if created
       session[:free_delivery] = false
@@ -180,8 +181,9 @@ class Site::CartController < ApplicationController
   def quantity
     if params[:quantity]
       return params[:quantity]
+    elsif params[:cart] && params[:cart][:quantity]
+      return params[:cart][:quantity] 
     else
-      return params[:cart][:quantity] if params[:cart] && params[:cart][:quantity]
       return 1
     end
   end
