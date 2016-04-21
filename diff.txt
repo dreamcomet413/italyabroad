@@ -1,0 +1,155 @@
+diff --git a/app/views/site/shared/_box_wine_search.html.erb b/app/views/site/shared/_box_wine_search.html.erb
+index de8f009..6aef460 100644
+--- a/app/views/site/shared/_box_wine_search.html.erb
++++ b/app/views/site/shared/_box_wine_search.html.erb
+@@ -8,47 +8,117 @@
+ <%- search_url ||= @category == @parent ? site_search_index_path(:id => @parent) : nested_categories_url(@parent, @category) -%>
+ 
+ 
+-<div class="block center" id="box_wine_search">
++<div class="block" id="box_wine_search">
+   <%# if params[:category] == "wine" || ~ /search/ %>
+   <% if params[:parent] != "other-drinks" && params[:category] != "other-drinks" %>
+-    <!--<h3>Wine Search</h3>-->
+-    <h3><%= (@product.present? && @product.root_category.present?) ? @product.root_category : "Wine" -%> Search</h3>
++    <div class="green-heading-16"><%= (@product.present? && @product.root_category.present?) ? @product.root_category : "Wine" -%> Search</div>
+   <% else %>
+-    <h3>Other Drink Search</h3>
++    <div class="green-heading-16">Other Drink Search</div>
+   <% end %>
+   <% form_tag search_url, :method => :get do %>
+       <%= hidden_field_tag :id,@category.name.downcase if !@category.nil? %>
+-      <table border="0">
+-        <tr>
+-          <td>Text:</td>
+-          <td><%= text_field_tag :text, params[:text], {:id => "search_text"} %></td>
+-        </tr>
++      <div class="left-bar-search">
++        <%= text_field_tag :text, params[:text], {:id => "search_text"} %>
++        <i class="magnifier"><a href="#."><img src="/images/magnifier.png"></a></i>
++      </div>
+         <% if params[:parent] != "other-drinks" %>
+-          <tr>
+-            <td style="color: #ff0000; font-size: 14px;">Mood:</td>
+-            <td>
+-              <%#= select_tag :mood, options_from_collection_for_select(Mood.all, 'id', 'name', :selected => params[:mood]) + content_tag(:option,'Any',:value=>""), :id => "search_price" %>
+-              <%= select_tag :mood, options_for_select([["Any",""]]+Mood.all.map{ |x| [x.name,x.id]}, :selected => params[:mood]), :id => "search_price" %>
+-            </td>
+-          </tr>
+-        <% end %>
+-        <tr>
+-          <td>Region:</td>
+-          <td><%= select_tag :region_id, options_for_select(@category.products.regions.inject([["Any", ""]]) {|rs, r| rs << [r.name, r.id]}, params[:region_id].to_i), :id => "search_region" if !@category.nil? %></td>
+-        </tr>
+-        <tr>
+-          <td>Grape:</td>
+-          <td><%= select_tag(:grape_id, options_for_select(@category.products.grapes.inject([["Any", ""]]) {|gs, g| gs << [g.name.include?("Avola") ? "Nero d' Avola": g.name, g.id]}, params[:grape_id].to_i), :id => "search_grape") if !@category.nil? %></td>
+-        </tr>
+-        <tr>
+-          <td>Colour:</td>
+-          <td><%= select_tag(:color, options_for_select(Product.colors(@category), params[:color]), :id => "search_color") unless Product.all.blank? %></td>
+-        </tr>
+-
+-        <tr>
+-          <td>Producer:</td>
++          <div class="sidebar-filter-wrapper">
++            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
++              <div class="panel">
++                <div class="panel-heading" role="tab" id="heading-1">
++                  <h4 class="panel-title">
++                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-1" aria-expanded="true" aria-controls="collapse-1">Mood:<i></i>
++                    </a>
++                  </h4>
++                </div>
++                <div id="collapse-1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading-1">
++                  <div class="panel-body">
++                    <ul>
++                      <%= hidden_field_tag :mood %>
++                      <% ([["Any",""]]+Mood.all.map{ |x| [x.name,x.id]}).each do |item| %>
++                        <li><a href="#." <%= item[1] %>> <%= item[0] %></a></li>
++                      <% end %>
++                    </ul>
++                  </div>
++                </div>
++              </div>
++              <% end %>
++              <div class="panel">
++                <div class="panel-heading" role="tab" id="headingTwo">
++                  <h4 class="panel-title">
++                    <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Region:<i></i></a>
++                  </h4>
++                </div>
++                <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
++                  <div class="panel-body">
++                    <ul>
++                      <%= hidden_field_tag :region_id %>
++                      <% @category.products.regions.inject([["Any", ""]]) {|rs, r| rs << [r.name, r.id]}.each do |item| %>
++                      <li><a href="#." <%= item[1] %>> <%= item[0] %></a></li>
++                      <% end %>
++                    </ul>
++                  </div>
++                </div>
++              </div>
++              <div class="panel">
++                <div class="panel-heading" role="tab" id="headingThree">
++                  <h4 class="panel-title">
++                    <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree"> Grape:<i></i></a>
++                  </h4>
++                </div>
++                <div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
++                  <div class="panel-body">
++                    <ul>
++                      <%= hidden_field_tag :grape_id %>
++                      <% @category.products.grapes.inject([["Any", ""]]) {|gs, g| gs << [g.name.include?("Avola") ? "Nero d' Avola": g.name, g.id]}.each do |item| %>
++                      <li><a href="#." <%= item[1] %>>  <%= item[0] %></a></li>
++                      <% end %> 
++                    </ul>
++                  </div>
++                </div>
++              </div>
++              <div class="panel">
++                <div class="panel-heading" role="tab" id="headingFour">
++                  <h4 class="panel-title">
++                    <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">Colour: <i></i></a>
++                  </h4>
++                </div>
++                <div id="collapseFour" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingFour">
++                  <div class="panel-body">
++                    <ul>
++                      <%= hidden_field_tag :color %>
++                      <% Product.colors(@category).each do |item| %>
++                      <li><a href="#." <%= item[1] %>>  <%= item[0] %></a></li>
++                      <% end %>
++                    </ul>
++                  </div>
++                </div>
++              </div>
++              <div class="panel">
++                <div class="panel-heading" role="tab" id="headingFive">
++                  <h4 class="panel-title">
++                    <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapsefive">
++                      Producer: <i></i>
++                    </a>
++                  </h4>
++                </div>
++              </div>
++              <div id="collapseFive" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingFive">
++                <div class="panel-body">
++                  <ul>
++                    <%= hidden_field_tag :producer_id %>
++                    <% @category.products.producers.inject([["Any", ""]]) { |ps, p| ps << [p.name, p.id]}.each do |item| %>
++                    <li><a href="#." <%= item[1] %>>  <%= item[0] %></a></li>
++                    <% end %>
++                  </ul>
++                </div>
++              </div>
++            </div>
++          </div>
++        <!-- <tr>
++          <td></td>
+           <td><%= select_tag :producer_id, options_for_select(@category.products.producers.inject([["Any", ""]]) { |ps, p| ps << [p.name, p.id] }, params[:producer_id].to_i), :id => "search_producer_name" if !@category.nil?  %></td>
+-        </tr>
++        </tr> -->
+         <tr>
+           <td colspan="2"></td>
+         </tr>
