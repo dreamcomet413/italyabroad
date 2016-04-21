@@ -24,6 +24,7 @@
   <% end %>
 </div>
 <div class="row">
+  <%= show_messages(flash[:notice]) %>
   <div class="full-width clearfix">
     <div class="col-md-12">
       <div class="green-heading-with-border">
@@ -33,7 +34,6 @@
         <p>If you have questions about any of our products, ask our experts.</p>
       </div>
       <!-- Start Faqs Wrapper-->
-      <%= show_messages(flash[:notice]) %>
       <% if @faqs && @faqs.size > 0 %>
         <div class="faq-wrapper">
           <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">

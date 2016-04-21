@@ -1643,6 +1643,17 @@ a.close-btn{
 	width: 100%;
 	height: 150px;
 	margin-bottom: 20px;
+	box-sizing: border-box;
+	padding: 10px;
+}
+.faq-btn{
+	text-align: right;
+	margin-bottom: 20px;
+}
+.notice{
+	color: #5c8018;
+	text-align: center;
+	font-size: 14px;
 }
 /*=============== Media quires=================*/
 @media only screen and (max-width: 1035px) {
