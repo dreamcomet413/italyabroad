@@ -1655,6 +1655,23 @@ a.close-btn{
 	text-align: center;
 	font-size: 14px;
 }
+.item-name .red-text b{
+	color:#cb0d2b !important;
+	font-weight: normal !important;
+}
+.slider-box-text .wish-list{
+	padding: 5px 5px 5px 0px;
+}
+.slider-box-text .wine-list{
+	padding: 5px 5px 5px 0px;
+}
+.slider-box-text .wishlist-row i{
+	text-align: center;
+	width: 19px;
+}
+.top-18{
+	margin-top: -18px;
+}
 /*=============== Media quires=================*/
 @media only screen and (max-width: 1035px) {
 	.navigation-row .nav  li  a{
