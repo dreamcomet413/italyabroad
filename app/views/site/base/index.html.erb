@@ -123,7 +123,7 @@
             <div class="col-xs-6">
               <h3><%=@post.name%></h3>
               <div class="medium-box-text"><%=truncate(@post.description, length: 250)%></div>
-              <div class="read-more"><a href="#.">Read More</a></div>
+              <div class="read-more"><%= link_to "Read More", site_blog_path(:id => @post.id) %></div>
             </div>
           </div>
         </div>
@@ -142,7 +142,7 @@
                 <a href="/wine-club/<%=p.friendly_identifier%>" class="wine_link"><span class="red-text">Option <%=i%></span> - <%=p.name%><br></a>
                 <%i+=1%>
               <%end%>
-              <div class="read-more"><a href="#.">Read More</a></div>
+              <div class="read-more"><%= link_to "Read More", "/wine-club" %></div>
             </div>
           </div>
         </div>
