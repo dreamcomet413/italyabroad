@@ -7,7 +7,9 @@
           <div class="green-heading"><%= product.name %></div>
           <div class="location-row">
             <div class="date-n-time"><%= product.date.strftime("%d %B %Y") if product.date %></div>
-            <div class="location"><i><img src="/images/location-pin.png" alt="location"></i>Ontario Legislative Building</div>
+            <%if product.location%>  
+              <div class="location"><i><img src="/images/location-pin.png" alt="location">     <%=product.location%></i></div>
+            <%end%>
           </div>
           <div class="event-detail">
             <p><%= product.description_short[0..400].html_safe() %>  <%= link_to "Discover more", nested_products_uri(product) %></p>

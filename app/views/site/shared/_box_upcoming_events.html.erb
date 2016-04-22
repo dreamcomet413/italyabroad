@@ -1,21 +1,23 @@
 
 <% products = Product.find(:all, :limit => 5, :include => {:categorizations => :category}, :conditions => ["categories.name LIKE ? AND DATE(date) > ? AND active" ,'Events',Date.today],:order =>'date') %>
 <% unless products.blank? -%>
-<div class="upcoming-event-wrapper">
-  <div class="red-heading"><%= "Upcoming Events" %></div>
-    <%- products.each do |product| -%>
-      <div class="upcoming-event-box">
-        <div class="green-heading"><%= product.name %></div>
-        <div class="location-row">
-          <div class="date-n-time"><%= product.date.strftime("%d %B %Y at %H:%M") if product.date %></div>
-          <div class="location"><i><img src="/images/location-pin.png" alt="location"></i>Ontario Legislative Building</div>
+  <div class="upcoming-event-wrapper">
+    <div class="red-heading"><%= "Upcoming Events" %></div>
+      <%- products.each do |product| -%>
+        <div class="upcoming-event-box">
+          <div class="green-heading"><%= product.name %></div>
+          <div class="location-row">
+            <div class="date-n-time"><%= product.date.strftime("%d %B %Y at %H:%M") if product.date %></div>
+            <%if product.location%>
+              <div class="location"><i><img src="/images/location-pin.png" alt="location">     <%=product.location%></i></div>
+            <%end%>
+          </div>
+        <div class="event-detail">
+          <p><%= product.description_short[0..250].html_safe() %> ...  
+            <%= link_to "Discover More", "/wine-events/#{product.friendly_identifier}"%>
+          </p>
         </div>
-      <div class="event-detail">
-        <p><%= product.description_short[0..250].html_safe() %> ...  
-          <%= link_to "Discover More", "/wine-events/#{product.friendly_identifier}"%>
-        </p>
       </div>
-    </div>
-  <%- end -%>
-</div>
+    <%- end -%>
+  </div>
 <%- end -%>
