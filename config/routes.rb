@@ -151,7 +151,7 @@ ItalyabroadNew::Application.routes.draw do
   match 'wine-events' => 'site/categories#show', :as => :wine_events, :category => 'events'
   match 'wine-community' => 'site/forums#index', :as => :wine_community
   match 'grapes/search_results' => 'site/grapes#search_results'
-
+  get '/landing.html'=> 'site/base#landing_page'
   resources :products, :only => [:index, :show, :wine_of_the_week, :food_of_the_week] do
     resources :reviews, :only => [:new, :create]
     resources :wish_list, :only => [:index, :create, :destroy]

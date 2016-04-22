@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
 
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
-  before_filter :redirect_to_new_url, :instantiate_controller_and_action_names, :find_or_initialize_cart, :initialize_general_variable
+  before_filter :check_if_cookie_exists , :redirect_to_new_url, :instantiate_controller_and_action_names, :find_or_initialize_cart, :initialize_general_variable
 
   if Rails.env == 'production'
     rescue_from ActiveRecord::RecordNotFound, :with => :render_record_not_found
@@ -95,7 +95,13 @@ class ApplicationController < ActionController::Base
       redirect_to(:action => action_name)
     end
   end
-
+  def check_if_cookie_exists
+    unless cookies[:existing_user]
+      cookies[:existing_user] = true
+      session[:return_path] = request.fullpath
+      redirect_to '/landing.html'
+    end
+  end
   def initialize_general_variable
     @setting = Setting.first
   end

@@ -24,8 +24,13 @@
                 <div class="main-banner">
                     <div class="top-content">
                         <div class="enter-site-row">
-                            <div class="enter-button1"><a href="#."><img src="landing-img/enter-main-site.png" alt="enter main site"></a></div>
-                            <div class="enter-button2"><a href="#."><img src="landing-img/login-btn.png" alt="login button" /></a></div>
+                            <div class="enter-button1">
+                                <a href="/"><img src="landing-img/enter-main-site.png" alt="enter main site"></a>
+                            </div>
+                            
+                            <div class="enter-button2">
+                                <a href="/login"><img src="landing-img/login-btn.png" alt="login button" /></a>
+                            </div>
                         </div>
                         <div class="welcome-board">
                             <div class="row clearfix">
@@ -36,8 +41,8 @@
                                             <p>I created Italyabroad.com when I could not get the  food and wine I used to eat and drink when living with my mum and dad</p>
                                             <p>I started drinking wine when I was a little older than a toddler, drinking my granddad’s wine, below their story.</p>
                                         </div>
-                                        <div class="welcome-btn"><a href="#."><img src="landing-img/get-excited-btn.png" alt="get excited" /></a></div>
-                                        <div class="welcome-logo"><a href="#."><img src="landing-img/logo.png" alt="logo" /></a></div>
+                                        <div class="welcome-btn"><a href="<%=session[:return_path]%>"><img src="landing-img/get-excited-btn.png" alt="get excited" /></a></div>
+                                        <div class="welcome-logo"><a href="/"><img src="landing-img/logo.png" alt="logo" /></a></div>
                                     </div>
                                 </div>
                             </div>
@@ -100,7 +105,7 @@
                         <div class="col-des">If you dont like the wine or you think it is faulty, we will <b>replace</b> or <b>refund</b> it with  no questions asked.</div>
                     </div>
                 </div>
-                <div class="get-start"><a href="#."><img src="landing-img/get-started-btn.png" alt="image" /></a></div>
+                <div class="get-start"><a href="<%=session[:return_path]%>"><img src="landing-img/get-started-btn.png" alt="image" /></a></div>
             </div>
         </div>
     </body>

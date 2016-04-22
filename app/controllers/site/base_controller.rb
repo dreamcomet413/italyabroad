@@ -1,7 +1,8 @@
 class Site::BaseController < ApplicationController
-  layout "site"
-
-
+  layout "site", :except => :landing_page
+  def landing_page
+    
+  end
   def index
     @setting = Setting.first
     #@best_sellers = Product.find(:all, :select => "id, rating", :order => "rating desc", :limit => 3)
