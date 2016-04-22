@@ -26,8 +26,7 @@
             <div class="sort-select">
               <%- form_tag nested_categories_path(params[:parent], params[:category]), :method => :get, :id => "sort_by_form" do -%>
                 <%= hidden_field_tag :page, (params[:page] || 1) %>
-                <strong>Sort by:</strong>&nbsp;
-                <%= select_tag("sort_by", options_for_select([["Price: Low to high", "product_prices.price asc"],["Price: High to low", "product_prices.price desc"], ["Name", "name"], ["Region", "region_id"]], @sort_by), :onchange => "$('#sort_by_form').submit()") %>
+                <strong>Sort by:</strong>&nbsp;<%= select_tag("sort_by", options_for_select([["Name", "name"], ["Region", "region_id"]], @sort_by), :onchange => "$('#sort_by_form').submit()") %>
               <%- end -%>
               </div>
             </div>
@@ -63,7 +62,7 @@
                               <div style="font-size:14px;color:black;">Was <span style="text-decoration: line-through;">
                                 <%= number_to_currency pp.price, :unit => "&pound;" %></span></div>
                               <% end %>
-                              <span class="price red" style="color:#003300;">Now&nbsp;<span style="color:red;">
+                              <span class="price red" style="color:#003300;">Now&nbsp;<span style="color:#cb0d2b;">
                                 <% product.price_discounted.each do |price| %>
                                   <%= number_to_currency price, :unit => "&pound;" %>
                                 <% end %>
@@ -128,15 +127,3 @@ elsif params[:category] == "Wine"
   search = "wine"
 end
 %>
-<% content_for :right do %>
-  <% #render :partial => "/site/shared/box_#{search}_search" %>
-  <% #render :partial => 'site/shared/box_products_on_offer' %>
-  <%= render :partial => '/site/shared/box_event' %>
-  <br />
-  <%= render :partial => '/site/shared/box_subscriptions' %>
-  <br />
-  <%= render :partial => '/site/shared/box_mood' %>
-  <br />
-  <%= render :partial => '/site/shared/social_follow' %>
-<% end %>
-
