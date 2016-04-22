@@ -1,9 +1,11 @@
-<%- if !params[:category].blank?
+<%- if !params[:category].blank? and Category.find(params[:category]) != nil
       @category = Category.find(params[:category])
     else
       @category = Category.find(:first,:conditions=>['LOWER(name = ?)','wine'])
     end %>
 <%- @parent = Category.find(params[:parent] || "wine") -%>
+
+
 
 <%- search_url ||= @category == @parent ? site_search_index_path(:id => @parent) : site_search_index_path(:id=>'other_drinks') -%>
 
@@ -23,17 +25,21 @@
       <%if page.include?('other')%>
         <%path = "/site/search/autocomplete_search_drinks_name"%>
       <%else%>
-        <%path = "/site/search/autocomplete_search_wine_name"%>
-      
+        <%path = "/site/search/autocomplete_search_wine_name"%> 
       <%end%>
       
       <%= text_field_tag :text, '', :class=> "form-control",  "data-autocomplete"=> path , :placeholder => "Search Here", :style=>"" %>
     
       <i class="magnifier"><%= image_submit_tag "magnifier.png" %></i>
     </div>
-    <% if params[:parent] != "other-drinks" %>
+      <div class="black-strip clearfix">
+        <span>Abruzzo</span>
+        <span class="pull-right"><a href="#." class="close-btn">X</a></span>
+      </div>
       <div class="sidebar-filter-wrapper">
         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+    <% if params[:parent] != "other-drinks" %>
+
           <div class="panel">
             <div class="panel-heading" role="tab" id="heading-1">
               <h4 class="panel-title">
@@ -53,7 +59,7 @@
               </div>
             </div>
           </div>
-          <% end %>
+    <% end %>
           <div class="panel">
             <div class="panel-heading" role="tab" id="headingTwo">
               <h4 class="panel-title">
@@ -172,32 +178,7 @@
               </div>
             </div>
           </div>
-          <!-- <div class="panel">
-            <div class="panel-heading" role="tab" id="headingEight">
-              <h4 class="panel-title">
-                <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
-                  Price: <i></i>
-                </a>
-              </h4>
-            </div>
-            <div id="collapseEight" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingEight">
-              <div class="panel-body">
-                <ul>
-                  <% hidden_field_tag :price %>
-                  <% [
-                        ["Any Price", ""],
-                        ["Less than #{number_to_currency(7,{:unit => "&pound;", :precision => 0})}".html_safe, "< 7"],
-                        ["From #{number_to_currency(7,{:unit => "&pound;", :precision => 0})} to #{number_to_currency(11,{:unit => "&pound;", :precision => 0})}".html_safe, "BETWEEN 7 AND 11"],
-                        ["From #{number_to_currency(11,{:unit => "&pound;", :precision => 0})} to #{number_to_currency(15,{:unit => "&pound;", :precision => 0})}".html_safe, "BETWEEN 11 AND 15"],
-                        ["From #{number_to_currency(16,{:unit => "&pound;", :precision => 0})} to #{number_to_currency(20,{:unit => "&pound;", :precision => 0})}".html_safe, "BETWEEN 16 AND 20"],
-                        ["More than #{number_to_currency(30,{:unit => "&pound;", :precision => 0})}".html_safe, "> 30"]
-                      ].each do |item| %>
-                  <li><a href="#." <%= item[1] %>>  <%= item[0] %></a></li>
-                  <% end %>
-                </ul>
-              </div>
-            </div>
-          </div> -->
+          
         </div>
       </div>
       <div class="range-slider">

@@ -2,7 +2,7 @@ development:
   adapter: mysql
   database: italyabroad_dev
   username: root
-  password: password
+  password: root
 #  socket: /var/mysql/mysql.sock
 
 test:

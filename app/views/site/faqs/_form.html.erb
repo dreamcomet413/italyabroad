@@ -1,11 +1,6 @@
-<div>
-  	<table border="0" cellspacing="5" cellpadding="5">
-  	  <tr>
-
-  	    <td><%= text_area  :faq, :question,:size=>'60x3' %></td>
-  	    <%= hidden_field  :faq, :user_id,:value=>current_user.id %>
-  	  </tr>
-
-  	</table>
+<div class="faq-textarea">
+	<%= text_area  :faq, :question,:size=>'60x3' %>
+	<%= hidden_field  :faq, :user_id,:value=>current_user.id %>
 </div>
+
 

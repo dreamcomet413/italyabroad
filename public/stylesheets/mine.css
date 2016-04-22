@@ -1623,6 +1623,55 @@ a.close-btn{
 .bread-crumbs .why-not a{
 	color:#cb0d2b; 
 }
+.digg_pagination em{
+	font-style: normal;
+	margin: 0px 5px;
+}
+.digg_pagination a{
+	margin: 0px 5px;
+}
+.next_page, .previous_page{
+	margin: 0px;
+}
+.login-reg{
+	font-size: 18px;
+}
+.login-reg a{
+	text-decoration: none;
+}
+.faq-textarea textarea{
+	width: 100%;
+	height: 150px;
+	margin-bottom: 20px;
+	box-sizing: border-box;
+	padding: 10px;
+}
+.faq-btn{
+	text-align: right;
+	margin-bottom: 20px;
+}
+.notice{
+	color: #5c8018;
+	text-align: center;
+	font-size: 14px;
+}
+.item-name .red-text b{
+	color:#cb0d2b !important;
+	font-weight: normal !important;
+}
+.slider-box-text .wish-list{
+	padding: 5px 5px 5px 0px;
+}
+.slider-box-text .wine-list{
+	padding: 5px 5px 5px 0px;
+}
+.slider-box-text .wishlist-row i{
+	text-align: center;
+	width: 19px;
+}
+.top-18{
+	margin-top: -18px;
+}
 /*=============== Media quires=================*/
 @media only screen and (max-width: 1035px) {
 	.navigation-row .nav  li  a{
