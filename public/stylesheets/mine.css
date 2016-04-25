@@ -21,6 +21,20 @@
 	font-family: OpenSans-Semibold;
 	src:url(../fonts/OpenSans-Semibold.ttf)
 }
+@font-face{
+	font-family: JosefinSlab-Regular;
+	src:url(../fonts/JosefinSlab-Regular.ttf)
+}
+
+@font-face{
+	font-family: JosefinSlab-SemiBold;
+	src:url(../fonts/JosefinSlab-SemiBold.ttf)
+}
+@font-face{
+	font-family: JosefinSlab-Bold;
+	src:url(../fonts/JosefinSlab-Bold.ttf)
+}
+
 /* ================ Common Css =============*/
 *{
 	padding: 0px;
@@ -271,7 +285,7 @@ h2{
 .slider-box{
 	border: solid 1px #dcdcdc;
 	padding: 40px 0px 10px 0px;
-	font-family: Georgia;
+	font-family: JosefinSlab-Bold;
 	min-height: 250px;}
 .slider-box-text{
 	color: #53565a;
@@ -305,7 +319,7 @@ h2{
 	display: block;
 	font-size: 15px;
 	font-weight: normal;
-	font-family:  Georgia;}
+	font-family:  JosefinSlab-Bold;}
 .seller-price{
 	font-size: 18px;
 	color: #53565a;}
@@ -315,7 +329,7 @@ h2{
 	padding: 5px;
 	min-height: 232px;}
 h3{
-	font-family: Georgia;
+	font-family: JosefinSlab-Bold;
 	font-size: 18px;
 	font-weight: normal;
 	padding: 0px;
@@ -527,7 +541,7 @@ footer{
 	color: #2e3e09;
 	margin-bottom: 10px;}
 .latest-review{
-	font-family: Georgia;
+	font-family: JosefinSlab-Bold;
 	font-size: 22px;
 	color: #5c8018;
 	margin-bottom: 28px;}
@@ -544,11 +558,11 @@ footer{
 	display: inline-block;}
 .latest-review-text{
 	margin-top: 15px;
-	font-family: Georgia;
+	font-family: JosefinSlab-Bold;
 	font-size: 13px;
 }
 .red-heading{
-	font-family: Georgia;
+	font-family: JosefinSlab-Bold;
 	font-size: 24px;
 	color: #cb0d2b;
 	margin-bottom: 28px;
@@ -567,7 +581,7 @@ footer{
 	margin-bottom: 33px;}
 .green-heading{
 	font-size: 24px;
-	font-family: Georgia;
+	font-family: JosefinSlab-Bold;
 	color: #5c8018;
 	margin-bottom: 10px;
 }
@@ -609,7 +623,7 @@ footer{
 	color: #485626;
 	border-bottom: solid 1px #ebebeb;
 	padding-bottom: 6px;
-	font-family:Georgia;
+	font-family:JosefinSlab-Bold;
 	font-size:24px;}
 .produer-detail-text{
 	margin-bottom: 60px;
@@ -617,7 +631,7 @@ footer{
 .green-heading-2{
 	color:#485626;
 	font-size: 18px;
-	font-family: Georgia;
+	font-family: JosefinSlab-Bold;
 	padding-bottom: 5px;
 	margin-bottom: 25px;
 	border-bottom: solid 1px #ebebeb}
@@ -643,7 +657,7 @@ footer{
 	min-height: 40px;
 	margin: 15px 0px;
 	font-size: 14px;
-	font-family: Georgia;
+	font-family: JosefinSlab-Bold;
 	color: #53565a;}
 
 /*==================== Blog=======================*/
@@ -692,7 +706,7 @@ footer{
 	margin-left: 15px;
 	color: #5c8018;
 	font-size: 16px;
-	font-family: Georgia;
+	font-family: JosefinSlab-Bold;
 	margin-bottom: 13px;
 	padding-right: 4px;
 }
@@ -761,7 +775,7 @@ footer{
 	font-size: 24px;
 	margin-bottom: 15px;
 	color:#5c8018;
-	font-family: Georgia;
+	font-family: JosefinSlab-Bold;
 }
 .list-date{
 	margin-right: 7px;
@@ -774,14 +788,23 @@ footer{
 .blog-list-text{
 
 }
-.green-button a{
+.green-button a {
 	color: #fff;
 	text-decoration: none;
 	text-align: center;
 	padding:10px 15px;
 	background: #5c8018;
-
+	border:none;
 }
+.green-button input[type=submit]{
+	color: #fff;
+	text-decoration: none;
+	text-align: center;
+	padding:10px 8px 8px;
+	background: #5c8018;
+	border:none;
+	box-sizing: border-box;
+	width: 100%;}
 /*================= Grape Guide===================*/
 .bottom-50{
 	margin-bottom: 50px;
@@ -820,7 +843,7 @@ footer{
 }
 .green-heading-20{
 	font-size: 20px;
-	font-family: Georgia;
+	font-family: JosefinSlab-Bold;
 	color:#2e3e09;
 	line-height: 22px;
 	margin-bottom: 5px;}
@@ -912,7 +935,7 @@ footer{
 }
 .faq-wrapper .panel-title{
 	font-size: 16px;
-	font-family: Georgia;
+	font-family: JosefinSlab-Bold;
 	color: #282828;
 }
 .faq-wrapper .panel-title a{
@@ -949,7 +972,7 @@ header{
 .green-heading-16{
 	font-size: 16px;
 	color: #5c8018;
-	font-family: Georgia;
+	font-family: JosefinSlab-Bold;
 	border-bottom: solid 1px #dcdcdc;
 	padding-bottom: 5px;
 	margin-bottom: 12px;
@@ -960,7 +983,7 @@ header{
 .hamper-heading{
 	font-size: 18px;
 	color: #5c8018;
-	font-family: Georgia;
+	font-family: JosefinSlab-Bold;
 	margin: 18px 0px 12px;
 
 }
@@ -992,7 +1015,7 @@ header{
 }
 .hamper-price{
 	margin: 18px 0px;
-	font-family: Georgia;
+	font-family:JosefinSlab-Bold;
 	font-size: 18px;
 }
 .hamper-field{
@@ -1006,7 +1029,7 @@ header{
 	height: 39px;
 	text-align: center;
 	font-size: 18px;
-	font-family: Georgia;
+	font-family: JosefinSlab-Bold;
 	width: 100%;}
 .hamper-button{
 	float: left;
@@ -1022,7 +1045,7 @@ header{
 	padding: 10px 5px 5px;
 	border-bottom: solid 1px #dcdcdc;}
 .sidebar-filter-wrapper .panel-title{
-	font-family: Georgia;
+	font-family: JosefinSlab-Bold;
 	color: #5c8018;
 }
 .sidebar-filter-wrapper .panel-title > a{
@@ -1090,7 +1113,7 @@ border-radius: 5px;}
 	text-align: center;
 	color: #636669;
 	font-size: 18px;
-	font-family: Georgia;
+	font-family: JosefinSlab-Bold;
 	font-weight: normal;
 	border: none;}
 .center{text-align: center;}
@@ -1101,7 +1124,7 @@ border-radius: 5px;}
 	margin-top: 5px;
 	color: #cb0d2b;
 	font-size: 14px;
-	font-family: Georgia;
+	font-family: JosefinSlab-Bold;
 }
 .range-slider{
 	border: solid 1px #dcdcdc;
@@ -1109,7 +1132,7 @@ border-radius: 5px;}
 }
 .black-heading-16{
 	font-size: 16px;
-	font-family: Georgia;
+	font-family: JosefinSlab-Bold;
 	}
 .small-box-3{
 	border: solid 1px #dcdcdc;
@@ -1134,9 +1157,9 @@ margin-top:20px;}
 	margin-bottom: 5px;
 	color: #53565a;
 	font-size: 16px;
-	font-family: Georgia;}
+	font-family: JosefinSlab-Bold;}
 .hamper-price-2{
-	font-family: Georgia;
+	font-family: JosefinSlab-Bold;
 	font-size: 18px;
 	padding-top: 5px;
 }
@@ -1192,6 +1215,13 @@ margin-top:20px;}
 	font-family: OpenSans-Bold;
 	text-align: right;
 }
+.product-description-detail a{
+	color: #333;
+	text-decoration: none;
+}
+.product-description-detail a:hover{
+	text-decoration: underline;
+}
 .product-description-detail .row{
 	margin-bottom: 10px;
 }
@@ -1210,7 +1240,7 @@ margin-top:20px;}
 	font-size: 14px;
 	padding-right: 5px;}
 .price-now b{
-	font-family: Georgia;
+	font-family: JosefinSlab-SamiBold;
 	font-size: 30px;
 	color: #5c8018;
 	font-weight: normal;
@@ -1219,7 +1249,7 @@ margin-top:20px;}
 	margin-top:20px;
 	margin-bottom: 10px;
 	font-size: 18px;
-	font-family: Georgia;
+	font-family: JosefinSlab-Bold;
 	text-align: center;}
 .qty-field{
 	float: left;
@@ -1240,7 +1270,7 @@ margin-top:20px;}
 
 .qty-row .green-button a{
 	display: block;
-	font-size: 16px;}
+	font-size: 15px;}
 .plus-btn{
 	border-bottom: solid 1px #bfbfbf;
 	height: 20px;
@@ -1303,7 +1333,7 @@ margin-top:20px;}
 }
 /*===================== Wine Club============== */
 .green-heading-24{
-	font-family: Georgia;
+	font-family: JosefinSlab-Bold;
 	font-size: 24px;
 	color: #5c8018;
 	
@@ -1343,7 +1373,7 @@ margin-top:20px;}
 }
 .green-heading-18{
 	font-size: 18px;
-	font-family: Georgia;
+	font-family:JosefinSlab-Bold;
 	color:#5c8018;
 	padding-bottom: 30px;
 }
@@ -1394,7 +1424,7 @@ margin-top:20px;}
 	padding-top: 20px;
 }
 .signup-col .green-button{
-	font-family: Georgia;
+	font-family: JosefinSlab-Bold;
 }
 .login-wrapper{
 	padding-left: 15px;
@@ -1416,7 +1446,7 @@ margin-top:20px;}
 	position: relative;}
 .or-text{
 	margin: -20px;
-	font-family: Georgia;
+	font-family: JosefinSlab-Bold;
 	font-size: 18px;
 	display: inline;
 	background: #fff;
@@ -1445,14 +1475,14 @@ margin-top:20px;}
 	text-decoration: none;
 }
 .login-wrapper .green-button a{
-	font-family: Georgia;
+	font-family: JosefinSlab-Bold;
 	padding: 10px 20px;
 }
 /*================ Products list==============*/
 .black-strip{
 	background: #53565a;
 	color: #fff;
-	font-family: Georgia;
+	font-family: JosefinSlab-Bold;
 	font-weight: bold;
 	font-size: 16px;
 	padding: 2px 6px;
@@ -1500,7 +1530,7 @@ a.close-btn{
 	border: solid 1px #dcdcdc;
 	padding: 3px 9px;
 	margin-bottom: 15px;
-	font-family: Georgia;
+	font-family: JosefinSlab-Bold;
 	font-size: 16px;
 }
 .show-result{
@@ -1516,12 +1546,12 @@ a.close-btn{
 .product-list .small-box{
 	min-height: 240px;
 	margin-bottom: 15px;
-	font-family: Georgia;
+	font-family: JosefinSlab-Bold;
 }
 .product-list .small-box-listing{
 	min-height: 240px;
 	margin-bottom: 15px;
-	font-family: Georgia;
+	font-family: JosefinSlab-Bold;
 	    border: solid 1px #dcdcdc;
     padding: 18px 8px 10px 18px;
 }
@@ -1840,7 +1870,7 @@ a.close-btn{
 }
 @media only screen and (max-width: 767px) {
 .navigation-row .nav  li  a{ 
-	font-family:Georgia;
+	font-family:JosefinSlab-Bold;
 	padding: 10px;
 	background: #eee !important;}	
 
