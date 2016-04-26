@@ -83,6 +83,7 @@ img{
 }
 .logo{
 	text-align: center;
+	margin-top: -20px;
 }
 .top-30{
 	margin-top: 30px;
@@ -625,6 +626,9 @@ footer{
 	padding-bottom: 6px;
 	font-family:JosefinSlab-Bold;
 	font-size:24px;}
+.green-heading-with-border a{
+	text-decoration: none;
+}
 .produer-detail-text{
 	margin-bottom: 60px;
 }
@@ -659,6 +663,11 @@ footer{
 	font-size: 14px;
 	font-family: JosefinSlab-Bold;
 	color: #53565a;}
+.producer-product-text a{
+	text-decoration: none;
+	color: #333;}
+.producer-product-text a:hover{
+	text-decoration: underline;}
 
 /*==================== Blog=======================*/
 .search-blog-wrapper{
@@ -1217,7 +1226,21 @@ margin-top:20px;}
 }
 .product-share{
 	float: left;
-	line-height: 0;}
+	height: 20px;
+	line-height: 20px;}
+.stButton .stFb, .stButton .stTwbutton, .stButton .stMainServices{
+
+	height: 24px !important;
+}
+.st_fb_like_button .stButton_gradient, .st_fb_like_button .stButton_gradient:hover, .st_fb_like_vcount .stButton_gradient, .st_fb_like_vcount .stButton_gradient:hover, .st_fb_like_hcount .stButton_gradient, .st_fb_like_hcount .stButton_gradient:hover, .st_facebook_button .stButton_gradient, .st_facebook_button .stButton_gradient:hover, .st_facebook_vcount .stButton_gradient, .st_facebook_vcount .stButton_gradient:hover, .st_facebook_hcount .stButton_gradient, .st_facebook_hcount .stButton_gradient:hover{
+	padding: 0px 3px 10px !important; 
+}
+.st_twitter_button .stButton_gradient, .st_twitter_button .stButton_gradient:hover, .st_twitter_vcount .stButton_gradient, .st_twitter_vcount .stButton_gradient:hover, .st_twitter_hcount .stButton_gradient, .st_twitter_hcount .stButton_gradient:hover{
+padding: 0px 3px 10px !important;	
+}
+.stButton .stHBubble{
+	padding: 0px 3px 10px !important;	
+}
 .star-rating{
 	float:left;
 }
@@ -1741,7 +1764,7 @@ a.close-btn{
 		margin:10px auto}
 	.logo-small{
 		float: left;
-		width: 115px;
+		width: 170px;
 		margin-right: 10px;
 		margin-top: -5px;}
 	.main-menu-small{
