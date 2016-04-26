@@ -1,125 +1,85 @@
 <% @title = "Guide to Italian wines and Italian grapes"; @description = "Guide to Italian wines and Italian grapes"; @keys = ", Italian wine information,Italian wine guide,Italian wine,Italian red and white wine,italian grapes,wine grapes,wine expert,guide to Italian wines,aglianico,barbera,montepulciano,nero d'avola,nebbiolo" %>
 <% @breadcrumbs = "#{link_to("Home", root_url)}&raquo; #{link_to('Community',wine_community_path)} &raquo; Guide to Italian wines and Italian grapes".html_safe() %>
 <% @about = AboutU.find(:first, :conditions => {:link_type => "grape-guide"} ) %>
-<div style="text-align:center;padding-top:10px;"></div>
-<div id="blog_home">
-
-  <span class="title">
-  <% if !@about.nil? %>
-    <% unless @about.title.blank? %>
-    <div style="color:white;width:350px;height:100px;background:black;opacity: 0.6zz;filter:alpha(opacity=40);text-align:left">
-      <%= @about.title if @about %>
-    </div>
-    <% end %>
-  <% end %>
-  </span>
-  <% if @about.present? and @about.image.present? %>
-  <%= link_to image_tag(site_image_url(:about_thumb, @about.image, :jpg),:alt=>@about.title) , site_search_index_path(:id => "grapes") unless @about.blank? %>
+<% if @about.present? and @about.image.present? %>
+    <div class="main-banner"><%= link_to image_tag(site_image_url(:about_thumb, @about.image, :jpg),:alt=>@about.title) , site_search_index_path(:id => "grapes") unless @about.blank? %></div>
   <% else %>
-  <%= link_to image_tag("guide_home_image.jpg",:alt=>'Grape guide'), site_search_index_path(:id => "grapes") %>
+    <div class="main-banner"><%= link_to image_tag("guide_home_image.jpg",:alt=>'Grape guide'), site_search_index_path(:id => "grapes") %></div>
   <% end %>
-</div>
-<h3 style="border:none;"  align="center">Italian grapes and wines</h3>
-
-<div id="blog_container"  style="text-align:justify;">
-    <p style="text-align:justify;">
-    <%= @about.description.html_safe() rescue 'The wine and grape details ...' %> <br />
-    </p>
-   <div style="float:right;">
-  <%- form_tag site_grapes_path, :method => :get do -%>
-    <strong>Grape Search</strong><%= text_field_tag 'search_by_name',params[:search_by_name] %>
-    <%= submit_tag 'Search', :name => 'search' %>
-  <% end %>
-  </div> <br /> <br />
-   <h3 style="font-size:16px;border:none;margin-bottom:0;">Grape list, click for information</h3>
-  <br />
-  <table cellpadding="5" cellspacing="0" border="0" width="100%">
-    <tr>
-      <td valign="top" style="width:33%;">
-        <h4 style="margin:0;padding:0;">A-H</h4>
-        <br />
-        <ul class="clean" style="list-style:none;">
-          <%- for grape in @grapes_all -%>
-          <% if grape.name.upcase =~ /^[A-H]/  %>
-          <li title="<%=grape.name%>"><%= link_to(grape.name, site_grape_path(grape), :title => grape.name) if grape.name.upcase =~ /^[A-H]/ %></li>
-          <% end %>
-          <%- end -%>
-        </ul>
-      </td>
-      <td valign="top" style="width:33%;">
-        <h4 style="margin:0;padding:0;">I-P</h4>
-        <br />
-        <ul class="clean" style="list-style:none;">
-          <%- for grape in @grapes_all -%>
-          <%- if grape.name.upcase =~ /^[I-P]/ -%>
-          <li><%= link_to(grape.name, site_grape_path(grape), :title => grape.id) %></li>
-          <%- end -%>
-          <%- end -%>
-        </ul>
-      </td>
-      <td valign="top" style="width:33%;">
-        <h4 style="margin:0;padding:0;">Q-Z</h4>
-        <br />
-        <ul class="clean" style="list-style:none;">
-          <%- for grape in @grapes_all -%>
-          <% if grape.name.upcase =~ /^[Q-Z]/ %>
-          <li><%= link_to grape.name, site_grape_path(grape)  %></li>
-          <% end %>
-          <%- end -%>
-        </ul>
-      </td>
-      <!--<td valign="top" style="width:33%;">
-        <h4 style="margin:0;padding:0;">S-Z</h4>
-        <br />
-        <ul class="clean" style="list-style:none;">
-          <%#- for grape in @grapes_all -%>
-          <li><%#= link_to truncate(grape.name,50), grape_path(grape) if grape.name.upcase =~ /^[S-Z]/ %></li>
-          <%#- end -%>
-        </ul>
-      </td>-->
-    </tr>
-  </table>
- <% if params[:search] %>
-  
-<% if @grapes && @grapes.size > 0 %>
-	<ul>
-	<% for grape in @grapes %>
-	  <li>
-      <h2><%= link_to grape.name, grape.friendly_identifier.blank? ? "grapes/#{grape.id}" : "grapes/#{grape.friendly_identifier}" %><%#= show_region_image(region) %></h2>
-      <%#= show_region_image(region) %>
-      <div><% unless grape.description.blank? %>
-      <%= grape.description[0,250] %>
-       <%- end -%>
+  <div class="row">
+    <div class="search-blog-wrapper clearfix">
+      <div class="col-md-9 col-md-offset-3 clearfix">
+        <div class="search-blog-box clearfix"> 
+          <div class="blog-search-text">Grape Search</div>
+            <div class="blog-search-field">
+              <%- form_tag site_grapes_path, :method => :get do -%>
+              <%= text_field_tag 'search_by_name',params[:search_by_name], :class => 'blog-search' %>
+              <i class="magnifier">
+                <%= image_submit_tag ("/images/magnifier.png"), :name => 'search', :value => 'search' %> </i>
+                <%# submit_tag 'Search', :name => 'search' %>
+            <% end %>
+          </div>
+        </div>
       </div>
+    </div>
+    <div class="one-colum-row clearfix">
+      <div class="col-md-12">
+        <!-- Start Search Results-->
+        <% if params[:search] %>
+          <% if @grapes && @grapes.size > 0 %>
+            <% for grape in @grapes %>
+              <div class="green-heading-with-border"><%= link_to grape.name, grape.friendly_identifier.blank? ? "grapes/#{grape.id}" : "grapes/#{grape.friendly_identifier}" %>
+              </div>
+              <div class="bottom-50">
+                <% unless grape.description.blank? %>
+                  <%= grape.description[0,250] %> 
+                  <%= link_to "Read More", grape.friendly_identifier.blank? ? "grapes/#{grape.id}" : "grapes/#{grape.friendly_identifier}" %>
+                <%- end -%>
+              </div>
+            <% end %>
+            <div><%= will_paginate_(@grapes) %></div>
+          <%- end -%>
+        <% end %> <!-- End Search Results-->
+        <% if !@about.nil? %>
+          <% unless @about.title.blank? %>
+            <div class="green-heading-with-border">Wine Grapes</div>
+          <% end %>
+        <% end %>
+        <div class="bottom-50">
+          <%= @about.description.html_safe() rescue 'The wine and grape details ...' %> 
+        </div>
+        <div class="green-heading-2">Grape list, click for information</div>
+        <div class="row clearfix grape-list">
+          <div class="col-md-3 col-xs-6">
+            <div class="green-heading">A-H</div>
+            <%- for grape in @grapes_all -%>
+              <% if grape.name.upcase =~ /^[A-H]/  %>
+                <div>
+                  <%= link_to(grape.name, site_grape_path(grape), :title => grape.name) if grape.name.upcase =~ /^[A-H]/ %>
+                </div>
+              <% end %>
+            <%- end -%>
+          </div>
+          <div class="col-md-3 col-xs-6">
+            <div class="green-heading">I-P</div>
+            <%- for grape in @grapes_all -%>
+              <%- if grape.name.upcase =~ /^[I-P]/ -%>
+                <div><%= link_to(grape.name, site_grape_path(grape), :title => grape.id) %></div>
+              <%- end -%>
+            <%- end -%>
+          </div>
+          <div class="col-md-3 col-xs-6">
+            <div class="green-heading">Q-Z</div>
+            <%- for grape in @grapes_all -%>
+              <% if grape.name.upcase =~ /^[Q-Z]/ %>
+                <div><%= link_to grape.name, site_grape_path(grape)  %></div>
+              <% end %>
+            <%- end -%>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
 
-      <table width="100%" class="foot">
-        <tr>
-
-          <td align="right">
-
-          </td>
-        </tr>
-      </table>
-    </li>
-  <% end %>
-  </ul>
-<div><%= will_paginate_(@grapes) %></div>
-<%- end -%><br />
-<% end %>
-
-
-</div>
-
-<%- content_for :right do -%>
-  <%= render :partial => 'site/shared/box_event' %>
-  <br />
-  <%= render :partial => 'site/shared/box_subscriptions' %>
-  <br />
-  <%= render :partial => 'site/shared/box_wine_tours' %>
-  <%= render :partial => 'site/shared/box_recipes' %>
-  <br />
-  <%= render :partial => 'site/shared/box_popular' %>
-  <br />
-  <%= render :partial => '/site/shared/social_follow' %>
-<%- end -%>
 

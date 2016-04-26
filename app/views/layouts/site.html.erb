@@ -103,9 +103,9 @@
       </div>
     </div>
     <div class="logo-row clearfix">
-      <div class="logo col-md-2"><%= link_to image_tag('logo_hi_res.gif', :alt => "Italian wine and food", :title => "Italian wine and food"), root_path, :id => "logo" %></div>
+      <div class="logo col-md-3"><%= link_to image_tag('logo_hi_res.gif', :alt => "Italian wine and food", :title => "Italian wine and food"), root_path, :id => "logo" %></div>
           <!-- Start Main Search-->
-      <div class="head_search col-md-4 col-lg-offset-2 col-md-offset-1 top-30">
+      <div class="head_search col-md-4 col-lg-offset-1 col-md-offset-1 top-30">
         <%- form_tag site_search_index_path, :method => :get do -%>
           <% if params[:text]
             search_text = params["text"]
