@@ -1,46 +1,36 @@
 <% @reviews = reviewer.reviews.order('created_at Desc').all(:conditions=>['publish = ?',true]) %>
 <% if @reviews.size > 0 %>
-  <ul>
-	  <% for review in @reviews %>
-	  <li style="border-bottom:0px solid #CCCCCC;margin-top:15px;padding-bottom:10px;list-style-type:none; ">
-            <div>
-              <div style="margin: 0 5px 5px 0;float:left"><%= avatar_for_user(review.user, "small") %></div>
-              <div style="text-align:left;margin: 0 0 5px 15px;float:left">
-                <span style="font:bold 13px Arial">
-                <% unless review.user.nil? %>
-                <%= (review.user.name).capitalize %>
-
-                <% end %>
-                </span><br/>
-                  <span style="font:10px Arial"> <%= review.created_at.strftime("%d/%m/%Y") %></span><br/>
-                  <%if review.score%>
-                    <div class="star-row">
-                      <%i = 1 %>
-                      <%while i <= 5 %>
-                        <%if i <= review.score%>
-                          <span><img src="/images/star-active.png"></span>
-                        <%else%>
-                          <span><img src="/images/star.png"></span>
-                        <%end%>
-                        <%i+=1%>
-                      <%end%>
-                    </div>
-                  <%end%>
-                             
-                  <span ><%= show_review_ratings(review.reviewer, review.score).html_safe %></span>
-              </div>
-
-              <div style="clear:both"></div>
-              <div class="description"> <span style="font:10px Arial"><%= review.description.gsub("\n","<br />").html_safe rescue "No description" %></span></div><br />
+  <% for review in @reviews %>
+    <div class="latest-review-box view-review">
+      <div class="row clearfix">
+        <div class="col-xs-2 box-image"><%= avatar_for_user(review.user, "small") %></div>
+        <div class="col-xs-10">
+          <% unless review.user.nil? %>      
+            <div class="reviewer-name"><b><%= (review.user.name).capitalize %></b> - <%= review.created_at.strftime("%d/%m/%Y") %></div>
+          <% end %>
+          <%if review.score%>
+            <div class="star-row">
+              <%i = 1 %>
+              <%while i <= 5 %>
+                <%if i <= review.score%>
+                  <span><img src="/images/star-active.png"></span>
+                <%else%>
+                  <span><img src="/images/star.png"></span>
+                <%end%>
+                <%i+=1%>
+              <%end%>
             </div>
-
-    </li>
-	  <%- end -%>
-	</ul>
-<%- else -%>
-    <ul id="no_review">
-      <li><span>Be the first to review this product and you will receive a <%= number_to_currency(10, {:precision => 0, :unit => "&pound;"}) -%> voucher</span></li>
-	  </ul>
-<%- end -%>
-<h3>&nbsp;</h3>
-
+          <%end%>
+          <!-- <span><%= show_review_ratings(review.reviewer, review.score).html_safe %></span> -->
+          <div>
+            <p><%= review.description.gsub("\n","<br />").html_safe rescue "No description" %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% else %>
+  <div>
+    <p>Be the first to review this product and you will receive a <%= number_to_currency(10, {:precision => 0, :unit => "&pound;"}) -%> voucher</p>
+  </div>
+<% end %>
