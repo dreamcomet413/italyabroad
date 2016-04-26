@@ -349,7 +349,7 @@
                     </div>
                     <div class="col-xs-8 slider-box-text">
                       <div class="item-name"><%= link_to truncate(inc_product.name, {:length => 80}), nested_products_uri(inc_product) %></div>
-                      <div class="seller-price">£<%=inc_product.price%></div>
+                      <div class="seller-price">£<%=inc_product.product_prices.first.price%></div>
                       <div class="add-row clearfix">
                         <%=render partial: 'site/templates/cart_product_show_page_form' , locals: {product: inc_product}  %>
                       </div>
@@ -382,7 +382,7 @@
                       <div class="item-name">
                         <%= link_to inc_product.name, nested_products_uri(inc_product) %></div>
                       <div class="seller-price">
-                        <%= number_to_currency inc_product.price, :unit => "&pound;" %>
+                        <%= number_to_currency inc_product.product_prices.first.price, :unit => "&pound;" %>
                       </div>
                       <div class="add-row clearfix">
                         <%=render partial: 'site/templates/cart_product_show_page_form' , locals: {product: inc_product}  %>
@@ -413,7 +413,7 @@
                 <div class="col-xs-8 slider-box-text">
                   <div class="item-name"><%= link_to related_product.name, nested_products_uri(related_product) %></div>
                   <div class="seller-price">
-                    <%= number_to_currency related_product.price, :unit => "&pound;" %></div>
+                    <%= number_to_currency related_product.product_prices.first.price, :unit => "&pound;" %></div>
                   <div class="add-row clearfix">
                       <%=render partial: 'site/templates/cart_product_show_page_form' , locals: {product: related_product}  %>
                   </div>
