@@ -1,4 +1,4 @@
-<% @reviews = reviewer.reviews.all(:conditions=>['publish = ?',true]) %>
+<% @reviews = reviewer.reviews.order('created_at Desc').all(:conditions=>['publish = ?',true]) %>
 <% if @reviews.size > 0 %>
   <ul>
 	  <% for review in @reviews %>
@@ -12,13 +12,26 @@
 
                 <% end %>
                 </span><br/>
-                  <span style="font:10px Arial"> <%= review.created_at.strftime("%d/%m/%Y") %></span><!-- %H:%M %p"--><br/>
-                   <span ><%= show_review_ratings(review.reviewer, review.score).html_safe %></span>
+                  <span style="font:10px Arial"> <%= review.created_at.strftime("%d/%m/%Y") %></span><br/>
+                  <%if review.score%>
+                    <div class="star-row">
+                      <%i = 1 %>
+                      <%while i <= 5 %>
+                        <%if i <= review.score%>
+                          <span><img src="/images/star-active.png"></span>
+                        <%else%>
+                          <span><img src="/images/star.png"></span>
+                        <%end%>
+                        <%i+=1%>
+                      <%end%>
+                    </div>
+                  <%end%>
+                             
+                  <span ><%= show_review_ratings(review.reviewer, review.score).html_safe %></span>
               </div>
+
               <div style="clear:both"></div>
               <div class="description"> <span style="font:10px Arial"><%= review.description.gsub("\n","<br />").html_safe rescue "No description" %></span></div><br />
-
-
             </div>
 
     </li>

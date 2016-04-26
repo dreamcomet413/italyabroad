@@ -68,7 +68,7 @@ class Product < ActiveRecord::Base
 
 
   def self.wine_tours
-    Product.find(:all, :limit => 2, :include => {:categorizations => :category}, :conditions => ["categories.name LIKE ? AND DATE(date) > ? AND active" ,'Wine Tours',Date.today],:order=>'date')
+    Product.find(:all, :limit => 2, :include => {:categorizations => :category}, :conditions => ["categories.name LIKE ? AND DATE(date) > ? AND active" ,'Wine Tours',Date.today],:order=>'created_at Desc')
   end
 
   def get_quantity(actual_price)

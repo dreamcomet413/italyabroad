@@ -60,7 +60,21 @@
         <tr>
           <td>Avg.Rating:</td>
           <td class="data">
-            <%= show_ratings(@product, @product.average_rating_round).html_safe() %>
+            <%#= show_ratings(@product, @product.average_rating_round).html_safe() %>
+            <% score =  @product.average_rating_round%>
+            <%if score%>
+              <div class="star-row">
+                <%i = 1 %>
+                <%while i <= 5 %>
+                  <%if i <= score%>
+                    <span><img src="/images/star-active.png"></span>
+                  <%else%>
+                    <span><img src="/images/star.png"></span>
+                  <%end%>
+                  <%i+=1%>
+                <%end%>
+              </div>
+            <%end%>
           </td>
         </tr>
         <!--<tr>
