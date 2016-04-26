@@ -330,7 +330,7 @@
     
     <!-- Start include in hamper box -->
     <% if @product.root_category == 'Hampers' || @product.sub_categories.include?('Mixed case') %>
-      <% @includes = @product.product_includeds.all %>
+      <% @includes = @product.product_includeds.limit(4) %>
       <% if !@includes.blank? %>
         <div class="similar-box" id="wineRelated">
           <% if @product.root_category == 'Hampers' %>
@@ -349,7 +349,7 @@
                     </div>
                     <div class="col-xs-8 slider-box-text">
                       <div class="item-name"><%= link_to truncate(inc_product.name, {:length => 80}), nested_products_uri(inc_product) %></div>
-                      <div class="seller-price">£17.49</div>
+                      <div class="seller-price">£<%=inc_product.price%></div>
                       <div class="add-row clearfix">
                         <%=render partial: 'site/templates/cart_product_show_page_form' , locals: {product: inc_product}  %>
                       </div>
