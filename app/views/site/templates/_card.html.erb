@@ -284,7 +284,7 @@
         
         <div class="green-heading-2">Description</div>
         <div class="product-detail-text">
-          <%= (@product.description.html_safe().gsub("\n", "<br />")) rescue "Product has no description" %>
+          <%= (@product.description.html_safe) rescue "Product has no description" %>
         </div>
         <% if @product.root_category != 'Hampers' and !@product.sub_categories.include?('Mixed case') %>
           <div class="green-heading-2">Producer</div>
