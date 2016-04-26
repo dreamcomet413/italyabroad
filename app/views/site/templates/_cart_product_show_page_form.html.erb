@@ -1,0 +1,14 @@
+<%= form_for :cart, :url => "/site/cart.js", :remote => true , :html => {:method => :post, :class=>'cart_form'} do -%>
+	
+		<div class="seller-field">
+			<%= text_field :cart, :quantity, :value => 1 , :min=> 0 %>
+			<%= hidden_field_tag :product_id, product.id -%>
+			<%= hidden_field_tag(:discounted_price, product.discounted_price(params[:actual_price]) || product.product_prices.first.price, :id => "actual_price") -%>
+	  	</div>
+	  	<div class="seller-btn">
+		  <div class="green-button">
+		    <!-- <a href="#" style="width:90px">Add to cart</a> -->
+		    <%= submit_tag(value = "Add") %>
+		  </div>
+		</div>  
+<%end%>

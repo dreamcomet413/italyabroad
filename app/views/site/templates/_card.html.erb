@@ -4,6 +4,7 @@
    @breadcrumbs += " &raquo; #{@product.name[0..25]+ '...'}"
 %>
 <%#= params[:category] %>
+
 <% products = Product.find_by_sql("select * from products where name like '%#{@product.name.gsub(/\(([^)]*)\)/, "").gsub("'", "").strip}%' and active = 1") %>
   <div class="row">
     <div class="two-colum-row clearfix">
@@ -94,6 +95,7 @@
               <%= render :partial => '/site/shared/social_bookmarks' %>
             </div>
           </div>
+          
           <% if ((@product.categories.first.name == "Food" || "Hampers") || (Category.find(@product.categories.first.parent_id).name == "Food")) || @product.categories.root.name.downcase == "hampers" || @product.categories.root.name.downcase == "wine" || @product.categories.root.name.downcase == "other drinks" %>
             <div class="product-details">
               <div class="row clearfix">
@@ -279,6 +281,7 @@
             </div>
           <% end %>
         </div>
+        
         <div class="green-heading-2">Description</div>
         <div class="product-detail-text">
           <%= (@product.description.html_safe().gsub("\n", "<br />")) rescue "Product has no description" %>
@@ -324,6 +327,7 @@
         </div>
       </div>
     </div>
+    
     <!-- Start include in hamper box -->
     <% if @product.root_category == 'Hampers' || @product.sub_categories.include?('Mixed case') %>
       <% @includes = @product.product_includeds.all %>
@@ -347,8 +351,7 @@
                       <div class="item-name"><%= link_to truncate(inc_product.name, {:length => 80}), nested_products_uri(inc_product) %></div>
                       <div class="seller-price">£17.49</div>
                       <div class="add-row clearfix">
-                        <div class="seller-field"><input type="text" value="1"></div>
-                        <div class="seller-btn"><a href="#.">Add</a></div>
+                        <%=render partial: 'site/templates/cart_product_show_page_form' , locals: {product: inc_product}  %>
                       </div>
                     </div>
                   </div>
@@ -361,6 +364,7 @@
     <% end %><!-- End include in hamper box -->
     <!-- Start you may like box -->
     <% if @product.categories.root.present? && @product.categories.root.name.downcase == "wine" and !@product.sub_categories.include?('Mixed case') %>
+    
       <% @includes = @product.product_includeds.all(:limit => 4) %>
       <% if !@includes.blank? %>
         <div class="similar-box">
@@ -381,10 +385,7 @@
                         <%= number_to_currency inc_product.price, :unit => "&pound;" %>
                       </div>
                       <div class="add-row clearfix">
-                        <div class="seller-field"><input type="text" value="1"></div>
-                        <div class="seller-btn">
-                          <%= link_to "Add", "/site/cart?product_id=#{inc_product.id}", :remote => true, :method => :post %>
-                        </div>
+                        <%=render partial: 'site/templates/cart_product_show_page_form' , locals: {product: inc_product}  %>
                       </div>
                     </div>
                   </div>
@@ -396,7 +397,8 @@
       <% end %>
     <% end %> <!-- End you may like box -->
     <!-- Start Similar products box -->
-    <%- related_products = @product.correlations.all(:limit => 3, :conditions => "active").uniq -%>
+    
+    <%- related_products = @product.correlations.all(:limit => 4, :conditions => "active").uniq -%>
     <%- column_width = related_products.size -%>
     <% unless related_products.blank? %>
       <div class="similar-box">
@@ -413,10 +415,7 @@
                   <div class="seller-price">
                     <%= number_to_currency related_product.price, :unit => "&pound;" %></div>
                   <div class="add-row clearfix">
-                    <div class="seller-field"><input type="text" value="1"></div>
-                    <div class="seller-btn">
-                      <%= link_to "Add", "/site/cart?product_id=#{related_product.id}", :remote => true, :method => :post %>
-                    </div>
+                      <%=render partial: 'site/templates/cart_product_show_page_form' , locals: {product: related_product}  %>
                   </div>
                 </div>
               </div>
@@ -445,7 +444,7 @@
         var replace = strings[strings.length - 1]
         var href = txt.replace(replace, $(this).val())
         window.location.href = href
-    })
+    });
     $('.plus-btn').click(function(){
       quantity = $('#cart_quantity').val();
       $('#cart_quantity').val(parseInt(quantity) + 1);      
