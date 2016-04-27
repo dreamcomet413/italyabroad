@@ -4,7 +4,15 @@
 
 <% if @messages.size > 0 %>
 <h4 class="account-title">Messages</h4>
-<%= content_tag(:div, will_paginate(@messages), :style => "margin:10px 20px;") if @messages.size > 0  %>
+<div class="digg_pagination pagination-2 clearfix">
+	<div class="page_info show-result">
+	  <%= page_entries_info @messages %>
+	</div>
+	<div class="pagination-links">
+	  <%= will_paginate @messages, :container => false %>
+	</div>
+</div>
+
 <ul style="padding:0;list-style:none;" id="my_reviews_list">
    <%= render :partial => 'message', :collection => @messages %>
 </ul>

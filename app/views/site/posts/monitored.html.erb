@@ -53,5 +53,12 @@
 
 <% end %>
 </table>
-
-<%= will_paginate @posts %>
+<div class="digg_pagination pagination-2 clearfix">
+  <div class="page_info show-result">
+    <%= page_entries_info @posts %>
+  </div>
+  <div class="pagination-links">
+    <%= will_paginate @posts, :container => false %>
+  </div>
+</div>
+    

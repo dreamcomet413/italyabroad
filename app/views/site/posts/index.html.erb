@@ -12,8 +12,15 @@
   <%= feed_icon_tag @page_title, search_posts_path(true) %>
   <%= number_with_delimiter(@posts.total_entries) %> posts
 </p>
-
-<%= will_paginate @posts %>
+<div class="digg_pagination pagination-2 clearfix">
+    <div class="page_info show-result">
+      <%= page_entries_info @posts %>
+    </div>
+    <div class="pagination-links">
+      <%= will_paginate @posts, :container => false %>
+    </div>
+</div>
+    
 <%= stylesheet_link_tag "display" %>
 <%= render :partial => 'site/posts/posts' %>
 

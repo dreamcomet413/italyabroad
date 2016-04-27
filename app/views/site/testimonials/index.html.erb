@@ -11,7 +11,14 @@
     </li>
   <% end %>
   </ul>
-  <%= will_paginate(@testimonials) %>
+  <div class="digg_pagination pagination-2 clearfix">
+    <div class="page_info show-result">
+      <%= page_entries_info @testimonials %>
+    </div>
+    <div class="pagination-links">
+      <%= will_paginate @testimonials, :container => false %>
+    </div>
+  </div>
 </div>
 
 <% content_for :right do %>

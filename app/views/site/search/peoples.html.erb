@@ -72,7 +72,14 @@
     </li>
     <%- end -%>
   </ul>
-  <div align="right"><%= will_paginate(@users) %></div>
+  <div class="digg_pagination pagination-2 clearfix">
+    <div class="page_info show-result">
+      <%= page_entries_info @users %>
+    </div>
+    <div class="pagination-links">
+      <%= will_paginate @users, :container => false %>
+    </div>
+  </div>
 </div>
 <% else %>
 <div id="header">Your search returned no results:</div><br />

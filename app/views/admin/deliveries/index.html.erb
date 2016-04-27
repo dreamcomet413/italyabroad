@@ -6,7 +6,7 @@
   <br />
   <table>
     <tr>
-      <td><%= will_paginate_(@deliveries) %></td>
+      <td><%= will_paginate(@deliveries) %></td>
       <td align="right"><%= link_to "New Delivery", new_admin_delivery_path %></td>
     </tr>
   </table>
@@ -21,7 +21,7 @@
     </thead>
     <tfoot>
       <tr>
-        <td colspan="2"><%= will_paginate_(@deliveries) %></td>
+        <td colspan="2"><%= will_paginate(@deliveries) %></td>
         <td colspan="2" align="right"><%= page_entries_info_ @deliveries %></td>
       </tr>
     </tfoot>
@@ -42,7 +42,6 @@
       <%- end -%>
     </tbody>
   </table>
-  <%= will_paginate(@deliveries) %>
 </div>
 
 </div>

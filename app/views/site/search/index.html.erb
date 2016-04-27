@@ -15,7 +15,14 @@
       <table style="width:100%;" cellpadding="0" cellspacing="0" border="0">
         <tr>
           <%- unless will_paginate(@products).blank? -%>
-              <td class="pagination_div"><%= will_paginate(@products) %></td>
+            <td class="pagination_div">
+              <div class="digg_pagination pagination-2 clearfix" style="border: none; margin-bottom: 5px;">
+                <div class="pagination-links" style="float: left;">
+                  <%= will_paginate @products, :container => false %>
+                </div>
+              </div>
+            </td>
+      
           <%- end -%>
           <td align="right">
             <%- form_tag "/search", :method => :get, :id => "sort_by_form" do -%>
@@ -108,8 +115,14 @@
           </tr>
         </table>
     <% end %>
-
-    <%= content_tag(:div, will_paginate(@products), :style => "padding:5px;text-align:right;background-color:#F3F8DA") unless will_paginate(@products).blank? %>
+    <div class="digg_pagination pagination-2 clearfix">
+      <div class="page_info show-result">
+        <%= page_entries_info @products %>
+      </div>
+      <div class="pagination-links">
+        <%= will_paginate @products, :container => false %>
+      </div>
+    </div>
     <% if params[:wine_type].present? || params[:body_type].present? || params[:price_type].present? || params[:food_type].present? %>
         <div style="text-align: center">
         <%= link_to "Discover more wines with Cercavino", site_sommelier_index_url, :style => "font-size:15px;color:red;" -%>

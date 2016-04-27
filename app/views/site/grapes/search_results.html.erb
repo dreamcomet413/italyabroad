@@ -54,7 +54,14 @@
     </li>
   <% end %>
   </ul>
-<div><%= will_paginate_(@grapes) %></div>
+  <div class="digg_pagination pagination-2 clearfix">
+    <div class="page_info show-result">
+      <%= page_entries_info @grapes %>
+    </div>
+    <div class="pagination-links">
+      <%= will_paginate @grapes %>
+    </div>
+  </div>
 <%- end -%><br />
 <% end %>
 <%= link_to "Want to know more about Italian grapes? Visit our grape section", site_grapes_path %>

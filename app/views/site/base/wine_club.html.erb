@@ -38,7 +38,15 @@
       </li>
       <%- end -%>
     </ul>
-    <%= will_paginate(products) %>
+    <div class="digg_pagination pagination-2 clearfix">
+      <div class="page_info show-result">
+        <%= page_entries_info @products %>
+      </div>
+      <div class="pagination-links">
+        <%= will_paginate @products, :container => false %>
+      </div>
+    </div>
+    
   </div>
   <%- end -%>
 </div>

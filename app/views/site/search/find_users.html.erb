@@ -69,7 +69,15 @@
   
 
 </div>
-<div align="right" class="pagination_div"><%= will_paginate(@users) %></div>
+<div class="digg_pagination pagination-2 clearfix">
+  <div class="page_info show-result">
+    <%= page_entries_info @users %>
+  </div>
+  <div class="pagination-links">
+    <%= will_paginate @users, :container => false %>
+  </div>
+</div>
+
 
 <% content_for :right do %>
 	<%= render :partial => '/site/shared/box_popular' %>

@@ -80,7 +80,15 @@
     </table>
     <h3>&nbsp;</h3>
 <% end %>
-<div align="right" class="pagination_div"><%= will_paginate_(@wine_events) %></div>
+<div class="digg_pagination pagination-2 clearfix">
+  <div class="page_info show-result">
+    <%= page_entries_info @wine_events %>
+  </div>
+  <div class="pagination-links">
+    <%= will_paginate @wine_events, :container => false %>
+  </div>
+</div>
+
 
 
 

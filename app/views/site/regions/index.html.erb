@@ -143,7 +143,15 @@
     </li>
   <% end %>
   </ul>
-<div><%= will_paginate_(@regions) %></div>
+  <div class="digg_pagination pagination-2 clearfix">
+    <div class="page_info show-result">
+      <%= page_entries_info @regions %>
+    </div>
+    <div class="pagination-links">
+      <%= will_paginate @regions, :container => false %>
+    </div>
+  </div>
+    
   <% end %>
 
   <div style="clear:both;"></div>

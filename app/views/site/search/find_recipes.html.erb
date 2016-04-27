@@ -7,7 +7,13 @@
   <table style="width:100%;" cellpadding="0" cellspacing="0" border="0">
     <tr>
       <%- unless will_paginate(@recipes).blank? -%>
-      <td class="pagination_div"><%= will_paginate(@recipes) %></td>
+      <td class="pagination_div">
+        <div class="digg_pagination pagination-2 clearfix" style="border: none; margin-bottom: 5px;">
+          <div class="pagination-links" style="float: left;">
+            <%= will_paginate @recipes, :container => false %>
+          </div>
+        </div>
+      </td>
       <%- end -%>
       <td align="right">
         <%- form_tag find_recipes_site_search_index_path, :method => :get, :id => "sort_by_form" do -%>
@@ -37,7 +43,15 @@
   </ul>
   <br />
 </div>
-<%= content_tag(:div, will_paginate(@recipes), :style => "padding:5px;text-align:right;background-color:#F3F8DA") unless will_paginate(@recipes).blank? %>
+<div class="digg_pagination pagination-2 clearfix">
+    <div class="page_info show-result">
+      <%= page_entries_info @recipes %>
+    </div>
+    <div class="pagination-links">
+      <%= will_paginate @recipes, :container => false %>
+    </div>
+  </div>
+
 <% else %>
 <div id="header">Your search returned no results:</div><br />
  <div class ="search_result">Sorry the search has not given any result, please check the spelling or <%= mail_to "info@italyabroad.com", "get in touch" %> if the spelling is correct.</div>

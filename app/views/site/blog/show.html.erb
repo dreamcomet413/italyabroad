@@ -123,10 +123,16 @@ alert("Description must be filled out");
       <%- end -%>
 
       </div>
-
-    <h1 style="text-align:right"><%= will_paginate @comments %></h1>
-
-  </div>
+      <div class="digg_pagination pagination-2 clearfix">
+        <div class="page_info show-result">
+          <%= page_entries_info @comments %>
+        </div>
+        <div class="pagination-links">
+          <%= will_paginate @comments, :container => false %>
+        </div>
+      </div>
+    
+    </div>
   </div>
 <% content_for :right do %>
     <%#= render :partial => '/site/shared/box_login' %>

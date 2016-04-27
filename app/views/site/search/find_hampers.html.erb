@@ -69,7 +69,15 @@
 
 <% end %>
 <div style="clear:both;"></div>
-<div align="right" class="pagination_div"><%= will_paginate(@hampers) %></div>
+<div class="digg_pagination pagination-2 clearfix">
+    <div class="page_info show-result">
+      <%= page_entries_info @hampers %>
+    </div>
+    <div class="pagination-links">
+      <%= will_paginate @hampers, :container => false %>
+    </div>
+  </div>
+
 
 <% content_for :right do %>
     <%#= render :partial => 'site/shared/box_wine_search', :locals => {:search_url => site_search_index_path} %>

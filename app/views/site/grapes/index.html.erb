@@ -37,7 +37,14 @@
                 <%- end -%>
               </div>
             <% end %>
-            <div><%= will_paginate_(@grapes) %></div>
+            <div class="digg_pagination pagination-2 clearfix">
+              <div class="page_info show-result">
+                <%= page_entries_info @grapes %>
+              </div>
+              <div class="pagination-links">
+                <%= will_paginate @grapes, :container => false %>
+              </div>
+            </div>
           <%- end -%>
         <% end %> <!-- End Search Results-->
         <% if !@about.nil? %>
