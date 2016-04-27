@@ -1,51 +1,150 @@
 <div class="block" id="box_search_recipes_new">
-	<h3>Recipe Search</h3>
-	<% form_tag site_search_index_path, :method => :get do %>
-	  <%= hidden_field_tag :category, "recipe" %>
-		<table border="0" cellspacing="2" cellpadding="0">
-			<tr>
-			  <td>Search for recipe:</td>
-			  <td><%= text_field_tag :text, params[:text], :id => "search_text" %></td>
-      </tr>
-      <tr>
-        <td>Chef:</td>
-        <td><%= select_tag :chef, options_for_select(Recipe.users, params[:chef]), :id => "search_recipe_type" %></td>
-      </tr>
-			<tr>
-			  <td>Course:</td>
-			  <td><%= select_tag :recipe_type, options_for_select(Recipe.recipe_types, params[:recipe_type]), :id => "search_recipe_type" %></td>
-      </tr>
-      <tr>
-        <td>Difficulty:</td>
-        <td><%= select_tag :difficulty, options_for_select(Recipe.difficulties(@search), params[:difficulty]), :id => "search_recipe_type" %></td>
-      </tr>
-      <tr>
-        <td>Region:</td>
-        <td><%= select_tag :region_id, options_for_select(Recipe.regions(@search), params[:region_id]), :id => "search_recipe_type" %></td>
-      </tr>
-
-			<tr>
-			  <td>Preparation time:</td>
-			  <td>
-			    <%= select_tag :preparation_time, options_for_select([["Any",""],["Up to 15 minutes","<= 15"],["Up to 30 minutes","<= 30"],["Up to 45 minutes","<= 45"],["Up to 60 minutes","<= 60"],["More than 60 minutes","> 60"]], params[:preparation_time]), :id => "search_recipe_type" %>
-			  </td>
-      </tr>
-      <tr>
-        <td>Vegetarian:</td>
-        <td><%= check_box_tag :vegetarian, params[:vegetarian] %></td>
-      </tr>
-      <tr>
-        <td>Sort by:</td>
-        <td><%= select_tag :sort_by, options_for_select([["Any", ""], ["Difficulty", "recipe_level_id"], ["Preparation Time", "preparation_time"]], params[:sort_by]), :id => "search_recipe_type" %></td>
-      </tr>
-			<tr>
-			  <td colspan="2"></td>
-      </tr>
-			<tr>
-			  <td></td>
-			  <td><%= image_submit_tag "btn_search.png", :style => "border:none" %></td>
-      </tr>
-		</table>
-	<% end %>
+	<div class="green-heading-16">Recipe Search</div>
+  <% form_tag site_search_index_path, :method => :get do %>
+    <div class="left-bar-search">
+      <%= text_field_tag :text, params[:text], :id => "search_text" %>
+      <i class="magnifier"><a href="#.">
+        <%= image_submit_tag "magnifier.png", :style => "border:none" %></a>
+      </i>
+    </div>
+    <div class="sidebar-filter-wrapper">
+      <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="panel">
+          <div class="panel-heading" role="tab" id="heading-1">
+            <h4 class="panel-title">
+              <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-1" aria-expanded="true" aria-controls="collapse-1">
+                Chef: <i></i>
+              </a>
+            </h4>
+          </div>
+          <div id="collapse-1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading-1">
+            <div class="panel-body">
+              <ul>
+                <% hidden_field_tag :chef %>
+                <% Recipe.users.each do |item| %>
+                  <li><a href="#." value="<%= item[1] %>"> <%= item[0] %></a></li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-heading" role="tab" id="headingTwo">
+            <h4 class="panel-title">
+              <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                Course: <i></i>
+              </a>
+            </h4>
+          </div>
+          <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
+            <div class="panel-body">
+              <ul>
+                <% hidden_field_tag :recipe_type %>
+                <% Recipe.recipe_types.each do |item| %>
+                  <li><a href="#." value="<%= item[1] %>"><%= item[0] %></a></li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-heading" role="tab" id="headingThree">
+            <h4 class="panel-title">
+              <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                Difficulty: <i></i>
+              </a>
+            </h4>
+          </div>
+          <div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
+            <div class="panel-body">
+              <ul>
+                <% hidden_field_tag :difficulty %>
+                <% Recipe.difficulties(@search).each do |item| %>
+                  <li><a href="#." value="<%= item[1] %>"><%= item[0] %></a></li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-heading" role="tab" id="headingFour">
+            <h4 class="panel-title">
+              <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+                Region: <i></i>
+              </a>
+            </h4>
+          </div>
+          <div id="collapseFour" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingFour">
+            <div class="panel-body">
+              <ul>
+                <% hidden_field_tag :region_id %>
+                <% Recipe.regions(@search).each do |item| %>
+                  <li><a href="#." value="<%= item[1] %>"><%= item[0] %></a></li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-heading" role="tab" id="headingFive">
+            <h4 class="panel-title">
+              <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
+                Preparation time: <i></i>
+              </a>
+            </h4>
+          </div>
+          <div id="collapseFive" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingFive">
+            <div class="panel-body">
+              <ul>
+                <% hidden_field_tag :preparation_time %>
+                <% [["Any",""],["Up to 15 minutes","<= 15"],["Up to 30 minutes","<= 30"],["Up to 45 minutes","<= 45"],["Up to 60 minutes","<= 60"],["More than 60 minutes","> 60"]].each do |item| %>
+                  <li><a href="#." value="<%= item[1] %>"><%= item[0] %></a></li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-heading" role="tab" id="headingSix">
+            <h4 class="panel-title">
+              <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseSix" aria-expanded="true" aria-controls="collapseSix">
+                Vegetarian: <i></i>
+              </a>
+            </h4>
+          </div>
+          <div id="collapseSix" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingSix">
+            <div class="panel-body">
+              <ul>
+                <% hidden_field_tag :vegetarian %>
+                  <li><span><%= check_box_tag :vegetarian, params[:vegetarian] %></span> <span>Yes</span> </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-heading" role="tab" id="headingSeven">
+            <h4 class="panel-title">
+              <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseSeven" aria-expanded="true" aria-controls="collapseSeven">
+                Sort by: <i></i>
+              </a>
+            </h4>
+          </div>
+          <div id="collapseSeven" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingSeven">
+            <div class="panel-body">
+              <ul>
+                <% hidden_field_tag :sort_by %>
+                <% [["Any", ""], ["Difficulty", "recipe_level_id"], ["Preparation Time", "preparation_time"]].each do |item| %>
+                  <li><a href="#." value="<%= item[1] %>"><%= item[0] %></a></li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="clearfix filter-submit row">
+        <div class="green-button bottom-50 col-xs-6 "><%= submit_tag "Search" %></div>
+      </div>
+    </div>
+  <% end %>
 </div>
 

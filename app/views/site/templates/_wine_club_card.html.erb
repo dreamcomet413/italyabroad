@@ -1,90 +1,75 @@
 <%- @class = "wine_club"; @breadcrumbs = "#{link_to("Home", root_url)} &raquo; #{link_to("Wine club", "/wine-club")} &raquo; #{@product.name + '...'}" -%>
-
-<div id="wineBanner" style="padding-top:5px;"><%= image_tag(site_image_url("product_wine_club", @product.image_1, :jpg),:alt=>@product.name) if @product.image_1 %></div>
-<div id="wine_tours_content">
-<!--<h2 style="color:#9b0707;"><%#= @product.name %></h2>-->
-  <h1 align="center" style="padding-top:0px;color:#9b0707;margin-top:0px;"><%= @product.name %></h1>
-  <table width="100%">
-    <tr>
-      <%#- if @product.image_1 or @product.image_2 or @product.image_3 -%>
-    <!--  <td valign="top">
-        <ul class="image">
-          <%#= content_tag(:li, image_tag(site_image_url("product_wine_club", @product.image_1, :jpg))) if @product.image_1 %>
-          <%#= content_tag(:li, image_tag(site_image_url("product_wine_club", @product.image_2, :jpg))) if @product.image_2 %>
-          <%#= content_tag(:li, image_tag(site_image_url("product_wine_club", @product.image_3, :jpg))) if @product.image_3 %>
-        </ul>
-      </td>-->
-      <%#- end -%>
-      <td valign="top">
-        <div style="padding-left:10px;">
-          <%= @product.description.gsub("\n","<br />") rescue "Product has no description" %>
-          <br /><br />
-          <table align="right">
-            <tr>
-              <td style="font-size:18px;color:#9b0707;text-align:right;"><!--Price:&nbsp;--><%= number_to_currency @product.price, :unit => "&pound;" %></td>
-             </tr>
-             <tr>
-              <td>
-                <%= link_to image_tag("buttons/buy_button_new.png"), "/site/cart?product_id=#{@product.id}", :method => :post, :remote => true %>
-              </td>
-            </tr>
-          </table>
+<% if @product.image_1  %>
+<div id="wineBanner" class="main-banner"><%= image_tag(site_image_url("product_wine_club", @product.image_1, :jpg),:alt=>@product.name)  %></div>
+<% else %>
+  <div class="main-banner"><img src="/images/wine-club-banner.png" /></div>
+<% end %>
+<div class="row">
+  <div class="two-colum-row clearfix">
+    <div class="col-md-3 left-side-bar">
+      <%= render :partial=> '/site/shared/box_wine_club_testimonials' %>
+    </div>
+    <div class="col-md-9">
+      <!-- start wine detail wrapper-->
+      <div class="wine-detail-wrapper">
+        <div class="green-heading-with-border"><%= @product.name %></div>
+        <div class="bottom-50"><%= @product.description.gsub("\n","<br />").html_safe rescue "Product has no description" %></div>
+        <div class="green-heading-with-border">
+          Invite a Friend
         </div>
-      </td>
-    </tr>
-  </table>
-  <div class="invite" style="text-align:center;margin:10px 20px;padding-top:10px;border-top:2px solid #b6cb31;padding-left:20px;padding-right:20px;">
-    <h2 style="font-size:16px;color:#666666;">Invite a Friend</h2>
-    <%- form_tag 'invite_a_friend' do -%>
-    <table align="center">
-      <tr>
-        <td>
-          <div style="text-align:left;">Your name</div>
-          <%= text_field_tag  'your_name','', :size => 20 %>
-        </td>
-        <td>
-          <div style="text-align:left;">Your friends name</div>
-          <%= text_field_tag  'your_friend_name', '',:size => 20 %>
-        </td>
-        <td>
-          <div style="text-align:left;">Your friends email</div>
-          <%= text_field_tag  'your_friend_email', '',:size => 20 %>
-        </td>
-      </tr>
-      <tr>
-        <td colspan="3">
-          <div style="text-align:left;">Your message</div>
-          <%= text_field_tag  'your_message','', :value => "I thought you might be interested in this...",:size => 68 %>
-          <%= hidden_field_tag 'h_product_id',request.request_uri %>
-        </td>
-      </tr>
-    </table>
-    <br />
-    <%= image_submit_tag("send_ico.png") %>
-    <%- end -%>
+        <div class="invite-friend-box bottom-50">
+          <%- form_tag 'invite_a_friend' do -%>
+            <div class="row clearfix bottom-15">
+              <div class="col-md-4">
+                <div class="form-label">Your name</div>
+                <div class="form-field"><%= text_field_tag  'your_name','' %></div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-label">Your friends name</div>
+                <div class="form-field"><%= text_field_tag  'your_friend_name', '' %></div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-label">Your friends email</div>
+                <div class="form-field"><%= text_field_tag  'your_friend_email', '' %></div>
+              </div>
+            </div>
+            <div class="row clearfix bottom-15">
+              <div class="col-md-12">
+                <div class="form-label">Your message</div>
+                <div class="form-field">
+                  <%= text_field_tag  'your_message','', :value => "I thought you might be interested in this..." %>
+                  <%= hidden_field_tag 'h_product_id',request.request_uri %>
+                </div>
+              </div>
+            </div>
+            <div class="row clearfix">
+              <div class="green-button col-xs-2"><%= submit_tag("Send") %></div>
+            </div>
+          <% end %>
+        </div>
+        <% unless logged_in? %>
+          <div class="green-heading-with-border">
+            Reviews <%= link_to("(Add Review)", login_path) %>
+          </div>
+          <div class="latest-review-box bottom-50">
+            <%= render :partial => 'site/shared/review_view_short', :locals => {:reviewer => @product} %>
+          </div>
+        <% end %>
+        <%- if logged_in? -%>
+          <div class="green-heading-with-border">Leave your review <%= link_to '(Add Review)',"#",:onclick=>"document.getElementById('add_review').style.display='block';return false;" %></div>
+          <div id="add_review" style="display:none;">
+            <div class="latest-review-box bottom-50">
+              <%= render(:partial => 'site/reviews/new', :locals => {:create_url => product_reviews_path(@product, :return_to => nested_products_uri(@product))}) %>
+            </div>
+        <%- end -%>
+      </div><!-- end wine detail wrapper-->
+    </div>
   </div>
 </div>
-<div class="add_new_review">
-<h3>Reviews <%= link_to("(Add Review)", login_path, :style => "font-size:12px;") unless logged_in?  %></h3>
- <%= render :partial => 'site/shared/review_view_short', :locals => {:reviewer => @product} %>
- <%- if logged_in? -%><%= link_to 'Add Review',"#",:onclick=>"document.getElementById('add_review').style.display='block';return false;" %>
-    <div id="add_review" style="display:none;"><h3>Leave your review</h3>
-    <%= render(:partial => 'site/reviews/new', :locals => {:create_url => product_reviews_path(@product, :return_to => nested_products_uri(@product))}) %>
-  <%- end -%></div>
-<% content_for :right do %>
-   <%= render :partial => 'site/shared/box_wine_club_testimonials' %>
-  <%#= render :partial => 'site/shared/box_product_reviews' %>
-  <br />
-	<%= render :partial => '/site/shared/box_subscriptions' %>
-	<br />
-	<%= render :partial => 'site/shared/box_products_on_offer' %>
-	<br />
-	<%= render :partial => '/site/shared/box_grape_guide' %>
-  <br />
-  <%= render :partial => '/site/shared/box_mood' %>
-  <br />
-  <%= render :partial => '/site/shared/social_follow' %>
-
-<% end %>
-</div>
+<!-- start 3 colum  boxes-->
+<div class="community-row clearfix ">
+  <%= render :partial => '/site/shared/our_community' %>
+  <%= render :partial => '/site/shared/wine_club' %>
+  <%= render :partial => '/site/shared/cercavino' %>
+</div><!-- start 3 colum  boxes-->
 
