@@ -1,5 +1,5 @@
 <% @title = "Producers"; @description = "Andrea's Wine Blog, The Italian Wine Blog, A Guide to Italian Wines, Journey Through Italian Wines"; @keys = "Wine Blog,Italian Wine Blog,Italian Red and White Wine,Italian Food,Wine Tasting,Wine Expert" %>
-<%- @breadcrumbs = "#{link_to("Home", root_url)}&raquo; #{link_to('Community',wine_community_path)} &raquo; #{link_to("Producers", site_producers_path)}" -%>
+<% @breadcrumbs = "#{link_to("Home", root_url)}&raquo; #{link_to('Community',wine_community_path)} &raquo; #{link_to("Producers", site_producers_path)}" -%>
 <% @about = AboutU.find(:first, :conditions => {:link_type => "producers"} ) %>
 <% if  @about and !@about.image_id.nil? %>
   <div class="main-banner"><%= link_to image_tag(site_image_url('region_card', @about.image, :jpg),:alt=>@about.title), site_search_index_path(:id => "producers") unless @about.blank? %></div>
@@ -25,8 +25,8 @@
         <% if @producers && @producers.size > 0 %>
           <% for producer in @producers %>
             <div class="green-heading-with-border">
-              <%= link_to producer.name, producer.friendly_identifier.blank? ? "/producers/#{producer.id}" : "/producers/#{producer.friendly_identifier}" %></div>
-              <%#= show_producer_image(producer) %>
+              <%= link_to producer.name, producer.friendly_identifier.blank? ? "/producers/#{producer.id}" : "/producers/#{producer.friendly_identifier}" %>
+            </div>
             <div class="producer-products-heading">
               <%= producer.region.name rescue "No region" %>
             </div>
@@ -41,7 +41,14 @@
             <% else %>
             <% end %>
           <% end %>
-          <div><%= will_paginate_(@producers) %></div>
+          <div class="digg_pagination pagination-2 clearfix">
+            <div class="page_info show-result">
+              <%= page_entries_info @producers %>
+            </div>
+            <div class="pagination-links">
+              <%= will_paginate @producers, :container => false %>
+            </div>
+          </div>
         <% end %>
       <% end %>
       <% if !@about.nil? %>
@@ -89,22 +96,11 @@
   <%= render :partial => '/site/shared/wine_club' %>
   <%= render :partial => '/site/shared/cercavino' %>
 </div><!-- start 3 colum  boxes-->
-</td>
-        </tr>
-      </table>
-    </li>
-  <% end %>
-  </ul>
-  <div class="digg_pagination pagination-2 clearfix">
-    <div class="page_info show-result">
-      <%= page_entries_info @producers %>
-    </div>
-    <div class="pagination-links">
-      <%= will_paginate @producers, :container => false %>
-    </div>
+<div class="digg_pagination pagination-2 clearfix">
+  <div class="page_info show-result">
+    <%= page_entries_info @producers %>
   </div>
-    
- <% end %>
-
-
-
+  <div class="pagination-links">
+    <%= will_paginate @producers, :container => false %>
+  </div>
+</div>

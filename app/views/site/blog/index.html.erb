@@ -6,12 +6,8 @@
 
   <div class="title">
     <%= @about.title[0..150] if @about %>
-    <!--A <strong style="font-size:30px;">blog</strong> dedicated entirely to<br />
-    <strong style="font-size:30px;">Italian wine,</strong> follow us in our<br />
-    discovery journey, <strong style="font-size:30px;">read news</strong><br />
-    and our <strong style="font-size:30px;">views</strong> on Italian wine-->
   </div>
-   <% if  @about and !@about.image_id.nil? %>
+  <% if  @about and !@about.image_id.nil? %>
    <%=  image_tag(site_image_url(:about_thumb, @about.image, :jpg),:alt=>@about.title[0..150]) unless @about.blank?  %>
    <% else %>
   <%= image_tag("blog_home.jpg",:alt=>@about.title[0..150]) unless @about.blank?  %>
@@ -23,12 +19,21 @@
        <%= link_to "Subscribe to our RSS feed", site_blog_index_path(:format => :xml, :show => :all) %> <%= link_to image_tag('RSS.png'), site_blog_index_path(:format => :xml, :show => :all) %>
       </div>
       <div class="col-md-9 clearfix">
+          
           <div class="search-blog-box clearfix">
               <div class="blog-search-text">Search our blog</div>
-              <div class="blog-search-field"><input type="text" class="blog-search">
-              <i class="magnifier"><a href="#."><img src="/images/magnifier.png"></a></i>
+              <div class="blog-search-field">
+                <% form_tag '/site/blog', :class=>'search_form' ,:method => :get do %>
+                  <div class="left-bar-search">
+                    <%= hidden_field_tag :category , 'search_blog_post' %>
+                    <%= text_field_tag :text, '', :class=> "form-control",  "data-autocomplete"=> '/site/search/autocomplete_post_name' , :placeholder => "Search Here", :style=>"" %>
+                  
+                    <i class="magnifier"><%= image_submit_tag "magnifier.png" %></i>
+                  </div>
+                <%end%>    
               </div>
           </div>
+
       </div>
   </div>
   <div class="two-colum-row clearfix">

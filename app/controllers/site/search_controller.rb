@@ -22,6 +22,10 @@ class Site::SearchController < ApplicationController
     render_result_data(products )
 
   end
+  def autocomplete_post_name
+    posts = Post.where("name like '%#{params[:term]}%' or friendly_identifier like '%#{params[:term]}%' ")
+    render_result_data(posts)
+  end
   def autocomplete_search_food_name
     # this is to search all the food products on index pages
     products = Search.get_products('food', params)

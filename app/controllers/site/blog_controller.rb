@@ -4,21 +4,23 @@ class Site::BlogController < ApplicationController
 #  before_filter :site_login_required, :only => :comment
   def index
     per_page = params[:show].to_s == "all" ? 9999999 : 4
-    if params[:tag_id]
+    if params[:category] == 'search_blog_post'
+      posts = Post.where("name like '%#{params[:text]}%' or friendly_identifier like '%#{params[:text]}%'")  
+    elsif params[:tag_id]
       @tag = Tag.find(params[:tag_id])
 
-       @posts = @tag.posts.where(["blog_type_id = ?", 1]).order("created_at DESC").paginate(:page => params[:page], :per_page => per_page)
+       posts = @tag.posts.where(["blog_type_id = ?", 1]).order("created_at DESC").paginate(:page => params[:page], :per_page => per_page)
 
-  elsif params[:year].blank? && params[:month].blank?
-       @posts = Post.where(["blog_type_id = ?", 1]).order("created_at DESC").paginate(:page => params[:page], :per_page => per_page)
+    elsif params[:year].blank? && params[:month].blank?
+      posts = Post.where(["blog_type_id = ?", 1]).order("created_at DESC").paginate(:page => params[:page], :per_page => per_page)
     else
       year = params[:year].to_i
       month = params[:month].to_i
       begin_of_the_month = "#{month}/1/#{year}".to_time.utc
       end_of_the_month = begin_of_the_month.end_of_month.to_time.utc
-     @posts = Post.find(:all, :conditions => ["blog_type_id = ? AND created_at >= ? AND created_at <= ?", 1, begin_of_the_month.to_s(:db), end_of_the_month.to_s(:db)])
+     posts = Post.find(:all, :conditions => ["blog_type_id = ? AND created_at >= ? AND created_at <= ?", 1, begin_of_the_month.to_s(:db), end_of_the_month.to_s(:db)])
     end
-
+    @posts = posts
     respond_to do |wants|
       wants.html
       wants.xml { render :layout => false }
