@@ -22,7 +22,6 @@
                 </div>
               </div>
             </td>
-      
           <%- end -%>
           <td align="right">
             <%- form_tag "/search", :method => :get, :id => "sort_by_form" do -%>
@@ -40,81 +39,77 @@
         </tr>
       </table>
     </div>
-
-
-    <% for product in @products %>
-        <%#- product = Product.find(product.id) -%>
-        <table style="width:100%;" cellpadding="0" border="0" cellspacing="0">
-          <tr>
-            <td style="width: 80px;margin:0 0 0 0px;margin-left:15px;margin-right:15px;padding:0 0 0 0px;padding-left:10px;padding-right:10px;">
-              <%= link_to show_image_tag(product.layout_image, product.image_1, :jpg, product.name), nested_products_uri(product) %>
-            </td>
-            <td style="width: 490px;vertical-align:top;margin:0 0 0 0px;">
-              <br /><br /><br />
-              <%= link_to product.name, nested_products_uri(product), :style => "font-size:17px;color:black;" %>
-              <br />
-              <%# if product.categories.root.name.downcase == "food" || product.categories.root.name.downcase == "hampers"  %>
-              <% if product.root_category.present? && %w(Food Hampers).include?(product.root_category) %>
-                  <%= show_review_ratings(product, product.average_rating_round).html_safe() %>
-              <% else %>
-                  <%= show_ratings(product, product.average_rating_round).html_safe() %>
-              <% end %>
-              <div style="padding-top:10px"><%= product.description_short.html_safe() %></div>
-            </td>
-            <td style="padding: 20px 10px 5px;vertical-align:top;margin:0 0 0 0px;">
-              <div class="box_price_product">
-                <ul>
-                  <li class="price_info">
-                    <% if product.product_prices.present? %>
-                      <% if product.discounted? && product.discount > 0.0 %>
-                        <% product.product_prices.each do |pp| %>
-                        <div style="font-size:14px;color:black;">Was <span style="text-decoration: line-through;">
-                          <%= number_to_currency pp.price, :unit => "&pound;" %></span></div>
-                        <% end %>
-                        <span class="price red" style="color:#003300;">Now&nbsp;<span style="color:red;">
-                          <% product.price_discounted.each do |price| %>
-                            <%= number_to_currency price, :unit => "&pound;" %>
+    <div class="row">
+      <div class="two-colum-row clearfix">
+        <div class="col-md-3 left-side-bar">
+          <%if params[:id] == 'wine'%>
+            <%= render :partial => '/site/shared/box_wine_search' %>
+          <%elsif params[:id] == 'hampers'%>
+            <%= render :partial => '/site/shared/box_hamper_search' %>
+          <%elsif params[:id] == 'food' %>  
+            <%= render :partial => '/site/shared/box_food_search' %>
+          <%elsif params[:id] == 'other drinks' %>  
+            <%= render :partial => '/site/shared/box_wine_search' %>
+          <%end%>
+        </div>
+        <div class="col-md-9 right-side-bar">
+          <div class="product-list">
+            <div class="row clearfix">
+              <% for product in @products %>
+                <div class="col-md-4">
+                  <div class="small-box">
+                    <div class="row clearfix">
+                
+                      <div class="col-xs-4 box-image"><%= link_to show_image_tag(product.layout_image, product.image_1, :jpg, product.name), nested_products_uri(product) %></div>
+                      <div class="col-xs-8 slider-box-text">
+                        <div class="item-name">
+                          <%= link_to product.name, nested_products_uri(product) %>
+                        </div>
+                        <div class="ratings">
+                          <% if product.root_category.present? && %w(Food Hampers).include?(product.root_category) %>
+                            <%= show_review_ratings(product, product.average_rating_round).html_safe() %>
+                          <% else %>
+                              <%= show_ratings(product, product.average_rating_round).html_safe() %>
                           <% end %>
-                        </span></span>
-                      <% else %>
-                        <span class="price" style="color:black;">
-                          <% product.product_prices.each do |pp| %>
-                            <%= number_to_currency pp.price, :unit => "&pound;" %>
+                        </div>  
+                        <div class="seller-price">
+                          <% if product.product_prices.present? %>
+                            <% if product.discounted? && product.discount > 0.0 %>
+                              <% product.product_prices.each do |pp| %>
+                              <div >Was <span style="text-decoration: line-through;">
+                                <%= number_to_currency pp.price, :unit => "&pound;" %></span></div>
+                              <% end %>
+                              <span class="price red" style="color:#003300;">Now&nbsp;<span style="color:red;">
+                                <% product.price_discounted.each do |price| %>
+                                  <%= number_to_currency price, :unit => "&pound;" %>
+                                <% end %>
+                              </span></span>
+                            <% else %>
+                              <span class="price" >
+                                <% product.product_prices.each do |pp| %>
+                                  <%= number_to_currency pp.price, :unit => "&pound;" %>
+                                <% end %>
+                                </span>
+                            <% end %>
                           <% end %>
-                          </span>
-                      <% end %>
-                    <% end %>
-                  </li>
-
-                  <li>
-                    <%- if product.out_of_stock? -%>
-                        <%= image_tag('out_of_stock.png') %>
-                    <%- else -%>
-                        <%#= link_to image_tag("buttons/add_to_cart_button.png"), :url => product_cart_index_path(product), :remote => true, :html => {:method => 'post'} %>
-                        <%= link_to(image_tag("buttons/add_to_cart_button.png"), "/site/cart?product_id=#{product.id}", :remote => true, :method => :post) -%>
-                    <%- end -%>
-                  </li>
-
-                  <li style="margin-bottom:10px;">
-                    <%= link_to image_tag("add_to_wish_list.png"), :url => product_wish_list_index_path(product), :remote => true, :html => {:style => "color:#464646;", :method => :post} %>
-                  </li>
-
-
-                  <% if product.categories.root.present? && product.categories.root.name.downcase == 'wine' %>
-                      <li style="margin-bottom:10px;">
-                        <%= link_to image_tag("WINE_LIST.jpg"), :url => product_wine_list_index_path(product), :remote => true, :html => {:style => "color:#464646;", :method => :post} %>
-                      </li>
-                  <%- end -%>
-
-                </ul>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td colspan="3" style="border-bottom:1px solid #CCCCCC;">&nbsp;</td>
-          </tr>
-        </table>
-    <% end %>
+                        </div>
+                        <div class="add-row clearfix">
+                          <%if product.out_of_stock?%>
+                            <%= image_tag('out_of_stock.png') %>
+                          <%else%>
+                            <%= render partial: 'site/templates/cart_product_show_page_form' , locals: {product: product} %>
+                          <%end%>
+                        </div>
+                      </div>  
+                    </div>
+                  </div>
+                </div>    
+              <% end %>  
+            </div>
+          </div>  
+        </div>
+      </div> 
+    </div>
     <div class="digg_pagination pagination-2 clearfix">
       <div class="page_info show-result">
         <%= page_entries_info @products %>

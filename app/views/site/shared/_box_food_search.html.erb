@@ -8,6 +8,7 @@
             <%= text_field_tag :text, '', :class=> "form-control",  "data-autocomplete"=>"/site/search/autocomplete_search_food_name", :placeholder => "Search Here", :style=>"" %>
             <i class="magnifier"><%= image_submit_tag "magnifier.png" %></i>
 		</div>
+        <%=hidden_field_tag :id  ,  'food' %>
         <!-- Start search filter-->
     	 <div class="sidebar-filter-wrapper">
             <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">

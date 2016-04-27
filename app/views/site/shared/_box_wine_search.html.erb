@@ -1,3 +1,8 @@
+<%if params[:id] and params[:id]== 'other drinks' %>
+  <%params[:parent] = 'other-drinks' %>
+  <%params[:category] == 'other-drinks' %>
+  <%logger.info("==================================================================================================================================      #{params.inspect}")%>
+<%end%>
 <%- if !params[:category].blank? and Category.find(params[:category]) != nil
       @category = Category.find(params[:category])
     else

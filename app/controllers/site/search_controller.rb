@@ -42,6 +42,9 @@ class Site::SearchController < ApplicationController
     render_result_data(products)
   end
   def index
+    logger.info('11111111111111111111111111111111111111111111111111111111111111111111111111111111111')
+    logger.info(params.inspect)
+    logger.info('11111111111111111111111111111111111111111111111111111111111111111111111111111111111')
     @search_type = params[:id] 
     params[:category] ||= params[:id]
     
