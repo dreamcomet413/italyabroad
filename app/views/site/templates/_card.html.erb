@@ -313,7 +313,7 @@
           <% end %>
           <%- if logged_in? -%>
             <div class="green-heading-2">
-              Latest Review <%= link_to '(Add Review)', "#", :style => "font-size:12px;", :onclick => "document.getElementById('add_review').style.display='block';document.getElementById('hide_this').style.display='none';document.getElementById('no_review').style.display='none';return false;" %>
+              Latest Review <%= link_to '(Add Review)', "#",  :onclick => "document.getElementById('add_review').style.display='block';document.getElementById('hide_this').style.display='none';document.getElementById('no_review').style.display='none';return false;" %>
             </div>
             <div class="latest-review-box" style="margin-bottom: 25px;">
               <div id="add_review" style="display:none;">

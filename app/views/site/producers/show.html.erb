@@ -2,93 +2,43 @@
     @class = "no-padding";
     @breadcrumbs = "#{link_to("Home", root_url)} &raquo;#{link_to('Community',wine_community_path)}&raquo; #{link_to("Producers", site_producers_path)} &raquo; #{@title}".html_safe()
 -%>
-
-<div id="header"><%= @title %></div>
-<br />
-<div id="page_banners">
-
-
-  <div class="banner">
-    <%= show_producer_image1(@producer) -%>
+<div class="main-banner">
+  <%= show_producer_image1(@producer) -%>
+</div>
+<div class="row">
+  <div class="share-row clearfix">
+    <div class="pull-right"><%= render :partial => '/site/shared/social_bookmarks' %></div>
   </div>
-
-  
-
+  <div class="two-colum-row clearfix">
+    <div class="col-md-12">
+      <div class="green-heading-with-border"><%= @title %></div>
+      <div class="produer-detail-text"><%= @producer.description.try(:html_safe) || "No Description" %></div>
+      <% if @producer.grapes.count > 0 %>
+        <div class="green-heading-2">
+          Grapes grown by  <%= @producer.name %>
+        </div>
+      <%- end -%>
+      <%- @producer.grapes.each do |grape| -%>
+        <div class="producer-link"><%= link_to grape.name, site_grape_path(grape) %></div>
+      <%- end -%>
+      <%- if @producer_products = @producer.products.find(:all, :include => 'product_prices', :conditions=>['active = ? and product_prices.quantity > ?',true,0]) %>    
+        <div class="prdoucer-products-wrapper">
+          <div class="producer-products-heading"><%= @producer.producer_text %> </div>
+          <div class="producer-products-row clearfix">
+            <% @producer_products.each do |product| %>
+              <div class="producer-products-col">
+                <div class="producer-product-image">
+                  <%= link_to show_image_tag(product.layout_image, product.image_1, :jpg,product.name), nested_products_uri(product) %>
+                </div>
+                <div class="producer-product-text">
+                  <%= link_to product.name, nested_products_uri(product) %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>
-
-<br />
-<div style="margin:0 40px;text-align:justify;margin-left:15px;margin-right:12px;">
- <!-- <h3 style="text-align:center;border:none;color:#666666;">Producer Information</h3> -->
-  <div style="float:left;padding:10px;margin:10px;margin-left:0px;"><%#= show_producer_image(@producer) -%></div>
-  <br /><br /><br />
-  <%= @producer.description.try(:html_safe) || "No Description" %>
-  <br /><br /><br />
-  <% if @producer.grapes.count > 0 %>
-  <h3 style="font-size:16px;color:#013300;border:none;">Grapes grown by this producer</h3>
-  <%- end -%>
-  <ul  style="list-style:none;font-size:14px;">
-  <%- @producer.grapes.each do |grape| -%>
-    <li><%= link_to grape.name, site_grape_path(grape) %></li>
-  <%- end -%>
-  </ul>
-<br />
-    <%-
-      wine = ""
-      food = ""
-      final_food = ""
-      final_wine = ""
-      index = 0
-      wine_index = 0
-      @producer_products = @producer.products.find(:all, :include => 'product_prices', :conditions=>['active = ? and product_prices.quantity > ?',true,0])
-
-      @producer_products.each do |product|
-        root_name = (product.categories.root.root.name rescue '')
-        if root_name == "Food"
-          if index == 0
-            food += "<tr>"
-          end
-          food += "<td  class='product_cell' >  <div style='width:100px;height:75px;overflow:hidden;margin:0px;padding:0px;'>#{link_to show_image_tag(product.layout_image, product.image_1, :jpg,product.name), nested_products_uri(product)} </div><br /> #{link_to product.name, nested_products_uri(product)}</td>"
-          index = index + 1
-          if index == 4
-            food += "</tr>"
-            index = 0
-          end
-
-        end
-
-        if root_name == "Wine"
-         if wine_index == 0
-          wine += "<tr>"
-         end
-         wine += "<td valign='top'   class='product_cell' >#{link_to show_image_tag("wine_category_producers_page", product.image_1, :jpg,product.name), nested_products_uri(product)} <br /><br /> #{link_to product.name, nested_products_uri(product)}</td>"
-          wine_index = wine_index + 1
-         if wine_index == 4
-          wine += "</tr>"
-          wine_index = 0
-        end
-
-      end
-   end -%>
-    <% unless wine == "" %>
-    <% final_wine = "<table>#{wine}</table>" %>
-    <%=  "<h3 style=\"font-size:16px;color:#013300;border:none;\">#{@producer.producer_text}</h3> #{final_wine}".html_safe()  -%>
-    <%- end -%>
-
-  <% unless food == "" %>
-    <% final_food = "<table>#{food}</table>" %>
-    <%=  "<h3 style=\"font-size:16px;color:#013300;border:none;\">#{@producer.producer_text}</h3> #{final_food} ".html_safe()  -%>
-    <%- end -%>
-
-
-
-  <div style="clear:both;"></div>
-  <br /><br />
-  <br />
-</div>
-
-<%- content_for :right do -%>
-  <%= render :partial => 'site/shared/box_subscriptions' %>
-  <br />
-  <%= render :partial => '/site/shared/social_follow' %>
-<%- end -%>
 
