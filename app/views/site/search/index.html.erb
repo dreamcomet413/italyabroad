@@ -42,13 +42,13 @@
     <div class="row">
       <div class="two-colum-row clearfix">
         <div class="col-md-3 left-side-bar">
-          <%if params[:id] == 'wine'%>
+          <%if (params[:id] == 'wine' or params[:parent_type] == 'wine' ) %>
             <%= render :partial => '/site/shared/box_wine_search' %>
           <%elsif params[:id] == 'hampers'%>
             <%= render :partial => '/site/shared/box_hamper_search' %>
           <%elsif params[:id] == 'food' %>  
             <%= render :partial => '/site/shared/box_food_search' %>
-          <%elsif params[:id] == 'other drinks' %>  
+          <%elsif (params[:id] == 'other drinks' or params[:parent_type] == 'other-drinks') %>  
             <%= render :partial => '/site/shared/box_wine_search' %>
           <%end%>
         </div>

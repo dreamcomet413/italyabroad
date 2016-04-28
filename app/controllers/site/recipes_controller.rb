@@ -10,7 +10,6 @@ class Site::RecipesController < ApplicationController
   def new
     @recipe = Recipe.new
   end
-
   def create
 
     if current_user == :false

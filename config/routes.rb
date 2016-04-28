@@ -213,6 +213,7 @@ ItalyabroadNew::Application.routes.draw do
         get :autocomplete_search_hamper_name
         get :autocomplete_search_drinks_name
         get :autocomplete_post_name
+        get :autocomplete_search_recipes_name
       end
     end
     

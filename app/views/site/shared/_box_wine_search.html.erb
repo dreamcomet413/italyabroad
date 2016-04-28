@@ -1,8 +1,12 @@
-<%if params[:id] and params[:id]== 'other drinks' %>
+<%if params[:id]== 'other drinks' %>
   <%params[:parent] = 'other-drinks' %>
   <%params[:category] == 'other-drinks' %>
-  <%logger.info("==================================================================================================================================      #{params.inspect}")%>
 <%end%>
+<%if params[:parent_type] %>
+  <%params[:parent] = params[:parent_type] %>
+  <%params[:category] = params[:id].gsub(' ', '-')  %>
+<%end%>
+
 <%- if !params[:category].blank? and Category.find(params[:category]) != nil
       @category = Category.find(params[:category])
     else
@@ -13,8 +17,6 @@
 
 
 <%- search_url ||= @category == @parent ? site_search_index_path(:id => @parent) : site_search_index_path(:id=>'other_drinks') -%>
-
-
 <div class="block" id="box_wine_search">
   <%# if params[:category] == "wine" || ~ /search/ %>
   <% if params[:parent] != "other-drinks" && params[:category] != "other-drinks" %>
@@ -29,8 +31,12 @@
       <%page = request.request_uri%>
       <%if page.include?('other')%>
         <%path = "/site/search/autocomplete_search_drinks_name"%>
+        <%= hidden_field_tag :parent_type , 'other-drinks' %>
+    
       <%else%>
         <%path = "/site/search/autocomplete_search_wine_name"%> 
+          <%= hidden_field_tag :parent_type , 'wine' %>
+    
       <%end%>
       
       <%= text_field_tag :text, '', :class=> "form-control",  "data-autocomplete"=> path , :placeholder => "Search Here", :style=>"" %>
@@ -43,28 +49,28 @@
       </div>
       <div class="sidebar-filter-wrapper">
         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-    <% if params[:parent] != "other-drinks" %>
+          <% if params[:parent] != "other-drinks" %>
 
-          <div class="panel">
-            <div class="panel-heading" role="tab" id="heading-1">
-              <h4 class="panel-title">
-                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-1" aria-expanded="true" aria-controls="collapse-1">Mood:<i></i>
-                </a>
-              </h4>
-            </div>
-            <div id="collapse-1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading-1">
-              <div class="panel-body">
-                <ul>
-                  <%= hidden_field_tag :mood , '' , :class=>'field_value' %>
-                  <% ([["Any",""]]+Mood.all.map{ |x| [x.name,x.id]}).each do |item| %>
-                    <li><a href="#." value="<%= item[1] %>" class='field_text'> <%= item[0] %></a></li>
-                    <%#= link_to "Add", "/site/cart?product_id=#{product.id}", :remote => true, :method => :post %>
-                  <% end %>
-                </ul>
+            <div class="panel">
+              <div class="panel-heading" role="tab" id="heading-1">
+                <h4 class="panel-title">
+                  <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-1" aria-expanded="true" aria-controls="collapse-1">Mood:<i></i>
+                  </a>
+                </h4>
+              </div>
+              <div id="collapse-1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading-1">
+                <div class="panel-body">
+                  <ul>
+                    <%= hidden_field_tag :mood , '' , :class=>'field_value' %>
+                    <% ([["Any",""]]+Mood.all.map{ |x| [x.name,x.id]}).each do |item| %>
+                      <li><a href="#." value="<%= item[1] %>" class='field_text'> <%= item[0] %></a></li>
+                      <%#= link_to "Add", "/site/cart?product_id=#{product.id}", :remote => true, :method => :post %>
+                    <% end %>
+                  </ul>
+                </div>
               </div>
             </div>
-          </div>
-    <% end %>
+          <% end %>
           <div class="panel">
             <div class="panel-heading" role="tab" id="headingTwo">
               <h4 class="panel-title">

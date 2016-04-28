@@ -14,9 +14,6 @@ class Site::CartController < ApplicationController
   end
 
   def create
-    logger.info('================================================================')
-    logger.info(params.inspect)
-    logger.info('================================================================')
     created = @cart.create(product, quantity, params[:discounted_price])
     if created
       session[:free_delivery] = false

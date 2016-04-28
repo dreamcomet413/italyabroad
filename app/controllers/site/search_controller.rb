@@ -41,10 +41,12 @@ class Site::SearchController < ApplicationController
     products = Search.get_products('hamper', params)
     render_result_data(products)
   end
+  
+  def autocomplete_search_recipes_name
+    recipes = Recipe.where("friendly_identifier like '%#{params[:term]}%' ").paginate(:page => params[:page], :per_page => 10)
+    render_result_data(recipes)
+  end
   def index
-    logger.info('11111111111111111111111111111111111111111111111111111111111111111111111111111111111')
-    logger.info(params.inspect)
-    logger.info('11111111111111111111111111111111111111111111111111111111111111111111111111111111111')
     @search_type = params[:id] 
     params[:category] ||= params[:id]
     

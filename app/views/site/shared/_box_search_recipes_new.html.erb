@@ -1,8 +1,10 @@
 <div class="block" id="box_search_recipes_new">
 	<div class="green-heading-16">Recipe Search</div>
-  <% form_tag site_search_index_path, :method => :get do %>
+  <% form_tag site_search_index_path,:class=> 'search_form' , :method => :get do %>
+    <%= hidden_field_tag :category , 'recipe' %>
     <div class="left-bar-search">
-      <%= text_field_tag :text, params[:text], :id => "search_text" %>
+      <%= text_field_tag :text, '', :class=> "form-control",  "data-autocomplete"=> '/site/search/autocomplete_search_recipes_name' , :placeholder => "Search Here", :style=>"" %>
+      <%#= text_field_tag :text, params[:text], :id => "search_text" %>
       <i class="magnifier"><a href="#.">
         <%= image_submit_tag "magnifier.png", :style => "border:none" %></a>
       </i>
@@ -20,9 +22,9 @@
           <div id="collapse-1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading-1">
             <div class="panel-body">
               <ul>
-                <% hidden_field_tag :chef %>
+                <%= hidden_field_tag :chef, '' , :class=>'field_value' %>
                 <% Recipe.users.each do |item| %>
-                  <li><a href="#." value="<%= item[1] %>"> <%= item[0] %></a></li>
+                  <li><a href="#." value="<%= item[1] %>" class='field_text'> <%= item[0] %></a></li>
                 <% end %>
               </ul>
             </div>
@@ -39,9 +41,9 @@
           <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
             <div class="panel-body">
               <ul>
-                <% hidden_field_tag :recipe_type %>
+                <%= hidden_field_tag :recipe_type, '' , :class=>'field_value' %>
                 <% Recipe.recipe_types.each do |item| %>
-                  <li><a href="#." value="<%= item[1] %>"><%= item[0] %></a></li>
+                  <li><a href="#." value="<%= item[1] %>" class='field_text'><%= item[0] %></a></li>
                 <% end %>
               </ul>
             </div>
@@ -58,9 +60,9 @@
           <div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
             <div class="panel-body">
               <ul>
-                <% hidden_field_tag :difficulty %>
+                <%= hidden_field_tag :difficulty, '' , :class=>'field_value' %>
                 <% Recipe.difficulties(@search).each do |item| %>
-                  <li><a href="#." value="<%= item[1] %>"><%= item[0] %></a></li>
+                  <li><a href="#." value="<%= item[1] %>" class='field_text'><%= item[0] %></a></li>
                 <% end %>
               </ul>
             </div>
@@ -77,9 +79,9 @@
           <div id="collapseFour" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingFour">
             <div class="panel-body">
               <ul>
-                <% hidden_field_tag :region_id %>
+                <%= hidden_field_tag :region_id, '' , :class=>'field_value' %>
                 <% Recipe.regions(@search).each do |item| %>
-                  <li><a href="#." value="<%= item[1] %>"><%= item[0] %></a></li>
+                  <li><a href="#." value="<%= item[1] %>" class='field_text'><%= item[0] %></a></li>
                 <% end %>
               </ul>
             </div>
@@ -96,9 +98,9 @@
           <div id="collapseFive" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingFive">
             <div class="panel-body">
               <ul>
-                <% hidden_field_tag :preparation_time %>
+                <%= hidden_field_tag :preparation_time, '' , :class=>'field_value' %>
                 <% [["Any",""],["Up to 15 minutes","<= 15"],["Up to 30 minutes","<= 30"],["Up to 45 minutes","<= 45"],["Up to 60 minutes","<= 60"],["More than 60 minutes","> 60"]].each do |item| %>
-                  <li><a href="#." value="<%= item[1] %>"><%= item[0] %></a></li>
+                  <li><a href="#." value="<%= item[1] %>" class='field_text'><%= item[0] %></a></li>
                 <% end %>
               </ul>
             </div>
@@ -115,7 +117,7 @@
           <div id="collapseSix" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingSix">
             <div class="panel-body">
               <ul>
-                <% hidden_field_tag :vegetarian %>
+                <%= hidden_field_tag :vegetarian, '' , :class=>'field_value' %>
                   <li><span><%= check_box_tag :vegetarian, params[:vegetarian] %></span> <span>Yes</span> </li>
               </ul>
             </div>
@@ -132,9 +134,9 @@
           <div id="collapseSeven" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingSeven">
             <div class="panel-body">
               <ul>
-                <% hidden_field_tag :sort_by %>
+                <%= hidden_field_tag :sort_by, '' , :class=>'field_value' %>
                 <% [["Any", ""], ["Difficulty", "recipe_level_id"], ["Preparation Time", "preparation_time"]].each do |item| %>
-                  <li><a href="#." value="<%= item[1] %>"><%= item[0] %></a></li>
+                  <li><a href="#." value="<%= item[1] %>" class='field_text'><%= item[0] %></a></li>
                 <% end %>
               </ul>
             </div>
@@ -147,4 +149,4 @@
     </div>
   <% end %>
 </div>
-
+<script type="text/javascript" src="/javascripts/mine.js"></script>
