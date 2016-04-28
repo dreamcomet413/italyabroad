@@ -57,7 +57,7 @@ class Site::ProductsController < ApplicationController
     end
 
   end
-
+  
   def invite_a_friend
     if params[:your_friend_email].nil? or params[:your_message].nil? or params[:your_name].nil?
       flash[:notice] = "Your name or Friend's email or Message is missing. Please enter the required fields and continue"

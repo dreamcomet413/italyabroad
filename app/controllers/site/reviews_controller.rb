@@ -25,10 +25,6 @@ class Site::ReviewsController < ApplicationController
     else
       status = "Your body message is empty."
     end
-   # if  session[:return_url] != ""
-    #  params[:return_to] = session[:return_url]
-     # session[:return_url] = ""
-    #end
       redirect_to params[:return_to]
     end
 

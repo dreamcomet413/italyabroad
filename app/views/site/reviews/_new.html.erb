@@ -1,23 +1,19 @@
 <script>
 function validate_review(){
- if (document.getElementById('review_name').value == ""){
+  if (document.getElementById('review_name').value == ""){
 
- alert("Title must be filled out");
- return false;
+   alert("Title must be filled out");
+   return false;
+  }
+  if (document.getElementById('review_description').value == ""){
+  alert("Description must be filled out");
+   return false;
 
- }
-if (document.getElementById('review_description').value == ""){
-alert("Description must be filled out");
- return false;
-
-}
-
-
+  }
 }
 </script>
 <%= content_tag :p, flash[:notice] %>
 <% form_for :review, :url => create_url do %>
-<!-- div class="add_new_review" -->
   <div class="write-review-wrapper">
     <div class="clearfix bottom-15">
       <div class="col-xs-2 col-md-1">Title:</div>
@@ -41,16 +37,5 @@ alert("Description must be filled out");
       <div class="col-md-2 col-xs-3"><%= submit_tag 'Submit',:onclick=>"validate_review();" %></div>
     </div>
   </div>
- 
-  
-
-
-<!-- 
-   <div align="right" style="float:right">
-    <a href="http://www.facebook.com/sharer.php?u=<%= "#{request.url}" -%>&t=<%= "#{request.url}" -%>" target="blank"><img style="padding-bottom:1px;" src="/images/facebook.gif" alt="facebook" name="facebook" border="0" id="facebook"></a>
-
-              <a href="https://twitter.com/share" class="twitter-share-button" data-count="none">Tweet</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script> </div> -->
-<!-- /div -->
 <% end %>
 
