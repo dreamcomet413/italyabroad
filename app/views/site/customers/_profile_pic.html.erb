@@ -1,84 +1,76 @@
-<div id="profile_pic">
-  <h1>Upload profile picture</h1>
-  <div class="container">
-    <p>
-      If you would like your photo to be available on our website for other users to see, please upload using the following space below.
-    </p>
-    <p>
-    <table>
-      <tr>
-        <td valign='top'>
-          <% profile_image =
-                     if session[:omniauth].present?
-                       if session[:omniauth]["provider"] == 'facebook'
-                         session[:omniauth]["info"]["image"] + "?type=large"
-                       elsif session[:omniauth]["provider"] == 'twitter'
-                         session[:omniauth]["info"]["image"].sub("_normal", "")
-                       end
-                     end
-          %>
-          <%#= avatar_for_user(@user, "big") %>
-          <% if !@photo.nil? and current_user %>
-              <%= image_tag(@photo.image_filename.url,:width => "100px") if @photo.image_filename.present? %>
-          <% elsif @user.new_record? %>
-              <% if session[:omniauth].present? %>
-                  <%#= image_tag(session[:omniauth]["info"]["image"]) -%>
-                  <%= content_tag(:div, image_tag(profile_image, :height => "100px", :width => "100px"), :class => "user_photo_big", :id => "user_photo") -%>
-              <% else %>
-                  <%= avatar_for_user(@user, "big") %>
-                  <input type="hidden" name="kind" value="1">
-              <% end %>
+<div class="section-box" id="profile_pic">
+  <div class="section-heading">
+      Upload profile picture
+  </div>
+  <div class="section-des">If you would like your photo to be available on our website for other users to see, please upload using the following space below.</div>
+  <div class=" clearfix">
+      <div class="profile-col-1">
+        <% profile_image =
+          if session[:omniauth].present?
+            if session[:omniauth]["provider"] == 'facebook'
+              session[:omniauth]["info"]["image"] + "?type=large"
+            elsif session[:omniauth]["provider"] == 'twitter'
+              session[:omniauth]["info"]["image"].sub("_normal", "")
+            end
+          end
+        %>
+        <%#= avatar_for_user(@user, "big") %>
+        <% if !@photo.nil? and current_user %>
+          <%= image_tag(@photo.image_filename.url,:width => "100px") if @photo.image_filename.present? %>
+        <% elsif @user.new_record? %>
+          <% if session[:omniauth].present? %>
+            <%#= image_tag(session[:omniauth]["info"]["image"]) -%>
+            <%= content_tag(:div, image_tag(profile_image, :height => "100px", :width => "100px"), :class => "user_photo_big", :id => "user_photo") -%>
+          <% else %>
+            <%= avatar_for_user(@user, "big") %>
+              <input type="hidden" name="kind" value="1">
+            <% end %>
           <% elsif @user.photo_id.nil? %>
-              <% if !@user.photo_default.nil? %>
-                  <img src ="images/<%= @user.photo_default+'.jpg'%>">
-              <% elsif session[:omniauth].present? %>
-                  <%#= image_tag(session[:omniauth]["info"]["image"]) -%>
-                  <%= content_tag(:div, image_tag(profile_image, :height => "100px", :width => "100px"), :class => "user_photo_big", :id => "user_photo") -%>
-              <% else %>
-                  <img src ="images/default.jpg">
-              <% end %>
+            <% if !@user.photo_default.nil? %>
+              <img src ="images/<%= @user.photo_default+'.jpg'%>">
+            <% elsif session[:omniauth].present? %>
+              <%#= image_tag(session[:omniauth]["info"]["image"]) -%>
+              <%= content_tag(:div, image_tag(profile_image, :height => "100px", :width => "100px"), :class => "user_photo_big", :id => "user_photo") -%>
+          <% else %>
+            <img src ="images/default.jpg">
           <% end %>
-
-          <div id="loader-image" style="display:none" align="center"><%= image_tag "loading.gif" %></div>
-        </td>
-        <td>
-          <%= fields_for :photo do %>
+        <% end %>
+        <div id="loader-image" style="display:none" align="center"><%= image_tag "loading.gif" %></div>
+      </div>
+      <div class="profile-col-2">
+          <div class="chose-img">
+            <%= fields_for :photo do %>
               <%= file_field :photo, :image_filename %>
               <%#= hidden_field :user, :photo_default %>
-          <% end %>
-          <p>
-            Or if you would not like to upload an image please select your preferred color from the default images below.
-          <ul class="photo_list" style="text-align: center">
-            <li>
-              <%= image_tag('default.jpg') %> <br/>
-              <input type=radio value="1" name=kind >
-            </li>
-            <li>
-              <%= image_tag('default_a.jpg') %>  <br/>
-              <input type=radio value="a" name=kind >
-            </li>
-            <li>
-              <%= image_tag('default_b.jpg') %>  <br/>
-              <input type=radio value="b" name=kind >
-            </li>
-            <li>
-              <%= image_tag('default_c.jpg') %> <br/>
-              <input type=radio value="c" name=kind >
-            </li>
-            <li>
-              <%= image_tag('default_d.jpg') %> <br/>
-              <input type=radio value="d" name=kind >
-            </li>
-            <li>
-              <%= image_tag('default_e.jpg') %>  <br/>
-              <input type=radio value="e" name=kind >
-            </li>
-          </ul>
-    </p>
-    </td>
-    </tr>
-    </table>
-    </p>
+            <% end %>
+          </div>
+          <div class="chose-text">Or if you would not like to upload an image please select your preferred color from the default images below.</div>
+          <div class="avatar-row clearfix">
+            <div class="avatar-col">
+              <div class="avatar-img"><%= image_tag('default.jpg') %></div>
+              <div class="avatar-radio"><input type=radio value="1" name=kind ></div>
+            </div>
+            <div class="avatar-col">
+              <div class="avatar-img"><%= image_tag('default_a.jpg') %></div>
+              <div class="avatar-radio"><input type=radio value="a" name=kind ></div>
+            </div>
+            <div class="avatar-col">
+              <div class="avatar-img"><%= image_tag('default_b.jpg') %></div>
+              <div class="avatar-radio"><input type=radio value="b" name=kind ></div>
+            </div>
+            <div class="avatar-col">
+              <div class="avatar-img"><%= image_tag('default_c.jpg') %></div>
+              <div class="avatar-radio"><input type=radio value="c" name=kind ></div>
+            </div>
+            <div class="avatar-col">
+              <div class="avatar-img"><%= image_tag('default_d.jpg') %></div>
+              <div class="avatar-radio"><input type=radio value="d" name=kind ></div>
+            </div>
+            <div class="avatar-col">
+              <div class="avatar-img"><%= image_tag('default_e.jpg') %></div>
+              <div class="avatar-radio"><input type=radio value="e" name=kind ></div>
+            </div>
+          </div>
+      </div>
   </div>
 </div>
-
