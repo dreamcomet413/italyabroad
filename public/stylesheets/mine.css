@@ -824,6 +824,9 @@ footer{
 	box-sizing: border-box;
 	width: 100%;
 	height: 30px;}
+.login-wrapper .green-button input[type=submit]{
+		font-family: JosefinSlab-Bold;
+		font-size: 16px;}
 /*================= Grape Guide===================*/
 .bottom-50{
 	margin-bottom: 50px;
@@ -995,6 +998,13 @@ header{
 	border-bottom: solid 1px #dcdcdc;
 	padding-bottom: 5px;
 	margin-bottom: 12px;
+}
+.green-heading-16 a{
+ color: #5c8018;
+ text-decoration: none;
+}
+.green-heading-16 a:hover{
+	text-decoration: underline;
 }
 .hamper-image{
 	text-align: center;
@@ -1767,6 +1777,27 @@ a.close-btn{
 	margin-bottom: 15px;
 	font-style: italic;
 }
+#leftColumnContent{
+	padding-top: 15px;
+}
+.form-label{
+	margin-bottom: 10px;
+}
+.form-field input{
+	box-sizing: border-box;
+	width: 100%;
+	height: 30px;
+	padding: 5px;
+}
+.filter-submit .green-button input[type=submit]{
+	max-width: 100px;
+	min-width: 100px;
+}
+.no-padding{
+	padding: 0px !important;
+
+}
+
 /*=============== Media quires=================*/
 @media only screen and (max-width: 1035px) {
 	.navigation-row .nav  li  a{
