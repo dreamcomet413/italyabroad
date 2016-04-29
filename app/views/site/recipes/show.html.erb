@@ -35,7 +35,10 @@
           <div class="producer-products-row clearfix">
             <%- @recipe.correlations.where("").paginate(:page => params[:page], :per_page => 4).each do |product| -%>
               <div class="producer-products-col">
-                <div class="producer-product-image">Query image here....</div>
+                <%image = Image.find_by_id(product.image_1_id) %>
+                <%if image%>
+                  <div class="producer-product-image"><%=image_tag image.image_filename.url %></div>
+                <%end%>
                 <div class="producer-product-text">
                   <%= link_to product.name, nested_products_uri(product) %>
                 </div>
@@ -44,10 +47,12 @@
           </div>
         </div>
       <% end %>
-      <div class="detail-recipe">
-        <div class="green-heading-2">Description</div>
-        <div class="bottom-50">query description here... </div>
-      </div>
+      <%if @recipe.description != '' %>
+        <div class="detail-recipe">
+          <div class="green-heading-2">Description</div>
+          <div class="bottom-50"><%=@recipe.description%></div>
+        </div>
+      <%end%>
       <div class="green-heading-2">Preparation</div>
       <div class="bottom-50">
         <%= @recipe.preparation_cleared.html_safe() %> 

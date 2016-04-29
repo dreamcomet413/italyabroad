@@ -51,9 +51,6 @@ class Site::CustomersController < ApplicationController
   end
 
   def create
-    logger.info('111111111111111111111111111111111111111111111111111111111111111111111111111111111111111')
-    logger.info(params.inspect)
-    logger.info('1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111')
     @user = User.new(params[:user])
     unless params[:photo].nil?
       @photo = Photo.new(params[:photo])
@@ -62,7 +59,7 @@ class Site::CustomersController < ApplicationController
     else
       set_photo_from_default(params[:kind],@user)
     end
-    if params[:chef].to_i == 4
+    if params[:chef] and params[:chef].to_i == 4
       @user.type_id = 4
       @user.active = false
     else

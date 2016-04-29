@@ -12,7 +12,6 @@
 
       <%= avatar_for_user(@user) %><br />
       <% unless @my_profile %>
-        <% logger.info("1111111111111111111111111111111111111111111111111111111111           #{@user.inspect}") %>
           <%- if @user.followed_by?(current_user) -%>
               <%= link_to image_tag("buttons/unfollow.png"), unfollow_path(@user) %>
           <%- else -%>

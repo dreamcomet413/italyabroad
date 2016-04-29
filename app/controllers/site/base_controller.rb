@@ -56,6 +56,7 @@ class Site::BaseController < ApplicationController
   end
 
   def login
+    @user = User.new
     # params[:user_type] = ""
     if request.post?
       # self.current_user = User.authenticate(params[:login], params[:password])

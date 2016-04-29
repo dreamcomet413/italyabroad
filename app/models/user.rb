@@ -13,19 +13,19 @@ class User < ActiveRecord::Base
   validates_presence_of     :password_confirmation,      :if => :password_required?
   validates_length_of       :password, :within => 6..40, :if => :password_required?
   validates_confirmation_of :password,                   :if => :password_required?
-  validates_presence_of     :address,                    :if => :customer?
-  validates_presence_of     :cap,                        :if => :customer?
-  validates_presence_of     :city,                       :if => :customer?
-  validates_presence_of     :dob,                       :if => :customer?
+  # validates_presence_of     :address,                    :if => :customer?
+  # validates_presence_of     :cap,                        :if => :customer?
+  # validates_presence_of     :city,                       :if => :customer?
+  # validates_presence_of     :dob,                       :if => :customer?
   validates_length_of       :login,                      :within => 3..40
   validates_length_of       :email,                      :within => 3..100
   validates_uniqueness_of   :login,  :case_sensitive => false
   validates_format_of       :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
 
-  validate :validate_telephone, :on => :create, :if => :customer?
-  validate :validate_dob, :on => :update
-  validate :validate_dob, :on => :save
-  validate :validate_dob, :on => :create
+  # validate :validate_telephone, :on => :create, :if => :customer?
+  # validate :validate_dob, :on => :update
+  # validate :validate_dob, :on => :save
+  # validate :validate_dob, :on => :create
 
   # validate :validate_phone_number,:on=>:create
 
