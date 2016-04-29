@@ -51,6 +51,9 @@ class Site::CustomersController < ApplicationController
   end
 
   def create
+    logger.info('111111111111111111111111111111111111111111111111111111111111111111111111111111111111111')
+    logger.info(params.inspect)
+    logger.info('1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111')
     @user = User.new(params[:user])
     unless params[:photo].nil?
       @photo = Photo.new(params[:photo])

@@ -1,7 +1,7 @@
 class Site::RecipesController < ApplicationController
   layout "site"
   before_filter :store_location, :only => [:show]
-  before_filter :chef_login_required, :only => :new
+  before_filter :chef_login_required, :only => :new 
 
   def index
     @show = true

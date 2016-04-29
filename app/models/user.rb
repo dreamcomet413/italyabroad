@@ -121,7 +121,11 @@ class User < ActiveRecord::Base
   end
 
   def followed_by?(follower)
-    self.followers.collect(&:follower_id).include?(follower.id)
+    if self.followers.count > 0
+      self.followers.collect(&:follower_id).include?(follower.id)
+    else
+      false
+    end
   end
 
   def has_default_photo?
