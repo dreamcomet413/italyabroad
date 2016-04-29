@@ -2,11 +2,11 @@
 <% @class = "no-padding"; @title = "Create a new user"; @breadcrumbs = "#{link_to("Home", root_url)} &raquo; Register".html_safe()%>
 <div class="full-width">
   <div class="green-heading-with-border">Register</div>
-  <% form_for :user, :url => site_customers_path, :html => {:multipart => true} do %>
-    <%= show_messages(flash[:notice]) %>
-    <div class="login-wrapper">
-      <div class="row clearfix">
-        <div class="col-md-8 right-border">
+  <div class="login-wrapper">
+    <div class="row clearfix">
+      <div class="col-md-8 right-border">
+        <% form_for :user, :url => site_customers_path, :html => {:multipart => true} do %>
+          <%= show_messages(flash[:notice]) %>
           <div class="green-heading-18">Personal Details</div>
           <p>The email address you enter here is where we'll send all communications when you shop with Italyabroad.</p>
           <div class="signup-col">
@@ -114,66 +114,66 @@
               </div>
             </div>
             <div class="clearfix bottom-15">
-              <div class="col-xs-offset-3 col-xs-9 green-button">
+              <div class="col-xs-offset-3 col-xs-3 green-button">
                 <!-- <a href="#.">Register</a> -->
                 <%=submit_tag('Register')%>
               </div>
             </div>
           </div>
-        </div>
-        <div class="col-md-4">
-          <div class="login-wrapper">
-            <div class="row clearfix">
-              <div class="col-md-11">
-                <div class="black-heading-14"><b>Already a Customer?</b></div>
-                <div class="green-heading-24-b"><b>Log in to Italyabroad.com</b></div>
-                <% form_tag login_url do  %>
-                  <div class="row clearfix bottom-15">
-                    <div class="col-xs-6 center">
-                    <%= link_to image_tag('/images/fb-login-btn.png', :class => "facebook-login-btn width154"), "/auth/facebook" %>
-                    </div>
-                    <div class="col-xs-6 center">
-                      <%= link_to image_tag('/images/twitter-login-btn.png', :class => "twitter-login-btn width154"), "/auth/twitter" %>
-                    </div>
+        <%end%>
+      </div>
+      <div class="col-md-4">
+        <div class="login-wrapper">
+          <div class="row clearfix">
+            <div class="col-md-11">
+              <div class="black-heading-14"><b>Already a Customer?</b></div>
+              <div class="green-heading-24-b"><b>Log in to Italyabroad.com</b></div>
+              <% form_tag login_url do  %>
+                <div class="row clearfix bottom-15">
+                  <div class="col-xs-6 center">
+                  <%= link_to image_tag('/images/fb-login-btn.png', :class => "facebook-login-btn width154"), "/auth/facebook" %>
                   </div>
-                  <div class="or">
-                    <div class="or-text">OR</div>
+                  <div class="col-xs-6 center">
+                    <%= link_to image_tag('/images/twitter-login-btn.png', :class => "twitter-login-btn width154"), "/auth/twitter" %>
                   </div>
-                  <div class="login-row">
-                    <%= text_field_tag :login, params[:login] %>
-                    <%= set_focus_to('login') %>
-                  </div>
-                  <div class="login-row">
-                    <%= password_field_tag :password, nil %>
-                    <%= hidden_field_tag :provider, params[:provider] -%>
-                    <%= hidden_field_tag :uid, params[:uid] -%>
-                    <%= hidden_field_tag :token, params[:token] -%>
-                  </div>
-                  <div class="bottom-15">
-                  <%#= error_messages_for 'user' unless params[:user_type] == "guest" %>
-                  <%= show_messages(flash[:notice]) %>
                 </div>
-                  <div class="bottom-15 clearfix">
-                    <div class="pull-left">
-                      <div class="remember">
-                        <label>
-                          <input type="checkbox" checked="checked"> Remember me (?)
-                        </label>
-                      </div>
-                    </div>
-                    <div class="pull-right">
-                      <%= link_to "Forgot your password", request_new_password_path %>
-                    </div>
-                  </div>
-                  <div class="row clearfix">
-                    <div class="green-button col-xs-5"><%= submit_tag "Login" %></div>
-                  </div>
-                <% end %>
+                <div class="or">
+                  <div class="or-text">OR</div>
+                </div>
+                <div class="login-row">
+                  <%= text_field_tag :login, params[:login] %>
+                  <%= set_focus_to('login') %>
+                </div>
+                <div class="login-row">
+                  <%= password_field_tag :password, nil %>
+                  <%= hidden_field_tag :provider, params[:provider] -%>
+                  <%= hidden_field_tag :uid, params[:uid] -%>
+                  <%= hidden_field_tag :token, params[:token] -%>
+                </div>
+                <div class="bottom-15">
+                <%#= error_messages_for 'user' unless params[:user_type] == "guest" %>
+                <%= show_messages(flash[:notice]) %>
               </div>
+                <div class="bottom-15 clearfix">
+                  <div class="pull-left">
+                    <div class="remember">
+                      <label>
+                        <input type="checkbox" checked="checked"> Remember me (?)
+                      </label>
+                    </div>
+                  </div>
+                  <div class="pull-right">
+                    <%= link_to "Forgot your password", request_new_password_path %>
+                  </div>
+                </div>
+                <div class="row clearfix">
+                  <div class="green-button col-xs-5"><%= submit_tag "Login" %></div>
+                </div>
+              <% end %>
             </div>
           </div>
         </div>
       </div>
     </div>
-  <%end%>  
-</div>  
+  </div>
+</div>
