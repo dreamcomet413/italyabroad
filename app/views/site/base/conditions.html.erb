@@ -1,10 +1,12 @@
 <% @title = "Terms and Condition"; @class = "help no-padding"; @breadcrumbs = "#{link_to("Home", root_url)} &raquo; Help &raquo; Terms and Condition" %>
-<div id="header"><strong>Italyabroad.com</strong>-Help</div>
+
 <% @about = AboutU.find(:first, :conditions => {:link_type => "terms_conditions"} ) %>
 <div class="help-container">
   <% if @about %>
-  <h2><%= @about.title.html_safe %></h2>
-     <%= @about.description.html_safe -%>
+    <div class="green-heading-with-border"><%= @about.title.html_safe %></div>
+    <div class="terms-text">
+      <%= @about.description.html_safe -%>
+    </div>
   <% end %>
 </div>
 

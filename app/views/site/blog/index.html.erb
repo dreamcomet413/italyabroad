@@ -8,9 +8,9 @@
     <%= @about.title[0..150] if @about %>
   </div>
   <% if  @about and !@about.image_id.nil? %>
-   <%=  image_tag(site_image_url(:about_thumb, @about.image, :jpg),:alt=>@about.title[0..150]) unless @about.blank?  %>
+   <div class="main-banner"><%=  image_tag(site_image_url(:about_thumb, @about.image, :jpg),:alt=>@about.title[0..150]) unless @about.blank?  %></div>
    <% else %>
-  <%= image_tag("blog_home.jpg",:alt=>@about.title[0..150]) unless @about.blank?  %>
+  <div class="main-banner"><%= image_tag("blog_home.jpg",:alt=>@about.title[0..150]) unless @about.blank?  %></div>
   <% end %>
 </div>
 <div class="row">
