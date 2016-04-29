@@ -2,28 +2,24 @@
 <%- @breadcrumbs = "#{link_to "Home", root_url} &raquo; My Account" -%>
 <% @class = "no-padding" %>
 
-<div id="header"><%= render :partial => 'site/shared/box_login' %></div>
-
-<% total_points = current_user.find_total_points(current_user)
-total_points_used = current_user.orders.sum('points_used')
+<div id="header" class="green-strip clearfix align-left"><%= render :partial => 'site/shared/box_login' %></div>
+<div class="full-width">
+  <div class="green-heading-with-border">My Account</div>
+  <div><% total_points = current_user.find_total_points(current_user)
+    total_points_used = current_user.orders.sum('points_used')
     %>
-
-<h4 class="account-title" style="color:red;">You have <%= (total_points - total_points_used).to_i %> points on your account, equivalent to <%= number_to_currency(((total_points - total_points_used) * Setting.find(:first).points_to_pound.to_f), :unit => "&pound;")%></h4>
-<div style="padding:0 10px;">
-  <%= form_tag("/site/customers/#{@user.id}", :method => :put, :multipart => true) do %>
+  </div>
+  <div class="red-text">You have <%= (total_points - total_points_used).to_i %> points on your account, equivalent to <%= number_to_currency(((total_points - total_points_used) * Setting.find(:first).points_to_pound.to_f), :unit => "&pound;")%></div>
+  <div>
+    <%= form_tag("/site/customers/#{@user.id}", :method => :put, :multipart => true) do %>
       <%= errors_for(@user) -%>
     <%= render :partial => 'form' %>
-    <p style="text-align:right;">
-      <%= image_submit_tag "buttons/update_button.png" %>
-    </p>
+    <div class="register-btn">
+      <div class="green-button"><%= submit_tag "Register" %></div>
+    </div>
+      
   <% end %>
+  </div>
 </div>
 
-<% content_for :right do %>
-	<%= render :partial => '/site/shared/box_grape_guide' %>
-	<br />
-	<%= render :partial => '/site/shared/box_popular' %>
-  <br />
-  <%= render :partial => '/site/shared/social_follow' %>
-<% end %>
 

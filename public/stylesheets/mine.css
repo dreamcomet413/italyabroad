@@ -1797,7 +1797,130 @@ a.close-btn{
 	padding: 0px !important;
 
 }
+/*===================== Profile page =================*/
+.section-box{
+	border-bottom: solid 1px #ebebeb;
+	padding: 30px 0px;
+	color: #53565a;
+	font-size: 13px;
+	margin-bottom: 10px;
 
+}
+.section-box-2{
+
+	padding: 30px 0px 10px;
+	color: #53565a;
+	font-size: 13px;
+	margin-bottom: 40px;
+}
+.section-heading{
+	font-size: 18px;
+	font-family: openSans-Bold;
+	color: #5c8018;
+}
+.section-des{
+	padding: 10px 0px 30px;
+}
+.profile-col-1{
+	float: left;
+	width: 20%;
+	max-width: 120px;}
+.profile-col-2{
+	float: left;
+	width: 75%;
+	margin-left: 15px;
+}
+.chose-text{
+	padding: 15px 0px;
+}
+.avatar-col{
+	float: left;
+	width: 49px;
+	margin-right: 8px;
+}
+.avatar-radio{
+	padding-top: 5px;
+	text-align: center;
+}
+.avatar-radio input{
+	display: inline-block;
+}
+.section-form{
+	padding: 15px 0px 0px;
+}
+.form-row{
+	margin-bottom: 15px;
+	font-family: OpenSans-Light;}
+.section-label{
+	
+	font-size: 14px;
+	
+	padding: 8px 0px;
+
+}
+.section-label.col-md-2{
+	width: 20%;
+	margin-left: 100px;
+	max-width: 140px;
+}
+.form-row input, .form-row select{
+	box-sizing:border-box;
+	width: 100%;
+	height: 34px;
+	font-size: 14px;
+	padding: 5px;
+}
+.form-row select{
+	background: none;
+}
+.form-row textarea{
+	width: 100%;
+}
+.form-row .green-text{
+	font-family: OpenSans-Regular;
+	font-size: 12px;
+}
+.form-row .check-box input {
+	width: 20px;
+
+}
+.section-label b{
+	font-family: OpenSans-Regular;
+}
+.permission-row{
+	padding: 0px 0px 15px 50px;
+}
+.permission-row span{
+	margin-right: 7px;
+	display: inline-block;
+	vertical-align: middle;
+	line-height: 20px;
+	font-size: 14px;}
+.register-btn{
+	margin-bottom: 50px;
+	padding-left: 50px;
+	display: inline-block;
+	width: 125px;
+}
+.align-left{
+	text-align: left;
+
+}
+.green-strip.align-left{
+	padding-left: 15px;
+}
+.green-strip.align-left a{
+	color: #fff;
+	text-decoration: none;
+	margin: 5px;
+}
+.green-strip.align-left a:hover{
+	text-decoration: underline;
+}
+.multi-select select{
+	float: left;
+	width: 30%;
+	margin-right: 2%}
 /*=============== Media quires=================*/
 @media only screen and (max-width: 1035px) {
 	.navigation-row .nav  li  a{
@@ -1805,6 +1928,9 @@ a.close-btn{
 	background: url(../images/seprator.png) no-repeat right center !important;}
 }
 @media only screen and (max-width: 990px){
+	/* profile */
+	.section-label.col-md-2{
+		margin-left: 20px;}
 	header{
 		display: none;
 	}

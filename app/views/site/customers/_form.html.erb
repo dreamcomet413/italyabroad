@@ -1,225 +1,226 @@
-<h1>Personal Details</h1>
-<div class="container">
-  <p>
-    The email address you enter here is where we'll send all communications when you shop with Italyabroad.
-  </p>
-  <table>
-    <tr>
-      <td >Title:</td>
-      <td><%= select :user, :title, ["Mr", "Miss", "Mrs", "Dr"] %></td>
-    </tr>
-    <tr>
-      <% first_name =
-                 if session[:omniauth].present?
-                   if session[:omniauth]["provider"] == 'facebook'
-                     session[:omniauth]["info"]["first_name"]
-                   elsif session[:omniauth]["provider"] == 'twitter'
-                     session[:omniauth]["info"]["name"].split(" ").first()
-                   end
-                 else
-                   nil
-                 end
-      %>
-      <td><span style="color:red;font-size:14px;"> * </span> Name:</td>
-      <td><%= text_field :user, :name, :value => first_name || @user.try(:name) %></td>
-    </tr>
-    <tr>
-      <td><span style="color:red;font-size:14px;"> * </span> Surname:</td>
-      <% last_name =
-                 if session[:omniauth].present?
-                   if session[:omniauth]["provider"] == 'facebook'
-                     session[:omniauth]["info"]["last_name"]
-                   elsif session[:omniauth]["provider"] == 'twitter'
-                     session[:omniauth]["info"]["name"].split(" ").last()
-                   end
-                 else
-                   nil
-                 end
-      %>
-      <td><%= text_field :user, :surname, :value => last_name || @user.try(:surname) %></td>
-    </tr>
-    <tr>
-      <td> <span style="color:red;font-size:14px;"> * </span> Email:</td>
-      <% email =
-                 if session[:omniauth].present?
-                   if session[:omniauth]["provider"] == 'facebook'
-                     session[:omniauth]["info"]["email"]
-                   end
-                 else
-                   nil
-                 end
-      %>
-      <td><%= text_field :user, :email, :value => email || @user.try(:email) %></td>
-    </tr>
-    <tr>
-      <td><span style="color:red;font-size:14px;"> * </span> DOB:</td>
-      <% birthday =
-                 if session[:omniauth].present?
-                   if session[:omniauth]["provider"] == 'facebook'
-                     session[:omniauth]["extra"]["raw_info"]["birthday"]
-                   end
-                 else
-                   nil
-                 end
-      %>
-      <td><%= date_select :user, :dob, :selected => birthday, :start_year => 1900, :end_year => Time.now.year, :order => [:day, :month, :year] %></td>
-    </tr>
-  </table>
-</div>
-
-<h1>Login Details</h1>
-<div class="container">
-  <p>
-    Choose a user name and password which you will use to log in to our site. The ideal password should be hard to guess, but easy to remember.
-  </p>
-  <table>
-    <tr>
-      <td><span style="color:red;font-size:14px;"> * </span> User Name:</td>
-      <td><%= text_field :user, :login, :value => session[:omniauth].present? ? session[:omniauth]["info"]["nickname"] :  @user.try(:login), :disabled => (true unless @user.new_record?) %></td>
-    </tr>
-    <% unless session[:omniauth].present? %>
-        <tr>
-          <td><span style="color:red;font-size:14px;"> * </span> Password:</td>
-          <td><%= password_field :user, :password %><br />
-            <small style="color:red;font-size:10px;">Password should be at least "6 character long"</small>
-          </td>
-        </tr>
-        <tr>
-          <td> <span style="color:red;font-size:14px;"> * </span> Password Confirm:</td>
-          <td><%= password_field :user, :password_confirmation %></td>
-        </tr>
-    <% end %>
-  </table>
-  <% unless session[:omniauth].present? %>
-      <p>
-        Our system keeps your password completely secure - even our technical team can't see it. We simply recognise a match when you log in.
-      </p>
-  <% end %>
-</div>
-
-<%= render :partial => 'profile_pic' %>
-
-<h1>Delivery and billing address</h1>
-<div class="container">
-  <p>
-    You can update this any time, for example if you move or need us to deliver your shopping somewhere else.
-  </p>
-  <table>
-    <tr>
-      <td><span style="color:red;font-size:14px;"> * </span> Address #1:</td>
-      <td><%= text_field :user, :address, :value => @user.try(:address) %></td>
-    </tr>
-    <tr>
-      <td>Address #2:</td>
-      <td><%= text_field :user, :address_2, :value => @user.try(:address_2) %></td>
-    </tr>
-
-    <tr>
-      <td> <span style="color:red;font-size:14px;"> * </span> Town:</td>
-      <% address =
-                      if session[:omniauth].present?
-                        if session[:omniauth]["provider"] == 'facebook'
-                          session[:omniauth]["extra"]["raw_info"]["location"]["name"] if session[:omniauth]["extra"]["raw_info"]["location"].present?
-                        end
-                      else
-                        nil
-                      end
-           %>
-      <td><%= text_field :user, :city, :value => address || @user.try(:city) %></td>
-    </tr>
-    <tr>
-      <td><span style="color:red;font-size:14px;"> * </span> Postcode:</td>
-      <td><%= text_field :user, :cap, :value => @user.try(:cap) %></td>
-    </tr>
-    <tr>
-      <td>Country:</td>
-      <td><%= custom_country_select :user, :country, [["United Kingdom","GB"]] %></td>
-    </tr>
-  </table>
-</div>
-
-<h1>Telephone number</h1>
-<div class="container">
-  <p>
-    In case we need to contact you urgently regarding your delivery. Please include the full area code.
-  </p>
-  <table>
-    <tr>
-      <td><span style="color:red;font-size:14px;"> * </span> Telephone:</td>
-      <td><%= text_field :user, :telephone, :value => @user.try(:telephone) %><br /><small id="blog_rss">Please supply a phone number so we can call if there are any problems using this address</small></td>
-    </tr>
-    <tr>
-      <td>Mobile:</td>
-      <td><%= text_field :user, :mobile, :value => @user.try(:mobile) %></td>
-    </tr>
-  </table>
-</div>
-<% if @user.type_id.to_i == 4
-     checked = true
-     div_style = 'display:block'
-   else
-     checked = false
-     div_style = 'display:none'
-   end%>
-<h1>Are you a Chef?<%= check_box_tag 'chef',4,checked,:onclick=>'display_chef_details();' %></h1>
-<div class="container">
-  <div id="chef_details" style="<%=div_style %>">
-    <table>
-      <tr>
-        <td>Biography</td>
-        <td><%= text_area :user, :chef_bio,:size=>'30x5' %></td>
-      </tr>
-      <tr>
-        <td>My restaurant website</td>
-        <td><%= text_field :user, :establishment_link %></td>
-      </tr>
-    </table>
-
+<div class="section-box">
+  <div class="section-heading">Personal Details</div>
+  <div class="section-des">The email address you enter here is where we'll send all communications when you shop with Italyabroad.</div>
+  <div class="section-form">
+    <div class="form-row row clearfix">
+      <div class="col-md-2 section-label">Title:</div>
+      <div class="col-md-4"><%= select :user, :title, ["Mr", "Miss", "Mrs", "Dr"] %></div>
+    </div>
+    <div class="form-row row clearfix">
+      <div class="col-md-2 section-label">* Name:</div>
+      <div class="col-md-4">
+        <% first_name =
+          if session[:omniauth].present?
+            if session[:omniauth]["provider"] == 'facebook'
+              session[:omniauth]["info"]["first_name"]
+            elsif session[:omniauth]["provider"] == 'twitter'
+              session[:omniauth]["info"]["name"].split(" ").first()
+            end
+          else
+            nil
+          end
+        %>
+        <%= text_field :user, :name, :value => first_name || @user.try(:name) %>
+      </div>
+    </div>
+    <div class="form-row row clearfix">
+      <div class="col-md-2 section-label">* Surname:</div>
+      <div class="col-md-4">
+        <% last_name =
+          if session[:omniauth].present?
+            if session[:omniauth]["provider"] == 'facebook'
+              session[:omniauth]["info"]["last_name"]
+            elsif session[:omniauth]["provider"] == 'twitter'
+              session[:omniauth]["info"]["name"].split(" ").last()
+            end
+          else
+            nil
+          end
+        %>
+        <%= text_field :user, :surname, :value => last_name || @user.try(:surname) %>
+      </div>
+    </div>
+    <div class="form-row row clearfix">
+      <div class="col-md-2 section-label">* Email</div>
+      <div class="col-md-4">
+        <% email =
+          if session[:omniauth].present?
+            if session[:omniauth]["provider"] == 'facebook'
+              session[:omniauth]["info"]["email"]
+            end
+          else
+            nil
+          end
+        %>
+        <%= text_field :user, :email, :value => email || @user.try(:email) %>
+      </div>
+    </div>
+    <div class="form-row row clearfix">
+      <div class="col-md-2 section-label">* DOB</div>
+      <div class="col-md-4 multi-select">
+        <% birthday =
+          if session[:omniauth].present?
+            if session[:omniauth]["provider"] == 'facebook'
+              session[:omniauth]["extra"]["raw_info"]["birthday"]
+            end
+          else
+            nil
+          end
+        %>
+        <%= date_select :user, :dob, :selected => birthday, :start_year => 1900, :end_year => Time.now.year, :order => [:day, :month, :year] %>  
+      </div>
+    </div>
   </div>
 </div>
-
-<h1>Where did you hear about us?</h1>
-<div class="container">
-  <p>
-    This helps us improve our services.
-  </p>
-  <table>
-    <tr>
-      <td>Choose from the list:</td>
-      <td><%= select :user, :know_through, ["Google", "Yahoo", "Msn", "Other Search Engines", "Press", "Italyabroad.com Van", "Fairs and Events", "Flyers", "Wine Tasting", "Recommended by a Friend", "Other Source"] %></td>
-    </tr>
-  </table>
-  <p>
-    If you have been told about italyabroad.com by a friend please enter his/her details below and you will both receive a free bottle of wine if you spend at least <%= number_to_currency(30,{:unit => "&pound;", :precision => 0}) -%>
-  </p>
-  <table>
-    <tr>
-      <td>Friend's name:</td>
-      <td><%= text_field :user, :friend_name %></td>
-    </tr>
-    <tr>
-      <td>Friend's email:</td>
-      <td><%= text_field :user, :friend_email %></td>
-    </tr>
-  </table>
+<%= render :partial => 'profile_pic' %>
+<div class="section-box">
+  <div class="section-heading">Delivery and billing address</div>
+  <div class="section-des">You can update this any time, for example if you move or need us to deliver your shopping somewhere else.</div>
+  <div class="section-form">
+    <div class="form-row row clearfix">
+      <div class="col-md-2 section-label">* Address #1:</div>
+      <div class="col-md-4"><%= text_field :user, :address, :value => @user.try(:address) %></div>
+    </div>
+    <div class="form-row row clearfix">
+      <div class="col-md-2 section-label">Address #2:</div>
+      <div class="col-md-4"><%= text_field :user, :address_2, :value => @user.try(:address_2) %></div>
+    </div>
+    <div class="form-row row clearfix">
+      <div class="col-md-2 section-label">* Town:</div>
+      <div class="col-md-4">
+        <% address =
+          if session[:omniauth].present?
+            if session[:omniauth]["provider"] == 'facebook'
+              session[:omniauth]["extra"]["raw_info"]["location"]["name"] if session[:omniauth]["extra"]["raw_info"]["location"].present?
+            end
+          else
+            nil
+          end
+        %>
+        <%= text_field :user, :city, :value => address || @user.try(:city) %>
+      </div>
+    </div>
+    <div class="form-row row clearfix">
+      <div class="col-md-2 section-label">* Postcode:</div>
+      <div class="col-md-4"><%= text_field :user, :cap, :value => @user.try(:cap) %></div>
+    </div>
+    <div class="form-row row clearfix">
+      <div class="col-md-2 section-label">Country:</div>
+      <div class="col-md-4">
+        <%= custom_country_select :user, :country, [["United Kingdom","GB"]] %>
+      </div>
+    </div>
+  </div>
 </div>
-
-<h1>Contact Permission</h1>
-<div class="container last">
-  <p>
-    As a valued Italyabroad customer, we don't want you to miss out on any Great Offers, Ideas or new Services. We would like to contact you from time to time about things we think you'll be interested in. We will obviously treat your details very carefully and will not share your information with any third party without your consent.
-  </p>
-  <table>
-    <tr>
-      <td>Keep me updated </td>
-      <td><%= check_box :user, :news_letters %></td>
-    </tr>
-    <% if @user.new_record? %>
-        <tr>
-          <td><%= link_to 'I agree to the Italyabroad.com terms and conditions', terms_and_conditions_path %> </td>
-          <td><%= check_box_tag 'conditions' %></td>
-        </tr>
+<div class="section-box">
+  <div class="section-heading">Telephone number</div>
+  <div class="section-des">In case we need to contact you urgently regarding your delivery. Please include the full area code.</div>
+  <div class="section-form">
+    <div class="form-row row clearfix">
+      <div class="col-md-2 section-label">* Telephone:</div>
+      <div class="col-md-4">
+        <%= text_field :user, :telephone, :value => @user.try(:telephone) %>
+        <div class="green-text">Please supply a phone number so we can call if there are any problems using this address</div>
+      </div>
+    </div>
+    <div class="form-row row clearfix">
+      <div class="col-md-2 section-label">Mobile</div>
+      <div class="col-md-4"><%= text_field :user, :mobile, :value => @user.try(:mobile) %></div>
+    </div>
+  </div>
+</div>
+<div class="section-box">
+  <div class="section-heading">Login Details</div>
+  <div class="section-des">Choose a user name and password which you will use to log in to our site. The ideal password should be hard to guess, but easy to remember.</div>
+  <div class="section-form">
+    <div class="form-row row clearfix">
+      <div class="col-md-2 section-label">* User Name:</div>
+      <div class="col-md-4">
+        <%= text_field :user, :login, :value => session[:omniauth].present? ? session[:omniauth]["info"]["nickname"] :  @user.try(:login), :disabled => (true unless @user.new_record?) %>
+      </div>
+    </div>
+    <% unless session[:omniauth].present? %>
+      <div class="form-row row clearfix">
+        <div class="col-md-2 section-label">* Password</div>
+        <div class="col-md-4">
+          <div><%= password_field :user, :password %></div>
+          <div class="green-text">Password should be at least "6 character long"</div>
+        </div>
+      </div>
+      <div class="form-row row clearfix">
+        <div class="col-md-2 section-label">* Confirm Password</div>
+        <div class="col-md-4"><%= password_field :user, :password_confirmation %></div>
+      </div>
     <% end %>
-  </table>
+    <% unless session[:omniauth].present? %>
+      <div class="form-row ">
+        Our system keeps your password completely secure - even our technical team can't see it. We simply recognise a match when you log in.
+      </div>
+    <% end %>
+  </div>
+</div>
+<div class="section-box">
+  <div>
+    <div class="form-row row clearfix">
+      <% if @user.type_id.to_i == 4
+        checked = true
+        div_style = 'display:block'
+      else
+        checked = false
+        div_style = 'display:none'
+      end%>
+      <div class="col-xs-2 col-md-2 section-label"><b>Are you Chef ?</b></div>
+      <div class="col-xs-4 check-box">
+        <%= check_box_tag  'chef' ,4,checked,:onclick=>'display_chef_details();' %>
+      </div>
+    </div>
+    <div id="chef_details" style="<%=div_style %>">
+      <div class="row form-row clearfix" >
+        <div class="col-md-2 section-label">Biography </div>
+        <div class="col-md-4"><%= text_area :user, :chef_bio,:size=>'30x5' %></div>
+      </div>
+      <div class="row form-row clearfix">
+        <div class="col-md-2 section-label">My restaurant website </div>
+        <div class="col-md-4"><%= text_field :user, :establishment_link %></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="section-box">
+  <div class="section-heading">Where did you hear about us?</div>
+  <div class="section-des">This helps us improve our services.</div>
+  <div class="section-form">
+    <div class="form-row row clearfix">
+      <div class="col-md-2 section-label">Choose from the list:</div>
+      <div class="col-md-4">
+        <%= select :user, :know_through, ["Google", "Yahoo", "Msn", "Other Search Engines", "Press", "Italyabroad.com Van", "Fairs and Events", "Flyers", "Wine Tasting", "Recommended by a Friend", "Other Source"] %>
+      </div>
+    </div>
+    <div class="form-row clearfix">
+      <div class="col-md-9"> If you have been told about italyabroad.com by a friend please enter his/her details below and you will both receive a free bottle of wine if you spend at least <%= number_to_currency(30,{:unit => "&pound;", :precision => 0}) -%></div>
+    </div>
+    <div class="form-row row clearfix">
+        <div class="col-md-2 section-label">Friend's name:</div>
+        <div class="col-md-4"><%= text_field :user, :friend_name %></div>
+    </div>
+    <div class="form-row row clearfix">
+        <div class="col-md-2 section-label">Friend's email:</div>
+        <div class="col-md-4"><%= text_field :user, :friend_email %></div>
+    </div>
+  </div>
+</div>
+<div class="section-box-2">
+  <div class="section-heading">Contact Permission</div>
+  <div class="section-des">As a valued Italyabroad customer, we don't want you to miss out on any Great Offers, Ideas or new Services. We would like to contact you from time to time about things we think you'll be interested in. We will obviously treat your details very carefully and will not share your information with any third party without your consent.</div>
+  <div class="permission-row">
+    <span><%= check_box :user, :news_letters %></span>
+    <span>Keep me updated</span>
+  </div>
+  <% if @user.new_record? %>
+    <div class="permission-row">
+      <span><input type="checkbox" checked="checked"></span>
+      <span class="red-text"><%= check_box_tag 'conditions' %></span>
+    </div>
+  <% end %>
 </div>
 
