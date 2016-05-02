@@ -1,36 +1,40 @@
 <% @title = "Subscribe"; @class = "no-padding"; @breadcrumbs = "#{link_to("Home", root_url)} &raquo; Subscription" %>
-
-<div id="header">Please complete your subscription</div>
-<% if flash[:message] && flash[:title] %>
-  <div style="text-align:center;margin:20px 0px 0px 0px;border:1px solid red;color:red;padding:5px">
-    <%= flash[:title] %><br /><br />
-    <div style="color:#333">
-      <%= flash[:message] %>
+<div class="green-heading-with-border">Newsletter Subscription</div>
+<div class="section-box-2">
+  <div class="section-heading">Personal Details</div>
+  <div class="section-des">Please complete your subscription</div>
+  <% if flash[:message] && flash[:title] %>
+    <div class="green-strip">
+      <b><%= flash[:title] %></b>
+        <%= flash[:message] %>
     </div>
-  </div>
-<% end %>
-<% unless @hide %>
-  <div style="text-aling:center;margin-top:40px">
-    <div style="line-height: 2em;margin:0 auto;text-align:left">
-      <% form_tag create_subscription_path do  %>
-        <table border="0" align="center">
-          <tr><td style="text-align:right">Name:</td><td><%= text_field :subscription, :name %></td></tr>
-          <tr><td style="text-align:right">Surname:</td><td><%= text_field :subscription, :surname %></td></tr>
-          <tr><td style="text-align:right">Email:</td><td><%= text_field :subscription, :email %></td></tr>
-          <tr><td colspan="2">&nbsp;</td></tr>
-          <tr><td colspan="2">Where did you hear about us? <%= select :subscription, :know_through, ["Google", "Yahoo", "Msn", "Other Search Engines", "Press", "Italyabroad.com Van", "Fairs and Events", "Flyers", "Wine Tasting", "Recommended by a Friend", "Other Source"] %></td></tr>
-        </table>
-        <div style="text-align:right;padding:5px 15px 5px 0px">
-          <%= image_submit_tag "subscribe.png" %>
+  <% end %>
+  <% unless @hide %>
+    <% form_tag create_subscription_path do  %>
+      <div class="section-form">
+        <div class="row form-row clearfix">
+          <div class="col-md-2 form-label">Name:</div>
+          <div class="col-md-4"><%= text_field :subscription, :name %></div>
         </div>
-      <% end %>
-    </div>
-  </div>
-<% end %>
-
-<% content_for :right do %>
-  <%= render :partial => '/site/shared/box_popular' %>
-  <br />
-  <%= render :partial => '/site/shared/social_follow' %>
-<% end %>
-
+        <div class="row form-row clearfix">
+          <div class="col-md-2 form-label">Surname:</div>
+          <div class="col-md-4"><%= text_field :subscription, :surname %></div>
+        </div>
+        <div class="row form-row clearfix">
+          <div class="col-md-2 form-label">Email:</div>
+          <div class="col-md-4"><%= text_field :subscription, :email %></div>
+        </div>
+        <div class="row form-row clearfix">
+          <div class="col-md-2 form-label">Where did you hear about us?</div>
+          <div class="col-md-4"><%= select :subscription, :know_through, ["Google", "Yahoo", "Msn", "Other Search Engines", "Press", "Italyabroad.com Van", "Fairs and Events", "Flyers", "Wine Tasting", "Recommended by a Friend", "Other Source"] %></div>
+        </div>
+        <div class="row form-row clearfix">
+          <div class="col-md-2 form-label">&nbsp;</div>
+            <div class="col-md-2 green-button">
+              <div class="submit-btn"><%= submit_tag "Subscribe" %></div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>

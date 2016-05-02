@@ -619,13 +619,16 @@ footer{
 .share-row a{
 	margin-right: 5px;
 }
-.green-heading-with-border{
+.green-heading-with-border, .terms-text h2{
 	margin: 15px 0px 28px;
 	color: #485626;
 	border-bottom: solid 1px #ebebeb;
 	padding-bottom: 6px;
 	font-family:JosefinSlab-Bold;
 	font-size:24px;}
+.terms-text h2{
+	text-align: left;
+}
 .green-heading-with-border a{
 	text-decoration: none;
 }
@@ -1806,6 +1809,7 @@ a.close-btn{
 	margin-bottom: 10px;
 
 }
+
 .section-box-2{
 
 	padding: 30px 0px 10px;
@@ -1921,6 +1925,21 @@ a.close-btn{
 	float: left;
 	width: 30%;
 	margin-right: 2%}
+.green-button .submit-btn input{
+	font-family: OpenSans-Regular;
+	height: auto;
+}
+.green-button .submit-btn{
+	width: 140px;
+}
+.terms-text ol li{
+	padding-bottom: 10px;
+	padding-left: 15px;
+	margin-left: 15px;
+}
+.terms-text ol{
+	margin-bottom: 20px;
+}
 /*=============== Media quires=================*/
 @media only screen and (max-width: 1035px) {
 	.navigation-row .nav  li  a{

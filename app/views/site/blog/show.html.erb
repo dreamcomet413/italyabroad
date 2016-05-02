@@ -17,135 +17,144 @@ alert("Description must be filled out");
 </script>
 <% @title = @post.page_title_formatted; @description = @post.meta_description_formatted; @keys = @post.meta_keys_formatted %>
 <% @class = "no-padding"; @breadcrumbs = "#{link_to("Home", root_url)} &raquo; #{link_to('Community',wine_community_path)} &raquo; #{link_to("Blog", site_blog_index_path)} &raquo; #{@post.name[0..25] + '...'}" %>
-
-<div id="header">
-  <div style="float:left;width:490px;"><%= truncate @post.name, :length => 60 %></div>
-  <div style="float:right;font-size:12px;padding:0px;margin:0px;">Subscribe to our RSS feed <%= link_to image_tag('RSS.png'), site_blog_index_path(:format   => :xml, :show => :all) %></div>
+<div id="blog_show_container" class="main-banner">
+  <%= image_tag(site_image_url('blog_banner', (@post.image_1 or @post.image_2 or @post.image_3), :jpg),:alt=>@post.name) if @post.image_1 or @post.image_2 or @post.image_3 %>
 </div>
-
-
-
-<div id="blog_show_container">
-  <div style="text-align:center;"><%= image_tag(site_image_url('blog_banner', (@post.image_1 or @post.image_2 or @post.image_3), :jpg),:alt=>@post.name) if @post.image_1 or @post.image_2 or @post.image_3 %></div>
-
-
-  <div class="comment_icon">&nbsp;&nbsp;<%= @post.comments.find(:all,:conditions=>['public=?',true]).size %> comments</div>
-
-  <div><%= @post.description_cleared.html_safe %></div><br />
-
-  <div style="float:left;">
-        Tags:
-        <% @tag_list ="" %>
-        <% @post.tags.each do |p| %>
-        <% @tag_list =  @tag_list + link_to(p.name, site_blog_index_path(:tag_id=>p.id)) + ", "%>
-        <% end %>
-        <%= @tag_list.chop![0..-2].html_safe if !@tag_list.empty? %>
-  </div>
-
-
-  <div style="float:right;">
-        <%#= render :partial => '/site/shared/social_bookmarks'%>
-  </div>
-
-  <div style="clear:both;padding:0px;margin:0px;"></div>
-
-  <div style="border-bottom:1px solid #CCCCCC;margin-top:20px;"></div>
-  <div class="comments">
-
-   <!-- <h2><%#= @post.comments.size %> comments</h2> -->
-    <% if logged_in? %><%= link_to 'Add Review',"#",:onclick=>"document.getElementById('recipe_comments_add').style.display='block';return false;" %>
-      <div id="recipe_comments_add" style="border-bottom:1px solid #CCCCCC;background-color:#F3F8DA;padding:5px 0 5px 8px;display:none;">
-        <% form_tag comment_site_blog_path(:id => @post.id) do %>
-          <% unless flash[:blog_notice].blank? %>
-            <div style="color:red"><%= flash[:blog_notice] %></div>
-          <% end %>
-          <p>
-            Your name:<br /><%= text_field :comment, :name, :size => 50 %>
-          </p>
-          <p>
-            Your Comment:<br /><%= text_area :comment, :description, :rows => 10, :cols => 50 %>
-          </p>
-          <p>
-            <%= check_box :comment, :mail_check %>&nbsp;&nbsp;Be informed if someone else posts comment.&nbsp;&nbsp;
-          </p>
-          <p>
-            Verification code:<%= show_simple_captcha :label => "Please type the verification code", :image_style => "simply_green", :object => "comment" %>
-          </p>
-
-            <%= submit_tag "Send",:onclick=>"validate_review();" %>
-            <div style="float:right;">
-                <%= render :partial => '/site/shared/social_bookmarks'%>
-          </div>
-          <p></p>
-
-        <% end %>
-      </div>
-    <% else %>
-    <!--  <p style="font:italic 16px Arial;text-align:center">To submit any comment please log in!</p> -->
-
-    <%# end %>
-
-    <%# if !logged_in? %>
-      <div style="border-bottom:1px solid #CCCCCC;background-color:#F3F8DA;color:#161616;font-size:1.3em;margin-top:8px;padding:1px 0 0 8px;">
-        <h1>Add a comment</h1>
-       <!-- <p>Comment with italyabroad account</p> -->
-        <p style = "font:bold 16px Arial;"><%= link_to("Login", login_path) %> ||
-          <%= link_to "Register", "/signup" %> </p>
-      </div>
-    <% end %>
-
-    <div style="padding-bottom:16px; border-bottom:1px solid #CCCCCC;margin-top:8px;font:normal 14px Arial;">
-      Showing <%= @comments.blank? ? "0" : (@comments.offset) +1 %>--<%= (@comments.offset)+(@comments.length) %> of <%= @post.comments.find(:all,:conditions=>['public=?',true]).length %> comments.</div>
-    <div id="recipe_comments">
-      <!--<h3 style="border:none;">Your Comments <%= link_to("(Add comment)", login_path, :style => "font-size:12px;") unless logged_in? %></h3>-->
-
-<%#- comments = @post.comments.latest -%>
-      <%- if @comments.blank? -%>
-        <div class="comment_icon">No comments</div>
-      <%- else -%>
-        <ul>
-          <% @comments.each_with_index do |comment, i| %>
-
-            <li style="border-bottom:1px solid #CCCCCC;margin-top:20px;">
-              <div style="margin-bottom:5px;  ">
-                <div style="margin: 0 5px 5px 0;float:left"><%= avatar_for_user(comment.user, "small") %></div>
-                <div style="text-align:left;margin: 0 0 5px 15px;float:left">
-                <span style="font:bold 13px Arial"><%= comment.name.upcase %></span><br/>
-                   <%= comment.created_at.strftime("%m/%d/%Y %H:%M %p") %><br/>
-                </div>
-                <div style="clear:both"></div>
-                <div class="description"><%= comment.description.gsub("\n","<br />") rescue "No description" %></div>
-              </div>
-
-            </li>
-          <% end %>
-        </ul>
-      <%- end -%>
-
-      </div>
-      <div class="digg_pagination pagination-2 clearfix">
-        <div class="page_info show-result">
-          <%= page_entries_info @comments %>
-        </div>
-        <div class="pagination-links">
-          <%= will_paginate @comments, :container => false %>
+<div class="row">
+  <div class="search-blog-wrapper clearfix">
+    <div class="subscribe-rss col-md-3">
+      <%= link_to "Subscribe to our RSS feed", site_blog_index_path(:format => :xml, :show => :all) %> <%= link_to image_tag('RSS.png'), site_blog_index_path(:format   => :xml, :show => :all) %>
+    </div>
+    <div class="col-md-9 clearfix">
+      <div class="search-blog-box clearfix">
+        <div class="blog-search-text">Search our blog</div>
+        <div class="blog-search-field">
+          <% form_tag '/site/blog', :class=>'search_form' ,:method => :get do %>
+            <div class="left-bar-search">
+              <%= hidden_field_tag :category , 'search_blog_post' %>
+              <%= text_field_tag :text, '', :class=> "form-control",  "data-autocomplete"=> '/site/search/autocomplete_post_name' , :placeholder => "Search Here", :style=>"" %>
+              <i class="magnifier"><%= image_submit_tag "magnifier.png" %></i>
+            </div>
+          <% end %>    
         </div>
       </div>
-    
     </div>
   </div>
-<% content_for :right do %>
-    <%#= render :partial => '/site/shared/box_login' %>
-    <%= render :partial => '/site/shared/box_grape_guide' %>
-    <br />
-    <%= render :partial => 'box_most_read_blog' %>
-    <br />
-    <%= render :partial => '/site/shared/box_subscriptions' %>
-    <br />
-    <%= render :partial => 'box_popular_tags' %>
-    <br />
-    <%= render :partial => 'box_latest_blog_comments' %>
-    <br />
-    <%= render :partial => '/site/shared/social_follow' %>
-  <% end %>
+  <div class="two-colum-row clearfix">
+    <div class="col-md-3 left-side-bar">
+      <%= render :partial => '/site/blog/box_most_read_blog' %>
+      <%= render :partial => '/site/blog/box_popular_tags' %>
+      <%= render :partial => '/site/blog/box_archives' %>
+    </div>
+    <div class="col-md-9">
+      <div class="blog-listing-wrapper">
+        <div class="blog-list">
+          <div class="blog-list-heading">
+            <%= truncate @post.name, :length => 60 %> 
+          </div>
+          <div class="blog-list-date clearfix">
+            <span class="list-date"><b><%=@post.created_at.to_date.to_s(:long)%></b></span> <span class="list-tags"><b>Tags: </b>
+              <% @tag_list ="" %>
+              <% @post.tags.each do |p| %>
+                <% @tag_list =  @tag_list + link_to(p.name, site_blog_index_path(:tag_id=>p.id)) + ", "%>
+              <% end %>
+              <%= @tag_list.chop![0..-2].html_safe if !@tag_list.empty? %>
+            </span>   
+            <span class="pull-right">
+              <%= @post.comments.find(:all,:conditions=>['public=?',true]).size %> comments
+            </span>
+          </div>
+          <div class="blog-list-text bottom-50">
+            <%= @post.description_cleared.html_safe %>
+          </div>
+          <% if logged_in? %>
+            <div class="review-wrapper_1">
+              <div class="green-heading-2">
+                Latest review <%= link_to 'Add Review',"#",:onclick=>"document.getElementById('recipe_comments_add').style.display='block';return false;" %>
+              </div>
+              <div class="write-review-wrapper" id="recipe_comments_add" style="display:none;">
+                <% form_tag comment_site_blog_path(:id => @post.id) do %>
+                  <% unless flash[:blog_notice].blank? %>
+                    <div style="color:red"><%= flash[:blog_notice] %></div>
+                  <% end %>
+                  <div class="clearfix bottom-15">
+                    <div class="col-xs-3 col-md-2">Your Name:</div>
+                    <div class="col-xs-9 col-md-5">
+                      <%= text_field :comment, :name %>
+                    </div>
+                  </div>
+                  <div class="clearfix bottom-15">
+                    <div class="col-xs-3 col-md-2">Your Comment:</div>
+                    <div class="col-xs-9 col-md-5">
+                      <%= text_area :comment, :description %>
+                    </div>
+                  </div>
+                  <div class="bottom-15 clearfix">
+                    <div class="col-md-7 col-md-offset-2 col-xs-offset-3 col-xs-9 clearfix row">
+                      <span style="width: 15px;display: inline-block;vertical-align: top; margin: -9px 5px;">
+                      <%= check_box :comment, :mail_check %>
+                      </span>
+                      <span style="display: inline-block;vertical-align: top;">Be informed if someone else posts comment.</span>
+                    </div>
+                  </div>
+                  <div class="clearfix bottom-15">
+                    <div class="col-xs-3 col-md-2">Verification code:</div>
+                    <div class="col-xs-9 col-md-5">
+                      <%= show_simple_captcha :label => "Please type the verification code", :image_style => "simply_green", :object => "comment" %>
+                    </div>
+                  </div>
+                  <div class="bottom-15 clearfix">
+                    <div class="col-xs-9 col-md-5 col-xs-offset-3 col-md-offset-2 green-button">
+                      <div class="submit-btn">
+                      <%= submit_tag "Send",:onclick=>"validate_review();return false;" %>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          <% else %>
+            <div class="green-heading-2">Add a comment</div>
+            <div class="write-review-wrapper">
+              <div class="bottom-50">
+                <%= link_to("Login", login_path) %> ||
+                <%= link_to "Register", "/signup" %> 
+              </div>
+            </div>
+          <% end %>
+          <div class="digg_pagination pagination-2 clearfix">
+            <div class="page_info show-result">
+              <%= page_entries_info @comments %>
+            </div>
+            <div class="pagination-links">
+              <%= will_paginate @comments, :container => false %>
+            </div>
+          </div>
+          <!-- <div>
+            Showing <%= @comments.blank? ? "0" : (@comments.offset) +1 %>--<%= (@comments.offset)+(@comments.length) %> of <%= @post.comments.find(:all,:conditions=>['public=?',true]).length %> comments.  
+          </div> -->
+          <%- if @comments.blank? -%>
+            <div class="comment_icon">No comments</div>
+          <%- else -%>
+            <div class="latest-review-box view-review">
+              <div class="row clearfix">
+                <% @comments.each_with_index do |comment, i| %>
+                  <div class="col-xs-2 box-image"><div class="user_photo_small" id="user_photo"><%= avatar_for_user(comment.user, "small") %></div></div>
+                  <div class="col-xs-10">
+                    <div class="reviewer-name"><b><%= comment.name.upcase %></b> <%= comment.created_at.strftime("%m/%d/%Y %H:%M %p") %>
+                    </div>
+                    <div>
+                      <p><%= comment.description.gsub("\n","<br />") rescue "No description" %></p>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            </div>            
+          <%- end -%>
+        </div>  
+      </div>
+    </div>
+  </div>
+</div>
+
 
