@@ -100,13 +100,14 @@ alert("Description must be filled out");
                   <div class="clearfix bottom-15">
                     <div class="col-xs-3 col-md-2">Verification code:</div>
                     <div class="col-xs-9 col-md-5">
-                      <%= show_simple_captcha :label => "Please type the verification code", :image_style => "simply_green", :object => "comment" %>
+                      <%= recaptcha_tags %>
+                      <%#= show_simple_captcha :label => "Please type the verification code", :image_style => "simply_green", :object => "comment" %>
                     </div>
                   </div>
                   <div class="bottom-15 clearfix">
                     <div class="col-xs-9 col-md-5 col-xs-offset-3 col-md-offset-2 green-button">
                       <div class="submit-btn">
-                      <%= submit_tag "Send",:onclick=>"validate_review();return false;" %>
+                      <%= submit_tag "Send",:onclick=>"validate_review();" %>
                       </div>
                     </div>
                   </div>

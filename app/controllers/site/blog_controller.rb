@@ -34,7 +34,7 @@ class Site::BlogController < ApplicationController
       redirect_to "/site/blog"
     else
       @post.count_view if @post
-      @comments = @post.comments.where(['public=?',true]).paginate(:page => params[:page], :per_page => 5).offset(5).order("created_at DESC")
+      @comments = @post.comments.where(['public=?',true]).paginate(:page => params[:page], :per_page => 5).order("created_at DESC")
     end
 
   end
@@ -51,7 +51,7 @@ class Site::BlogController < ApplicationController
     @comment.post = @post
     @comment.email = current_user.email
     @comment.user_id = current_user.id
-    if @comment.save_with_captcha
+    if verify_recaptcha(model: @comment) and @comment.save
       Notifier.deliver_comment(@comment,current_user)
       check_mail_list(@post, current_user)
       flash[:notice] = "comment is successfully posted"
