@@ -1,75 +1,74 @@
 <% @title = "Contact us"; @description = "let us know what you think about italyabroad.com"; @keys = "italian wine, italian red and white wine, italian food, wine tasting, wine expert" %>
 <% @class = "about-us no-padding" %>
 <% @breadcrumbs = "#{link_to("Home", root_url)} &raquo; About us &raquo; Contact us" %>
-
-<div id="header"><strong>Italyabroad.com</strong>-About us</div>
-<div style="margin:20px;">
-  <% unless @hide %>
-    <h2><%= @contact_message.try(:header) %></h2>
-    <%= show_messages flash[:message] %>
-
-    <p>
-     <%= @contact_message.try(:message).try(:html_safe) %>
-    </p>
-
-    <p>
-      <% form_tag contact_us_path do %>
-        <% unless flash[:notice].blank? %>
-        <div><%= flash[:notice] %></div>
+<div class="full-width bottom-50">
+  <div class="green-heading-with-border">Contact Us</div>
+  <div class="section-form">
+    <div class="row clearfix">
+      <% unless @hide %>
+        <h2><%= @contact_message.try(:header) %></h2>
+        <%= show_messages flash[:message] %>
+          <%= @contact_message.try(:message).try(:html_safe) %>
+        <% form_tag contact_us_path do %>
+          <% unless flash[:notice].blank? %>
+            <div><%= flash[:notice] %></div>
+          <% end %>
+          <div class="col-xs-10">
+            <div class="row form-row clearfix">
+              <div class="col-md-2 section-label">Insert your name:</div>
+              <div class="col-md-4"><%= text_field :contact, :name %></div>
+            </div>
+            <div class="row form-row clearfix">
+              <div class="col-md-2 section-label">Insert your email address:</div>
+              <div class="col-md-4"><%= text_field :contact, :email %></div>
+            </div>
+            <div class="row form-row clearfix">
+              <div class="col-md-2 section-label">Insert your message:</div>
+              <div class="col-md-7">
+                <%= text_area :contact, :message, :rows => 5, :style => "width:100%" %>
+              </div>
+            </div>
+            <div class="row form-row clearfix">
+              <div class="col-md-2 section-label">Where did you hear about us?</div>
+              <div class="col-md-4">
+                <%= select :contact, :know_through, ["Google", "Yahoo", "Msn", "Other Search Engines", "Press", "Italyabroad.com Van", "Fairs and Events", "Flyers", "Wine Tasting", "Recommended by a Friend", "Other Source"] %>
+              </div>
+            </div>
+            <div class="row form-row celarfix">
+              <div class="col-md-2 section-label">Captcha</div>
+              <div class="col-md-4"><%= recaptcha_tags %></div>
+            </div>
+            <div class="row form-row clearfix">
+              <div class="col-md-2 section-label"> &nbsp;</div>
+              <div class="col-md-4">
+                <div class="green-button" style="max-width: 150px;"><%= submit_tag "Send" %></div>
+              </div>
+            </div>
+          </div>
+        <% end %>
       <% end %>
-      <p>
-
-                  <!-- Live Chat Start -->
-                   <div style="float:right;margin-right:25px;"><%= link_to image_tag('LiveChatHelpIcon.jpg'), "#",:onclick=>"popupwindow('http://#{Rails.env == 'production' ? 'www.italyabroad.com' : 'localhost:3000'}/chat_messages', 700, 650)" %> <br />
-                    <% if !Setting.first.blank?%>
-                                 <%
-                                 if Setting.first.chat_available
-                                    support_link = "Open"
-                                 else
-                                    support_link = "Closed"
-                                 end
-                                  %>
-                    <% end %>
-                    <span style="font:bold 13px Arial"><%= link_to "Live chat (#{support_link})","#", :onclick=>"popupwindow('http://#{Rails.env == 'production' ? 'www.italyabroad.com' : 'localhost:3000'}/chat_messages', 700, 650)" %></span>
-
-                    </div>
-                  <!-- Live Chat End -->
-
-
-
-
-        Insert your name:<br /><%= text_field :contact, :name %>
-      </p>
-      <p>
-        Insert your email address:<br /><%= text_field :contact, :email %>
-      </p>
-      <p>
-        Insert your message:<br /><%= text_area :contact, :message, :rows => 5, :style => "width:95%" %>
-      </p>
-      <p>
-        Where did you hear about us? <%= select :contact, :know_through, ["Google", "Yahoo", "Msn", "Other Search Engines", "Press", "Italyabroad.com Van", "Fairs and Events", "Flyers", "Wine Tasting", "Recommended by a Friend", "Other Source"] %>
-      </p>
-
-      <p>
-      <!--<div style="float:left">Verification code:<%#= show_simple_captcha :label => "Please type the verification code", :image_style => "simply_green", :object => "contact" %></div>-->
-      </p>
-          <%= recaptcha_tags %>
-
-      <div style="clear: both"></div>
-      <p>
-        <%= submit_tag "Send" %>
-      </p>
-    <% end %>
-  </p>
-<% end %>
+      <div class="col-xs-2 center-align">
+        <%= link_to image_tag('LiveChatHelpIcon.jpg'), "#",:onclick=>"popupwindow('http://#{Rails.env == 'production' ? 'www.italyabroad.com' : 'localhost:3000'}/chat_messages', 700, 650)" %> <br />
+        <% if !Setting.first.blank?%>
+          <%
+            if Setting.first.chat_available
+              support_link = "Open"
+            else
+              support_link = "Closed"
+            end
+          %>
+        <% end %>
+        <span style="font:bold 13px Arial"><%= link_to "Live chat (#{support_link})","#", :onclick=>"popupwindow('http://#{Rails.env == 'production' ? 'www.italyabroad.com' : 'localhost:3000'}/chat_messages', 700, 650)" %>
+        </span>
+      </div>
+    </div>
+  </div>
 </div>
 
-<% content_for :right do %>
-  <%= render :partial => 'site/shared/box_about_us' %>
-  <br />
-  <%= render :partial => '/site/shared/social_follow' %>
 
-<% end %>
+
+
+
 
 <script type="text/javascript">
     function popupwindow(url, w, h) {
