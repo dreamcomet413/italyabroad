@@ -62,7 +62,9 @@
               <div class="col-xs-3">* Email:</div>
               <div class="col-xs-9">
                 <% email =
+                  
                   if session[:omniauth].present?
+                 
                     if session[:omniauth]["provider"] == 'facebook'
                       session[:omniauth]["info"]["email"]
                     end
@@ -151,9 +153,9 @@
                   <%= hidden_field_tag :token, params[:token] -%>
                 </div>
                 <div class="bottom-15">
-                <%#= error_messages_for 'user' unless params[:user_type] == "guest" %>
-                <%= show_messages(flash[:notice]) %>
-              </div>
+                  <%#= error_messages_for 'user' unless params[:user_type] == "guest" %>
+                  <%= show_messages(flash[:notice]) %>
+                </div>
                 <div class="bottom-15 clearfix">
                   <div class="pull-left">
                     <div class="remember">

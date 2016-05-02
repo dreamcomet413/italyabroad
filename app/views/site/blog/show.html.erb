@@ -72,7 +72,7 @@ alert("Description must be filled out");
             Verification code:<%= show_simple_captcha :label => "Please type the verification code", :image_style => "simply_green", :object => "comment" %>
           </p>
 
-            <%= submit_tag "Send",:onclick=>"validate_review();return false;" %>
+            <%= submit_tag "Send",:onclick=>"validate_review();" %>
             <div style="float:right;">
                 <%= render :partial => '/site/shared/social_bookmarks'%>
           </div>

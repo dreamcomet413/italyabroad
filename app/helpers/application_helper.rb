@@ -234,7 +234,7 @@ module ApplicationHelper
   end
 
   def show_messages(message)
-    content_tag(:div, message, :class => "notice") unless message.blank?
+    content_tag(:div, message, :class => "notice" , :style=>'color: red') unless message.blank?
   end
 
   def show_ratings(product, score = nil)

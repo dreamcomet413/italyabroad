@@ -55,10 +55,10 @@ class Site::BlogController < ApplicationController
       Notifier.deliver_comment(@comment,current_user)
       check_mail_list(@post, current_user)
       flash[:notice] = "comment is successfully posted"
-      redirect_to blog_path(:id => @post.id)
+      redirect_to site_blog_path(:id => @post.id)
     else
       flash[:notice] = @comment.show_errors
-       redirect_to blog_path(:id => @post.id)
+       redirect_to site_blog_path(:id => @post.id)
      # render :action => :show
     end
   end
