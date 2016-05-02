@@ -84,7 +84,7 @@ img{
 	color: #287f0d;
 	margin-bottom: 25px;}
 .welcome-text{
-	text-align: center;
+	text-align: left;
 }
 .welcome-text p{
 	margin-bottom: 20px;
@@ -92,7 +92,7 @@ img{
 	color: #000;
 }
 .welcome-btn{
-	text-align: center;
+	text-align: left;
 
 }
 .welcome-btn img{
@@ -110,7 +110,7 @@ img{
 .bottom-content{
 	margin: 60px auto 40px;
 	width: 84%;
-	min-width: 1100px;
+	/*min-width: 1100px;*/
 	max-width: 1600px;}
 .text-box{
 	font-size: 16px;
