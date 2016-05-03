@@ -9,6 +9,8 @@
             <i class="magnifier"><%= image_submit_tag "magnifier.png" %></i>
       <%= hidden_field_tag :id,@category.name.downcase %><a href="#."></i>
     </div>
+    <div class="black-strip clearfix selected-filters" style="display: none;">
+    </div>
     <!-- start search filter-->
     <div class="sidebar-filter-wrapper">
       <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
@@ -108,10 +110,10 @@
           <div id="collapseFive" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingFive">
             <div class="panel-body">
               <ul>
-                <%= hidden_field_tag :occasion_id %>
+                <%= hidden_field_tag :occasion_id, '' , :class=>'field_value' %>
                 <% @occasions = Occasion.find(:all,:include=>'products',:conditions=>['products.active = ?',true]) %>
                 <% @occasions.collect{|i| [i.name,i.id]}.each do |item| %>
-                  <li><a href="#." value="<%= item[1] %>"> <%= item[0] %></a></li>
+                  <li><a href="#." value="<%= item[1] %>" class="field_text"> <%= item[0] %></a></li>
                 <% end %>
               </ul>
             </div>
