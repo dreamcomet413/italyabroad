@@ -2,16 +2,11 @@
 
 
 <!-- div id="header"><strong>Italyabroad.com</strong> – Franchising</div -->
-<div id="header"><strong>Italyabroad.com</strong>-About us</div>
+<!-- <div id="header"><strong>Italyabroad.com</strong>-About us</div> -->
 <div class="help-container">
-
-  <%= @setting.guarantee_of_satisfaction.html_safe if !@setting.nil? and @setting.guarantee_of_satisfaction.present? %>
+	<div class="green-heading-with-border">Guarantee of Satisfaction</div>
+	<div class="terms-text bottom-50"><%= @setting.guarantee_of_satisfaction.html_safe if !@setting.nil? and @setting.guarantee_of_satisfaction.present? %></div>
 
 </div>
 
-<% content_for :right do %>
-  <%= render :partial => '/site/shared/box_about_us' %>
-  <br />
-  <%= render :partial => '/site/shared/social_follow' %>
-<% end %>
 

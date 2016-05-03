@@ -1878,6 +1878,11 @@ a.close-btn{
 	background: none;
 }
 .form-row textarea{
+	box-sizing: border-box;
+	width: 100%;
+	padding: 10px;
+}
+.form-row textarea{
 	width: 100%;
 }
 .form-row .green-text{
@@ -1939,6 +1944,17 @@ a.close-btn{
 }
 .terms-text ol{
 	margin-bottom: 20px;
+}
+.notice{
+    background: #5c8018;
+    color: #fff;
+    padding: 5px;
+    margin-bottom: 20px;}
+.terms-text p{
+	margin-bottom: 20px;
+}
+.terms-text h2{
+	margin-top: 35px;
 }
 /*=============== Media quires=================*/
 @media only screen and (max-width: 1035px) {
