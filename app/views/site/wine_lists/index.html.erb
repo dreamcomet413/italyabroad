@@ -31,7 +31,7 @@
 			      <%- else -%>
                     <%= link_to(image_tag("buttons/add_to_cart_button.png"), "/site/cart?product_id=#{product.id}", :remote => true, :method => :post) -%>
 			      <%- end -%></li>
-  			  <li class="wish_list_button"><%= link_to image_tag("remove_wish.png"), product_wine_list_path(product, wine_list), :method => :delete, :confirm => "Are you sure want to delete this product from your wine list?" %></li>
+  			  <li class="wish_list_button"><%= link_to image_tag("remove_wish.png"), site_wine_list_path(product, wine_list), :method => :delete, :confirm => "Are you sure want to delete this product from your wine list?" %></li>
   			</ul>
 			</div>
 		</td>

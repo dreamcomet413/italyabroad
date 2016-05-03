@@ -27,8 +27,8 @@ class Site::WineListsController < ApplicationController
   end
 
   def destroy
-
-    current_user.wine_lists.find(params[:id]).destroy
+    product = Product.find_by_friendly_identifier(params[:id])
+    current_user.wine_lists.find_by_product_id(product.id).destroy
     redirect_to :action => :index
   end
 end
