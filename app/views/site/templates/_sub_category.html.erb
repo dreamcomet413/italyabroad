@@ -16,12 +16,12 @@
           <div class="green-heading-with-border">
             <%= @category.name.html_safe() %>
             <div class="sort-by-box clearfix">
-            <div class="sort-select">
-              <%- form_tag nested_categories_path(params[:parent], params[:category]), :method => :get, :id => "sort_by_form" do -%>
-                <%= hidden_field_tag :page, (params[:page] || 1) %>
-                <strong>Sort by:</strong>&nbsp;
-                <%= select_tag("sort_by", options_for_select([["Price: Low to high", "product_prices.price asc"],["Price: High to low", "product_prices.price desc"], ["Name", "name"], ["Region", "region_id"]], @sort_by), :onchange => "$('#sort_by_form').submit()") %>
-              <%- end -%>
+              <div class="sort-select">
+                <%- form_tag nested_categories_path(params[:parent], params[:category]), :method => :get, :id => "sort_by_form" do -%>
+                  <%= hidden_field_tag :page, (params[:page] || 1) %>
+                  <strong>Sort by:</strong>&nbsp;
+                  <%= select_tag("sort_by", options_for_select([["Price: Low to high", "product_prices.price asc"],["Price: High to low", "product_prices.price desc"], ["Name", "name"], ["Region", "region_id"]], @sort_by), :onchange => "$('#sort_by_form').submit()") %>
+                <%- end -%>
               </div>
             </div>
             <div class="clearfix"></div>
