@@ -20,7 +20,8 @@ class Site::WishListController < ApplicationController
   end
 
   def destroy
-    current_user.wish_lists.find(params[:id]).destroy
+    product = Product.find_by_friendly_identifier(params[:id])
+    current_user.wish_lists.find_by_product_id(product.id).destroy
     redirect_to :action => :index
   end
 

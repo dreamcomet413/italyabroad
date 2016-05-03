@@ -244,11 +244,7 @@ class Site::CustomersController < ApplicationController
       if user && follower
         follower_id = follower.follower_id
         follower.destroy
-        unless session[:return_to].blank?
-          format.html { redirect_to(session[:return_to]) }
-        else
-          format.html { redirect_to(site_customer_path(user)) }
-        end
+        format.html { redirect_to(site_customer_path(user)) }
       else
         format.html { redirect_to(site_customer_path(current_user)) }
       end
