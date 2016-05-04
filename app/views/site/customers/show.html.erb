@@ -8,13 +8,17 @@
   </div>
   <div class="section-form">
     <div class="row clearfix">
-      <div class="col-xs-2">
-        <%= image_tag(@user.photo.image_filename.url) if @user.photo.present? && @user.photo.image_filename.present? && @user.photo.image_filename.url.present?%> <br />
+      <div class="col-xs-2 center-align">
+        <%= image_tag(@user.photo.image_filename.url) if @user.photo.present? && @user.photo.image_filename.present? && @user.photo.image_filename.url.present?%> 
         <% unless @my_profile %>
           <%- if logged_in? and @user.followed_by?(current_user) -%>
-              <%= link_to image_tag("buttons/unfollow.png"), unfollow_path(@user) %>
+            <div class="center-align top-20">
+              <span class="green-button"><%= link_to ("Unfollow"), unfollow_path(@user) %></span>
+            </div>
           <%- else -%>
-              <%= link_to image_tag("buttons/follow.png"), follow_path(@user) %>
+            <div class="center-align top-20">
+              <span class="green-button"><%= link_to ("Follow"), follow_path(@user) %></span>
+            </div>
           <%- end -%>
         <% end %>
       </div>
@@ -84,7 +88,7 @@
             <div class="col-md-2 section-label2">
               <%= "#{@my_profile ? "My" : @user.name+"'s"}" %> favorite Meal:
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 top-8">
               <%= @user.fav_meals ? @user.fav_meals : 'Not Added yet'%>
             </div>
           </div>
@@ -92,7 +96,7 @@
             <div class="col-md-2 section-label2">
               <%= "#{@my_profile ? "My" : @user.name+"'s"}" %> favorite Wine:    
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 top-8">
               <%= @user.fav_wine ? @user.fav_wine : 'Not Added yet'%>
             </div>
           </div>
@@ -100,7 +104,7 @@
             <div class="col-md-2 section-label2">
               <%= "#{@my_profile ? "My" : @user.name+"'s"}" %> favorite Holiday:
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 top-8">
               <%= @user.holidays ? @user.holidays : 'Not Added yet' %>
             </div>
           </div>
@@ -108,7 +112,7 @@
             <div class="col-md-2 section-label2">
               <%= "#{@my_profile ? "My" : @user.name+"'s"}" %> favorite Song:
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 top-8">
               <%= @user.songs ? @user.songs : 'Not Added yet' %>
             </div>
           </div>
@@ -116,7 +120,7 @@
             <div class="col-md-2 section-label2">
               <%= "#{@my_profile ? "My" : @user.name+"'s"}" %> favorite Film:
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 top-8">
               <%= @user.films ? @user.films : 'Not Added yet'  %>
             </div>
           </div>
@@ -124,7 +128,7 @@
             <div class="col-md-2 section-label2">
               <%= "#{@my_profile ? "My" : @user.name+"'s"}" %> favorite Newspaper:
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 top-8">
               <%= @user.newspapers ? @user.newspapers : 'Not Added yet' %>
             </div>
           </div>

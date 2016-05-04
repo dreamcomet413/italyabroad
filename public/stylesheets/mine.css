@@ -68,9 +68,10 @@ a.wine_link:hover{
 	width: 32px;}
 .top-bar-links{
 	/*width: 285px;*/
-	font-family: prestigeEliteStd;
+	font-family: JosefinSlab-SemiBold;
 	color: #53565a;
-	margin-top:7px;}
+	margin-top:6px;
+	font-size: 14px;}
 .top-bar-links a{
 	color:#53565a;
 	text-decoration: none;
@@ -1877,6 +1878,7 @@ a.close-btn{
 .section-label2.col-md-2{
 	width: 20%;
 	/*max-width: 140px;*/
+	margin-top: 8px;
 }
 .form-row input, .form-row select{
 	box-sizing:border-box;
@@ -1977,6 +1979,47 @@ a.close-btn{
 .auto-width img{
 	width: auto;
 	max-width: 100%;
+}
+.about-review .col-md-4.about{
+	width: 100%;
+	margin-right: 0px;
+	margin-left: 0px;
+	padding: 0px;
+}
+.formErrors{
+	border: solid 1px #ebebeb;
+	margin: 10px 0px;}
+.formErrors h5{
+	background: #cb0d2b;
+	color:#fff;
+	padding: 10px;
+	text-align: center;
+	margin: 0px;
+	font-size: 18px;}
+.formErrors ul {
+	padding: 10px;
+}
+.formErrors ul li {
+	list-style: none;
+	margin-bottom: 5px;
+	font-size: 14px;
+	color: #cb0d2b !important;}
+.section-des ol{
+	margin-left: 15px;
+	margin-top: 5px;
+	font-size: 14px;
+}
+.section-des ol li{
+	margin-bottom: 5px;
+}
+.section-des ol a{
+	text-decoration: none;
+}
+.section-des ol a:hover{
+	text-decoration: underline;
+}
+.top-8{
+	margin-top: 8px;
 }
 /*=============== Media quires=================*/
 @media only screen and (max-width: 1035px) {

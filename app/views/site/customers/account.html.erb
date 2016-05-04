@@ -5,10 +5,9 @@
 <%= render :partial => 'site/shared/box_login' %>
 <div class="full-width">
   <div class="green-heading-with-border">My Account</div>
-  <div><% total_points = current_user.find_total_points(current_user)
+  <% total_points = current_user.find_total_points(current_user)
     total_points_used = current_user.orders.sum('points_used')
     %>
-  </div>
   <div class="red-text">You have <%= (total_points - total_points_used).to_i %> points on your account, equivalent to <%= number_to_currency(((total_points - total_points_used) * Setting.find(:first).points_to_pound.to_f), :unit => "&pound;")%></div>
   <div>
     <%= form_tag("/site/customers/#{@user.id}", :method => :put, :multipart => true) do %>

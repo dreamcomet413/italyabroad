@@ -282,12 +282,12 @@
           <% end %>
         </div>
         
-        <div class="green-heading-2">Description</div>
+        <div class="green-heading-2">Why we love it</div>
         <div class="product-detail-text">
           <%= (@product.description.html_safe) rescue "Product has no description" %>
         </div>
         <% if @product.root_category != 'Hampers' and !@product.sub_categories.include?('Mixed case') %>
-          <div class="green-heading-2">Producer</div>
+          <div class="green-heading-2">The artisan who made it</div>
           <% if @product.producer
             if @product.producer.active %>
               <div class="product-detail-text">
@@ -327,7 +327,6 @@
         </div>
       </div>
     </div>
-    
     <!-- Start include in hamper box -->
     <% if @product.root_category == 'Hampers' || @product.sub_categories.include?('Mixed case') %>
       <% @includes = @product.product_includeds.limit(4) %>
@@ -397,7 +396,6 @@
       <% end %>
     <% end %> <!-- End you may like box -->
     <!-- Start Similar products box -->
-    
     <%- related_products = @product.correlations.all(:limit => 4, :conditions => "active").uniq -%>
     <%- column_width = related_products.size -%>
     <% unless related_products.blank? %>
@@ -456,16 +454,12 @@
       }
     });
 </script>
-
-
-
 <script>
 function goBack() {
     window.history.back();
 }
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-
 <script>
   $(function() {
     $('a[href*=#]:not([href=#])').click(function() {

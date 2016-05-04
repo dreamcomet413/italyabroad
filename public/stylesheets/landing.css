@@ -46,8 +46,8 @@ img{
 	background-size: cover;
 }
 .enter-site-row{
-	padding-right: 6%;
-	padding-top: 87px;
+	padding-right: 0%;
+	padding-top: 25px;
 	text-align: right;
 }
 .enter-button1{
@@ -71,7 +71,7 @@ img{
 	width: 98%;
 }
 .welcome-board{
-	margin-top: 80px;
+	margin-top: 50px;
 	}
 .welcome-bg{
 	background: #fff;

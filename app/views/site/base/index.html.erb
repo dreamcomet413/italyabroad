@@ -186,40 +186,7 @@
       </div>
     </div>
     <!-- End Slider-->
-  </div><!--End Food Counter-->
-  <!--<%# render :partial => '/site/shared/box_welcome' %> -->
-  <!-- <div class="new_search">
-    <div class="fLeft font26">
-      <dt style="width: 27.8em;">
-        <h3 style="margin-left: 15px;">Recommended Wines</h3>
-      </dt>
-    </div>
-
-    <dt style="width: 100%;">
-      <%# @recommended_wines.each do |wine| %>
-        <dt style="width: 15em;">
-          <center>
-            <%# link_to show_image_tag(wine.layout_image, wine.image_1, :jpg, wine.name), nested_products_uri(wine) %>
-            <br /><br />
-            <div style="height:25px;">
-            <%#= link_to show_image_tag(:card, wine.image_1, :jpg, wine.name), nested_products_uri(wine), {:title => wine.name} %>
-            <%= wine.name -%>
-            </div>
-            <div style="padding-top: 5px;">
-            <%# if wine.present? && wine.product_prices.present? %>
-              <%# wine.product_prices.each do |w| %>
-                <p style="color:#C40909; font-weight:bold; font-size: 13px;"><%# number_to_currency w.price, :unit => "&pound;" -%></p>
-              <%# end %>
-            <%# else %>
-              <p style="color:#C40909; font-weight:bold; font-size: 13px;">Not Available</p>
-            <%# end %>
-            </div>
-          <center>
-        </dt>
-      <%# end %>
-    </dt>
-  </div> -->
-
+  </div>
 
 <!-- 3 colume bottom blocks-->
 <% content_for :bottomBlocks do %>
@@ -231,21 +198,6 @@
     </div>
   </div>
 <% end %><!-- End 3 cloum bottom blocks-->
-<% content_for :right do %>
-    <%= render :partial => '/site/shared/box_event' %>
-    <br />
-    <%= render :partial => '/site/shared/box_subscriptions' %>
-    <br />
-    <%= render :partial => '/site/shared/box_latest_community_comments' %>
-    <br />
-    <%= render :partial => '/site/shared/box_blog' %>
-    <br />
-    <%= render :partial => '/site/shared/box_popular' %>
-    <br />
-   	<%= render :partial => '/site/shared/box_mood' %>
-    <br />
-    <%= render :partial => '/site/shared/social_follow' %>
-<% end %>
 
 <script type="text/javascript">
   $(document).ready(function(){
