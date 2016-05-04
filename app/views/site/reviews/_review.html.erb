@@ -1,27 +1,35 @@
-<li class="review <%= cycle('odd', 'even') %>" style="padding:10px;">
-  <table width="100%">
-    <tr>
-      <td style="width:70px;"><%= show_image_tag :product_thumb, review.reviewer.image_1 unless review.reviewer.nil? %></td>
-      <td>
-        <strong><% if current_user.id.to_i == review.user_id.to_i %>You Wrote:
+<div class="hampers-box">
+  <div class=" row clearfix">
+    <div class="col-md-2">
+      <div class="hamper-image auto-width"><%= show_image_tag :product_thumb, review.reviewer.image_1 unless review.reviewer.nil?  %></div>
+    </div>
+    <div class="col-md-8">
+      <div class="hamper-heading">
+        <% if current_user.id.to_i == review.user_id.to_i %>You Wrote:
         <% else %>
-        <%= User.find_by_id(review.user_id).name %> Wrote:
+          <%= User.find_by_id(review.user_id).name %> Wrote:
         <% end %>
-        </strong><br /><br />
-        <%= review.description.html_safe %><br /><br />
-        <table width="100%">
-          <tr>
-            <td style="width:150px;"><strong>You Rated this product:</strong></td>
-            <td><%= show_ratings(review.reviewer, review.score).html_safe unless review.reviewer.nil? %></td>
-            <td align="right">
-              <%- if review.reviewer_type == "Product" -%>
-              <%= image_tag("WINE_LIST.jpg") if review.reviewer.is_wine? unless review.reviewer.nil?%>
-              <%- end -%>
-            </td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-  </table>
-</li>
+      </div>
+      <div class="hamper-text">
+        <%= review.description.html_safe %>
+        <% unless review.reviewer.nil? %>
+          <div class="top-30">
+            <span><strong>You Rated this product:</strong></span>
+            <span class="rating"><%= show_ratings(review.reviewer, review.score).html_safe %></span>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="add-hamper">
+        <div class="hamper-price center-align top-60">
+          <%- if review.reviewer_type == "Product" -%>
+            <%= image_tag("WINE_LIST.jpg") if review.reviewer.is_wine? unless review.reviewer.nil?%>
+          <%- end -%>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 

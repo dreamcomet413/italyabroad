@@ -27,3 +27,4 @@ class Site::WishListController < ApplicationController
 
 end
 
+

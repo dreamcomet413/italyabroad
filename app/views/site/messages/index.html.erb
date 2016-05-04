@@ -1,9 +1,13 @@
 <%- @title = "Messages"; @class = "no-padding" -%>
 <%- @breadcrumbs = "#{link_to "Home", root_url} &raquo;Messages" -%>
-<div id="header"><%= render :partial => 'site/shared/box_login' %></div>
+
+<%= render :partial => 'site/shared/box_login' %>
+<div class="full-width">
+	<div class="green-heading-with-border">
+		Messages
+	</div>
 
 <% if @messages.size > 0 %>
-<h4 class="account-title">Messages</h4>
 <div class="digg_pagination pagination-2 clearfix">
 	<div class="page_info show-result">
 	  <%= page_entries_info @messages %>
@@ -21,10 +25,6 @@
 <h4>You have no messages</h4>
 </div>
 <% end %>
-<%- content_for :right do -%>
-  <%= render :partial => '/site/shared/box_subscriptions' %>
-  <br />
-  <%= render :partial => '/site/shared/social_follow' %>
-<%- end -%>
-<!-- /div --><!-- removed to fix the issue with sitemap on 2011 may 10 - sujith -->
 
+
+</div>

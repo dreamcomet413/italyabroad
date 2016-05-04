@@ -1,55 +1,56 @@
 <% @title = "My Wishlist"; %>
 <%- @breadcrumbs = "#{link_to "Home", root_url} &raquo; My Wishlist" -%>
 <% @class = "no-padding" %>
-
-<div id="header"><%= render :partial => 'site/shared/box_login' %></div>
-<h4 class="account-title">My Wishlist</h4>
-<table border="0" cellspacing="0" cellpadding="10" width="100%">
+<%= render :partial => 'site/shared/box_login' %>
+<div class="full-width bottom-50">
+	<div class="green-heading-with-border">
+		My Wishlist
+	</div>
 	<% if @wish_lists.size == 0 %>
-		<tr>
-		  <td>You don't have any products in your wish list.</td>
-    </tr>
+		<div class="align-center bottom-50">You don't have any products in your wish list.</div>
 	<% else %>
 	<%= product_id = "" %>
-  <% for wish_list in @wish_lists  %>
-  <% if product_id.to_i != wish_list.product_id %>
-  <% product = wish_list.product %>
-	<tr>
-	  <td>
-	   <%= show_image_tag(product.layout_image, product.image_1,:jpg,product.name) %>
-	  </td>
-		<td valign="top">
-		  <h2 style="font-weight:normal;"><%= product.name %></h2>
-		  <%= product.description_short.html_safe() %>
-		</td>
-		<td style="text-align:center;">
-		  <div class="box_price">
-		    <ul class="inner-container">
-  		    <li class="price"><%= number_to_currency(product.price,{:unit => "&pound;"}) %></li>
-      <li class="add_to_cart_button">
-  		   <%- if product.out_of_stock? -%>
-			        <%= image_tag('out_of_stock.png') %>
-			      <%- else -%>
-                    <%= link_to(image_tag("buttons/add_to_cart_button.png"), "/site/cart?product_id=#{product.id}", :remote => true, :method => :post) -%>
-			      <%- end -%>
-         </li>
+  	<% for wish_list in @wish_lists  %>
+  		<% if product_id.to_i != wish_list.product_id %>
+  			<% product = wish_list.product %>
+				<div class="hampers-box">
+			        <div class=" row clearfix">
+			            <div class="col-md-2">
+			                <div class="hamper-image">
+			                	<%= show_image_tag(product.layout_image, product.image_1,:jpg,product.name) %>
+			                </div>
+			            </div>
+			            <div class="col-md-8">
+			                <div class="hamper-heading"><%= product.name %></div>
+			                <div class="hamper-text">
+			                    <%= product.description_short.html_safe() %>
+			                </div>
+			            </div>
+			            <div class="col-md-2">
+			            	<div class="hamper-price center-align">
+			                    <%= number_to_currency(product.price,{:unit => "&pound;"}) %>
+			                </div>
+			            	<div class=" center-align" style="margin: 20px 0px;">
+			            		<div class="green-button">
+			            			<%- if product.out_of_stock? -%>
+			        					<div class="red-text"><b>Out of Stock</b></div>
+			      					<%- else -%>
+                    					<%= link_to("Add to Cart", "/site/cart?product_id=#{product.id}", :remote => true, :method => :post) -%>
+			      					<%- end -%>
+			      				</div>
+			      			</div>
+			      			<div class="wishlist-row row clearfix">
+			      				<div class="wish-list">
+                            		<i><img src="/images/heart-icon.png"></i> 
+                            		<%= link_to "Remove from Wish list", site_wish_list_path(product, wish_list), :method => :delete, :confirm => "Are you sure want to delete this product from your wish list?" %>
+                          		</div>
+                          	</div>
+			            </div>
+			        </div>
+			    </div>
+		    <%  product_id = wish_list.product_id end %>
+		<% end %>
+    <% end %>	
+</div>
 
-  			  <li class="wish_list_button"><%= link_to image_tag("remove_wish.png"), site_wish_list_path(product, wish_list), :method => :delete, :confirm => "Are you sure want to delete this product from your wish list?" %></li>
-  			</ul>
-			</div>
-		</td>
-	</tr>
-	<%  product_id = wish_list.product_id
-	end %>
-  <% end %>
-	<% end %>
-</table>
-
-<% content_for :right do %>
-	<%= render :partial => '/site/shared/box_blog' %>
-	<br />
-	<%= render :partial => '/site/shared/box_subscriptions' %>
-	<br />
-	<%= render :partial => '/site/shared/social_follow' %>
-<% end %>
 

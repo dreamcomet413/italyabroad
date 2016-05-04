@@ -1,36 +1,25 @@
 <%- @title = "My Reviews"; @class = "no-padding" -%>
 <%- @breadcrumbs = "#{link_to "Home", root_url} &raquo; My Reviews" -%>
 
-<div id="header"><%= render :partial => 'site/shared/box_login' %></div>
-<% if @reviews.size > 0  %>
-<h4 class="account-title">My Reviews</h4>
-<%#= content_tag(:div, will_paginate(@reviews), :style => "margin:10px 20px;") if @reviews.size > 0  %>
-<ul style="padding:0;list-style:none;" id="my_reviews_list">
-
-  <%= render :partial => 'review', :collection => @reviews %>
-</ul>
-<% else %>
-<div style="height:300px;margin-left:10px;">
-<h4>You haven’t written any review yet, why not write one</h4>
+<%= render :partial => 'site/shared/box_login' %>
+<div class="full-width bottom-50">
+	<div class="green-heading-with-border">My Reviews</div>
+	<% if @reviews.size > 0  %>
+		<%= render :partial => 'review', :collection => @reviews %>
+	<%#= content_tag(:div, will_paginate(@reviews), :style => "margin:10px 20px;") if @reviews.size > 0  %>
+	<% else %>
+	<div>
+		<h4>You haven’t written any review yet, why not write one</h4>
+	</div>
+	<% end %>
+	<!-- followers reviews -->
+	<ul style="padding:0;list-style:none;" id="my_reviews_list">
+	<% @followers.each do |follower| %>
+	<%  @review_of_follower = Review.find(:all,:conditions=>['user_id = ? AND publish =?',follower.user_id, true],:limit=>5,:order => "created_at DESC")  %>
+	  <% if @review_of_follower.size > 0  %>
+	    <h4 class="account-title">Your Follower <%= User.find_by_id(follower.user_id).name %>'s Reviews</h4>
+	    <%= render :partial => 'review', :collection => @review_of_follower %>
+	  <% end %>
+	<% end %>
+	</ul>
 </div>
-<% end %>
-<!-- followers reviews -->
-<ul style="padding:0;list-style:none;" id="my_reviews_list">
-<% @followers.each do |follower| %>
-<%  @review_of_follower = Review.find(:all,:conditions=>['user_id = ? AND publish =?',follower.user_id, true],:limit=>5,:order => "created_at DESC")  %>
-  <% if @review_of_follower.size > 0  %>
-    <h4 class="account-title">Your Follower <%= User.find_by_id(follower.user_id).name %>'s Reviews</h4>
-    <%= render :partial => 'review', :collection => @review_of_follower %>
-  <% end %>
-<% end %>
-</ul>
-
-<!-- end of followers reviews -->
-
-
-<%- content_for :right do -%>
-  <%= render :partial => '/site/shared/box_subscriptions' %>
-  <br />
-  <%= render :partial => '/site/shared/social_follow' %>
-<%- end -%>
-
