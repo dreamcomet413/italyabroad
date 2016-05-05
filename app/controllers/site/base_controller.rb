@@ -84,8 +84,6 @@ class Site::BaseController < ApplicationController
         #redirect_back_or_default(root_url)
       else
         flash[:notice] = "Wrong password or username " #+ "<br />"
-        #flash[:notice] += "or <br />"
-        #flash[:notice] += "The profile will be reviewed by a member of our team before being published"
         redirect_to :back
       end
     end

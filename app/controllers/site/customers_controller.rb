@@ -95,13 +95,13 @@ class Site::CustomersController < ApplicationController
         end
         #New Added
       else
-        flash[:notice] = @user.show_errors
+        flash[:error] = @user.show_errors
         render :action => :new
       end
       #redirect_back_or_default(root_url)
     else
-      flash[:notice] = @user.show_errors
-      flash[:notice] +=  ('<br />' + "You have to accept the terms and conditions").html_safe()
+      flash[:error] = @user.show_errors
+      flash[:error] +=  ('<br />' + "You have to accept the terms and conditions").html_safe()
       render :action => :new
     end
     #else

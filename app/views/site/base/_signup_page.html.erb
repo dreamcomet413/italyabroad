@@ -6,7 +6,7 @@
     <div class="row clearfix">
       <div class="col-md-8 right-border">
         <% form_for :user, :url => site_customers_path, :html => {:multipart => true} do %>
-          <%= show_messages(flash[:notice]) %>
+          <%= show_messages(flash[:error]) %>
           <div class="green-heading-18">Personal Details</div>
           <p>The email address you enter here is where we'll send all communications when you shop with Italyabroad.</p>
           <div class="signup-col">
@@ -153,7 +153,6 @@
                   <%= hidden_field_tag :token, params[:token] -%>
                 </div>
                 <div class="bottom-15">
-                  <%#= error_messages_for 'user' unless params[:user_type] == "guest" %>
                   <%= show_messages(flash[:notice]) %>
                 </div>
                 <div class="bottom-15 clearfix">
