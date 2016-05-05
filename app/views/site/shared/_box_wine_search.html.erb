@@ -1,22 +1,15 @@
-<%if params[:id]== 'other drinks' %>
-  <%params[:parent] = 'other-drinks' %>
-  <%params[:category] == 'other-drinks' %>
-<%end%>
-<%if params[:parent_type] %>
-  <%params[:parent] = params[:parent_type] %>
-  <%params[:category] = params[:id].gsub(' ', '-')  %>
-<%end%>
-
 <%- if !params[:category].blank? and Category.find(params[:category]) != nil
       @category = Category.find(params[:category])
     else
       @category = Category.find(:first,:conditions=>['LOWER(name = ?)','wine'])
     end %>
-<%- @parent = Category.find(params[:parent] || "wine") -%>
+<%- @parent = Category.find(params[:parent] || params[:category]) -%>
 
-
-
-<%- search_url ||= @category == @parent ? site_search_index_path(:id => @parent) : site_search_index_path(:id=>'other_drinks') -%>
+<!-- Creating form action url for wine/other-drinks index pages and their subcategory products like, white wine, red wine -->
+<%- search_url ||= @category == @parent ? site_search_index_path(:id => @parent) : site_search_index_path(:id => 'other_drinks')   -%>
+<%if params[:parent]%>
+  <%search_url = nested_categories_url(@parent, @category)%>
+<%end%>
 <div class="block" id="box_wine_search">
   <%# if params[:category] == "wine" || ~ /search/ %>
   <% if params[:parent] != "other-drinks" && params[:category] != "other-drinks" %>
@@ -24,7 +17,7 @@
   <% else %>
     <div class="green-heading-16">Other Drink Search</div>
   <% end %>
-  <% form_tag search_url, :class=>'search_form' ,:method => :get do %>
+  <% form_tag search_url, :class=>'search_form'   ,:method => :get do %>
     <%= hidden_field_tag :id,@category.name.downcase if !@category.nil? %>
     <div class="left-bar-search">
       <%#= text_field_tag :text, params[:text], {:id => "search_text"} %>
