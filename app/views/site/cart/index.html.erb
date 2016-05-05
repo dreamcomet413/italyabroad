@@ -1,293 +1,189 @@
 <% @title = "Your cart"; %>
 <% cart_total = 0 %>
 <%- @class = "no-padding"; @breadcrumbs = "#{link_to "Home", root_url} &raquo; Checkout &raquo; Review Order" -%>
-
-<div id="header">Your Cart</div>
-<% if @cart.items.size > 0 %>
-
-    <%= show_messages(flash[:notice]) %>
-    <div style="text-align:center;margin-top:40px;"><%= image_tag("cart_step_1.png") %></div>
+<div class="green-heading-with-border">Your Cart</div>
+<div class="full-width">
+  <% if @cart.items.size > 0 %>
+    <div class="bottom-50"><%= show_messages(flash[:notice]) %></div>
+    <div class="center-align"><%= image_tag("cart_step_1.png") %></div>
     <% form_tag(site_cart_path(@cart.object_id), :id => "form_cart", :method => :put) do %>
-        <table border="0" cellpadding="5" cellspacing="10" width="100%">
-        <tr>
-          <td style="font-size:14px;font-weight:bold;" colspan="2">Product</td>
-          <td style="font-size:14px;font-weight:bold;width:30px;">Price</td>
-          <td style="font-size:14px;font-weight:bold;width:30px;">Qty</td>
-          <td style="font-size:14px;font-weight:bold;">Total</td>
-          <td>&nbsp;</td>
-        </tr>
-        <% for cart_item in @cart.items %>
-            <% product = Product.find(cart_item.product.id) %>
-            <% cart_total += cart_item.total %>
-            <tr>
-              <td style="width:30px;">
-                <%= show_image_tag(:product_thumb_cart, product.image_1,:jpg,product.name) %>
-              </td>
-              <td>
-                <%= hidden_field_tag "cart[][id]", nil, :value => cart_item.product.id %>
-                <%= cart_item.product.name %>
-                <% if product.categories.root.name == "Events" or product.categories.root.name == "Wine Tours" %>
-                    <span style="color:red;font-size:10px;"><br /><%= "(Tickets and details will be delivered electronically)"%></span>
+      <div class="cart-table-head  clearfix">
+        <div class="col-xs-6">Product</div>
+        <div class="col-xs-6 clearfix center-align no-padding">
+          <div class="col-xs-3">Price</div>
+          <div class="col-xs-3">Qty</div>
+          <div class="col-xs-3">Total</div>
+        </div>
+      </div>
+      <% for cart_item in @cart.items %>
+        <% product = Product.find(cart_item.product.id) %>
+        <% cart_total += cart_item.total %>
+        <div class="cart-row  clearfix">
+          <div class="col-xs-6 clearfix white-col">
+            <div class="col-xs-2">
+              <%= show_image_tag(:product_thumb_cart, product.image_1,:jpg,product.name) %>
+            </div>
+            <div class="col-xs-10 top-20">
+              <%= hidden_field_tag "cart[][id]", nil, :value => cart_item.product.id %>
+              <%= cart_item.product.name %>
+              <% if product.categories.root.name == "Events" or product.categories.root.name == "Wine Tours" %>
+                <span style="color:red;font-size:14px;"><br /><%= "(Tickets and details will be delivered electronically)"%></span>
+              <% end %>
+              <% if product.from_quantity > 0 && product.from_quantity_price > 0 && cart_item.quantity < product.from_quantity %>
+                <div style="color:red">
+                  <% if product.categories.root.name == "Wine" %>
+                    <%= link_to "(Buy a case of #{product.from_quantity} and save #{number_to_currency(product.from_quantity_price, {:unit=> '£'} )} )",  '#', :onclick => "$('txt_qty_#{cart_item.product.id }').value=#{product.from_quantity}; $('form_cart').submit(); " %>
+                  <% elsif product.categories.root.name == "Food" %>
+                    <%= link_to "(Buy #{product.from_quantity} and save  #{number_to_currency product.from_quantity_price, :unit => '£'} )",  '#', :onclick => "$('txt_qty_#{cart_item.product.id }').value=#{product.from_quantity}; $('form_cart').submit();" %>
 
-                <% end %>
-                <% if product.from_quantity > 0 && product.from_quantity_price > 0 && cart_item.quantity < product.from_quantity %>
-                    <div style="color:red">
-                      <% if product.categories.root.name == "Wine" %>
-
-                          <%= link_to "(Buy a case of #{product.from_quantity} and save #{number_to_currency(product.from_quantity_price, {:unit=> '£'} )} )",  '#', :onclick => "$('txt_qty_#{cart_item.product.id }').value=#{product.from_quantity}; $('form_cart').submit(); " %>
-
-                      <% elsif product.categories.root.name == "Food" %>
-
-                          <%= link_to "(Buy #{product.from_quantity} and save  #{number_to_currency product.from_quantity_price, :unit => '£'} )",  '#', :onclick => "$('txt_qty_#{cart_item.product.id }').value=#{product.from_quantity}; $('form_cart').submit();" %>
-
-                      <% end %>
-                    </div>
-
-
-
-                <% end %>
-              </td>
-              <td>
-                <%= number_to_currency cart_item.price, :unit => "&pound;" %>
-              </td>
-              <td>
-                <%= text_field_tag "cart[][quantity]", nil, :value => cart_item.quantity, :size => 2, :maxlength => 3, :style => "text-align:center", :id => "txt_qty_#{cart_item.product.id }" %>
-              </td>
-              <td>
-                <%= number_to_currency cart_item.total, :unit => "&pound;" %>
-              </td>
-              <td>
-                <%= link_to(image_tag("icon-cancel.png", :alt => "Delete Item", :style => "vertical-align:bottom"), "/site/cart/#{@cart.object_id}?product_id=#{cart_item.product.id}", :method => :delete, :confirm => "Are you sure want to delete this product?")  %>
-              </td>
-            </tr>
-        <% end %>
-        <!-- modified by Indu to avoid ticket event delivery method on august 13 , 2012 -->
-        <% number_of_wines = 0
-           for cart_item in @cart.items
-             product = Product.find(cart_item.product.id)
-             if product.categories.root.name == "Wine"
-               number_of_wines += cart_item.quantity
-             end
-           end
-        %>
-
-
-        <%
-
-           cart_contains_not_only_events = false
-           cart_contains_events_only = false
-           for cart_item in @cart.items
-
-
-             if product.categories.root.name != "Events" and  product.categories.root.name != "Wine Tours"
-               cart_contains_not_only_events = true
-               break
-             end
-
-           end
-
-           for cart_item in @cart.items
-             product = Product.find(cart_item.product.id)
-             if product.categories.root.name == "Events" or product.categories.root.name == "Wine Tours"
-               cart_contains_events_only = true
-             else
-               cart_contains_events_only = false
-             end
-           end
-           #and cart_contains_not_only_events == false
-        %>
-
-
-
-        <tr>
-          <td colspan="6" align="right"><%= image_submit_tag "buttons/update_button.png" %></td>
-        </tr>
-
-        <tr>
-          <td colspan="6">&nbsp;</td>
-        </tr>
-        <% if @buy_together_discount > 0 %>
-            <tr>
-              <td colspan="6" align="right">
-                Buy together and save discount: - <%= number_to_currency(@buy_together_discount, :unit => "&pound;") %>
-              </td>
-            </tr>
-        <% end %>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+          <div class="col-xs-6 grey-col clearfix">
+            <div class="col-xs-3"><%= number_to_currency cart_item.price, :unit => "&pound;" %></div>
+            <div class="col-xs-3">
+              <%= text_field_tag "cart[][quantity]", nil, :value => cart_item.quantity, :size => 2, :maxlength => 3, :style => "text-align:center", :id => "txt_qty_#{cart_item.product.id }" %>
+            </div>
+            <div class="col-xs-3"><%= number_to_currency cart_item.total, :unit => "&pound;" %></div>
+            <div class="col-xs-3">
+              <%= link_to(image_tag("icon-cancel.png", :alt => "Delete Item", :style => "vertical-align:bottom"), "/site/cart/#{@cart.object_id}?product_id=#{cart_item.product.id}", :method => :delete, :confirm => "Are you sure want to delete this product?")  %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <!-- modified by Indu to avoid ticket event delivery method on august 13 , 2012 -->
+      <% number_of_wines = 0
+        for cart_item in @cart.items
+          product = Product.find(cart_item.product.id)
+          if product.categories.root.name == "Wine"
+            number_of_wines += cart_item.quantity
+          end
+        end
+      %>
+      <%
+        cart_contains_not_only_events = false
+        cart_contains_events_only = false
+        for cart_item in @cart.items
+          if product.categories.root.name != "Events" and  product.categories.root.name != "Wine Tours"
+            cart_contains_not_only_events = true
+            break
+          end
+        end
+        for cart_item in @cart.items
+          product = Product.find(cart_item.product.id)
+          if product.categories.root.name == "Events" or product.categories.root.name == "Wine Tours"
+            cart_contains_events_only = true
+          else
+            cart_contains_events_only = false
+          end
+        end
+        #and cart_contains_not_only_events == false
+      %>
+      <div class="green-button top-20 clearfix right-align">
+        <div class="sumbit-btn cart-update-btn "><%= submit_tag "Update" %></div>
+      </div>
+      <% if @buy_together_discount > 0 %>
+        <div class="top-30 clearfix">
+          <div class="pull-right">
+            Buy together and save discount: - <%= number_to_currency(@buy_together_discount, :unit => "&pound;") %>
+          </div>
+        </div>
+      <% end %>
+      <div class="top-30 right-align">
         <% if @cupon.nil? || !@cupon.active || (@cupon.created_at + 30.days) < Date.today || !@cart.valid? %>
-            <tr>
-              <td colspan="5" align="right">
-                If you have a promotional code please enter it here: <%= text_field :cupon, :code, :style => "width:70px" %>
-              </td>
-              <td align="right">
-                <%= image_submit_tag "buttons/add_button.png", :style => "padding-left:2px;padding-right:2px;" %>
-              </td>
-            </tr>
-        <% else %>
-            <tr>
-              <td colspan="6" align="right">
+          <div class="code-text">
+            If you have a promotional code please enter it here: <%= text_field :cupon, :code %>
+          </div>
+          <div class="cart-add green-button">
+            <div class="submit-btn"><%= submit_tag "Add" %></div>
+          </div>
+        <% else%>
+            <div>
+              <div>
                 <% if @cupon.cupon_type != "percentage" %>
                     Promotional Code: - <%= number_to_currency @cupon.price, :unit => "&pound;" %> <%= link_to_function image_tag("icon-cancel.png", :alt => "Delete Cupon", :style => "vertical-align:bottom"), "$('cupon_code').value = '';$('form_cart').submit()" %>
                 <% else %>
                     Promotional Code: - <%= number_to_currency (cart_total-@cart.sub_total), :unit => "&pound;" %> <%= link_to_function image_tag("icon-cancel.png", :alt => "Delete Cupon", :style => "vertical-align:bottom"), "$('cupon_code').value = '';$('form_cart').submit()" %>
                 <% end %>
                 <%= hidden_field :cupon, :code %>
-              </td>
-            </tr>
+              </div>
+            </div>
         <% end %>
-        <tr>
-          <td colspan="6" align="right">
-            <span style="font-size:14px;"><strong>Sub Total:</strong> <%= number_to_currency(@cart.sub_total, :unit => "&pound;") %></span>
-          </td>
-        </tr>
-        <% if @cart.sub_total < Setting.order_delivery_amount %>
-            <tr>
-              <td colspan="6" align="right">
-                <em style="color:red; font-size: 12px;"><b>Spend over <%= number_to_currency Setting.order_delivery_amount, :unit => "&pound;" %> and get FREE DELIVERY UK mainland only, for all other destinations we will contact you with a quote.</b></em>
-              </td>
-            </tr>
-        <% end %>
-        <tr>
-          <td colspan="6">&nbsp;</td>
-        </tr>
-
+      </div>
+      <div class="cart-sub-total">
+        Sub Total: <b><%= number_to_currency(@cart.sub_total, :unit => "&pound;") %></b>
+      </div>
+      <div class="spend-over">Spend over <%= number_to_currency Setting.order_delivery_amount, :unit => "&pound;" %> and get FREE DELIVERY UK mainland only, for all other destinations we will contact you with a quote.</div>
+      <div class="delivery-method">
         <% if @cart.sub_total > Setting.order_delivery_amount and @delivery.bulk_order_price == 0 %>
-
-            <% if cart_contains_not_only_events %>
-
-                <tr>
-                  <td colspan="6">
-                     <em>Your order qualifies for free delivery *</em><br /><%#= hidden_field :delivery, :id, :value => Delivery.find(:first).id %>
-                    <!-- <div align="right">Select delivery method: <%#= collection_select :delivery, :id, Delivery.find(:all,:conditions=>['name != ?','For ticket events']), :id, :name_with_price %></div> -->
-                  </td>
-                </tr>
-                <tr>
-                  <td colspan="6" align="right">
-                    Select delivery method: <%= collection_select :delivery, :id, Delivery.find(:all,:conditions=>['name != ? and id in (?)','For ticket events',[12,4,8,11]]), :id, :name_with_price %>
-                  </td>
-                </tr>
-                
-            <% end %>
-        <% else %>
+          <% if cart_contains_not_only_events %>
+            <div class="red-text">Your order qualifies for free delivery *</div>
+            <div class="top-30">
+              Select delivery method: <%= collection_select :delivery, :id, Delivery.find(:all,:conditions=>['name != ? and id in (?)','For ticket events',[12,4,8,11]]), :id, :name_with_price %>
+            </div>      
+          <% end %>
+          <% else %>
             <% if cart_contains_not_only_events  %>
-                <tr>
-                  <td colspan="6" align="right">
-                    Select delivery method: <%= collection_select :delivery, :id, Delivery.find(:all,:conditions=>['name != ? and id != ?','For ticket events',12]), :id, :name_with_price %>
-                  </td>
-                </tr>
+              <div class="">
+                Select delivery method: <%= collection_select :delivery, :id, Delivery.find(:all,:conditions=>['name != ? and id != ?','For ticket events',12]), :id, :name_with_price %>
+              </div>
             <% end %>
-        <% end %>
-
-        <% if @setting.discount_suggestion?(number_of_wines) %>
-            <tr>
-              <td colspan="6" align="right">
-           <span style="font-size:14px;">Buy <%= number_of_wines %> wines and get <%= ((@cart.total*(@setting.wine_discount_amount))/100).round(1) %>discount &nbsp;&nbsp;<%#= ((@cart.total*(@setting.wine_discount_amount))/100).round(1) %>
-             </strong> <%= number_to_currency(@cart.total, :unit => "&pound;") %></span>
-              </td>
-            </tr>
-        <% end %>
-
-
-        <tr>
-          <td colspan="6" align="right">
-            <span style="font-size:14px;"><strong>Total:</strong> <%= number_to_currency(@cart.total, :unit => "&pound;") %></span>
-          </td>
-        </tr>
-        <tr>
-          <td colspan="6">&nbsp;</td>
-        </tr>
-        <tr>
-          <td colspan="6" align="right">
-          	<span style="padding-right: 10px;">
-            <%= link_to image_tag("buttons/continue_shopping_button.png"), '/' %>
-            <%# continue_shopping_site_cart_index_path %>
-            </span>
-            <span>
-              <% if (current_user.admin? rescue false)
-                  action = 'user_select'
-                else
-                  action = 'gift_options'
-                end
-              %>
-                
-
-                <%= link_to image_tag("buttons/pay_now_btn.png"),:controller=>'cart',:action=> action %>
-              
-            </span>
-            or <%= link_to "Empty", empty_site_cart_index_path, :confirm => "Are you sure want to empty this cart?" %>
-            <%#= link_to image_tag("buttons/continue_button.png"), checkouts_url %>
-            <%#= link_to image_tag("buttons/pay_now_btn.png"), checkouts_url %>
-
-          </td>
-          <!-- <td align="right">
-          <%#= link_to image_tag("buttons/continue_button.png"), checkouts_url %>
-        </td>-->
-         <!--  <td align="left">
-            or <%#= link_to "Empty", empty_site_cart_index_path, :confirm => "Are you sure want to empty this cart?" %>
-          </td> -->
-        </tr>
-        <tr>
-          <td colspan="6">
-            * Please note that the delivery fees refer to deliveries to Mainland UK addresses only, for all other destinations please <%= mail_to "info@italyabroad.com", "contact us" %>
-          </td>
-        </tr>
-        </table>
-    <% end %>
-    <%#= observe_field "delivery_id", :on => :change, :function => "$('form_cart').submit()" %>
-<% else %>
-    <table border="0" cellpadding="5" cellspacing="10" width="100%">
-      <tr>
-        <td>Your cart is empty</td>
-      </tr>
-    </table>
-<% end %>
-
-<!-- div style="border:1px solid #ccc;margin:10px 20px;background-color:#f3f3f3;padding:5px;float:left;text-align:center;width:690px;" -->
-
-<% if @cart.items.length !=0 %>
-<div style="border:1px solid #ccc;margin:10px 20px;padding:5px;float:left;text-align:center;width:690px;">
-
-  <div style="font-size:14px;font-weight:bold;color:#003400;text-align:left;">Other products you may be interested in</div><br /><br />
-<%#- products = Product.find(:all, :include => :categories, :conditions => ["categories.friendly_identifier = ? or categories.friendly_identifier = ? or categories.friendly_identifier = ?", "wine", "food", "hampers"], :limit => 5) -%>
-  <%- products = @cart.related_products.sample(5) #Product.find(:all, :limit => 5, :conditions=>['active = true'],:order => "RAND()") -%>
-  <!-- <ul style="list-style:none;margin:0;padding:0;float:left:margin-left:10px;">-->
-  <%#- for product in products -%>
-  <!--  <li style="float:left;v-align:center;">-->
-  <%#= link_to show_image_tag_in_cart(:product_thumb, product.image_1, :jpg), nested_products_uri(product) %><br />
-  <%#= link_to product.name, nested_products_uri(product), :style => "width:130px;display:block;text-align:center;" %>
-  <!-- </li>-->
-  <%#- end -%>
-  <!--</ul>-->
-  <table align="center">
-    <tr>
-      <%- for product in products -%>
-          <%# if product.root_category.upcase == 'WINE' or product.root_category.upcase == 'FOOD' or product.root_category.upcase == 'HAMPERS' %>
-          <% #if product.root_category.present? && %w(Wine Food Hampers).include?(product.root_category) %>
-              <td valign="top">
-                <div style="float:left;width:130px;">
-                  <div style="height:120px;vertical-align:bottom;v-align:bottom;margin-bottom:0px;">
-                    <%= link_to show_image_tag(product.layout_image, product.image_1, :jpg,product.name), nested_products_uri(product) %>
-                  </div>
-                  <div style="clear:both;"><br /><br /></div>
-                  <div>
-                    <%= link_to product.name, nested_products_uri(product) %>
-                  </div>
-                </div>
-
-              </td>
-          <% #end %>
+          <% end %>
+      </div>
+      <% if @setting.discount_suggestion?(number_of_wines) %>
+        <div class="spend-over">
+          Buy <%= number_of_wines %> wines and get <%= ((@cart.total*(@setting.wine_discount_amount))/100).round(1) %>discount <%= number_to_currency(@cart.total, :unit => "&pound;") %>
+        </div>
       <% end %>
-    </tr>
-  </table>
+      <div class="right-align top-30">
+        <div class="grand-total">
+          Total: <b><%= number_to_currency(@cart.total, :unit => "&pound;") %></b>
+        </div>
+      </div>
+      <div class="top-30 right-align">
+        <div class="continue-shopping green-button">
+          <%= link_to ("Continue Shopping"), '/' %>
+        </div>
+        <div class="pay-now green-button">
+          <% if (current_user.admin? rescue false)
+              action = 'user_select'
+            else
+              action = 'gift_options'
+            end
+          %>
+            <%= link_to ("Pay Now"),:controller=>'cart',:action=> action %>
+        </div>
+        <div class="empty">
+          or <%= link_to "Empty", empty_site_cart_index_path, :confirm => "Are you sure want to empty this cart?" %>
+        </div>
+      </div>
+      <div class="note-text">
+        * Please note that the delivery fees refer to deliveries to Mainland UK addresses only, for all other destinations please <%= mail_to "info@italyabroad.com", "contact us" %>
+      </div>
+    <% end %> <!-- end form-->
+  <% else %>
+    <div class="red-text">Your cart is empty</div>
+  <% end %>
+  <!-- other productts-->
+  <% if @cart.items.length !=0 %>
+    <div class="related-prod-box bottom-50">
+      <div class="green-heading-2">Other products you may be interested in</div>
+      <%- products = @cart.related_products.sample(6) #Product.find(:all, :limit => 5, :conditions=>['active = true'],:order => "RAND()") -%>
+      <div class="row clearfix center-align">
+        <%- for product in products -%>
+          <div class="col-md-2 col-xs-4">
+            <div><%= link_to show_image_tag(product.layout_image, product.image_1, :jpg,product.name), nested_products_uri(product) %></div>
+            <div class="producer-product-text"><%= link_to product.name, nested_products_uri(product) %></div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
 </div>
-<% end %>
 
-<% content_for :right do %>
-    <%= render :partial => '/site/shared/box_subscriptions' %>
-    <br />
-    <%= render :partial => '/site/shared/box_popular' %>
-    <br />
-    <%= render :partial => '/site/shared/social_follow' %>
-<% end %>
+
 
 <script type="text/javascript">
     $("#delivery_id").on("change", function(){
