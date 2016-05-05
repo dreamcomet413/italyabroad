@@ -34,13 +34,13 @@ module AuthenticatedSystem
     end
 
     def chef_login_required
-       username, passwd = get_auth_data
+      username, passwd = get_auth_data
       self.current_user ||= User.authenticate(username, passwd) if username && passwd
-    (logged_in? && chef?) || (User.count == 0) ? true : access_denied('site')
-    flash[:notice] = 'You must be logged in to submit recipes'
+      (logged_in?) || (User.count == 0) ? true : access_denied('site')
+      flash[:notice] = 'You must be logged in to submit recipes'
     end
 
-      def chef?
+    def chef?
       current_user != :false && current_user.type.name.upcase == "CHEF" && active?
     end
 

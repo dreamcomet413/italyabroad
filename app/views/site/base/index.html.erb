@@ -1,29 +1,8 @@
 
 <% @title = "Italian Wines & Italian Food made by Small Producers" %>
-<%# @title = "Italian Wines & Italian Food made by Small Producers";
-#@description = "Italian Food and Italian Wine made by Passionate Small Producers in the UK,Fantastic Italian Wine and Italian Food,High Quality Italian Wine and Food"; @keys = "Italian Wines,Fine Italian Wines,Italian Red and White Wines, Italian Food, Wine Tasting, Wine Expert,Italian Wine Blog,Italy,Food,Wines,Barolo,Amarone,Brunello"
-%>
 <%  @description = @setting.home_page_meta_description; @keys = @setting.home_page_meta_key %>
-<!--<script type="text/javascript">
-/*function win1()
-{
-  var win = new Window({id: "win1", className: "alphacube",title:'Welcome to the new Italyabroad.com', width:380, height:150, top:0, left: 1, parent:$('container')});
-  win.getContent().innerHTML = "<p>We have just relaunched our website adding plenty of new functionalities, we have done all tests and everything seems to be working fine, however, we ask you to be patient in case something does not work the way it is supposed to and please let us know so we can give it our immediate attention.</p>";
-
-  win.setDestroyOnClose();
-  win.show();
-  win.setConstraint(true, {left:10, right:20})
-  win.toFront();
-}
-*/
-
-
-
-</script> -->
-
 
 <%- @breadcrumbs = "Welcome to Italyabroad.com" -%>
-<%#= javascript_tag "document.observe('dom:loaded', function(e){ HomeImageSlideShow.setup() });" %>
   <!-- start carousel-->
   <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
@@ -187,39 +166,6 @@
     </div>
     <!-- End Slider-->
   </div><!--End Food Counter-->
-  <!--<%= render :partial => '/site/shared/box_welcome' %> -->
-  <!-- <div class="new_search">
-    <div class="fLeft font26">
-      <dt style="width: 27.8em;">
-        <h3 style="margin-left: 15px;">Recommended Wines</h3>
-      </dt>
-    </div>
-
-    <dt style="width: 100%;">
-      <% @recommended_wines.each do |wine| %>
-        <dt style="width: 15em;">
-          <center>
-            <%= link_to show_image_tag(wine.layout_image, wine.image_1, :jpg, wine.name), nested_products_uri(wine) %>
-            <br /><br />
-            <div style="height:25px;">
-            <%#= link_to show_image_tag(:card, wine.image_1, :jpg, wine.name), nested_products_uri(wine), {:title => wine.name} %>
-            <%= wine.name -%>
-            </div>
-            <div style="padding-top: 5px;">
-            <% if wine.present? && wine.product_prices.present? %>
-              <% wine.product_prices.each do |w| %>
-                <p style="color:#C40909; font-weight:bold; font-size: 13px;"><%= number_to_currency w.price, :unit => "&pound;" -%></p>
-              <% end %>
-            <% else %>
-              <p style="color:#C40909; font-weight:bold; font-size: 13px;">Not Available</p>
-            <% end %>
-            </div>
-          <center>
-        </dt>
-      <% end %>
-    </dt>
-  </div> -->
-
 
 <!-- 3 colume bottom blocks-->
 <% content_for :bottomBlocks do %>

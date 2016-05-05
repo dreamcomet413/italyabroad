@@ -21,7 +21,7 @@ class Site::RecipesController < ApplicationController
         @recipe.active = true
 
         @recipe.image_1.destroy if @recipe.image_1 && !params[:image_1].blank?
-        @recipe.build_image_1(:image_file => params[:image_1]) unless params[:image_1].blank?
+        @recipe.build_image_1(:image_filename => params[:image_1]) unless params[:image_1].blank?
         @recipe.user_id = 3
         if @recipe.save
           session[:current_user] = ''
@@ -35,7 +35,7 @@ class Site::RecipesController < ApplicationController
         @recipe = current_user.recipes.new(params[:recipe])
         @recipe.active = true
         @recipe.image_1.destroy if @recipe.image_1 && !params[:image_1].blank?
-        @recipe.build_image_1(:image_file => params[:image_1]) unless params[:image_1].blank?
+        @recipe.build_image_1(:image_filename => params[:image_1]) unless params[:image_1].blank?
         if @recipe.save
           flash[:alert] = "Recipe successfully created!"
           redirect_to :action => "index"
