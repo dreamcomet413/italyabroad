@@ -2021,6 +2021,29 @@ a.close-btn{
 .top-8{
 	margin-top: 8px;
 }
+.site-map-box{
+	margin: 30px 0px 0px;
+
+}
+.site-map-box ul li{
+	list-style: none;
+	margin-bottom: 5px;
+	font-size: 14px;}
+.links-heading {
+	font-size: 18px;
+	margin-bottom: 10px;
+	font-family: JosefinSlab-Bold;
+	color: #5c8018;
+}
+.links-heading a{
+	color: #5c8018; 
+}
+.site-map-box ul li a{
+	text-decoration: none;
+}
+.site-map-box ul li a:hover{
+	text-decoration: underline;
+}
 /*=============== Media quires=================*/
 @media only screen and (max-width: 1035px) {
 	.navigation-row .nav  li  a{
