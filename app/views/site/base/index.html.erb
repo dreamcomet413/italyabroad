@@ -166,7 +166,6 @@
     </div>
     <!-- End Slider-->
   </div><!--End Food Counter-->
-
 <!-- 3 colume bottom blocks-->
 <% content_for :bottomBlocks do %>
   <div class="row clearfix">
@@ -177,21 +176,6 @@
     </div>
   </div>
 <% end %><!-- End 3 cloum bottom blocks-->
-<% content_for :right do %>
-    <%= render :partial => '/site/shared/box_event' %>
-    <br />
-    <%= render :partial => '/site/shared/box_subscriptions' %>
-    <br />
-    <%= render :partial => '/site/shared/box_latest_community_comments' %>
-    <br />
-    <%= render :partial => '/site/shared/box_blog' %>
-    <br />
-    <%= render :partial => '/site/shared/box_popular' %>
-    <br />
-   	<%= render :partial => '/site/shared/box_mood' %>
-    <br />
-    <%= render :partial => '/site/shared/social_follow' %>
-<% end %>
 
 <script type="text/javascript">
   $(document).ready(function(){

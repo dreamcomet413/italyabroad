@@ -1,52 +1,57 @@
 <%- @title = "My favourite wines" -%>
 <%- @breadcrumbs = "#{link_to "Home", root_url} &raquo; My favourite wines" -%>
 <% @class = "no-padding" %>
-
-<div id="header"><%= render :partial => 'site/shared/box_login' %></div>
-<h4 class="account-title">My favourite wines</h4>
-<table border="0" cellspacing="0" cellpadding="10" width="100%">
+	<%= render :partial => 'site/shared/box_login' %>
+<div class="full-width bottom-50">
+	<div class="green-heading-with-border">My favourite wines</div>	
 	<% if @wine_lists.size == 0 %>
-		<tr>
-		  <td>You haven’t added any wine yet to your wine list, why not let our other members know your favourite wines?</td>
-    </tr>
+		<div class="">
+			You haven’t added any wine yet to your wine list, why not let our other members know your favourite wines?
+		</div>
 	<% else %>
-	<%= product_id = "" %>
-  <% for wine_list in @wine_lists  %>
-   <% if product_id.to_i != wine_list.product_id %>
-  <% product = wine_list.product %>
-	<tr>
-	  <td>
-	   <%= show_image_tag(product.layout_image, product.image_1,:jpg,product.name) %>
-	  </td>
-		<td valign="top">
-		  <h2 style="font-weight:normal;"><%= link_to product.name,nested_products_uri(product) %></h2>
-		  <%= product.description_short.html_safe() %>
-		</td>
-		<td style="text-align:center;">
-		  <div class="box_price">
-		    <ul class="inner-container">
-  		    <li class="price"><%= number_to_currency(product.price,{:unit => "&pound;"}) %></li>
-  	      <li class="add_to_cart_button"><%- if product.out_of_stock? -%>
-			        <%= image_tag('out_of_stock.png') %>
-			      <%- else -%>
-                    <%= link_to(image_tag("buttons/add_to_cart_button.png"), "/site/cart?product_id=#{product.id}", :remote => true, :method => :post) -%>
-			      <%- end -%></li>
-  			  <li class="wish_list_button"><%= link_to image_tag("remove_wish.png"), site_wine_list_path(product, wine_list), :method => :delete, :confirm => "Are you sure want to delete this product from your wine list?" %></li>
-  			</ul>
-			</div>
-		</td>
-	</tr>
-	<%  product_id = wine_list.product_id
-	end %>
-  <% end %>
-	<% end %>
-</table>
-
-<% content_for :right do %>
-	<%= render :partial => '/site/shared/box_blog' %>
-	<br />
-	<%= render :partial => '/site/shared/box_subscriptions' %>
-	<br />
-	<%= render :partial => '/site/shared/social_follow' %>
-<% end %>
-
+		<%= product_id = "" %>
+  		<% for wine_list in @wine_lists  %>
+   			<% if product_id.to_i != wine_list.product_id %>
+  				<% product = wine_list.product %>
+				<div class="hampers-box">
+			        <div class=" row clearfix">
+			            <div class="col-md-2">
+			                <div class="hamper-image">
+			                	<%= show_image_tag(product.layout_image, product.image_1,:jpg,product.name) %>
+			                </div>
+			            </div>
+			            <div class="col-md-8">
+			                <div class="hamper-heading">
+			                	<%= link_to product.name,nested_products_uri(product) %></div>
+			                <div class="hamper-text">
+			                    <%= product.description_short.html_safe() %>
+			                </div>
+			            </div>
+			            <div class="col-md-2 center-align">
+			                <div class="add-hamper">
+			                    <div class="hamper-price">
+			                    	<%= number_to_currency(product.price,{:unit => "&pound;"}) %>
+			                    	show price here
+			                    </div>
+			                    <div class="hamper-quantity-row clearfix">
+			                    	<%- if product.out_of_stock? -%>
+			        					<div class="hamper-button"><%= image_tag('out_of_stock.png') %></div>
+			      					<%- else -%>
+			                        	<div class="bottom-15 green-button">
+			                            	<%= link_to(("Add to Cart"), "/site/cart?product_id=#{product.id}", :remote => true, :method => :post) -%>
+			                        	</div>
+			                        <%- end -%>
+			                        <div class="wishlist-row row clearfix">
+			                        	<div class="wine-list">
+				                            <i><img src="/images/bottle-icon.png"></i><%= link_to ("Remove from Wine list"), product_wine_list_path(product, wine_list), :method => :delete, :confirm => "Are you sure want to delete this product from your wine list?" %>
+				                        </div>
+			                        </div>
+			                    </div>
+			                </div>
+			            </div>
+			        </div>
+			    </div>
+			<%  product_id = wine_list.product_id end %>		
+		<% end %>
+	<%end %>
+</div>

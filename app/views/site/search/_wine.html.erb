@@ -1,6 +1,6 @@
 
 	<% for product in @wines %>
-	<table style="padding-bottom:20px;width:100%;" cellpadding="0" border="0" cellspacing="0">
+  <table style="padding-bottom:20px;width:100%;" cellpadding="0" border="0" cellspacing="0">
 		<tr>
 
 			<td style="width: 490px;">
@@ -34,13 +34,13 @@
               <% end %>
     				</li>
     				<li style="margin-bottom:10px;">
-                      <%= link_to(image_tag("add_to_wish_list.png"), "/site/wish_list?product_id=#{product.id}", :remote => true, :method => :post, :style => "color:#464646;") %>
+              <%= link_to(image_tag("add_to_wish_list.png"), "/site/wish_list?product_id=#{product.id}", :remote => true, :method => :post, :style => "color:#464646;") %>
     				</li>
   			    <li>
   			      <%- if product.out_of_stock? -%>
   			        <%= image_tag('out_of_stock.png') %>
   			      <%- else -%>
-                      <%= link_to(image_tag("buttons/add_to_cart_button.png"), "/site/cart?product_id=#{product.id}", :remote => true, :method => :post) %>
+                <%= link_to(image_tag("buttons/add_to_cart_button.png"), "/site/cart?product_id=#{product.id}", :remote => true, :method => :post) %>
   			      <%- end -%>
   			    </li>
   				</ul>
@@ -69,7 +69,6 @@
   <%= render :partial => '/site/shared/box_mood' %>
   <br />
   <%= render :partial => '/site/shared/social_follow' %>
-
 
 <% end %>
 

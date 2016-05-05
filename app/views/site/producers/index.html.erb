@@ -96,11 +96,3 @@
   <%= render :partial => '/site/shared/wine_club' %>
   <%= render :partial => '/site/shared/cercavino' %>
 </div><!-- start 3 colum  boxes-->
-<div class="digg_pagination pagination-2 clearfix">
-  <div class="page_info show-result">
-    <%= page_entries_info @producers %>
-  </div>
-  <div class="pagination-links">
-    <%= will_paginate @producers, :container => false %>
-  </div>
-</div>

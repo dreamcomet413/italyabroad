@@ -68,9 +68,10 @@ a.wine_link:hover{
 	width: 32px;}
 .top-bar-links{
 	/*width: 285px;*/
-	font-family: prestigeEliteStd;
+	font-family: JosefinSlab-SemiBold;
 	color: #53565a;
-	margin-top:7px;}
+	margin-top:6px;
+	font-size: 14px;}
 .top-bar-links a{
 	color:#53565a;
 	text-decoration: none;
@@ -104,7 +105,7 @@ img{
 .hide-tablet{
 	display: block;
 }
-.cart{
+.cart_main{
 	float: left;
 	margin-right: 10px;
 	max-width: 25%;
@@ -1019,6 +1020,13 @@ header{
 	margin: 18px 0px 12px;
 
 }
+.hamper-heading a{
+	text-decoration: none;
+	color: #5c8018
+}
+.hamper-heading a:hover{
+	text-decoration: underline;
+}
 .left-bar-search{
 	position: relative;
 }
@@ -1867,6 +1875,11 @@ a.close-btn{
 	margin-left: 100px;
 	max-width: 140px;
 }
+.section-label2.col-md-2{
+	width: 20%;
+	/*max-width: 140px;*/
+	margin-top: 8px;
+}
 .form-row input, .form-row select{
 	box-sizing:border-box;
 	width: 100%;
@@ -1956,6 +1969,58 @@ a.close-btn{
 .terms-text h2{
 	margin-top: 35px;
 }
+.ratings{
+	display: inline-block;
+	margin-left: 10px;
+	width: 110px;}
+.top-60{
+	margin-top: 60px;
+}
+.auto-width img{
+	width: auto;
+	max-width: 100%;
+}
+.about-review .col-md-4.about{
+	width: 100%;
+	margin-right: 0px;
+	margin-left: 0px;
+	padding: 0px;
+}
+.formErrors{
+	border: solid 1px #ebebeb;
+	margin: 10px 0px;}
+.formErrors h5{
+	background: #cb0d2b;
+	color:#fff;
+	padding: 10px;
+	text-align: center;
+	margin: 0px;
+	font-size: 18px;}
+.formErrors ul {
+	padding: 10px;
+}
+.formErrors ul li {
+	list-style: none;
+	margin-bottom: 5px;
+	font-size: 14px;
+	color: #cb0d2b !important;}
+.section-des ol{
+	margin-left: 15px;
+	margin-top: 5px;
+	font-size: 14px;
+}
+.section-des ol li{
+	margin-bottom: 5px;
+}
+.section-des ol a{
+	text-decoration: none;
+}
+.section-des ol a:hover{
+	text-decoration: underline;
+}
+.top-8{
+	margin-top: 8px;
+}
 /*=============== Media quires=================*/
 @media only screen and (max-width: 1035px) {
 	.navigation-row .nav  li  a{
@@ -1965,6 +2030,8 @@ a.close-btn{
 @media only screen and (max-width: 990px){
 	/* profile */
 	.section-label.col-md-2{
+		margin-left: 20px;}
+	.section-label2.col-md-2{
 		margin-left: 20px;}
 	header{
 		display: none;
