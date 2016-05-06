@@ -5,62 +5,68 @@
 
 <%= javascript_tag "document.observe('dom:loaded', function(e){ RemotePaymentMethodForm.setup() });" %>
 
-<div id="header">Payment Information </div>
-
-<% if flash[:notice] %>
-		<div style="text-align:center;margin:10px 0px 10px 0px;padding:5px;font-size:12px;color:red;">
-			<%= flash[:notice].to_s.html_safe rescue flash[:notice] %>
-		</div>
-	<% end %>
-<div style="text-align:center;margin-top:40px;"><%= image_tag("cart_step_3.png") %></div>
-<%= render :partial => 'site/shared/box_cart_form' %>
-
-<% total_points = current_user.find_total_points(current_user)
-total_points_used = current_user.orders.sum('points_used')
+<div id="header" class="green-heading-with-border">Payment Information </div>
+<div class="full-width">
+  <% if flash[:notice] %>
+    <div style="text-align:center;margin:10px 0px 10px 0px;padding:5px;font-size:12px;color:red;">
+      <%= flash[:notice].to_s.html_safe rescue flash[:notice] %>
+    </div>
+  <% end %>  
+  <div class="step-img"><%= image_tag("cart_step_3.png") %></div>
+  <%= render :partial => 'site/shared/box_cart_form' %>
+  <div>
+    <% total_points = current_user.find_total_points(current_user)
+    total_points_used = current_user.orders.sum('points_used')
     %>
+  </div>
+  <div class="credit-card-wrapper">
+    <% form_tag site_orders_path, :id => "check_payment" do %>
+      <div class="terms-cond-row">
+        <span>Please tick here to confirm that you accept our
+        <%= link_to "Terms and Conditions", {:controller => :base, :action => :terms_conditions}, :popup => ['wtc', 'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=Yes,resizable=No,copyhistory=no, width=450, height=520'] %></span>
+        <span><%=check_box_tag 'accept' %></span>  
+      </div>
+      <% if total_points - total_points_used > 0 %>
+        <div class="points-box">
+          <div class="section-heading">
+            You have <span id="highlight"><%= (total_points - total_points_used).to_f.round %></span> points in your credit.  This is equivalent to <span id="highlight"><%= number_to_currency((total_points - total_points_used)* Setting.find(:first).points_to_pound.to_f, :unit => "&pound;") %></span> 
+          </div>
+          <div class="section-des">Would you like to use these points for the purchase?</div>
+          <div class="enter-points">
+            <span>Enter the required points here</span> 
+            <span>
+              <%= text_field_tag :points_to_be_used %>
+              <%= hidden_field_tag :total_points, total_points - total_points_used %>
+            </span>
+          </div>
+        </div>
+      <%- end -%>
+      <% if ((total_points - total_points_used > 0) and (@cart.total - ((total_points - total_points_used) * @setting.points_to_pound.to_f) > 0)) %>
+        <div class="red-text">Your points are not sufficient to pay for the order, please enter your credit card details.
+        </div>
+      <% end %>
+      <div class="billing-wrapper">
+        <div class="black-heading">Billing Information</div>      
+        <div id="form">
+          <%#= show_messages(flash[:notice]) %>
+          <%= hidden_field_tag :payment_method, 2 %>
+          <%= render :partial => 'site/orders/cc_form' %>
+        </div>
+        <div class="top-30 right-align bottom-50">
+          <div class="back-btn green-button">
+            <%= link_to ("Back"),:controller=>'checkouts',:action=>'index' %>      
+          </div>
+          <div class="pay-now green-button">
+            <div class="submit-btn"><%= submit_tag "Pay Now" %></div>        
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
 
-<% form_tag site_orders_path, :id => "check_payment" do %>
-    <div style="padding:5px;text-align:right;font-size:15px;">
-      Please tick here to confirm that you accept our
-      <%= link_to "Terms and Conditions", {:controller => :base, :action => :terms_conditions}, :popup => ['wtc', 'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=Yes,resizable=No,copyhistory=no, width=450, height=520'] %>
-      <%=check_box_tag 'accept' %>
-    </div>
 
-<% if total_points - total_points_used > 0 %>
-    <div  style="margin:10px;background-color:rgb(243, 248, 218);"><br />&nbsp;&nbsp;&nbsp;You have <span id="highlight"><%= (total_points - total_points_used).to_f.round %></span> points in your credit.  This is equivalent to <span id="highlight"><%= number_to_currency((total_points - total_points_used)* Setting.find(:first).points_to_pound.to_f, :unit => "&pound;") %></span> <br /><br />&nbsp;&nbsp;&nbsp;Would you like to use these points for the purchase? <br /><br />&nbsp;&nbsp;&nbsp;Enter the required points here
-    &nbsp;&nbsp;&nbsp;<%= text_field_tag :points_to_be_used %>
-    <%= hidden_field_tag :total_points, total_points - total_points_used %><br /><br />
-    </div>
-<%- end -%>
-<div style="margin: 10px 20px;">
-  <% if ((total_points - total_points_used > 0) and (@cart.total - ((total_points - total_points_used) * @setting.points_to_pound.to_f) > 0)) %>
-    <span style="color:red">Your points are not sufficient to pay for the order, please enter your credit card details.
 
-    </span>
-   <% end %>
-  <h2 style="font-weight:normal;">Billing Information</h2>
 
-    <div id="form">
-      <%#= show_messages(flash[:notice]) %>
-      <%= hidden_field_tag :payment_method, 2 %>
-      <%= render :partial => 'site/orders/cc_form' %>
-    </div>
-    
-    	
-    	<div style="text-align:right;font-size:10px;padding-top:10px;">
-		<div style="float: right;padding-right: 10px;">
-		<%= image_submit_tag "buttons/pay_now_btn.png" %>		
-	    </div>
-	    <div style="float: right;padding-right: 10px;">
-	    <%= link_to image_tag("buttons/back_button.png"),:controller=>'checkouts',:action=>'index' %>
-	    </div>
-	    </div>
-	    </div>
-  <%- end -%>
-<% content_for :right do %>
-	<%= render :partial => '/site/shared/box_subscriptions' %>
-	<br />
-	<%= render :partial => '/site/shared/box_grape_guide' %>
-  <br />
-  <%= render :partial => '/site/shared/social_follow' %>
-<% end %>
+
+

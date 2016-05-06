@@ -22,9 +22,9 @@
     </div>
     <div class="col-md-2">
       <div class="add-hamper">
-        <div class="hamper-price center-align top-60">
+        <div class="hamper-price center-align top-60 green-button add-wine">
           <%- if review.reviewer_type == "Product" -%>
-            <%= image_tag("WINE_LIST.jpg") if review.reviewer.is_wine? unless review.reviewer.nil?%>
+            <%= link_to ("Add to Wine List"), "#" if review.reviewer.is_wine? unless review.reviewer.nil?%>
           <%- end -%>
         </div>
       </div>

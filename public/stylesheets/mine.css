@@ -2267,6 +2267,117 @@ a.close-btn{
 	padding: 11px 15px 8px;
 	display: block;
 }
+
+/*=============== Delivery details============*/
+.delivery-detail-wrapper{
+	padding: 0px 15px 50px;
+}
+.checkout-sub-heading{
+	color: #5c8018;
+	font-family: OpenSans-Regular;
+	font-size: 18px;
+	margin-bottom: 25px;
+}
+.checkout-des{
+	font-size: 14px;
+	font-family: OpenSans-Light;
+}
+.address-label{
+	float: left;
+	margin-right: 15px;
+}
+.address-select{
+	float: left;
+}
+.address-select select{
+	background: none;
+}
+.shipping-address-box{
+	border:solid 1px #6c6c6c;
+	margin-top: 25px;
+	padding-top: 40px;
+	padding-bottom: 10px;
+	position: relative;}
+.shipping-title{
+	background: #fff;
+	margin-top: -57px;
+	position: absolute;
+	font-size: 14px;
+	font-family: OpenSans-Semibold;
+	color: #000;
+	padding: 5px;}
+.step-img{
+	text-align: center;
+	padding: 50px 0px;
+}
+.shipping-address-box .green-button a{
+	display: block;
+}
+.address-row{
+	margin-bottom: 15px;
+}
+.address-row input{
+	width: 100%;
+	max-width:240px; 
+}
+.address-row span{
+	color: #cb0d2b;
+}
+.address-row select{
+	width: 100%;
+	background: none;
+}
+.continue-btn.green-button a{
+	display: block;
+	font-family: JosefinSlab-Bold;
+	font-size: 14px;
+	padding: 11px 15px 8px;}
+.address-row .green-button{
+	font-family: JosefinSlab-Bold;
+	font-size: 16px;
+	padding: 11px 15px 7px;}
+.green-button.add-wine a{
+	padding: 11px 10px 7px;
+	font-size: 14px;
+}
+.credit-card-wrapper{
+	border-top:solid 1px #ebebeb;
+	padding-top: 50px;
+	margin-top: 50px;}
+.terms-cond-row{
+	text-align: right;
+	font-size: 14px;
+	font-size: OpenSans-Light;
+}
+.terms-cond-row a{
+	text-decoration: none
+}
+.terms-cond-row span{
+	display: inline-block;
+	vertical-align: middle;
+	margin-left: 8px;
+}
+.terms-cond-row span input{
+	box-sizing: border-box;
+	width: 18px;
+	height: 18px;
+}
+.points-box{
+	background-color:rgb(243, 248, 218);
+	padding: 15px;
+	margin: 30px 0px;
+}
+.enter-points span{
+	margin-right: 8px;
+}
+.billing-wrapper{
+	margin: 50px 20px;
+}
+.black-heading{
+	font-size: 18px;
+	font-family: OpenSans-Bold;
+	margin-bottom: 20px;
+}
 /*=============== Media quires=================*/
 @media only screen and (max-width: 1035px) {
 	.navigation-row .nav  li  a{
