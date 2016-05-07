@@ -164,7 +164,7 @@
       </div>
     <% end %> <!-- end form-->
   <% else %>
-    <div class="red-text">Your cart is empty</div>
+    <div class="red-text bottom-50">Your cart is empty</div>
   <% end %>
   <!-- other productts-->
   <% if @cart.items.length !=0 %>
@@ -182,13 +182,9 @@
     </div>
   <% end %>
 </div>
-
-
-
 <script type="text/javascript">
     $("#delivery_id").on("change", function(){
         console.log("hello")
         $('#form_cart').submit();
     })
 </script>
-

@@ -23,56 +23,44 @@ var google_conversion_value = 0;
 Success or failure - <%#= session[:response_success] %>
 Response Params is <%#= session[:response_params] %>-->
 
-<div id="header">Your Order is Complete!</div>
+<div id="header" class="green-heading-with-border">Your Order is Complete!</div>
 <!--<div style="text-align:center;margin-top:40px;"><%#= image_tag("cart_step_4.png") %></div> -->
 <%#= render :partial => 'site/shared/box_cart_form' %>
- <p style="margin: 10px 20px">
-  Your Order has been successfully received by our team and you will shortly receive an acknowledgement by email.
-  </p><br />
-<div style="margin: 10px 20px;font-size:16px;font-weight:bold;">
-Thank you for shopping with us, your order details are
-</div>
-
-<p style="margin: 10px 20px;font-size:16px;font-weight:bold">
-Order number: <%= @order.id %><br /><br />
-
-<% if @was_admin %>
-  <span style="display: block;text-align: left;padding: 0px 10px 7px;font-weight: bold;">
-  <%= link_to "Print Invoice", print_invoice_admin_order_path(@order,:format => "pdf"), :target => "_blank" %>
-  </span>
-<% end %>
-<!--Total order Value : <span style="font-size:16px;"><%#= number_to_currency (@order.total - (@order.points_used * Setting.find(:first).points_to_pound), :unit => "&pound;") %></span>
-( + Points: <%#= number_to_currency (@order.points_used * Setting.find(:first).points_to_pound, :unit => "&pound;") %>)
-<br /><br />
-You will shortly receive an order acknowledgement by email.-->
-
-<div style="display:none;">
-Payment Method : <%= number_to_currency(@order.total - (@order.points_used * @setting.points_to_pound), :unit => "&pound;") %> Credit Card
+<div class="full-width" style="padding: 0px 20px 50px; ">
+  <div class="section-des">
+    Your Order has been successfully received by our team and you will shortly receive an acknowledgement by email.
+  </div>
+  <div style="font-size:16px;font-weight:bold;">
+    Thank you for shopping with us, your order details are
+  </div>
+  <div style="margin: 10px 0px;font-size:16px;font-weight:bold"  class="green-text">
+    Order number: <%= @order.id %>
+  </div>
+  <div>
+    <% if @was_admin %>
+      <span style="display: block;text-align: left;padding: 0px 10px 7px;font-weight: bold;">
+        <%= link_to "Print Invoice", print_invoice_admin_order_path(@order,:format => "pdf"), :target => "_blank" %>
+      </span>
+    <% end %>
+  </div>
+  <div style="display:none;">
+    Payment Method : <%= number_to_currency(@order.total - (@order.points_used * @setting.points_to_pound), :unit => "&pound;") %> Credit Card
  + Points equivalent to : <%= number_to_currency(@order.points_used * @setting.points_to_pound, :unit => "&pound;") %>
-<br /><br />
-</div>
-
-</p><br />
-<div style="margin: 10px 10px;">
-
-</div>
-
-<% 
-	total_points_earned = @order.total * Setting.find(:first).points_per_pound
+  <br /><br />
+  </div>
+  <% 
+  total_points_earned = @order.total * Setting.find(:first).points_per_pound
 %>
 
-<p style="margin: 10px 20px;font-size:13px; color:#ff0000;"> You have earned <%=total_points_earned%> Points. That have been added to your account</p>
+<p style="margin: 10px 0px;" class="red-text"> You have earned <%=total_points_earned%> Points. That have been added to your account</p>
 <br />
-  <p style="margin: 10px 20px;font-size:13px;">
-	Enjoy your piece of Italy and let our community know about your experience 
+  <p style="margin: 10px 0px;font-size:13px;">
+  Enjoy your piece of Italy and let our community know about your experience 
   </p>
+</div>
+ 
 
 
-<%- content_for :right do -%>
-  <%= render :partial => 'site/shared/box_subscriptions' %>
-  <br />
-  <%= render :partial => '/site/shared/social_follow' %>
-<%- end -%>
 
 <% #reset session here once the view is done %>
 <% session[:ship_address] = nil %>

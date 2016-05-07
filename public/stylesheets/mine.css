@@ -2378,6 +2378,13 @@ a.close-btn{
 	font-family: OpenSans-Bold;
 	margin-bottom: 20px;
 }
+.address-row .radio-btn input{
+	width: 15px;
+	height: 15px;
+	}
+.radio-btn{
+	margin-top: 2px;
+}
 /*=============== Media quires=================*/
 @media only screen and (max-width: 1035px) {
 	.navigation-row .nav  li  a{
