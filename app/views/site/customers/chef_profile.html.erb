@@ -5,7 +5,7 @@
 <% @class = "no-padding" %>
 <h4 class="account-title"></h4>
 <div class="green-heading-with-border">
-  <%= @title %>&nbsp; <%= image_tag 'chef_icon.png' if @user.type_id == 4 %>
+  <%= @title %>&nbsp; <span class="chef-icon"><%= image_tag 'chef_icon.png' if @user.type_id == 4 %></span>
 </div>
 <div class="full-width">
   <div class="section-box">

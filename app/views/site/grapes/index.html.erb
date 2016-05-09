@@ -32,7 +32,7 @@
               </div>
               <div class="bottom-50">
                 <% unless grape.description.blank? %>
-                  <%= grape.description[0,250] %> 
+                  <%= grape.description[0,250].html_safe %> 
                   <%= link_to "Read More", grape.friendly_identifier.blank? ? "grapes/#{grape.id}" : "grapes/#{grape.friendly_identifier}" %>
                 <%- end -%>
               </div>

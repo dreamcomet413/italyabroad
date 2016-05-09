@@ -21,19 +21,14 @@ alert("Description must be filled out");
 
 <div id="header"><%= render :partial => 'site/shared/box_login' %></div>
 <%= flash[:notice] %>
-<h4 class="account-title">Your recent orders</h4>
+<div class="account-title green-heading-with-border">Your recent orders</div>
 <br />
-<table width="99%" align="center" style="text-align:center;" cellspacing="0" cellpadding="0" border="0">
+<table width="99%" align="center" class="bottom-50" style="text-align:center;" cellspacing="0" cellpadding="0" border="0">
 	<tr>
 	  <td align="left"><!-- Products</strong --></td>
 
 		</tr>
 	<%= render :partial => 'review_order'%>
 </table>
-<br /><br /><br />
-<% content_for :right do %>
-	<%= render :partial => '/site/shared/box_grape_guide' %>
-	<br />
-	<%= render :partial => '/site/shared/social_follow' %>
-<% end %>
+
 

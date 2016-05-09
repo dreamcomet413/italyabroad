@@ -1535,7 +1535,7 @@ padding: 0px 3px 10px !important;
 	padding: 10px 20px;
 }
 /*================ Products list==============*/
-.black-strip{
+.black-strip div{
 	background: #53565a;
 	color: #fff;
 	font-family: JosefinSlab-Bold;
@@ -1543,7 +1543,7 @@ padding: 0px 3px 10px !important;
 	font-size: 16px;
 	padding: 2px 6px;
 	margin: 5px 0px 10px}
-a.close-btn{
+a.close-btn, .black-strip  a{
 	color: #fff;
 	text-decoration: none;
 	font-weight: normal;
@@ -1932,6 +1932,7 @@ a.close-btn{
 }
 .green-strip.align-left{
 	padding-left: 15px;
+	margin-bottom: 30px;
 }
 .green-strip.align-left a{
 	color: #fff;
@@ -2385,6 +2386,16 @@ a.close-btn{
 .radio-btn{
 	margin-top: 2px;
 }
+.order-table td{
+	padding: 25px 0px;
+}
+.chef-icon{
+	width: 50px;
+	margin-top: -30px;
+}
+.chef-icon img{
+	max-width: 50px;
+	margin-top: -30px}
 /*=============== Media quires=================*/
 @media only screen and (max-width: 1035px) {
 	.navigation-row .nav  li  a{
