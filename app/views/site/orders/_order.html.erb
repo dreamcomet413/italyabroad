@@ -1,5 +1,5 @@
 <%unless order.order_items.blank? %>
-<tr class="list <%= cycle("odd", "even") %>">
+<tr class="list order-table <%= cycle("odd", "even") %>">
 	<td><%= order.id %></td>
 	<td><%#= number_to_currency order.sub_total, :unit => "&pound;" %>
 	<%#= number_to_currency order.sub_total - (order.points_used * Setting.find(:first).points_to_pound), :unit => "&pound;" %>

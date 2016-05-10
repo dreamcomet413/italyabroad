@@ -10,7 +10,7 @@ total_points_used = current_user.orders.sum('points_used')
 	<span class="red-text"><% if total_points - total_points_used > 0 %>  (You have <%= (total_points - total_points_used).to_i %> points in your credit.  This is equivalent to <%= number_to_currency(((total_points - total_points_used) * Setting.find(:first).points_to_pound.to_f), :unit => "&pound;") %>)
 	  <% end %></span>
 	</div>
-	<table width="99%" align="center" style="text-align:center;" cellspacing="0" cellpadding="0" border="0">
+	<table width="99%" align="center" class="bottom-50"  style="text-align:center;" cellspacing="0" cellpadding="0" border="0">
 		<tr>
 		  <td><strong>Order No.</strong></td>
 		  <td><strong>Sub Total</strong></td>
@@ -21,11 +21,6 @@ total_points_used = current_user.orders.sum('points_used')
 		</tr>
 		<%= render :partial => 'order', :collection => @orders %>
 	</table>
-	<br /><br /><br />
-	<% content_for :right do %>
-		<%= render :partial => '/site/shared/box_grape_guide' %>
-		<br />
-		<%= render :partial => '/site/shared/social_follow' %>
-	<% end %>
+	
 </div>
 

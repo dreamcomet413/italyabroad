@@ -1,14 +1,6 @@
 <% @title = "Search #{params[:text]}"; @class = "no-padding"  %>
 <%- @breadcrumbs = "#{link_to "Home", root_url} &raquo; Search #{ '&raquo; ' + @category.name.titleize unless @category.blank?}" -%>
 
-  <%if @products and @products.count > 0%>
-    <div id="header">Your search result has found the following products:</div>
-    <% if params[:wine_type].present? || params[:body_type].present? || params[:price_type].present? || params[:food_type].present? %>
-    <% else %>
-        <div class="fRight" style="margin-right: 12px; padding: 5px;"><%= link_to "Go Back", :back -%></div>
-    <% end %>
-  <%end%>  
-  <br />
     <div class="row">
       <div class="two-colum-row clearfix">
         <div class="col-md-3 left-side-bar">
@@ -45,7 +37,14 @@
                 </div>
                 <div class="clearfix"></div>
               </div>
-              
+              <%if @products and @products.count > 0%>
+                <div id="header">Your search result has found the following products:</div>
+                <% if params[:wine_type].present? || params[:body_type].present? || params[:price_type].present? || params[:food_type].present? %>
+                <% else %>
+                    <div class="fRight" style="margin-right: 12px; padding: 5px;"><%= link_to "Go Back", :back -%></div>
+                <% end %>
+              <%end%>  
+              <br />
               <div>
                 <div class="digg_pagination pagination-2 clearfix">
                   <div class="page_info show-result">
@@ -156,7 +155,7 @@
         <% else %>
         <br /><br />
     <% end %>
-  </div>
+
 
 
 <% content_for :right do %>

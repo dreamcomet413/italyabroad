@@ -3,7 +3,7 @@
 
 		<% for order_item in order.order_items %>
 		<% unless order_item.product_id.nil? %>
-            <tr class="list_plain %>">
+            <tr class="list_plain %> order-table">
               <% product = Product.find(order_item.product_id) %>
   						<td style="text-align:left;width:400px;"><%=order_item.name%></td>
 
@@ -12,12 +12,12 @@
               <%#= link_to "Write Review",
                :update =>"write_review#{product.id}" , :remote => true,
                         :url => {:controller=>'site/orders', :action => "write_review", :id => product.id,:order_id=>order.id}%>
-              <%= link_to "Write Review", nested_products_uri(product) %>
+              <div class="green-button"><%= link_to "Write Review", nested_products_uri(product) %></div>
             <% end %>
   						</td>
 
   						<tr><td>
-<div id="write_review<%=product.id%>"></div></td></tr>
+              <div id="write_review<%=product.id%>"></div></td></tr>
 
           </tr>
   				<% end %>

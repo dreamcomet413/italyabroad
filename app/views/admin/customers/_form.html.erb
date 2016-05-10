@@ -1,123 +1,121 @@
-hello
-<table>
-  <tr>
-    <td colspan="2"><b>General Info</b></td>
-  </tr>
-	<tr>
-		<td>Title:</td>
-		<td><%= select :user, :title, ["Mr", "Miss", "Mrs", "Dr"] %></td>
-  </tr>
-  <tr>
-		<td>Name:</td>
-		<td><%= text_field :user, :name %></td>
-	</tr>
-	<tr>
-		<td>Surname:</td>
-		<td><%= text_field :user, :surname %></td>
-  </tr>
-  <tr>
-		<td>DOB:</td>
-		<td><%= date_select :user, :dob, :start_year => 1900, :end_year => Time.now.year, :order => [:day, :month, :year] %></td>
-	</tr>
-	<tr>
-	  <td colspan="2"><br /><b>Telephone</b></td>
-  </tr>
-	<tr>
-		<td>Telephone:</td>
-		<td><%= text_field :user, :telephone %></td>
-  </tr>
-  <tr>
-		<td>Mobile:</td>
-		<td><%= text_field :user, :mobile %></td>
-	</tr>
-	<tr>
-	  <td colspan="2"><br /><b>Address</b></td>
-  </tr>
-  <tr>
-		<td>Address #1:</td>
-		<td><%= text_field :user, :address %></td>
-  </tr>
-  <tr>
-		<td>Address #2:</td>
-		<td><%= text_field :user, :address_2 %></td>
-  </tr>
-  <tr>
-  	<td>Town:</td>
-  	<td><%= text_field :user, :city %></td>
-	</tr>
-	<tr>
-		<td>Postcode:</td>
-		<td><%= text_field :user, :cap %></td>
-  </tr>
-  <tr>
-		<td>Country:</td>
-		<td><%= custom_country_select :user, :country, [["United Kingdom","GB"]] %></td>
-  </tr>
-	<tr>
-	  <td colspan="2"><br /><b>Login</b></td>
-  </tr>
-  <tr>
-		<td>User Name:</td>
-		<td><%= text_field :user, :login %></td>
-  </tr>
-  <tr>
-		<td>E-Mail:</td>
-		<td><%= text_field :user, :email %></td>
-	</tr>
-  <tr>
-		<td>Password:</td>
-		<td><%= password_field :user, :password %></td>
-  </tr>
-  <tr>
-		<td>Password Confirm:</td>
-		<td><%= password_field :user, :password_confirmation %></td>
-	</tr>
-	<% if @user.type_id == 4 %>
-	<tr>
-	  <td colspan="2"><br /><b>Chef Info</b></td>
-  </tr>
-  <tr>
-		  <td>Biography</td>
-		  <td><%= text_area :user, :chef_bio,:size=>'30x5' %></td>
-		</tr>
-	<tr>
-		  <td>My restaurant website</td>
-		  <td><%= text_field :user, :establishment_link %></td>
-		</tr>
-  <% end %>
-	<tr>
-	  <td colspan="2"><br /><b>Other Info</b></td>
-  </tr>
-	<tr>
-	  <td>Where did you hear about us?</td>
-	  <td>
-	    <%= select :user, :know_through, ["Google", "Yahoo", "Msn", "Other Search Engines", "Press", "Italyabroad.com Van", "Fairs and Events", "Flyers", "Wine Tasting", "Recommended by a friend", "Other Source"] %>
-    </td>
-  </tr>
-	<tr>
-	  <td>Friend's Name:</td>
-	  <td><%= text_field :user, :friend_name %></td>
-  </tr>
-	<tr>
-	  <td>Friend's Email:</td>
-	  <td><%= text_field :user, :friend_email %></td>
-  </tr>
-	<tr>
-	  <td>Subscribe our news letters?</td>
-	  <td><%= check_box :user, :news_letters %></td>
-  </tr>
-	<tr>
-	  <td>Activate User?</td>
-	  <td><%= check_box :user, :active, :checked=>@user.active %>
-	  <%#= hidden_field :user, :type_id, :value => 2 %></td>
-	</tr>
-	<tr>
-	  <td>Select Type of User</td>
-	  <td><%= select :user, :type_id, Type.find(:all,:order=>'id desc').collect {|type| [ type.name, type.id ] } %></td>
-	</tr>
-	<tr>
-	  <td>Points</td>
-	  <td><%= text_field :user, :points %></td>
-	</tr>
-</table>
+<div class="form-box">
+	<div class="box-title">General Info</div>
+	<div class="row clearfix bottom-5">
+		<div class="col-xs-2 form-label">Title:</div>
+		<div class="col-xs-4"><%= select :user, :title, ["Mr", "Miss", "Mrs", "Dr"] %></div>
+	</div>
+	<div class="row clearfix bottom-5">
+		<div class="col-xs-2 form-label">Name:</div>
+		<div class="col-xs-4"><%= text_field :user, :name %></div>
+	</div>
+	<div class="row clearfix bottom-5">
+		<div class="col-xs-2 form-label">Surname:</div>
+		<div class="col-xs-4"><%= text_field :user, :surname %></div>
+	</div>
+	<div class="row clearfix bottom-5">
+		<div class="col-xs-2 form-label">DOB:</div>
+		<div class="col-xs-4"><%= date_select :user, :dob, :start_year => 1900, :end_year => Time.now.year, :order => [:day, :month, :year] %></div>
+	</div>
+</div>
+<div class="form-box">
+	<div class="box-title">Telephone</div>
+	<div class="row clearfix bottom-5">
+		<div class="col-xs-2 form-label">Telephone:</div>
+		<div class="col-xs-4"><%= text_field :user, :telephone %></div>
+	</div>
+	<div class="row clearfix bottom-5">
+		<div class="col-xs-2 form-label">Mobile:</div>
+		<div class="col-xs-4"><%= text_field :user, :mobile %></div>
+	</div>
+</div>
+<div class="form-box">
+	<div class="box-title">Address</div>
+	<div class="row clearfix bottom-5">
+		<div class="col-xs-2 form-label">Address #1:</div>
+		<div class="col-xs-4"><%= text_field :user, :address %></div>
+	</div>
+	<div class="row clearfix bottom-5">
+		<div class="col-xs-2 form-label">Address #2:</div>
+		<div class="col-xs-4"><%= text_field :user, :address_2 %></div>
+	</div>
+	<div class="row clearfix bottom-5">
+		<div class="col-xs-2 form-label">Town:</div>
+		<div class="col-xs-4"><%= text_field :user, :city %></div>
+	</div>
+	<div class="row clearfix bottom-5">
+		<div class="col-xs-2 form-label">Postcode:</div>
+		<div class="col-xs-4"><%= text_field :user, :cap %></div>
+	</div>
+	<div class="row clearfix bottom-5">
+		<div class="col-xs-2 form-label">Country:</div>
+		<div class="col-xs-4"><%= custom_country_select :user, :country, [["United Kingdom","GB"]] %></div>
+	</div>
+</div>
+<div class="form-box">
+	<div class="box-title">Login</div>
+	<div class="row clearfix bottom-5">
+		<div class="col-xs-2 form-label">User Name:</div>
+		<div class="col-xs-4"><%= text_field :user, :login %></div>
+	</div>
+	<div class="row clearfix bottom-5">
+		<div class="col-xs-2 form-label">E-Mail:</div>
+		<div class="col-xs-4"><%= text_field :user, :email %></div>
+	</div>
+	<div class="row clearfix bottom-5">
+		<div class="col-xs-2 form-label">Password:</div>
+		<div class="col-xs-4"><%= password_field :user, :password %></div>
+	</div>
+	<div class="row clearfix bottom-5">
+		<div class="col-xs-2 form-label">Password Confirm:</div>
+		<div class="col-xs-4"><%= password_field :user, :password_confirmation %></div>
+	</div>
+</div>
+<% if @user.type_id == 4 %>
+	<div class="form-box">
+		<div class="box-title">Chef Info</div>
+		<div class="row clearfix bottom-5">
+			<div class="col-xs-2 form-label">Biography</div>
+			<div class="col-xs-4"><%= text_area :user, :chef_bio,:size=>'30x5' %></div>
+		</div>
+		<div class="row clearfix bottom-5">
+			<div class="col-xs-2 form-label">
+				My restaurant website
+			</div>
+			<div class="col-xs-4"><%= text_field :user, :establishment_link %></div>
+		</div>
+	</div>
+<% end %>
+<div class="form-box">
+	<div class="box-title">Other Info</div>
+	<div class="row clearfix bottom-5">
+		<div class="col-xs-2 form-label">Where did you hear about us?</div>
+		<div class="col-xs-4"><%= select :user, :know_through, ["Google", "Yahoo", "Msn", "Other Search Engines", "Press", "Italyabroad.com Van", "Fairs and Events", "Flyers", "Wine Tasting", "Recommended by a friend", "Other Source"] %>
+			</div>
+	</div>
+	<div class="row clearfix bottom-5">
+		<div class="col-xs-2 form-label">Friend's Name:</div>
+		<div class="col-xs-4"><%= text_field :user, :friend_name %></div>
+	</div>
+	<div class="row clearfix bottom-5">
+		<div class="col-xs-2 form-label">Friend's Email:</div>
+		<div class="col-xs-4"><%= text_field :user, :friend_email %></div>
+	</div>
+	<div class="row clearfix bottom-5">
+		<div class="col-xs-2 form-label">Subscribe our news letters?</div>
+		<div class="col-xs-4"><%= check_box :user, :news_letters %></div>
+	</div>
+	<div class="row clearfix bottom-5">
+		<div class="col-xs-2 form-label">Activate User?</div>
+		<div class="col-xs-4"><%= check_box :user, :active, :checked=>@user.active %></div>
+	</div>
+	<div class="row clearfix bottom-5">
+		<div class="col-xs-2 form-label">Select Type of User</div>
+		<div class="col-xs-4"><%= select :user, :type_id, Type.find(:all,:order=>'id desc').collect {|type| [ type.name, type.id ] } %></div>
+	</div>
+	<div class="row clearfix bottom-5">
+		<div class="col-xs-2 form-label">Point</div>
+		<div class="col-xs-4"><%= text_field :user, :points %></div>
+	</div>
+</div>
 
+	 

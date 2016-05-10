@@ -135,7 +135,7 @@ alert("Description must be filled out");
             Showing <%= @comments.blank? ? "0" : (@comments.offset) +1 %>--<%= (@comments.offset)+(@comments.length) %> of <%= @post.comments.find(:all,:conditions=>['public=?',true]).length %> comments.  
           </div> -->
           <%- if @comments.blank? -%>
-            <div class="comment_icon">No comments</div>
+            <!-- <div class="comment_icon">No comments</div> -->
           <%- else -%>
             <div class="latest-review-box view-review">
               <div class="row clearfix">
@@ -157,5 +157,3 @@ alert("Description must be filled out");
     </div>
   </div>
 </div>
-
-
