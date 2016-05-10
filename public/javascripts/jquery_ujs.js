@@ -467,3 +467,5 @@
   }
 
 })( jQuery );
+Element = function(){}
+Element.update = function(id,html){$('#'+id).html(html);}

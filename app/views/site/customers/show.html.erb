@@ -151,7 +151,7 @@
   <div class="green-heading-with-border"><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> Latest Reviews</div>
   <div class="bottom-50">
     <%- @user.reviews.all(:order=>' id desc', :limit => 5, :conditions=>['publish = ?',true],:select => 'DISTINCT reviewer_id' ).each do |review| -%>
-      <%= link_to ('<div>' +  Product.find_by_id(review.reviewer_id).name + '</div>').html_safe(), product_path(review.reviewer_id) rescue "" %>
+      <%= link_to ('<div>' +  Product.find_by_id(review.reviewer_id).name + '</div>').html_safe(), "/product/#{review.reviewer_id}" %>
     <%- end -%>
     <% if @user.reviews.size > 5 %>
       <div style="margin-top:20px;"><%= link_to("more",reviews_path) %></div>

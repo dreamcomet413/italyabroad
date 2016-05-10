@@ -29,10 +29,11 @@
 			            </div>
 			            <div class="col-md-2 center-align">
 			                <div class="add-hamper">
-			                    <div class="hamper-price">
-			                    	<%= number_to_currency(product.price,{:unit => "&pound;"}) %>
-			                    	show price here
-			                    </div>
+			                    <%if product and product.product_prices.count > 0%>
+				                    <div class="hamper-price">
+				                    	<%= number_to_currency(product.product_prices.first.price,{:unit => "&pound;"}) %>
+				                    </div>
+			                    <%end%>
 			                    <div class="hamper-quantity-row clearfix">
 			                    	<%- if product.out_of_stock? -%>
 			        					<div class="hamper-button"><%= image_tag('out_of_stock.png') %></div>

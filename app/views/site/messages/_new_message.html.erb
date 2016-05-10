@@ -1,4 +1,3 @@
-
  <% form_tag '/messages/send_message' do |f| %>
     <%= text_area_tag  :name,'', :size => "87x5" %>
     <%= hidden_field_tag :user_id,@message.send_by_id %>
@@ -6,5 +5,5 @@
     <p style="text-align:right;">
 
     <%= image_submit_tag("buttons/submit.png") %></p>
-    <% end %>
+<% end %>
 
