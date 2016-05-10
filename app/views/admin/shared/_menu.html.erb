@@ -175,6 +175,9 @@
   <% is_active = @current_controller == "settings" and params[:action]=='available_backups' %>
   <span <%= "class='active'" if is_active %>><%= link_to "Database Backups", available_backups_admin_settings_path, :class=> ( 'active' if is_active) %></span>
 
+  <% is_active = @current_controller == "small_box_settings"  %>
+  <span <%= "class='active'" if is_active %>><%= link_to "Small Box Settings", admin_small_box_settings_path , :class=> ( 'active' if is_active) %></span>
+
 </div>
 <!--1st drop down menu -->
 <!--2nd drop down menu -->

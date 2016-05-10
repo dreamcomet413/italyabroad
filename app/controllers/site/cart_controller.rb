@@ -188,9 +188,6 @@ class Site::CartController < ApplicationController
   end
 
   def product_id
-    logger.info('=======================================================+++++++++++++++++++++++++++++++==============++++++++++=========++++=====++===++===+++===++===++========')
-    logger.info(params.inspect)
-    logger.info('==========+++++++++++++++==============++++++++========================++++++++++==========++++++++++++====')
     return params[:product_id] if params[:product_id]
     return params[:recipe_id] if params[:recipe_id]
   end

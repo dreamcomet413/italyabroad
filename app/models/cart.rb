@@ -15,15 +15,16 @@ class Cart
       return false
     end
 
-
     current_item ||= CartItem.new(product, quantity, discounted_price)
     current_item_quantity = current_item.product.product_prices.find_by_price(discounted_price).present? ?
-        current_item.product.product_prices.find_by_price(discounted_price).quantity.to_i : current_item.product.product_prices.try(:first).try(:quantity).try(:to_i)
-    if quantity.to_i > current_item_quantity
+      (current_item.product.product_prices.find_by_price(discounted_price).quantity.to_i) : current_item.product.product_prices.try(:first).try(:quantity).try(:to_i)
+    
+    if current_item_quantity.nil? == false and quantity.to_i > current_item_quantity
       #  @show_warnings = "Sorry, only #{current_item.product.quantity} left. Will inform you when more will become available."
       @show_warnings = "Sorry, none left, please drop us an email and we will inform you when more will become available"
       return false
     else
+
       if @items.include?(current_item)
         current_item.quantity = quantity
       else

@@ -1,8 +1,5 @@
 ItalyabroadNew::Application.routes.draw do
-
-
-
-    namespace :admin do
+  namespace :admin do
     resources :testimonials
     resources :faqs
     resources :shipping_agencies
@@ -73,6 +70,7 @@ ItalyabroadNew::Application.routes.draw do
       resources :images, :only => [:destroy]
       resources :resources, :only => [:destroy]
     end
+    resources :small_box_settings 
     get "moods/index"
 
     get "moods/new"

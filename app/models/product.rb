@@ -78,7 +78,6 @@ class Product < ActiveRecord::Base
       self.product_prices.map(&:quantity).try(:first)
     end
   end
-
   def make_product_prices
     if self.product_prices.length == 0
       temp = self.product_prices.build
