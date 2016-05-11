@@ -1,24 +1,36 @@
-<%= render partial: 'title'%>
+	<%= render partial: 'title'%>
 <div class="inner_content settings" id="admin_settings_edit">
   <h2>Settings</h2>
 	<br/>
-	<% form_for(:small_box_setting,  :url => admin_small_box_settings_path(@small_box_setting) , :html => { :multipart => true , :method=> :put }) do |form| %>
+<% form_for(:small_box_setting, :as => @small_box_setting,  :url => admin_small_box_setting_path(@small_box_setting) , :html => { :multipart => true , :method=> :put }) do |form| %>
     <br/>
 
-	  <% @small_box_settings.each do |sb|%>
-		
-	    <%if sb and sb.image %>
+  <% SmallBoxSetting.all.each do |sb|%>
+	
+    <%if sb %>
+    	<h1><%=sb.box_title%></h1>
+    	<div class="small_box" style="margin: 10px;">
 	    	<table>
 		      <tr>
 		        <td valign="top" style="padding:0;">Image&nbsp;&nbsp;</td> 
-		        <td><%= file_field_tag :image %> <em>(must 723x284px)</em></td>
+		        <td>
+		        <%= fields_for :image do |image| %>
+		        	<%= hidden_field_tag "small_box_settings[#{sb.id}][image_attributes][][id]", sb.image_id %>
+		        	<%= file_field_tag "small_box_settings[#{sb.id}][image_attributes][][image_filename]" %> <em>(must 723x284px)</em>
+		        <% end %>
+		        </td>
 		      </tr>
 		    </table>
-	    	<%= image_tag(sb.image.image_filename.url) %>
-	    	<%= link_to "Destroy", "/admin/small_box_settings/#{sb.id}", :confirm => "Are you sure?", :method => :delete %>
-	    <%end%>
-	    <br/>
-	  <%end%>
-	</div>
-    <%=form.submit%>
+	    	<%= image_tag(sb.image ? sb.image.image_filename.url : '/images/missing.png')  %>
+	    	<%if sb.image%>
+	    		<%= link_to "Destroy", "/admin/small_box_settings/#{sb.id}", :confirm => "Are you sure?", :method => :delete %>
+	    	<%end%>	
+	    	<br/>
+	    	<% hidden_field_tag "small_box_settings[][id]", sb.id %>
+	    	<%= text_field_tag "small_box_settings[#{sb.id}][box_title]" , sb.box_title  %> 
+    	</div>
+    <%end%>
+    <br/>
+  <%end%>
+    <%=submit_tag('Save')%>
 <% end %>

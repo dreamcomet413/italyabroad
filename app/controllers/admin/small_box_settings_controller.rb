@@ -3,24 +3,32 @@ class Admin::SmallBoxSettingsController < ApplicationController
   layout "admin"
 
   def index
-  	@small_box_settings = SmallBoxSetting.all
+  	@small_box_setting = SmallBoxSetting.find(:first) || SmallBoxSetting.create 
   end
   def update
-  	@small_box = SmallBoxSetting.find(params[:small_box_setting])
-  	# if(params[key.to_sym])
-      # @setting.method(key).call.destroy if @setting.method(key).call && !params[key.to_sym].blank?
-      # @setting.method("build_"+key).call(:image_filename => params[key.to_sym]) unless params[key.to_sym].blank?
-    # end 
-    if @small_box.update_attributes(params[:setting])
-      flash[:notice] = "Setting correctly updated!"
-    else
-      flash[:notice] = @small_box.show_errors
-    end
+  	# @small_box = SmallBoxSetting.find(params[:id])
+  	# SmallBoxSetting.all.each do |sb|
+   #    @small_box_setting.method("build_"+sb).call(:image_filename => params[sb.to_sym]) unless params[sb.to_sym].blank?
+   #  end
+   #  if @small_box.update_attributes(params[:setting])
+   #    flash[:notice] = "Setting correctly updated!"
+   #  else
+   #    flash[:notice] = @small_box.show_errors
+   #  end
+    
+    byebug    
+    SmallBoxSetting.update(params[:small_box_settings].keys, params[:small_box_settings].values)
+      
+    
+    logger.info('=====================================================================================')
+    logger.info(params[:small_box_setting])
+    logger.info('=====================================================================================')
+    redirect_to action: :index
   end
   def destroy
     small_box = SmallBoxSetting.find(params[:id])
 
-    if small_box.destroy
+    if small_box.image.destroy
       flash[:notice] = "Image is deleted!"
     end
 
