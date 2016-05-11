@@ -1,5 +1,6 @@
 <div class="col-md-4">
-    <div class="small-box-3 center-align no-padding">
-        <%= link_to image_tag("/images/chef-profile.png"), "/my-account" -%>
+    <div class="small-box-3 center-align ">
+        <%= link_to image_tag(SmallBoxSetting.find_by_box_title("sign_up_as_chef").image.image_filename.try(:url)), "/my-account" -%>
     </div>
 </div>
+ 

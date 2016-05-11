@@ -1,12 +1,18 @@
-<div class="col-md-4">
+<!-- <div class="col-md-4">
     <div class="small-box">
         <div class="small-box-heading">Our Community</div>
         <div class="row clearfix">
             <div class="col-xs-7">
                 <div class="small-box-text">Join Italian wine lovers around the world</div>
-                <div class="read-more"><%= link_to "Read More", "wine-community" %> </div>
+                <div class="read-more"><%#= link_to "Read More", "wine-community" %> </div>
             </div>
             <div class="col-xs-5 right-align"><img src="/images/map.png" alt="world map"></div>
         </div>
+    </div>
+</div> -->
+
+<div class="col-md-4">
+    <div class="small-box-3 center-align">
+        <%= link_to image_tag(SmallBoxSetting.find_by_box_title("our_community").image.image_filename.try(:url)), "/wine-community" -%>
     </div>
 </div>
