@@ -9,9 +9,9 @@
 </div>
 <div class="full-width">
   <div class="section-box">
-    <div class="section-form">
+    <div class="section-form2">
       <div class="section-row row clearfix">
-        <div class="col-xs-2 center-align">
+        <div class="col-xs-4 col-md-2 center-align">
           <%= avatar_for_user(@user) %>
           <% unless @my_profile %>
             <%- if @user.followed_by?(current_user) -%>
@@ -28,7 +28,7 @@
         </div>
         <%- if @my_profile -%>
           <%- form_for :user, :url => site_customer_path(@user), :html => {:method => :put} do -%>
-            <div class="col-xs-10 chef_profile">
+            <div class="col-xs-8 col-md-10 chef_profile">
               <div class="form-row row clearfix">
                 <div class="col-md-2 section-label2">
                   <%= "#{@my_profile ? "My" : @user.name+"'s"}" %> favorite Meal:
@@ -87,8 +87,8 @@
             </div>
           <% end %>
         <% else %>
-          <div class="col-xs-10">
-            <div class="section-form">
+          <div class="col-xs-8 col-md-10">
+            <div class="section-form2">
               <div class="form-row row clearfix">
                 <div class="col-md-2 section-label2">
                   <%= "#{@my_profile ? "My" : @user.name+"'s"}" %> favorite Meal:

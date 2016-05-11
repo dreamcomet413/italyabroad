@@ -231,23 +231,24 @@
   <%end %>
   <div class="green-heading-with-border">Members I am following:</div>
   <div class="bottom-50">
-    <table>
-      <tr>
-      <%#- @user.followers.all(:limit => 10).each do |people| -%>
-      <% @followers = Follower.find(:all,:conditions=>['follower_id = ?',params[:id]],:limit=>10)%>
-        <% for people in @followers %>
-          <td>
-            <% user = User.find_by_id(people.user_id)%>
-            <%#= link_to avatar_for_user(people.follower, 'small'), customer_path(people.follower) %>
-            <%= link_to avatar_for_user(user, 'small'), customer_path(user.id) %>
-            <%#= link_to people.follower.name, customer_path(people.follower) %>
-            <%= link_to user.name, customer_path(user.id) %><br />
-            <%- if user.followed_by?(current_user) -%><br >
-              <%= link_to image_tag("buttons/unfollow.png"), unfollow_path(user) %>
+  <div class="new-member-row clearfix">
+    <% @followers = Follower.find(:all,:conditions=>['follower_id = ?',params[:id]],:limit=>10)%>
+    <% for people in @followers %>
+      <div class="member-col col-md-2 col-xs-3 bottom-30">
+        <div class="user_photo_small" id="user_photo">
+          <% user = User.find_by_id(people.user_id)%>
+          <%= link_to avatar_for_user(user, 'small'), site_customer_path(user.id) %>
+        </div>
+        <div class="member-name">
+          <%= link_to user.name, site_customer_path(user.id) %>
+        </div>
+        <div class="green-button top-8">
+          <%- if user.followed_by?(current_user) -%>
+              <%= link_to ("Unfollow"), unfollow_path(user) %>
             <%- end -%>
-          </td>
-        <%- end -%>
-      </tr>
-    </table>
+        </div>
+      </div>
+    <% end %>
+  </div>
   </div>
 </div>

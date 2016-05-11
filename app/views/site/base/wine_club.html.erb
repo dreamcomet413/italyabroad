@@ -15,7 +15,6 @@
 	  <%= link_to image_tag("wine_tours_home.jpg"), site_search_index_path(:id => @category.friendly_identifier) %>
 	</div>
 <% end %>
-
 <div style="margin:8px;">
   <%= render :partial => '/site/shared/box_upcoming_wine_tours' %>
   <div id="wine_tours_introduction">
@@ -46,20 +45,6 @@
         <%= will_paginate @products, :container => false %>
       </div>
     </div>
-    
   </div>
   <%- end -%>
 </div>
-
-<% content_for :right do %>
-  <%= render :partial => 'site/shared/box_product_reviews' %>
-  <br />
-	<%= render :partial => '/site/shared/box_subscriptions' %>
-	<br />
-	<%= render :partial => 'site/shared/box_products_on_offer' %>
-	<br />
-	<%= render :partial => '/site/shared/box_grape_guide' %>
-  <br />
-  <%= render :partial => '/site/shared/social_follow' %>
-<% end %>
-

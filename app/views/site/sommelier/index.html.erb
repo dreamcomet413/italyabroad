@@ -43,47 +43,25 @@
 
 
 <%- @breadcrumbs = "Welcome to Italyabroad.com" -%><br />
-<div id="flashBanner">
-  <% if !@setting.nil? %>
-      <ul>
-        <li id="home_image_1" class="home_image main-banner">
-          <%= image_tag("/images/find-your-wine-banner.jpg")-%>
-        </li>
-      </ul>
-  <%end%>
-</div><br />
-
-<table class="new_search">
-  <tr>
-    <td colspan="4"><div class="fLeft font26">5 simple questions to find your ideal wine</div></td>
-  </tr>
-  <tr><td>&nbsp;</td></tr>
-  <tr><td>&nbsp;</td></tr>
-  <tr><td>&nbsp;</td></tr>
-  <tr><td>&nbsp;</td></tr>
-  <% locale = {:item_options => ["Red Wine", "Rose Wine", "White Wine", "Sparkling Wine", "Surprise Me"], :step => "1"}%>
+<% if !@setting.nil? %>
+  <div class="main-banner">
+    <%= image_tag("/images/find-your-wine-banner.jpg")-%>
+  </div>
+<%end%>
+<div class="green-heading-with-border">5 simple questions to find your ideal wine</div>
+<div class="full-width">
+<% locale = {:item_options => ["Red Wine", "Rose Wine", "White Wine", "Sparkling Wine", "Surprise Me"], :step => "1"}%>
   <%
      if params[:st].present?
        locale = {:item_options => ["under £10", "between £10 and £20", "more than £20"], :step => "4"}
      end
   %>
   <%= render :partial => "search_options", :locals => locale -%>
-</table>
 
+</div>
+  
+  
 
-<% content_for :right do %>
-    <%= render :partial => '/site/shared/box_event' %>
-    <br />
-    <%= render :partial => '/site/shared/box_subscriptions' %>
-    <br />
-    <%= render :partial => '/site/shared/box_latest_community_comments' %>
-    <br />
-    <%= render :partial => '/site/shared/box_blog' %>
-    <br />
-    <%= render :partial => '/site/shared/box_popular' %>
-    <br />
-    <%= render :partial => '/site/shared/social_follow' %>
-<% end %>
 
 <style type="text/css">
   #leftColumnContent {
