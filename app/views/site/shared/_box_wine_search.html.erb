@@ -2,8 +2,8 @@
       @category = Category.find(params[:category])
     else
       @category = Category.find(:first,:conditions=>['LOWER(name = ?)','wine'])
-    end %>
-<%- @parent = Category.find(params[:parent] || params[:category]) -%>
+    end %>    
+<%- @parent = Category.find(params[:parent] || params[:category] || 'wine')  -%>
 
 <!-- Creating form action url for wine/other-drinks index pages and their subcategory products like, white wine, red wine -->
 <%- search_url ||= @category == @parent ? site_search_index_path(:id => @parent) : site_search_index_path(:id => 'other_drinks')   -%>
