@@ -25,7 +25,8 @@
         <% if @producers && @producers.size > 0 %>
           <% for producer in @producers %>
             <div class="green-heading-with-border">
-              <%= link_to producer.name, producer.friendly_identifier.blank? ? "/producers/#{producer.id}" : "/producers/#{producer.friendly_identifier}" %>
+              <%# link_to producer.name, producer.friendly_identifier.blank? ? "/producers/#{producer.id}" : "/producers/#{producer.friendly_identifier}" %>
+              <%= link_to(producer.name, site_producer_path(producer.id))  %>
             </div>
             <div class="producer-products-heading">
               <%= producer.region.name rescue "No region" %>
