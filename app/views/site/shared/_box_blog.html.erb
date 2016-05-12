@@ -1,15 +1,5 @@
-<div class="col-md-4" id="box_blog">
-    <div class="small-box">
-        <div class="small-box-heading">Andrea's Blog</div>
-        <div class="row clearfix">
-            <div class="col-xs-7">
-        		<% post = Post.find(:first, :order => "created_at DESC", :limit => 1) %>
-					<% if post %>        
-                	<div class="small-box-text"><%= post.description_short[0..100].html_safe() %>...  </div>
-                	<% end %>               
-                <div class="read-more"><%= link_to "(Continue reading)", site_blog_path(post) %></div>
-            </div>
-            <div class="col-xs-5"><img src="/images/blog-icon.png" alt="blog image"></div>
-        </div>
+ <div class="col-md-4">
+    <div class="small-box-3 center-align">
+        <%= link_to image_tag(SmallBoxSetting.find_by_box_title("andra_blog").image.image_filename.try(:url)), "/site/blog" -%>
     </div>
 </div>

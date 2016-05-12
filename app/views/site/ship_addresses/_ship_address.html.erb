@@ -1,65 +1,65 @@
 <div id="shipping_address">
   <%- if !ship_address.is_new -%>
     <div class="address-row clearfix">
-      <div class="col-xs-2 green-button">
+      <div class="col-md-2 col-xs-4 green-button">
         <a href="#" class="address_edit_btn">Edit</a>
       </div>
-      <div class="col-xs-3 green-button" id="delete_shipping_address">
+      <div class="col-md-3 col-xs-5 green-button" id="delete_shipping_address">
         <%= link_to ("Delete"), "/site/ship_addresses/#{ship_address.id}", :method => :delete, :confirm => "Are you sure?", :remote => true -%>
       </div>
     </div>
   <% end %>
   <%= hidden_field :ship_address, :id %>
   <div class="address-row clearfix">
-    <div class="col-xs-2"><span>*</span>Address ID</div>
-    <div class="col-xs-5">
+    <div class="col-md-2"><span>*</span>Address ID</div>
+    <div class="col-md-5">
       <%= text_field :ship_address, :code,  :disabled => !ship_address.is_new %>
     </div>
   </div>
   <div class="address-row clearfix">
-    <div class="col-xs-2"><span>*</span>Full Name</div>
-    <div class="col-xs-5">
+    <div class="col-md-2"><span>*</span>Full Name</div>
+    <div class="col-md-5">
       <%= text_field :ship_address, :name,  :disabled => !ship_address.is_new %>
     </div>
   </div>
   <div class="address-row clearfix">
-    <div class="col-xs-2">Telephone</div>
-    <div class="col-xs-5">
+    <div class="col-md-2">Telephone</div>
+    <div class="col-md-5">
       <%= text_field :ship_address, :telephone, :disabled => !ship_address.is_new %>
     </div>
   </div>
   <div class="address-row clearfix">
-    <div class="col-xs-2"><span>*</span>Address #1</div>
-    <div class="col-xs-5">
+    <div class="col-md-2"><span>*</span>Address #1</div>
+    <div class="col-md-5">
       <%= text_field :ship_address, :address, :disabled => !ship_address.is_new %>
     </div>
   </div>
   <div class="address-row clearfix">
-    <div class="col-xs-2">Address #2</div>
-    <div class="col-xs-5">
+    <div class="col-md-2">Address #2</div>
+    <div class="col-md-5">
       <%= text_field :ship_address, :address_2, :disabled => !ship_address.is_new %>
     </div>
   </div>
   <div class="address-row clearfix">
-    <div class="col-xs-2"><span>*</span>Town</div>
-    <div class="col-xs-5">
+    <div class="col-md-2"><span>*</span>Town</div>
+    <div class="col-md-5">
       <%= text_field :ship_address, :city, :disabled => !ship_address.is_new %>
     </div>
   </div>
   <div class="address-row clearfix">
-    <div class="col-xs-2"><span>*</span>Postcode</div>
-    <div class="col-xs-5">
+    <div class="col-md-2"><span>*</span>Postcode</div>
+    <div class="col-md-5">
       <%= text_field :ship_address, :cap, :disabled => !ship_address.is_new %>
     </div>
   </div>
   <div class="address-row clearfix">
-    <div class="col-xs-2">Country</div>
-    <div class="col-xs-7">
+    <div class="col-md-2">Country</div>
+    <div class="col-md-7">
       <%= custom_country_select :ship_address, :country, [["United Kingdom","GB"]], {}, {:disabled => !ship_address.is_new} %>
     </div>
   </div>
   <div class="address-row clearfix">
-    <div class="col-xs-9">
+    <div class="col-md-9">
       <div>Additional notes</div>
       <div><%= text_area :ship_address, :note, :rows => 4, :style => "width:100%" %></div>
     </div>

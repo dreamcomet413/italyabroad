@@ -4,62 +4,64 @@
 <div class="section-form">
 	<% if session[:previous_admin_id] %>
 		<div class="address-row row clearfix">
-			<div class="col-xs-2">Skip Payment?</div>
-			<div class="col-xs-4 radio-btn">
+			<div class="col-md-2">Skip Payment?</div>
+			<div class="col-md-4 radio-btn">
 				<%= check_box :credit_card, :skip_payment , :value=>'1', :onClick => "$('#accept').prop('checked', true);" %>
 			</div>
 		</div>
 	<% end %>
 	<div class="address-row row clearfix">
-		<div class="col-xs-2">Card Type:</div>
-		<div class="col-xs-4">
+		<div class="col-md-2">Card Type:</div>
+		<div class="col-md-4">
 			<%= select :credit_card, :type, [["Visa", "visa"], ["Visa Delta","delta"],["Visa Electron", "electron"], ["Mastercard", "master"],["Mastercard Debit", "master"], ["UK Maestro", "maestro"]], :selected => session[:credit_card_type] %>
 		</div>
 	</div>
 	<div class="address-row row clearfix">
-		<div class="col-xs-2">First Name:</div>
-		<div class="col-xs-4">
+		<div class="col-md-2">First Name:</div>
+		<div class="col-md-4">
 			<%= text_field :credit_card, :first_name , :value=>session[:card_first_name]%>
 		</div>
 	</div>
 	<div class="address-row row clearfix">
-		<div class="col-xs-2">Last Name:</div>
-		<div class="col-xs-4">
+		<div class="col-md-2">Last Name:</div>
+		<div class="col-md-4">
 			<%= text_field :credit_card, :last_name, :value=>session[:card_last_name] %>
 		</div>
 	</div>
 	<div class="address-row row clearfix">
-		<div class="col-xs-2">Card Number:</div>
-		<div class="col-xs-4">
+		<div class="col-md-2">Card Number:</div>
+		<div class="col-md-4">
 			<%= text_field :credit_card, :number, :value => session[:credit_card_number] %>
 		</div>
 	</div>
 	<div class="address-row row clearfix" id="issue_number_row" style="display:none">
-		<div class="col-xs-2">Issue Number:</div>
-		<div class="col-xs-4"><%= text_field :credit_card, :issue_number, :size => 2, :maxlength => 2 %></div>
+		<div class="col-md-2">Issue Number:</div>
+		<div class="col-md-4"><%= text_field :credit_card, :issue_number, :size => 2, :maxlength => 2 %></div>
 	</div>
 	<div class="address-row row clearfix" id="valid_form_row" style="display:none">
-		<div class="col-xs-2">Valid Form:</div>
-		<div class="col-xs-4">
+		<div class="col-md-2">Valid Form:</div>
+		<div class="col-md-4">
 			<%= select :credit_card, :start_month, (1..12) %><%= select :credit_card, :start_year, (Date.today.year-10..Date.today.year) %>
 		</div>
 	</div>
 	<div class="address-row row clearfix">
-		<div class="col-xs-2">Expiry Date:</div>
-		<div class="col-xs-1">
-			<%= select :credit_card, :month, (1..12), :selected => session[:card_expiry_month] %>
+		<div class="col-md-2">Expiry Date:</div>
+		<div class="col-md-4 row clearfix">
+			<div class="col-xs-3">
+				<%= select :credit_card, :month, (1..12), :selected => session[:card_expiry_month] %>
+			</div>
+			<div class="col-xs-3"><%= select :credit_card, :year, (Date.today.year..Date.today.year+10), :selected => session[:card_expiry_year] %></div>
 		</div>
-		<div class="col-xs-1"><%= select :credit_card, :year, (Date.today.year..Date.today.year+10), :selected => session[:card_expiry_year] %></div>
 	</div>
 	<div class="address-row row clearfix">
-		<div class="col-xs-2">Security Code:</div>
-		<div class="col-xs-4">
+		<div class="col-md-2">Security Code:</div>
+		<div class="col-md-4">
 			<%= text_field :credit_card, :verification_value, :value => session[:card_verification_value], :maxlength => 4, :size => 4 %>
 		</div>
 	</div>
 	<div class="address-row row clearfix">
-		<div class="col-xs-2">&nbsp;</div>
-		<div class="col-xs-4">
+		<div class="col-md-2">&nbsp;</div>
+		<div class="col-md-4">
 			<span><%= image_tag("credit_logo/logo_ccDelta.gif") %></span>
 			<span><%= image_tag("credit_logo/logo_ccMC.gif") %></span> 
 			<span><%= image_tag("credit_logo/logo_ccSolo.gif") %></span>
@@ -88,4 +90,3 @@
 		}
 	}
 </script>
-

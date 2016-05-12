@@ -1,84 +1,84 @@
 <div class="form-box">
 	<div class="box-title">General Info</div>
-	<div class="row clearfix bottom-5">
-		<div class="col-xs-2 form-label">Title:</div>
-		<div class="col-xs-4"><%= select :user, :title, ["Mr", "Miss", "Mrs", "Dr"] %></div>
+	<div class="row clearfix bottom-15">
+		<div class="col-md-2 form-label">Title:</div>
+		<div class="col-md-4"><%= select :user, :title, ["Mr", "Miss", "Mrs", "Dr"] %></div>
 	</div>
-	<div class="row clearfix bottom-5">
-		<div class="col-xs-2 form-label">Name:</div>
-		<div class="col-xs-4"><%= text_field :user, :name %></div>
+	<div class="row clearfix bottom-15">
+		<div class="col-md-2  form-label">Name:</div>
+		<div class="col-md-4 "><%= text_field :user, :name %></div>
 	</div>
-	<div class="row clearfix bottom-5">
-		<div class="col-xs-2 form-label">Surname:</div>
-		<div class="col-xs-4"><%= text_field :user, :surname %></div>
+	<div class="row clearfix bottom-15">
+		<div class="col-md-2 form-label">Surname:</div>
+		<div class="col-md-4"><%= text_field :user, :surname %></div>
 	</div>
-	<div class="row clearfix bottom-5">
-		<div class="col-xs-2 form-label">DOB:</div>
-		<div class="col-xs-4"><%= date_select :user, :dob, :start_year => 1900, :end_year => Time.now.year, :order => [:day, :month, :year] %></div>
+	<div class="row clearfix bottom-15">
+		<div class="col-md-2 form-label">DOB:</div>
+		<div class="col-md-8"><%= date_select :user, :dob, :start_year => 1900, :end_year => Time.now.year, :order => [:day, :month, :year] %></div>
 	</div>
 </div>
 <div class="form-box">
 	<div class="box-title">Telephone</div>
-	<div class="row clearfix bottom-5">
-		<div class="col-xs-2 form-label">Telephone:</div>
-		<div class="col-xs-4"><%= text_field :user, :telephone %></div>
+	<div class="row clearfix bottom-15">
+		<div class="col-md-2 form-label">Telephone:</div>
+		<div class="col-md-4"><%= text_field :user, :telephone %></div>
 	</div>
-	<div class="row clearfix bottom-5">
-		<div class="col-xs-2 form-label">Mobile:</div>
-		<div class="col-xs-4"><%= text_field :user, :mobile %></div>
+	<div class="row clearfix bottom-15">
+		<div class="col-md-2 form-label">Mobile:</div>
+		<div class="col-md-4"><%= text_field :user, :mobile %></div>
 	</div>
 </div>
 <div class="form-box">
 	<div class="box-title">Address</div>
-	<div class="row clearfix bottom-5">
-		<div class="col-xs-2 form-label">Address #1:</div>
-		<div class="col-xs-4"><%= text_field :user, :address %></div>
+	<div class="row clearfix bottom-15">
+		<div class="col-md-2 form-label">Address #1:</div>
+		<div class="col-md-4"><%= text_field :user, :address %></div>
 	</div>
-	<div class="row clearfix bottom-5">
-		<div class="col-xs-2 form-label">Address #2:</div>
-		<div class="col-xs-4"><%= text_field :user, :address_2 %></div>
+	<div class="row clearfix bottom-15">
+		<div class="col-md-2 form-label">Address #2:</div>
+		<div class="col-md-4"><%= text_field :user, :address_2 %></div>
 	</div>
-	<div class="row clearfix bottom-5">
-		<div class="col-xs-2 form-label">Town:</div>
-		<div class="col-xs-4"><%= text_field :user, :city %></div>
+	<div class="row clearfix bottom-15">
+		<div class="col-md-2 form-label">Town:</div>
+		<div class="col-md-4"><%= text_field :user, :city %></div>
 	</div>
-	<div class="row clearfix bottom-5">
-		<div class="col-xs-2 form-label">Postcode:</div>
-		<div class="col-xs-4"><%= text_field :user, :cap %></div>
+	<div class="row clearfix bottom-15">
+		<div class="col-md-2 form-label">Postcode:</div>
+		<div class="col-md-4"><%= text_field :user, :cap %></div>
 	</div>
-	<div class="row clearfix bottom-5">
-		<div class="col-xs-2 form-label">Country:</div>
-		<div class="col-xs-4"><%= custom_country_select :user, :country, [["United Kingdom","GB"]] %></div>
+	<div class="row clearfix bottom-15">
+		<div class="col-md-2 form-label">Country:</div>
+		<div class="col-md-4"><%= custom_country_select :user, :country, [["United Kingdom","GB"]] %></div>
 	</div>
 </div>
 <div class="form-box">
 	<div class="box-title">Login</div>
-	<div class="row clearfix bottom-5">
-		<div class="col-xs-2 form-label">User Name:</div>
-		<div class="col-xs-4"><%= text_field :user, :login %></div>
+	<div class="row clearfix bottom-15">
+		<div class="col-md-2 form-label">User Name:</div>
+		<div class="col-md-4"><%= text_field :user, :login %></div>
 	</div>
-	<div class="row clearfix bottom-5">
-		<div class="col-xs-2 form-label">E-Mail:</div>
-		<div class="col-xs-4"><%= text_field :user, :email %></div>
+	<div class="row clearfix bottom-15">
+		<div class="col-md-2 form-label">E-Mail:</div>
+		<div class="col-md-4"><%= text_field :user, :email %></div>
 	</div>
-	<div class="row clearfix bottom-5">
-		<div class="col-xs-2 form-label">Password:</div>
-		<div class="col-xs-4"><%= password_field :user, :password %></div>
+	<div class="row clearfix bottom-15">
+		<div class="col-md-2 form-label">Password:</div>
+		<div class="col-md-4"><%= password_field :user, :password %></div>
 	</div>
-	<div class="row clearfix bottom-5">
-		<div class="col-xs-2 form-label">Password Confirm:</div>
-		<div class="col-xs-4"><%= password_field :user, :password_confirmation %></div>
+	<div class="row clearfix bottom-15">
+		<div class="col-md-2 form-label">Password Confirm:</div>
+		<div class="col-md-4"><%= password_field :user, :password_confirmation %></div>
 	</div>
 </div>
 <% if @user.type_id == 4 %>
 	<div class="form-box">
 		<div class="box-title">Chef Info</div>
-		<div class="row clearfix bottom-5">
-			<div class="col-xs-2 form-label">Biography</div>
-			<div class="col-xs-4"><%= text_area :user, :chef_bio,:size=>'30x5' %></div>
+		<div class="row clearfix bottom-15">
+			<div class="col-md-2 form-label">Biography</div>
+			<div class="col-md-4"><%= text_area :user, :chef_bio,:size=>'30x5' %></div>
 		</div>
-		<div class="row clearfix bottom-5">
-			<div class="col-xs-2 form-label">
+		<div class="row clearfix bottom-15">
+			<div class="col-md-2 form-label">
 				My restaurant website
 			</div>
 			<div class="col-xs-4"><%= text_field :user, :establishment_link %></div>
@@ -87,34 +87,34 @@
 <% end %>
 <div class="form-box">
 	<div class="box-title">Other Info</div>
-	<div class="row clearfix bottom-5">
-		<div class="col-xs-2 form-label">Where did you hear about us?</div>
-		<div class="col-xs-4"><%= select :user, :know_through, ["Google", "Yahoo", "Msn", "Other Search Engines", "Press", "Italyabroad.com Van", "Fairs and Events", "Flyers", "Wine Tasting", "Recommended by a friend", "Other Source"] %>
+	<div class="row clearfix bottom-15">
+		<div class="col-md-2 form-label">Where did you hear about us?</div>
+		<div class="col-md-4"><%= select :user, :know_through, ["Google", "Yahoo", "Msn", "Other Search Engines", "Press", "Italyabroad.com Van", "Fairs and Events", "Flyers", "Wine Tasting", "Recommended by a friend", "Other Source"] %>
 			</div>
 	</div>
-	<div class="row clearfix bottom-5">
-		<div class="col-xs-2 form-label">Friend's Name:</div>
-		<div class="col-xs-4"><%= text_field :user, :friend_name %></div>
+	<div class="row clearfix bottom-15">
+		<div class="col-md-2 form-label">Friend's Name:</div>
+		<div class="col-md-4"><%= text_field :user, :friend_name %></div>
 	</div>
-	<div class="row clearfix bottom-5">
-		<div class="col-xs-2 form-label">Friend's Email:</div>
-		<div class="col-xs-4"><%= text_field :user, :friend_email %></div>
+	<div class="row clearfix bottom-15">
+		<div class="col-md-2 form-label">Friend's Email:</div>
+		<div class="col-md-4"><%= text_field :user, :friend_email %></div>
 	</div>
-	<div class="row clearfix bottom-5">
-		<div class="col-xs-2 form-label">Subscribe our news letters?</div>
-		<div class="col-xs-4"><%= check_box :user, :news_letters %></div>
+	<div class="row clearfix bottom-15">
+		<div class="col-md-2 form-label">Subscribe our news letters?</div>
+		<div class="col-md-4"><%= check_box :user, :news_letters %></div>
 	</div>
-	<div class="row clearfix bottom-5">
-		<div class="col-xs-2 form-label">Activate User?</div>
-		<div class="col-xs-4"><%= check_box :user, :active, :checked=>@user.active %></div>
+	<div class="row clearfix bottom-15">
+		<div class="col-md-2 form-label">Activate User?</div>
+		<div class="col-md-4"><%= check_box :user, :active, :checked=>@user.active %></div>
 	</div>
-	<div class="row clearfix bottom-5">
-		<div class="col-xs-2 form-label">Select Type of User</div>
-		<div class="col-xs-4"><%= select :user, :type_id, Type.find(:all,:order=>'id desc').collect {|type| [ type.name, type.id ] } %></div>
+	<div class="row clearfix bottom-15">
+		<div class="col-md-2 form-label">Select Type of User</div>
+		<div class="col-md-4"><%= select :user, :type_id, Type.find(:all,:order=>'id desc').collect {|type| [ type.name, type.id ] } %></div>
 	</div>
-	<div class="row clearfix bottom-5">
-		<div class="col-xs-2 form-label">Point</div>
-		<div class="col-xs-4"><%= text_field :user, :points %></div>
+	<div class="row clearfix bottom-15">
+		<div class="col-md-2 form-label">Point</div>
+		<div class="col-md-4"><%= text_field :user, :points %></div>
 	</div>
 </div>
 

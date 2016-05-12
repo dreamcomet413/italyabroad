@@ -1,16 +1,19 @@
-
-
- <div class="col-md-4">
+ <!-- <div class="col-md-4">
   <div class="small-box-2">
-    <% products = Product.find(:all, :limit => 3,:include => {:categorizations => :category},:conditions => ["categories.name LIKE ? AND DATE(date) > ? AND active" ,'%Events%',Date.today],:order =>'date') %>
+    <%# products = Product.find(:all, :limit => 3,:include => {:categorizations => :category},:conditions => ["categories.name LIKE ? AND DATE(date) > ? AND active" ,'%Events%',Date.today],:order =>'date') %>
       <div class="small-box-heading">Upcoming Events</div>
       <div class="row clearfix small-box-detail-row">
           <div class="col-xs-6">
               <div class="small-box-2-text">Wine and food events, Wine Maker dinner, Wine tasting</div>
-              <div class="read-more"><%= link_to "Read More", "/events" %></div>
+              <div class="read-more"><%#= link_to "Read More", "/events" %></div>
           </div>
-          <div class="col-xs-6"><img src="/images/event-img.png" alt="event image"></div>
+          <div class="col-xs-6 right-align"><img src="/images/event-img.png" alt="event image"></div>
       </div>
 
   </div>
+</div> -->
+<div class="col-md-4">
+    <div class="small-box-3 center-align">
+        <%= link_to image_tag(SmallBoxSetting.find_by_box_title("upcoming_events").image.image_filename.try(:url)), "/events" -%>
+    </div>
 </div>

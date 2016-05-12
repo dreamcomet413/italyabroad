@@ -16,9 +16,12 @@ class Admin::SmallBoxSettingsController < ApplicationController
    #    flash[:notice] = @small_box.show_errors
    #  end
     
-    byebug    
     SmallBoxSetting.update(params[:small_box_settings].keys, params[:small_box_settings].values)
-      
+    # params[small_box_settings].each do |key, value|
+    #   sm = SmallBoxSetting.find(key)
+    #   if !sm.image
+    #     sm.build_image(:image_filename => params[])
+    # end
     
     logger.info('=====================================================================================')
     logger.info(params[:small_box_setting])

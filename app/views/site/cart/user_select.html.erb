@@ -21,8 +21,8 @@
 				<%= render :partial => "/admin/customers/form" %>
 				<%= hidden_field_tag :return_to, '/cart/gift_options' %>
 				<div class="row clearfix bottom-50">
-					<div class="col-xs-2 form-label">&nbsp;</div>
-					<div class="col-xs-4 green-button">
+					<div class="col-md-2 form-label">&nbsp;</div>
+					<div class="col-md-4 green-button">
 						<div class="submit-btn"><%= submit_tag "Next" %></div>
 					</div>
 				</div>
@@ -32,11 +32,11 @@
 			<% form_tag do %>
 				<div class="form-wrapper">
 					<div class="row clearfix bottom-50">
-						<div class="col-xs-4 auto-field">
+						<div class="col-md-4  auto-field bottom-15">
 							<%= autocomplete_field_tag :name, '', autocomplete_user_name_site_cart_index_path, :id_element=>"#user_id", :placeholder => 'type user name' %>
 							<%= hidden_field_tag 'user_id' %>
 						</div>
-						<div class="col-xs-2 green-button">
+						<div class="col-md-2 col-xs-3 green-button">
 							<div class="submit-btn"><%= submit_tag 'Select' %></div>
 						</div>
 					</div>

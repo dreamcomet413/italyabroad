@@ -1,90 +1,80 @@
 <% @title = "Search #{params[:text]}"; %>
 <%- @breadcrumbs = "#{link_to "Home", root_url} &raquo; Search &raquo; Recipes" -%>
-<% unless @recipes.blank? %>
-    <div id="header">Your search result has found the following products:</div>
-
-    <div class="fRight" style="margin-right: 12px; padding: 5px;"><%= link_to "Go Back", :back -%></div>
-    <br />
-    <div style="margin:10px 0px;padding:5px;background-color:#F3F8DA;">
-      <table style="width:100%;" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <%- unless will_paginate(@recipes).blank? -%>
-              <td>
-                <div class="digg_pagination pagination-2 clearfix" style="border: none; margin-bottom: 5px;">
-                  <div class="pagination-links" style="float: left;">
-                    <%= will_paginate @recipes, :container => false %>
-                  </div>
-                </div>
-              </td>
-          <%- end -%>
-          <td align="right">
-            <%- form_tag site_search_index_path, :method => :get, :id => "sort_by_form" do -%>
+<div class="row bottom-50">
+  <div class="two-colum-row clearfix">
+    <div class="col-md-3 left-side-bar">
+      <%= render :partial => '/site/shared/box_search_recipes_new' %>
+    </div>
+    <div class="col-md-9">
+      <div class="hampers-wrapper-2">
+        <div class="green-heading-with-border">Recipes
+          <div class="sort-by-box clearfix">
+            <div class="sort-select">
+              <%- form_tag site_search_index_path, :method => :get, :id => "sort_by_form" do -%>
                 <%= hidden_field_tag :page, (params[:page] || 1) %>
                 <%= hidden_field_tag :text, params[:text] %>
                 <%= hidden_field_tag :id, (params[:id] || params[:category]) %>
                 <strong>Sort by:</strong>&nbsp;<%= select_tag("sort_by", options_for_select([["Difficulty", "recipe_level_id"], ["Preparation Time", "preparation_time"]], params[:sort_by]), :onchange => "$('#sort_by_form').submit()") %>
-            <%- end -%>
-          </td>
-        </tr>
-      </table>
-    </div>
-    <div>
-      <ul style="margin:0;list-style:none;padding-left:0px;">
-        <%- for recipe in @recipes -%>
-            <li class="product_listing" style="margin:0;padding-left:20px;">
-              <br />
-              <h1><%= link_to recipe.name, site_recipe_path(recipe), :class => "recipe_title" %></h1><!--, :style => "font-size:17px;color:#003300;"-->
-              <%if recipe.average_rating_round > 0 %>
-                  <%= show_ratings(recipe, recipe.average_rating_round)  %><br />
-              <% end %>
-              <% if !recipe.image_1.blank? %>
-                  <%#= link_to image_tag(site_image_url('recipe_thumb', recipe.image_1, :jpg),:alt=>recipe.name), site_recipe_path(recipe) %>
-                  <%= link_to image_tag("/resources/images/#{recipe.image_1.id}.jpg", :height => "75", :width => "100", :alt => recipe.name), site_recipe_path(recipe) %>
-              <% else %>
-                  <%= link_to image_tag("no_images/PastaRecipe.jpg",:size => "100x75",:alt=>recipe.name), site_recipe_path(recipe) %>
-              <% end %><br />
-              <span id="recipe_caption"><%= link_to "Preparation Time:#{recipe.preparation_time} min"  ,{:category=>'recipe',:preparation_time => recipe.preparation_time,:text=>params[:text]},:style=>"color:black;" %></span><br />
-              <span id="recipe_caption"><%= link_to "Difficulty: #{recipe.recipe_level.name}",{:category=>'recipe',:difficulty => recipe.recipe_level_id,:text=>params[:text]},:style=>"color:black;" %></span>
-              <%= recipe.user.name if recipe.user %>
-              <br /><br />
-              <%= recipe.preparation[0..360] if recipe.preparation %>
-              <% if recipe.preparation.size > 360 %>
-                  <%= link_to "... more",  site_recipe_path(recipe )%>
-              <%  end %>
-
-
-
-              <br /><br />
-            </li>
+              <%- end -%>
+            </div>
+          </div>
+        </div>
+        <% unless @recipes.blank? %>
+          <div id="header">Your search result has found the following Recipes:</div>
+          <div class="fRight" style="margin-right: 12px; padding: 5px;"><%= link_to "Go Back", :back -%></div>
+        <% end %>
+        <br/>
+        <% if @recipes.blank? %>
+            <div id="header">Your search returned no results:</div><br />
+            <div class="fRight" style="margin-right: 12px; padding: 5px;"><%= link_to "Go Back", :back -%></div>
+            <div class ="search_result">Sorry the search has not given any result, please check the spelling or <%= mail_to "info@italyabroad.com", "get in touch" %> if the spelling is correct.</div>
+        <% end %>
+        <%- unless will_paginate(@recipes).blank? -%>
+          <div class="digg_pagination pagination-2 clearfix top-15" >
+            <div class="page_info show-result"><%= page_entries_info @recipes %></div>
+            <div class="pagination-links">
+              <%= will_paginate @recipes, :container => false %>
+            </div>
+          </div>
         <%- end -%>
-      </ul>
-      <br />
-    </div>
-    <div class="digg_pagination pagination-2 clearfix">
-      <div class="page_info show-result">
-        <%= page_entries_info @recipes %>
+        <div class="row clearfix">
+          <%- for recipe in @recipes -%>
+            <div class="col-md-4">
+              <div class="recipe-box">
+                <div class="green-heading-16">
+                  <%= link_to recipe.name, site_recipe_path(recipe), :class => "recipe_title" %>
+                </div>
+                <div class="row clearfix">
+                  <div class="col-xs-5 box-image">
+                    <% if !recipe.image_1.blank? %>
+                    <%#= link_to image_tag(site_image_url('recipe_thumb', recipe.image_1, :jpg),:alt=>recipe.name), site_recipe_path(recipe) %>
+                    <%= link_to image_tag("/resources/images/#{recipe.image_1.id}.jpg", :height => "75", :width => "100", :alt => recipe.name), site_recipe_path(recipe) %>
+                    <% else %>
+                      <%= link_to image_tag("no_images/PastaRecipe.jpg",:size => "100x75",:alt=>recipe.name), site_recipe_path(recipe) %>
+                    <% end %>
+                  </div>
+                  <div class="col-xs-7">
+                  
+                    <div><b>Difficulty:</b> <%= link_to "#{recipe.recipe_level.name}",{:category=>'recipe',:difficulty => recipe.recipe_level_id,:text=>params[:text]},:style=>"color:black;" %></div>
+                    <div><b>Prep time:</b> <%= link_to "#{recipe.preparation_time} min"  ,{:category=>'recipe',:preparation_time => recipe.preparation_time,:text=>params[:text]},:style=>"color:black;" %></div>
+                  </div>
+                </div>
+                <div class="instructions">
+                  <%= link_to "Ingredients and cooking instructions",  site_recipe_path(recipe ) %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
       </div>
-      <div class="pagination-links">
-        <%= will_paginate @recipes, :container => false %>
-      </div>
+      <%- unless will_paginate(@recipes).blank? -%>
+        <div class="digg_pagination pagination-2 clearfix top-15" >
+          <div class="page_info show-result"><%= page_entries_info @recipes %></div>
+          <div class="pagination-links">
+            <%= will_paginate @recipes, :container => false %>
+          </div>
+        </div>
+      <%- end -%>
     </div>
-<% else %>
-    <div id="header">Your search returned no results:</div><br />
-    <div class="fRight" style="margin-right: 12px; padding: 5px;"><%= link_to "Go Back", :back -%></div>
-    <br />
-    <div class ="search_result">Sorry the search has not given any result, please check the spelling or <%= mail_to "info@italyabroad.com", "get in touch" %> if the spelling is correct.</div>
-<% end %>
-<br />
-<br />
-<% content_for :right do %>
-    <%= render :partial => 'site/shared/box_search_recipes_new' %>
-    <br />
-    <%= render :partial => '/site/shared/box_event' %>
-    <br />
-    <%= render :partial => '/site/shared/box_subscriptions' %>
-    <br />
-    <%= render :partial => '/site/shared/box_grape_guide' %>
-    <br />
-    <%= render :partial => '/site/shared/social_follow' %>
-<% end %>
-
+  </div>
+</div>    

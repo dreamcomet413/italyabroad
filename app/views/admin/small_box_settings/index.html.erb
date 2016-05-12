@@ -15,8 +15,10 @@
 		        <td valign="top" style="padding:0;">Image&nbsp;&nbsp;</td> 
 		        <td>
 		        <%= fields_for :image do |image| %>
-		        	<%= hidden_field_tag "small_box_settings[#{sb.id}][image_attributes][][id]", sb.image_id %>
-		        	<%= file_field_tag "small_box_settings[#{sb.id}][image_attributes][][image_filename]" %> <em>(must 723x284px)</em>
+		        	<% if sb.image %>
+		        		<%= hidden_field_tag "small_box_settings[#{sb.id}][image_attributes][id]", sb.image_id %>
+		        	<% end %>
+		        	<%= file_field_tag "small_box_settings[#{sb.id}][image_attributes][image_filename]" %> <em>(must 723x284px)</em>
 		        <% end %>
 		        </td>
 		      </tr>
@@ -27,7 +29,7 @@
 	    	<%end%>	
 	    	<br/>
 	    	<% hidden_field_tag "small_box_settings[][id]", sb.id %>
-	    	<%= text_field_tag "small_box_settings[#{sb.id}][box_title]" , sb.box_title  %> 
+	    	 
     	</div>
     <%end%>
     <br/>

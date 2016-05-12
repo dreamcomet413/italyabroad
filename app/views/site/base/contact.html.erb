@@ -13,14 +13,14 @@
           <% unless flash[:notice].blank? %>
             <div><%= flash[:notice] %></div>
           <% end %>
-          <div class="col-xs-10">
+          <div class="col-md-9">
             <div class="row form-row clearfix">
               <div class="col-md-2 section-label">Insert your name:</div>
-              <div class="col-md-4"><%= text_field :contact, :name %></div>
+              <div class="col-md-7"><%= text_field :contact, :name %></div>
             </div>
             <div class="row form-row clearfix">
               <div class="col-md-2 section-label">Insert your email address:</div>
-              <div class="col-md-4"><%= text_field :contact, :email %></div>
+              <div class="col-md-7"><%= text_field :contact, :email %></div>
             </div>
             <div class="row form-row clearfix">
               <div class="col-md-2 section-label">Insert your message:</div>
@@ -30,24 +30,24 @@
             </div>
             <div class="row form-row clearfix">
               <div class="col-md-2 section-label">Where did you hear about us?</div>
-              <div class="col-md-4">
+              <div class="col-md-7">
                 <%= select :contact, :know_through, ["Google", "Yahoo", "Msn", "Other Search Engines", "Press", "Italyabroad.com Van", "Fairs and Events", "Flyers", "Wine Tasting", "Recommended by a Friend", "Other Source"] %>
               </div>
             </div>
             <div class="row form-row celarfix">
               <div class="col-md-2 section-label">Captcha</div>
-              <div class="col-md-4"><%= recaptcha_tags %></div>
+              <div class="col-md-7"><%= recaptcha_tags %></div>
             </div>
             <div class="row form-row clearfix">
               <div class="col-md-2 section-label"> &nbsp;</div>
-              <div class="col-md-4">
+              <div class="col-md-7">
                 <div class="green-button" style="max-width: 150px;"><%= submit_tag "Send" %></div>
               </div>
             </div>
           </div>
         <% end %>
       <% end %>
-      <div class="col-xs-2 center-align">
+      <div class="col-md-3 right-align">
         <%= link_to image_tag('LiveChatHelpIcon.jpg'), "#",:onclick=>"popupwindow('http://#{Rails.env == 'production' ? 'www.italyabroad.com' : 'localhost:3000'}/chat_messages', 700, 650)" %> <br />
         <% if !Setting.first.blank?%>
           <%

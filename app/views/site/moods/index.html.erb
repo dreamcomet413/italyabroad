@@ -42,43 +42,34 @@
 <%#end%>
 
 
-<%- @breadcrumbs = "Welcome to Italyabroad.com" -%><br />
-<div id="flashBanner">
-  <% if !@setting.nil? %>
-      <ul>
-        <li id="home_image_1" class="home_image">
-          <%= image_tag("/images/mood-banner.jpg")-%>
-        </li>
-      </ul>
-  <%end%>
-</div><br /><br /><br /><br />
-
+<%- @breadcrumbs = "Welcome to Italyabroad.com" -%>
+<% if !@setting.nil? %>
+  <div class="main-banner"><%= image_tag("/images/mood-banner.jpg")-%></div>
+<%end%>
 <%- if !params[:category].blank?
-      @category = Category.find(params[:category])
-    else
-      @category = Category.find(:first,:conditions=>['LOWER(name = ?)','wine'])
-    end %>
+  @category = Category.find(params[:category])
+else
+  @category = Category.find(:first,:conditions=>['LOWER(name = ?)','wine'])
+end %>
 <%- @parent = Category.find(params[:parent] || "wine") -%>
-
 <%- search_url ||= @category == @parent ? site_search_index_path(:id => @parent) : nested_categories_url(@parent, @category) -%>
 
 <div class="new_search">
   <% form_tag search_url, :method => :get do %>
-      <%= hidden_field_tag :id,@category.name.downcase if !@category.nil? %>
-      <div class="fLeft font26">Select Wine According to Your Mood</div>
-
-      <dl>
-        <% for mood in @moods %>
-            <dt>
-              <%= image_tag("#{mood.try(:image).url}", :height => "154", :width => "86")-%><br /></br />
-              <%= radio_button_tag :mood, mood.id %><br /></br />
-              <%= mood.name.upcase-%>
-            </dt>
-        <% end %>
-      </dl>
-
+    <%= hidden_field_tag :id,@category.name.downcase if !@category.nil? %>
+    <div class="green-heading-with-border">Select Wine According to Your Mood</div>
+    <div class="row clearfix bottom-50 center-align">
+      <% for mood in @moods %>
+        <div class="col-xs-4 col-md-2 mood-selection">
+          <div class="">
+            <%= image_tag("#{mood.try(:image).url}")-%>
+          </div>
+          <div><%= radio_button_tag :mood, mood.id %></div>
+          <div><%= mood.name.upcase-%></div>
+        </div>
+      <% end %>
+    </div>
   <% end %>
-
 </div>
 
 

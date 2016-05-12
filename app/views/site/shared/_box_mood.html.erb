@@ -13,7 +13,7 @@
 </div> -->
 
 <div class="col-md-4">
-    <div class="small-box-3">
-        <%= link_to image_tag("/images/Mood-Box.jpg"), "/site/moods" -%>
+    <div class="small-box-3 center-align">
+        <%= link_to image_tag(SmallBoxSetting.find_by_box_title("moods").image.image_filename.try(:url)), "/site/moods" -%>
     </div>
 </div>

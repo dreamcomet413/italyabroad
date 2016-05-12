@@ -18,7 +18,7 @@
     </div>
 </div> -->
 <div class="col-md-4">
-    <div class="small-box-3">
-        <%= link_to image_tag("Grape-Guide-box.jpg",:alt=>'Grape Guide',:title=>'Grape Guide'), grape_guide_path %>
+    <div class="small-box-3 center-align">
+        <%= link_to image_tag(SmallBoxSetting.find_by_box_title("grape_guides").image.image_filename.try(:url),:alt=>'Grape Guide',:title=>'Grape Guide'), grape_guide_path %>
     </div>
 </div>
