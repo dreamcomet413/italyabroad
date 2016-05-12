@@ -33,8 +33,8 @@
             </div>
             <% unless producer.description.blank? %>
               <div class="bottom-50">
-                <%= producer.description[0,250].html_safe() %>
-                <%= link_to "Read More", producer.friendly_identifier.blank? ? "/producers/#{producer.id}" : "/producers/#{producer.friendly_identifier}" %>
+                <%= strip_tags(producer.description[0,250]).html_safe()  %>
+                <%= link_to "Read More", site_producer_path(producer.id) %>
               </div>
             <% end %>
             <% unless producer.grapes.blank? %>
