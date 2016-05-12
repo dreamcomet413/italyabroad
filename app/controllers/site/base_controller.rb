@@ -32,7 +32,7 @@ class Site::BaseController < ApplicationController
     @food_counter = @food_counter.collect{|product| product if !product.out_of_stock? }.compact
     @best_sellers = @best_sellers.collect{|product| product if !product.out_of_stock? }.compact
     @other_drinks = @other_drinks.collect{|product| product if !product.out_of_stock? }.compact
-
+    
     @recommended_wines = @recommended_wines[0..3]
     @food_counter = @food_counter[0..3]
     @best_sellers = @best_sellers[0..3]

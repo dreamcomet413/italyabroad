@@ -1,24 +1,7 @@
-<!-- <div class="col-md-4">
-	<div class="small-box">
-		<div class="block clean" id="box_grape_guide">
-			<#% link_to image_tag("wineGuide.jpg",:alt=>'Grape Guide',:title=>'Grape Guide'), grape_guide_path %>
-		</div>
-	</div>
-</div> -->
-<!-- <div class="col-md-4">
-    <div class="small-box">
-        <div class="small-box-heading">Wine & Grape Guide</div>
-        <div class="row clearfix">
-            <div class="col-xs-7">
-                <div class="small-box-text">Behind every wine there is a grape.</div>
-                <div class="read-more"><%= link_to "Read More", "grape-guide" %></div>
-            </div>
-            <div class="col-xs-5"><img src="/images/wine-guide-img.png" alt="wine guide image"></div>
-        </div>
-    </div>
-</div> -->
 <div class="col-md-4">
     <div class="small-box-3 center-align">
-        <%= link_to image_tag(SmallBoxSetting.find_by_box_title("grape_guides").image.image_filename.try(:url),:alt=>'Grape Guide',:title=>'Grape Guide'), grape_guide_path %>
+        <%path =  get_small_box_grape_guide_image_path%>
+        
+        <%= link_to image_tag( path ,:alt=>'Grape Guide',:title=>'Grape Guide'), grape_guide_path %>    
     </div>
 </div>

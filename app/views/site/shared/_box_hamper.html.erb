@@ -1,17 +1,6 @@
-<!-- <div class="col-md-4">
-    <div class="small-box-2">
-        <div class="small-box-heading">Hampers</div>
-        <div class="row clearfix small-box-detail-row">
-            <div class="col-xs-6">
-                <div class="small-box-2-text">Pick the products you want and add to the basket or choose one of our hampers</div>
-                <div class="read-more"><a href="#.">Read More</a></div>
-            </div>
-            <div class="col-xs-6 right-align"><img src="images/hampers-img.png" alt="gifts hampers"></div>
-        </div>
-    </div>
-</div> -->
 <div class="col-md-4">
     <div class="small-box-3 center-align">
-        <%= link_to image_tag(SmallBoxSetting.find_by_box_title("hampers").image.image_filename.try(:url)), "/hampers" -%>
+        <%path = get_small_box_hampers_image_path%>
+        <%= link_to image_tag(path ), "/hampers" -%>
     </div>
 </div>
