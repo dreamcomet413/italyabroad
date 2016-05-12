@@ -1233,8 +1233,8 @@ header{
 	font-family: JosefinSlab-Bold;
 }
 .small-box-3{
-	border: solid 1px #dcdcdc;
-	padding: 10px 10px;
+	/*border: solid 1px #dcdcdc;
+	padding: 10px 10px;*/
 	margin-bottom: 15px;
 }
 .small-box-3 .black-heading-16{
@@ -2522,6 +2522,10 @@ a.close-btn, .black-strip  a{
 }
 .sommelier-box img{
 	max-width: 100px;
+}
+.upcoming-row .small-box-2{
+	/*min-height: 203px;*/
+
 }
 /*=============== Media quires=================*/
 @media only screen and (max-width: 1035px) {
