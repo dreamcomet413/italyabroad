@@ -4,13 +4,13 @@
     <div class="row">
       <div class="two-colum-row clearfix">
         <div class="col-md-3 left-side-bar sm-bottom-30">
-          <%if (params[:id] == 'wine' or params[:parent_type] == 'wine' ) %>
+          <%if ((params[:id] and params[:id].downcase.include?('wine')) or (params[:parent_type] and params[:parent_type].include?('wine')))%>
             <%= render :partial => '/site/shared/box_wine_search' %>
-          <%elsif params[:id] == 'hampers'%>
+          <%elsif (params[:id] and params[:id].include?('hampers')) %>
             <%= render :partial => '/site/shared/box_hamper_search' %>
-          <%elsif params[:id] == 'food' %>  
+          <%elsif (params[:id].include?('food')) %>  
             <%= render :partial => '/site/shared/box_food_search' %>
-          <%elsif (params[:id] == 'other drinks' or params[:parent_type] == 'other-drinks') %>  
+          <%elsif ((params[:id] and params[:id].downcase.include?('other')) or (params[:parent_type] and params[:parent_type].include?('other-drink'))) %>  
             <%= render :partial => '/site/shared/box_wine_search' %>
           <%end%>
         </div>

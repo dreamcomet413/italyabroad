@@ -57,7 +57,6 @@ class Site::SearchController < ApplicationController
       if params[:wine_type].present? || params[:body_type].present? || params[:price_type].present? || params[:food_type].present?
         @sort_by = available_sorting.include?(params[:sort_by]) ? params[:sort_by] : "product_prices.price asc"
         @sort_by = 'products.name' if @sort_by.to_s.upcase == 'NAME'
-        logger.info('222222222222222222222222222222222222222222221111111111111111111111111111111111111111111')
         if params[:price_type].present?
           #Under £10	Between £10 and £20	More than £20
           price_query_text = "? < 10" if params[:price_type] == "under 10"
