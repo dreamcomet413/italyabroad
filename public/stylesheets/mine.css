@@ -1671,7 +1671,7 @@ a.close-btn, .black-strip  a{
 	color: #5c8018;
 }
 .product-list .small-box{
-	min-height: 240px;
+	min-height: 256px;
 	margin-bottom: 15px;
 	font-family: JosefinSlab-Bold;
 }
@@ -2527,6 +2527,12 @@ a.close-btn, .black-strip  a{
 .upcoming-row .small-box-2{
 	/*min-height: 203px;*/
 
+}
+.hamper-title a {
+	color: #53565a;
+	text-decoration: none;}
+.landscape{
+	/*display: none;*/
 }
 /*=============== Media quires=================*/
 @media only screen and (max-width: 1035px) {
