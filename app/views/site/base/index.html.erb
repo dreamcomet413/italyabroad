@@ -64,7 +64,7 @@
       <div class="swiper-wrapper">
         <% if !@best_sellers.blank? %>
           <% @best_sellers.each do |food| %>
-            <div class="swiper-slide">
+            <div class="swiper-slide protrait">
               <div class="slider-box clearfix ">
                 <div class="col-xs-4"><%= link_to show_image_tag(:product_wine, food.image_1, :jpg, food.name), nested_products_uri(food),{:title => food.name} %></div>
                 <div class="col-xs-8 slider-box-text">
@@ -82,6 +82,30 @@
                       <%=render partial: 'site/templates/product_cart_form' ,  locals: {product: food} %>
                   </div>
                 </div>  
+              </div>
+            </div>
+            <div class="swiper-slide landscape">
+              <div class="slider-box2 clearfix ">
+                <div class="">
+                  <div class="box-image"><%= link_to show_image_tag(:product_wine, food.image_1, :jpg, food.name), nested_products_uri(food),{:title => food.name} %></div>
+                  <div class="item-name"><%= food.name -%></div>
+                  <div class="row clearfix">
+                    <div class="col-xs-5 hamper-price-2">
+                      <% if food.present? && food.product_prices.present? %>
+                        <% food.product_prices.each do |best_food| %>
+                          <p><%= number_to_currency best_food.price, :unit => "&pound;" -%></p>
+                        <% end %>
+                      <% else %>
+                        <p>Not Available</p>
+                      <% end %>
+                    </div>
+                    <div class="col-xs-7">
+                      <div class="add-row clearfix">
+                        <%=render partial: 'site/templates/product_cart_form' ,  locals: {product: food} %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           <% end %>
@@ -141,7 +165,7 @@
     <div class="swiper-container food-counter-swiper" id="secondSwiper">
       <div class="swiper-wrapper">
         <% @food_counter.each do |food| %>
-          <div class="swiper-slide">
+          <div class="swiper-slide portrait">
             <div class="slider-box clearfix ">
               <div class="col-xs-4">
                 <div class="counter-image"><%= link_to show_image_tag(:product_food, food.image_1, :jpg, food.name), nested_products_uri(food), {:title => food.name} %></div>
@@ -159,6 +183,30 @@
                 </div>
                 <div class="add-row clearfix">
                   <%=render partial: 'site/templates/product_cart_form' ,  locals: {product: food} %> 
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide landscape">
+            <div class="slider-box2 clearfix ">
+              <div class="">
+                <div class="box-image"><%= link_to show_image_tag(:product_food, food.image_1, :jpg, food.name), nested_products_uri(food), {:title => food.name} %></div>
+                <div class="item-name"><%=truncate(food.name, length:38) -%></div>
+                <div class="row clearfix">
+                  <div class="col-xs-5 hamper-price-2">
+                    <% if food.present? && food.product_prices.present? %>
+                      <% food.product_prices.each do |f| %>
+                        <p><%= number_to_currency f.price, :unit => "&pound;" %></p>
+                      <% end %>
+                    <% else %>
+                      <p>Not Available</p>
+                    <% end %>
+                  </div>
+                  <div class="col-xs-7">
+                    <div class="add-row clearfix">
+                      <%=render partial: 'site/templates/product_cart_form' ,  locals: {product: food} %>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
