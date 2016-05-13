@@ -1262,12 +1262,12 @@ margin-top:20px;}
 	min-height: 65px;
 	margin-bottom: 5px;
 	color: #53565a;
-	font-size: 16px;
+	font-size: 18px;
 	font-family: JosefinSlab-Bold;
 }
 .hamper-price-2{
 	font-family: JosefinSlab-Bold;
-	font-size: 18px;
+	font-size: 20px;
 	padding-top: 5px;
 }
 .hamper-box-2 .seller-btn{
@@ -2549,7 +2549,6 @@ a.close-btn, .black-strip  a{
 .slider-box2 .item-name{
 	min-height: 73px;
 }
-
 /*=============== Media quires=================*/
 @media only screen and (max-width: 1035px) {
 	.navigation-row .nav  li  a{
