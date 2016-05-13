@@ -47,7 +47,7 @@ class Search
     conditions = nil if conditions.blank?
     return conditions
   end
-
+  
   def conditions_for_recipes
 
     text = @text.gsub("'", "''")

@@ -1,6 +1,7 @@
 $( document ).ready(function() {
 // swiper best seller
 
+
 //Header serch main
 $(document).on('click','.head_search form ul li a',function(){
   $('#id').val($(this).attr('ival'));
@@ -97,15 +98,26 @@ $('.panel-title').on('click', function(e) {
     });
 
 });
+
+function get_range_price(){
+  console.log('yes, i am here.');
+  var price = $('#amount').val().replace(/\s+/g, '').replace(/\£+/g, '');
+  var start_price =  price.split('-')[0];
+  var end_price = price.split('-')[1];
+  $('#start_price').attr('value', start_price);
+  $('#end_price').attr('value' , end_price);
+}
 //Range Slider
  $(function() {
     $( "#slider-range" ).slider({
       range: true,
       min: 0,
-      max: 30,
-      values: [ 5, 25 ],
+      max: 150,
+      values: [ 25, 125 ],
       slide: function( event, ui ) {
         $( "#amount" ).val( "£" + ui.values[ 0 ] + " - £" + ui.values[ 1 ] );
+        get_range_price();
+        
       }
     });
     $( "#amount" ).val( "£" + $( "#slider-range" ).slider( "values", 0 ) +

@@ -15,8 +15,8 @@ class Site::CategoriesController < ApplicationController
 
   def show_sub
     if params[:category] != "offer"
-
       if params[:parent].blank? || params[:category].blank?
+      
         redirect_to root_url and return
       else
         #@sort_by = available_sorting.include?(params[:sort_by]) ? params[:sort_by] : "products.price DESC"
@@ -30,13 +30,24 @@ class Site::CategoriesController < ApplicationController
 
         unless @category.blank?
           @search = Search.new(params || Hash.new)
-          @products = @category.blank? ?
-              [] :
-              @category.products.where(@search.conditions).includes([:categories, :grapes, :moods, :product_prices]).order(@sort_by).paginate(:page => (params[:page] ||=1), :per_page => 12)
-          #@category.products.find(:all, :order => @sort_by, :include => [:categories, :grapes], :conditions => @search.conditions).
-          #    paginate(:page => (params[:page] ||=1), :per_page => 10)
+            if @category.blank? 
+              products = [] 
+            else
+              search_conditions = @search.conditions
+              if params[:start_price]
+                search_conditions += " AND product_prices.price >= #{params[:start_price]}"
+              end  
+              if params[:end_price]
+                search_conditions += " AND product_prices.price <= #{params[:end_price]}"
+              end  
+              products = @category.products.where(search_conditions).includes([:categories, :grapes, :moods, :product_prices]).order(@sort_by).paginate(:page => (params[:page] ||=1), :per_page => 12)
+            end
+            
+            @products = products
+            
           SearchQuery.create(:query => @search.text) unless @search.text.blank?
         else
+      
           @product = Product.find(:first,:conditions=>['friendly_identifier = ? OR mood= ?',params[:category], params[:mood]])
           if !@product.blank?
             redirect_to site_product_path(@product)
@@ -46,7 +57,7 @@ class Site::CategoriesController < ApplicationController
         end
       end
     else
-
+      
       #@sort_by = available_sorting.include?(params[:sort_by]) ? params[:sort_by] : "products.price DESC"
       @sort_by = available_sorting.include?(params[:sort_by]) ? params[:sort_by] : "products.id ASC"
       if @sort_by.to_s.upcase == 'NAME'
@@ -55,8 +66,8 @@ class Site::CategoriesController < ApplicationController
 
       @category = Category.find(params[:parent])
       @search = Search.new(params || Hash.new)
-#      @products = @category.blank? ? [] : @category.products.find(:all, :order => @sort_by, :include => [:categories, :grapes], :conditions => @search.conditions).paginate(:page => (params[:page] ||=1), :per_page => 10)
-#@products = @category.blank? ? [] : @category.products.find(:all, :order => 'products.id desc', :include => [:categories, :grapes], :conditions => [@search.conditions << " and discount != 0"]).paginate(:page => (params[:page] ||=1), :per_page => 10)
+      #@products = @category.blank? ? [] : @category.products.find(:all, :order => @sort_by, :include => [:categories, :grapes], :conditions => @search.conditions).paginate(:page => (params[:page] ||=1), :per_page => 10)
+      #@products = @category.blank? ? [] : @category.products.find(:all, :order => 'products.id desc', :include => [:categories, :grapes], :conditions => [@search.conditions << " and discount != 0"]).paginate(:page => (params[:page] ||=1), :per_page => 10)
       @products = @category.blank? ? [] : @category.products.where([@search.conditions << " and discount != 0"]).includes([:categories, :grapes]).
           order('products.id ASC').paginate(:page => (params[:page] ||=1), :per_page => 10)
       SearchQuery.create(:query => @search.text) unless @search.text.blank?

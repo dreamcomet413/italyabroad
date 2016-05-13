@@ -62,7 +62,7 @@ class Site::SearchController < ApplicationController
           price_query_text = "? < 10" if params[:price_type] == "under 10"
           price_query_text = "? > 10 AND ? < 20" if params[:price_type] == "between 10 and 20"
           price_query_text = " ? > 20 " if params[:price_type] == "more than 20"
-          price_query_text= price_query_text.gsub("?","product_prices.price")
+          price_query_text= price_query_text.gsub("?","product_prices.price") if price_query_text
         end
 
         if params[:price_start] and params[:price_end]
@@ -142,16 +142,25 @@ class Site::SearchController < ApplicationController
 
       else
         #@sort_by = available_sorting.include?(params[:sort_by]) ? params[:sort_by] : "products.price DESC"
-
+        
         @sort_by = available_sorting.include?(params[:sort_by]) ? params[:sort_by] : "product_prices.price asc"
         if @sort_by.to_s.upcase == 'NAME'
           @sort_by = 'products.name'
         end
         @search = Search.new(params || Hash.new)
         @category = @search.category
-        @products = Product.where(@search.conditions).includes([:categories, :grapes, :moods, :product_prices]).order(@sort_by).paginate(:page => params[:page], :per_page => 12)
-        SearchQuery.create(:query => @search.text) unless @products.blank?
+        
+        search_conditions = @search.conditions 
+        if params[:start_price]
+          search_conditions += " AND product_prices.price >= #{params[:start_price]}"
+        end  
+        if params[:end_price]
+          search_conditions += " AND product_prices.price <= #{params[:end_price]}"
+        end  
 
+        @products = Product.where(search_conditions).includes([:categories, :grapes, :moods, :product_prices]).order(@sort_by).paginate(:page => params[:page], :per_page => 12)
+        SearchQuery.create(:query => @search.text) unless @products.blank?
+        
         action=false
 
       end

@@ -111,43 +111,13 @@
                 </div>
             </div>
         </div><!-- end Search filter-->
-		  <!-- <td>Price:</td>
-		  <td>
-            <%= select_tag :price, options_for_select(
-                    [
-                            ["Any Price", ""],
-                            ["Less than #{number_to_currency(5,{:unit => "&pound;", :precision => 0})}".html_safe, "< 5"],
-                            ["From #{number_to_currency(5,{:unit => "&pound;", :precision => 0})} to #{number_to_currency(10,{:unit => "&pound;", :precision => 0})}".html_safe, "BETWEEN 5 AND 10"],
-                            ["From #{number_to_currency(11,{:unit => "&pound;", :precision => 0})} to #{number_to_currency(20,{:unit => "&pound;", :precision => 0})}".html_safe, "BETWEEN 11 AND 20"],
-                            ["From #{number_to_currency(21,{:unit => "&pound;", :precision => 0})} to #{number_to_currency(30,{:unit => "&pound;", :precision => 0})}".html_safe, "BETWEEN 21 AND 30"],
-                            ["More than #{number_to_currency(30,{:unit => "&pound;", :precision => 0})}".html_safe, "> 30"]
-                    ], params[:price]), :id => "search_price" -%>
-		  </td> -->
-		
-		  <!-- <td style="padding:0 0 0 17px;"><%= submit_tag "search" ,:class=>"search_btn"%><%= hidden_field_tag :id,@category.name.downcase %></td> -->
-        <div class="range-slider">
-            <div class="black-heading-16">Price </div>
-            <p>
-                <label for="amount"></label>
-                <input type="text" id="amount" readonly >
-            </p>
-            <div id="slider-range"></div>
-            <div class="row clearfix range-price">
-                <div class="col-xs-4 left">
-                    <div>|</div>
-                    <div>&pound;0</div>
-                </div>
-                <div class="col-xs-4 center">
-                    <div>|</div>
-                    <div>&pound;15</div>
-                </div>
-                <div class="col-xs-4 right">
-                    <div>|</div>
-                    <div>&pound;30+</div>
-                </div>
-            </div>
-        </div>        
+        <%=render partial: 'site/shared/range_slider' %>
 	<% end %>
 
 </div>
 <script src="/javascripts/mine.js" type="text/javascript"></script>
+<script type="text/javascript">
+  $(document).ready(function(){
+    get_range_price();
+  });
+</script>

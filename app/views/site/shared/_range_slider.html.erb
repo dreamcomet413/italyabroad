@@ -1,0 +1,24 @@
+<div class="range-slider">
+  <div class="black-heading-16"></div>
+  <p>
+    <label for="amount"></label>
+    <input type="text" id="amount" readonly >
+  </p>
+  <div id="slider-range"></div>
+  <div class="row clearfix range-price">
+      <div class="col-xs-4 left">
+          <div>|</div>
+          <div>£0</div>
+      </div>
+      <div class="col-xs-4 center">
+          <div>|</div>
+          <div>£75</div>
+      </div>
+      <div class="col-xs-4 right">
+          <div>|</div>
+          <div>£150+</div>
+      </div>
+  </div>
+</div>
+<%= hidden_field_tag :start_price , "" , :class=> 'start_price' %>
+<%= hidden_field_tag :end_price , "" , :class=> 'end_price' %>
