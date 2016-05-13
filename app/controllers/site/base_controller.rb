@@ -33,10 +33,10 @@ class Site::BaseController < ApplicationController
     @best_sellers = @best_sellers.collect{|product| product if !product.out_of_stock? }.compact
     @other_drinks = @other_drinks.collect{|product| product if !product.out_of_stock? }.compact
     
-    @recommended_wines = @recommended_wines[0..3]
-    @food_counter = @food_counter[0..3]
-    @best_sellers = @best_sellers[0..3]
-    @other_drinks = @other_drinks[0..3]
+    @recommended_wines = @recommended_wines[0..10]
+    @food_counter = @food_counter[0..10]
+    @best_sellers = @best_sellers[0..10]
+    @other_drinks = @other_drinks[0..10]
     @post = Post.last
     if @post
       @image = Image.find_by_id(@post.image_1_id)

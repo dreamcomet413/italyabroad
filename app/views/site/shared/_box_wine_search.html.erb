@@ -12,8 +12,10 @@
 <%end%>
 <div class="block" id="box_wine_search">
   <%# if params[:category] == "wine" || ~ /search/ %>
-  <% if params[:parent] != "other-drinks" && params[:category] != "other-drinks" %>
-    <div class="green-heading-16"><%= (@product.present? && @product.root_category.present?) ? @product.root_category : "Wine" -%> Search</div>
+  <% if params[:parent] != "other-drinks" and params[:parent_type] != 'other-drinks' and params[:category] != "other-drinks" %>
+    <div class="green-heading-16">
+      <%= (@product.present? && @product.root_category.present?) ? @product.root_category : "Wine" -%> Search
+    </div>
   <% else %>
     <div class="green-heading-16">Other Drink Search</div>
   <% end %>
@@ -187,8 +189,3 @@
 
 </div>
 <script src="/javascripts/mine.js" type="text/javascript"></script>
-<script type="text/javascript">
-  $(document).ready(function(){
-    get_range_price();
-  });
-</script>

@@ -34,10 +34,10 @@ class Site::CategoriesController < ApplicationController
               products = [] 
             else
               search_conditions = @search.conditions
-              if params[:start_price]
+              if params[:start_price] and params[:start_price] != ''
                 search_conditions += " AND product_prices.price >= #{params[:start_price]}"
               end  
-              if params[:end_price]
+              if params[:end_price] and params[:end_price] != ''
                 search_conditions += " AND product_prices.price <= #{params[:end_price]}"
               end  
               products = @category.products.where(search_conditions).includes([:categories, :grapes, :moods, :product_prices]).order(@sort_by).paginate(:page => (params[:page] ||=1), :per_page => 12)

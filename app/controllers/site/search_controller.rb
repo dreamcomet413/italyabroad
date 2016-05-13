@@ -151,10 +151,10 @@ class Site::SearchController < ApplicationController
         @category = @search.category
         
         search_conditions = @search.conditions 
-        if params[:start_price]
+        if params[:start_price] and params[:start_price] != ''
           search_conditions += " AND product_prices.price >= #{params[:start_price]}"
         end  
-        if params[:end_price]
+        if params[:end_price] and params[:end_price] != ''
           search_conditions += " AND product_prices.price <= #{params[:end_price]}"
         end  
 
