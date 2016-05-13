@@ -100,7 +100,6 @@ $('.panel-title').on('click', function(e) {
 });
 
 function get_range_price(){
-  console.log('yes, i am here.');
   var price = $('#amount').val().replace(/\s+/g, '').replace(/\£+/g, '');
   var start_price =  price.split('-')[0];
   var end_price = price.split('-')[1];

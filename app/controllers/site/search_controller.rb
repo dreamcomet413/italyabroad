@@ -47,6 +47,9 @@ class Site::SearchController < ApplicationController
     render_result_data(recipes)
   end
   def index
+    if params[:id] == 'other drinks'
+      params[:id] = params[:id].gsub(' ' , '-')
+    end
     @search_type = params[:id] 
     params[:category] ||= params[:id]
     

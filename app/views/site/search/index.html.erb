@@ -1,6 +1,6 @@
 <% @title = "Search #{params[:text]}"; @class = "no-padding"  %>
 <%- @breadcrumbs = "#{link_to "Home", root_url} &raquo; Search #{ '&raquo; ' + @category.name.titleize unless @category.blank?}" -%>
-
+    
     <div class="row top-30">
       <div class="two-colum-row clearfix">
         <div class="col-md-3 left-side-bar sm-bottom-30">
@@ -10,7 +10,7 @@
             <%= render :partial => '/site/shared/box_hamper_search' %>
           <%elsif (params[:id].include?('food')) %>  
             <%= render :partial => '/site/shared/box_food_search' %>
-          <%elsif ((params[:id] and params[:id].downcase.include?('other')) or (params[:parent_type] and params[:parent_type].include?('other-drink'))) %>  
+          <%elsif ((params[:id] and params[:id].downcase.include?('other')) or (params[:parent_type] and params[:parent_type].include?('other'))) %>  
             <%= render :partial => '/site/shared/box_wine_search' %>
           <%end%>
         </div>
