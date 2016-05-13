@@ -19,27 +19,6 @@
 
 
 </script> -->
-<style>
-
-
-    #container {
-        position:absolute;
-        top:150px;
-        left:600px;
-        width:380px;
-        height:100px;
-        z-index:auto;
-    }
-</style>
-<!-- <div id="container"></div> -->
-<%#if !cookies[:display]
-            cookies[:display] = {:value => 'true',
-   :expires => 1.days.from_now }
-%>
-<!--<script>
-// win1();
-</script> -->
-<%#end%>
 
 
 <%- @breadcrumbs = "Welcome to Italyabroad.com" -%>
@@ -47,24 +26,24 @@
   <div class="main-banner">
     <%= image_tag("/images/cercavino-banner.png")-%>
   </div>
-<%end%>
-<div class="green-heading-with-border">5 simple questions to find your ideal wine</div>
-<div class="full-width items">
-<% locale = {:item_options => ["Red Wine", "Rose Wine", "White Wine", "Sparkling Wine", "Surprise Me"], :step => "1"}%>
-  <%
-     if params[:st].present?
-       locale = {:item_options => ["under £10", "between £10 and £20", "more than £20"], :step => "4"}
-     end
-  %>
-  <%= render :partial => "search_options", :locals => locale -%>
-
+<% end %>
+<div class="row">
+  <div class="two-cloumn-row clearfix">
+    <div class="col-md-3 left-side-bar">
+      <%= render :partial => "site/shared/box_wine_event_testimonials" %>
+    </div>
+    <div class="col-md-9">
+      <div class="red-heading">5 simple questions to find your ideal wine
+      </div>
+      <div class="full-width items">
+        <% locale = {:item_options => ["Red Wine", "Rose Wine", "White Wine", "Sparkling Wine", "Surprise Me"], :step => "1"}%>
+        <%
+        if params[:st].present?
+        locale = {:item_options => ["under £10", "between £10 and £20", "more than £20"], :step => "4"}
+        end
+        %>
+        <%= render :partial => "search_options", :locals => locale -%>
+      </div>
+    </div>
+  </div>
 </div>
-  
-  
-
-
-<style type="text/css">
-  #leftColumnContent {
-        padding-bottom: 0px !important;
-  }
-</style>

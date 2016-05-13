@@ -232,7 +232,7 @@ img{
 	margin-bottom: 15px;
 }
 .small-box-heading{
-	font-family: prestigeEliteStd;
+	font-family: JosefinSlab-SemiBold;
 	color: #485626;
 	font-size: 26px;
 	line-height: 26px; 
@@ -266,7 +266,7 @@ a{
 	display: inline-block;
 }
 .swiper-container{
-	margin-top: 30px;
+	/*margin-top: 30px;*/
 	margin-bottom: 60px;
 }
 .swiper-button-next, .swiper-container-rtl .swiper-button-prev{
@@ -291,7 +291,7 @@ a{
 h2{
 	font-size: 30px;
 	text-align: center;
-	font-family: prestigeEliteStd;
+	font-family: JosefinSlab-SemiBold;
 	color: #485626;
 }
 .slider-box{
@@ -339,7 +339,7 @@ h2{
 	font-family:  JosefinSlab-Bold;
 }
 .seller-price{
-	font-size: 18px;
+	font-size: 20px;
 	color: #53565a;
 }
 .medium-box{
@@ -544,6 +544,7 @@ footer{
 .item-name{
 	min-height: 125px;
 	margin-bottom: 5px;
+	font-size: 18px;
 }
 .item-name a{
 	color: #53565a;
@@ -551,7 +552,7 @@ footer{
 }
 /*=============== About us css ======================*/
 .bread-crumbs{
-	padding: 12px 0px 20px;
+	padding: 12px 0px 0px;
 }
 .bread-crumbs a{
 	color: #53565a;
@@ -1670,7 +1671,7 @@ a.close-btn, .black-strip  a{
 	color: #5c8018;
 }
 .product-list .small-box{
-	min-height: 240px;
+	min-height: 256px;
 	margin-bottom: 15px;
 	font-family: JosefinSlab-Bold;
 }
@@ -2526,6 +2527,12 @@ a.close-btn, .black-strip  a{
 .upcoming-row .small-box-2{
 	/*min-height: 203px;*/
 
+}
+.hamper-title a {
+	color: #53565a;
+	text-decoration: none;}
+.landscape{
+	/*display: none;*/
 }
 /*=============== Media quires=================*/
 @media only screen and (max-width: 1035px) {

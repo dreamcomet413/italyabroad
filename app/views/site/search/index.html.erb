@@ -1,7 +1,7 @@
 <% @title = "Search #{params[:text]}"; @class = "no-padding"  %>
 <%- @breadcrumbs = "#{link_to "Home", root_url} &raquo; Search #{ '&raquo; ' + @category.name.titleize unless @category.blank?}" -%>
 
-    <div class="row">
+    <div class="row top-30">
       <div class="two-colum-row clearfix">
         <div class="col-md-3 left-side-bar sm-bottom-30">
           <%if ((params[:id] and params[:id].downcase.include?('wine')) or (params[:parent_type] and params[:parent_type].include?('wine')))%>
@@ -59,10 +59,9 @@
               <div class="product-list">
                 <div class="row clearfix">
                   <% for product in @products %>
-                    <div class="col-md-4">
+                    <div class="col-md-4 portrait">
                       <div class="small-box">
                         <div class="row clearfix">
-                    
                           <div class="col-xs-4 box-image"><%= link_to show_image_tag(product.layout_image, product.image_1, :jpg, product.name), nested_products_uri(product) %></div>
                           <div class="col-xs-8 slider-box-text">
                             <div class="item-name">
@@ -104,6 +103,55 @@
                               <%end%>
                             </div>
                           </div>  
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4 landscape">
+                      <div class="hamper-box-2">
+                        <div class="box-image">
+                          <%= link_to show_image_tag(product.layout_image, product.image_1, :jpg, product.name), nested_products_uri(product) %>
+                        </div>
+                        <div class="hamper-title">
+                          <%= link_to product.name, nested_products_uri(product) %>
+                        </div>
+                        <div class="ratings">
+                          <% if product.root_category.present? && %w(Food Hampers).include?(product.root_category) %>
+                            <%= show_review_ratings(product, product.average_rating_round).html_safe() %>
+                          <% else %>
+                            <%= show_ratings(product, product.average_rating_round).html_safe() %>
+                          <% end %>
+                        </div>
+                        <div class="row clearfix">
+                          <div class="col-xs-5 hamper-price-2">
+                            <% if product.product_prices.present? %>
+                                <% if product.discounted? && product.discount > 0.0 %>
+                                  <% product.product_prices.each do |pp| %>
+                                  <div >Was <span style="text-decoration: line-through;">
+                                    <%= number_to_currency pp.price, :unit => "&pound;" %></span></div>
+                                  <% end %>
+                                  <span class="price red" style="color:#003300;">Now&nbsp;<span style="color:red;">
+                                    <% product.price_discounted.each do |price| %>
+                                      <%= number_to_currency price, :unit => "&pound;" %>
+                                    <% end %>
+                                  </span></span>
+                                <% else %>
+                                  <span class="price" >
+                                    <% product.product_prices.each do |pp| %>
+                                      <%= number_to_currency pp.price, :unit => "&pound;" %>
+                                    <% end %>
+                                    </span>
+                                <% end %>
+                              <% end %>
+                          </div>
+                          <div class="col-xs-7">
+                            <div class="add-row clearfix">
+                              <%if product.out_of_stock?%>
+                                <%= image_tag('out_of_stock.png') %>
+                              <%else%>
+                                <%= render partial: 'site/templates/cart_product_show_page_form' , locals: {product: product} %>
+                              <%end%>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>    
