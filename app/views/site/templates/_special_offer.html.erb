@@ -1,8 +1,6 @@
-
-
 <% @breadcrumbs = "#{link_to "Home", root_url} &raquo; #{link_to(@category.name, "/#{@category.friendly_identifier}")} &raquo; #{params[:category]}" %>
 <%- @class = "sub_categories #{@category.friendly_identifier}" -%>
-<div class="row">
+<div class="row top-30">
   <div class="two-colum-row clearfix">
     <div class="col-md-3 left-side-bar sm-btottom-30">
       <% 
@@ -116,7 +114,6 @@
   <%= render :partial => '/site/shared/wine_club' %>
   <%= render :partial => '/site/shared/cercavino' %>
 </div><!-- start 3 colum  boxes-->
-
 <% params[:category] = @category.name %>
 <%
 if params[:category] == "Hampers"
