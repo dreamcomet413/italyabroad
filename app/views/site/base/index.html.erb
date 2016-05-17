@@ -125,7 +125,9 @@
       <%if @post%>
         <div class="medium-box">
           <div class="row clearfix">
-            <div class="col-xs-6"><img src="<%= @image ? @image.image_filename.url : '/images/default.png' %>" alt="blog image"></div>
+            <div class="col-xs-6">
+              <%= link_to image_tag(SmallBoxSetting.find_by_box_title("blog_home").image.image_filename.try(:url)), site_blog_path(:id => @post.id) -%>
+            </div>
             <div class="col-xs-6">
               <h3><%=@post.name%></h3>
               <div class="medium-box-text"><%=truncate(@post.description, length: 200)%></div>
@@ -139,7 +141,9 @@
       <h2>WINE CLUB</h2>
       <div class="medium-box">
         <div class="row clearfix">
-          <div class="col-xs-6"><img src="/images/club-img-01.png" alt="Club image"></div>
+          <div class="col-xs-6">
+            <%= link_to image_tag(SmallBoxSetting.find_by_box_title("wine_club_home").image.image_filename.try(:url)), "/wine-club" -%>
+          </div>
           <div class="col-xs-6">
             <h3>Discover the best Italian wines sat on the confort of your home</h3>
             <div class="medium-box-text">

@@ -4,7 +4,7 @@
   @breadcrumbs += " &raquo; #{@product.name[0..25]+ '...'}"
 %>
 <%- @class = "wine_tours" -%>
-<div id="wineBanner" style="padding:5px;"><%#= image_tag("wine_tours_card_home.jpg") %>
+<div id="wineBanner" class="main-banner"><%#= image_tag("wine_tours_card_home.jpg") %>
  <%= image_tag site_image_url('region_card', @product.image_1, :jpg),:alt=>@product.name if @product && @product.image_1 %>
 </div>
 
@@ -13,87 +13,61 @@
     <%= image_tag(site_image_url("region_card", @product.image_1, :jpg),:alt=>@product.name) if @product.image_1 %>
        <%- end -%>
 </div-->
-
-
-<div id="wine_tours_content">
-  <!--<h2 style="font-size:18px;color:#666666;"><%#= @product.name.upcase %></h2> -->
-   <h1 align="center" style="padding-top:0px;color:#9b0707;"><%= @product.name %></h1>
-  <table width="100%">
-    <tr>
-    <%# included_products = @product.included_products.find(:all,:order=>'name asc', :conditions => "active = true") %>
-    <% included_products = @product.included_products.find(:all,:order=>'created_at asc', :conditions => "active = true") %>
-   <% unless included_products.blank? %>
-   <td valign="top" width="35%">
-     <div id="box_wines_of_the_night" class="block" >
-
-    <h1>Wines</h1>
-    <ul>
-      <% for included_product in included_products %>
-       <li><%= link_to included_product.name, "/wine-events/#{included_product.friendly_identifier}", :style => "color:#9b0707;" %></li>
-      <%- end -%>
-    </ul>
-
-  </div>
-     </td> <%- end -%>
-      <td valign="top" width="60%">
-
-        <div style="padding-left:5px;text-align:justify;">
-          <%= @product.description.html_safe rescue "Product has no description" %>
-          <br /><br />
-          <div style="float:right;">
-           <ul style="list-style:none;margin:0;padding:0;float:right;font-size:14px;">
-      <li style="margin-bottom:10px;text-align:right;">
-      	<% if @product.discount > 0 %>
-      		Was <span style="text-decoration: line-through;"><%= number_to_currency @product.price, :unit => "&pound;" %></span><br />
-      		Now <span class="red"><%= number_to_currency (@product.price - (@product.price * @product.discount.to_f / 100)), :unit => "&pound;" %></span>
-      		(save <span class="red"><%= number_to_currency (@product.price * @product.discount.to_f / 100), :unit => "&pound;" %></span>)
-      	<% else %>
-      		<!--Price:--> <span style="font-size:18px;color:#9b0707;text-align:right;" class="red"><%= number_to_currency @product.price, :unit => "&pound;" %></span>
-      	<% end %>
-      </li>
-
-      <li style="text-align:right;">
+<div class="row">
+  <div class="two-colum-row clearfix">
+    <div class="col-md-3 left-side-bar"><%= render :partial => '/site/shared/box_wine_event_testimonials' %></div>
+    <div class="col-md-9">
+      <div class="red-heading"><%= @product.name %></div>
+      <div class="bottom-50">
+        <%= @product.description.html_safe rescue "Product has no description" %>
+        <ul style="list-style:none;margin:0;padding:0;float:right;font-size:14px;">
+          <li style="margin-bottom:10px;text-align:right;">
+            <% if @product.discount > 0 %>
+              Was <span style="text-decoration: line-through;"><%= number_to_currency @product.price, :unit => "&pound;" %></span><br />
+              Now <span class="red"><%= number_to_currency (@product.price - (@product.price * @product.discount.to_f / 100)), :unit => "&pound;" %></span>
+              (save <span class="red"><%= number_to_currency (@product.price * @product.discount.to_f / 100), :unit => "&pound;" %></span>)
+            <% else %>
+              <!--Price:--> <span style="font-size:18px;color:#9b0707;text-align:right;" class="red"><%= number_to_currency @product.price, :unit => "&pound;" %></span>
+            <% end %>
+          </li>
+        </ul>
+      </div>
       <% if @product.product_prices.first.quantity > 0 %>
-      	<%- form_for :cart, :url => "/site/cart?product_id=#{@product.id}", :html => {:method => :post}, :remote => true do  -%>
-      	  <table cellspacing="0" border="0">
 
-      	    <tr>
-      		    <td>Ticket qty: </td>
-      		    <td><%= text_field :cart, :quantity, :size => 2, :value => 1 %></td>
-      		    <td><%= image_submit_tag("buttons/buy_button_new.png", :style=>"vertical-align:bottom; border:none") %></td>
-      		  </tr>
-      		</table>
-      	<% end %>
-      	<% else %>
-      	<span style="color:red;"><img src="/images/out_of_stock.png?1387085163" alt="Out_of_stock"></span>
-      	<% end %>
-    	</li>
-  	</ul>
+        <div class="green-heading-2">Tickets</div>
+        <%- form_for :cart, :url => "/site/cart?product_id=#{@product.id}", :html => {:method => :post}, :remote => true do  -%>
+          <div class="bottom-50">
+            <div class="row form-row clearfix">
+              <div class="col-md-2 section-label">Ticket qty: </div>
+              <div class="col-md-3"><%= text_field :cart, :quantity, :value => 1 %></div>
+            </div>
+            <div class="form-row row clearfix">
+              <div class="col-md-2 section-label"></div>
+              <div class="col-md-3 green-button">
+                <div class="submit-btn">
+                  <%= submit_tag("Buy", :style=>"vertical-align:bottom; border:none") %>
+                </div>
+              </div>
+            </div>
           </div>
-
-        </div>
-      </td>
-    </tr>
-  </table>
-
-
-
+        <% end %>
+      <% else %>
+        <div class="red-text">Out of stock</div>
+      <% end %>
+      <% included_products = @product.included_products.find(:all,:order=>'created_at asc', :conditions => "active = true") %>
+      <% unless included_products.blank? %>
+        <div class="green-heading-2">Wines</div>
+        <div class="bottom-50">
+          <% for included_product in included_products %>
+            <div><%= link_to included_product.name, "/wine-events/#{included_product.friendly_identifier}" %></div>
+          <%- end -%>
+        </div>   
+      <% end %>
+    </div>
+  </div>
 </div>
-
-<% content_for :right do %>
-<% unless Product.other_events(@product).blank? %>
-	<%= render :partial => "/site/shared/box_event_others" %>
-	<br />
-<% end %>
-	<%= render :partial => '/site/shared/box_subscriptions' %>
-	<br />
-	<%= render :partial => '/site/shared/box_wine_tours' %>
-	<%= render :partial => '/site/shared/box_grape_guide' %>
-	<br />
-	<%= render :partial => '/site/shared/box_popular' %>
-  <br />
-	<%= render :partial => '/site/shared/box_mood' %>
-  <br />
-  <%= render :partial => '/site/shared/social_follow' %>
-<% end %>
-
+<div class="community-row clearfix row">
+  <%= render :partial => 'site/shared/community_box' %>
+  <%= render :partial => 'site/shared/wine_club' %>
+  <%= render :partial => 'site/shared/box_cercavino' %>
+</div>
