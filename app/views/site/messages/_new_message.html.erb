@@ -1,9 +1,16 @@
- <% form_tag '/messages/send_message' do |f| %>
-    <%= text_area_tag  :name,'', :size => "87x5" %>
-    <%= hidden_field_tag :user_id,@message.send_by_id %>
-    <%= hidden_field_tag :send_by_id,current_user.id %>
-    <p style="text-align:right;">
-
-    <%= image_submit_tag("buttons/submit.png") %></p>
-<% end %>
-
+<div class="row top-30">
+	<% form_tag '/messages/send_message' do |f| %>
+		<div class="form-row clearfix">
+			<div class="col-md-6">
+				<%= text_area_tag  :name,'', :size => "87x5" %>
+		    	<%= hidden_field_tag :user_id,@message.send_by_id %>
+		    	<%= hidden_field_tag :send_by_id,current_user.id %>
+			</div>
+		</div>
+	 	<div class="form-row clearfix">
+			<div class="col-md-3 green-button">
+				<div class="submit-btn"><%= submit_tag("Submit") %></div>
+			</div> 		
+	 	</div>
+	<% end %>
+</div>

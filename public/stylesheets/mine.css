@@ -2,9 +2,9 @@
 /* CSS Document */
 
 @font-face{
-		font-family:prestigeEliteStd;
-		src:url(../fonts/PrestigeEliteStd-Bd.otf),
-		url(..fonts/PrestigeEliteStd-Bd.ttf)}
+	font-family:prestigeEliteStd;
+	src:url(../fonts/PrestigeEliteStd-Bd.otf),
+	url(..fonts/PrestigeEliteStd-Bd.ttf)}
 @font-face{
 	font-family: OpenSans-Bold;
 	src:url(../fonts/OpenSans-Bold.ttf)
@@ -401,7 +401,8 @@ h3{
 .review-box{
 	background: url(../images/quotes.png) no-repeat;
 	margin: 15px 0px 0px;
-	position: relative;}
+	position: relative;
+}
 .date{
 	width: 50%;
 }
@@ -1249,7 +1250,8 @@ header{
 	margin-bottom: 5px;
 }
 .small-box-3  .slider-box-text{ min-height: 30px;
-margin-top:20px;}
+	margin-top:20px;
+}
 .theree-col-wrapper{
 	padding-bottom: 20px;
 }
@@ -1418,11 +1420,12 @@ padding: 0px 3px 10px !important;
 }
 .wish-list{
 	padding: 5px 5px 5px 20px;
-	float: left;}
+	float: left;
+}
 .wine-list{
 	padding: 5px 5px 5px 10px;
-	float: left;}
-
+	float: left;
+}
 .wish-list a, .wine-list a{
 	text-decoration: none;
 	color: #5c8018;
@@ -1532,7 +1535,8 @@ padding: 0px 3px 10px !important;
 .login-wrapper .right-border{
 	margin-top: -29px;
 	padding-top: 30px;
-	padding-bottom: 50px;}
+	padding-bottom: 50px;
+}
 .bottom-15{
 	margin-bottom: 15px;
 }
@@ -1688,7 +1692,7 @@ a.close-btn, .black-strip  a{
 	min-height: 256px;
 	margin-bottom: 15px;
 	font-family: JosefinSlab-Bold;
-	    border: solid 1px #dcdcdc;
+	border: solid 1px #dcdcdc;
     padding: 18px 8px 10px 18px;
 }
 /*================Recipe======================*/
@@ -1748,14 +1752,16 @@ a.close-btn, .black-strip  a{
 	padding: 10px 0px;
 	min-width: 190px;
 	margin-top: -11px;
-	margin-left: -1px;}
+	margin-left: -1px;
+}
 .navbar-nav li{
 	position: relative;
 }
 .navbar-nav li .sub-menu li{
 	list-style: none;
 	padding: 5px 10px;
-	display: block;}
+	display: block;
+}
 .sub-menu-2 li{
 	display: block;
 	padding: 5px 20px 5px 30px;
@@ -1899,7 +1905,6 @@ a.close-btn, .black-strip  a{
 	margin-bottom: 10px;
 }
 .section-box-2{
-
 	padding: 30px 0px 10px;
 	color: #53565a;
 	font-size: 13px;
@@ -1944,7 +1949,8 @@ a.close-btn, .black-strip  a{
 }
 .form-row{
 	margin-bottom: 15px;
-	font-family: OpenSans-Light;}
+	font-family: OpenSans-Light;
+}
 .section-label{
 	font-size: 14px;	
 	padding: 8px 0px;
@@ -1985,7 +1991,6 @@ a.close-btn, .black-strip  a{
 }
 .form-row .check-box input {
 	width: 20px;
-
 }
 .section-label b{
 	font-family: OpenSans-Regular;
@@ -2046,7 +2051,8 @@ a.close-btn, .black-strip  a{
     background: #5c8018;
     color: #fff;
     padding: 5px;
-    margin-bottom: 20px;}
+    margin-bottom: 20px;
+}
 .terms-text p{
 	margin-bottom: 20px;
 }
@@ -2111,7 +2117,6 @@ a.close-btn, .black-strip  a{
 }
 .site-map-box{
 	margin: 30px 0px 0px;
-
 }
 .site-map-box ul li{
 	list-style: none;
@@ -2173,7 +2178,6 @@ a.close-btn, .black-strip  a{
 	border:solid 1px #bfbfbf;
 	margin-top: -7px;
 }
-
 .cart-table-head{
 	margin-top:40px;
 	border-bottom: solid 1px #ebebeb;
@@ -2190,8 +2194,7 @@ a.close-btn, .black-strip  a{
 	width: 70%;
 }
 .right-align{
-	text-align: right;
-	
+	text-align: right;	
 }
 .cart-update-btn, .cart-add{
 	display: inline-block;
@@ -2354,7 +2357,8 @@ a.close-btn, .black-strip  a{
 	box-sizing: border-box;
 	padding: 5px;
 	width: 100%;
-	max-width: 550px}
+	max-width: 550px;
+}
 .disable-field input{
 	text-align: center;
 	background: #ccc;
@@ -2368,7 +2372,8 @@ a.close-btn, .black-strip  a{
 	margin-right: 15px;
 	width: 90px;
 	font-family: JosefinSlab-Bold;
-	font-size: 14px;}
+	font-size: 14px;
+}
 .continue-btn{
 	display: inline-block;
 	width: 110px;
@@ -2380,7 +2385,6 @@ a.close-btn, .black-strip  a{
 	padding: 11px 15px 8px;
 	display: block;
 }
-
 /*=============== Delivery details============*/
 .delivery-detail-wrapper{
 	padding: 0px 15px 50px;
@@ -2401,7 +2405,6 @@ a.close-btn, .black-strip  a{
 }
 .address-select{
 	float: left;
-
 }
 .address-select select{
 	background: none;
@@ -2463,7 +2466,8 @@ a.close-btn, .black-strip  a{
 .credit-card-wrapper{
 	border-top:solid 1px #ebebeb;
 	padding-top: 50px;
-	margin-top: 50px;}
+	margin-top: 50px;
+}
 .terms-cond-row{
 	text-align: right;
 	font-size: 14px;
@@ -2535,7 +2539,6 @@ a.close-btn, .black-strip  a{
 }
 .upcoming-row .small-box-2{
 	/*min-height: 203px;*/
-
 }
 .hamper-title a {
 	color: #53565a;
@@ -2553,7 +2556,8 @@ a.close-btn, .black-strip  a{
 @media only screen and (max-width: 1035px) {
 	.navigation-row .nav  li  a{
 		padding: 10px 20px 10px 20px;
-		background: url(../images/seprator.png) no-repeat right center !important;}
+		background: url(../images/seprator.png) no-repeat right center !important;
+	}
 }
 @media only screen and (max-width: 990px){
 	.new-member-row .green-button a{
@@ -2579,7 +2583,8 @@ a.close-btn, .black-strip  a{
 	}
 	.section-label2.col-md-2{
 		margin-left: 0px;
-		width: auto;}
+		width: auto;
+	}
 	header{
 		display: none;
 	}
@@ -2599,7 +2604,8 @@ a.close-btn, .black-strip  a{
 	.headerSmall{
 		display: block;
 		width: 96%;
-		margin:10px auto}
+		margin:10px auto;
+	}
 	.logo-small{
 		float: left;
 		width: 170px;
@@ -2614,7 +2620,8 @@ a.close-btn, .black-strip  a{
 	.headerSmall .btn-default{
 		background: none;
 		border:0px;
-		padding: 0px;}
+		padding: 0px;
+	}
 	.headerSmall .btn-default:hover, .headerSmall .btn-default:active, .headerSmall .btn-default:focus{
 		background: none;
 		border:0px;

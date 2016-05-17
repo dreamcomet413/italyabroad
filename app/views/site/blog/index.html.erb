@@ -3,38 +3,32 @@
 
 <% @about = AboutU.find(:first, :conditions => {:link_type => "blog"} ) %>
 <div id="blog_home" class="main-banner">
-
-  <div class="title">
-    <%= @about.title[0..150] if @about %>
-  </div>
+  <div class="title"><%= @about.title[0..150] if @about %></div>
   <% if  @about and !@about.image_id.nil? %>
    <div class="main-banner"><%=  image_tag(site_image_url(:about_thumb, @about.image, :jpg),:alt=>@about.title[0..150]) unless @about.blank?  %></div>
-   <% else %>
-  <div class="main-banner"><%= image_tag("blog_home.jpg",:alt=>@about.title[0..150]) unless @about.blank?  %></div>
+  <% else %>
+    <div class="main-banner"><%= image_tag("blog_home.jpg",:alt=>@about.title[0..150]) unless @about.blank?  %></div>
   <% end %>
 </div>
 <div class="row">
   <div class="search-blog-wrapper clearfix">
-      <div class="subscribe-rss col-md-3">
-       <%= link_to "Subscribe to our RSS feed", site_blog_index_path(:format => :xml, :show => :all) %> <%= link_to image_tag('RSS.png'), site_blog_index_path(:format => :xml, :show => :all) %>
+    <div class="subscribe-rss col-md-3">
+      <%= link_to "Subscribe to our RSS feed", site_blog_index_path(:format => :xml, :show => :all) %> <%= link_to image_tag('RSS.png'), site_blog_index_path(:format => :xml, :show => :all) %>
+    </div>
+    <div class="col-md-9 clearfix">     
+      <div class="search-blog-box clearfix">
+        <div class="blog-search-text">Search our blog</div>
+        <div class="blog-search-field">
+          <% form_tag '/site/blog', :class=>'search_form' ,:method => :get do %>
+            <div class="left-bar-search">
+              <%= hidden_field_tag :category , 'search_blog_post' %>
+              <%= text_field_tag :text, '', :class=> "form-control",  "data-autocomplete"=> '/site/search/autocomplete_post_name' , :placeholder => "Search Here", :style=>"" %>    
+              <i class="magnifier"><%= image_submit_tag "magnifier.png" %></i>
+            </div>
+          <%end%>    
+        </div>
       </div>
-      <div class="col-md-9 clearfix">
-          
-          <div class="search-blog-box clearfix">
-              <div class="blog-search-text">Search our blog</div>
-              <div class="blog-search-field">
-                <% form_tag '/site/blog', :class=>'search_form' ,:method => :get do %>
-                  <div class="left-bar-search">
-                    <%= hidden_field_tag :category , 'search_blog_post' %>
-                    <%= text_field_tag :text, '', :class=> "form-control",  "data-autocomplete"=> '/site/search/autocomplete_post_name' , :placeholder => "Search Here", :style=>"" %>
-                  
-                    <i class="magnifier"><%= image_submit_tag "magnifier.png" %></i>
-                  </div>
-                <%end%>    
-              </div>
-          </div>
-
-      </div>
+    </div>
   </div>
   <div class="two-colum-row clearfix">
     <div class="col-md-3 left-side-bar">
@@ -47,22 +41,22 @@
         <div class="blog-listing-wrapper">
           <% for post in @posts %>
             <div class="blog-list">
-                <div class="blog-list-heading">
-                  <%= post.name %>
-                </div>
-                <div class="blog-list-date clearfix">
-                    <span class="list-date"><b><%=post.created_at.to_date.to_s(:long)%></b></span> <span class="list-tags"><b>Tags: </b>
-                      <%
-                      @tag_list = "" %>
-                      <% post.tags.each do |p| %>
-                      <% @tag_list =  (@tag_list + link_to(p.name, site_blog_index_path(:tag_id=>p.id)) + ", ").html_safe%>
-                      <% end %>
-                        <% @tag_list = @tag_list.chop.chop if !@tag_list.empty? %>
-                        <%= @tag_list.html_safe if !@tag_list.empty? %>
-                    </span>   
-                    <span class="pull-right"><%= link_to "View Comments (#{post.comments.find(:all,:conditions=>['public=?',true]).size})", site_blog_path(:id => post.id) %></span>
-                </div>
-                <div class="blog-list-text"><%= post.description_short_cleared.html_safe %> <%= link_to "Continue Reading", site_blog_path(:id => post.id) %></div>
+              <div class="blog-list-heading"><%= post.name %></div>
+              <div class="blog-list-date clearfix">
+                <span class="list-date"><b><%=post.created_at.to_date.to_s(:long)%></b></span> <span class="list-tags"><b>Tags: </b>
+                  <%
+                    @tag_list = "" %>
+                    <% post.tags.each do |p| %>
+                    <% @tag_list =  (@tag_list + link_to(p.name, site_blog_index_path(:tag_id=>p.id)) + ", ").html_safe%>
+                  <% end %>
+                  <% @tag_list = @tag_list.chop.chop if !@tag_list.empty? %>
+                  <%= @tag_list.html_safe if !@tag_list.empty? %>
+                </span>   
+                <span class="pull-right"><%= link_to "View Comments (#{post.comments.find(:all,:conditions=>['public=?',true]).size})", site_blog_path(:id => post.id) %></span>
+              </div>
+              <div class="blog-list-text">
+                <%= post.description_short_cleared.html_safe %> <%= link_to "Continue Reading", site_blog_path(:id => post.id) %>
+              </div>
             </div>
           <% end %>
           <div class="green-button">

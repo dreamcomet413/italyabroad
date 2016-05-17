@@ -116,11 +116,11 @@
 </div><!-- start 3 colum  boxes-->
 <% params[:category] = @category.name %>
 <%
-if params[:category] == "Hampers"
-  search = "hamper"
-elsif params[:category] == "Food"
-  search = "food"
-elsif params[:category] == "Wine"
-  search = "wine"
-end
+  if params[:category] == "Hampers"
+    search = "hamper"
+  elsif params[:category] == "Food"
+    search = "food"
+  elsif params[:category] == "Wine"
+    search = "wine"
+  end
 %>

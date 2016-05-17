@@ -1,19 +1,14 @@
 <script>
-function validate_review(){
- if (document.getElementById('comment_name').value == ""){
-
- alert("Name must be filled out");
- return false;
-
- }
-if (document.getElementById('comment_description').value == ""){
-alert("Description must be filled out");
- return false;
-
-}
-
-
-}
+  function validate_review(){
+    if (document.getElementById('comment_name').value == ""){
+      alert("Name must be filled out");
+    return false;
+    }
+    if (document.getElementById('comment_description').value == ""){
+      alert("Description must be filled out");
+    return false;
+    }
+  }
 </script>
 <% @title = @post.page_title_formatted; @description = @post.meta_description_formatted; @keys = @post.meta_keys_formatted %>
 <% @class = "no-padding"; @breadcrumbs = "#{link_to("Home", root_url)} &raquo; #{link_to('Community',wine_community_path)} &raquo; #{link_to("Blog", site_blog_index_path)} &raquo; #{@post.name[0..25] + '...'}" %>

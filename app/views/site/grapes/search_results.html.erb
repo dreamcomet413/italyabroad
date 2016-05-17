@@ -3,29 +3,25 @@
 <% @about = AboutU.find(:first, :conditions => {:link_type => "grape-guide"} ) %>
 <div style="text-align:center;padding-top:10px;"></div>
 <div id="blog_home">
-
   <span class="title">
-  <% if !@about.title.blank? %>
-    <div style="color:white;width:350px;height:100px;background:black;opacity: 0.6zz;filter:alpha(opacity=40);text-align:left">
-      <%= @about.title.html_safe%>
-    </div>
-  <% end %>
-
+    <% if !@about.title.blank? %>
+      <div style="color:white;width:350px;height:100px;background:black;opacity: 0.6zz;filter:alpha(opacity=40);text-align:left">
+        <%= @about.title.html_safe%>
+      </div>
+    <% end %>
   </span>
   <% if  @about and @about.image %>
-  <%= link_to image_tag(site_image_url(:about_thumb, @about.image, :jpg),:alt=>@about.title) , site_search_index_path(:id => "grapes") unless @about.blank? %>
+    <%= link_to image_tag(site_image_url(:about_thumb, @about.image, :jpg),:alt=>@about.title) , site_search_index_path(:id => "grapes") unless @about.blank? %>
   <% else %>
-  <%= link_to image_tag("guide_home_image.jpg",:alt=>'Grape guide'), site_search_index_path(:id => "grapes") %>
+    <%= link_to image_tag("guide_home_image.jpg",:alt=>'Grape guide'), site_search_index_path(:id => "grapes") %>
   <% end %>
 </div>
 <h3 style="border:none;display:none;"  align="center">Italian grapes and wines</h3>
-
 <div id="blog_container"  style="text-align:justify;">
-    <p style="text-align:justify;">
+  <p style="text-align:justify;">
     <%= @about.description.html_safe rescue 'The wine and grape details ...' %> <br />
-    </p>
-   <div style="float:right;">
-
+  </p>
+  <div style="float:right;">
   </div>
    <h1 style="font-size:16px;border:none;margin-bottom:0;">Grape search results:</h1>
     <br />

@@ -54,15 +54,15 @@ img{
 	display: inline-block;
 	text-align: center;
 	margin-left: 12px;
-	max-width: 219px;
+	max-width: 185px;
 	min-width: 140px;
-	width: 11.4%;}
+	width: 16.4%;}
 .enter-button2{
 	display: inline-block;
 	text-align: center;
 	margin-left: 12px;
-	min-width: 70px;
-	width: 5.8%;
+	min-width: 80px;
+	width: 7.8%;
 	max-width: 112px;}
 .landing-header{
 	position: relative;
@@ -71,13 +71,13 @@ img{
 	width: 98%;
 }
 .welcome-board{
-	margin-top: 50px;
+	margin-top: 30px;
 	}
 .welcome-bg{
 	background: #fff;
 	border-radius: 10px;
-	padding: 40px 20px;
-	margin-bottom: 40px;}
+	padding: 40px 20px 15px;
+	margin-bottom: 155px;}
 .green-heading{
 	font-size: 24px;
 	font-weight: bold;
@@ -93,10 +93,10 @@ img{
 }
 .welcome-btn{
 	text-align: left;
-
+	margin-top: 35px;
 }
 .welcome-btn img{
-	max-width: 225px;
+	max-width: 285px;
 }
 .welcome-logo{
 	text-align: right;
@@ -113,7 +113,8 @@ img{
 	max-width: 1600px;}
 .text-box{
 	font-size: 16px;
-	margin-top: 40px;}
+	/*margin-top: 40px;*/
+}
 .text-box p{
 	margin-bottom: 40px;
 }
@@ -249,12 +250,12 @@ font-family: centurygothicbold;}
 }
 @media only screen and (min-width: 1260px){
 	.welcome-bg{
-		margin-bottom: 110px;
+		margin-bottom: 190px;
 	}
 }
 @media only screen and (min-width: 1400px){
 	.welcome-bg{
-		margin-bottom: 200px;
+		margin-bottom: 295px;
 	}
 }
 @media only screen and (max-width: 767px){

@@ -1,13 +1,12 @@
 <% @title = "Ask our Experts";
-   @description = "Andrea’s Wine Blog, The Italian Wine Blog, A Guide to Italian Wines, Journey Through Italian Wines";
-   @keys = "Wine Blog,Italian Wine Blog,Italian Red and White Wine,Italian Food,Wine Tasting,Wine Expert"
+  @description = "Andrea’s Wine Blog, The Italian Wine Blog, A Guide to Italian Wines, Journey Through Italian Wines";
+  @keys = "Wine Blog,Italian Wine Blog,Italian Red and White Wine,Italian Food,Wine Tasting,Wine Expert"
 %>
 <%- @breadcrumbs = "#{link_to("Home", root_url)} &raquo; #{link_to('Community',wine_community_path)} &raquo; #{link_to("Ask our Experts", site_faqs_path)}".html_safe() -%>
 
 <% @about = AboutU.find(:first, :conditions => {:link_type => "faqs"} ) %>
 
-<div id="blog_home" class="main-banner">
-  
+<div id="blog_home" class="main-banner"> 
   <% if !@about.nil? %>
     <% unless @about.title.blank? %>
       <span class="title">
@@ -59,7 +58,6 @@
             <% end %>
           </div>
           <!-- Start FAQs Pagination-->
-
           <div class="faq-pagination bottom-50">
             <div class="digg_pagination pagination-2 clearfix">
               <div class="page_info show-result">
@@ -69,11 +67,9 @@
                 <%= will_paginate @posts, :container => false %>
               </div>
             </div>
-    
           </div><!--End FAQs Pagination-->
         </div>  
-      <% end %>
-      <!-- end Faqs Wrapper-->
+      <% end %><!-- end Faqs Wrapper-->
       <div id="askQuestion">
         <% if logged_in? %>
           <%= render :partial =>'new'%>
@@ -88,10 +84,8 @@
     </div>
   </div>
 </div>
-
 <div class="community-row clearfix row">
   <%= render :partial => '/site/shared/our_community' %>
   <%= render :partial => '/site/shared/wine_club' %>
   <%= render :partial => '/site/shared/box_blog' %> 
 </div>
-
