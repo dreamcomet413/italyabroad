@@ -54,7 +54,7 @@
 
       <li style="text-align:right;">
       <% if @product.product_prices.first.quantity > 0 %>
-      	<%- form_for :cart, :url => product_cart_index_path(@product), :html => {:method => :post}, :remote => true do  -%>
+      	<%- form_for :cart, :url => "/site/cart?product_id=#{@product.id}", :html => {:method => :post}, :remote => true do  -%>
       	  <table cellspacing="0" border="0">
 
       	    <tr>
