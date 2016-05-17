@@ -151,14 +151,7 @@
             </div>
           <%end%>
           <div class="col-xs-6">
-            <h3>Discover the best Italian wines sat on the confort of your home</h3>
-            <div class="medium-box-text">
-              <%i=1%>
-              <%@wine_club_products.each do |p|%>
-                <a href="/wine-club/<%=p.friendly_identifier%>" class="wine_link"><span class="red-text">Option <%=i%></span> - <%=p.name%><br></a>
-                <%i+=1%>
-              <%end%>
-            </div>
+            <h3><%=wine_club.description.html_safe rescue 'Discover the best Italian wines sat on the confort of your home'%></h3>
             <div class="read-more"><%= link_to "Read More", "/wine-club" %></div>
           </div>
         </div>
