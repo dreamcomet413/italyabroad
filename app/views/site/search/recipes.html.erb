@@ -1,7 +1,7 @@
 <% @title = "Search #{params[:text]}"; %>
 <%- @breadcrumbs = "#{link_to "Home", root_url} &raquo; Search &raquo; Recipes" -%>
 <div class="row bottom-50">
-  <div class="two-colum-row clearfix">
+  <div class="two-colum-row clearfix top-30">
     <div class="col-md-3 left-side-bar">
       <%= render :partial => '/site/shared/box_search_recipes_new' %>
     </div>
@@ -54,7 +54,6 @@
                     <% end %>
                   </div>
                   <div class="col-xs-7">
-                  
                     <div><b>Difficulty:</b> <%= link_to "#{recipe.recipe_level.name}",{:category=>'recipe',:difficulty => recipe.recipe_level_id,:text=>params[:text]},:style=>"color:black;" %></div>
                     <div><b>Prep time:</b> <%= link_to "#{recipe.preparation_time} min"  ,{:category=>'recipe',:preparation_time => recipe.preparation_time,:text=>params[:text]},:style=>"color:black;" %></div>
                   </div>
