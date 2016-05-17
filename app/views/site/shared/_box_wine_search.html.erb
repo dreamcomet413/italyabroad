@@ -1,3 +1,7 @@
+<%params[:category] = downcase_params(params[:category]) %>
+<%params[:id] = downcase_params(params[:id]) %>
+
+
 <%- if !params[:category].blank? and Category.find(params[:category]) != nil
       @category = Category.find(params[:category])
     else
