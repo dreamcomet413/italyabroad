@@ -57,8 +57,7 @@ class Site::CartController < ApplicationController
 
   def update
 
-    same_delivery = @cart.delivery.id == params[:delivery][:id].to_i
-
+    same_delivery = @cart.delivery.id == params[:delivery][:id].to_i rescue false
     # render :text => same_delivery
     # return 
     if @cart.update(params[:cart], params[:cupon][:code])
@@ -80,15 +79,11 @@ class Site::CartController < ApplicationController
         @cart.delivery = @delivery
 
       else
-        delivery_id = params[:delivery][:id]
-        @delivery = Delivery.find(delivery_id)
+        delivery_id = params[:delivery][:id] rescue nil
+        @delivery = Delivery.find(delivery_id) rescue Delivery.first
         @cart.delivery  = @delivery
 
       end
-
-
-      # @cart.update(params[:cart], params[:cupon][:code] )
-
 
       flash[:notice] = @cart.show_warnings
     else
@@ -96,14 +91,6 @@ class Site::CartController < ApplicationController
     end
     @cupon = Cupon.find_by_code( params[:cupon][:code])
 
-
-    # @setting = Setting.find(:first)
-    # for cart_item in @cart.items
-      #if cart_item.quantity < @setting.reorder_quantity
-      # if (cart_item.product.quantity.to_i - cart_item.quantity.to_i) < @setting.reorder_quantity and cart_item.product.active
-      #   Notifier.deliver_reorder_quantity_notification(cart_item.product,AppConfig.admin_email)
-      # end
-    # end
     unless  params[:cupon][:code].blank?
       if @cupon.nil? or @cupon.blank?
         flash[:notice] = "The promotional code is not valid,please enter a valid one."

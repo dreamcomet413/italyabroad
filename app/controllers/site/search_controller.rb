@@ -145,28 +145,10 @@ class Site::SearchController < ApplicationController
 
       else
         #@sort_by = available_sorting.include?(params[:sort_by]) ? params[:sort_by] : "products.price DESC"
-        
-        @sort_by = available_sorting.include?(params[:sort_by]) ? params[:sort_by] : "product_prices.price asc"
-        if @sort_by.to_s.upcase == 'NAME'
-          @sort_by = 'products.name'
-        end
-        @search = Search.new(params || Hash.new)
-        @category = @search.category
-        
-        search_conditions = @search.conditions 
-        if params[:start_price] and params[:start_price] != ''
-          search_conditions += " AND product_prices.price >= #{params[:start_price]}"
-        end  
-        if params[:end_price] and params[:end_price] != ''
-          search_conditions += " AND product_prices.price <= #{params[:end_price]}"
-        end  
-
-        @products = Product.where(search_conditions).includes([:categories, :grapes, :moods, :product_prices]).order(@sort_by).paginate(:page => params[:page], :per_page => 12)
-        SearchQuery.create(:query => @search.text) unless @products.blank?
-        
-        action=false
-
+        products_search(params)
       end
+    elsif params[:wine_type] == '' and params[:body_type] == '' and params[:price_type] == '' and params[:food_type] == ''
+      products_search(params)  
     end    
     respond_to do |format|
         format.html { 
@@ -174,17 +156,33 @@ class Site::SearchController < ApplicationController
         }
     end
   end
+  def products_search(params)
+    @sort_by = available_sorting.include?(params[:sort_by]) ? params[:sort_by] : "product_prices.price asc"
+    if @sort_by.to_s.upcase == 'NAME'
+      @sort_by = 'products.name'
+    end
+    @search = Search.new(params || Hash.new)
+    @category = @search.category
+    
+    search_conditions = @search.conditions 
+    if params[:start_price] and params[:start_price] != ''
+      search_conditions += " AND product_prices.price >= #{params[:start_price]}"
+    end  
+    if params[:end_price] and params[:end_price] != ''
+      search_conditions += " AND product_prices.price <= #{params[:end_price]}"
+    end  
 
-
-
+    @products = Product.where(search_conditions).includes([:categories, :grapes, :moods, :product_prices]).order(@sort_by).paginate(:page => params[:page], :per_page => 12)
+    SearchQuery.create(:query => @search.text) unless @products.blank?
+    
+    action=false
+  end
   def find_users
     @users = User.where("name LIKE ?", "%#{params[:text]}%").paginate(:page => params[:page], :per_page => 10)
 
   end
   def find_producers
     @producers = Producer.where("name LIKE ? and active = ?", "%#{params[:text]}%",true).paginate(:page => params[:page], :per_page => 10)
-
-
   end
 
 
@@ -214,7 +212,6 @@ class Site::SearchController < ApplicationController
   end
 
   def find_recipes
-    #  @recipes = Recipe.find(:all, :conditions => ['name LIKE ? AND active = ?',"%#{params[:text]}%",true]).paginate(:page => params[:page], :per_page => 10)
     @search = Search.new(params || Hash.new)
     @recipes = Recipe.where(@search.conditions_for_recipes).order(params[:sort_by]).paginate(:page => params[:page], :per_page => 10)
   end

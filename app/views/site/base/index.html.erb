@@ -125,9 +125,12 @@
       <%if @post%>
         <div class="medium-box">
           <div class="row clearfix">
-            <div class="col-xs-6">
-              <%= link_to image_tag(SmallBoxSetting.find_by_box_title("blog_home").image.image_filename.try(:url)), site_blog_path(:id => @post.id) -%>
-            </div>
+            <%blog_home = SmallBoxSetting.find_by_box_title("blog_home")%>
+            <%if blog_home and blog_home.image%>
+              <div class="col-xs-6">
+                <%= link_to image_tag(blog_home.image.image_filename.try(:url)), site_blog_path(:id => @post.id) -%>
+              </div>
+            <%end%>  
             <div class="col-xs-6">
               <h3><%=@post.name%></h3>
               <div class="medium-box-text"><%=truncate(@post.description, length: 200)%></div>
@@ -141,9 +144,12 @@
       <h2>WINE CLUB</h2>
       <div class="medium-box">
         <div class="row clearfix">
-          <div class="col-xs-6">
-            <%= link_to image_tag(SmallBoxSetting.find_by_box_title("wine_club_home").image.image_filename.try(:url)), "/wine-club" -%>
-          </div>
+          <%wine_club = SmallBoxSetting.find_by_box_title("wine_club_home")%>
+          <% if wine_club and wine_club.image %>
+            <div class="col-xs-6">
+              <%= link_to image_tag(wine_club.image.image_filename.try(:url)), "/wine-club" -%>
+            </div>
+          <%end%>
           <div class="col-xs-6">
             <h3>Discover the best Italian wines sat on the confort of your home</h3>
             <div class="medium-box-text">

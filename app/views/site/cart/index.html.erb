@@ -117,7 +117,7 @@
       </div>
       <div class="spend-over">Spend over <%= number_to_currency Setting.order_delivery_amount, :unit => "&pound;" %> and get FREE DELIVERY UK mainland only, for all other destinations we will contact you with a quote.</div>
       <div class="delivery-method">
-        <% if @cart.sub_total > Setting.order_delivery_amount and @delivery.bulk_order_price == 0 %>
+        <% if @cart.sub_total > Setting.order_delivery_amount and @delivery and @delivery.bulk_order_price == 0 %>
           <% if cart_contains_not_only_events %>
             <div class="red-text">Your order qualifies for free delivery *</div>
             <div class="top-30">
