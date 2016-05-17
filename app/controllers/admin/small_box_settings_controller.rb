@@ -6,26 +6,7 @@ class Admin::SmallBoxSettingsController < ApplicationController
   	@small_box_setting = SmallBoxSetting.find(:first) || SmallBoxSetting.create 
   end
   def update
-  	# @small_box = SmallBoxSetting.find(params[:id])
-  	# SmallBoxSetting.all.each do |sb|
-   #    @small_box_setting.method("build_"+sb).call(:image_filename => params[sb.to_sym]) unless params[sb.to_sym].blank?
-   #  end
-   #  if @small_box.update_attributes(params[:setting])
-   #    flash[:notice] = "Setting correctly updated!"
-   #  else
-   #    flash[:notice] = @small_box.show_errors
-   #  end
-    
-    SmallBoxSetting.update(params[:small_box_settings].keys, params[:small_box_settings].values)
-    # params[small_box_settings].each do |key, value|
-    #   sm = SmallBoxSetting.find(key)
-    #   if !sm.image
-    #     sm.build_image(:image_filename => params[])
-    # end
-    
-    logger.info('=====================================================================================')
-    logger.info(params[:small_box_setting])
-    logger.info('=====================================================================================')
+  	SmallBoxSetting.update(params[:small_box_settings].keys, params[:small_box_settings].values)
     redirect_to action: :index
   end
   def destroy

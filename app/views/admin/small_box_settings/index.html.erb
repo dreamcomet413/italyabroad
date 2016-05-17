@@ -28,6 +28,9 @@
 	    		<%= link_to "Destroy", "/admin/small_box_settings/#{sb.id}", :confirm => "Are you sure?", :method => :delete %>
 	    	<%end%>	
 	    	<br/>
+	    	<%if sb.box_title == 'wine_club_home'  %>
+	    		<%= text_area_tag "small_box_settings[#{sb.id}][description]" , sb.description %>
+	    	<%end%>
 	    	<% hidden_field_tag "small_box_settings[][id]", sb.id %>
 	    	 
     	</div>
