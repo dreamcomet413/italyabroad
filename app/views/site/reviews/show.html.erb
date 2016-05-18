@@ -24,9 +24,6 @@
             <%= link_to(image_tag(site_image_url(:review_thumb, @review.reviewer.image_1)) ,product_path(@review.reviewer)) rescue
                 link_to (image_tag("no_images/product_wine.jpg",:size => "150x150") ,product_path(@review.reviewer))
             %>
-
-
-
           </td><td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
             <td valign="top">Type : <%= @review.reviewer.categories.root.name %><br /><br />
               <% if @review.reviewer.discount > 0 %>
@@ -37,7 +34,7 @@
 
                         <div style="font-size:14px;color:#003300;">Was <span style="text-decoration: line-through;"><%= number_to_currency @review.reviewer.price, :unit => "&pound;" %></span></div>
                         <span class="price red" style="color:#003300;">Now&nbsp;<span style="color:red;"><%= number_to_currency @review.reviewer.price_discounted.first, :unit => "&pound;" %></span></span>
-                        <br />(save <span style="color:red;"><%= number_to_currency (@review.reviewer.price * @review.reviewer.discount / 100), :unit => "&pound;" %></span>)
+                        <br />(save <span style="color:#003300;"><%= number_to_currency (@review.reviewer.price * @review.reviewer.discount / 100), :unit => "&pound;" %></span>)
               <% else %>
                   <span class="price" style="color:#003300;"><%= number_to_currency @review.reviewer.price, :unit => "&pound;" %></span>
               <% end %> <br /><br />

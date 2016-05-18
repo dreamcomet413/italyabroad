@@ -70,7 +70,7 @@
               <div class="write-review-wrapper" id="recipe_comments_add" style="display:none;">
                 <% form_tag comment_site_blog_path(:id => @post.id) do %>
                   <% unless flash[:blog_notice].blank? %>
-                    <div style="color:red"><%= flash[:blog_notice] %></div>
+                    <div style="color:#cb0d2b"><%= flash[:blog_notice] %></div>
                   <% end %>
                   <div class="clearfix bottom-15">
                     <div class="col-xs-3 col-md-2">Your Name:</div>

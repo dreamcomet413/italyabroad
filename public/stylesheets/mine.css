@@ -1267,6 +1267,10 @@ header{
 	font-size: 18px;
 	font-family: JosefinSlab-Bold;
 }
+.hamper-title .red-text b, .item-name .red-text{
+	font-size: 16px;
+	color: #cb0d2b !important;
+}
 .hamper-price-2{
 	font-family: JosefinSlab-Bold;
 	font-size: 20px;

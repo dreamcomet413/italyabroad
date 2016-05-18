@@ -2,7 +2,6 @@
 	<% for product in @wines %>
   <table style="padding-bottom:20px;width:100%;" cellpadding="0" border="0" cellspacing="0">
 		<tr>
-
 			<td style="width: 490px;">
 
 				<h1><%= link_to product.name, nested_products_uri(product), :style => "font-size:17px;color:black;" %></h1>
@@ -19,7 +18,7 @@
                   <div style="font-size:14px;color:black;">Was <span style="text-decoration: line-through;">
                     <%= number_to_currency pp.price, :unit => "&pound;" %></span></div>
                   <% end %>
-                  <span class="price red" style="color:#003300;">Now&nbsp;<span style="color:red;">
+                  <span class="price red" style="color:#003300;">Now&nbsp;<span style="color:#cb0d2b;">
                     <% product.price_discounted.each do |price| %>
                       <%= number_to_currency price, :unit => "&pound;" %>
                     <% end %>
@@ -52,8 +51,6 @@
     </tr>
 	</table>
 	<% end %>
-
-
 
 <% content_for :right do %>
 	<%= render :partial => 'site/shared/box_wine_search', :locals => {:search_url => site_search_index_path} %>

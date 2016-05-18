@@ -2,30 +2,37 @@
 /* CSS Document */
 
 @font-face{
-		font-family:BerlinSans;
-		src:url(../fonts/Berlin-Sans-FB-Regular.ttf)}
+	font-family:BerlinSans;
+	src:url(../fonts/Berlin-Sans-FB-Regular.ttf);
+}
 @font-face{
-		font-family:CenturyGothic;
-		src:url(../fonts/century-gothic.ttf)}
+	font-family:CenturyGothic;
+	src:url(../fonts/century-gothic.ttf);
+}
 @font-face{
-		font-family:centurygothicbold;
-		src:url(../fonts/centurygothicbold.ttf)}
+	font-family:centurygothicbold;
+	src:url(../fonts/centurygothicbold.ttf);
+}
 @font-face{
-		font-family:engraversMt;
-		src:url(../fonts/engravers-mt.ttf)}
-
+	font-family:engraversMt;
+	src:url(../fonts/engravers-mt.ttf);
+}
 @font-face{
-		font-family:TrajanProRegular;
-		src:url(../fonts/TrajanPro-Regular.ttf)}
+	font-family:TrajanProRegular;
+	src:url(../fonts/TrajanPro-Regular.ttf);
+}
 @font-face{
-		font-family:TrajanProBold;
-		src:url(../fonts/TrajanProBold.ttf)}
+	font-family:TrajanProBold;
+	src:url(../fonts/TrajanProBold.ttf);
+}
 @font-face{
-		font-family:FranklinGothicHeavyRegular;
-		src:url(../fonts/FranklinGothicHeavyRegular.ttf)}
+	font-family:FranklinGothicHeavyRegular;
+	src:url(../fonts/FranklinGothicHeavyRegular.ttf);
+}
 @font-face{
-		font-family:bellMtBold;
-		src:url(../fonts/bell-mt-bold.ttf)}
+	font-family:bellMtBold;
+	src:url(../fonts/bell-mt-bold.ttf);
+}
 body{
 	font-family: CenturyGothic;
 	color: #3b3b3b;
@@ -36,7 +43,8 @@ body{
 	padding:0px;
 	margin: 0px auto;
 	max-width: 1920px;
-	overflow: hidden;}
+	overflow: hidden;
+}
 img{
 	max-width: 100%;
 }
@@ -54,16 +62,18 @@ img{
 	display: inline-block;
 	text-align: center;
 	margin-left: 12px;
-	max-width: 185px;
+	max-width: 145px;
 	min-width: 140px;
-	width: 16.4%;}
+	width: 16.4%;
+}
 .enter-button2{
 	display: inline-block;
 	text-align: center;
 	margin-left: 12px;
-	min-width: 80px;
+	min-width: 75px;
 	width: 7.8%;
-	max-width: 112px;}
+	max-width: 75px;
+}
 .landing-header{
 	position: relative;
 }
@@ -71,18 +81,20 @@ img{
 	width: 98%;
 }
 .welcome-board{
-	margin-top: 30px;
-	}
+	margin-top: 70px;
+}
 .welcome-bg{
 	background: #fff;
 	border-radius: 10px;
 	padding: 40px 20px 15px;
-	margin-bottom: 155px;}
+	margin-bottom: 155px;
+}
 .green-heading{
 	font-size: 24px;
 	font-weight: bold;
 	color: #287f0d;
-	margin-bottom: 25px;}
+	margin-bottom: 25px;
+}
 .welcome-text{
 	text-align: left;
 }
@@ -103,14 +115,14 @@ img{
 	margin-top: 12px;
 }
 .welcome-logo img{
-
 	max-width: 240px;
 }
 .bottom-content{
 	margin: 60px auto 40px;
 	width: 84%;
 	/*min-width: 1100px;*/
-	max-width: 1600px;}
+	max-width: 1600px;
+}
 .text-box{
 	font-size: 16px;
 	/*margin-top: 40px;*/
@@ -124,7 +136,8 @@ img{
 .border-box{
 	border:solid 1px #b7b7b7;
 	padding: 40px 20px;
-	margin-bottom: 40px;}
+	margin-bottom: 40px;
+}
 .heading-with-border{
 	text-align: center;
 	color: #5e5e5e;
@@ -136,7 +149,8 @@ img{
 	display: inline-block;
 	padding-bottom: 15px;
 	border-bottom: solid 4px #4eac31;
-	font-weight: bold;}
+	font-weight: bold;
+}
 .main-heading{
 	text-align: center;
 	color: #5e5e5e;
@@ -144,7 +158,8 @@ img{
 	padding-bottom: 40px;
 	font-weight: bold;
 	padding-top: 50px;
-font-family: centurygothicbold;}
+	font-family: centurygothicbold;
+}
 .main-heading b{
 	color: #287f0d;
 	font-family: centurygothicbold;
@@ -156,7 +171,8 @@ font-family: centurygothicbold;}
 	padding-bottom: 50px;
 	font-weight: bold;
 	padding-top: 40px;
-	font-family:centurygothicbold;}
+	font-family:centurygothicbold;
+}
 .main-heading2 b{
 	color: #287f0d;
 	font-family: centurygothicbold;
@@ -169,11 +185,12 @@ font-family: centurygothicbold;}
 	color: #5c5c5c;
 	padding-bottom: 20px;
 	font-weight: normal;
-	}
+}
 .content-box1 b{
 	color: #5e5e5e;
 	font-size: 20px;
-	font-family: centurygothicbold;}
+	font-family: centurygothicbold;
+}
 .content-box1 p{
 	padding-bottom: 30px;
 }
@@ -190,20 +207,19 @@ font-family: centurygothicbold;}
 	color: #5c5c5c;
 	padding-bottom: 10px;
 	font-family: centurygothicbold;
-	}
+}
 .name{
 	font-size: 18px;
 	font-weight: bold;
 	font-family: centurygothicbold;
 	color: #000;
 	font-style: normal;
-	padding-bottom: 50px;}
-
+	padding-bottom: 50px;
+}
 .promise{
 	padding: 10px 0px 60px;
 	text-align: center;
 	font-size: 26px;
-	font-
 	width: 80%;
 	margin: auto;
 	color: #5c5c5c;
@@ -215,7 +231,8 @@ font-family: centurygothicbold;}
 	text-align: center;
 }
 .three-column .col-md-4{
-	margin-bottom: 20px; }
+	margin-bottom: 20px;
+}
 .col-icon{
 	padding-bottom: 10px;
 }
@@ -225,7 +242,8 @@ font-family: centurygothicbold;}
 	font-family: centurygothicbold;	
 	padding-bottom: 25px;
 	min-height: 75px;
-	width: 90%;}
+	width: 90%;
+}
 .col-des{
 	font-size: 16px;
 }
@@ -239,7 +257,6 @@ font-family: centurygothicbold;}
 }
 .get-start img{
 	max-width: 250px;
-	
 }
 @media only screen and (max-width: 1101px){
 	.bottom-content, .three-column{
@@ -250,12 +267,12 @@ font-family: centurygothicbold;}
 }
 @media only screen and (min-width: 1260px){
 	.welcome-bg{
-		margin-bottom: 190px;
+		margin-bottom: 140px;
 	}
 }
 @media only screen and (min-width: 1400px){
 	.welcome-bg{
-		margin-bottom: 295px;
+		margin-bottom: 230px;
 	}
 }
 @media only screen and (max-width: 767px){

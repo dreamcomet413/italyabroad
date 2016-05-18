@@ -27,10 +27,10 @@
               <%= hidden_field_tag "cart[][id]", nil, :value => cart_item.product.id %>
               <%= cart_item.product.name %>
               <% if product.categories.root.name == "Events" or product.categories.root.name == "Wine Tours" %>
-                <span style="color:red;font-size:14px;"><br /><%= "(Tickets and details will be delivered electronically)"%></span>
+                <span style="color:#cb0d2b;font-size:14px;"><br /><%= "(Tickets and details will be delivered electronically)"%></span>
               <% end %>
               <% if product.from_quantity > 0 && product.from_quantity_price > 0 && cart_item.quantity < product.from_quantity %>
-                <div style="color:red">
+                <div style="color:#cb0d2b">
                   <% if product.categories.root.name == "Wine" %>
                     <%= link_to "(Buy a case of #{product.from_quantity} and save #{number_to_currency(product.from_quantity_price, {:unit=> '£'} )} )",  '#', :onclick => "$('txt_qty_#{cart_item.product.id }').value=#{product.from_quantity}; $('form_cart').submit(); " %>
                   <% elsif product.categories.root.name == "Food" %>
