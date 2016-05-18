@@ -3,15 +3,15 @@
 <div class="row top-30">
   <div class="two-colum-row clearfix">
     <div class="col-md-3 left-side-bar sm-bottom-30">
-      <%if ((params[:id] and params[:id].downcase.include?('wine')) or (params[:parent_type] and params[:parent_type].include?('wine')))%>
+      <% if ((params[:id] and params[:id].downcase.include?('wine')) or (params[:parent_type] and params[:parent_type].include?('wine')))%>
         <%= render :partial => '/site/shared/box_wine_search' %>
-      <%elsif (params[:id] and params[:id].include?('hampers')) %>
+      <% elsif (params[:id] and params[:id].include?('hampers')) %>
         <%= render :partial => '/site/shared/box_hamper_search' %>
-      <%elsif (params[:id].include?('food')) %>  
+      <% elsif (params[:id].include?('food')) %>  
         <%= render :partial => '/site/shared/box_food_search' %>
-      <%elsif ((params[:id] and params[:id].downcase.include?('other')) or (params[:parent_type] and params[:parent_type].include?('other'))) %>  
+      <% elsif ((params[:id] and params[:id].downcase.include?('other')) or (params[:parent_type] and params[:parent_type].include?('other'))) %>  
         <%= render :partial => '/site/shared/box_wine_search' %>
-      <%end%>
+      <% end %>
     </div>
     <div class="col-md-9 right-side-bar">
       <% if @products && @products.size > 0 %>
@@ -35,13 +35,13 @@
             </div>
             <div class="clearfix"></div>
           </div>
-          <%if @products and @products.count > 0%>
+          <% if @products and @products.count > 0 %>
             <div id="header">Your search result has found the following products:</div>
             <% if params[:wine_type].present? || params[:body_type].present? || params[:price_type].present? || params[:food_type].present? %>
             <% else %>
               <div class="fRight" style="margin-right: 12px; padding: 5px;"><%= link_to "Go Back", :back -%></div>
             <% end %>
-          <%end%>  
+          <% end %>  
           <br />
           <div>
             <div class="digg_pagination pagination-2 clearfix">
@@ -146,17 +146,17 @@
                       </div>
                       <div class="col-xs-7">
                         <div class="add-row clearfix">
-                          <%if product.out_of_stock?%>
+                          <% if product.out_of_stock? %>
                             <%= image_tag('out_of_stock.png') %>
-                          <%else%>
+                          <% else %>
                             <%= render partial: 'site/templates/cart_product_show_page_form' , locals: {product: product} %>
-                          <%end%>
+                          <% end %>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>    
-              <%end%>
+              <% end %>
             <% end %>  
           </div>
         </div>
