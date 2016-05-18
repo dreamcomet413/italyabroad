@@ -1,5 +1,10 @@
 module Site::SearchHelper
 	def downcase_params(params)
-		params.downcase.gsub(' ', '-') if params.downcase.include?('other')
+		if params.downcase.include?('other')
+			value =  params.downcase.gsub(' ', '-') 
+		else
+			value = params
+		end
+		return value
 	end
 end
