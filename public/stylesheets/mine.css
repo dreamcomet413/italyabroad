@@ -2587,6 +2587,9 @@ a.close-btn, .black-strip  a{
 .slider-box2 .item-name{
 	min-height: 73px;
 }
+.small-box .slider-box-text .ratings{
+	margin-left: 0px;
+}
 /*=============== Media quires=================*/
 @media only screen and (max-width: 1035px) {
 	.navigation-row .nav  li  a{

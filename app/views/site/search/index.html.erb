@@ -1,6 +1,6 @@
 <% @title = "Search #{params[:text]}"; @class = "no-padding"  %>
 <%- @breadcrumbs = "#{link_to "Home", root_url} &raquo; Search #{ '&raquo; ' + @category.name.titleize unless @category.blank?}" -%>    
-<div class="row top-30">
+<div class="row top-30 bottom-50">
   <div class="two-colum-row clearfix">
     <div class="col-md-3 left-side-bar sm-bottom-30">
       <% if ((params[:id] and params[:id].downcase.include?('wine')) or (params[:parent_type] and params[:parent_type].include?('wine')))%>
@@ -202,8 +202,6 @@
     </div>
   </div> 
 </div>
-   
-
 <% content_for :right do %>
   <% if !params[:id].blank?
     if params[:id].upcase == 'HAMPERS' %>
@@ -231,4 +229,3 @@
   <br />
   <%= render :partial => '/site/shared/social_follow' %>
 <% end %>
-
