@@ -5,8 +5,6 @@
     <br />
 <div>
 <!--  <div align="right" class="pagination_div"><%= will_paginate(@users) %></div> -->
-
-
   <ul style="margin:0;list-style:none;padding-left:0px;">
     <%- for people in @users -%>
     <li class="product_listing" style="margin:0;padding-left:20px;margin-top:10px;">
@@ -57,7 +55,6 @@
         <%- for comment in people.comments.all(:order => "created_at DESC") -%>
         <li><%= comment.name %></li>
         <%- end -%>
-
       </ul>
       <% end %>
       <% if people.type_id == 4 %>

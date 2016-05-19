@@ -178,19 +178,19 @@
       <% @messages = @user.messages.all(:order=>' id desc',:limit => 5)
        unless @messages.blank?%>
         <div>
-          <h1><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> Messages</h1>
-          <ul>
+          <!-- <h1><%#= "#{@my_profile ? "My" : @user.name+"'s"}" %> Messages</h1> -->
+          <div>
             <%- @messages.each do |msg| -%>
-              <li><%= msg.name unless msg.name.blank? %>
-                <%= link_to '&nbsp;&#171;Reply&#187;&nbsp;', :url => { :controller=>'messages',:action => "send_reply",:msg_id=>msg.id}, :remote => true %>
+              <div><%= msg.name unless msg.name.blank? %>
+                <%= link_to ' Reply', :url => { :controller=>'messages',:action => "send_reply",:msg_id=>msg.id}, :remote => true %>
                 <%#= link_to_remote '&nbsp;&#171;Reply&#187;&nbsp;', :url => { :controller=>'messages',:action => "send_reply",:msg_id=>msg.id} %>
                 <div id='reply<%=msg.id%>'> </div>
-              </li>
+              </div>
             <%- end -%>
             <% if @user.messages.size > 5 %>
-              <li style="list-style:none;text-align:right;margin-top:20px;"><%= link_to("more",:controller=>'site/messages',:action=>'index',:id=>params[:id]) %></li>
+              <div style="list-style:none;text-align:right;margin-top:20px;"><%= link_to("more",:controller=>'site/messages',:action=>'index',:id=>params[:id]) %></div>
             <% end %>
-          </ul>
+          </div>
         </div>
       <% else %>
         <div class="bottom-15">You don't have any messages</div>

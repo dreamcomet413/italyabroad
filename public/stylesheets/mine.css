@@ -34,7 +34,10 @@
 	font-family: JosefinSlab-Bold;
 	src:url(../fonts/JosefinSlab-Bold.ttf)
 }
-
+@font-face{
+	font-family:CenturyGothic;
+	src:url(../fonts/century-gothic.ttf);
+}
 /* ================ Common Css =============*/
 *{
 	padding: 0px;
@@ -395,28 +398,47 @@ h3{
 	margin: 20px 0px 35px;
 }
 #thirdSwiper.swiper-container {
-	height: 115px;
+	height: 120px;
 	margin: 0px;
 	margin-bottom: 5px;}
 .review-box{
-	background: url(../images/quotes.png) no-repeat;
+	background: url(../images/quotes-before.png) no-repeat;
 	margin: 15px 0px 0px;
 	position: relative;
 }
+.review-box:after{
+	content: "";
+	background: url(../images/quotes-after.png) no-repeat;
+    height: 55px;
+    width: 100%;
+    margin-top: -78px;
+    position: absolute;
+    background-position: 90%;
+}
 .date{
 	width: 50%;
+	font-size: 14px;
+	font-family: CenturyGothic;
+	color: #000
+}
+.date b{
+	font-weight: normal;
 }
 .review-arrow{
 	position: absolute;
-	width: 50px;
-	right: 0px;
-	bottom: -4px;
+	width: 30px;
+	right: 27px;
+	bottom: -9px;
 	z-index: 999;
 }
 .slide-text{
-	min-height: 100px;
+	min-height: 71px;
 	padding-bottom: 5px;
-}
+	margin-top: 28px;
+	padding-left: 8px;
+	font-family: OpenSans-Regular;
+	font-size: 14px;
+	color: #000;}
 .slide-text a{
 	text-decoration: none;
 	color: #333;
@@ -437,17 +459,26 @@ h3{
 	display: inline-block;
 	background:url(../images/arrow-sep.png) no-repeat;
 	vertical-align: top;
-	width: 13px;
-	height: 15px;
+	width: 26px;
+	height: 23px;
 }
 .review-arrow .swiper-button-prev{
 	vertical-align: middle;
 	height: 15px;
+	position: absolute;
+	top: -2px;
+	left: -3px;
 }
 .review-arrow .swiper-button-next{
 	vertical-align:middle;
 	height: 15px;
 	background-position: bottom;
+	position: absolute;
+	left: 21px;
+	top: 8px;
+}
+.pagi-arrow-2{
+	position: relative;
 }
 footer{
 
