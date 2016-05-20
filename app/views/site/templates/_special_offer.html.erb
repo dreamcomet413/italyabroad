@@ -102,8 +102,10 @@
       <% end %>
       <% if @products && @products.size > 0 %>
       <% else %>
-        <div class="green-heading">No products found</div>
-        <div style="margin:30px 0px;">Did you not find what you wanted? <%= mail_to "info@italyabroad.com", "Get in touch" %></div>
+        <div class="prdouct-list-wrapper hampers-wrapper-2">
+          <div class="green-heading-with-border top-18">No products found</div>
+          <div style="">Did you not find what you wanted? <%= mail_to "info@italyabroad.com", "Get in touch" %></div>
+        </div>
       <% end %>
     </div>
   </div>

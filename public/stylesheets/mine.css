@@ -1049,9 +1049,12 @@ footer{
 	margin-right: 10px;
 }
 .faq-wrapper .panel-title{
-	font-size: 16px;
+	font-size: 18px;
 	font-family: JosefinSlab-Bold;
 	color: #282828;
+}
+.panel-title{
+	font-size: 18px;
 }
 .faq-wrapper .panel-title a{
 	text-decoration: none;
@@ -1084,7 +1087,7 @@ header{
 
 /* ==========Hampers==========================*/
 .green-heading-16{
-	font-size: 16px;
+	font-size: 18px;
 	color: #5c8018;
 	font-family: JosefinSlab-Bold;
 	border-bottom: solid 1px #dcdcdc;
@@ -1664,6 +1667,9 @@ a.close-btn, .black-strip  a{
 	text-decoration: none;
 	font-weight: normal;
 }
+.left-side-bar{
+	margin-top: -3px;
+}
 .left-side-bar .panel-body{
 	max-height: 215px;
 	overflow-x:hidden;
@@ -1984,7 +1990,7 @@ a.close-btn, .black-strip  a{
 }
 .form-row{
 	margin-bottom: 15px;
-	font-family: OpenSans-Light;
+	
 }
 .section-label{
 	font-size: 14px;	
@@ -1994,6 +2000,7 @@ a.close-btn, .black-strip  a{
 	width: 20%;
 	margin-left: 100px;
 	max-width: 140px;
+
 }
 .section-label2.col-md-2{
 	width: 20%;
@@ -2052,15 +2059,21 @@ a.close-btn, .black-strip  a{
 .green-strip.align-left{
 	padding-left: 15px;
 	margin-bottom: 30px;
+	padding: 0px;
+}
+
+.green-strip.align-left ul li:hover{
+	background: yellowgreen;
 }
 .green-strip.align-left a{
 	color: #fff;
 	text-decoration: none;
 	margin: 5px;
-}
-.green-strip.align-left a:hover{
+	display: block;
+	padding: 5px 0px;}
+/*.green-strip.align-left a:hover{
 	text-decoration: underline;
-}
+}*/
 .multi-select select{
 	float: left;
 	width: 30%;
@@ -2589,6 +2602,24 @@ a.close-btn, .black-strip  a{
 }
 .small-box .slider-box-text .ratings{
 	margin-left: 0px;
+}
+.search-box{
+	padding: 15px 25px;
+	background: #f9f9f9;
+	margin-bottom:10px;
+	border-bottom: solid 1px #ebebeb; 
+}
+.search-heading{
+	font-family: JosefinSlab-Regular;
+	font-size: 24px;
+	color: #5c8018;
+	padding-bottom: 10px;
+}
+.search-links{
+	font-size: 13px;
+}
+.prdouct-list-wrapper .green-heading-with-border{
+	margin-bottom: 12px;
 }
 /*=============== Media quires=================*/
 @media only screen and (max-width: 1035px) {

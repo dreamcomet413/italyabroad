@@ -1,7 +1,7 @@
 <% @title = "Search #{params[:text]}"; %>
 <%- @breadcrumbs = "#{link_to "Home", root_url} &raquo; Search &raquo; All Site" -%>
 <% if @users.blank? and  @producers.blank? and @wines.blank? and @recipes.blank? and @wine_events.blank? and @foods.blank? and @grapes.blank? and @hampers.blank? and @other_drinks.blank?%>
-    <div id="header">Your search returned no results</div><br />
+    <div id="header" class="green-heading-with-border">Your search returned no results</div><br />
     <div class="fRight" style="margin-right: 12px; padding: 5px;"><%= link_to "Go Back", :back -%></div>
     <br />
     
@@ -9,125 +9,108 @@
     <div class="search_result" >Sorry the search has not given any result, please check the spelling or <%= mail_to "info@italyabroad.com", "get in touch" %> if the spelling is correct.<br /><br /></div>
 
 <% else %>
-    <div id="header">Your search has found the following </div>
-    <div class="fRight" style="margin-right: 12px; padding: 5px;"><%= link_to "Go Back", :back -%></div>
-    <br />
+    <div id="header" class="green-heading-with-border">Your search has found the following </div>
 <% end %>
-
-
-<% unless @users.blank? %>
-    <div style="margin:0 0 0 0px; padding-left:15px;">
+<div class="bottom-50">
+  <% unless @users.blank? %>
+    <div class="search-box">
       <!--<div id="header">Your search has found the following users:</div>-->
-      <h1>Community members</h1>
+      <div class="search-heading">Community members</div>
       <%#= link_to_remote @users.count.to_s + 'Users', :url => { :action => "find_users",:text=>params[:text]} %>
-      <%= link_to (@users.count.to_s + '&nbsp;&nbsp; Users').html_safe(),   :action => "find_users",:text=>params[:text] %>
-      <div id="all_users"></div><br /><br /><br />
+      <div class="search-links"><%= link_to (@users.count.to_s + '&nbsp; Users').html_safe(),   :action => "find_users",:text=>params[:text] %>
+        <div id="all_users"></div>
+      </div>
     </div>
-    <h3>&nbsp;</h3>
-<% end %>
-
-
-<% unless @producers.blank? %>
-    <div style="margin:0 0 0 0px; padding-left:15px;">
+  <% end %>
+  <% unless @producers.blank? %>
+    <div class="search-box">
       <!--<div id="header">Your search has found the following producers:</div>-->
-      <h1>Producers</h1>
+      <div class="search-heading">Producers</div>
       <%#= link_to_remote @producers.count.to_s + 'Producers', :url => { :action => "find_producers",:text=>params[:text]} %>
-      <%= link_to (@producers.count.to_s + '&nbsp;&nbsp; Producers').html_safe(),  :action => "find_producers",:text=>params[:text] %>
-      <div id="all_producers"></div><br /><br /><br />
+      <div class="search-links"><%= link_to (@producers.count.to_s + '&nbsp; Producers').html_safe(),  :action => "find_producers",:text=>params[:text] %></div>
     </div>
-    <h3>&nbsp;</h3>
-<% end %>
-
-
-
-<% unless @wines.blank? %>
-    <div style="margin:0 0 0 0px; padding-left:15px;">
+  <% end %>
+  <% unless @wines.blank? %>
+    <div class="search-box">
       <!--<div id="header">Your search has found the following wines:</div>-->
-      <h1>Wines</h1>
+      <div class="search-heading">Wines</div>
       <%#= link_to_remote @wines.count.to_s + 'Wines' , :url => { :action => "find_wines",:text=>params[:text]} %>
-      <%= link_to((@wines.count.to_s + '&nbsp;&nbsp; Wines').html_safe(), :action => "find_wines", :text=>params[:text]) %>
-      <div id="all_wines"></div> <br /><br /><br />
+      <div class="search-links"><%= link_to((@wines.count.to_s + '&nbsp; Wines').html_safe(), :action => "find_wines", :text=>params[:text]) %>
+        <div id="all_wines"></div> 
+      </div>
     </div>
-    <h3>&nbsp;</h3>
-<% end %>
-
-<% unless @other_drinks.blank? %>
-    <div style="margin:0 0 0 0px; padding-left:15px;">
+  <% end %>
+  <% unless @other_drinks.blank? %>
+    <div class="search-box">
       <!--<div id="header">Your search has found the following wines:</div>-->
-      <h1>Other Drinks</h1>
+      <div class="search-heading">Other Drinks</div>
       <%#= link_to_remote @wines.count.to_s + 'Wines' , :url => { :action => "find_wines",:text=>params[:text]} %>
-      <%= link_to((@other_drinks.count.to_s + '&nbsp;&nbsp; Other Drinks').html_safe(), find_other_drinks_site_search_index_path(:text=>params[:text])) %>
-      <div id="all_wines"></div> <br /><br /><br />
+        <div class="search-links"<%= link_to((@other_drinks.count.to_s + '&nbsp; Other Drinks').html_safe(), find_other_drinks_site_search_index_path(:text=>params[:text])) %>
+        <div id="all_wines"></div>
+      </div>
     </div>
-    <h3>&nbsp;</h3>
-<% end %>
-
-<% unless @hampers.blank? %>
-    <div style="margin:0 0 0 0px; padding-left:15px;">
+  <% end %>
+  <% unless @hampers.blank? %>
+    <div search-box>
       <!--<div id="header">Your search has found the following wines:</div>-->
-      <h1>Hampers</h1>
+      <div class="search-heading">Hampers</div>
       <%#= link_to_remote @wines.count.to_s + 'Wines' , :url => { :action => "find_wines",:text=>params[:text]} %>
-      <%= link_to (@hampers.count.to_s + '&nbsp;&nbsp; Hampers').html_safe() ,  :action => "find_hampers",:text=>params[:text] %>
-      <div id="all_hampers"></div> <br /><br /><br />
+      <div class="search-links"><%= link_to (@hampers.count.to_s + '&nbsp; Hampers').html_safe() ,  :action => "find_hampers",:text=>params[:text] %>
+        <div id="all_hampers"></div>
+      </div>
     </div>
-    <h3>&nbsp;</h3>
-<% end %>
-
-
-
-<% unless @recipes.blank? %>
-    <div style="margin:0 0 0 0px; padding-left:15px;">
+  <% end %>
+  <% unless @recipes.blank? %>
+    <div class="search-box">
       <!--<div id="header">Your search has found the following Recipes:</div>-->
-      <h1>Recipes</h1>
+      <div class="search-heading">Recipes</div>
       <%#= link_to_remote @recipes.count.to_s + 'Recipes', :url => { :action => "find_recipes",:text=>params[:text]} %>
-      <%= link_to (@recipes.count.to_s + '&nbsp;&nbsp; Recipes').html_safe(),  :action => "find_recipes",:text=>params[:text] %>
-      <div id="all_recipes"></div><br /><br /><br />
+      <div class="searh-links"><%= link_to (@recipes.count.to_s + '&nbsp; Recipes').html_safe(),  :action => "find_recipes",:text=>params[:text] %>
+        <div id="all_recipes"></div>
+      </div>
     </div>
-    <h3>&nbsp;</h3>
-<% end %>
+  <% end %>
 
 
 
-<% unless @foods.blank? %>
-    <div style="margin:0 0 0 0px; padding-left:15px;">
-      <!--<div id="header">Your search has found the following Foods:</div>-->
-      <h1>Foods</h1>
-      <%#= link_to_remote @foods.count.to_s + 'Foods', :url => { :action => "find_foods",:text=>params[:text]} %>
-      <%= link_to (@foods.count.to_s + '&nbsp;&nbsp; Foods').html_safe(),  :action => "find_foods",:text=>params[:text]%>
-      <div id="all_foods"></div><br /><br /><br />
-    </div><h3>&nbsp;</h3>
-<% end %>
+  <% unless @foods.blank? %>
+      <div class="search-box">
+        <!--<div id="header">Your search has found the following Foods:</div>-->
+        <div class="search-headign">Foods</div>
+        <%#= link_to_remote @foods.count.to_s + 'Foods', :url => { :action => "find_foods",:text=>params[:text]} %>
+        <div class="search-links"><%= link_to (@foods.count.to_s + '&nbsp; Foods').html_safe(),  :action => "find_foods",:text=>params[:text]%>
+          <div id="all_foods"></div>
+        </div>
+      </div>
+  <% end %>
 
-<!-- added on feb/06/2012 for displyaing events in all search dorp down -->
+  <!-- added on feb/06/2012 for displyaing events in all search dorp down -->
 
-<% unless @wine_events.blank? %>
-    <div style="margin:0 0 0 0px; padding-left:15px;">
-      <!--<div id="header">Your search has found the following Foods:</div>-->
-      <h1>Events</h1>
-      <%#= link_to_remote @foods.count.to_s + 'Foods', :url => { :action => "find_foods",:text=>params[:text]} %>
-      <%= link_to (@wine_events.count.to_s + '&nbsp;&nbsp; Events').html_safe(),  :action => "find_wine_events",:text=>params[:text]%>
-      <div id="all_events"></div><br /><br /><br />
-    </div>
-<% end %>
+  <% unless @wine_events.blank? %>
+      <div class="search-box">
+        <!--<div id="header">Your search has found the following Foods:</div>-->
+        <div class="search-heading">Events</div>
+        <%#= link_to_remote @foods.count.to_s + 'Foods', :url => { :action => "find_foods",:text=>params[:text]} %>
+        <div class="search-links"><%= link_to (@wine_events.count.to_s + '&nbsp; Events').html_safe(),  :action => "find_wine_events",:text=>params[:text]%>
+          <div id="all_events"></div>
+        </div>
+      </div>
+  <% end %>
+  <!-- added on Jun/12/2012 for displyaing Grapes -->
 
-<!-- added on Jun/12/2012 for displyaing Grapes -->
-
-<% unless @grapes.blank? %>
-    <div style="margin:0 0 0 0px; padding-left:15px;">
-      <!--<div id="header">Your search has found the following Foods:</div>-->
-      <h1>Grapes</h1>
-      <%#= link_to_remote @foods.count.to_s + 'Foods', :url => { :action => "find_foods",:text=>params[:text]} %>
-      <%#= link_to @grapes.count.to_s + '&nbsp;&nbsp; Grapes',  :action => "find_grapes", :text=>params[:text]%>
-      <%#= link_to @grapes.count.to_s + '&nbsp;&nbsp; Grapes',  grapes_path, :search_by_name=>params[:text], :search => 'Search'%>
-      <%= link_to (@grapes.count.to_s + '&nbsp;&nbsp; Grapes').html_safe(),  grapes_search_results_path.to_s + "?search_by_name=#{params[:text]}&" +  "search=Search"%>
-
-
-      <div id="grapes_all"></div><br /><br /><br />
-    </div>
-
-
-<% end %>
-
+  <% unless @grapes.blank? %>
+      <div class="search-box">
+        <!--<div id="header">Your search has found the following Foods:</div>-->
+        <div class="search-heading">Grapes</div>
+        <%#= link_to_remote @foods.count.to_s + 'Foods', :url => { :action => "find_foods",:text=>params[:text]} %>
+        <%#= link_to @grapes.count.to_s + '&nbsp;&nbsp; Grapes',  :action => "find_grapes", :text=>params[:text]%>
+        <%#= link_to @grapes.count.to_s + '&nbsp;&nbsp; Grapes',  grapes_path, :search_by_name=>params[:text], :search => 'Search'%>
+        <div class="search-links"><%= link_to (@grapes.count.to_s + '&nbsp; Grapes').html_safe(),  grapes_search_results_path.to_s + "?search_by_name=#{params[:text]}&" +  "search=Search"%>
+          <div id="grapes_all"></div>
+        </div>
+      </div>
+  <% end %>
+</div>
 
 <% content_for :right do %>
     <%#= render :partial => 'site/shared/box_search_recipes_new' %>
