@@ -48,14 +48,14 @@
           <%= @category.name %>
         <% end %>
       </div>
-      <div>
-        <% products = Product.find(:all, :limit => 2, :include => {:categorizations => :category}, :conditions => ["categories.name LIKE ? AND DATE(date) > ? AND active" ,'Events',Date.today],:order =>'date') %>
-        <% unless products.blank? -%>
-          <div style="margin:6px;float:left;margin-right:20px;">
-            <%= render :partial => '/site/shared/box_upcoming_events' -%>
+      <!-- <div>
+        <#% products = Product.find(:all, :limit => 2, :include => {:categorizations => :category}, :conditions => ["categories.name LIKE ? AND DATE(date) > ? AND active" ,'Events',Date.today],:order =>'date') %>
+        <#% unless products.blank? -%>
+          <div style="margin:6px;margin-right:20px;">
+            <%#= render :partial => '/site/shared/box_upcoming_events' -%>
           </div>
-        <% end %>
-      </div>
+        <#% end %>
+      </div> -->
       <div>
         <p>
           <%= @category.description.html_safe() %>
