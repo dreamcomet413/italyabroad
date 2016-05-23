@@ -9,7 +9,11 @@
             <%@reviews.each do |review|%>
               <div class="swiper-slide">
                 <%user =  User.find_by_id(review.user_id)%>
-                <div class="slide-text"><%=truncate(review.description , length: 200)%></div>
+                <div class="slide-text">
+                  <span class="quotes-before"><img src="/images/quotes-before.png" /></span>
+                  <%=truncate(review.description , length: 200)%>
+                  <span class="quotes-after"><img src="/images/quotes-after.png" /></span>
+                </div>
                   <div class="date"><%if user%><b><%=user.name%></b>  -<%end%> <%=review.created_at.to_date.to_s(:long)%></div>
               </div>
             <%end%>

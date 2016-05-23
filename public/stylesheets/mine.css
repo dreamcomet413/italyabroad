@@ -402,11 +402,11 @@ h3{
 	margin: 0px;
 	margin-bottom: 5px;}
 .review-box{
-	background: url(../images/quotes-before.png) no-repeat;
+	/*background: url(../images/quotes-before.png) no-repeat;*/
 	margin: 15px 0px 0px;
 	position: relative;
 }
-.review-box:after{
+/*.review-box:after{
 	content: "";
 	background: url(../images/quotes-after.png) no-repeat;
     height: 55px;
@@ -414,7 +414,7 @@ h3{
     margin-top: -78px;
     position: absolute;
     background-position: 90%;
-}
+}*/
 .date{
 	width: 50%;
 	font-size: 14px;
@@ -432,10 +432,10 @@ h3{
 	z-index: 999;
 }
 .slide-text{
-	min-height: 71px;
+	min-height: 85px;
 	padding-bottom: 5px;
-	margin-top: 28px;
-	padding-left: 8px;
+	margin-top: 15px;
+	
 	font-family: OpenSans-Regular;
 	font-size: 14px;
 	color: #000;}
@@ -2047,6 +2047,7 @@ a.close-btn, .black-strip  a{
 	line-height: 20px;
 	font-size: 14px;
 }
+
 .register-btn{
 	margin-bottom: 50px;
 	padding-left: 50px;
