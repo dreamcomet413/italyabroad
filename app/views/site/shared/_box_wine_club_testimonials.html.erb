@@ -9,12 +9,22 @@
             <%- if @testimonials.size > 0 -%>
               <%- @testimonials.each do |testimonial| -%>
                 <div class="swiper-slide">
-                  <div class="slide-text"><%= truncate(testimonial.description.html_safe, {:length => 100}) %></div>
-                    <!-- <div class="date"><b>Davide</b>  - 29/10/2015</div> -->
+                  <div class="slide-text">
+                    <span class="quotes-before"><img src="/images/quotes-before.png" /></span>
+                    <span style="padding: 5px 7px;">
+                      <%= truncate(testimonial.description.html_safe, {:length => 100}) %>
+                    </span>
+                    <span class="quotes-after"><img src="/images/quotes-after.png" /></span>
+                  </div>
+                  
                 </div>
               <%- end -%>
             <%- else -%>
-            <div class="slide-text">No Testimonial for Wine Club</div>
+            <div class="slide-text">
+              <span class="quotes-before"><img src="/images/quotes-before.png" /></span>
+              <span style="padding: 5px 7px;">No Testimonial found for Wine Club</span>
+              <span class="quotes-after"><img src="/images/quotes-after.png" /></span>
+            </div>
             <%- end -%>          
           </div>
         </div><!-- End Swiper -->

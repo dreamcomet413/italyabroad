@@ -398,7 +398,7 @@ h3{
 	margin: 20px 0px 35px;
 }
 #thirdSwiper.swiper-container {
-	height: 120px;
+	height: 125px;
 	margin: 0px;
 	margin-bottom: 5px;}
 .review-box{
@@ -416,26 +416,26 @@ h3{
     background-position: 90%;
 }*/
 .date{
-	width: 50%;
+	width: 70%;
 	font-size: 14px;
 	font-family: CenturyGothic;
 	color: #000
 }
 .date b{
-	font-weight: normal;
+	font-weight: ;
 }
 .review-arrow{
 	position: absolute;
 	width: 30px;
 	right: 27px;
-	bottom: -9px;
+	bottom: -5px;
 	z-index: 999;
 }
 .slide-text{
-	min-height: 85px;
+	height: 104px;
 	padding-bottom: 5px;
-	margin-top: 15px;
-	
+	margin-top: 0px;
+	overflow: hidden;
 	font-family: OpenSans-Regular;
 	font-size: 14px;
 	color: #000;}

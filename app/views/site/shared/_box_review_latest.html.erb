@@ -11,7 +11,7 @@
                 <%user =  User.find_by_id(review.user_id)%>
                 <div class="slide-text">
                   <span class="quotes-before"><img src="/images/quotes-before.png" /></span>
-                  <%=truncate(review.description , length: 200)%>
+                  <span style="padding: 5px 7px;"><%=truncate(review.description , length: 180)%></span>
                   <span class="quotes-after"><img src="/images/quotes-after.png" /></span>
                 </div>
                   <div class="date"><%if user%><b><%=user.name%></b>  -<%end%> <%=review.created_at.to_date.to_s(:long)%></div>
