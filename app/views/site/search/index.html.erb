@@ -11,11 +11,13 @@
         <%= render :partial => '/site/shared/box_food_search' %>
       <% elsif ((params[:id] and params[:id].downcase.include?('other')) or (params[:parent_type] and params[:parent_type].include?('other'))) %>  
         <%= render :partial => '/site/shared/box_wine_search' %>
+      <% elsif (params[:id] and params[:id].include?('recipe')) %>
+        <%= render :partial => '/site/shared/box_search_recipes_new' %>
       <% end %>
     </div>
     <div class="col-md-9 right-side-bar">
       <% if @products && @products.size > 0 %>
-        <div class="prdouct-list-wrapper top-18">
+        <div class="prdouct-list-wrapper top-12">
           <div class="green-heading-with-border" style="text-transform: capitalize;">
             <%= params[:id] ? params[:id] : params[:parent_type] %>
             <div class="sort-by-box clearfix">

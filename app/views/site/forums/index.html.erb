@@ -22,7 +22,7 @@
 </div><!--div id="wineBanner"-->
 <div class="full-width">
   <div class="community-wrapper">
-    <div class="green-heading-2">Our Newest Members</div>
+    <div class="green-heading-with-border">Our Newest Members</div>
     <!-- Start New Members Row-->
     <div class="new-member-row clearfix">
       <% users = User.find(:all, :order => "created_at DESC", :limit => 12 ) %>
@@ -235,9 +235,9 @@
     <% products = Product.find(:all, :limit => 5, :include => {:categorizations => :category}, :conditions => ["categories.name LIKE ? AND DATE(date) > ? AND active" ,'Events',Date.today],:order =>'date') %>
     <% unless products.blank? -%>
       <div class="bottom-50">
-        <div class="border-box">
+        <div class="border-box p-20">
           <div class="green-heading"><%= "Upcoming Events" %></div>
-          <div class="top-30">
+          <div class="">
             <div class="row clearfix">
               <div class="col-xs-5"><img src="/images/event-image-01.png"></div>
               <div class="col-xs-7">

@@ -14,7 +14,7 @@
     <!-- start search filter-->
     <div class="sidebar-filter-wrapper">
       <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-        <div class="panel">
+        <div class="panel panel-default">
           <div class="panel-heading" role="tab" id="heading-1">
             <h4 class="panel-title">
               <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-1" aria-expanded="true" aria-controls="collapse-1">
@@ -22,7 +22,7 @@
               </a>
             </h4>
           </div>
-          <div id="collapse-1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading-1">
+          <div id="collapse-1" class="panel-collapse collapse " role="tabpanel" aria-labelledby="heading-1">
             <div class="panel-body">
               <ul>
                 <%= hidden_field_tag :producer_id, '' , :class=>'field_value' %>
@@ -33,7 +33,7 @@
             </div>
           </div>
         </div>
-        <div class="panel">
+        <div class="panel panel-default">
           <div class="panel-heading" role="tab" id="headingTwo">
             <h4 class="panel-title">
               <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
@@ -41,7 +41,7 @@
               </a>
             </h4>
           </div>
-          <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
+          <div id="collapseTwo" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingTwo">
             <div class="panel-body">
               <ul>
                 <li>
@@ -53,7 +53,7 @@
             </div>
           </div>
         </div>
-        <div class="panel">
+        <div class="panel panel-default">
           <div class="panel-heading" role="tab" id="headingThree">
             <h4 class="panel-title">
               <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
@@ -61,7 +61,7 @@
               </a>
             </h4>
           </div>
-          <div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
+          <div id="collapseThree" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingThree">
             <div class="panel-body">
               <ul>
                 <li>
@@ -84,8 +84,8 @@
           <div id="collapseFour" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingFour">
             <div class="panel-body">
               <ul>
-                <%= hidden_field_tag :producer_id %>
-                <% [
+                <%#= hidden_field_tag :producer_id %>
+                <#% [
                           ["Any Price", ""],
                           ["Less than #{number_to_currency(5,{:unit => "&pound;", :precision => 0})}".html_safe, "< 5"],
                           ["From #{number_to_currency(5,{:unit => "&pound;", :precision => 0})} to #{number_to_currency(10,{:unit => "&pound;", :precision => 0})}".html_safe, "BETWEEN 5 AND 10"],
@@ -93,13 +93,13 @@
                           ["From #{number_to_currency(21,{:unit => "&pound;", :precision => 0})} to #{number_to_currency(30,{:unit => "&pound;", :precision => 0})}".html_safe, "BETWEEN 21 AND 30"],
                           ["More than #{number_to_currency(30,{:unit => "&pound;", :precision => 0})}".html_safe, "> 30"]
                   ].each do |item| %>
-                  <li><a href="#." value="<%= item[1] %>"> <%= item[0] %></a></li>
-                <% end %>
+                  <li><a href="#." value="<#%= item[1] %>"> <@%= item[0] %></a></li>
+                <@% end %>
               </ul>
             </div>
           </div>
         </div> -->
-        <div class="panel">
+        <div class="panel panel-default">
           <div class="panel-heading" role="tab" id="headingFiv">
             <h4 class="panel-title">
               <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
@@ -107,7 +107,7 @@
               </a>
             </h4>
           </div>
-          <div id="collapseFive" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingFive">
+          <div id="collapseFive" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingFive">
             <div class="panel-body">
               <ul>
                 <%= hidden_field_tag :occasion_id, '' , :class=>'field_value' %>

@@ -75,10 +75,10 @@ a.wine_link:hover{
 }
 .top-bar-links{
 	/*width: 285px;*/
-	font-family: JosefinSlab-SemiBold;
+	/*font-family: JosefinSlab-SemiBold;*/
 	color: #53565a;
 	margin-top:6px;
-	font-size: 14px;
+	font-size: 13px;
 }
 .top-bar-links a{
 	color:#53565a;
@@ -343,13 +343,14 @@ h2{
 	text-align: center;
 	padding: 4px 3px;
 	display: block;
-	font-size: 15px;
+	font-size: 16px;
 	font-weight: normal;
-	font-family:  JosefinSlab-Bold;
+	font-family:  OpenSans-Semibold;
 }
 .seller-price{
-	font-size: 20px;
+	font-size: 14px;
 	color: #53565a;
+	font-family: OpenSans-Semibold;
 }
 .medium-box{
 	border: solid 1px #dcdcdc;
@@ -358,7 +359,7 @@ h2{
 	min-height: 232px;
 }
 h3{
-	font-family: JosefinSlab-Bold;
+	font-family: OpenSans-Semibold;
 	font-size: 18px;
 	font-weight: normal;
 	padding: 0px;
@@ -582,7 +583,8 @@ footer{
 .item-name{
 	min-height: 125px;
 	margin-bottom: 5px;
-	font-size: 18px;
+	font-size: 14px;
+	font-family: OpenSans-Regular;
 }
 .item-name a{
 	color: #53565a;
@@ -703,7 +705,7 @@ footer{
 	margin: 15px 0px 28px;
 	color: #485626;
 	border-bottom: solid 1px #ebebeb;
-	padding-bottom: 6px;
+	/*padding-bottom: 6px;*/
 	font-family:JosefinSlab-Bold;
 	font-size:24px;
 }
@@ -718,13 +720,17 @@ footer{
 }
 .green-heading-2{
 	color:#485626;
-	font-size: 18px;
-	font-family: JosefinSlab-Bold;
+	font-size: 20px;
+	font-family: OpenSans-Semibold;
 	padding-bottom: 5px;
-	margin-bottom: 25px;
+	margin-bottom: 12px;
 	border-bottom: solid 1px #ebebeb}
 .prdoucer-products-wrapper{
 	margin: 40px 0px;
+}
+.green-heading-2 a{
+	font-size: 13px;
+	font-family: OpenSans-Regular;
 }
 .producer-products-heading{
 	font-size: 18px;
@@ -903,8 +909,8 @@ footer{
 	border:none;
 	box-sizing: border-box;
 	width: 100%;
-	font-family:JosefinSlab-Bold;
-}
+	font-family:OpenSans-Semibold;
+	font-size: 18px;}
 .slider-box-text .green-button input[type=submit]{
 	color: #fff;
 	text-decoration: none;
@@ -952,13 +958,16 @@ footer{
 	padding: 15px 10px;
 	margin-bottom: 25px;
 }
+.border-box.p-20{
+	padding: 15px 20px;
+}
 .box-image{
 	text-align: center;
 	margin-bottom: 15px;
 }
 .green-heading-20{
-	font-size: 20px;
-	font-family: JosefinSlab-Bold;
+	font-size: 16px;
+	font-family: OpenSans-Semibold;
 	color:#2e3e09;
 	line-height: 22px;
 	margin-bottom: 5px;}
@@ -986,7 +995,7 @@ footer{
 	font-size: 18px;
 }
 #fourthSwiper.swiper-container{
-	height: 205px;
+	height: 170px;
 	margin: 0px 0px 5px;
 	overflow: hidden;}
 .fourth-swiper-text{
@@ -1087,11 +1096,11 @@ header{
 
 /* ==========Hampers==========================*/
 .green-heading-16{
-	font-size: 18px;
+	font-size: 16px;
 	color: #5c8018;
-	font-family: JosefinSlab-Bold;
-	border-bottom: solid 1px #dcdcdc;
-	padding-bottom: 5px;
+	font-family: OpenSans-Semibold;
+	border-bottom: solid 1px #ebebeb;
+	padding-bottom: 8px;
 	margin-bottom: 12px;
 }
 .green-heading-16 a{
@@ -1119,6 +1128,7 @@ header{
 }
 .left-bar-search{
 	position: relative;
+	margin-bottom: 10px;
 }
 .left-bar-search .magnifier{
 	top: 11px;
@@ -1179,7 +1189,12 @@ header{
 	border-bottom: solid 1px #dcdcdc;
 }
 .sidebar-filter-wrapper .panel-title{
-	font-family: JosefinSlab-Bold;
+	font-family: OpenSans-Semibold;
+	color: #5c8018;
+	font-size: 16px;
+	color: #53565a;
+}
+.sidebar-filter-wrapper .pressed .panel-title{
 	color: #5c8018;
 }
 .sidebar-filter-wrapper .panel-title > a{
@@ -1187,21 +1202,33 @@ header{
 	display: block;
 }
 .sidebar-filter-wrapper .panel-heading a i{
-	background: url(../images/minus-icon.png) no-repeat;
+	background: url(../images/plus-icon.png) no-repeat;
 	float: right;
 	width: 10px;
 	height: 10px;
 }
-.sidebar-filter-wrapper .panel-heading a.collapsed i{
-	background: url(../images/plus-icon.png) no-repeat;
+.sidebar-filter-wrapper .panel.panel-default.pressed i{
+	background: url(../images/minus-icon.png) no-repeat;
+}
+.sidebar-filter-wrapper .panel-default > .panel-heading{
+	background: #f9f9f9;
+	border: none;
+	border-radius: 0px;
+	border-bottom: solid 1px #dcdcdc;
+}
+.sidebar-filter-wrapper .panel-default.pressed > .panel-heading{
+	background: #fff;
+}
+.sidebar-filter-wrapper .panel-default{
+	border:none;
 }
 .sidebar-filter-wrapper .panel-group .panel{
 	box-shadow: none;
 }
 .sidebar-filter-wrapper .panel-body{
-	padding: 10px 5px 0;
+	padding: 0px 5px 0;
 	border: none;
-}
+	margin-top: 10px;}
 .sidebar-filter-wrapper .panel-group .panel-heading + .panel-collapse > .panel-body{
 	border: none;
 }
@@ -1212,6 +1239,7 @@ header{
 .sidebar-filter-wrapper ul li a{
 	color: #53565a;
 	text-decoration: none;
+	display: block;
 }
 .sidebar-filter-wrapper ul li a:hover{
 	text-decoration: underline;
@@ -1249,8 +1277,8 @@ header{
 	width: 100%;
 	text-align: center;
 	color: #636669;
-	font-size: 18px;
-	font-family: JosefinSlab-Bold;
+	font-size: 16px;
+	font-family: OpenSans-Semibold;
 	font-weight: normal;
 	border: none;
 }
@@ -1264,7 +1292,7 @@ header{
 	margin-top: 5px;
 	color: #cb0d2b;
 	font-size: 14px;
-	font-family: JosefinSlab-Bold;
+	font-family: OpenSans-Semibold;
 }
 .range-slider{
 	border: solid 1px #dcdcdc;
@@ -1272,7 +1300,7 @@ header{
 }
 .black-heading-16{
 	font-size: 16px;
-	font-family: JosefinSlab-Bold;
+	font-family: OpenSans-Semibold;
 }
 .small-box-3{
 	/*border: solid 1px #dcdcdc;
@@ -1298,16 +1326,16 @@ header{
 	min-height: 65px;
 	margin-bottom: 5px;
 	color: #53565a;
-	font-size: 18px;
-	font-family: JosefinSlab-Bold;
+	font-size: 14px;
+	font-family: OpenSans-Regular;
 }
 .hamper-title .red-text b, .item-name .red-text{
 	font-size: 16px;
 	color: #cb0d2b !important;
 }
 .hamper-price-2{
-	font-family: JosefinSlab-Bold;
-	font-size: 20px;
+	font-family: OpenSans-Semibold;
+	font-size: 14px;
 	padding-top: 5px;
 }
 .hamper-box-2 .seller-btn{
@@ -1315,7 +1343,7 @@ header{
 }
 .hampers-wrapper-2{
 	padding-bottom: 30px;
-	margin-top: -15px;
+	margin-top: -9px;
 }
 .hampers-wrapper-2 .green-heading-with-border{
 	margin-top: 2px;
@@ -1343,12 +1371,12 @@ header{
 }
 .product-rating-row{
 	border-bottom:solid 1px #dcdcdc;
-	padding-bottom: 15px;
+	padding-bottom: 8px;
 	padding-top: 10px;
 	margin-bottom: 20px;}
 .product-review-count{
 	float: left;
-	margin: 0px 15px;
+	margin: 1px 15px 0px 5px;
 }
 .product-review-count a{
 	text-decoration: none;
@@ -1403,16 +1431,16 @@ padding: 0px 3px 10px !important;
 .price-now{
 	text-align: right;
 	font-size: 14px;
-	padding-right: 5px;
+	padding-right: 18px;
 }
 .price-now b{
-	font-family: JosefinSlab-SamiBold;
-	font-size: 30px;
+	font-family: OpenSans-Semibold;
+	font-size: 26px;
 	color: #5c8018;
 	font-weight: normal;
 }
 .qty-row{
-	margin-top:20px;
+	margin-top:5px;
 	margin-bottom: 10px;
 	font-size: 18px;
 	font-family: JosefinSlab-Bold;
@@ -1656,7 +1684,7 @@ padding: 0px 3px 10px !important;
 .black-strip div{
 	background: #53565a;
 	color: #fff;
-	font-family: JosefinSlab-Bold;
+	font-family: OpenSans-Semibold;
 	font-weight: bold;
 	font-size: 16px;
 	padding: 2px 6px;
@@ -1695,7 +1723,7 @@ a.close-btn, .black-strip  a{
 	min-width: 200px;
 	font-size: 13px;
 	font-family: OpenSans-Regular;
-	margin-top: 9px;
+	/*margin-top: 9px;*/
 }
 .sort-by-text{
 	float: left;
@@ -1704,15 +1732,27 @@ a.close-btn, .black-strip  a{
 .sort-select{
 	float: right;
 }
+.sort-select select{
+	background: #fff;
+	box-sizing: border-box;
+	height: 28px;
+	padding:2px;
+	border: solid 1px #bfbfbf;
+	margin-top:-2px;
+}
 .pagination-2{
 	border: solid 1px #dcdcdc;
 	padding: 3px 9px;
 	margin-bottom: 15px;
-	font-family: JosefinSlab-Bold;
-	font-size: 16px;
+	font-family: OpenSans-Regular;
+	font-size: 13px;
 }
 .show-result{
 	float: left;
+	color: #53565a;
+}
+.show-result b{
+	color: #5c8018;
 }
 .pagination-links{
 	float: right;
@@ -1884,6 +1924,9 @@ a.close-btn, .black-strip  a{
 }
 .top-18{
 	margin-top: -18px;
+}
+.top-12{
+	margin-top: -12px;
 }
 .write-review-wrapper{
 	border-bottom: solid 1px #ebebeb;
@@ -2622,6 +2665,12 @@ a.close-btn, .black-strip  a{
 .prdouct-list-wrapper .green-heading-with-border{
 	margin-bottom: 12px;
 }
+.product-details{
+	margin-bottom: 30px;
+}
+.left-bar-search .form-control{
+	border-radius: 0px;
+	box-shadow: none;}
 /*=============== Media quires=================*/
 @media only screen and (max-width: 1035px) {
 	.navigation-row .nav  li  a{

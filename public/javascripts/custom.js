@@ -99,6 +99,8 @@ $('.panel-title').on('click', function(e) {
 
 });
 
+
+
 function get_range_price(){
   var price = $('#amount').val().replace(/\s+/g, '').replace(/\£+/g, '');
   var start_price =  price.split('-')[0];
