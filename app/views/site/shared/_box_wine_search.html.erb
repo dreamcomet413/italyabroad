@@ -28,7 +28,7 @@
     <%= hidden_field_tag :id,@category.name.downcase if !@category.nil? %>
     <div class="left-bar-search">
       <%#= text_field_tag :text, params[:text], {:id => "search_text"} %>
-      <%page = request.request_uri%>
+      <%page = request.url%>
       <%if page.include?('other')%>
         <%path = "/site/search/autocomplete_search_drinks_name"%>
         <%= hidden_field_tag :parent_type , 'other-drinks' %>

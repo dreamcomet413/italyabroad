@@ -148,7 +148,7 @@
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <%- active_uri = request.request_uri -%>
+          <%- active_uri = request.url -%>
           <ul class="nav1 nav navbar-nav">
             <% for category in ["Wine", "Other Drinks", "Food", "Hampers", "Wine Tours", "Wine Club", "Events"] do %>
               <% category = Category.find_by_name(category)%>
@@ -362,7 +362,7 @@
 </div><!-- End container-->
 
 
-  <%- if RAILS_ENV == "production" -%>
+  <%- if Rails.env == "production" -%>
       <script src="https://ssl.google-analytics.com/urchin.js" type="text/javascript">
       </script>
       <script type="text/javascript">

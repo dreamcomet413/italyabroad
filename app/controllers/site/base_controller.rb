@@ -12,20 +12,17 @@ class Site::BaseController < ApplicationController
     @recommended_wines = Product
     .where("categories.id IN (?) AND products.raccomanded = ? AND product_prices.quantity > ? AND products.active = ?", wine_categories.collect(&:id), true, 0,true)
     .includes([:categories, :product_prices]).order("products.created_at ASC").limit(10)
+    
+    category = Category.find_by_name('Food')
+    food_category_ids = category.children.where(["categories.lft BETWEEN ? AND ?", category.lft, category.rgt]).collect &:id
 
+    @food_counter = Product.where("categories.id IN (?) AND products.raccomanded = ? AND product_prices.quantity > ? AND products.active = ?", food_category_ids, true, 0,true).includes([:categories, :product_prices]).limit(10).order("RAND()")
 
-    #food_categories = Category.find_by_sql("select * from categories where friendly_identifier LIKE 'Balasmic vinegar'")
-    # food_categories = Category.find(:all, :conditions => ["friendly_identifier LIKE 'balsamic-vinegar' OR friendly_identifier LIKE 'bittersweet-mousse' OR friendly_identifier LIKE 'bittersweet-pearls' OR friendly_identifier LIKE 'jams' OR friendly_identifier LIKE 'chilli-sauce' OR friendly_identifier LIKE 'chutneys-and-condiments' OR friendly_identifier LIKE 'christmas-panettones' OR friendly_identifier LIKE 'cchristmas-treats'" ])
-    food_categories = Category.find_by_name('Food').children
-    @food_counter = Product.where("categories.id IN (?) AND products.raccomanded = ? AND product_prices.quantity > ? AND products.active = ?", food_categories.map(&:id), true, 0,true).includes([:categories, :product_prices]).limit(10).order("RAND()")
-
-    @best_sellers = Product
-    .where("products.is_best_seller = ? AND product_prices.quantity > ? AND products.active = ?", true, 0,true)
+    @best_sellers = Product.where("products.is_best_seller = ? AND product_prices.quantity > ? AND products.active = ?", true, 0,true)
     .includes([:product_prices]).order("products.created_at ASC").limit(4) if Product.attribute_method?("is_best_seller")
 
     other_categories = Category.find_by_sql("select * from categories where friendly_identifier LIKE 'other-drinks'")
-    @other_drinks = Product
-    .where("categories.id = ? AND products.raccomanded = ? AND product_prices.quantity > ? AND products.active = ?", other_categories.last.try(:id), true, 0,true)
+    @other_drinks = Product.where("categories.id = ? AND products.raccomanded = ? AND product_prices.quantity > ? AND products.active = ?", other_categories.last.try(:id), true, 0,true)
     .includes([:categories, :product_prices]).order("products.created_at ASC").limit(10)
 
     @recommended_wines = @recommended_wines.collect{|product| product if !product.out_of_stock? }.compact

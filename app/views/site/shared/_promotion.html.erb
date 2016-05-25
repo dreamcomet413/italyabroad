@@ -1,4 +1,4 @@
-<%if request.request_uri.upcase != '/CHECKOUTS/CONFIRMED' %>
+<%if request.url.upcase != '/CHECKOUTS/CONFIRMED' %>
 <%- if @cart.items.size > 0 -%>
 <%- @promotion_limit = @setting.order_delivery_amount.to_f - @cart.sub_total.to_f if !@setting.nil? -%>
 <%- if @promotion_limit > 0 -%>

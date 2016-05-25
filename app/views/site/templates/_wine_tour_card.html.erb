@@ -50,7 +50,7 @@
                 <div class="form-label">Your message</div>
                 <div class="form-field">
                   <%= text_field_tag  'your_message','', :value => "I thought you might be interested in this..." %>
-                  <%= hidden_field_tag 'h_product_id',request.request_uri %>
+                  <%= hidden_field_tag 'h_product_id',request.url %>
                 </div>
               </div>
             </div>

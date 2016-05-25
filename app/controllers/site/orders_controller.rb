@@ -4,7 +4,7 @@ class Site::OrdersController < ApplicationController
 
 
   #Uncomment the IF part when we go for production
-  #ssl_required :create if RAILS_ENV == "production"
+  #ssl_required :create if Rails.env == "production"
   #ssl_allowed
 
   # Since this is being done through /etc/httpd/conf/extra/virtual.conf
@@ -268,7 +268,7 @@ class Site::OrdersController < ApplicationController
     respond_to do |format|
       format.html { render :layout => 'site' }
     end
-    session[:return_url] = request.request_uri
+    session[:return_url] = request.url
 
   end
 

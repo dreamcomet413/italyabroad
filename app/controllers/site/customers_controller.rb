@@ -4,7 +4,7 @@ class Site::CustomersController < ApplicationController
   layout "site"
 
   # SSL is not required in these case
-  #ssl_required :new, :create, :account, :order # if RAILS_ENV == "production"
+  #ssl_required :new, :create, :account, :order # if Rails.env == "production"
 
   def new
     @user = User.new
