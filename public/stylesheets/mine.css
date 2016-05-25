@@ -808,7 +808,7 @@ footer{
 	margin-left: 15px;
 	color: #5c8018;
 	font-size: 16px;
-	font-family: JosefinSlab-Bold;
+	font-family: OpenSans-Semibold;
 	margin-bottom: 13px;
 	padding-right: 4px;
 }
@@ -821,7 +821,7 @@ footer{
 	text-decoration: underline;
 }
 .sidebar-box-heading{
-	font-family: prestigeEliteStd;
+	font-family: OpenSans-Semibold;
 	color: #485626;
 	font-size: 26px;
 	line-height: 26px; 
@@ -878,7 +878,7 @@ footer{
 }
 .blog-list-heading{
 	font-size: 24px;
-	margin-bottom: 15px;
+	/*margin-bottom: 15px;*/
 	color:#5c8018;
 	font-family: JosefinSlab-Bold;
 }
@@ -932,6 +932,7 @@ footer{
 }
 .grape-list{
 	margin-bottom: 80px;
+	margin-top: 40px;
 }
 .grape-list .green-heading{
 	font-size: 18px;
