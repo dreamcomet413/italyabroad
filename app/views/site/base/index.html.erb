@@ -64,7 +64,7 @@
         <% if !@best_sellers.blank? %>
           <% @best_sellers.each do |food| %>
             <%unless food.is_landscape%>
-              <div class="swiper-slide protrait">
+              <div class="swiper-slide portrait">
                 <div class="slider-box clearfix ">
                   <div class="col-xs-4"><%= link_to show_image_tag(:product_wine, food.image_1, :jpg, food.name), nested_products_uri(food),{:title => food.name} %></div>
                   <div class="col-xs-8 slider-box-text">

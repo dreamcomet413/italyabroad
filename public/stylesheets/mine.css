@@ -752,7 +752,7 @@ footer{
 	min-height: 40px;
 	margin: 15px 0px;
 	font-size: 14px;
-	font-family: JosefinSlab-Bold;
+	font-family: OpenSans-Semibold;
 	color: #53565a;
 }
 .producer-product-text a{
@@ -899,6 +899,7 @@ footer{
 	padding:10px 15px;
 	background: #5c8018;
 	border:none;
+	font-family: OpenSans-Semibold;
 }
 .green-button input[type=submit]{
 	color: #fff;
@@ -915,7 +916,7 @@ footer{
 	color: #fff;
 	text-decoration: none;
 	text-align: center;
-	padding:5px;
+	padding:3px 5px 5px;
 	background: #5c8018;
 	border:none;
 	box-sizing: border-box;
@@ -1117,7 +1118,7 @@ header{
 .hamper-heading{
 	font-size: 18px;
 	color: #5c8018;
-	font-family: JosefinSlab-Bold;
+	font-family: OpenSans-Semibold;
 	margin: 18px 0px 12px;
 }
 .hamper-heading a{
@@ -1156,7 +1157,7 @@ header{
 }
 .hamper-price{
 	margin: 18px 0px;
-	font-family:JosefinSlab-Bold;
+	font-family:OpenSans-Semibold;
 	font-size: 18px;
 }
 .hamper-field{
@@ -2249,7 +2250,7 @@ a.close-btn, .black-strip  a{
 	border: solid 1px #ebebeb;
 	border-top:none;
 	font-size: 14px;
-	font-family:JosefinSlab-Bold;
+	font-family:OpenSans-Semibold;
 	background: #fdfdfd;
 }
 .white-col{	
@@ -2277,7 +2278,7 @@ a.close-btn, .black-strip  a{
 	padding-bottom: 15px;
 	color: #5c8018;
 	font-size: 18px;
-	font-family: JosefinSlab-Bold;
+	font-family: OpenSans-Semibold;
 }
 .code-text{
 	display: inline-block;
@@ -2355,8 +2356,8 @@ a.close-btn, .black-strip  a{
 .continue-shopping{
 	display: inline-block;
 	margin-right: 15px;
-	width: 172px;
-	font-family: JosefinSlab-Bold;
+	width: 180px;
+	font-family: OpenSans-Semibold;
 	font-size: 16px;
 }
 .pay-now{
@@ -2543,7 +2544,7 @@ a.close-btn, .black-strip  a{
 }
 .continue-btn.green-button a{
 	display: block;
-	font-family: JosefinSlab-Bold;
+	
 	font-size: 14px;
 	padding: 11px 15px 8px;
 }
@@ -2553,7 +2554,7 @@ a.close-btn, .black-strip  a{
 	padding: 11px 15px 7px;
 }
 .green-button.add-wine a{
-	padding: 11px 10px 7px;
+	padding: 8px 10px 8px;
 	font-size: 14px;
 }
 .credit-card-wrapper{
@@ -2672,6 +2673,33 @@ a.close-btn, .black-strip  a{
 .left-bar-search .form-control{
 	border-radius: 0px;
 	box-shadow: none;}
+.green-button .cart-update-btn input[type=submit]{
+	font-size: 13px;
+	padding: 10px;
+}
+.left-side-bar .about-review #thirdSwiper .slide-text{
+	height: 145px;
+}
+.left-side-bar .about-review #thirdSwiper.swiper-container{
+	height: 200px;
+}
+.form-row .green-button input[type=submit]{
+	padding: 0px 8px;
+}
+.form-row .green-button .submit-btn input{
+	height: 34px;
+}
+.portrait  img{
+	width: 56px;
+	height: 210px;
+}
+.landscape  img{
+	width: 240px;
+	height: 112px;
+}
+.portrait .slider-box{
+	padding: 18px 0px 10px 0px;
+}
 /*=============== Media quires=================*/
 @media only screen and (max-width: 1035px) {
 	.navigation-row .nav  li  a{

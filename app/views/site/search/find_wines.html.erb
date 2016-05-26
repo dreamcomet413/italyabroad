@@ -33,7 +33,7 @@
                     <div style="font-size:14px;color:black;">Was <span style="text-decoration: line-through;">
                       <%= number_to_currency pp.price, :unit => "&pound;" %></span></div>
                     <% end %>
-                    <span class="price red" style="color:#003300;">Now&nbsp;<span style="color:red;">
+                    <span class="price red" style="color:#003300;">Now&nbsp;<span class="red-text">
                       <% product.price_discounted.each do |price| %>
                         <%= number_to_currency price, :unit => "&pound;" %>
                       <% end %>
