@@ -91,16 +91,16 @@
                     <div class="box-image"><%= link_to show_image_tag(:product_wine, food.image_1, :jpg, food.name), nested_products_uri(food),{:title => food.name} %></div>
                     <div class="item-name"><%= link_to (food.name), nested_products_uri(food)  -%></div>
                     <div class="row clearfix">
-                      <div class="col-xs-5 hamper-price-2">
-                        <% if food.present? && food.product_prices.present? %>
-                          <% food.product_prices.each do |best_food| %>
-                            <p><%= number_to_currency best_food.price, :unit => "&pound;" -%></p>
+                      <div class="col-xs-8 col-xs-offset-4">
+                        <div class="seller-price">
+                          <% if food.present? && food.product_prices.present? %>
+                            <% food.product_prices.each do |best_food| %>
+                              <p><%= number_to_currency best_food.price, :unit => "&pound;" -%></p>
                           <% end %>
-                        <% else %>
-                          <p>Not Available</p>
-                        <% end %>
-                      </div>
-                      <div class="col-xs-7">
+                          <% else %>
+                            <p>Not Available</p>
+                          <% end %>
+                        </div>
                         <div class="add-row clearfix">
                           <%=render partial: 'site/templates/product_cart_form' ,  locals: {product: food} %>
                         </div>
@@ -197,16 +197,16 @@
                   <div class="box-image"><%= link_to show_image_tag(:product_food, food.image_1, :jpg, food.name), nested_products_uri(food), {:title => food.name} %></div>
                   <div class="item-name"><%= link_to  truncate(food.name, length:55), nested_products_uri(food) -%></div>
                   <div class="row clearfix">
-                    <div class="col-xs-5 hamper-price-2">
-                      <% if food.present? && food.product_prices.present? %>
-                        <% food.product_prices.each do |f| %>
-                          <p><%= number_to_currency f.price, :unit => "&pound;" %></p>
+                    <div class="col-xs-8 col-xs-offset-4">
+                      <div class="seller-price">
+                        <% if food.present? && food.product_prices.present? %>
+                          <% food.product_prices.each do |f| %>
+                            <p><%= number_to_currency f.price, :unit => "&pound;" %></p>
+                          <% end %>
+                        <% else %>
+                          <p>Not Available</p>
                         <% end %>
-                      <% else %>
-                        <p>Not Available</p>
-                      <% end %>
-                    </div>
-                    <div class="col-xs-7">
+                      </div>
                       <div class="add-row clearfix">
                         <%=render partial: 'site/templates/product_cart_form' ,  locals: {product: food} %>
                       </div>

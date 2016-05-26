@@ -261,7 +261,7 @@ a{
 }
 /* Swiper css*/
 .swiper-wrapper{
-	height: 255px;
+	height: 277px;
 }
 .swiper-button-prev, .swiper-button-next{
 	margin:10px 5px 0px;
@@ -1334,6 +1334,9 @@ header{
 .hamper-title .red-text b, .item-name .red-text{
 	font-size: 13px;
 	color: #cb0d2b !important;
+}
+.hamper-title .red-text b{
+	font-weight: normal;
 }
 .hamper-price-2{
 	font-family: OpenSans-Semibold;
@@ -2648,7 +2651,7 @@ a.close-btn, .black-strip  a{
 }
 .small-box .slider-box-text .ratings{
 	margin-left: 0px;
-}
+	margin-top: 5px;}
 .search-box{
 	padding: 15px 25px;
 	background: #f9f9f9;
@@ -2698,7 +2701,47 @@ a.close-btn, .black-strip  a{
 	height: 112px;
 }
 .portrait .slider-box{
-	padding: 18px 0px 10px 0px;
+	padding: 40px 0px 10px 0px;
+	height: 277px;}
+.landscape .slider-box2{
+	height: 277px;
+}
+.product-list .portrait .small-box{
+	padding: 40px 8px 10px 18px;
+	height: 277px;}
+.landscape .hamper-box-2{
+	height: 277px;
+}
+.landscape .green-button a, .portrait .green-button a, .hamper-box-2 .seller-btn,
+.landscape .seller-btn a, .portrait .seller-btn a{
+width: 72px;
+}
+.landscape .slider-box2 .item-name{
+	min-height: 75px;
+}
+.portrait .item-name{
+	min-height: 160px;
+}
+.landscape .hamper-title{
+	height: 80px;
+}
+.hamper-title.h-75{
+	height: 75px;
+}
+.landscape .hamper-box-2 .box-image{
+	margin-bottom: 5px;
+}
+.landscape .green-button input[type=submit], .portrait .green-button input[type=submit]{
+	font-size: 16px;
+	padding: 1px 8px 0px;
+}
+.portrait .item-name.sepcial{
+	height: 145px;
+	min-height: 145px;
+}
+.hamper-title.h-60{
+	height: 60px;
+	min-height: 60px;
 }
 /*=============== Media quires=================*/
 @media only screen and (max-width: 1035px) {

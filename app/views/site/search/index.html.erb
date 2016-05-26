@@ -66,13 +66,13 @@
                         <div class="col-xs-8 slider-box-text">
                           <div class="item-name">
                             <%= link_to product.name, nested_products_uri(product) %>
-                          </div>
-                        <div class="ratings">
-                          <% if product.root_category.present? && %w(Food Hampers).include?(product.root_category) %>
-                            <%= show_review_ratings(product, product.average_rating_round).html_safe() %>
-                          <% else %>
-                            <%= show_ratings(product, product.average_rating_round).html_safe() %>
-                          <% end %>
+                            <div class="ratings">
+                              <% if product.root_category.present? && %w(Food Hampers).include?(product.root_category) %>
+                                <%= show_review_ratings(product, product.average_rating_round).html_safe() %>
+                              <% else %>
+                                <%= show_ratings(product, product.average_rating_round).html_safe() %>
+                              <% end %>
+                              </div>
                         </div>  
                         <div class="seller-price">
                           <% if product.product_prices.present? %>
@@ -116,37 +116,39 @@
                   </div>
                   <div class="hamper-title">
                     <%= link_to product.name, nested_products_uri(product) %>
-                  </div>
-                  <div class="ratings">
-                    <% if product.root_category.present? && %w(Food Hampers).include?(product.root_category) %>
-                      <%= show_review_ratings(product, product.average_rating_round).html_safe() %>
-                    <% else %>
-                      <%= show_ratings(product, product.average_rating_round).html_safe() %>
-                    <% end %>
+                    <div class="ratings">
+                      <% if product.root_category.present? && %w(Food Hampers).include?(product.root_category) %>
+                        <%= show_review_ratings(product, product.average_rating_round).html_safe() %>
+                      <% else %>
+                        <%= show_ratings(product, product.average_rating_round).html_safe() %>
+                      <% end %>
+                    </div>
                   </div>
                   <div class="row clearfix">
-                    <div class="col-xs-5 hamper-price-2">
-                      <% if product.product_prices.present? %>
-                        <% if product.discounted? && product.discount > 0.0 %>
-                          <% product.product_prices.each do |pp| %>
-                            <div >Was <span style="text-decoration: line-through;">
-                              <%= number_to_currency pp.price, :unit => "&pound;" %></span></div>
+                      <div class="col-xs-8 col-xs-offset-4">
+                        <div class="seller-price">
+                          <% if product.product_prices.present? %>
+                            <% if product.discounted? && product.discount > 0.0 %>
+                              <% product.product_prices.each do |pp| %>
+                                <div >Was <span style="text-decoration: line-through;">
+                                  <%= number_to_currency pp.price, :unit => "&pound;" %></span>
+                                </div>
+                              <% end %>
+                              <span class="price red" style="color:#003300;">Now&nbsp;</span>
+                              <span class="red-text">
+                                <% product.price_discounted.each do |price| %>
+                                  <%= number_to_currency price, :unit => "&pound;" %>
+                                <% end %>
+                              </span>
+                            <% else %>
+                              <span class="price" >
+                                <% product.product_prices.each do |pp| %>
+                                  <%= number_to_currency pp.price, :unit => "&pound;" %>
+                                <% end %>
+                              </span>
+                            <% end %>
                           <% end %>
-                          <span class="price red" style="color:#003300;">Now&nbsp;<span class="red-text">
-                            <% product.price_discounted.each do |price| %>
-                              <%= number_to_currency price, :unit => "&pound;" %>
-                            <% end %>
-                          </span></span>
-                        <% else %>
-                          <span class="price" >
-                            <% product.product_prices.each do |pp| %>
-                              <%= number_to_currency pp.price, :unit => "&pound;" %>
-                            <% end %>
-                          </span>
-                        <% end %>
-                      <% end %>
-                      </div>
-                      <div class="col-xs-7">
+                        </div>
                         <div class="add-row clearfix">
                           <% if product.out_of_stock? %>
                             <%= image_tag('out_of_stock.png') %>
