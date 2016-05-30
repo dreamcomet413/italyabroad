@@ -24,7 +24,7 @@
       </div>
       <div class="col-xs-10">
         <%- if @my_profile -%>
-          <%- form_for(:user, :url => site_customer_path(@user), :html => {:method => :put}) do -%>
+          <%= form_for(:user, :url => site_customer_path(@user), :html => {:method => :put}) do -%>
             <div class="row form-row clearfix">
               <div class="col-md-2 section-label2" id="favorite_meal">
                 <%= "#{@my_profile ? "My" : @user.name+"'s"}" %> favorite Meal:
@@ -202,7 +202,7 @@
       <% unless @my_profile %>
         <div class="bottom-50">
           <div class="green-heading-with-border"><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> wall - write a Message:</div>
-          <% form_tag 'send_message' do |f| %>
+          <%= form_tag 'send_message' do |f| %>
             <div class="form-row clearfix row">
               <div class="col-md-6">
                 <%= text_area_tag  :name,'', :size => "95x5" %>

@@ -4,7 +4,7 @@
 <div class="inner_content">
   <h2><%= @title %></h2>
   <br />
-  <% form_for :user, :url => admin_customer_path(@user), :html => {:method => :put} do %>
+  <%= form_for :user, :url => admin_customer_path(@user), :html => {:method => :put} do %>
   <%= show_messages(flash[:notice]) %>
   	<%= render :partial => "form" %>
   	<p><%= submit_tag "Save" %></p>

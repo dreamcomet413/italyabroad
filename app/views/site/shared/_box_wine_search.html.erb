@@ -24,7 +24,7 @@
   <% else %>
     <div class="green-heading-16">Other Drink Search</div>
   <% end %>
-  <% form_tag search_url, :class=>'search_form'   ,:method => :get do %>
+  <%= form_tag search_url, :class=>'search_form'   ,:method => :get do %>
     <%= hidden_field_tag :id,@category.name.downcase if !@category.nil? %>
     <div class="left-bar-search">
       <%#= text_field_tag :text, params[:text], {:id => "search_text"} %>

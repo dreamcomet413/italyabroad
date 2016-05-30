@@ -1,4 +1,4 @@
-<%- @testimonials = Testimonial.find(:all,:conditions=>['UPPER(page_to_display) = ?','WINE TOUR'],:order=>'id DESC',:limit=>2) -%>
+<% @testimonials = Testimonial.find(:all,:conditions=>['UPPER(page_to_display) = ?','WINE TOUR'],:order=>'id DESC',:limit=>2) -%>
 
 <div class="left-small-box" id="box_event_reviews">
   <div class="small-swiper-heading">Wine Tour Testimonials</div>
@@ -17,7 +17,6 @@
                   </span>
                   <span class="quotes-after"><img src="/images/quotes-after.png" /></span>
                 </div>
-                <div class="date"><%if user%><b><%=user.name%></b>  -<%end%> <%=review.created_at.to_date.to_s(:long)%></div>
               </div>
             <%- end -%>
             <%- else -%>

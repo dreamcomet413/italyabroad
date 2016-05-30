@@ -6,7 +6,7 @@
   <% if @cart.items.size > 0 %>
     <div class="bottom-50"><%= show_messages(flash[:notice]) %></div>
     <div class="center-align"><%= image_tag("cart_step_1.png") %></div>
-    <% form_tag(site_cart_path(@cart.object_id), :id => "form_cart", :method => :put) do %>
+    <%= form_tag(site_cart_path(@cart.object_id), :id => "form_cart", :method => :put) do %>
       <div class="cart-table-head  clearfix">
         <div class="col-xs-6">Product</div>
         <div class="col-xs-6 clearfix center-align no-padding">

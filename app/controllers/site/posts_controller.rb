@@ -63,7 +63,7 @@ class Site::PostsController < ApplicationController
     @post  = @topic.posts.build(params[:forum_post])
     @post.user = current_user
     @post.save!
-    @post.deliver_notification
+    @post.notification.deliver
     respond_to do |format|
       format.html do
         redirect_to forum_topic_path(:forum_id => params[:forum_id], :id => params[:topic_id], :anchor => @post.dom_id, :page => params[:page] || '1')

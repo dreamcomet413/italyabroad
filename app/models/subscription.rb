@@ -4,7 +4,7 @@ class Subscription < ActiveRecord::Base
   validates_format_of       :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
   
   after_create do |record|
-    Notifier.deliver_subscribe(record.email)
+    Notifier.subscribe(record.email).deliver
   end
   
   def show_errors

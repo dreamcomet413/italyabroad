@@ -89,10 +89,10 @@ class Site::RecipesController < ApplicationController
   def send_to_friend
     @recipe = Recipe.find(params[:id])
     if params[:email] =~ /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
-      Notifier.deliver_send_to_friend(params[:email], url_for(:host => "www.italyabroad.com",
+      Notifier.send_to_friend(params[:email], url_for(:host => "www.italyabroad.com",
           :controller => "site/recipes",
           :action => :show,
-          :id => @recipe))
+          :id => @recipe)).deliver
 
       status = "E-mail correctly send"
     else

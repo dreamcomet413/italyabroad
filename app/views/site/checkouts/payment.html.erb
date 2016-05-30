@@ -20,7 +20,7 @@
     %>
   </div>
   <div class="credit-card-wrapper">
-    <% form_tag site_orders_path, :id => "check_payment" do %>
+    <%= form_tag site_orders_path, :id => "check_payment" do %>
       <div class="terms-cond-row">
         <span>Please tick here to confirm that you accept our
         <%= link_to "Terms and Conditions", {:controller => :base, :action => :terms_conditions}, :popup => ['wtc', 'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=Yes,resizable=No,copyhistory=no, width=450, height=520'] %></span>

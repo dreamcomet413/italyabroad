@@ -78,7 +78,7 @@
           <span>
             <% if logged_in? %>
               <% if session[:previous_admin_id]!=nil %>
-                <% form_tag '/site/cart/user_select', :id => 'reset_form' do %>
+                <%= form_tag '/site/cart/user_select', :id => 'reset_form' do %>
                 <%= hidden_field_tag 'reset_user_id', session[:previous_admin_id] %>
               <% end %>
               <%= link_to "reset session", '#', :onclick => "$('form#reset_form').submit();return false;"%>
@@ -106,7 +106,7 @@
       <div class="logo col-md-3"><%= link_to image_tag('logo_hi_res.gif', :alt => "Italian wine and food", :title => "Italian wine and food"), root_path, :id => "logo" %></div>
           <!-- Start Main Search-->
       <div class="head_search col-md-4 col-lg-offset-1 col-md-offset-1 top-30">
-        <%- form_tag site_search_index_path, :method => :get do -%>
+        <%= form_tag site_search_index_path, :method => :get do -%>
           <% if params[:text]
             search_text = params["text"]
             else
@@ -249,7 +249,7 @@
           <li>
             <% if logged_in? %>
               <% if session[:previous_admin_id]!=nil %>
-                <% form_tag '/site/cart/user_select', :id => 'reset_form' do %>
+                <%= form_tag '/site/cart/user_select', :id => 'reset_form' do %>
                 <%= hidden_field_tag 'reset_user_id', session[:previous_admin_id] %>
               <% end %>
               <%= link_to "reset session", '#', :onclick => "$('form#reset_form').submit();return false;"%>
@@ -300,7 +300,7 @@
     </div>
     <div class="clearfix"></div>
     <div class="small-search-box head_search_small">
-      <%- form_tag site_search_index_path, :method => :get do -%>
+      <%= form_tag site_search_index_path, :method => :get do -%>
         <% if params[:text]
           search_text = params["text"]
         else

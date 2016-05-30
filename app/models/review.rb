@@ -6,7 +6,7 @@ class Review < ActiveRecord::Base
    #before_create :send_notification
 
   def send_notification
-    Notifier.deliver_new_review(self)
+    Notifier.new_review(self).deliver
   end
 
   def show_errors

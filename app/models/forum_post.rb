@@ -14,7 +14,7 @@ class ForumPost < ActiveRecord::Base
   attr_accessible :body	
 
   def deliver_notification
-    Notifier.deliver_topic_replied_notification(self) if self.user_id != self.topic.user_id
+    Notifier.topic_replied_notification(self).deliver if self.user_id != self.topic.user_id
   end
 
   def editable_by?(user)

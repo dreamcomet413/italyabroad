@@ -7,7 +7,7 @@
   <table>
     <tr>
     <td>
-    <% form_tag admin_faqs_path, :method=>:get do  %>
+    <%= form_tag admin_faqs_path, :method=>:get do  %>
       <strong>Search</strong><%= text_field_tag 'question',params[:question]%>
       <%= select_tag "publish", options_for_select([["Published","1"],["Un Published","0"]],params[:publish])%>
       <%= select_tag "answered", options_for_select([["Answered","1"],["Un Answered","0"]],params[:answered])%>

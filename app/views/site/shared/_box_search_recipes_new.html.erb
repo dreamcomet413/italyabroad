@@ -1,6 +1,6 @@
 <div class="block" id="box_search_recipes_new">
 	<div class="green-heading-16">Recipe Search</div>
-  <% form_tag site_search_index_path,:class=> 'search_form' , :method => :get do %>
+  <%= form_tag site_search_index_path,:class=> 'search_form' , :method => :get do %>
     <%= hidden_field_tag :category , 'recipe' %>
     <div class="left-bar-search">
       <%= text_field_tag :text, '', :class=> "form-control",  "data-autocomplete"=> '/site/search/autocomplete_search_recipes_name' , :placeholder => "Search Here", :style=>"" %>

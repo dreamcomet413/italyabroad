@@ -3,7 +3,7 @@
 <table>
   <tr>
     <td>
-      <% form_tag url_for_options ={:controller=>'admin/products',:action=>'products_of_the_week'},:method=>:get do  %>
+      <%= form_tag url_for_options ={:controller=>'admin/products',:action=>'products_of_the_week'},:method=>:get do  %>
           <strong>Search</strong><%= text_field_tag 'search_name',params[:search_name]%>
 
           <select name="search" >

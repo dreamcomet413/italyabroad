@@ -27,7 +27,7 @@
     </tr>
     </tfoot>
     <tbody>
-    <% form_tag admin_reviews_path, :method=>:get do  %>
+    <%= form_tag admin_reviews_path, :method=>:get do  %>
         <%- for review in @reviews -%>
             <tr>
               <% if !Product.find_by_id(review.reviewer_id).nil? and review.reviewer_type.upcase == 'PRODUCT'-%>

@@ -7,7 +7,7 @@
   <table>
     <tr>
       <td>
-        <%- form_tag admin_recipes_path, :method => :get do -%>
+        <%= form_tag admin_recipes_path, :method => :get do -%>
         <strong>Search:</strong>
         <%= text_field_tag :search_text,'',:value=>params[:search_text] %>
 

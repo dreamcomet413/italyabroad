@@ -5,7 +5,7 @@
 <br/>
   <h2><%= params[:type] %></h2>
   <br />
-<% form_tag admin_contact_messages_path,:multipart=>true do %>
+<%= form_tag admin_contact_messages_path,:multipart=>true do %>
   <div><%= flash[:notice] %></div>
     <p>
      Header:<br /><%= text_field :contact_message, :header %>

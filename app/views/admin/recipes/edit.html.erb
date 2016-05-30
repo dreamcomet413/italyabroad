@@ -5,7 +5,7 @@
   <h2><%= @title %></h2>
   <br />
   <%= render :partial => 'recipe_links', :locals => {:active => 'general'} %>
-  <% form_tag admin_recipe_path(@recipe), :method => :put do %>
+  <%= form_tag admin_recipe_path(@recipe), :method => :put do %>
     <%= show_messages(flash[:notice]) %>
   	<%= render :partial => "form" %>
   	<p>

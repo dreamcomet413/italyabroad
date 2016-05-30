@@ -73,7 +73,7 @@ class Site::CustomersController < ApplicationController
     if  !params[:conditions].nil?
       if @user.save_obj(session[:omniauth])
         #.save_with_captcha
-        Notifier.deliver_new_account_created(@user,AppConfig.admin_email)
+        Notifier.new_account_created(@user,AppConfig.admin_email).deliver
         flash[:title] = "Congratulations"
         flash[:message] = "Your account has been created, an email with your account details has been sent to #{@user.email}."
         if @user.type_id != 4
@@ -123,7 +123,7 @@ class Site::CustomersController < ApplicationController
           flash[:message] = "Your account has been activated"
         else
           if @user.update_attributes({:active => true})
-            Notifier.deliver_account_created(@user)
+            Notifier.account_created.deliver(@user)
             self.current_user = User.authenticate(@user.login, @user.password_clean)
             flash[:title] = "Congratulations"
             flash[:message] = "Your account has been created, an email with your account details has been sent to #{@user.email}."
@@ -185,7 +185,7 @@ class Site::CustomersController < ApplicationController
 
     # @user.set_photo_from_upload(params[:photo])
     if @user.update_attributes(params[:user])
-      Notifier.deliver_account_data(User.find(@user.id))
+      Notifier.account_data(User.find(@user.id)).deliver
       flash[:title] = "Congratulations"
       flash[:message] = "Your account has been update, you will now receive an email"
       #   render :action => :messages
@@ -202,7 +202,7 @@ class Site::CustomersController < ApplicationController
     @user = User.find_by_login(params[:user][:login])
     @user = User.find_by_email(params[:user][:email]) if @user.nil?
     if @user
-      Notifier.deliver_account_data(@user)
+      Notifier.account_data(@user).deliver
       flash[:title] = "Mail Sent"
       flash[:msg] = "An email with the password has been sent to the registered address"
     else
@@ -228,7 +228,7 @@ class Site::CustomersController < ApplicationController
   def send_message
     @message = Message.new(:name=>params[:name],:user_id=>params[:user_id],:send_by_id=>params[:send_by_id])
     if @message.save
-      Notifier.deliver_new_message_received(params[:name],User.find(params[:user_id]),User.find(params[:send_by_id]))
+      Notifier.new_message_received(params[:name],User.find(params[:user_id]),User.find(params[:send_by_id])).deliver
       redirect_to site_customer_path(params[:user_id])
     else
       flash[:notice] = @message.show_errors

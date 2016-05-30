@@ -5,7 +5,7 @@
 <div class="inner_content orders" id="admin_orders_index">
   <div style="padding:10px 15px 10px 15px;border: 1px solid black;width:80%">
     <h2><%= @title %></h2> <br />
-    <% form_tag '', :method => :get do %>
+    <%= form_tag '', :method => :get do %>
         Consignment No:<%= text_field_tag :consignment_no %>&nbsp;&nbsp;
         <% @agencies = ShippingAgency.find(:all)%>
         Shipping Agency: <%= select_tag :agency, '<option value="">Select ...</option>' + options_from_collection_for_select(@agencies, "id", "name",params[:agency].to_i) %>

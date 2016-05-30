@@ -140,7 +140,7 @@ class Site::BaseController < ApplicationController
       if verify_recaptcha(:model => @contact, :message => "It's error with reCAPTCHA!") && @contact.save
         flash[:title] = "Thank you"
         flash[:message] = "Your request has been submitted, we aim to respond within 48hr"
-        Notifier.deliver_contact(@contact)
+        Notifier.contact(@contact).deliver
         @hide = true
       else
         flash[:title] = "Sorry"
@@ -156,7 +156,7 @@ class Site::BaseController < ApplicationController
   def logout
     self.current_user.forget_me if logged_in?
     if current_user.admin?
-      @setting.update_attribute('chat_available',false)
+      # @setting.update_attribute('chat_available',false)
     end
     cookies.delete :auth_token
     reset_session

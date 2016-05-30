@@ -83,7 +83,7 @@ class Site::OrdersController < ApplicationController
             for cart_item in @cart.items
               if cart_item.quantity < @setting.reorder_quantity
                 if cart_item.product.quantity.to_i < @setting.reorder_quantity and cart_item.product.active
-                  Notifier.deliver_reorder_quantity_notification(cart_item.product,AppConfig.admin_email)
+                  Notifier.reorder_quantity_notification(cart_item.product,AppConfig.admin_email).deliver
                 end
               end
             end
@@ -145,8 +145,8 @@ class Site::OrdersController < ApplicationController
               
               if @order.status_order_id == 3
                 logger.info "venu"
-                Notifier.deliver_new_order_placed(@order,current_user,AppConfig.admin_email)
-                Notifier.deliver_new_order(@order) if !current_user.email.empty?
+                Notifier.new_order_placed(@order,current_user,AppConfig.admin_email).deliver
+                Notifier.new_order(@order).deliver if !current_user.email.empty?
               end
               # => :status_order_id => 3 ORDER COMPLETED
               session[:card_last_name] = ""
@@ -224,7 +224,7 @@ class Site::OrdersController < ApplicationController
           end
 
           if @order.status_order_id == 3
-            Notifier.deliver_new_order_placed(@order,current_user,AppConfig.admin_email)
+            Notifier.new_order_placed(@order,current_user,AppConfig.admin_email).deliver
           end
           @incomplete_purchase = IncompletePurchase.find_by_email(current_user.email)
           @incomplete_purchase.destroy
@@ -279,7 +279,7 @@ class Site::OrdersController < ApplicationController
 
   def review
     @review = Review.create!(:name=>params[:name],:description=>params[:description],:reviewer_id=>params[:product_id],:user_id=>current_user.id,:reviewer_type=>'Product',:score=>params[:score])
-    Notifier.deliver_new_review_added(Product.find(@review.reviewer_id),current_user,AppConfig.admin_email,@review)
+    Notifier.new_review_added(Product.find(@review.reviewer_id),current_user,AppConfig.admin_email,@review).deliver
     @order = current_user.orders.find(params[:order_id])
     @order_item = @order.order_items.find_by_product_id(params[:product_id])
     @order_item.update_attribute('reviewed',true)

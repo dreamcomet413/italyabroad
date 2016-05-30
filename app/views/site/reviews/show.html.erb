@@ -41,7 +41,7 @@
               <%- if @review.reviewer.out_of_stock? -%>
                   <%= image_tag('out_of_stock.png') %>
               <%- else -%>
-                  <%- form_remote_for :cart, :url => product_cart_index_path(@review.reviewer) do  -%>
+                  <%= form_remote_for :cart, :url => product_cart_index_path(@review.reviewer) do  -%>
                       <%= image_submit_tag("buy_ico.png") %>
 
                   <%- end -%>

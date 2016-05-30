@@ -4,7 +4,7 @@
 <div class="inner_content grapes" id="admin_grapes_new">
   <h2><%= @title %></h2>
   <br />
-  <% form_for :grape, :url => admin_grapes_path(@grape), :html => {:multipart => true} do %>
+  <%= form_for :grape, :url => admin_grapes_path(@grape), :html => {:multipart => true} do %>
     <%= render :partial => 'form' %>
     <p>
       <%= submit_tag "Save" %> or <%= link_to("Cancel", admin_grapes_path) %>

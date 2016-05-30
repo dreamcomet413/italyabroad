@@ -14,7 +14,7 @@
 	</div>
 	<div class="form-wrapper">
 		<div class="form_container" style="display:none;">
-			<% form_for :user, :url => admin_customers_path do %>
+			<%= form_for :user, :url => admin_customers_path do %>
 				<%= show_messages(flash[:notice]) %>
 				<%= render :partial => "/admin/customers/form" %>
 				<%= hidden_field_tag :return_to, '/cart/gift_options' %>
@@ -27,7 +27,7 @@
 			<% end %>
 		</div>
 		<div class="form_container_select" style="display:none" >
-			<% form_tag do %>
+			<%= form_tag do %>
 				<div class="form-wrapper">
 					<div class="row clearfix bottom-50">
 						<div class="col-md-4  auto-field bottom-15">

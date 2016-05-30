@@ -6,7 +6,7 @@
   <br />
   <p><%= show_messages(flash[:notice]) %></p>
   <%= render :partial => 'product_links', :locals => {:active => 'general'} %>
-  <% form_for :product, :url => admin_product_path(@product), :html => {:method => :put} do %>
+  <%= form_for :product, :url => admin_product_path(@product), :html => {:method => :put} do %>
 		<%= render :partial => "form" %>
   	<p>
   	 <%= submit_tag "Save" %> or <%= link_to "Cancel", admin_products_path %>
