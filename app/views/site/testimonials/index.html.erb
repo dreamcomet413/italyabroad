@@ -1,17 +1,15 @@
 <% @title = "Italyabroad.com testimonials"; @breadcrumbs = "#{link_to("Home", root_url)} &raquo; Testimonials"; @class = "testimonials no-padding"%>
 
-<div id="header">Testimonials</div>
-
-<div id="featured_wine_tours" style="margin:10px;">
-  <ul>
+<div class="green-heading-with-border">Testimonials</div>
+<div id="featured_wine_tours" class="full-width">
   <% @testimonials.each do |testimonial| %>
-    <li>
-        <div style="font-size:12px;"><%= testimonial.description.html_safe %></div>
-        <div style="font-size:10px;width:100%;text-align:right;right-margin:10px;left-margin:auto;"><%= testimonial.title.html_safe %></div>
-    </li>
+    <div class="bottom-30">
+      <div class="green-heading-2"><%= testimonial.title.html_safe %></div>
+      <div><%= testimonial.description.html_safe %></div>
+    </div>
   <% end %>
-  </ul>
-  <div class="digg_pagination pagination-2 clearfix">
+  
+  <div class="digg_pagination pagination-2 clearfix ">
     <div class="page_info show-result">
       <%= page_entries_info @testimonials %>
     </div>

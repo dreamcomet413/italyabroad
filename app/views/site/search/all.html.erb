@@ -35,7 +35,7 @@
       <!--<div id="header">Your search has found the following wines:</div>-->
       <div class="search-heading">Wines</div>
       <%#= link_to_remote @wines.count.to_s + 'Wines' , :url => { :action => "find_wines",:text=>params[:text]} %>
-      <div class="search-links"><%= link_to((@wines.count.to_s + '&nbsp; Wines').html_safe(), :action => "find_wines", :text=>params[:text]) %>
+      <div class="search-links"><%= link_to((@wines.count.to_s + '&nbsp; Wines').html_safe(),  :text=>params[:text], :id => 'wine') %>
         <div id="all_wines"></div> 
       </div>
     </div>
@@ -45,7 +45,8 @@
       <!--<div id="header">Your search has found the following wines:</div>-->
       <div class="search-heading">Other Drinks</div>
       <%#= link_to_remote @wines.count.to_s + 'Wines' , :url => { :action => "find_wines",:text=>params[:text]} %>
-        <div class="search-links"<%= link_to((@other_drinks.count.to_s + '&nbsp; Other Drinks').html_safe(), find_other_drinks_site_search_index_path(:text=>params[:text])) %>
+        <div class="search-links"><%#= link_to((@other_drinks.count.to_s + '&nbsp; Other Drinks').html_safe(), find_other_drinks_site_search_index_path(:text=>params[:text])) %>
+        <%= link_to (@other_drinks.count.to_s + '&nbsp; Other Drinks').html_safe() ,  :text=>params[:text], :id=> 'Other Drinks' %>
         <div id="all_wines"></div>
       </div>
     </div>
@@ -55,7 +56,7 @@
       <!--<div id="header">Your search has found the following wines:</div>-->
       <div class="search-heading">Hampers</div>
       <%#= link_to_remote @wines.count.to_s + 'Wines' , :url => { :action => "find_wines",:text=>params[:text]} %>
-      <div class="search-links"><%= link_to (@hampers.count.to_s + '&nbsp; Hampers').html_safe() ,  :action => "find_hampers",:text=>params[:text] %>
+      <div class="search-links"><%= link_to (@hampers.count.to_s + '&nbsp; Hampers').html_safe() , :text=>params[:text], :id=>'hampers' %>
         <div id="all_hampers"></div>
       </div>
     </div>
@@ -65,7 +66,7 @@
       <!--<div id="header">Your search has found the following Recipes:</div>-->
       <div class="search-heading">Recipes</div>
       <%#= link_to_remote @recipes.count.to_s + 'Recipes', :url => { :action => "find_recipes",:text=>params[:text]} %>
-      <div class="searh-links"><%= link_to (@recipes.count.to_s + '&nbsp; Recipes').html_safe(),  :action => "find_recipes",:text=>params[:text] %>
+      <div class="searh-links"><%= link_to (@recipes.count.to_s + '&nbsp; Recipes').html_safe(), :text=>params[:text], :id=>'recipe' %>
         <div id="all_recipes"></div>
       </div>
     </div>
@@ -76,9 +77,9 @@
   <% unless @foods.blank? %>
       <div class="search-box">
         <!--<div id="header">Your search has found the following Foods:</div>-->
-        <div class="search-headign">Foods</div>
+        <div class="search-heading">Foods</div>
         <%#= link_to_remote @foods.count.to_s + 'Foods', :url => { :action => "find_foods",:text=>params[:text]} %>
-        <div class="search-links"><%= link_to (@foods.count.to_s + '&nbsp; Foods').html_safe(),  :action => "find_foods",:text=>params[:text]%>
+        <div class="search-links"><%= link_to (@foods.count.to_s + '&nbsp; Foods').html_safe(), :text=>params[:text], :id=> 'food' %>
           <div id="all_foods"></div>
         </div>
       </div>

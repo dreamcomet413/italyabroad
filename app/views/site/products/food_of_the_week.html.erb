@@ -106,7 +106,7 @@
             <% if @product.discount.to_i > 0 %>
               <div style="font-size:14px;color:#003300;">Was <span style="text-decoration: line-through;"><%= number_to_currency @product.price, :unit => "&pound;" %></span></div>
               <span class="price red" style="color:#003300;">Now&nbsp;<span style="color:#003300;"><%= number_to_currency @product.price_discounted.first, :unit => "&pound;" %></span></span>
-                                  (save <span style="color:red;"><%= number_to_currency (@product.price * @product.discount / 100), :unit => "&pound;" %></span>)
+                                  (save <span class="red-text"><%= number_to_currency (@product.price * @product.discount / 100), :unit => "&pound;" %></span>)
             <% else %>
               <span class="price" style="color:#003300;"><%= number_to_currency @product.price, :unit => "&pound;" %></span>
             <% end %>
@@ -114,9 +114,9 @@
           <% if @product.from_quantity > 0 && @product.from_quantity_price > 0 %>
             <li>
               <% if @product.categories.root.name == "Wine" %>
-                <span style="color:red;">Buy a case of <%= @product.from_quantity %> and save <span><%= number_to_currency @product.from_quantity_price, :unit => "&pound;" %><br/>(price per bottle <%= number_to_currency @product.price_per_bottle, :unit => "&pound;" %>)</span></span>
+                <span class="red-text">Buy a case of <%= @product.from_quantity %> and save <span><%= number_to_currency @product.from_quantity_price, :unit => "&pound;" %><br/>(price per bottle <%= number_to_currency @product.price_per_bottle, :unit => "&pound;" %>)</span></span>
               <% elsif @product.categories.root.name == "Food" %>
-                <span style="color:red;">Buy <%= @product.from_quantity %> and save <span><%= number_to_currency @product.from_quantity_price, :unit => "&pound;" %></span></span>
+                <span class="red-text">Buy <%= @product.from_quantity %> and save <span><%= number_to_currency @product.from_quantity_price, :unit => "&pound;" %></span></span>
               <% end %>
             </li>
           <% end %>

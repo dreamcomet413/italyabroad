@@ -89,7 +89,7 @@
             <%reviews = @product.reviews.find(:all,:conditions=>['publish = true  && score is not null '])%>
             <div class="product-review-count">
               <a href="#reviews"><%=reviews.count%> Reviews</a> / 
-              <%= link_to '(Write a review)', "#reviews", :style => "font-size:12px;", :onclick => "document.getElementById('add_review').style.display='block';document.getElementById('hide_this').style.display='none';document.getElementById('no_review').style.display='none';return false;" %>
+              <%= link_to ' Write a review', "#reviews", :style => "font-size:12px;", :onclick => "document.getElementById('add_review').style.display='block';document.getElementById('hide_this').style.display='none';document.getElementById('no_review').style.display='none';return false;" %>
             </div>
             <div class="product-share">
               <%= render :partial => '/site/shared/social_bookmarks' %>
@@ -214,12 +214,12 @@
                           <% end %>
                         <% end %>
                       </div>
-                      <div class="row clearfix qty-row">
+                      <div class="clearfix qty-row">
                           <% @product.product_prices.each do |quantity| %>
                             <%- if !quantity.out_of_stock -%>
                               <%= form_for :cart, :url => "/site/cart.js", :remote => true, :html => {:method => :post} do -%>
                                 
-                                <div class="col-xs-offset-1 col-xs-5 clearfix">
+                                <div class="col-xs-5 clearfix">
                         
                                   <div class="qty-field">
                                     <%= number_field :cart, :quantity, :value => 1 , :min=> 0 %>
@@ -231,7 +231,7 @@
                                     <div class="minus-btn"><a href="#.">-</a></div>
                                   </div>
                               </div>
-                              <div class="col-xs-6">
+                              <div class="col-xs-7">
                                 <div class="green-button"><%= submit_tag(value = "Add to cart") %></div>
                               </div>
                             <%- end -%>
@@ -315,7 +315,7 @@
             <div class="green-heading-2">
               Latest Review <%= link_to '(Add Review)', "#",  :onclick => "document.getElementById('add_review').style.display='block';document.getElementById('hide_this').style.display='none';document.getElementById('no_review').style.display='none';return false;" %>
             </div>
-            <div class="latest-review-box" style="margin-bottom: 25px;">
+            <div class="latest-review-box" style="margin-bottom: 12px;">
               <div id="add_review" style="display:none;">
                 <%= render(:partial => 'site/reviews/new', :locals => {:create_url => site_reviews_path(@product, :return_to => nested_products_uri(@product)), :product_id => @product.id}) %>
               </div>
