@@ -336,7 +336,7 @@ class Admin::ProductsController < ApplicationController
 
       # @products = Product.find(:all,:conditions => ["products.id NOT IN (?)", @product.id])
     else
-      if @product.root_category == 'Hampers' || @product.sub_categories.include?('Mixed case')
+      if @product and @product.root_category == 'Hampers' || @product.sub_categories.include?('Mixed case')
         @products = Product.find(:all, :include => 'product_prices', :conditions => ["products.id NOT IN (?) AND product_prices.quantity > ? AND active = ?", @product.id,0,true])
       else
         @products = Product.find(:all, :include=>['categories', 'product_prices'],:conditions => ["products.id NOT IN (?) AND LOWER(categories.name) = ? AND product_prices.quantity > ? AND active = ?", @product.id,'wine', 0, true])

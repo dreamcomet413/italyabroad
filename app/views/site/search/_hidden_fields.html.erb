@@ -1,0 +1,24 @@
+<%= hidden_field_tag :page, (params[:page] || 1) %>
+<%= hidden_field_tag :text, params[:text] if(params[:text] and params[:text] != '') %>
+<%= hidden_field_tag :id, params[:id] if(params[:id] and params[:id] != '') %>
+<%= hidden_field_tag :price_type, params[:price_type] if params[:price_type] %>
+<%= hidden_field_tag :food_type, params[:food_type] if params[:food_type] %>
+<%= hidden_field_tag :body_type, params[:body_type] if params[:body_type] %>
+<%= hidden_field_tag :wine_type, params[:wine_type] if params[:wine_type] %>
+<%= hidden_field_tag :start_price , params[:start_price] if(params[:start_price] and params[:start_price] != '') %>
+<%= hidden_field_tag :end_price , params[:end_price] if(params[:end_price] and params[:end_price] != '') %>
+
+<%= hidden_field_tag :producer_id , params[:producer_id] if(params[:producer_id] and params[:producer_id] != '') %>
+
+<%= hidden_field_tag :color , params[:color] if(params[:color] and params[:color] != '') %>
+
+<%= hidden_field_tag :grape_id , params[:grape_id] if(params[:grape_id] and params[:grape_id] != '') %>
+
+<%= hidden_field_tag :region_id , params[:region_id] if(params[:region_id] and params[:region_id] != '') %>
+
+<%= hidden_field_tag :mood , params[:mood] if(params[:mood] and params[:mood] != '') %>
+
+<%= hidden_field_tag :occasion_id , params[:occasion_id] if(params[:occasion_id] and params[:occasion_id] != '') %>
+
+<%= hidden_field_tag :vegetarian , params[:vegetarian] if(params[:vegetarian] and params[:vegetarian] != '') %>
+<%= hidden_field_tag :organic , params[:organic] if(params[:organic] and params[:organic] != '') %>
