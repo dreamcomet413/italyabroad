@@ -23,13 +23,7 @@
             <div class="sort-by-box clearfix">
               <div class="sort-select">
                 <%= form_tag '/site/search' , :method => :get, :id => "sort_by_form" do -%>
-                  <%= hidden_field_tag :page, (params[:page] || 1) %>
-                  <%= hidden_field_tag :text, params[:text] %>
-                  <%= hidden_field_tag :id, params[:id] %>
-                  <%= hidden_field_tag :price_type, params[:price_type] %>
-                  <%= hidden_field_tag :food_type, params[:food_type] %>
-                  <%= hidden_field_tag :body_type, params[:body_type] %>
-                  <%= hidden_field_tag :wine_type, params[:wine_type] %>
+                  <%=render partial: 'hidden_fields'%>
                   <strong>Sort by:</strong>&nbsp;
                   <%= select_tag("sort_by", options_for_select([["Price: Low to high", "product_prices.price asc"],["Price: High to low", "product_prices.price desc"], ["Name", "name"], ["Region", "region_id"]], @sort_by), :onchange => "$('#sort_by_form').submit()") %>
                 <%- end -%>
