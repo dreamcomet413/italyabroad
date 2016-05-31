@@ -55,13 +55,13 @@
               </div>
             </div>
           </div>
-          <div class="product-list">
+          <div class="product-list-search">
             <div class="row clearfix">
               <% for product in @products %>
                 <%unless product.is_landscape%>
                   <div class="col-md-4 portrait">
-                    <div class="small-box">
-                      <div class="row clearfix">
+                    <div class="slider-box">
+                      <div class="clearfix">
                         <div class="col-xs-4 box-image"><%= link_to show_image_tag(product.layout_image, product.image_1, :jpg, product.name), nested_products_uri(product) %></div>
                         <div class="col-xs-8 slider-box-text">
                           <div class="item-name">
@@ -72,37 +72,44 @@
                               <% else %>
                                 <%= show_ratings(product, product.average_rating_round).html_safe() %>
                               <% end %>
-                              </div>
-                        </div>  
-                        <div class="seller-price">
-                          <% if product.product_prices.present? %>
-                            <% if product.discounted? && product.discount > 0.0 %>
-                              <% product.product_prices.each do |pp| %>
-                                <div >Was <span style="text-decoration: line-through;">
-                                  <%= number_to_currency pp.price, :unit => "&pound;" %></span>
-                                </div>
-                              <% end %>
-                              <span class="price red" style="color:#003300;">Now&nbsp;</span>
-                              <span class="red-text">
-                                <% product.price_discounted.each do |price| %>
-                                  <%= number_to_currency price, :unit => "&pound;" %>
-                                <% end %>
-                              </span>
-                            <% else %>
-                              <span class="price" >
-                                <% product.product_prices.each do |pp| %>
-                                  <%= number_to_currency pp.price, :unit => "&pound;" %>
-                                <% end %>
-                              </span>
-                            <% end %>
-                          <% end %>
+                          </div>
+                          </div>  
+                      </div>
+                      <div class="clr"></div>
+                      <div class="clearfix">
+                        <div class="col-xs-4">
                         </div>
-                        <div class="add-row clearfix">
-                          <%if product.out_of_stock?%>
-                            <%= image_tag('out_of_stock.png') %>
-                          <%else%>
-                            <%= render partial: 'site/templates/cart_product_show_page_form' , locals: {product: product} %>
-                          <%end%>
+                        <div class="col-xs-8 top-minus-15">
+                          <div class="seller-price">
+                            <% if product.product_prices.present? %>
+                              <% if product.discounted? && product.discount > 0.0 %>
+                                <% product.product_prices.each do |pp| %>
+                                  <span class="price" ></span>
+                                  <span class="">
+                                    <% product.price_discounted.each do |price| %>
+                                      <%= number_to_currency price, :unit => "&pound;" %>
+                                    <% end %>
+                                  </span>
+                                  <span class="red-text" style="text-decoration: line-through;">
+                                    Was <%= number_to_currency pp.price, :unit => "&pound;" %>
+                                  </span>
+                                <% end %>
+                              <% else %>
+                                <span class="price" >
+                                  <% product.product_prices.each do |pp| %>
+                                    <%= number_to_currency pp.price, :unit => "&pound;" %>
+                                  <% end %>
+                                </span>
+                              <% end %>
+                            <% end %>
+                            <div class="add-row clearfix">
+                              <%if product.out_of_stock?%>
+                                <%= image_tag('out_of_stock.png') %>
+                              <%else%>
+                                <%= render partial: 'site/templates/cart_product_show_page_form' , locals: {product: product} %>
+                              <%end%>
+                            </div>
+                          </div>
                         </div>
                       </div>  
                     </div>
