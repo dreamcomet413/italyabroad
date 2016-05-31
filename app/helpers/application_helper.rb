@@ -342,7 +342,7 @@ module ApplicationHelper
     if product.out_of_stock? || (product.product_prices.first.try(:quantity).to_i == 0)
       "#{image_tag('out_of_stock.png')}".html_safe
     elsif (quantity = product.product_prices.first.try(:quantity).to_i) <= Product::LIMITED_QUANTITY
-      "<b style='color: red'>Quantity: Only #{quantity} left in stock.</b>".html_safe
+      "<b style='color: red'>Quantity: #{quantity} left.</b>".html_safe
     end
   end
 

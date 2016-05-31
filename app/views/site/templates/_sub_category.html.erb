@@ -37,13 +37,13 @@
             </div>
           </div>
           <!-- Start product list-->
-          <div class="product-list">
+          <div class="product-list-search">
             <div class="row clearfix">
               <% @products.each do |product| %>
                 <% unless product.is_landscape %>
                   <div class="col-md-4 portrait">
                     <div class="slider-box">
-                      <div class="row clearfix">
+                      <div class="clearfix">
                         <div class="col-xs-4 box-image"><%= link_to show_image_tag(product.layout_image, product.image_1, :jpg, product.name), nested_products_uri(product) %></div>
                         <div class="col-xs-8 slider-box-text">
                           <div class="item-name">
@@ -58,15 +58,15 @@
                             <div class="seller-price">
                               <% if product.product_prices.present? %>
                                 <% if product.discounted? && product.discount > 0.0 %>
-                                  <% product.product_prices.each do |pp| %>
-                                  <div style="font-size:14px;color:black;">Was <span style="text-decoration: line-through;">
-                                    <%= number_to_currency pp.price, :unit => "&pound;" %></span></div>
-                                  <% end %>
-                                  <span class="price red" style="color:#003300;">Now&nbsp;<span class="red-text">
+                                  <span class="current-price">
                                     <% product.price_discounted.each do |price| %>
                                       <%= number_to_currency price, :unit => "&pound;" %>
                                     <% end %>
-                                  </span></span>
+                                  </span>
+                                  <% product.product_prices.each do |pp| %>
+                                   <span class="line-through">
+                                    Was <%= number_to_currency pp.price, :unit => "&pound;" %></span>
+                                  <% end %>
                                 <% else %>
                                   <span class="price" style="color:black;">
                                     <% product.product_prices.each do |pp| %>
@@ -90,10 +90,10 @@
                   </div>
                 <%else%>
                   <div class="col-md-4 landscape">
-                    <div class="hamper-box-2">
+                    <div class="slider-box2">
                       <div class="box-image"><%= link_to show_image_tag(product.layout_image, product.image_1, :jpg, product.name), nested_products_uri(product) %></div>
-                      <div class="hamper-title">
-                        <p><%= link_to truncate(product.name, :length => 30), nested_products_uri(product) %></p>
+                      <div class="item-name">
+                        <p><%= link_to truncate(product.name, :length => 65), nested_products_uri(product) %></p>
                         <div class="red-text"><%= limited_stock(product) -%></div>
                       </div>
                       <div class="row clearfix">
@@ -101,15 +101,16 @@
                           <div class="seller-price">
                             <% if product.product_prices.present? %>
                               <% if product.discounted? && product.discount > 0.0 %>
-                                <% product.product_prices.each do |pp| %>
-                                <div style="font-size:14px;color:black;">Was <span style="text-decoration: line-through;">
-                                  <%= number_to_currency pp.price, :unit => "&pound;" %></span></div>
-                                <% end %>
-                                <span class="price red" style="color:#003300;">Now&nbsp;<span class="red-text">
+                                <span class="current-price">
                                   <% product.price_discounted.each do |price| %>
                                     <%= number_to_currency price, :unit => "&pound;" %>
                                   <% end %>
-                                </span></span>
+                                </span>
+                                <% product.product_prices.each do |pp| %>
+                                <span class="line-through">
+                                  <%= number_to_currency pp.price, :unit => "&pound;" %>
+                                </span>
+                                <% end %>
                               <% else %>
                                 <span class="price" style="color:black;">
                                   <% product.product_prices.each do |pp| %>

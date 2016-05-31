@@ -33,7 +33,7 @@
           <%unless product.is_landscape%>
             <div class="col-md-4 portrait">
               <div class="slider-box">
-                <div class="row clearfix">
+                <div class="clearfix">
                   <div class="col-xs-4 box-image"><%= link_to show_image_tag(product.layout_image, product.image_1, :jpg,product.name),nested_products_uri(product)  %></div>
                   <div class="col-xs-8 slider-box-text">
                     <div class="item-name"><%= link_to product.name, nested_products_uri(product) if product.categories.root.present? && (product.categories.root.name.upcase != 'WINE TOURS') %>
@@ -144,7 +144,7 @@
           <%unless product.is_landscape%>
             <div class="col-md-4 portrait">
               <div class="slider-box">
-                <div class="row clearfix">
+                <div class="clearfix">
                   <div class="col-xs-4 box-image"><%= link_to show_image_tag(product.layout_image, product.image_1, :jpg,product.name),nested_products_uri(product)  %></div>
                   <div class="col-xs-8 slider-box-text">
                     <div class="item-name"><%= link_to product.name, nested_products_uri(product) if product.categories.root.present? && (product.categories.root.name.upcase != 'WINE TOURS') %>
