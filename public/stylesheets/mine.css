@@ -261,7 +261,7 @@ a{
 }
 /* Swiper css*/
 .swiper-wrapper{
-	height: 277px;
+	height: 307px;
 }
 .swiper-button-prev, .swiper-button-next{
 	margin:10px 5px 0px;
@@ -312,7 +312,7 @@ h2{
 .slider-box-text{
 	color: #53565a;
 	font-size: 15px;
-	min-height: 130px;
+	min-height: 193px;
 }
 .add-row{
 	margin-top: 5px;
@@ -374,7 +374,7 @@ h3{
 	color: #cb0d2b;
 }
 .counter-image{
-	height: 196px;
+	height: 210px;
 	vertical-align: middle;}
 .counter-image img{
 	max-width: 100%;
@@ -1767,10 +1767,11 @@ a.close-btn, .black-strip  a{
 	color: #5c8018;
 }
 .product-list .small-box{
-	min-height: 256px;
+	min-height: 307px;
 	margin-bottom: 15px;
-	font-family: JosefinSlab-Bold;
+	
 }
+
 .hamper-box-2{
 	min-height: 256px;
 }
@@ -2158,7 +2159,7 @@ a.close-btn, .black-strip  a{
 }
 .ratings{
 	display: inline-block;
-	margin-left: 10px;
+	margin-top: 7px;
 	width: 110px;
 }
 .top-60{
@@ -2644,7 +2645,7 @@ a.close-btn, .black-strip  a{
 	/*display: none;*/
 }
 .slider-box2 .box-image{
-	height: 100px;
+	height: 112px;
 }
 .slider-box2 .item-name{
 	min-height: 73px;
@@ -2700,27 +2701,31 @@ a.close-btn, .black-strip  a{
 	width: 240px;
 	height: 112px;
 }
+.portrait .add-row img, .landscape .add-row img {
+	width: auto;
+	height: auto;
+}
 .portrait .slider-box{
 	padding: 40px 0px 10px 0px;
-	height: 277px;}
+	height: 307px;}
 .landscape .slider-box2{
-	height: 277px;
+	height: 307px;
 }
 .product-list .portrait .small-box{
-	padding: 40px 8px 10px 18px;
-	height: 277px;}
+	/*padding: 40px 8px 10px 18px;
+	height: 207px;*/}
 .landscape .hamper-box-2{
-	height: 277px;
+	height: 302px;
 }
 .landscape .green-button a, .portrait .green-button a, .hamper-box-2 .seller-btn,
 .landscape .seller-btn a, .portrait .seller-btn a{
 width: 72px;
 }
 .landscape .slider-box2 .item-name{
-	min-height: 75px;
+	min-height: 93px;
 }
 .portrait .item-name{
-	min-height: 160px;
+	min-height: 190px;
 }
 .landscape .hamper-title{
 	height: 80px;
@@ -2736,12 +2741,23 @@ width: 72px;
 	padding: 1px 8px 0px;
 }
 .portrait .item-name.sepcial{
-	height: 145px;
+	height: 170px;
 	min-height: 145px;
 }
 .hamper-title.h-60{
-	height: 60px;
+	height: 85px;
 	min-height: 60px;
+}
+.top-minus-15{
+	margin-top: -15px;}
+.clr{
+	clear: both;
+}
+.portrait .box-image{
+	margin-bottom: 0px;
+}
+.product-list-search .slider-box{
+	margin-bottom: 15px;
 }
 /*=============== Media quires=================*/
 @media only screen and (max-width: 1035px) {
