@@ -256,12 +256,12 @@ class Product < ActiveRecord::Base
   end
 
   def is_wine?
-    RAILS_DEFAULT_LOGGER.debug "----> #{root_category}"
+    Rails.logger.info "----> #{root_category}"
     root_category == "Wine" || root_category == "Other Drinks"
   end
 
   def is_food?
-    RAILS_DEFAULT_LOGGER.debug "----> #{root_category}"
+    Rails.logger.info "----> #{root_category}"
     root_category == "Food"
   end
 

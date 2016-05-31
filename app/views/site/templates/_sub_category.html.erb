@@ -1,4 +1,4 @@
-<%#= @category.parent.name %> <%=  session[:return_url] = "" %>
+<%#= @category.parent.name %> <%#=  session[:return_url] = "" %>
 <% @breadcrumbs = "#{link_to "Home", root_url} &raquo; #{link_to(@category.parent.name, "/#{@category.parent.friendly_identifier}")} &raquo; #{@category.name}" %>
 <%- @class = "sub_categories #{@category.friendly_identifier}" -%>
 <div class="row">
