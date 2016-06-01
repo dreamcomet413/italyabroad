@@ -43,7 +43,12 @@
 
 
 <%- @breadcrumbs = "Welcome to Italyabroad.com" -%>
+
 <% if !@setting.nil? %>
+  <% if @setting.wine_mood_image %>
+   <div class="main-banner"> <%= image_tag(@setting.wine_mood_image.image_filename.url) %></div>
+  <%end%>
+<% else %>
   <div class="main-banner"><%= image_tag("/images/mood-banner.jpg")-%></div>
 <%end%>
 <%- if !params[:category].blank?
