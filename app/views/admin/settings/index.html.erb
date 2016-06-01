@@ -59,33 +59,38 @@
       </td>
     </tr>
     <% Setting::IMAGE_NAMES.each do |key| %>
-      <tr>
+      <tr style="margin-top:20px;">
         <td valign="top"><%="#{key.gsub('_',' ').capitalize}:"%></td>
         <td valign="top">
           <table cellpadding="0" cellspacing="0" border="0">
             <tr>
               <td valign="top" style="padding:0;">Image&nbsp;&nbsp;</td>
               <td valign="top" style="padding:0;">
-                <%= file_field_tag key.to_sym %> <em>(must 723x284px)</em>
+                <%= file_field_tag key.to_sym %> 
+                <% #unless %w{sommelier_image wine_mood_image}.include? key %>
+                  <em>(must 723x284px)</em>
+                <% #end %>
               </td>
             </tr>
-            <% if @setting && @setting.method(key).call.present? %>
-            <tr>
-              <td>&nbsp;</td>
-              <td valign="top" style="padding:0;">
-                <%= image_tag(@setting.method(key).call.try(:image_filename).try(:url), height: '150')%>
-                <%= link_to "Destroy", admin_setting_image_url(@setting, @setting.method(key).call), :confirm => "Are you sure?", :method => :delete %>
-              </td>
-            </tr>
+            <% if @setting and @setting.method(key).call.present? %>
+              <tr>
+                <td>&nbsp;</td>
+                <td valign="top" style="padding:0;">
+                  <%= image_tag(@setting.method(key).call.try(:image_filename).try(:url), height: '150')%>
+                  <%= link_to "Destroy", admin_setting_image_url(@setting, @setting.method(key).call), :confirm => "Are you sure?", :method => :delete %>
+                </td>
+              </tr>
             <% end %>
-            <tr>
-              <td style="padding:0;">Title</td>
-              <td style="padding:0;"><%= text_field :setting, (key+"_title").to_sym %></td>
-            </tr>
-            <tr>
-              <td style="padding:0;">URL</td>
-              <td style="padding:0;"><%= text_field :setting, (key+"_url").to_sym %></td>
-            </tr>
+            <% if @setting && @setting.respond_to?(key+"_title") %>
+              <tr>
+                <td style="padding:0;">Title</td>
+                <td style="padding:0;"><%= text_field :setting, (key+"_title").to_sym %></td>
+              </tr>
+              <tr>
+                <td style="padding:0;">URL</td>
+                <td style="padding:0;"><%= text_field :setting, (key+"_url").to_sym %></td>
+              </tr>
+            <% end %>
           </table>
         </td>
       </tr>
@@ -110,6 +115,8 @@
       <td>% for discount</td>
       <td style="padding-left:40px;"><%= text_field :setting, :wine_discount_amount,:maxlength=>2 %></td>
     </tr>
+
+
     <tr>
       <td></td>
       <td><%= link_to "Click here to manage Mood", admin_moods_index_path -%></td>
