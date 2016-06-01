@@ -186,13 +186,13 @@
                       <div  class=" <%= p.size > 1 ? 'width-145' : '' -%>">        
                         <% if p.size > 1 %>
                           <% price = params[:actual_price].present? ? params[:actual_price] : p.first %>
-                          <div class="old-price ">
+                          <div class="old-price">
                             was <%= number_to_currency price, :unit => "&pound;" %> 
                           </div>
                           <div class="price-now">
                             Now <b>&pound; <%= select_tag(:price, options_for_select(@product.discounted_prices, price.to_f), :onchange => "change_price(this); return false;") -%></b>
                           </div>
-                          (save <span style="color:red;" id="saved_price"><%= number_to_currency (price.to_f * @product.discount.to_f / 100), :unit => "&pound;" %></span>
+                          (save <span class="red-text" id="saved_price"><%= number_to_currency (price.to_f * @product.discount.to_f / 100), :unit => "&pound;" %></span>
                         <% else %>
                           <% if @product.discount.to_i > 0 %>
                             <div class="old-price ">
@@ -205,8 +205,10 @@
                               Now 
                               <%= number_to_currency @product.price_discounted.first, :unit => "&pound;" %>
                             </div>
-                            (save <span style="color:red;"><%= number_to_currency (@product.product_prices.first.price.to_f * @product.discount.to_f / 100), :unit => "&pound;" %>
-                            </span>)
+                            <div class="right-align price-now">
+                              (save <span class="red-text"><%= number_to_currency (@product.product_prices.first.price.to_f * @product.discount.to_f / 100), :unit => "&pound;" %>
+                              </span>)
+                            </div>
                           <% else %>
                             <div class="price-now">
                               <b><%= number_to_currency @product.product_prices.first.price.to_f, :unit => "&pound;" %></b>

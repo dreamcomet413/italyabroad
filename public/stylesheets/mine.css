@@ -802,7 +802,7 @@ footer{
 	float: left;
 	text-align: right;
 	width: 30%;
-	margin: 8px 10px 10px 0px;
+	margin: 12px 10px 10px 0px;
 }
 .favourite ol li{
 	margin-left: 15px;
@@ -1427,11 +1427,12 @@ padding: 0px 3px 10px !important;
 	margin-bottom: 7px;
 	padding: 20px 5px 10px 5px;
 }
+
 .old-price{
 	text-align: right;
 	color: #d84960;
 	text-decoration: line-through;
-	padding-right: 5px;
+	padding-right: 18px;
 }
 .price-now{
 	text-align: right;
@@ -2693,13 +2694,14 @@ a.close-btn, .black-strip  a{
 .form-row .green-button .submit-btn input{
 	height: 34px;
 }
-.portrait  img{
+.portrait img{
 	width: 56px;
 	height: 210px;
-}
+	max-width: 56px;}
 .landscape  img{
 	width: 240px;
 	height: 112px;
+	max-width: 240px;
 }
 .portrait .add-row img, .landscape .add-row img {
 	width: auto;
@@ -2722,10 +2724,10 @@ a.close-btn, .black-strip  a{
 width: 72px;
 }
 .landscape .slider-box2 .item-name{
-	min-height: 93px;
+	min-height: 118px;
 }
 .portrait .item-name{
-	min-height: 190px;
+	min-height: 215px;
 }
 .landscape .hamper-title{
 	height: 80px;
@@ -2756,16 +2758,44 @@ width: 72px;
 .portrait .box-image{
 	margin-bottom: 0px;
 }
-.product-list-search .slider-box{
+.product-list-search .slider-box, .product-list-search .slider-box2{
 	margin-bottom: 15px;
 }
+.current-price{
+	font-size: 14px;
+    color: #53565a;
+    font-family: OpenSans-Semibold;
+}
+.price-col{
+	padding: 0px 0px 0px 10px;
+}
+.price{
+	font-size: 14px;
+    color: #53565a;
+    font-family: OpenSans-Semibold;
+    padding-top: 18px;
+}
+.line-through{
+	color: #cb0d2b;
+	text-decoration: line-through;
+	font-size: 13px;
+	font-family: OpenSans-Regular;}
 /*=============== Media quires=================*/
+@media only screen and (max-width: 1200px) {
+	.landscape img{
+		max-width: 100%;
+		height: auto;
+		width: auto;
+	}
+}
 @media only screen and (max-width: 1035px) {
 	.navigation-row .nav  li  a{
 		padding: 10px 20px 10px 20px;
 		background: url(../images/seprator.png) no-repeat right center !important;
 	}
+	
 }
+
 @media only screen and (max-width: 990px){
 	.new-member-row .green-button a{
 		display: block;
