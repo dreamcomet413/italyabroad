@@ -109,7 +109,7 @@ class Site::BaseController < ApplicationController
           @user= User.new(:name => params[:name], :email => params[:email], :type_id => 3, :photo_default=>"default",  :login => params[:email] )
 
           if simple_captcha_valid?
-            @user.save(false)
+            @user.save(:validate=> false)
             self.current_user = @user
             flash[:notice] = "Successfully logged in"
             redirect_back_or_default(root_url)
