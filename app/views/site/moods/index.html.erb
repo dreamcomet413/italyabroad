@@ -62,7 +62,7 @@ end %>
 <div class="new_search">
   <% form_tag search_url, :method => :get do %>
     <%= hidden_field_tag :id,@category.name.downcase if !@category.nil? %>
-    <div class="green-heading-with-border">Select Wine According to Your Mood</div>
+    <div class="green-heading-with-border">How you feeling today?</div>
     <div class="row clearfix bottom-50 center-align">
       <% for mood in @moods %>
         <div class="col-xs-4 col-md-2 mood-selection">

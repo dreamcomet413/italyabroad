@@ -2770,11 +2770,12 @@ width: 72px;
 	padding: 0px 0px 0px 10px;
 }
 .price{
-	font-size: 14px;
+	font-size: 16px;
     color: #53565a;
     font-family: OpenSans-Semibold;
-    padding-top: 18px;
-}
+    padding-top: 9px;
+	margin-left: -9px;
+	text-align: center;}
 .line-through{
 	color: #cb0d2b;
 	text-decoration: line-through;
