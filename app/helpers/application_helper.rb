@@ -152,21 +152,29 @@ module ApplicationHelper
     case image_type
       when :product_rec, :region_thumb_small
         {:height => '100', :width => '100'}
+      #portrait wine
+      # when :wine_category
+      #   {:height => '210'}
+      # landscap wine
       when :wine_category
-        {:height => '100'}
+        {:height => '112'}
       when :product_food
         {:height => '100'}
       when :wine_category_producers_page, :product_food
         {:height => '133', :width => '100'}
       when :food_category, :food_sub_category, :hamper_sub_category
         {:height => '150', :width => '120'}
+      # hampers category portrait
       when :hamper_category, :product_hamper, :product_wine
-        {:height => '80'}
+        {:height => '210'}
+      # hampers category landscape
+      when :hamper_category, :product_hamper, :product_wine
+        {:height => '112'}
       when :wine_sub_category
         {:height => '104', :width => '80'}
       when :grape_thumb, :product_thumb_carta
         {:height => '100', :width => '65'}
-      when :avatar_thumb_small
+      when :avatar_thumb_small 
         {:height => '50', :width => '50'}
       when :avatar_thumb
         {:height => '98', :width => '98'}

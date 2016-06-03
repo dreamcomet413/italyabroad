@@ -193,7 +193,7 @@
                           <div class="price-now">
                             Now <b>&pound; <%= select_tag(:price, options_for_select(@product.discounted_prices, price.to_f), :onchange => "change_price(this); return false;") -%></b>
                           </div>
-                          (save <span style="color:red;" id="saved_price"><%= number_to_currency (price.to_f * @product.discount.to_f / 100), :unit => "&pound;" %></span>
+                          (save <span class="red-text" id="saved_price"><%= number_to_currency (price.to_f * @product.discount.to_f / 100), :unit => "&pound;" %></span>
                         <% else %>
                           <% if @product.discount.to_i > 0 %>
                             <div class="old-price ">

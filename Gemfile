@@ -8,7 +8,7 @@ gem 'pdfkit'
 gem 'rails', '3.2.3'
 gem 'capistrano', '2.12.0',:require => false
 gem 'mime-types', '1.23'
-# gem 'mysql', '2.8.1'
+gem 'mysql', '2.8.1'
 gem 'mysql2', '~> 0.3.20'
 gem 'rdoc'
 gem "activemerchant"
