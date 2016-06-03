@@ -224,9 +224,9 @@ class Product < ActiveRecord::Base
   end
 
   def root_category(object = false)
-    if categories && categories.size > 0 && categories.root
-      return categories.root.name unless object
-      return categories.root
+    if self.categories && self.categories.length > 0 && self.categories.root
+      return self.categories.root.name  unless object
+      return self.categories.root
     end
   end
 
@@ -256,12 +256,12 @@ class Product < ActiveRecord::Base
   end
 
   def is_wine?
-    RAILS_DEFAULT_LOGGER.debug "----> #{root_category}"
+    Rails.logger.info "----> #{root_category}"
     root_category == "Wine" || root_category == "Other Drinks"
   end
 
   def is_food?
-    RAILS_DEFAULT_LOGGER.debug "----> #{root_category}"
+    Rails.logger.info "----> #{root_category}"
     root_category == "Food"
   end
 
@@ -272,13 +272,13 @@ class Product < ActiveRecord::Base
   end
 
   def layout
-    return categories.root.layout_card if categories && categories.size > 0 && categories.root
-    return Category.find(categories.first.parent_id).layout_card if categories && categories.size > 0 && ((categories.first.name == "Food") || (Category.find(categories.first.parent_id).name == "Food"))
-    return Category.find(categories.first.parent_id).layout_card if categories && categories.size > 0
+    return categories.root.layout_card if categories && categories.length > 0 && categories.root
+    return Category.find(categories.first.parent_id).layout_card if categories && categories.length > 0 && ((categories.first.name == "Food") || (Category.find(categories.first.parent_id).name == "Food"))
+    return Category.find(categories.first.parent_id).layout_card if categories && categories.length > 0
   end
 
   def layout_image
-    return categories.root.layout_image if categories && categories.size > 0 && categories.root
+    return categories.root.layout_image if categories && categories.length > 0 && categories.root
   end
 
   def category_ids=(ids)

@@ -63,11 +63,12 @@
       <div class="swiper-wrapper">
         <% if !@best_sellers.blank? %>
           <% @best_sellers.each do |food| %>
+            <%path = thumb_image(food)%>
             <%unless food.is_landscape%>
               <div class="swiper-slide portrait">
                 <div class="slider-box clearfix ">
                   <div class="col-xs-4">
-                    <%= link_to show_image_tag(:product_wine, food.image_1, :jpg, food.name), nested_products_uri(food),{:title => food.name} %>
+                    <%= link_to image_tag(path), nested_products_uri(food),{:title => food.name} %>
                   </div>
                   <div class="col-xs-8 slider-box-text">
                     <div class="item-name"><%= link_to truncate(food.name, length:60), nested_products_uri(food) -%></div>
@@ -103,7 +104,7 @@
               <div class="swiper-slide landscape">
                 <div class="slider-box2 clearfix ">
                   <div class="">
-                    <div class="box-image"><%= link_to show_image_tag(:product_wine, food.image_1, :jpg, food.name), nested_products_uri(food),{:title => food.name} %></div>
+                    <div class="box-image"><%= link_to image_tag(path), nested_products_uri(food),{:title => food.name} %></div>
                     <div class="item-name"><%= link_to truncate(food.name, length:65), nested_products_uri(food)  -%></div>
                     <div class="row clearfix">
                       <div class="col-xs-4 price-col">
@@ -145,6 +146,7 @@
           <div class="row clearfix">
             <%blog_home = SmallBoxSetting.find_by_box_title("blog_home")%>
             <%if blog_home and blog_home.image%>
+
               <div class="col-xs-6">
                 <%= link_to image_tag(blog_home.image.image_filename.try(:url)), site_blog_path(:id => @post.id) -%>
               </div>
@@ -188,11 +190,12 @@
     <div class="swiper-container food-counter-swiper" id="secondSwiper">
       <div class="swiper-wrapper">
         <% @food_counter.each do |food| %>
+          <%path = thumb_image(food)%>
           <%unless food.is_landscape%>
             <div class="swiper-slide portrait">
               <div class="slider-box clearfix ">
                 <div class="col-xs-4">
-                  <div class="counter-image"><%= link_to show_image_tag(:product_food, food.image_1, :jpg, food.name), nested_products_uri(food), {:title => food.name} %></div>
+                  <div class="counter-image"><%= link_to image_tag(path), nested_products_uri(food), {:title => food.name} %></div>
                 </div>
                 <div class="col-xs-8 slider-box-text">
                   <div class="item-name"><%=link_to truncate(food.name, length:60), nested_products_uri(food) -%></div>
@@ -226,7 +229,7 @@
             <div class="swiper-slide landscape">
               <div class="slider-box2 clearfix ">
                 <div class="">
-                  <div class="box-image"><%= link_to show_image_tag(:product_food, food.image_1, :jpg, food.name), nested_products_uri(food), {:title => food.name} %></div>
+                  <div class="box-image"><%= link_to image_tag(path), nested_products_uri(food), {:title => food.name} %></div>
                   <div class="item-name"><%= link_to  truncate(food.name, length:65), nested_products_uri(food) -%></div>
                   <div class="row clearfix">
                     <div class="col-xs-4 price-col">

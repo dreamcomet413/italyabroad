@@ -13,7 +13,7 @@ function validate_review(){
 }
 </script>
 <%= content_tag :p, flash[:notice] %>
-<% form_for :review, :url => create_url do %>
+<%= form_for :review, :url => create_url do %>
   <div class="write-review-wrapper">
     <div class="clearfix bottom-15">
       <div class="col-xs-2 col-md-1">Title:</div>

@@ -1,4 +1,4 @@
-ENV["RAILS_ENV"] = "test"
+ENV["Rails.env"] = "test"
 require File.dirname(__FILE__) + '/../../../../config/environment'
 require 'test/unit'
 require 'test_help'

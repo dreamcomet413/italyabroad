@@ -5,46 +5,42 @@ gem 'wkhtmltopdf'
 gem 'prawn', '0.11.1'
 gem 'RedCloth'
 gem 'pdfkit'
-gem 'rails', '3.0.9'
-#gem 'rails', '2.3.5'
+gem 'rails', '3.2.3'
 gem 'capistrano', '2.12.0',:require => false
 gem 'mime-types', '1.23'
 # gem 'mysql', '2.8.1'
 gem 'mysql2', '~> 0.3.20'
 gem 'rdoc'
-# gem "activemerchant", "1.5.1"
 gem "activemerchant"
 gem 'will_paginate', '>= 2.3.12'
 gem 'require_relative'
 gem 'sshkit'
 gem 'rvm-capistrano'
-gem 'rake', '~> 0.8.7'
+gem 'rake', '~> 0.9.1'
 gem 'better_nested_set'
-#gem 'rmagick', :require => false
-gem 'simple_captcha', :git => 'git://github.com/arcadi/simple-captcha.git'
-#gem "galetahub-simple_captcha", :require => "simple_captcha"
+gem 'simple_captcha', :git => 'git://github.com/galetahub/simple-captcha.git'
 gem "recaptcha", :require => "recaptcha/rails"
-
+gem 'awesome_nested_set', :git => 'git://github.com/galetahub/awesome_nested_set.git'
+gem 'prototype-rails'
 gem 'exception_notification'
-
 gem 'dynamic_form'
 gem 'jquery-rails'
 gem 'active_record_base_without_table'
 gem 'omniauth'
 gem 'fb_graph'
+gem 'test-unit'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 gem 'json'
-#gem 'eventmachine'
 gem 'juggernaut'
 gem 'jwt', '~> 0.1.11'
 gem 'carrierwave'
+gem 'mini_magick', '3.8.0'
 gem 'byebug'
 
 gem 'whenever', :require => false
 
 group :development do
-  #gem 'thin'
   gem "nifty-generators"
 end
 gem 'private_pub'

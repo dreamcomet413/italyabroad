@@ -4,7 +4,7 @@
 <div class="inner_content gift_options" id="admin_gift_options_new">
   <h2><%= @title %></h2>
   <br />
-  <%- form_for :gift_option, :url => admin_gift_options_path do -%>
+  <%= form_for :gift_option, :url => admin_gift_options_path do -%>
     <%= render :partial => 'form' %>
     <p><%= submit_tag "Save" %> or <%= link_to "Cancel", admin_gift_options_path %></p>
   <%- end -%>

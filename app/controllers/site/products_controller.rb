@@ -63,7 +63,7 @@ class Site::ProductsController < ApplicationController
       flash[:notice] = "Your name or Friend's email or Message is missing. Please enter the required fields and continue"
       redirect_to params[:h_product_id]
     else
-      Notifier.deliver_invite_a_friend(params[:your_friend_email],params[:your_name],params[:your_friend_name],params[:your_message])
+      Notifier.invite_a_friend(params[:your_friend_email],params[:your_name],params[:your_friend_name],params[:your_message]).deliver
       redirect_to params[:h_product_id]
     end
 

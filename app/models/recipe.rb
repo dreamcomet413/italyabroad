@@ -43,7 +43,7 @@ class Recipe < ActiveRecord::Base
 
   def count_view
     self.view_count += 1
-    self.save(false)
+    self.save(:validate=> false)
   end
 
   def self.users(search = nil)

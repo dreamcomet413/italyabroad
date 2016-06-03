@@ -41,12 +41,12 @@ module SslRequirement
       if Rails.env == "production"
         true
       else
-        (self.class.read_inheritable_attribute(:ssl_required_actions) || []).include?(action_name.to_sym)
+        (self.class.class_attribute(:ssl_required_actions) || []).include?(action_name.to_sym)
       end
     end
     
     def ssl_allowed?
-      (self.class.read_inheritable_attribute(:ssl_allowed_actions) || []).include?(action_name.to_sym)
+      (self.class.class_attribute(:ssl_allowed_actions) || []).include?(action_name.to_sym)
     end
 
   private
@@ -54,11 +54,11 @@ module SslRequirement
       return true if ssl_allowed?
 
       if ssl_required? && !request.ssl?
-        redirect_to "https://" + request.host + request.request_uri
+        redirect_to "https://" + request.host + request.url
         flash.keep
         return false
       elsif request.ssl? && !ssl_required?
-        redirect_to "http://" + request.host + request.request_uri
+        redirect_to "http://" + request.host + request.url
         flash.keep
         return false
       end

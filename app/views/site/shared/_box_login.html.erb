@@ -1,5 +1,5 @@
 <% if logged_in? %>
-    <% if (params[:id] and params[:id].to_i == current_user.id.to_i) or (request.request_uri.to_s == '/my-account'.to_s or request.request_uri.to_s == '/site/orders'.to_s or request.request_uri.to_s == '/site/wish_list'.to_s or request.request_uri.to_s == '/site/reviews'.to_s or request.request_uri.to_s == '/site/wine_lists'.to_s)   %>
+    <% if (params[:id] and params[:id].to_i == current_user.id.to_i) or (request.url.to_s == '/my-account'.to_s or request.url.to_s == '/site/orders'.to_s or request.url.to_s == '/site/wish_list'.to_s or request.url.to_s == '/site/reviews'.to_s or request.url.to_s == '/site/wine_lists'.to_s)   %>
       <div id="header" class="green-strip clearfix align-left">
         <ul style="margin:0 0 0 0px;padding:0;list-style:none;" class="my-account-links">
           <li style="display:inline-block;margin-left:10px;"><%= link_to "My Account", account_path %></li>

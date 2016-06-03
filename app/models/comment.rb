@@ -1,6 +1,5 @@
 class Comment < ActiveRecord::Base
   apply_simple_captcha
-
   belongs_to :post
   belongs_to :user
 

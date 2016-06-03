@@ -1,5 +1,5 @@
 <h1>Edit Product</h1>
-<% form_for :product, :url => admin_product_path(@product), :html => {:multipart => true, :method => :put} do %>
+<%= form_for :product, :url => admin_product_path(@product), :html => {:multipart => true, :method => :put} do %>
 	<%= render :partial => "form" %>
 	<p><%= submit_tag "Save" %> or <%= link_to "Cancel", admin_products_path %></p>
 <% end %>

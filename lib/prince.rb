@@ -58,9 +58,9 @@ class Prince
     path << ' --silent - -o -'
     
     # Show the command used...
-    RAILS_DEFAULT_LOGGER.info "\n\nPRINCE XML PDF COMMAND"
-    RAILS_DEFAULT_LOGGER.info path
-    RAILS_DEFAULT_LOGGER.info ''
+    Rails.logger.info.info "\n\nPRINCE XML PDF COMMAND"
+    Rails.logger.info.info path
+    Rails.logger.info.info ''
     
     # Actually call the prince command, and pass the entire data stream back.
     pdf = IO.popen(path, "w+")

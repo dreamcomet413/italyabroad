@@ -9,7 +9,7 @@
 	
 	<% months = Date::MONTHNAMES; months.delete(nil) %>
 	
-	<% form_tag( {:action => :check_payment}, {:id => "check_payment"} ) do %>
+	<%= form_tag( {:action => :check_payment}, {:id => "check_payment"} ) do %>
 		<% for payment_method in PaymentMethod.find(:all) %>
 			<%= radio_button_tag "payment_method", payment_method.id, @payment_method == payment_method,
 			 										 :onclick => payment_method.external ? "$('credit_card').style.display = 'none'" : "$('credit_card').style.display = ''"  %>

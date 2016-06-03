@@ -10,7 +10,7 @@
         <div class="green-heading-with-border">Recipes
           <div class="sort-by-box clearfix">
             <div class="sort-select">
-              <%- form_tag find_recipes_site_search_index_path, :method => :get, :id => "sort_by_form" do -%>
+              <%= form_tag find_recipes_site_search_index_path, :method => :get, :id => "sort_by_form" do -%>
               <%= hidden_field_tag :page, (params[:page] || 1) %>
               <%= hidden_field_tag :text, params[:text] %>
               <%= hidden_field_tag :id, (params[:id] || params[:category]) %>

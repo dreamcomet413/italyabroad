@@ -12,17 +12,18 @@
         <div class="product-detail-img">
           <% if !(@product.image_1).blank? %>
             <% if @product.categories.first.name == ("Wine" || "wine") %>
+              <%path = thumb_image(@product)%>
               <%#= show_image_tag(:wine, @product.image_1, :jpg) %>
               <% if params[:category] == "mixed-case" %>
-                <%= link_to show_image_tag(:mixed_or_food, @product.image_1, :jpg, @product.name), (@product.image_1.image_filename.present? ? @product.image_1.image_filename.try(:url) : "/resources/images/#{@product.image_1.id}.jpg"), {:rel => "lightbox", :title => @product.name} %>
+                <%= link_to image_tag(path), (@product.image_1.image_filename.present? ? @product.image_1.image_filename.try(:url) : "/resources/images/#{@product.image_1.id}.jpg"), {:rel => "lightbox", :title => @product.name} %>
               <% else %>
-                <%= link_to show_image_tag(:wine, @product.image_1, :jpg, @product.name), (@product.image_1.image_filename.present? ? @product.image_1.image_filename.try(:url) : "/resources/images/#{@product.image_1.id}.jpg"), {:rel => "lightbox", :title => @product.name} %>
+                <%= link_to image_tag(path), (@product.image_1.image_filename.present? ? @product.image_1.image_filename.try(:url) : "/resources/images/#{@product.image_1.id}.jpg"), {:rel => "lightbox", :title => @product.name} %>
               <% end %>
             <% else %>
               <% if params[:root_category] == "food" %>
-                <%= link_to show_image_tag(:mixed_or_food, @product.image_1, :jpg), (@product.image_1.image_filename.present? ? @product.image_1.image_filename.try(:url) : "/resources/images/#{@product.image_1.id}.jpg"), {:rel => "lightbox", :title => @product.name} %>
+                <%= link_to image_tag(path), (@product.image_1.image_filename.present? ? @product.image_1.image_filename.try(:url) : "/resources/images/#{@product.image_1.id}.jpg"), {:rel => "lightbox", :title => @product.name} %>
               <% else %>
-                <%= link_to show_image_tag('product', @product.image_1, :jpg), (@product.image_1.image_filename.present? ? @product.image_1.image_filename.try(:url) : "/resources/images/#{@product.image_1.id}.jpg"), {:rel => "lightbox", :title => @product.name} %>
+                <%= link_to image_tag(path), (@product.image_1.image_filename.present? ? @product.image_1.image_filename.try(:url) : "/resources/images/#{@product.image_1.id}.jpg"), {:rel => "lightbox", :title => @product.name} %>
               <% end %>
                 <%#= show_image_tag('product', @product.image_1, :jpg) %>
             <% end %>
@@ -160,7 +161,7 @@
                   </div>
                   <% if @product.size || (@product.product_sizes && @product.product_sizes.size > 0) %>
                     <%# if @product.multiple? %>
-                    <% if @product.product_sizes && @product.product_sizes.size > 0 %>
+                    <%# if @product.product_sizes && @product.product_sizes.size > 0 %>
                       <% @product.product_sizes.each do |p| %>
                         <div class="row clearfix">
                           <div class="col-xs-3 product-des-title">Size:</div>
@@ -171,12 +172,12 @@
                           </div>
                         </div>
                       <% end %>
-                    <% else %>
+                    <%# else %>
                       <div class="row clearfix">
                         <div class="col-xs-3 product-des-title">Size</div>
                         <div class="col-xs-9"><%= @product.size %></div>
                       </div>
-                    <% end %>
+                    <%# end %>
                   <% end %>
                 </div>
                 <% if @product.product_prices.present? %>
@@ -461,6 +462,7 @@ function goBack() {
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script>
+
   $(function() {
     $('a[href*=#]:not([href=#])').click(function() {
       if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {

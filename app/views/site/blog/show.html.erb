@@ -24,7 +24,7 @@
       <div class="search-blog-box clearfix">
         <div class="blog-search-text">Search our blog</div>
         <div class="blog-search-field">
-          <% form_tag '/site/blog', :class=>'search_form' ,:method => :get do %>
+          <%= form_tag '/site/blog', :class=>'search_form' ,:method => :get do %>
             <div class="left-bar-search">
               <%= hidden_field_tag :category , 'search_blog_post' %>
               <%= text_field_tag :text, '', :class=> "form-control",  "data-autocomplete"=> '/site/search/autocomplete_post_name' , :placeholder => "Search Here", :style=>"" %>
@@ -68,7 +68,7 @@
                 Latest review <%= link_to 'Add Review',"#",:onclick=>"document.getElementById('recipe_comments_add').style.display='block';return false;" %>
               </div>
               <div class="write-review-wrapper" id="recipe_comments_add" style="display:none;">
-                <% form_tag comment_site_blog_path(:id => @post.id) do %>
+                <%= form_tag comment_site_blog_path(:id => @post.id) do %>
                   <% unless flash[:blog_notice].blank? %>
                     <div style="color:#cb0d2b"><%= flash[:blog_notice] %></div>
                   <% end %>

@@ -60,7 +60,8 @@ module ItalyabroadNew
     # config.i18n.default_locale = :de
   
     # This line added by Sujith since we believe httponly is a problem while redirecting to HTTPS in checkout/payment page
-    config.action_controller.session = { :httponly => false }
+    # config.action_controller.session = { :httponly => false }
+    config.session_store(:httponly => false)
     #config.action_dispatch.ignore_accept_header = true
   end
 end

@@ -129,6 +129,24 @@ module ApplicationHelper
     end
   end
 
+  def thumb_image(product)
+    path = '/image/missing.png'
+    if product and product.image_1_id
+      image= Image.find_by_id(product.image_1_id)
+      if image
+        logger.info(product.inspect)
+        if product.is_landscape
+          
+            path = image.image_filename.landscape.url
+        else
+          path = image.image_filename.potrait.url
+        end
+      end
+    
+    end
+    return path
+  end
+
   def image_dimensions(image_type)
     image_type = image_type.to_sym
     case image_type

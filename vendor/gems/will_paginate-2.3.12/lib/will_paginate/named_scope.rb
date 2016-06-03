@@ -17,7 +17,7 @@ module WillPaginate
 
     module ClassMethods
       def scopes
-        read_inheritable_attribute(:scopes) || write_inheritable_attribute(:scopes, {})
+        read_inheritable_attribute(:scopes) || class_attribute(:scopes, {})
       end
 
       # Adds a class method for retrieving and querying objects. A scope represents a narrowing of a database query,

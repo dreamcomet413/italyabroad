@@ -117,6 +117,9 @@ function get_range_price(){
         $( "#amount" ).val( "£" + ui.values[ 0 ] + " - £" + ui.values[ 1 ] );
         get_range_price();
         
+      },
+      stop: function( event, ui ) {
+        $('.search_form').submit();
       }
     });
     $( "#amount" ).val( "£" + $( "#slider-range" ).slider( "values", 0 ) +

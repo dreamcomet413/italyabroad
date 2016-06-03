@@ -73,18 +73,18 @@ class Admin::NewsLettersController < ApplicationController
   
   def send_news_letter(news_letter)
     #For test
-    Notifier.deliver_news_letter("andrea@italyabroad.com", "D'Ercole", news_letter)
-    Notifier.deliver_news_letter("adnorty@gmail.com", "Yanto", news_letter)
+    Notifier.news_letter("andrea@italyabroad.com", "D'Ercole", news_letter).deliver
+    Notifier.news_letter("adnorty@gmail.com", "Yanto", news_letter).deliver
     
     if news_letter.customers
       for user in User.find(:all, :conditions => ["news_letters=?", true])
-        Notifier.deliver_news_letter(user.email, user.name.titleize, news_letter)
+        Notifier.news_letter(user.email, user.name.titleize, news_letter).deliver
       end
     end
     
     if news_letter.subscribers
       for subscription in Subscription.find(:all)
-        Notifier.deliver_news_letter(subscription.email, subscription.name.titleize, news_letter)
+        Notifier.news_letter(subscription.email, subscription.name.titleize, news_letter).deliver
       end
     end    
   end

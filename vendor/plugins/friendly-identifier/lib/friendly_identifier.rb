@@ -14,7 +14,7 @@ module BeyondThePath
         def friendly_identifier(source, options = {})
 
           # Merge with default options
-          class_inheritable_accessor :identifier_options
+          class_attribute :identifier_options
           self.identifier_options = {
             :keep_updated => true,
             :identifier_column => :friendly_identifier

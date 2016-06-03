@@ -1,4 +1,4 @@
-<% form_tag(:action => :eval_xml, :table => table , :id => id, :xml_type => params[:type] ) do %>
+<%= form_tag(:action => :eval_xml, :table => table , :id => id, :xml_type => params[:type] ) do %>
 <% if params[:table] != 'Product' %>
 <h3>Choose the Columns</h3>
   <% columns.each do |column| %>

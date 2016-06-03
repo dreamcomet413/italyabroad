@@ -1,5 +1,5 @@
 <h2>Leave your comment</h2>
-<% form_for :review, :url => product_reviews_path(reviewer) do %>
+<%= form_for :review, :url => product_reviews_path(reviewer) do %>
   <p>
 	  Title: <%= text_field :review, :name %>
 	</p>

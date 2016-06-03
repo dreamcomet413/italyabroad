@@ -7,265 +7,209 @@ class Notifier < ActionMailer::Base
       setup_email(post.topic.user)
       @subject += "- Someone replied your topic"
       body :topic => post.topic,
-           :topic_url => "#{AppConfig.site_url}/topics/post.topic.id",
-           :post => post,
-           :replied_user => post.user,
-           :user => post.topic.user
+       :topic_url => "#{AppConfig.site_url}/topics/post.topic.id",
+       :post => post,
+       :replied_user => post.user,
+       :user => post.topic.user
 
-    rescue => e
-      logger.info "################### Unexpected errors when sending email topic replied notification \n #{e.inspect}"
-      false
-    end
+      rescue => e
+        logger.info "################### Unexpected errors when sending email topic replied notification \n #{e.inspect}"
+        false
+      end
 
   end
 
   def news_letter(email, name, news_letter)
-    recipients    email
-    from          "Italyabroad.com <info@italyabroad.com>"
-    subject       "[Italyabroad.com] #{news_letter.name}"
-    content_type  "text/html"
-    body          :news_letter => news_letter,
-                  :name => name,
-                  :url   => url_for(:host => AppConfig.site_url, :controller => "site/base", :action => "unsubscribe"),
-                  :news_letter_url => url_for(:host => AppConfig.site_url, :controller => "site/news_letters", :action => "show", :id => news_letter)
+
+    @news_letter = news_letter
+    @name = name
+    @url =  url_for(:host => AppConfig.site_url, :controller => "site/base", :action => "unsubscribe")
+    @news_letter_url = url_for(:host => AppConfig.site_url, :controller => "site/news_letters", :action => "show", :id => news_letter)
+    mail(:to => email , :from => "Italyabroad.com <info@italyabroad.com>" , :subject => "[Italyabroad.com] #{news_letter.name}" , :content_type=> "text/html")
+    
   end
 
   def subscribe(email)
-    recipients    email
-       from          "Italyabroad.com <info@italyabroad.com>"
-    bcc           "info@italyabroad.com"
-    subject       "[Italyabroad.com] Newsletter Subscription Complete!"
-    body          :email => email,
-                  :url   => url_for(:host => AppConfig.site_url, :controller => "site/base", :action => "unsubscribe")
+    
+    @email = email
+    @url =  url_for(:host => AppConfig.site_url, :controller => "site/base", :action => "unsubscribe")
+    mail(:to => email , :bcc=> "info@italyabroad.com" , :from => "Italyabroad.com <info@italyabroad.com>" , :subject => "[Italyabroad.com] Newsletter Subscription Complete!" )
+    
   end
 
   def activation(user)
-    recipients    user.email
-    from          "Italyabroad.com <info@italyabroad.com>"
-    subject       "[Italyabroad.com] User Activation Code"
-    body          :user => user,
-                  :url  => url_for(:host => AppConfig.site_url, :controller => "site/customers", :action => "confirmation", :id=>user, :code=>user.activation_code)
+    @user = user
+    @url =   url_for(:host => AppConfig.site_url, :controller => "site/customers", :action => "confirmation", :id=>user, :code=>user.activation_code)
+    mail(:to => user.email , :from => "Italyabroad.com <info@italyabroad.com>" , :subject => "[Italyabroad.com] User Activation Code" )
   end
 
   def change_mail(user)
-    recipients    user.email
-    from          "Italyabroad.com <info@italyabroad.com>"
-    subject       "[Italyabroad.com] User Account Information Changed"
-    body          :user => user,
-                  :url  => url_for(:host => AppConfig.site_url, :controller => "site/customers", :action => "confirmation", :id=>user, :code=>user.activation_code)
+    @user = user
+    @url =   url_for(:host => AppConfig.site_url, :controller => "site/customers", :action => "confirmation", :id=>user, :code=>user.activation_code)
+    mail(:to => user.email , :from => "Italyabroad.com <info@italyabroad.com>" , :subject => "[Italyabroad.com] User Account Information Changed" )
   end
 
   def send_to_friend(email, sender, receiver, message, url)
-    recipients    email
-    bcc           "info@italyabroad.com"
-    from          "Italyabroad.com <info@italyabroad.com>"
-    subject       "[Italyabroad.com] Your friend #{sender} has found a product on italyabroad.com that you may like"
-    body          :url  => url,
-                  :sender => sender,
-                  :receiver => receiver,
-                  :message => message
+  
+    @email = email
+    @sender = sender
+    @receiver = receiver
+    @message = message
+    @url = url
+    mail(:to => email , :bcc=> "info@italyabroad.com" , :from => "Italyabroad.com <info@italyabroad.com>" , :subject => "[Italyabroad.com] Your friend #{sender} has found a product on italyabroad.com that you may like" )
   end
 
   def account_created(user)
-    recipients    user.email
-    bcc           "info@italyabroad.com"
-    from          "Italyabroad.com <info@italyabroad.com>"
-    subject       "[Italyabroad.com] Welcome, Your account has been created"
-    body          :user => user
+    @user = user
+    mail(:to => user.email , :bcc => "info@italyabroad.com", :from => "Italyabroad.com <info@italyabroad.com>" , :subject => "[Italyabroad.com] Welcome, Your account has been created")
   end
 
   def account_data(user)
-    recipients    user.email
-    from          "Italyabroad.com <info@italyabroad.com>"
-    subject       "[Italyabroad.com] User Account Information"
-    body          :user => user
+    @user = user
+    mail(:to => user.email , :bcc => "info@italyabroad.com", :from => "Italyabroad.com <info@italyabroad.com>" , :subject => "[Italyabroad.com] User Account Information")
   end
 
   def contact(contact)
-    recipients    "info@italyabroad.com"
-    bcc           "info@italyabroad.com"
-    from          contact.email
-    subject       "[Italyabroad.com] Contact Request from site"
-    body          :contact => contact
+    @contact = contact
+    mail(:to => "info@italyabroad.com" , :from => contact.email , :subject => "[Italyabroad.com] Contact Request from site")
   end
 
   def new_review(review)
-    recipients    "info@italyabroad.com"
-    from          "Italyabroad.com <info@italyabroad.com>"
-    subject       "[Italyabroad.com] New review"
-    body          :review => review,
-                  :url  => url_for(:host => AppConfig.site_url, :controller => "site/#{review.reviewer_type.pluralize.downcase}", :action => "show", :id=>review.reviewer.id)
+    @review = review
+    @url  = url_for(:host => AppConfig.site_url, :controller => "site/#{review.reviewer_type.pluralize.downcase}", :action => "show", :id=>review.reviewer.id)
+    mail(:to => "info@italyabroad.com" , :from => "Italyabroad.com <info@italyabroad.com>" , :subject => "[Italyabroad.com] New review")
+    
   end
 
   def new_reservation(reservation)
-    recipients    reservation.user.email
-    bcc           "info@italyabroad.com"
-    from          "Italyabroad.com <info@italyabroad.com>"
-    subject       "[Italyabroad.com] Reservation Accepted"
-    body          :reservation => reservation
+    @reservation = reservation
+    mail(:to => reservation.user.email , :bcc=> 'info@italyabroad.com' , :from => "Italyabroad.com <info@italyabroad.com>" , :subject => "[Italyabroad.com] Reservation Accepted")
   end
 
   def status_reservation(reservation)
-    recipients    reservation.user.email
-    bcc           "info@italyabroad.com"
-    from          "Italyabroad.com <info@italyabroad.com>"
-    subject       "[Italyabroad.com] Reservation Status" 
-    body          :reservation => reservation
+    @reservation = reservation
+    mail(:to => reservation.user.email , :bcc=> 'info@italyabroad.com' , :from => "Italyabroad.com <info@italyabroad.com>" , :subject => "[Italyabroad.com] Reservation Status") 
   end
 
   def new_order(order)
-    recipients    order.user.email
-    bcc           "info@italyabroad.com"
-    from          "Italyabroad.com <info@italyabroad.com>"
-    subject       "[Italyabroad.com] Order Accepted"
-#body          :order => order,
-#              :tasting_url => url_for(:host => AppConfig.site_url, :controller => "site/customers", :action => "print_tasting", :id=>order.id),
-#              :invoice_url => url_for(:host => AppConfig.site_url, :controller => "site/customers", :action => "print_invoice", :id=>order.id),
-#              :customer_url => url_for(:host => AppConfig.site_url, :controller => "site/customers", :action => "orders")
+    @order = order
+    @printing_url = ((AppConfig.site_url.to_s[1..3] == "www" ? AppConfig.site_url.to_s : "www." + AppConfig.site_url.to_s) +  "/orders/download_pdf?id=" + order.id.to_s),
+    @status_url = ((AppConfig.site_url.to_s[1..3] == "www" ? AppConfig.site_url.to_s : "www." + AppConfig.site_url.to_s) +  "/orders"),
+    @tasting_url = ((AppConfig.site_url.to_s[1..3] == "www" ? AppConfig.site_url.to_s : "www." + AppConfig.site_url.to_s) +  "/orders/download_pdf?id=" + order.id.to_s)
 
-    body          :order => order,
-                  :printing_url => ((AppConfig.site_url.to_s[1..3] == "www" ? AppConfig.site_url.to_s : "www." + AppConfig.site_url.to_s) +  "/orders/download_pdf?id=" + order.id.to_s),
-                  :status_url => ((AppConfig.site_url.to_s[1..3] == "www" ? AppConfig.site_url.to_s : "www." + AppConfig.site_url.to_s) +  "/orders"),
-                  :tasting_url => ((AppConfig.site_url.to_s[1..3] == "www" ? AppConfig.site_url.to_s : "www." + AppConfig.site_url.to_s) +  "/orders/download_pdf?id=" + order.id.to_s)
-
-
-
+    mail(:to => order.user.email , :bcc=> 'info@italyabroad.com' , :from => "Italyabroad.com <info@italyabroad.com>" , :subject => "[Italyabroad.com] Order Accepted") 
   end
 
   def status_order(order)
-    recipients    order.user.email
-    bcc           "info@italyabroad.com"
-    from          "Italyabroad.com <info@italyabroad.com>"
-    subject       "[Italyabroad.com] Order Status"
-    body          :order => order
+    @order = order
+    mail(:to => order.user.email , :bcc=> 'info@italyabroad.com' , :from => "Italyabroad.com <info@italyabroad.com>" , :subject => "[Italyabroad.com] Order Status") 
   end
 
   def paid_order(order)
-    recipients    order.user.email
-    bcc           "info@italyabroad.com"
-    from          "Italyabroad.com <info@italyabroad.com>"
-    subject       "[Italyabroad.com] Order Paid"
-    body          :order => order
+    @order = order
+    mail(:to => order.user.email , :bcc=> 'info@italyabroad.com' , :from => "Italyabroad.com <info@italyabroad.com>" , :subject => "[Italyabroad.com] Order Paid") 
   end
 
   def comment(comment,user)
-    recipients    comment.email
-    bcc           "info@italyabroad.com"
-    from          "info@italyabroad.com"
-    subject       "[Italyabroad.com] Comment from site"
-    body           :comment => comment,
-                   :user => user
+    @comment = comment
+    @user = user
+    mail(:to => comment.email , :bcc=> 'info@italyabroad.com' , :from => "Italyabroad.com <info@italyabroad.com>" , :subject => "[Italyabroad.com] Comment from Site") 
+
   end
 
   def order_details_after_shipping(order)
-    recipients    order.user.email
-    bcc           "info@italyabroad.com"
-    from          "Italyabroad.com <info@italyabroad.com>"
-#subject       "[Order Italyabroad.com] Order Paid"
-    subject        "[Italyabroad.com] Order shipped"
-    body          :order=>order
-    content_type "text/html"
+    
+    @order = order
+    mail(:to => order.user.email , :bcc=> 'info@italyabroad.com' , :from => "Italyabroad.com <info@italyabroad.com>" , :subject => "[Italyabroad.com] Order Shipped" , :content_type => "text/html")
   end
 
   def reorder_quantity_notification(product,admin_email)
-    recipients "#{admin_email}"
-    from "info@italyabroad.com"
-    subject  "[Itallyabroad.com] Reorder quantity alert: #{product.name}"
-    body    :product=>product
+    @product = product
+    mail(:to => admin_email , :from => "info@italyabroad.com" , :subject => "[Itallyabroad.com] Reorder quantity alert: #{product.name}" )
   end
 
   #send mail to users who do not complete purchase
   def product_information(user,admin_email)
-    recipients "#{user.email}"
-    from "info@italyabroad.com"
-    subject  "[Italyabroad.com] Need some help to sort your wine"
-    body    :user=>user
-    content_type "text/html"
+    @user = user
+    mail(:to => user.email  , :from => "info@italyabroad.com" , :subject => "[Italyabroad.com] Need some help to sort your wine" , :content_type => "text/html")
   end
 
   def faq_notification(faq,user)
-    recipients  AppConfig.admin_email
-    from        "info@italyabroad.com"
-    subject     "[Italyabroad.com] A Question asked by #{user.name}"
-    body        :faq=>faq,
-                :url  => url_for(:host => AppConfig.site_url, :controller => "admin/faqs", :action => "edit", :id=>faq.id),
-                :user=>user
+    @user = user
+    @faq = faq
+    @url =  url_for(:host => AppConfig.site_url, :controller => "admin/faqs", :action => "edit", :id=>faq.id)
+    mail(:to => AppConfig.admin_email  , :from => "info@italyabroad.com" , :subject => "[Italyabroad.com] A Question asked by #{user.name}" , :content_type => "text/html")
   end
 
 
   def new_review_added(product,user,admin_email,review)
-    recipients "#{admin_email}"
-    from "info@italyabroad.com"
-    subject  "[Italyabroad.com] A review of #{product.name} added"
-    body      :product  => product,
-              :review=>review,
-              :user=>user
+    
+    @product = product
+    @review = review
+    @user = user
+
+    mail(:to => admin_email  , :from => "info@italyabroad.com" , :subject => "[Italyabroad.com] A review of #{product.name} added" )
+      
   end
 
   def new_order_placed(order,user,admin_email)
-    recipients "#{admin_email}"
-    from "info@italyabroad.com"
-    subject  "[Italyabroad.com] New order from #{user.name}"
-    body      :order  => order,
-             :user=>user
-  end
+    @order = order
+    @user = user
+    mail(:to => admin_email  , :from => "info@italyabroad.com" , :subject => "[Italyabroad.com] New order from #{user.name}" )
+ end
 
   def new_account_created(user,admin_email)
-    recipients "#{admin_email}"
-    from "info@italyabroad.com"
-    subject  "[Italyabroad.com] New recipients created by #{user.name}"
-    body     :user=>user,
-             :url  => url_for(:host => AppConfig.site_url, :controller => "site/customers", :action => "show", :id=>user.id)
+    @user = user
+    @url  = url_for(:host => AppConfig.site_url, :controller => "site/customers", :action => "show", :id=>user.id)
+    mail(:to => admin_email  , :from => "info@italyabroad.com" , :subject => "[Italyabroad.com] New recipients created by #{user.name}" )
   end
 
   def invite_a_friend(email,name,friend_name,message)
-    recipients "#{email}"
-    from "info@italyabroad.com"
-    subject  "[Italyabroad.com] An invitation from #{name}"
-    body  :message =>message,:your_name=>name,:friend_name=>friend_name
+    @message = message
+    @your_name= name 
+    @friend_name= friend_name
 
+    mail(:to => email  , :from => "info@italyabroad.com" , :subject => "[Italyabroad.com] An invitation from #{name}" )
+  
   end
 
   def coupon_notification_for_first_review (product,user,coupon_code)
-
-    recipients "#{user.email}"
-    from AppConfig.admin_email
-    cc       ["info@italyabroad.com"]
-    subject  "[Italyabroad.com] First review of #{product.name} added"
-    body      :product  => product,
-              :user=>user,
-              :coupon_code=>coupon_code
-    content_type "text/html"
+    @product  = product
+    @user = user
+    @coupon_code = coupon_code
+    mail(:to => user.email  , :from => AppConfig.admin_email , :cc=> "info@italyabroad.com" , :subject => "[Italyabroad.com] First review of #{product.name} added" , :content_type=> "text/html" )
+  
   end
 
   def review_invitation(reviews, recipient)
-    recipients "#{recipient.email}"
-    from AppConfig.admin_email
-    cc       ["info@italyabroad.com"]
-    subject  "[Italyabroad.com] Product(s) #{reviews.collect{|x| Product.find(x.reviewer_id).name if x.reviewer_id.present?}.join(",")} - Review Request"
-    body      :products  => reviews.collect{|x| Product.find(x.reviewer_id)},
-              :user => recipient
-    content_type "text/html"
+    @products  = reviews.collect{|x| Product.find(x.reviewer_id)},
+    @user = recipient
+    
+    mail(:to => recipient.email  , :from => AppConfig.admin_email , :cc=> "info@italyabroad.com" , :subject => "[Italyabroad.com] Product(s) #{reviews.collect{|x| Product.find(x.reviewer_id).name if x.reviewer_id.present?}.join(",")} - Review Request" , :content_type=> "text/html" )
+  
   end
 
   def new_message_received(message,user,sender)
-    recipients "#{user.email}"
-    from "info@italyabroad.com"
-    subject  "Message from  " + "#{sender.name}"
-    body  :message =>message,:user=>user,:sender=>sender
+     
+    @message = message
+    @user  = user
+    @sender = sender
+    
+    mail(:to => user.email  , :from => "info@italyabroad.com" , :subject => "Message from #{sender.name}"  )
+  
   end
 
-  def faq_answered_notification(faq)
-    recipients "#{faq.user.email}"
-    from "info@italyabroad.com"
-    subject "[Italyabroad.com] Your Question is answered by Italyabroad Team" 
-    body  :faq =>faq
+  def faq_answered_notification(faq) 
+    @faq = faq
+    
+    mail(:to => faq.user.email  , :from => "info@italyabroad.com" , :subject => "[Italyabroad.com] Your Question is answered by Italyabroad Team"  )
   end
 
 
   protected
 
   def setup_email(user)
+
     @recipients   = "#{user.email}"
     @subject      = AppConfig.subject
 #    @sent_on      = Time.now

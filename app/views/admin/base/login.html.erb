@@ -6,7 +6,7 @@
   <div style="width:300px;margin:0 auto">
     <h1>Admin Login</h1>
     <%= flash[:notice] %>
-    <% form_tag :action => :login do %>
+    <%= form_tag :action => :login do %>
       <p>
   			<span style="float:left;width:100px;">Username: </span>
   			<%= text_field_tag :login, nil, :size => 18 %>
