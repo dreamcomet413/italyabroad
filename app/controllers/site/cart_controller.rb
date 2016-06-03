@@ -26,12 +26,7 @@ class Site::CartController < ApplicationController
       if logged_in?
         IncompletePurchase.find_or_create_by_email(current_user.email)
       end
-      # @setting = Setting.find(:first)
-      # if (product.quantity.to_i - quantity.to_i) < @setting.reorder_quantity.to_i and product.active
-        # Commented by Sujith since UserName and Password of SMTP is not correct now
-        #Notifier.deliver_reorder_quantity_notification(product,AppConfig.admin_email)
-      # end
-
+      
       status = "#{product.name.gsub("'", "\\'")} correctly added to your cart."
     else
       status = @cart.show_warnings
@@ -48,7 +43,6 @@ class Site::CartController < ApplicationController
           page[".cart-top"].html("")
           page[".cart-top"].html(render :partial => '/site/shared/cart')
           page[".free-delivery"].html(render :partial => '/site/shared/promotion')
-          #page["#cart"].visual_effect :highlight, :startcolor => "#FFA800", :endcolor => "#c1d830"
           page << "alert('#{status}')"
         end
       end
@@ -105,7 +99,7 @@ class Site::CartController < ApplicationController
     if logged_in?
       @purchase = IncompletePurchase.find_by_email(current_user.email)
       unless @purchase.nil?
-        Notifier.deliver_product_information(current_user,AppConfig.admin_email)
+        Notifier.product_information(current_user,AppConfig.admin_email).deliver
         @purchase.destroy
       end
     end
@@ -123,7 +117,7 @@ class Site::CartController < ApplicationController
 
       @purchase = IncompletePurchase.find_by_email(current_user.email)
       unless @purchase.nil?
-        Notifier.deliver_product_information(current_user, AppConfig.admin_email)
+        Notifier.product_information(current_user, AppConfig.admin_email).deliver
         @purchase.destroy
       end
     end

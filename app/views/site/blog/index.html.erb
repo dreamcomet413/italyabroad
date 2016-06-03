@@ -19,7 +19,7 @@
       <div class="search-blog-box clearfix">
         <div class="blog-search-text">Search our blog</div>
         <div class="blog-search-field">
-          <% form_tag '/site/blog', :class=>'search_form' ,:method => :get do %>
+          <%= form_tag '/site/blog', :class=>'search_form' ,:method => :get do %>
             <div class="left-bar-search">
               <%= hidden_field_tag :category , 'search_blog_post' %>
               <%= text_field_tag :text, '', :class=> "form-control",  "data-autocomplete"=> '/site/search/autocomplete_post_name' , :placeholder => "Search Here", :style=>"" %>    

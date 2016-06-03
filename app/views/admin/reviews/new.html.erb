@@ -1,7 +1,7 @@
 <%= content_tag :p, flash[:notice] %>
 <% @products = Product.find(:all,:include=>'categories',:conditions=>['categories.name = "Events" or categories.name = "Wine Club" or categories.name = "Wine Tours"'])%>
 
-<% form_for [:admin,@review] do %>
+<%= form_for [:admin,@review] do %>
 <p>
   Select: <br />
   <%= select :review, :reviewer_id, @products.map {|p| [p.name,p.id]},{:include_blank => 'Select ...'} %>

@@ -3,7 +3,7 @@
 <%- search_url = @category == @parent ? site_search_index_path(:id => @parent) : nested_categories_url(@parent, @category) -%>
 <div class="block" id="box_hamper_search">
   <div class="green-heading-16">Gift Finder</div>
-  <% form_tag search_url , :class=> 'search_form', :method => :get do %>
+  <%= form_tag search_url , :class=> 'search_form', :method => :get do %>
     <div class="left-bar-search">
       <%= text_field_tag :text, '', :class=> "form-control",  "data-autocomplete"=>"/site/search/autocomplete_search_hamper_name",:placeholder => "Search Here", :style=>"" %>
             <i class="magnifier"><%= image_submit_tag "magnifier.png" %></i>

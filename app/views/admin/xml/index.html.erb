@@ -41,13 +41,13 @@
             <tr>
               <td width="25%"><br /><%=  p.name %> </td>
               <td>
-                <% form_tag(:action => :eval_xml_g_comptible,:table=>p.name, :id =>p.id) do %>
+                <%= form_tag(:action => :eval_xml_g_comptible,:table=>p.name, :id =>p.id) do %>
                     <%= submit_tag "Get XML" %></td>
                 <% end %>
                 </tr>
         <% end %>
         <tr><td><br /><%= 'All Products' %></td>
-          <td><% form_tag(:action => :eval_xml_g_comptible,:table=>'products') do %>
+          <td><%= form_tag(:action => :eval_xml_g_comptible,:table=>'products') do %>
                 <%= submit_tag "Get XML" %></td>
             <% end %>
             </td></tr>

@@ -27,7 +27,7 @@
           <%= link_to 'My restaurant' unless @user.establishment_link.blank? %>
         </div>
         <%- if @my_profile -%>
-          <%- form_for :user, :url => site_customer_path(@user), :html => {:method => :put} do -%>
+          <%= form_for :user, :url => site_customer_path(@user), :html => {:method => :put} do -%>
             <div class="col-xs-8 col-md-10 chef_profile">
               <div class="form-row row clearfix">
                 <div class="col-md-2 section-label2">
@@ -178,7 +178,7 @@
           <%= "#{@my_profile ? "My" : @user.name+"'s"}" %> wall - write a Message:
         </div>
         <div class="section-form">
-          <% form_tag 'send_message' do |f| %>
+          <%= form_tag 'send_message' do |f| %>
             <div class="row form-row clearfix">
               <div class="col-md-4">
                 <%= text_area_tag  :name,'', :size => "90x5" %>

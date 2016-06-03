@@ -6,7 +6,7 @@
   <br />
   <table>
     <tr>
-      <% form_tag admin_products_path, :method=>:get do  %>
+      <%= form_tag admin_products_path, :method=>:get do  %>
       <td>
       <strong>Search</strong><%= text_field_tag 'search_name',params[:search_name]%>
 

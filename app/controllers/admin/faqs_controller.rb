@@ -39,7 +39,7 @@ class Admin::FaqsController < ApplicationController
       if @faq.update_attributes(params[:faq])
         flash[:notice] = "Faq updated successfully"
         unless params[:faq][:answer].blank?
-          Notifier.deliver_faq_answered_notification(@faq)
+          Notifier.faq_answered_notification(@faq).deliver
         end
         redirect_to admin_faqs_path
       else

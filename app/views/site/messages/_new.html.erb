@@ -1,5 +1,5 @@
 <%= content_tag :p, flash[:notice] %>
-<% form_for @message do %>
+<%= form_for @message do %>
   <p>
     Title:<br /><%= text_area :message, :name,:value=>"" %>
     <%= hidden_field :message,:user_id,:value=>params[:id]%>

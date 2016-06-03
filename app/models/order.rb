@@ -10,7 +10,7 @@ class Order < ActiveRecord::Base
   has_many :order_items, :dependent => :destroy
 
   after_update do |order|
-    #Notifier.deliver_status_order(order) if order.status_order.name.downcase == "complete"
+    #Notifier.status_order(order).deliver if order.status_order.name.downcase == "complete"
   end
 
   def customer

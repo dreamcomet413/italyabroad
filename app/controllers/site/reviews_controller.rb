@@ -16,9 +16,9 @@ class Site::ReviewsController < ApplicationController
 
     if @review.save
       if @review.reviewer_type.upcase == 'PRODUCT'
-      Notifier.deliver_new_review_added(Product.find(@review.reviewer_id),current_user,AppConfig.admin_email,@review)
+      Notifier.new_review_added(Product.find(@review.reviewer_id),current_user,AppConfig.admin_email,@review).deliver
     elsif @review.reviewer_type.upcase == 'RECIPE'
-      Notifier.deliver_new_review_added(Recipe.find(@review.reviewer_id),current_user,AppConfig.admin_email,@review)
+      Notifier.new_review_added(Recipe.find(@review.reviewer_id),current_user,AppConfig.admin_email,@review).deliver
       end
       flash[:notice] = 'Review correctly published!'
       status = "Review correctly published!"

@@ -17,7 +17,7 @@ class Admin::ReviewsController < ApplicationController
             cupon_code = ((1..9).to_a + ('a'..'z').to_a + ('A'..'Z').to_a).shuffle.join[1..10]
             #coupon_code << rand(1000).to_s
             Cupon.create(:code=>cupon_code,:price=>10,:min_order=>80,:active=>1,:cupon_type=>'price')
-            Notifier.deliver_coupon_notification_for_first_review(Product.find(@review.reviewer_id),@review.user,cupon_code)
+            Notifier.coupon_notification_for_first_review(Product.find(@review.reviewer_id),@review.user,cupon_code).deliver
             @review.update_attribute('cupon_send',true)
           end
         end
@@ -38,7 +38,7 @@ class Admin::ReviewsController < ApplicationController
       recipients.each do |recipient|
         #reviews = reviews.find(:user_id => recipient)
         reviews = reviews.collect{|r| r if r.user_id == recipient}.compact
-        Notifier.deliver_review_invitation(reviews, User.find(recipient))
+        Notifier.review_invitation(reviews, User.find(recipient)).deliver
       end
     #end
     respond_to do |format|

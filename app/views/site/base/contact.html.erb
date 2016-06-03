@@ -9,7 +9,7 @@
         <h2><%= @contact_message.try(:header) %></h2>
         <%= show_messages flash[:message] %>
           <%= @contact_message.try(:message).try(:html_safe) %>
-        <% form_tag contact_us_path do %>
+        <%= form_tag contact_us_path do %>
           <% unless flash[:notice].blank? %>
             <div><%= flash[:notice] %></div>
           <% end %>

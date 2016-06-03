@@ -30,7 +30,7 @@ class Site::MessagesController < ApplicationController
   def send_message
     @message = Message.new(:name=>params[:name],:user_id=>params[:user_id],:send_by_id=>params[:send_by_id])
     if @message.save
-      Notifier.deliver_new_message_received(params[:name],User.find(params[:user_id]),User.find(params[:send_by_id]))
+      Notifier.new_message_received(params[:name],User.find(params[:user_id]),User.find(params[:send_by_id])).deliver
       redirect_to  account_path
     else
       flash[:notice] = @message.show_errors

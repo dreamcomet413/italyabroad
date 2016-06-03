@@ -1,5 +1,5 @@
 <div class="block" id="box_help">
-  <%- active_uri = request.request_uri -%>
+  <%- active_uri = request.url -%>
   <h3>Help</h3>
   <ul>
     <li><%= link_to("Term & conditions", terms_and_conditions_path, :class => ('active' if active_uri == terms_and_conditions_path)) %></li>

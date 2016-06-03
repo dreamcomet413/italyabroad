@@ -35,7 +35,7 @@
       <% if @product.product_prices.first.quantity > 0 %>
 
         <div class="green-heading-2">Tickets</div>
-        <%- form_for :cart, :url => "/site/cart?product_id=#{@product.id}", :html => {:method => :post}, :remote => true do  -%>
+        <%= form_for :cart, :url => "/site/cart?product_id=#{@product.id}", :html => {:method => :post}, :remote => true do  -%>
           <div class="bottom-50">
             <div class="row form-row clearfix">
               <div class="col-md-2 section-label">Ticket qty: </div>

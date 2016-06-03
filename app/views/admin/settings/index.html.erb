@@ -4,7 +4,7 @@
 <div class="inner_content settings" id="admin_settings_edit">
   <h2>Settings</h2>
   <br />
-  <% form_for(:setting, :as => @setting, :url => admin_setting_path(@setting), :html => { :multipart => true, :method => :put }) do |form| %>
+  <%= form_for(:setting, :as => @setting, :url => admin_setting_path(@setting), :html => { :multipart => true, :method => :put }) do |form| %>
   <table>
     <tr>
       <td width="290px">Promotion:</td>

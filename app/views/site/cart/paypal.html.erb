@@ -6,7 +6,7 @@
 			If this page appears for more than 5 seconds,<br />
 			please click<br />
 			<br />
-			<% form_tag("https://www.paypal.com/cgi-bin/webscr", :id => "paypal") do %>
+			<%= form_tag("https://www.paypal.com/cgi-bin/webscr", :id => "paypal") do %>
 				<%= hidden_field_tag :cmd, "_xclick" %>
 				<%= hidden_field_tag :business, "andrea.dercole@italyabroad.com" %>
 				<%= hidden_field_tag :receiver_email, "mercatino@italyabroad.com" %>

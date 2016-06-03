@@ -60,7 +60,7 @@ end %>
 <%- search_url ||= @category == @parent ? site_search_index_path(:id => @parent) : nested_categories_url(@parent, @category) -%>
 
 <div class="new_search">
-  <% form_tag search_url, :method => :get do %>
+  <%= form_tag search_url, :method => :get do %>
     <%= hidden_field_tag :id,@category.name.downcase if !@category.nil? %>
     <div class="green-heading-with-border">How you feeling today?</div>
     <div class="row clearfix bottom-50 center-align">

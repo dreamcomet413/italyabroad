@@ -52,7 +52,7 @@ class Site::BlogController < ApplicationController
     @comment.email = current_user.email
     @comment.user_id = current_user.id
     if verify_recaptcha(model: @comment) and @comment.save
-      Notifier.deliver_comment(@comment,current_user)
+      Notifier.comment(@comment,current_user).deliver
       check_mail_list(@post, current_user)
       flash[:notice] = "comment is successfully posted"
       redirect_to site_blog_path(:id => @post.id)
@@ -89,7 +89,7 @@ class Site::BlogController < ApplicationController
       p @comments.count
       p "**********ytyy**************************"
       for comment in @comments
-        Notifier.deliver_comment(comment,user)
+        Notifier.comment(comment,user).deliver
       end
     end
   end

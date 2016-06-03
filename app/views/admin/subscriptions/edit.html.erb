@@ -4,7 +4,7 @@
 <div class="inner_content subscriptions" id="admin_subscriptions_edit">
   <h2><%= @title %></h2>
   <br />
-  <% form_for :subscription, :url => admin_subscription_path(@subscription), :html => { :method => :put }  do %>
+  <%= form_for :subscription, :url => admin_subscription_path(@subscription), :html => { :method => :put }  do %>
   	<%= render :partial => "form" %>
   	<p><%= submit_tag "Save" %> or <%= link_to "Cancel", admin_subscriptions_path %></p>
   <% end %>

@@ -11,7 +11,8 @@
  		$('.selected-filters div.'+parent_name).append("<span class='"+ parent_name + "' >" + $(this).html() + "</span>" ) ;
  		$('.selected-filters div.'+parent_name).append("<span class='pull-right'><a href='#.' class='close-btn'>X</a></span> <br/>")
   	}
- 	$('.selected-filters').show();
+ 	// $('.selected-filters').show();
+ 	$('.search_form').submit();
  	
   });
   $('.submit_cart_form').click(function(){

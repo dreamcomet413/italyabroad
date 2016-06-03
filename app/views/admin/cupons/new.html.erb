@@ -4,7 +4,7 @@
 <div class="inner_content cupons" id="admin_cupons_new">
   <h2><%= @title %></h2>
   <br />
-  <% form_for :cupon, :url => admin_cupons_path  do %>
+  <%= form_for :cupon, :url => admin_cupons_path  do %>
   	<%= render :partial => "form" %>
   	<p><%= submit_tag "Save" %> or <%= link_to "Cancel", admin_cupons_path %></p>
   <% end %>

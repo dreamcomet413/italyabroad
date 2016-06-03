@@ -14,7 +14,7 @@ class Admin::BaseController < ApplicationController
         @incomplete_purchases = IncompletePurchase.find(:all)
         unless @incomplete_purchases.nil?
           @incomplete_purchases.each do |purchase|
-            Notifier.deliver_product_information(purchase,AppConfig.admin_email)
+            Notifier.product_information(purchase,AppConfig.admin_email).deliver
             purchase.destroy
           end
         end

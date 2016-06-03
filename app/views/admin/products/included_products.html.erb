@@ -6,7 +6,7 @@
   <br />
   <table>
     <tr>
-      <% form_tag included_products_path(@product), :method=>:get do  %>
+      <%= form_tag included_products_path(@product), :method=>:get do  %>
       <td>
       <strong>Search</strong><%= text_field_tag 'search_name',params[:search_name]%>
 
@@ -19,7 +19,7 @@
 
 
   <%= render :partial => 'product_links', :locals => {:active => 'included_products'} %>
-  <% form_for :product,  :url => admin_product_path(@product), :html => {:method => :put} do %>
+  <%= form_for :product,  :url => admin_product_path(@product), :html => {:method => :put} do %>
     <fieldset id="correlation_information">
       <table class="list">
         <tr>

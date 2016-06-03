@@ -99,7 +99,7 @@
       <div>
         <% unless @support_status == false %>
             As you are not logged in!!,<br/> Please enter a "user name" to continue chat session
-            <% form_tag :action => :create_chat_user do %>
+            <%= form_tag :action => :create_chat_user do %>
                 <%= text_field_tag "chat_user"  %>
                 <%= submit_tag "Submit" %>
             <% end %>

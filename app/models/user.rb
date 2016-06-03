@@ -71,7 +71,7 @@ class User < ActiveRecord::Base
     if !record.type.nil?
       # check on empty since the value are "" in db
       if record.type.name != "Guest" and !record.email.empty? || !record.login.empty?
-        Notifier.deliver_account_created(record)
+        Notifier.account_created(record).deliver
       end
     end
   end
@@ -156,8 +156,8 @@ class User < ActiveRecord::Base
   end
 
   def set_last_seen_at
-    self.last_seen_at = Time.now
-    self.save!(false)
+    self.last_seen_at = Time.zone.now
+    self.save!(validate: false)
   end
 
   def omniauth?(params)
@@ -231,13 +231,13 @@ class User < ActiveRecord::Base
   def remember_me
     self.remember_token_expires_at = 2.weeks.from_now.utc
     self.remember_token            = encrypt("#{email}--#{remember_token_expires_at}")
-    self.save!(false)
+    self.save!(:validate=>false)
   end
 
   def forget_me
     self.remember_token_expires_at = nil
     self.remember_token            = nil
-    self.save!(false)
+    self.save!(:validate=> false)
   end
 
   def show_errors
@@ -304,7 +304,7 @@ class User < ActiveRecord::Base
 
   def validate_dob
     if self.dob.present?
-      self.errors.add_to_base("You must be over 18 to be able to order from our website") if ((Date.today - self.dob).to_s.split("/").first.to_i/365).to_i < 18
+      self.errors.add :base, "You must be over 18 to be able to order from our website" if ((Date.today - self.dob).to_s.split("/").first.to_i/365).to_i < 18
     end
   end
 

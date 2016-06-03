@@ -12,7 +12,7 @@
         <div class="search-blog-box clearfix"> 
           <div class="blog-search-text">Grape Search</div>
             <div class="blog-search-field">
-              <%- form_tag site_grapes_path, :method => :get do -%>
+              <%= form_tag site_grapes_path, :method => :get do -%>
               <%= text_field_tag 'search_by_name',params[:search_by_name], :class => 'blog-search' %>
               <i class="magnifier">
                 <%= image_submit_tag ("/images/magnifier.png"), :name => 'search', :value => 'search' %> </i>

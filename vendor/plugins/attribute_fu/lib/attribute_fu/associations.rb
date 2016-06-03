@@ -6,8 +6,8 @@ module AttributeFu
         extend ClassMethods
         class << self; alias_method_chain :has_many, :association_option; end
         
-        class_inheritable_accessor  :managed_association_attributes
-        write_inheritable_attribute :managed_association_attributes, {}
+        class_attribute  :managed_association_attributes
+        class_attribute :managed_association_attributes, {}
         
         after_update :save_managed_associations
       end
