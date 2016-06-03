@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141126104907) do
+ActiveRecord::Schema.define(:version => 20160517123140) do
 
   create_table "about_us", :force => true do |t|
     t.string   "title"
@@ -94,6 +94,14 @@ ActiveRecord::Schema.define(:version => 20141126104907) do
     t.integer "category_id"
   end
 
+  create_table "chat_messages", :force => true do |t|
+    t.text     "content"
+    t.string   "message_from"
+    t.string   "message_to"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "comments", :force => true do |t|
     t.string   "name"
     t.string   "email"
@@ -122,7 +130,7 @@ ActiveRecord::Schema.define(:version => 20141126104907) do
     t.integer "product_id"
     t.boolean "public"
     t.string  "cupon_type",       :default => "price"
-    t.date    "created_at",       :default => '2014-01-21'
+    t.date    "created_at",       :default => '2015-10-26'
     t.date    "expiry_date"
     t.boolean "created_by_admin", :default => false
     t.integer "no_of_times",      :default => 1
@@ -420,6 +428,7 @@ ActiveRecord::Schema.define(:version => 20141126104907) do
     t.integer  "image_id"
     t.string   "producer_quote"
     t.boolean  "active",              :default => true
+    t.text     "producer_text"
   end
 
   create_table "producers_products", :force => true do |t|
@@ -461,6 +470,7 @@ ActiveRecord::Schema.define(:version => 20141126104907) do
     t.string   "code"
     t.text     "description_short"
     t.text     "description"
+    t.string   "price",                                               :default => "0"
     t.string   "rate",                                                :default => "17.5%"
     t.decimal  "cost",                  :precision => 8, :scale => 2, :default => 0.0
     t.integer  "image_1_id"
@@ -470,6 +480,7 @@ ActiveRecord::Schema.define(:version => 20141126104907) do
     t.integer  "resource_2_id"
     t.integer  "resource_3_id"
     t.boolean  "active",                                              :default => true
+    t.string   "quantity",                                            :default => "1"
     t.boolean  "raccomanded",                                         :default => false
     t.string   "region"
     t.boolean  "vegetarian",                                          :default => false
@@ -507,6 +518,11 @@ ActiveRecord::Schema.define(:version => 20141126104907) do
     t.integer  "defalult_product_size"
     t.string   "mood"
     t.boolean  "is_best_seller"
+    t.boolean  "surprise_me",                                         :default => false
+    t.string   "body_type"
+    t.string   "with_food_type"
+    t.string   "location"
+    t.boolean  "is_landscape"
   end
 
   create_table "products_grapes", :force => true do |t|
@@ -698,11 +714,11 @@ ActiveRecord::Schema.define(:version => 20141126104907) do
     t.string  "desc_wine_of_the_week"
     t.string  "desc_food_of_the_week"
     t.text    "guarantee_of_satisfaction"
+    t.string  "home_page_meta_description"
+    t.string  "home_page_meta_key"
     t.boolean "chat_available",                                           :default => false
     t.integer "wine_discount_number",                                     :default => 0
     t.float   "wine_discount_amount",                                     :default => 0.0
-    t.string  "home_page_meta_description"
-    t.string  "home_page_meta_key"
   end
 
   create_table "ship_addresses", :force => true do |t|
@@ -739,6 +755,15 @@ ActiveRecord::Schema.define(:version => 20141126104907) do
     t.integer  "sluggable_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "small_box_settings", :force => true do |t|
+    t.string   "box_title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "image_id"
+    t.string   "content_type"
+    t.text     "description"
   end
 
   create_table "status_news_letters", :force => true do |t|

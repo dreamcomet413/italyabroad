@@ -9,9 +9,8 @@ gem 'rails', '3.0.9'
 #gem 'rails', '2.3.5'
 gem 'capistrano', '2.12.0',:require => false
 gem 'mime-types', '1.23'
-gem 'mysql', '2.8.1'
-gem 'mysql2', '~> 0.2.7'
-#gem 'activerecord-mysql2-adapter'
+# gem 'mysql', '2.8.1'
+gem 'mysql2', '~> 0.3.20'
 gem 'rdoc'
 # gem "activemerchant", "1.5.1"
 gem "activemerchant"
