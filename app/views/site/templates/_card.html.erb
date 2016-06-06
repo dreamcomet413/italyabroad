@@ -47,7 +47,7 @@
               <% end %>
             <% end %>        
         </div>
-        <div class="click-here"><a href="#.">Click here to enlarge the iamge</a></div>
+        <div class="click-here"><a href="#.">Click here to enlarge the image</a></div>
         <div class="item-left">
           <% if @limited_stock.present? %>
             Quantity:
@@ -434,6 +434,7 @@
     <%= render :partial => '/site/shared/cercavino' %>
   </div>
 <script type="text/javascript">
+    $('.click-here').click(function(){$('.product-detail-img img').trigger('click')});
     function change_price(element) {
         var actual_price = element.value;
         window.location = '<%= nested_products_uri(@product)-%>' + '?actual_price=' + actual_price
