@@ -47,7 +47,7 @@
               <% end %>
             <% end %>        
         </div>
-        <div class="click-here"><a href="#.">Click here to enlarge the image</a></div>
+        <div class="click-here"><a href="#.">Click here to enlarge the iamge</a></div>
         <div class="item-left">
           <% if @limited_stock.present? %>
             Quantity:
@@ -194,7 +194,8 @@
                           <div class="price-now">
                             Now <b>&pound; <%= select_tag(:price, options_for_select(@product.discounted_prices, price.to_f), :onchange => "change_price(this); return false;") -%></b>
                           </div>
-                          (save <span class="red-text" id="saved_price"><%= number_to_currency (price.to_f * @product.discount.to_f / 100), :unit => "&pound;" %></span>
+                          <div class="save-amount">(save <span class="red-text" id="saved_price"><%= number_to_currency (price.to_f * @product.discount.to_f / 100), :unit => "&pound;" %></span>
+                          </div>
                         <% else %>
                           <% if @product.discount.to_i > 0 %>
                             <div class="old-price ">
@@ -207,8 +208,9 @@
                               Now 
                               <%= number_to_currency @product.price_discounted.first, :unit => "&pound;" %>
                             </div>
-                            (save <span style="color:red;"><%= number_to_currency (@product.product_prices.first.price.to_f * @product.discount.to_f / 100), :unit => "&pound;" %>
+                            <div class="save-amount">(save <span class="red-text"><%= number_to_currency (@product.product_prices.first.price.to_f * @product.discount.to_f / 100), :unit => "&pound;" %>
                             </span>)
+                            </div>
                           <% else %>
                             <div class="price-now">
                               <b><%= number_to_currency @product.product_prices.first.price.to_f, :unit => "&pound;" %></b>

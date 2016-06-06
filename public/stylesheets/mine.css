@@ -2799,6 +2799,10 @@ width: 72px;
 .click-here a{
 	text-decoration: none;
 }
+.save-amount{
+	text-align: right;
+	padding-right: 18px;
+}
 /*=============== Media quires=================*/
 @media only screen and (max-width: 1200px) {
 	.landscape img{
