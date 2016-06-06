@@ -1,17 +1,3 @@
-<!-- <div class="col-md-4">
-    <div class="small-box">
-        <div class="small-box-heading">CercaVino&reg;</div>
-        <div class="small-box-subheading">Not sure what to Drink?</div>
-        <div class="row clearfix">
-            <div class="col-xs-7">
-                <div class="small-box-text">Ask our Virtual Sommelier</div>
-                <div class="read-more"><#% link_to "Read More", "site/sommelier" %></div>
-            </div>
-            <div class="col-xs-5"><img src="/images/vino-img.png" alt="vine image"></div>
-        </div>
-    </div>
-</div>
- -->
  <div class="col-md-4">
     <div class="small-box-3 center-align">
         <%= link_to image_tag(SmallBoxSetting.find_by_box_title("cercavino").image.image_filename.try(:url)), "/site/sommelier" -%>
