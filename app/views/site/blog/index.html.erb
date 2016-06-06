@@ -41,7 +41,7 @@
         <div class="blog-listing-wrapper">
           <% for post in @posts %>
             <div class="blog-list">
-              <div class="blog-list-heading"><%= post.name %></div>
+              <div class="blog-list-heading"><%=link_to post.name , site_blog_path(post.friendly_identifier) %></div>
               <div class="blog-list-date clearfix">
                 <span class="list-date"><b><%=post.created_at.to_date.to_s(:long)%></b></span> <span class="list-tags"><b>Tags: </b>
                   <%
@@ -52,10 +52,10 @@
                   <% @tag_list = @tag_list.chop.chop if !@tag_list.empty? %>
                   <%= @tag_list.html_safe if !@tag_list.empty? %>
                 </span>   
-                <span class="pull-right"><%= link_to "View Comments (#{post.comments.find(:all,:conditions=>['public=?',true]).size})", site_blog_path(:id => post.id) %></span>
+                <span class="pull-right"><%= link_to "View Comments (#{post.comments.find(:all,:conditions=>['public=?',true]).size})", site_blog_path(post.friendly_identifier) %></span>
               </div>
               <div class="blog-list-text">
-                <%= post.description_short_cleared.html_safe %> <%= link_to "Continue Reading", site_blog_path(:id => post.id) %>
+                <%= post.description_short_cleared.html_safe %> <%= link_to "Continue Reading", site_blog_path(post.friendly_identifier) %>
               </div>
             </div>
           <% end %>
