@@ -35,6 +35,7 @@ gem 'json'
 gem 'juggernaut'
 gem 'jwt', '~> 0.1.11'
 gem 'carrierwave'
+gem 'mini_magick', '3.8.0'
 gem 'byebug'
 
 gem 'whenever', :require => false
