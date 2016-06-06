@@ -2256,7 +2256,7 @@ a.close-btn, .black-strip  a{
 }
 /*========== cart =================*/
 .cart-row .col-xs-2 img{
-	height: auto !important;
+	height: 65px	 !important;
 	max-height: 100%;
 }  
 .cart-row{
@@ -2802,6 +2802,9 @@ width: 72px;
 .save-amount{
 	text-align: right;
 	padding-right: 18px;
+}
+.related-prod-box img{
+	height: 112px;
 }
 /*=============== Media quires=================*/
 @media only screen and (max-width: 1200px) {
