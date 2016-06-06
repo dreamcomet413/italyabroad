@@ -29,7 +29,12 @@ class Site::BlogController < ApplicationController
 
   def show
     store_location
-    @post = Post.find(params[:id])
+    if params[:friendly_identifier]
+      post = Post.find(params[:friendly_identifier])
+    else
+      post = Post.find(params[:id])
+    end
+    @post = post
     unless @post
       redirect_to "/site/blog"
     else
