@@ -27,17 +27,16 @@
             #"Andrea recommends"
         end
     %>
-    
-
 
     <div class="product-list bottom-30">
       <div class="row clearfix">
         <%- products.each do |product| -%>
+          <% path = thumb_image(product)%>
           <%unless product.is_landscape%>
             <div class="col-md-4 portrait">
               <div class="slider-box">
                 <div class="clearfix">
-                  <div class="col-xs-4 box-image"><%= link_to show_image_tag(product.layout_image, product.image_1, :jpg,product.name),nested_products_uri(product)  %></div>
+                  <div class="col-xs-4 box-image"><%= link_to image_tag(path),nested_products_uri(product)  %></div>
                   <div class="col-xs-8 slider-box-text">
                     <div class="item-name"><%= link_to product.name, nested_products_uri(product) if product.categories.root.present? && (product.categories.root.name.upcase != 'WINE TOURS') %>
                       <%# product.description_short[0..70].html_safe() %>
@@ -73,7 +72,7 @@
             <div class="col-md-4 landscape">
               <div class="slider-box2">
                 <div class="box-image">
-                  <%= link_to show_image_tag(product.layout_image, product.image_1, :jpg,product.name),nested_products_uri(product)  %>
+                  <%= link_to image_tag(path),nested_products_uri(product)  %>
                 </div>
                 <div class="item-name">
                   <%= link_to product.name, nested_products_uri(product) if product.categories.root.present? && (product.categories.root.name.upcase != 'WINE TOURS') %>
@@ -141,12 +140,15 @@
     %>
     <div class="product-list bottom-30">
       <div class="row clearfix">
-        <%- products.each do |product| -%>
+
+        <% products.each do |product| %>
+        <% path = thumb_image(product)%>
+          
           <%unless product.is_landscape%>
             <div class="col-md-4 portrait">
               <div class="slider-box">
                 <div class="clearfix">
-                  <div class="col-xs-4 box-image"><%= link_to show_image_tag(product.layout_image, product.image_1, :jpg,product.name),nested_products_uri(product)  %></div>
+                  <div class="col-xs-4 box-image"><%= link_to image_tag(path),nested_products_uri(product)  %></div>
                   <div class="col-xs-8 slider-box-text">
                     <div class="item-name"><%= link_to product.name, nested_products_uri(product) if product.categories.root.present? && (product.categories.root.name.upcase != 'WINE TOURS') %>
                       <%# product.description_short[0..70].html_safe() %>
@@ -182,7 +184,7 @@
             <div class="col-md-4 landscape">
               <div class="slider-box2">
                 <div class="box-image">
-                  <%= link_to show_image_tag(product.layout_image, product.image_1, :jpg,product.name),nested_products_uri(product)  %>
+                  <%= link_to image_tag(path),nested_products_uri(product)  %>
                 </div>
                 <div class="item-name">
                   <%= link_to product.name, nested_products_uri(product) if product.categories.root.present? && (product.categories.root.name.upcase != 'WINE TOURS') %>
