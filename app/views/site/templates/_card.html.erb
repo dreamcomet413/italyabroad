@@ -344,11 +344,12 @@
           <div class=" clearfix">
             <% for include in @includes %>
               <% inc_product = Product.find(:first, :conditions => ['id = ?', include.included_product_id]) %>
+              <%path = thumb_image(inc_product)%>
               <% unless inc_product.nil? %>
                 <div class="col-md-3">
                   <div class="small-box clearfix">
                     <div class="col-xs-4">
-                      <%= link_to show_image_tag(inc_product.layout_image, inc_product.image_1, :jpg, inc_product.name), nested_products_uri(inc_product) %>
+                      <%= link_to image_tag(path), nested_products_uri(inc_product) %>
                     </div>
                     <div class="col-xs-8 slider-box-text">
                       <div class="item-name"><%= link_to truncate(inc_product.name, {:length => 80}), nested_products_uri(inc_product) %></div>
@@ -375,11 +376,13 @@
           <div class=" clearfix">
             <% for include in @includes %>
               <% inc_product = Product.find(:first, :conditions => ['id = ?', include.included_product_id]) %>
+              <%path = thumb_image(inc_product)%>
+              
               <% unless inc_product.nil? %>
                 <div class="col-md-3">
                   <div class="small-box clearfix">
                     <div class="col-xs-4">
-                      <%= link_to show_image_tag(inc_product.layout_image, inc_product.image_1, :jpg, inc_product.name), nested_products_uri(inc_product) %>
+                      <%= link_to image_tag(path), nested_products_uri(inc_product) %>
                     </div>
                     <div class="col-xs-8 slider-box-text">
                       <div class="item-name">
@@ -407,10 +410,12 @@
         <diV class="similar-heading">Similar Products</diV>
         <div class=" clearfix">
           <% for related_product in related_products %>
+            <%path = thumb_image(related_product)%>
+              
             <div class="col-md-3">
               <div class="small-box clearfix">
                 <div class="col-xs-4">
-                  <%= link_to show_image_tag(related_product.layout_image, related_product.image_1, :jpg, related_product.name), nested_products_uri(related_product) %>
+                  <%= link_to image_tag(path), nested_products_uri(related_product) %>
                 </div>
                 <div class="col-xs-8 slider-box-text">
                   <div class="item-name"><%= link_to related_product.name, nested_products_uri(related_product) %></div>
