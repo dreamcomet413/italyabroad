@@ -333,7 +333,7 @@
     </div>
     <!-- Start include in hamper box -->
     <% if @product.root_category == 'Hampers' || @product.sub_categories.include?('Mixed case') %>
-      <% @includes = @product.product_includeds.limit(4) %>
+      <% @includes = @product.product_includeds %>
       <% if !@includes.blank? %>
         <div class="similar-box" id="wineRelated">
           <% if @product.root_category == 'Hampers' %>
@@ -368,7 +368,7 @@
     <!-- Start you may like box -->
     <% if @product.categories.root.present? && @product.categories.root.name.downcase == "wine" and !@product.sub_categories.include?('Mixed case') %>
     
-      <% @includes = @product.product_includeds.all(:limit => 4) %>
+      <% @includes = @product.product_includeds.all %>
       <% if !@includes.blank? %>
         <div class="similar-box">
           <diV class="similar-heading">Wines you may like</diV>

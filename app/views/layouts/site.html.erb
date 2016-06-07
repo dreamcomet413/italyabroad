@@ -328,7 +328,7 @@
   <div class="green-strip clearfix">
     <%left_text = SmallBoxSetting.find_by_box_title("header_left_text")%>
     <%right_text = SmallBoxSetting.find_by_box_title("header_right_text")%>
-    <%h_image = left_text ?  Image.find_by_id(left_text.image_id) : nil %>
+    <%h_image = left_text ?  Image.find_by_id(left_text.image_id) : nil  %>
 
 
     <div class="col-md-6 white-seprator"><i><img src="<%= h_image ? h_image.image_filename.url : '/images/van-img.png'%>"></i><%=left_text.description%></div>
