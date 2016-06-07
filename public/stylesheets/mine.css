@@ -898,6 +898,9 @@ footer{
 }
 .blog-list-heading a{
 	text-decoration: none;
+	color:#5c8018;}
+.blog-list-heading a:hover{
+	color:#cb0d2b;
 }
 .list-date{
 	margin-right: 7px;
