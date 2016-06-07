@@ -248,11 +248,22 @@ img{
 	margin-top: 20px;
 }
 .small-box .read-more{
-	margin-top: 20px;
-}
-a{
+	margin-top: 20px;}
+a {
 	color: #cb0d2b;
 	text-decoration: underline;
+} 
+a:hover{
+	text-decoration: none;
+	color: #2e3e09;
+}
+.read-more a{
+	color: #cb0d2b ;
+	text-decoration: underline;
+}
+.read-more:hover a{
+	text-decoration: none;
+	color: #2e3e09;
 }
 .small-box-subheading{
 	font-size: 18px;
@@ -880,10 +891,16 @@ footer{
 	text-decoration: none;
 }
 .blog-list-heading{
-	font-size: 24px;
+	font-size: 20px;
 	/*margin-bottom: 15px;*/
 	color:#5c8018;
 	font-family: JosefinSlab-Bold;
+}
+.blog-list-heading a{
+	text-decoration: none;
+	color:#5c8018;}
+.blog-list-heading a:hover{
+	color:#cb0d2b;
 }
 .list-date{
 	margin-right: 7px;
@@ -2256,7 +2273,7 @@ a.close-btn, .black-strip  a{
 }
 /*========== cart =================*/
 .cart-row .col-xs-2 img{
-	height: auto !important;
+	height: 65px	 !important;
 	max-height: 100%;
 }  
 .cart-row{
@@ -2802,6 +2819,9 @@ width: 72px;
 .save-amount{
 	text-align: right;
 	padding-right: 18px;
+}
+.related-prod-box img{
+	height: 112px;
 }
 /*=============== Media quires=================*/
 @media only screen and (max-width: 1200px) {
