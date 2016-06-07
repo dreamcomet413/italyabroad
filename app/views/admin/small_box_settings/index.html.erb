@@ -10,27 +10,30 @@
     <%if sb %>
     	<h1><%=sb.box_title%></h1>
     	<div class="small_box" style="margin: 10px;">
-	    	<table>
-		      <tr>
-		        <td valign="top" style="padding:0;">Image&nbsp;&nbsp;</td> 
-		        <td>
-		        <%= fields_for :image do |image| %>
-		        	<% if sb.image %>
-		        		<%= hidden_field_tag "small_box_settings[#{sb.id}][image_attributes][id]", sb.image_id %>
-		        	<% end %>
-		        	<%= file_field_tag "small_box_settings[#{sb.id}][image_attributes][image_filename]" %> <em>(must 368x195px)</em>
-		        <% end %>
-		        </td>
-		      </tr>
-		    </table>
-	    	<%= image_tag(sb.image ? sb.image.image_filename.url : '/images/missing.png')  %>
-	    	<%if sb.image%>
-	    		<%= link_to "Destroy", "/admin/small_box_settings/#{sb.id}", :confirm => "Are you sure?", :method => :delete %>
-	    	<%end%>	
+        	<%unless sb.box_title == 'header_right_text'%>
+
+		    	<table>
+			      <tr>
+			        <td valign="top" style="padding:0;">Image&nbsp;&nbsp;</td> 
+			        <td>
+			        <%= fields_for :image do |image| %>
+			        	<% if sb.image %>
+			        		<%= hidden_field_tag "small_box_settings[#{sb.id}][image_attributes][id]", sb.image_id %>
+			        	<% end %>
+			        		<%= file_field_tag "small_box_settings[#{sb.id}][image_attributes][image_filename]" %> <em>(must 368x195px)</em>
+			        <% end %>
+			        </td>
+			      </tr>
+			    </table>
+		    	<%= image_tag(sb.image ? sb.image.image_filename.url : '/images/missing.jpg')  %>
+		    	<%if sb.image%>
+		    		<%= link_to "Destroy", "/admin/small_box_settings/#{sb.id}", :confirm => "Are you sure?", :method => :delete %>
+		    	<%end%>	
+	    	<%end%>
 	    	<br/>
 	    	<br/>
-	    	<%if sb.box_title == 'wine_club_home'  %>
-	    		<%= text_area_tag "small_box_settings[#{sb.id}][description]" , sb.description , :size=> "50x10" %>
+	    	<%if sb.box_title == 'wine_club_home' or sb.box_title == 'header_left_text' or sb.box_title == 'header_right_text' %>
+	    		<%= text_area_tag "small_box_settings[#{sb.id}][description]" , sb.description , :size=> "50x3" %>
 	    	<%end%>
 	    	<% hidden_field_tag "small_box_settings[][id]", sb.id %>
 	    	 
