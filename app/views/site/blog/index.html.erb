@@ -40,6 +40,7 @@
       <% if @posts && @posts.size > 0 %>
         <div class="blog-listing-wrapper">
           <% for post in @posts %>
+            <% next unless post.friendly_identifier %>
             <div class="blog-list">
               <div class="blog-list-heading"><%=link_to post.name , site_blog_path(post.friendly_identifier) %></div>
               <div class="blog-list-date clearfix">

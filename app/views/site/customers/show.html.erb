@@ -23,7 +23,7 @@
         <% end %>
       </div>
       <div class="col-xs-10">
-        <%- if @my_profile -%>
+        <%if @my_profile %>
           <%= form_for(:user, :url => site_customer_path(@user), :html => {:method => :put}) do -%>
             <div class="row form-row clearfix">
               <div class="col-md-2 section-label2" id="favorite_meal">
@@ -132,21 +132,21 @@
               <%= @user.newspapers ? @user.newspapers : 'Not Added yet' %>
             </div>
           </div>
-        <%  end %>
+        <% end %>
       </div>
     </div>
   </div>
   <div class="green-heading-with-border"><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> Comments</div>
   <div class="bottom-50">
-    <%- @user.comments.all(:order=>' id desc',:limit => 5).each do |comment| -%>
+    <%@user.comments.all(:order=>' id desc',:limit => 5).each do |comment| %>
       <div><%= comment.name unless comment.name.blank? %></div>
-    <%- end -%>
+    <%end%>
     <% if @user.comments.size > 5 %>
       <div style="margin-top:20px;"><%= link_to("more",:controller=>'comments',:action=>'index',:id=>params[:id]) %></div>
     <% end %>
     <% if @user.comments.size == 0 %>
       <div class="bottom-15">No comment found</div>
-    <% end %>
+    <%end%>
   </div>
   <div class="green-heading-with-border"><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> Latest Reviews</div>
   <div class="bottom-50">
