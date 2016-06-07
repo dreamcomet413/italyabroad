@@ -326,8 +326,13 @@
     </div><!-- End small search-->
   </div><!-- End Small Header-->
   <div class="green-strip clearfix">
-    <div class="col-md-6 white-seprator"><i><img src="/images/van-img.png"></i>NEXT DAY DELIVERY SERVICE</div>
-    <div class="col-md-6 discount-text">UPTO 15% DISCOUNT ON MIX CASES</div>
+    <%left_text = SmallBoxSetting.find_by_box_title("header_left_text")%>
+    <%right_text = SmallBoxSetting.find_by_box_title("header_right_text")%>
+    <%h_image = left_text ?  Image.find_by_id(left_text.image_id) : nil %>
+
+
+    <div class="col-md-6 white-seprator"><i><img src="<%= h_image ? h_image.image_filename.url : '/images/van-img.png'%>"></i><%=left_text.description%></div>
+    <div class="col-md-6 discount-text"><%=right_text.description%></div>
   </div>
   <!-- Start Content wrapper-->
   <div class="content-wrapper">
