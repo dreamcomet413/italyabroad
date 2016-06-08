@@ -698,6 +698,8 @@ footer{
 	margin-top: -3px;
 	display: inline-block;
 }
+.location i img{ 
+margin-right: 5px;}
 .event-detail{
 	margin: 18px 0px 0px;
 }
@@ -1555,7 +1557,7 @@ padding: 0px 3px 10px !important;
     text-align: center;
     font-family: prestigeEliteStd;
     color: #485626;
-    text-transform: uppercase;
+   /* text-transform: uppercase;*/
     padding-bottom: 20px;
 }
 .similar-box .small-box{

@@ -337,9 +337,9 @@
       <% if !@includes.blank? %>
         <div class="similar-box" id="wineRelated">
           <% if @product.root_category == 'Hampers' %>
-            <div class="similar-heading">Included in the hamper</div>
+            <div class="similar-heading">Included In The Hamper</div>
           <% elsif @product.sub_categories.include?('Mixed case') %>
-            <div class="similar-heading">Included in the case</div>
+            <div class="similar-heading">Included In The Case</div>
           <% end  %>
           <div class=" clearfix">
             <% for include in @includes %>
@@ -372,7 +372,7 @@
       <% @includes = @product.product_includeds.all %>
       <% if !@includes.blank? %>
         <div class="similar-box">
-          <diV class="similar-heading">Wines you may like</diV>
+          <diV class="similar-heading">Wines You May Like</diV>
           <div class=" clearfix">
             <% for include in @includes %>
               <% inc_product = Product.find(:first, :conditions => ['id = ?', include.included_product_id]) %>
