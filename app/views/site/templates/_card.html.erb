@@ -11,8 +11,8 @@
       <div class="col-md-3 left-side-bar center-align">
         <div class="product-detail-img">
           <% if !(@product.image_1).blank? %>
+            <% path = thumb_image(@product) %>
             <% if @product.categories.first.name == ("Wine" || "wine") %>
-              <%path = thumb_image(@product)%>
               <%#= show_image_tag(:wine, @product.image_1, :jpg) %>
               <% if params[:category] == "mixed-case" %>
                 <%= link_to image_tag(path), (@product.image_1.image_filename.present? ? @product.image_1.image_filename.try(:url) : "/resources/images/#{@product.image_1.id}.jpg"), {:rel => "lightbox", :title => @product.name} %>
@@ -22,6 +22,7 @@
             <% else %>
               <% if params[:root_category] == "food" %>
                 <%= link_to image_tag(path), (@product.image_1.image_filename.present? ? @product.image_1.image_filename.try(:url) : "/resources/images/#{@product.image_1.id}.jpg"), {:rel => "lightbox", :title => @product.name} %>
+                <%#= link_to image_tag(path), (@product.image_1.image_filename.present? ? @product.image_1.image_filename.try(:url) : "/resources/images/#{@product.image_1.id}.jpg"), {:rel => "lightbox", :title => @product.name} %>
               <% else %>
                 <%= link_to image_tag(path), (@product.image_1.image_filename.present? ? @product.image_1.image_filename.try(:url) : "/resources/images/#{@product.image_1.id}.jpg"), {:rel => "lightbox", :title => @product.name} %>
               <% end %>
