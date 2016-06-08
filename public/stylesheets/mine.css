@@ -3056,4 +3056,11 @@ width: 72px;
 	.green-button a{
 		display: block;
 	}
+	.footer-col1, .footer-col2, .footer-col3, .footer-col4, .footer-col5,
+	.footer-col6, .footer-col7, .footer-col8{
+		display: none;
+	}
+	.copyright{
+		margin-top: 25px;
+	}
 }
