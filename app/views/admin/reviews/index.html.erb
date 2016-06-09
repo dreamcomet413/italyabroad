@@ -54,10 +54,6 @@
                   <td><%= link_to Recipe.find_by_id(review.reviewer_id).name, edit_admin_review_path(review.id) %>&nbsp;[<%= review.reviewer_type %>]</td>
                   <td><%= check_box_tag 'publish[]',review.id,review.publish %></td>
 
-
-
-
-
               <% end -%>
               <td> <%= link_to "Delete", admin_review_path(review), :method => :delete, :confirm => "Are you sure want to delete this review?" %></td>
             </tr>
