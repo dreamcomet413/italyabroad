@@ -121,6 +121,67 @@
         <div class="signup-link"><%= link_to "Sign up now >", subscribe_dali_news_path %></div>
     </div>
     <div class="clearfix"></div>
+    <div class="show-on-mobile">
+        <div class="center-align footer-social-row">
+            <div class="keep-title">
+                Keep in Touch
+            </div>
+            <div class="social-icon">
+          <a href="#."></a><a href="https://plus.google.com/105030552023597415239/posts"><img alt="Gplus-icon" src="/images/gplus-icon.png?1459359870"></a></div>
+          <div class="social-icon"><a href="https://www.facebook.com/pages/Italyabroadcom/144011672282174"><img alt="Fb-icon" src="/images/fb-icon.png?1459359838"></a></div>
+          <div class="social-icon"><a href="https://twitter.com/Italyabroad" id="b"><img alt="Twitter-icon" src="/images/twitter-icon.png?1459359804"></a></div>
+          <div class="social-icon"><a href="https://instagram.com/italyabroad"><img alt="Instagram-icon" src="/images/instagram-icon.png?1459359758"></a></div>
+        </div>
+        <div class="panel-group center-align" id="accordion" role="tablist" aria-multiselectable="true">
+            <div class="panel pressed">
+              <div class="panel-heading" role="tab" id="heading2016">
+                <h4 class="panel-title">
+                  <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse2016" aria-expanded="false" aria-controls="collapse2016" class="collapsed">
+                    About Us
+                  </a>
+                </h4>
+              </div>
+              <div id="collapse2016" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading2016" aria-expanded="false" style="height: 0px;">
+                <div class="panel-body">
+                  <ul>
+                  <li><%= link_to"About Us","/about-us" %></li>
+                    <li><%= link_to "Our manifesto", our_principles_path %></li>
+                    <li><%= link_to "Who We Are", about_us_path %></li>        
+                    <li><%= link_to "Meet Us", meet_us_path %></li>
+                    <li><%= link_to "Contact Us", contact_us_path %></li>
+                    <li><%= link_to "Wholesale", wholesale_enquiry_path %></li>
+                    <li><%= link_to "Corporate Services", corporate_path %></li>
+                    <li><%= link_to "Supplier", "/supplier" %></li>
+                    <li><%= link_to "Guarantee of Satisfaction", guarantee_of_satisfaction_path %></li>
+                    <li><%= link_to("Gift Cards", '/wine/gift-cards') %></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="panel">
+              <div class="panel-heading" role="tab" id="heading2017">
+                <h4 class="panel-title">
+                  <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse2017" aria-expanded="false" aria-controls="collapse2017" class="collapsed">
+                    Help
+                  </a>
+                </h4>
+              </div>
+              <div id="collapse2017" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading2017" aria-expanded="false" style="height: 0px;">
+                <div class="panel-body">
+                  <ul>
+                    <li><%= link_to"Help","/help/terms-and-conditions" %></li>
+                    <li><%= link_to "Terms & Conditions", terms_and_conditions_path %></li>
+                    <li><%= link_to "Privacy Policy ", privacy_policy_path %></li>
+                    <li><%= link_to "Delivery Service", delivery_services_path %></li>
+                    <li><%= link_to "Contact Details", contact_details_path %></li>
+                    <li><%= link_to "Sitemap", "/sitemap" %></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+
     <div class="copyright">
         &copy; Copyright 2004-<%= Date.today.strftime("%Y") %> Italy Abroad Network Ltd, registered in England & Wales No. 4962185. All rights reserved.</div>
     <div class="copyright2">
