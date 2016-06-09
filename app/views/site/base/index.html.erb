@@ -171,7 +171,7 @@
             </div>
           <%end%>
           <div class="col-xs-6">
-            <div><p class="truncate_wine_text"><%=wine_club.description.html_safe rescue 'Discover the best Italian wines sat on the confort of your home'%></p></div>
+            <div><%=wine_club.description.html_safe rescue 'Discover the best Italian wines sat on the confort of your home'%></div>
             <div class="read-more"><%= link_to "Read More", "/wine-club" %></div>
           </div>
         </div>
