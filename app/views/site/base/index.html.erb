@@ -153,7 +153,7 @@
             <%end%>  
             <div class="col-xs-6">
               <h3><%=@post.name%></h3>
-              <div class="medium-box-text"><%=truncate(@post.description, length: 200)%></div>
+              <div class="medium-box-text"><p class="truncate_blog_text"><%=truncate(@post.description, length: 200)%></p></div>
               <div class="read-more"><%= link_to "Read More", site_blog_path(:id => @post.id) %></div>
             </div>
           </div>
@@ -171,7 +171,7 @@
             </div>
           <%end%>
           <div class="col-xs-6">
-            <div><%=wine_club.description.html_safe rescue 'Discover the best Italian wines sat on the confort of your home'%></div>
+            <div><p class="truncate_wine_text"><%=wine_club.description.html_safe rescue 'Discover the best Italian wines sat on the confort of your home'%></p></div>
             <div class="read-more"><%= link_to "Read More", "/wine-club" %></div>
           </div>
         </div>

@@ -291,7 +291,7 @@
     <div class="cart-small">
       <div class="dropdown">
         <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-          <img src="/images/cart-icon-2.png">
+          <img src="/images/cart-icon-2.png"><span class="items_count"> <%=@cart.items.size.to_i%></span>
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
           <%= render :partial => "/site/shared/cart" %> 
@@ -328,11 +328,12 @@
   <div class="green-strip clearfix">
     <%left_text = SmallBoxSetting.find_by_box_title("header_left_text")%>
     <%right_text = SmallBoxSetting.find_by_box_title("header_right_text")%>
-    <%h_image = left_text ?  Image.find_by_id(left_text.image_id) : nil  %>
+    <%left_image = left_text ?  Image.find_by_id(left_text.image_id) : nil  %>
+    <%right_image = right_text ?  Image.find_by_id(right_text.image_id) : nil  %>
 
 
-    <div class="col-md-6 white-seprator"><i><img src="<%= h_image ? h_image.image_filename.url : '/images/van-img.png'%>"></i><%=left_text.description%></div>
-    <div class="col-md-6 discount-text"><%=right_text.description%></div>
+    <div class="col-md-6 white-seprator"><%if left_image%><i><img src="<%= left_image.image_filename.url%>"></i><%end%><%=left_text.description%></div>
+    <div class="col-md-6 discount-text"><%if right_image%><i><img src="<%= right_image.image_filename.url%>"></i><%end%><%=right_text.description%></div>
   </div>
   <!-- Start Content wrapper-->
   <div class="content-wrapper">
@@ -377,26 +378,29 @@
       </script>
   <%- end -%>
   <script type="text/javascript">
-      $(".chat_available").click(function (event) {
-        event.preventDefault();
-          var w = window.open("<%= site_chat_index_path -%>", "popupWindow", "width=490, height=540, scrollbars=yes");
-          var $w = $(w.document.body);
-          $w.html($('#modalText').html());
-          $w.find(".addimage").click(function(e) {
-            e.preventDefault();
-            console.log(w.opener.document);
-            $("#imagelist", w.opener.document).append("<li></li>");
-        });
-        return false;
-      }
-    );
+    $(document).ready(function(){
+      $(".truncate_blog_text").html($('.truncate_blog_text').text().trim().substring(0, 150).split(" ").slice(0, -1).join(" ") + "...");
+      $(".truncate_wine_text").html($('.truncate_wine_text').text().trim().substring(0, 150).split(" ").slice(0, -1).join(" ") + "...");
+    });
+    $(".chat_available").click(function (event) {
+      event.preventDefault();
+        var w = window.open("<%= site_chat_index_path -%>", "popupWindow", "width=490, height=540, scrollbars=yes");
+        var $w = $(w.document.body);
+        $w.html($('#modalText').html());
+        $w.find(".addimage").click(function(e) {
+          e.preventDefault();
+          console.log(w.opener.document);
+          $("#imagelist", w.opener.document).append("<li></li>");
+      });
+      return false;
+    });
 
-      function popupwindow(url, w, h) {
-        title = "Live Chat"
-        var left = (screen.width/2)-(w/2);
-        var top = (screen.height/2)-(h/2);
-        return window.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
-      } 
+    function popupwindow(url, w, h) {
+      title = "Live Chat"
+      var left = (screen.width/2)-(w/2);
+      var top = (screen.height/2)-(h/2);
+      return window.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
+    } 
   </script>
 
 
