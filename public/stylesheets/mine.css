@@ -2833,6 +2833,9 @@ width: 72px;
 	font-family: OpenSans-Semibold;
 	margin-bottom: 25px;
 }
+.show-on-mobile .panel{
+	box-shadow: none;
+}
 .show-on-mobile .panel  a{
 	display: block;
 	text-decoration: none;
@@ -2849,7 +2852,9 @@ width: 72px;
 	border: none;
 }
 .show-on-mobile .panel-heading{
-	border-bottom: solid 1px #dcdcdc;
+	border:none;
+	box-shadow: none;
+
 }
 .show-on-mobile .panel-group .panel-heading + .panel-collapse > .panel-body{
 	border: none;
@@ -2865,6 +2870,21 @@ width: 72px;
    .show-on-mobile{
    	display: none;
    }
+ .show-on-mobile  .panel-title{
+ 	font-size: 16px;
+ }
+ .show-on-mobile .panel-heading a i {
+    background: url(../images/plus-icon.png) no-repeat;
+    float: right;
+    width: 10px;
+    height: 10px;
+}
+.show-on-mobile .panel.panel-default.pressed i {
+    background: url(../images/minus-icon.png) no-repeat;
+	margin-top: 7px;}
+.show-on-mobile .panel-default > .panel-heading{
+	background: none;
+}
 /*=============== Media quires=================*/
 @media only screen and (max-width: 1200px) {
 	.landscape img{
@@ -3101,7 +3121,9 @@ width: 72px;
 		display: none;
 	}
 	.copyright{
-		margin-top: 25px;
+	border-top: solid 1px #dcdcdc;
+    margin-top: 0;
+    padding-top: 25px;
 	}
 	.hide-on-mobile{
 		display: none;
