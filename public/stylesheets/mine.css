@@ -369,6 +369,10 @@ h2{
 	padding: 5px;
 	min-height: 232px;
 }
+.medium-box p{
+	height: 108px;
+	overflow: hidden;
+}
 h3{
 	font-family: OpenSans-Semibold;
 	font-size: 18px;
@@ -2826,38 +2830,45 @@ width: 72px;
 	height: 112px;
 }
 .footer-social-row{
-	margin: 30px 0px;
+	padding: 30px 0px;
 }
 .keep-title{
 	font-size: 20px;
 	font-family: OpenSans-Semibold;
 	margin-bottom: 25px;
 }
-.show-on-mobile .panel{
+.footer-mobile-container{
+	background: #dcdcdc;
+	margin-top: 5px;}
+.footer-mobile-container .panel-group{
+	margin-bottom: 5px;
+}
+.footer-mobile-container .panel{
 	box-shadow: none;
 }
-.show-on-mobile .panel  a{
+.footer-mobile-container .panel  a{
 	display: block;
 	text-decoration: none;
 }
-.show-on-mobile .panel ul li{
+.footer-mobile-container .panel ul li{
 	list-style: none;
 	font-size: 14px;
 	margin-bottom: 8px;
 }
-.show-on-mobile .panel ul li a{
+.footer-mobile-container .panel ul li a{
 	color: #2a2429;
 }
-.show-on-mobile .panel{
+.footer-mobile-container .panel{
 	border: none;
 }
-.show-on-mobile .panel-heading{
+.footer-mobile-container .panel-heading{
 	border:none;
 	box-shadow: none;
 
 }
-.show-on-mobile .panel-group .panel-heading + .panel-collapse > .panel-body{
+.footer-mobile-container .panel-group .panel-heading + .panel-collapse > .panel-body{
 	border: none;
+	background: #dcdcdc;
 }
 .items_count{
     padding: 1px 5px;
@@ -2870,20 +2881,20 @@ width: 72px;
    .show-on-mobile{
    	display: none;
    }
- .show-on-mobile  .panel-title{
+ .footer-mobile-container  .panel-title{
  	font-size: 16px;
  }
- .show-on-mobile .panel-heading a i {
+ .footer-mobile-container .panel-heading a i {
     background: url(../images/plus-icon.png) no-repeat;
     float: right;
     width: 10px;
     height: 10px;
 }
-.show-on-mobile .panel.panel-default.pressed i {
+.footer-mobile-container .panel.panel-default.pressed i {
     background: url(../images/minus-icon.png) no-repeat;
 	margin-top: 7px;}
-.show-on-mobile .panel-default > .panel-heading{
-	background: none;
+.footer-mobile-container .panel-default > .panel-heading{
+	background: #dcdcdc;
 }
 /*=============== Media quires=================*/
 @media only screen and (max-width: 1200px) {
@@ -3119,7 +3130,7 @@ width: 72px;
 	.footer-col1, .footer-col2, .footer-col3, .footer-col4, .footer-col5,
 	.footer-col6, .footer-col7, .footer-col8{
 		display: none;
-	}
+	}	
 	.copyright{
 	border-top: solid 1px #dcdcdc;
     margin-top: 0;
