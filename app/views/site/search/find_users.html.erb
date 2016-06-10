@@ -1,80 +1,69 @@
+<div class="green-heading-with-border">Users</div>
 <div id="header">Your search has found the following members</div>
-
-<%- @breadcrumbs = "#{link_to "Home", root_url} &raquo; Search &raquo; All Site" -%>
-  <ul style="margin:0;list-style:none;padding-left:0px;">
-    <%- for people in @users -%>
-    <li class="product_listing" style="margin:0;padding-left:20px;margin-top:10px;">
-      <table width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <td width="98px;">
-
-            <%= link_to avatar_for_user(people), site_customer_path(people) %>
-          </td>
-          <td valign="top">
-            <table cellspacing="5">
-              <tr>
-                <td>Name:</td>
-                <td><%= people.name %> &nbsp;&nbsp;<%= image_tag 'chef_icon.png' if people.type_id == 4 %></td>
-              </tr>
-              <tr>
-                <td>City:</td>
-                <td><%= people.city %></td>
-              </tr>
-              <tr>
-                <td colspan="2">My favorite wines is:<%= people.fav_wine %></td>
-              </tr>
-              <tr>
-              <td>Biography:</td>
-                <td><%= people.chef_bio %></td>
-              </tr>
-
-            </table>
-          </td>
-          <td valign="top" >
-             <% unless people == current_user %>
-      <div align="right" style="margin-top:90px;">
-      <%- if people.followed_by?(current_user) -%>
-      <%= link_to image_tag("buttons/unfollow.png"), unfollow_path(people) %>
-      <%- else -%>
-      <%= link_to image_tag("buttons/follow.png"), follow_path(people) %>
-      <%- end -%>
+<br/>
+<%- for people in @users -%>
+  <div class="hampers-box">
+    <div class=" row clearfix">
+      <div class="col-md-2">
+        <div class="hamper-image">
+          <%= link_to avatar_for_user(people), site_customer_path(people) %>
+        </div>
       </div>
-      <% end %>
-          </td>
-        </tr>
-      </table>
-      <br />
-      <% if people.type_id != 4 %>
-      <%= people.name %>'s latest comments
-      <ul>
-        <%- for comment in people.comments.all(:order => "created_at DESC") -%>
-        <li><%= comment.name %></li>
-        <%- end -%>
+      <div class="col-md-7">
+        <div class="hamper-heading"><%= people.name %></div>
+        <div class="hamper-text">
+          <div>
+            <b>City: </b> <%= people.city %>
+          </div>
+          <div>
+            <b>My favorite wines is: </b> <%= people.fav_wine %>
+          </div>
+          <div>
+            <b>Biography: </b> <%= people.chef_bio %>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="hamper-price center-align"></div>
+        <div class=" center-align" style="margin: 20px 0px;">
+          <% unless people == current_user %>
+            <%- if people.followed_by?(current_user) -%>
+              <div class="green-button">
+                <%= link_to ("unfollow"), unfollow_path(people) %>
+              </div>
+            <%- else -%>
+              <div class="green-button">
+                <%= link_to ("Follow"), follow_path(people) %>
+              </div>  
+            <%- end -%>
+          <% end %>     
+          <% if people.type_id != 4 %>
+            <div class="top-20"><%= people.name %>'s latest comments</div>
+              <ul>
+                <%- for comment in people.comments.all(:order => "created_at DESC") -%>
+                <li><%= comment.name %></li>
+                <%- end -%>
 
-      </ul>
-      <% end %>
-      <% if people.type_id == 4 %>
-      <% unless people.recipes.last.nil?%>  <%= people.name %>'s latest Recipe :
-       <%= link_to people.recipes.last.name,recipe_path(people.recipes.last.id)  %>
-      <% end %>
-      <% end %>
-
-
-      <br />
-
-    </li>
-    <%- end -%>
-  </ul>
-
-  
-
-</div>
-<div class="digg_pagination pagination-2 clearfix">
-  <div class="page_info show-result">
-    <%= page_entries_info @users %>
+              </ul>
+              <% end %>
+              <% if people.type_id == 4 %>
+              <% unless people.recipes.last.nil?%>  <%= people.name %>'s latest Recipe :
+               <%= link_to people.recipes.last.name,recipe_path(people.recipes.last.id)  %>
+              <% end %>
+              <% end %>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="pagination-links">
-    <%= will_paginate @users, :container => false %>
+<% end %>
+<div class="bottom-50">
+  <div class="digg_pagination pagination-2 clearfix">
+    <div class="page_info show-result">
+      <%= page_entries_info @users %>
+    </div>
+    <div class="pagination-links">
+      <%= will_paginate @users, :container => false %>
+    </div>
   </div>
 </div>
 
