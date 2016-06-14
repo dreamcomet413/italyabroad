@@ -937,7 +937,8 @@ margin-right: 5px;}
 	box-sizing: border-box;
 	width: 100%;
 	font-family:OpenSans-Semibold;
-	font-size: 18px;}
+	font-size: 18px;
+	min-width: 75px;}
 .slider-box-text .green-button input[type=submit]{
 	color: #fff;
 	text-decoration: none;
@@ -2373,7 +2374,7 @@ a.close-btn, .black-strip  a{
 	margin-left: 10px;
 	background: none;
 	border:solid 1px #ada9a5;
-}
+	max-width: 96%;}
 .grand-total{
 	background: #fdfdfd;
 	border: solid 1px #ebebeb;
@@ -2904,6 +2905,17 @@ width: 72px;
 .cream-bg{
 	background: #f3eed8;
 }
+.bottom-10{
+	margin-bottom: 10px;
+}
+.vegan, .organic{
+	display: inline-block;
+	width: 65px;
+}
+.veg-wrapper{
+	margin-left: 85px;
+	width: 135px;
+}
 /*=============== Media quires=================*/
 @media only screen and (max-width: 1200px) {
 	.landscape img{
@@ -3047,7 +3059,7 @@ width: 72px;
 		border-radius: 0px;
 		border: none;
 		background-color: #fff;
-		z-index: 9999;
+		z-index: 9~	999;
 		min-height: auto;
 	}
 	.headerSmall .small-search-box .dropdown-menu > li > a{
@@ -3156,5 +3168,10 @@ width: 72px;
 	.medium-box{
 		min-height: auto;
 	}
+	.select-user-row{
+		text-align: left;
+	}
+	.veg-wrapper{
+	margin-left: 20px;}
 
 }

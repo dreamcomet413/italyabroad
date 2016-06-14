@@ -146,14 +146,6 @@
                     </div>
                   <%- end -%>
                   <div class="row clearfix">
-                    <div class="col-xs-3 product-des-title">Vegan:</div>
-                    <div class="col-xs-9"><%= @product.vegetarian ? "YES" : "NO" %></div>
-                  </div>
-                  <div class="row clearfix">
-                    <div class="col-xs-3 product-des-title">Organic:</div>
-                    <div class="col-xs-9"><%= @product.organic ? "YES" : "NO" %></div>
-                  </div>
-                  <div class="row clearfix">
                     <div class="col-xs-3 product-des-title">Tasting video:</div>
                     <div class="col-xs-9">
                       <% if @product.tasting_video %>
@@ -181,6 +173,24 @@
                       </div>
                     <%# end %>
                   <% end %>
+                  <div class="row clearfix">
+                    <!-- <div class="col-xs-3 product-des-title"> &nbsp;</div> -->
+                    <div class="veg-wrapper"><%#= @product.vegetarian ? "YES" : "NO" %>
+                      <% if  @product.vegetarian %>
+                        <span class="vegan"><img src="/images/vegan-icon.jpg"></span>
+                      <% end %>
+                      <% if @product.organic %>
+                        <span class="organic">
+                          <img src="/images/organic-icon.jpg">
+                        </span>
+                      <% end %>
+                    </div>
+                      
+                  </div>
+                 <!--  <div class="row clearfix">
+                    <div class="col-xs-3 product-des-title">Organic:</div>
+                    <div class="col-xs-9"><%#= @product.organic ? "YES" : "NO" %></div>
+                  </div> -->
                 </div>
                 <% if @product.product_prices.present? %>
                   <div class="col-md-4">
@@ -268,6 +278,11 @@
                           </div>
                           <div class="bollte-price">
                             (price per bottle <%= number_to_currency @product.price_per_bottle, :unit => "&pound;" %> )
+                          </div>
+                          <div class="clearfix top-20 bottom-10">
+                            <div class="green-button">
+                              <a href="#.">Add the whole case</a>
+                            </div>
                           </div>
                         </div>
                       <% elsif @product.categories.root.present? && @product.categories.root.name == "Food" %>
