@@ -358,7 +358,7 @@
             });
         </script>
     <% end %>
-    <% encoding_m = ['site/faqs','site/cart','site/search', 'site/food', 'site/wine'].include?(params[:controller]) ? 'UTF-8' : 'ASCII-8BIT' %>
+    <% encoding_m = ['site/faqs','site/cart','site/search', 'site/food', 'site/wine'].include?(params[:controller]) ? 'UTF-8' : 'UTF-8' %>
   
     <div id="leftColumnContent" class="<%= "widescreen" unless @content_for_right %>">
       <%= yield.force_encoding(encoding_m) %>

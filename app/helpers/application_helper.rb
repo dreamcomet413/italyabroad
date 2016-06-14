@@ -157,9 +157,9 @@ module ApplicationHelper
       #   {:height => '210'}
       # landscap wine
       when :wine_category
-        {:height => '112'}
+        {:height => 'auto'}
       when :product_food
-        {:height => '100'}
+        {:height => 'auto'}
       when :wine_category_producers_page, :product_food
         {:height => '133', :width => '100'}
       when :food_category, :food_sub_category, :hamper_sub_category
@@ -225,6 +225,7 @@ module ApplicationHelper
       else
         {:width => '95px'}
     end
+	{:height=>'auto',:width=>'auto'}
   end
 
   def show_image_tag_in_cart(image_type, image, format = :jpg, image_alt = "italyabroad.com")
