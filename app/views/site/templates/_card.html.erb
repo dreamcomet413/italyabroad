@@ -232,7 +232,7 @@
                       <div class="clearfix qty-row">
                           <% @product.product_prices.each do |quantity| %>
                             <%- if !quantity.out_of_stock -%>
-                              <%= form_for :cart, :url => "/site/cart.js", :remote => true, :html => {:method => :post} do -%>
+                              <%= form_for :cart, :url => "/site/cart.js", :remote => true, :html => {:id=> :add_to_cart, :method => :post} do -%>
                                 
                                 <div class="col-xs-5 clearfix">
                         
@@ -280,7 +280,7 @@
                             (price per bottle <%= number_to_currency @product.price_per_bottle, :unit => "&pound;" %> )
                           </div>
                           <div class="clearfix top-20 bottom-10">
-                            <div class="green-button">
+                            <div class="add-whole-case green-button">
                               <a href="#.">Add the whole case</a>
                             </div>
                           </div>
@@ -455,6 +455,11 @@
     <%= render :partial => '/site/shared/cercavino' %>
   </div>
 <script type="text/javascript">
+    $('.add-whole-case').click(function(){
+      $('#cart_quantity').val(12);
+      $('form#add_to_cart .green-button input').click();
+    });
+
     $('.click-here').click(function(){$('.product-detail-img img').trigger('click')});
     function change_price(element) {
         var actual_price = element.value;
