@@ -2,81 +2,82 @@
 <%- @order_title = "Order no. #{@order.id} of #{@order.created_at.strftime("%d/%m/%y")}" -%>
 <%- @breadcrumbs = "#{link_to "Home", root_url} &raquo; #{link_to("My Orders and Tracking", site_orders_path)} &raquo; #{@order_title}" -%>
 <% @class = "no-padding" %>
-
-<div id="header"><%= render :partial => 'site/shared/box_login' %></div>
-<h4 class="account-title">Your Invoice</h4>
-<div style="margin:0 20px 60px 20px;">
-  <h4><%= @order_title %></h4>
-  <table width="99%" cellspacing="0" cellpadding="0" border="0" align="center">
-    <tr>
-      <td colspan="2"><h4>Product</h4></td>
-      <td><h4>Qty</h4></td>
-      <td><h4>Price</h4></td>
-      <td>&nbsp;</td>
-    </tr>
+<div class="bottom-50 full-width">
+  <div id="header"><%= render :partial => 'site/shared/box_login' %></div>
+  <div class="green-heading-with-border">Your Invoice</div>
+    <h4><%= @order_title %></h4>
+    <div class="cart-table-head  clearfix">
+      <div class="col-xs-6">Product</div>
+      <div class="col-xs-6 clearfix center-align no-padding">
+        <div class="col-xs-6">Qty</div>
+        <div class="col-xs-6">Price</div>
+      </div>
+    </div>
     <%-  number_of_wines = 0
-         for order_item in @order.order_items
-           product = Product.find(order_item.product.id) if order_item.product.present?
-           if product.present? and product.categories.root.name == "Wine"
-             number_of_wines += order_item.quantity
-           end
+     for order_item in @order.order_items
+       product = Product.find(order_item.product.id) if order_item.product.present?
+        if product.present? and product.categories.root.name == "Wine"
+         number_of_wines += order_item.quantity
+        end
     -%>
-
-        <% if order_item.product.present? %>
-            <tr>
-              <td style="width:20px;padding-left:5px;"><%= show_image_tag(:product_thumb_cart, order_item.product.image_1) %></td>
-              <td><%= order_item.product.name %></td>
-              <td><%= order_item.quantity %></td>
-              <td><%= number_to_currency order_item.product.price, :unit => "&pound;" %></td>
-              <td align="right">
-                <%= link_to(image_tag("buttons/add_to_cart_button.png"), "/site/cart?product_id=#{order_item.product.id}", :method => 'post') unless order_item.product.quantity.to_i == 0 %>
-              </td>
-            </tr>
-        <% end %>
-        <tr>
-          <td colspan="2" style="text-align:right;">Sub Total</td><td></td><td><%= @order.sub_total %></td>
-        </tr>
-
-        <tr>
-          <td colspan="2" style="text-align:right;"><%= @order.delivery_name %> </td><td></td><td><%= @order.delivery_price %></td>
-        </tr>
-
-        <%- if @order.points_used > 0 -%>
-            <tr>
-              <td colspan="2" style="text-align:right;">Points Used (<%= @order.points_used %>)equivalent to </td><td></td><td><%= number_to_currency(@order.points_used * Setting.find(:first).points_to_pound, :unit => "&pound;" )%></td>
-            </tr>
-        <%- end -%>
-        <% if number_of_wines >= @setting.wine_discount_number.to_i %>
-            <tr>
-              <td colspan="2" >
-                <span style="font-size:14px;"><strong>Your cart contains <%= number_of_wines %> wines so will get a discount of</td>
-              <td></td><td><%= @setting.wine_discount_amount %>%</td>
-              </strong></span>
-              </td>
-            </tr>
-        <% end %>
-
-
-
-        <tr>
-          <td colspan="2" style="text-align:right;font-weight:bold">Total</td><td></td><td style="text-align:left;font-weight:bold"><%= number_to_currency(@order.total - (@order.points_used * Setting.find(:first).points_to_pound), :unit => "&pound;") %></td>
-        </tr>
-
-
-        </table>
-
-
-        <p style="text-align:right;width:99%;">
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <%= if order_item.product.present? and order_item.product.quantity.to_i == 0
+      <% if order_item.product.present? %>
+        <div class="cart-row  clearfix">
+          <div class="col-xs-6 clearfix white-col">
+            <div class="col-md-2"><%= show_image_tag(:product_thumb_cart, order_item.product.image_1) %></div>
+            <div class="col-md-10 top-20"><%= order_item.product.name %></div>
+          </div>
+          <div class="col-xs-6 grey-col clearfix">
+            <div class="col-xs-6 "><%= order_item.quantity %></div>
+            <div class="col-xs-6 "><%= number_to_currency order_item.product.price, :unit => "&pound;" %></div>
+          </div>
+        </div>
+        <div class="cart-row sub clearfix">
+          <div class="col-md-6 "></div>
+          <div class="col-md-6 grey-col clearfix">
+            <div class="col-xs-6">
+              <div><b>Sub Total</b></div>
+              <div><%= @order.delivery_name %></div>
+              <%- if @order.points_used > 0 -%>
+                <div>Points Used (<%= @order.points_used %>)equivalent to </div>
+              <%- end -%>
+            </div>
+            <div class="col-xs-6">
+              <div><%= @order.sub_total %></div>
+              <div><%= @order.delivery_price %></div>
+              <%- if @order.points_used > 0 -%>
+                <div>
+                  <%= number_to_currency(@order.points_used * Setting.find(:first).points_to_pound, :unit => "&pound;" )%>
+                </div>
+              <%- end -%>
+            </div>
+          </div>
+        </div>
+        <div class="cart-row sub clearfix">
+          <div class="col-xs-6">
+            <% if number_of_wines >= @setting.wine_discount_number.to_i %>
+              <div class="top-5">Your cart contains <%= number_of_wines %> wines so will get a discount of</div>
+            <% end %>
+            <div class="bottom-5">
+              <%= if order_item.product.present? and order_item.product.quantity.to_i == 0 
                 image_tag('out_of_stock.png')
               else
                 link_to image_tag("buttons/download_invoice.png"), :action => 'download_pdf',:id => @order.id,:format => "pdf"
-              end
-          %>
-    <%- end -%>
-    </p>
-    </div>
+                end
+              %>
+            </div>
+          </div>
+          <div class="col-xs-6 grey-col clearfix">
+            <% if number_of_wines >= @setting.wine_discount_number.to_i %>
+              <div class="col-xs-6">&nbsp;</div>
+              <div class="col-xs-6 "><%= @setting.wine_discount_amount %>%</div>
+          <% end %>
+          <div class="col-xs-6"><b>Total</b></div>
+          <div class="col-xs-6"><b><%= number_to_currency(@order.total - (@order.points_used * Setting.find(:first).points_to_pound), :unit => "&pound;") %></b></div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+</div>  
 
 <%- content_for :right do -%>
     <%= render :partial => '/site/shared/box_event' %>
