@@ -9,6 +9,7 @@ class Site::CartController < ApplicationController
     @delivery = @cart.delivery
 
     @cart.gift = ""
+    @cart.valid?
     @buy_together_discount = @cart.buy_together_discount
 
   end
@@ -91,6 +92,7 @@ class Site::CartController < ApplicationController
         flash[:notice] = "The promotional code is not valid,please enter a valid one."
       end
     end
+    # debugger
     redirect_to :controller=>'cart',:action => :index
   end
 

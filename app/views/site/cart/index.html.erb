@@ -3,8 +3,9 @@
 <%- @class = "no-padding"; @breadcrumbs = "#{link_to "Home", root_url} &raquo; Checkout &raquo; Review Order" -%>
 <div class="green-heading-with-border">Your Cart</div>
 <div class="full-width">
+<% #debugger %>
   <% if @cart.items.size > 0 %>
-    <div class="bottom-50"><%= show_messages(flash[:notice]) %></div>
+    <div class="bottom-50"><%= show_messages(flash[:notice]||@cart.show_errors) %></div>
     <div class="center-align"><%= image_tag("cart_step_1.png") %></div>
     <%= form_tag(site_cart_path(@cart.object_id), :id => "form_cart", :method => :put) do %>
       <div class="cart-table-head  clearfix">
