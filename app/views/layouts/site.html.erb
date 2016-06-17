@@ -330,8 +330,6 @@
     <%right_text = SmallBoxSetting.find_by_box_title("header_right_text")%>
     <%left_image = left_text ?  Image.find_by_id(left_text.image_id) : nil  %>
     <%right_image = right_text ?  Image.find_by_id(right_text.image_id) : nil  %>
-
-
     <div class="col-md-6 white-seprator"><%if left_image%><i><img src="<%= left_image.image_filename.url%>"></i><%end%><%=left_text.description%></div>
     <div class="col-md-6 discount-text"><%if right_image%><i><img src="<%= right_image.image_filename.url%>"></i><%end%><%=right_text.description%></div>
   </div>

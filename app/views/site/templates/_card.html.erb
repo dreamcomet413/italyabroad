@@ -54,9 +54,7 @@
             Quantity:
                 <b><%= @limited_stock %></b>
           <% else %>
-          
               Quantity:
-            
               <%= @quantity %>
         <% end %>
         </div>
@@ -72,7 +70,6 @@
             <%= @product.name %> <%= "(" + @product.size + ")" unless @product.size.blank? %></div>
           <% end %>
           <div class="product-rating-row clearfix">
-            
             <div class="star-rating">
               <% score =  @product.average_rating_round%>
               <%if score%>
@@ -254,7 +251,6 @@
                               <b>&pound; <%= quantity.price %> is <%= image_tag('out_of_stock.png') %></b>
                             <%- end -%>
                           <% end %>
-                        
                       </div>
                       <div class="wishlist-row row clearfix">
                         <% if @product.categories.root.present? && @product.categories.root.name == 'Wine' %>
@@ -301,7 +297,6 @@
             </div>
           <% end %>
         </div>
-        
         <div class="green-heading-2">Why we love it</div>
         <div class="product-detail-text">
           <%= (@product.description.html_safe) rescue "Product has no description" %>
@@ -384,7 +379,6 @@
     <% end %><!-- End include in hamper box -->
     <!-- Start you may like box -->
     <% if @product.categories.root.present? && @product.categories.root.name.downcase == "wine" and !@product.sub_categories.include?('Mixed case') %>
-    
       <% @includes = @product.product_includeds.all %>
       <% if !@includes.blank? %>
         <div class="similar-box">
@@ -427,7 +421,6 @@
         <div class=" clearfix">
           <% for related_product in related_products %>
             <%path = thumb_image(related_product)%>
-              
             <div class="col-md-3">
               <div class="small-box clearfix">
                 <div class="col-xs-4">
@@ -492,7 +485,6 @@ function goBack() {
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script>
-
   $(function() {
     $('a[href*=#]:not([href=#])').click(function() {
       if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {

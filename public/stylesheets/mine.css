@@ -2940,13 +2940,16 @@ width: 72px;
 	margin-left: 100px;
 	width: 135px;
 }
+.add-whole-case{
+	text-align: center;
+}
 /*=============== Media quires=================*/
 @media only screen and (max-width: 1200px) {
 	.landscape img{
 		max-width: 100%;
 		height: auto;
 		width: auto;
-	}
+	}	
 }
 @media only screen and (max-width: 1035px) {
 	.navigation-row .nav  li  a{
