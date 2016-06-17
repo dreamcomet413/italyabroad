@@ -2,16 +2,19 @@ class Site::CartController < ApplicationController
   # before_filter :site_login_required, :only => [:gift_options,:update_gift]
   layout "site"
 
+  # skip_before_filter  :verify_authenticity_token, :only => [:update]
+
   autocomplete :user, :name, :display_value => :full_name, :extra_data => [:surname ]
 
   def index
+    # debugger
     @cupon = @cart.cupon
     @delivery = @cart.delivery
 
     @cart.gift = ""
-    @cart.valid?
     @buy_together_discount = @cart.buy_together_discount
 
+    @cart.valid?
   end
 
   def create
@@ -53,46 +56,46 @@ class Site::CartController < ApplicationController
 
   def update
 
-    same_delivery = @cart.delivery.id == params[:delivery][:id].to_i rescue false
-    # render :text => same_delivery
-    # return 
-    if @cart.update(params[:cart], params[:cupon][:code])
-      if @cart.sub_total > Setting.order_delivery_amount and same_delivery and session[:free_delivery] == false
+      same_delivery = @cart.delivery.id == params[:delivery][:id].to_i rescue false
+      # render :text => same_delivery
+      # return 
+      if @cart.update(params[:cart], params[:cupon][:code])
+        if @cart.sub_total > Setting.order_delivery_amount and same_delivery and session[:free_delivery] == false
 
-        @delivery = Delivery.find(12)
-        delivery_id = @delivery
-        session[:free_delivery] = true
+          @delivery = Delivery.find(12)
+          delivery_id = @delivery
+          session[:free_delivery] = true
 
-        @cart.delivery = @delivery
+          @cart.delivery = @delivery
 
-      elsif @cart.sub_total < Setting.order_delivery_amount and same_delivery and session[:free_delivery] == true
-        @delivery = (Delivery.find(params[:delivery][:id]) rescue Delivery.first)
-        if @delivery.id == 12
-          @delivery = Delivery.find(:first)
+        elsif @cart.sub_total < Setting.order_delivery_amount and same_delivery and session[:free_delivery] == true
+          @delivery = (Delivery.find(params[:delivery][:id]) rescue Delivery.first)
+          if @delivery.id == 12
+            @delivery = Delivery.find(:first)
+          end
+          delivery_id = @delivery
+          session[:free_delivery] = false
+          @cart.delivery = @delivery
+
+        else
+          delivery_id = params[:delivery][:id] rescue nil
+          @delivery = Delivery.find(delivery_id) rescue Delivery.first
+          @cart.delivery  = @delivery
+
         end
-        delivery_id = @delivery
-        session[:free_delivery] = false
-        @cart.delivery = @delivery
 
+        flash[:notice] = @cart.show_warnings
       else
-        delivery_id = params[:delivery][:id] rescue nil
-        @delivery = Delivery.find(delivery_id) rescue Delivery.first
-        @cart.delivery  = @delivery
-
+        flash[:notice] = @cart.show_errors
       end
+      @cupon = Cupon.find_by_code( params[:cupon][:code])
 
-      flash[:notice] = @cart.show_warnings
-    else
-      flash[:notice] = @cart.show_errors
-    end
-    @cupon = Cupon.find_by_code( params[:cupon][:code])
-
-    unless  params[:cupon][:code].blank?
-      if @cupon.nil? or @cupon.blank?
-        flash[:notice] = "The promotional code is not valid,please enter a valid one."
+      unless  params[:cupon][:code].blank?
+        if @cupon.nil? or @cupon.blank?
+          flash[:notice] = "The promotional code is not valid,please enter a valid one."
+        end
       end
-    end
-    # debugger
+      # debugger
     redirect_to :controller=>'cart',:action => :index
   end
 

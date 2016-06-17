@@ -3,19 +3,21 @@ class Site::SearchController < ApplicationController
   autocomplete :search, :name
 
   def autocomplete_search_name
-    @products = Product.where("name like '%#{params[:term]}%'").limit(10)
+    @products = Product.where("name like '%#{params[:term]}%'").where(:active=>true).limit(10)
     @recipes = Recipe.where("name like '%#{params[:term]}%'").limit(10)
     @users = User.where("name like '%#{params[:term]}%'").limit(10)
     @grapes = Grape.where("name like '%#{params[:term]}%'").limit(10)
     @results = @products + @recipes + @users + @grapes
     render_result_data(@results)
   end
+
   def render_result_data(result )
     render :json => result.collect {|p|
       name = p.name.gsub(eval("/#{params[:term]}/i")){|m| "<b>#{m}</b>"}
       {:label => name, :value => p.name, :id => p.id}
     }.to_json.to_s.html_safe
   end
+
   def autocomplete_search_wine_name
     # this is to search all the wine products on index pages
     products =  Search.get_products('wine', params)

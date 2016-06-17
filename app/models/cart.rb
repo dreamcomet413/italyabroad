@@ -189,9 +189,9 @@ class Cart
     @setting = Setting.first
     @number_of_wines_in_cart = 0
     @items.each do  |t|
-      @p = Product.find(t.product.id)
+      p = Product.find(t.product.id)
 
-      if @p.categories.root.name == "Wine"
+      if p.categories.root.name == "Wine"
         if t.quantity >= 1 and @setting.wine_discount_number.to_i != 0 and @setting.wine_discount_amount.to_i != 0
           @number_of_wines_in_cart = @number_of_wines_in_cart + t.quantity.to_i
         end

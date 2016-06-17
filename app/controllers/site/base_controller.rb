@@ -4,6 +4,7 @@ class Site::BaseController < ApplicationController
     
   end
   def index
+    # debugger
     @setting = Setting.first
     #@best_sellers = Product.find(:all, :select => "id, rating", :order => "rating desc", :limit => 3)
     # wine_categories = Category.find_by_sql("select * from categories where friendly_identifier LIKE 'white-wines'")
@@ -56,6 +57,7 @@ class Site::BaseController < ApplicationController
     @user = User.new
     # params[:user_type] = ""
     if request.post?
+      session[:u] = 'ehllo'
       # self.current_user = User.authenticate(params[:login], params[:password])
       logged_in = User.authenticate(params[:login], params[:password])
       if params[:login] != '' and params[:password] != '' and logged_in
