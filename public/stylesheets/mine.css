@@ -100,7 +100,7 @@ img{
 .top-search{
 	/*background: url(../images/magnifier.png) no-repeat;*/
 	padding-right: 40px;
-	height: 46px;
+	height: 46px !important;
 	/*background-position: 97% 50%;*/
 }
 .logo-row .btn{
