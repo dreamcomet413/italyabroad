@@ -2759,7 +2759,7 @@ a.close-btn, .black-strip  a{
 }
 .landscape  img{
 	/*width: 240px;*/
-	/*height: 112px;*/
+	max-height: 112px;
 	/*max-width: 240px;*/
 }
 .portrait .add-row img, .landscape .add-row img {
