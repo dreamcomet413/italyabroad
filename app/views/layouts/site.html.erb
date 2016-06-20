@@ -120,7 +120,7 @@
                 <%= text_field_tag :text, search_text, :class=> "form-control top-search",  "data-autocomplete"=>"/site/search/autocomplete_search_name", :placeholder => "Search Italyabroad.com", :style=>"" %>
                 <i class="magnifier"><input src="/images/magnifier.png?1462969008" type="image"></i>
               </div>
-              <% id = @page_id == "products_show" ? "all" : params[:id] %>
+              <% id = @page_id == "products_show" ? "all" : params[:id]||'all' %>
               <%= hidden_field_tag :id, id %>
               <div class="input-group-btn">
                 <% option_val = @search_type%>
