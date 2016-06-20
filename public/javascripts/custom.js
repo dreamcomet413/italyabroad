@@ -2,6 +2,15 @@ $( document ).ready(function() {
 // swiper best seller
 
 
+$('.head_search .left-bar-search input').bind('railsAutocomplete.select', function(event, data){
+  /* Do something here */
+  console.log(data);
+  if (data.item.slug!='') {
+    window.location = '/'+data.item.category+'/'+data.item.slug;
+  }
+
+});
+
 //Header serch main
 $(document).on('click','.head_search form ul li a',function(){
   $('#id').val($(this).attr('ival'));

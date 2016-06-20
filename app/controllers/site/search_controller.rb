@@ -14,7 +14,7 @@ class Site::SearchController < ApplicationController
   def render_result_data(result )
     render :json => result.collect {|p|
       name = p.name.gsub(eval("/#{params[:term]}/i")){|m| "<b>#{m}</b>"}
-      {:label => name, :value => p.name, :id => p.id}
+      {:label => name, :value => p.name, :id => p.id, :category => p.class == Product ? p.root_category.downcase : '', :slug => p.class==Product ? p.friendly_identifier.downcase : ''}
     }.to_json.to_s.html_safe
   end
 
@@ -48,7 +48,7 @@ class Site::SearchController < ApplicationController
     recipes = Recipe.where("friendly_identifier like '%#{params[:term]}%' ").paginate(:page => params[:page], :per_page => 10)
     render_result_data(recipes)
   end
-  
+
   def index
     if params[:id] == 'other drinks'
       params[:id] = params[:id].gsub(' ' , '-')
