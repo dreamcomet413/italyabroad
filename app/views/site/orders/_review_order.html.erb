@@ -4,7 +4,8 @@
 		<% for order_item in order.order_items %>
 		<% unless order_item.product_id.nil? %>
             <tr class="list_plain %> order-table">
-              <% product = Product.find(order_item.product_id) %>
+              <% product = Product.find_by_id(order_item.product_id) %>
+              <% next unless product %>
   						<td style="text-align:left;width:400px;"><%=order_item.name%></td>
 
   						<td><td style="text-align:left">

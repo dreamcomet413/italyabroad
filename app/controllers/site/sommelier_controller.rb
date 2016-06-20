@@ -9,7 +9,7 @@ class Site::SommelierController < ApplicationController
         "Light, medium or full bodied?",
         "To accompany food or to drink on its own?",
         "How much would you like to spend?",
-        "What type of food is the wine for?"
+        "What food is the wine for?"
     ]
   end
 
@@ -22,7 +22,7 @@ class Site::SommelierController < ApplicationController
         "Light, medium or full bodied?",
         "To accompany food or to drink on its own?",
         "How much would you like to spend?",
-        "What type of food is the wine for?"
+        "What food is the wine for?"
     ]
 
     session[:selected_search_options][:wine_type] = params[:selected_option] if ["Red Wine", "Rose Wine", "White Wine", "Sparkling Wine", "Surprise Me"].include?(params[:selected_option])
