@@ -1,4 +1,4 @@
-<%- @title = "#{@my_profile ? "My" : @user.name+"'s"} Profile" -%>
+<%- @title = "#{@my_profile ? "My" : @user.full_name}" -%>
 <%- @breadcrumbs = "#{link_to "Home", root_url} &raquo; #{link_to('Community',wine_community_path)} &raquo #{@title}".html_safe -%>
 <%= render :partial => 'site/shared/box_login' %>
 <div class="full-width">
@@ -9,7 +9,8 @@
   <div class="section-form">
     <div class="row clearfix">
       <div class="col-xs-2 center-align">
-        <%= image_tag(@user.photo.image_filename.url) if @user.photo.present? && @user.photo.image_filename.present? && @user.photo.image_filename.url.present?%> 
+        <% image_tag(@user.photo.image_filename.url) if @user.photo.present? && @user.photo.image_filename.present? && @user.photo.image_filename.url.present?%> 
+        <%= avatar_for_user(@user) %>
         <% unless @my_profile %>
           <%- if logged_in? and @user.followed_by?(current_user) -%>
             <div class="center-align top-20">

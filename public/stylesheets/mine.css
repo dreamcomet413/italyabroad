@@ -98,10 +98,10 @@ img{
 	margin-top: 30px;
 }
 .top-search{
-	background: url(../images/magnifier.png) no-repeat;
+	/*background: url(../images/magnifier.png) no-repeat;*/
 	padding-right: 40px;
 	height: 46px;
-	background-position: 97% 50%;
+	/*background-position: 97% 50%;*/
 }
 .logo-row .btn{
 	line-height: 2.3;
@@ -459,6 +459,10 @@ h3{
 	text-decoration: none;
 	color: #333;
 }
+
+.community-wrapper .slide-text{
+	font-size:13px;
+}
 .review-arrow .swiper-button-prev, .review-arrow .swiper-container-rtl .swiper-button-next{
 	width: 12px;
 	min-width: 12px;
@@ -814,7 +818,9 @@ margin-right: 5px;}
 	position: absolute;
 	right: 6px;
 	top: 4px;
+	z-index: 400;
 }
+
 .blog-search-text{
 	float: left;
 	text-align: right;
@@ -2941,8 +2947,10 @@ width: 72px;
 	width: 135px;
 }
 .add-whole-case{
-	text-align: center;
+	text-align: right;
+	margin-right:8px;
 }
+
 /*=============== Media quires=================*/
 @media only screen and (max-width: 1200px) {
 	.landscape img{
