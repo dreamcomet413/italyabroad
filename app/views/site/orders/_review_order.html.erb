@@ -3,28 +3,26 @@
 
 		<% for order_item in order.order_items %>
 		<% unless order_item.product_id.nil? %>
-            <tr class="list_plain %> order-table">
-              <% product = Product.find_by_id(order_item.product_id) %>
-              <% next unless product %>
-  						<td style="text-align:left;width:400px;"><%=order_item.name%></td>
-
-  						<td><td style="text-align:left">
-              	<% if order_item.reviewed == false %>
+      <div class=" list_plain order-table clearfix bottom-50">
+        <% product = Product.find_by_id(order_item.product_id) %>
+          <% next unless product %>
+						<div class="col-md-5"><%=order_item.name%></div>
+            <div class="col-md-7">
+              <% if order_item.reviewed == false %>
               <%#= link_to "Write Review",
                :update =>"write_review#{product.id}" , :remote => true,
                         :url => {:controller=>'site/orders', :action => "write_review", :id => product.id,:order_id=>order.id}%>
-              <div class="green-button"><%= link_to "Write Review", nested_products_uri(product) %></div>
-              <div class="green-button"><%= link_to "Don't Remind Me", cancel_review_site_order_path(order_item),:class=>"cancel_review" %></div>
-            
+              <div class="clearfix">
+                <div class="green-button col-md-3 "><%= link_to "Write Review", nested_products_uri(product) %></div>
+                <div class="green-button col-md-5"><%= link_to "Don't Remind Me", cancel_review_site_order_path(order_item),:class=>"cancel_review" %></div>
+              </div>
             <% end %>
-  						</td>
+  				  </div>
+              <div id="write_review<%=product.id%>"></div>
 
-  						<tr><td>
-              <div id="write_review<%=product.id%>"></div></td></tr>
-
-          </tr>
-  				<% end %>
-          <% end %>
+      </div>
+		<% end %>
+  <% end %>
 
 
 <% end %>

@@ -132,17 +132,17 @@
               </a>
             </h4>
           </div>
-        </div>
-        <div id="collapseFive" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingFive">
-          <div class="panel-body">
-            <ul>
-              <% if !@category.nil? %>
-                <%= hidden_field_tag :producer_id , '',  :class=>'field_value' %>
-                <% @category.products.producers.inject([["Any", ""]]) { |ps, p| ps << [p.name, p.id]}.each do |item| %>
-                <li><a href="#." value="<%= item[1] %>" class="field_text" >  <%= item[0] %></a></li>
+          <div id="collapseFive" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingFive">
+            <div class="panel-body">
+              <ul>
+                <% if !@category.nil? %>
+                  <%= hidden_field_tag :producer_id , '',  :class=>'field_value' %>
+                  <% @category.products.producers.inject([["Any", ""]]) { |ps, p| ps << [p.name, p.id]}.each do |item| %>
+                  <li><a href="#." value="<%= item[1] %>" class="field_text" >  <%= item[0] %></a></li>
+                  <% end %>
                 <% end %>
-              <% end %>
-            </ul>
+              </ul>
+            </div>
           </div>
         </div>
         <div class="panel panel-default">
