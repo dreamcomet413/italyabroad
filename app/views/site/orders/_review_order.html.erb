@@ -2,7 +2,7 @@
 
 
 		<% for order_item in order.order_items %>
-		<% unless order_item.product_id.nil? %>
+		<% unless (order_item.product_id.nil? or order_item.reviewed) %>
       <div class=" list_plain order-table clearfix bottom-50">
         <% product = Product.find_by_id(order_item.product_id) %>
           <% next unless product %>
