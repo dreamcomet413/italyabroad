@@ -221,6 +221,9 @@ ItalyabroadNew::Application.routes.draw do
     
   
     resources :orders, :only => [:index, :new, :create, :show] do
+      member do
+        get :cancel_review
+      end
       match :download_pdf, :on => :collection
     end
     resources :wish_list, :only => [:index, :create, :destroy]

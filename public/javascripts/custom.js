@@ -1,6 +1,13 @@
 $( document ).ready(function() {
 // swiper best seller
 
+// order controller cancel review
+// $(document).on('click', '.cancel_review', function(event){
+//   $.get($(this).attr('href'),function(data){
+    
+//   });
+//   event.preventDefault();
+// });
 
 $('.head_search .left-bar-search input').bind('railsAutocomplete.select', function(event, data){
   /* Do something here */

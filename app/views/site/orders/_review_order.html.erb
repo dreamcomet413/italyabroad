@@ -14,6 +14,8 @@
                :update =>"write_review#{product.id}" , :remote => true,
                         :url => {:controller=>'site/orders', :action => "write_review", :id => product.id,:order_id=>order.id}%>
               <div class="green-button"><%= link_to "Write Review", nested_products_uri(product) %></div>
+              <div class="green-button"><%= link_to "Don't Remind Me", cancel_review_site_order_path(order_item),:class=>"cancel_review" %></div>
+            
             <% end %>
   						</td>
 

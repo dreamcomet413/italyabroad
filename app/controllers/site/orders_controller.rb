@@ -287,6 +287,12 @@ class Site::OrdersController < ApplicationController
     redirect_to session[:return_url]
   end
 
+  def cancel_review
+    order_item = OrderItem.find(params[:id])
+    order_item.reviewed = true
+    order_item.save
+    redirect_to '/show_order_details'
+  end
 
   private
 
