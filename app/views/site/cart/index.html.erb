@@ -9,11 +9,11 @@
     <div class="center-align"><%= image_tag("cart_step_1.png") %></div>
     <%= form_tag(site_cart_path(@cart.object_id), :id => "form_cart", :method => :put) do %>
       <div class="cart-table-head  clearfix">
-        <div class="col-xs-6">Product</div>
-        <div class="col-xs-6 clearfix center-align no-padding">
-          <div class="col-xs-3">Price</div>
-          <div class="col-xs-3">Qty</div>
-          <div class="col-xs-3">Total</div>
+        <div class="col-md-6">Product</div>
+        <div class="col-md-6 clearfix center-align no-padding hide-on-mobile">
+          <div class="col-md-3">Price</div>
+          <div class="col-md-3">Qty</div>
+          <div class="col-md-3">Total</div>
         </div>
       </div>
       <% for cart_item in @cart.items %>
@@ -21,8 +21,8 @@
         <%path =  thumb_image(product) %>
         <% cart_total += cart_item.total %>
         <div class="cart-row  clearfix">
-          <div class="col-xs-6 clearfix white-col">
-            <div class="col-xs-2">
+          <div class="col-md-6 clearfix white-col">
+            <div class="col-xs-2 mobile-top-15">
               <%= image_tag(path) %>
             </div>
             <div class="col-xs-10 top-20">
@@ -43,13 +43,17 @@
               <% end %>
             </div>
           </div>
-          <div class="col-xs-6 grey-col clearfix">
-            <div class="col-xs-3"><%= number_to_currency cart_item.price, :unit => "&pound;" %></div>
-            <div class="col-xs-3">
+          <div class="col-md-6 grey-col clearfix">
+            <div class="col-md-3"><span class="show-on-mobile">Price</span> <%= number_to_currency cart_item.price, :unit => "&pound;" %></div>
+            <div class="col-md-3">
+            <span class="show-on-mobile">Qty</span>
               <%= text_field_tag "cart[][quantity]", nil, :value => cart_item.quantity, :size => 2, :maxlength => 3, :style => "text-align:center", :id => "txt_qty_#{cart_item.product.id }" %>
             </div>
-            <div class="col-xs-3"><%= number_to_currency cart_item.total, :unit => "&pound;" %></div>
-            <div class="col-xs-3">
+            <div class="col-md-3">
+              <span class="show-on-mobile">Total</span> <%= number_to_currency cart_item.total, :unit => "&pound;" %>
+            </div>
+            <div class="col-md-3">
+              <span class="show-on-mobile">Remove</span>
               <%= link_to(image_tag("icon-cancel.png", :alt => "Delete Item", :style => "vertical-align:bottom"), "/site/cart/#{@cart.object_id}?product_id=#{cart_item.product.id}", :method => :delete, :confirm => "Are you sure want to delete this product?")  %>
             </div>
           </div>

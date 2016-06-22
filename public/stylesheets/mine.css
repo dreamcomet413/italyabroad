@@ -2300,6 +2300,10 @@ a.close-btn, .black-strip  a{
 	border-right: solid 1px #ebebeb;
 	background: #fff;
 	padding: 5px 0px;
+	min-height: 70px;
+}
+.white-col img{
+	max-height: 80px;
 }
 .grey-col{
 	padding: 30px 0px 0px;
@@ -2756,7 +2760,7 @@ a.close-btn, .black-strip  a{
 	/*width: 56px;*/
 	/*	height: 210px;*/
 	/*max-width: 56px;*/
-}
+}																																																																																																																																																																																						
 .landscape  img{
 	/*width: 240px;*/
 	max-height: 112px;
@@ -3208,5 +3212,27 @@ width: 72px;
 	}
 	.veg-wrapper{
 		margin-left: 20px;
+	}
+	.white-col .col-md-2{
+		text-align: center;
+	}
+	.grey-col{
+		text-align: left;
+		padding: 10px 0px 20px;
+		font-size: 15px;
+	}
+	.grey-col .col-md-3, .grey-col .col-md-4{
+		margin-bottom: 10px;
+	}
+	.grey-col input{
+	}
+	.grey-col span.show-on-mobile{
+		display: inline-block;
+		margin-right: 15px;
+		min-width: 90px;
+		color: #5c8018;
+	}
+	.mobile-top-15{
+		padding-top: 15px;
 	}
 }

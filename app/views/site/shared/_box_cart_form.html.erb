@@ -1,9 +1,9 @@
 <div class="cart-table-head  clearfix">
-	<div class="col-xs-6">Product</div>
-    <div class="col-xs-6 clearfix center-align no-padding">
-    	<div class="col-xs-4">Price</div>
-        <div class="col-xs-4">Qty</div>
-        <div class="col-xs-4">Total</div>
+	<div class="col-md-6">Product</div>
+    <div class="col-md-6 clearfix center-align no-padding hide-on-mobile">
+    	<div class="col-md-4">Price</div>
+        <div class="col-md-4">Qty</div>
+        <div class="col-md-4">Total</div>
 	</div>
 </div>
 <%  number_of_wines = 0
@@ -15,8 +15,8 @@
 	end
 %>
 	<div class="cart-row  clearfix">
-		<div class="col-xs-6 clearfix white-col">
-			<div class="col-xs-2">
+		<div class="col-md-6 clearfix white-col">
+			<div class="col-xs-2 mobile-top-15">
 				<%= show_image_tag(:product_thumb_cart, product.image_1,:jpg,product.name) %>
 			</div>
 			<div class="col-xs-10 top-20">
@@ -37,12 +37,12 @@
 				<% end %>	
 			</div>
 		</div>
-		<div class="col-xs-6 grey-col clearfix">
-			<div class="col-xs-4"><%= number_to_currency cart_item.price, :unit => "&pound;" %></div>
-			<div class="col-xs-4 disable-field">
-				<%= text_field_tag "cart[][quantity]", nil, :value => cart_item.quantity, :size => 2, :maxlength => 2,:disabled=>true %>
+		<div class="col-md-6 grey-col clearfix">
+			<div class="col-md-4"><span class="show-on-mobile">Price</span><%= number_to_currency cart_item.price, :unit => "&pound;" %></div>
+			<div class="col-md-4 disable-field">
+				<span class="show-on-mobile">Qty</span> <%= text_field_tag "cart[][quantity]", nil, :value => cart_item.quantity, :size => 2, :maxlength => 2,:disabled=>true %>
 			</div>
-			<div class="col-xs-4"><%= number_to_currency cart_item.total, :unit => "&pound;" %></div>
+			<div class="col-md-4"><span class="show-on-mobile">Total</span><%= number_to_currency cart_item.total, :unit => "&pound;" %></div>
 		</div>
 	</div>
 <% end %>

@@ -24,7 +24,7 @@
         <%- end -%>
         <div class="footer-link"><%= link_to("more", "/wine", :style => "color:#9b0707;") %></div>
     </div>
-    <div class="footer-col3">
+    <div class="footer-col3">   
         <div class="footer-heading"><%= link_to "Other Drinks","/other-drinks" %></div>
         <%- parent_category = Category.find_by_name('Other Drinks') -%>
             <%- if !parent_category.nil? -%>

@@ -136,7 +136,6 @@ module ApplicationHelper
       if image
         logger.info(product.inspect)
         if product.is_landscape
-          
             path = image.image_filename.landscape.url
         else
           path = image.image_filename.potrait.url
@@ -157,9 +156,9 @@ module ApplicationHelper
       #   {:height => '210'}
       # landscap wine
       when :wine_category
-        {:height => '200px'}
+        {:height => '112'}
       when :product_food
-        {:height => '200px'}
+        {:height => '100'}
       when :wine_category_producers_page, :product_food
         {:height => '133', :width => '100'}
       when :food_category, :food_sub_category, :hamper_sub_category
