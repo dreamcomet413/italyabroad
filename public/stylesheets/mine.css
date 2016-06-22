@@ -100,7 +100,7 @@ img{
 .top-search{
 	/*background: url(../images/magnifier.png) no-repeat;*/
 	padding-right: 40px;
-	height: 46px !important;
+	height: 46px ;
 	/*background-position: 97% 50%;*/
 }
 .logo-row .btn{
@@ -3143,6 +3143,9 @@ width: 72px;
 	}*/
 }
 @media only screen and (max-width: 768px) {
+	.top-search{
+		height: 34px ;
+	}
 	.navigation-row .nav li  a{
 		padding: 10px 10px 10px 10px;
 		background: url(../images/seprator.png) no-repeat right center !important;
@@ -3235,5 +3238,29 @@ width: 72px;
 	.veg-wrapper{
 		margin-left: 20px;
 	}
+	.pay-now, .continue-shopping{
+		font-size: 14px;
+	}
+	.continue-shopping{
+		margin-right: 10px;
+		width: 160px;
+	}
+	.empty{
+		display: block;
+		margin: 10px 15px 0px 0px;
+	}
 	
+}
+@media only screen and (max-width: 325px) {
+	.logo-small{
+		width: 130px;
+	}
+	.code-text{
+		margin-bottom: 10px;
+		display: block;
+		width: 100%;
+	}
+	.pay-now, .continue-shopping{
+		font-size: 13px;
+	}
 }
