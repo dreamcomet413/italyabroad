@@ -49,7 +49,7 @@ class Cart
     if products.length < 5 
       products = Product.where(["region_id IN (?) or producer_id IN (?)",region_ids,producer_ids])
     end
-    return products
+    return products.where(:active=>true)
   end
   
   def product_ids
