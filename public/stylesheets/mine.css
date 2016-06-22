@@ -2954,7 +2954,15 @@ width: 72px;
 	text-align: right;
 	margin-right:8px;
 }
-
+.fl-right{
+	float: right !important;
+}
+.hide-on-tab{
+	display: block;
+}
+.show-on-tab{
+	display: none;
+}
 /*=============== Media quires=================*/
 @media only screen and (max-width: 1200px) {
 	.landscape img{
@@ -3124,8 +3132,7 @@ width: 72px;
 	}
 	.right-border{
 		border: none;
-		border-bottom: solid 1px #dcdcdc;
-		margin-bottom:30px;
+		margin-bottom:0px;
 	}
 	.login-wrapper{
 		padding-left: 0px;
@@ -3143,6 +3150,15 @@ width: 72px;
 	}*/
 }
 @media only screen and (max-width: 768px) {
+	.fl-right{
+		float: none !important;
+	}
+	.hide-on-tab{
+		display: none;
+	}
+	.show-on-tab{
+		display: block;
+	}
 	.top-search{
 		height: 34px ;
 	}

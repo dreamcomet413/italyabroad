@@ -30,7 +30,7 @@ summary {
 audio,
 canvas,
 progress,
-video {
+video { 
   display: inline-block;
   vertical-align: baseline;
 }
