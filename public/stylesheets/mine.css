@@ -3177,6 +3177,28 @@ width: 72px;
 	.main-banner{
 		display: none;
 	}
+	.white-col .col-md-2{
+		text-align: center;
+	}
+	.grey-col{
+		text-align: left;
+		padding: 10px 0px 20px;
+		font-size: 15px;
+	}
+	.grey-col .col-md-3, .grey-col .col-md-4{
+		margin-bottom: 10px;
+	}
+	.grey-col input{
+	}
+	.grey-col span.show-on-mobile{
+		display: inline-block;
+		margin-right: 4.5%;
+		width: 30%;
+		color: #5c8018;
+	}
+	.mobile-top-15{
+		padding-top: 15px;
+	}
 
 }
 
@@ -3213,26 +3235,5 @@ width: 72px;
 	.veg-wrapper{
 		margin-left: 20px;
 	}
-	.white-col .col-md-2{
-		text-align: center;
-	}
-	.grey-col{
-		text-align: left;
-		padding: 10px 0px 20px;
-		font-size: 15px;
-	}
-	.grey-col .col-md-3, .grey-col .col-md-4{
-		margin-bottom: 10px;
-	}
-	.grey-col input{
-	}
-	.grey-col span.show-on-mobile{
-		display: inline-block;
-		margin-right: 15px;
-		min-width: 90px;
-		color: #5c8018;
-	}
-	.mobile-top-15{
-		padding-top: 15px;
-	}
+	
 }
