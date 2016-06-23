@@ -3054,6 +3054,9 @@ width: 72px;
 	.headerSmall .btn-default:active, .headerSmall  .btn-default.active, .headerSmall  .open > .dropdown-toggle.btn-default{
 		background: none;
 	}
+	.headerSmall .sub-menu-2{
+		display: none;
+	}
 	.header-search-small , .top-links-small, .social-links-small, .cart-small{
 		float: right;
 		width: 40px;
@@ -3070,7 +3073,7 @@ width: 72px;
 		top:70px;
 		border-radius: 0px;
 		border: none;
-		background-color: rgba(0,0,0,0.95);
+		background-color: rgba(68,68,68,0.85);
 		z-index: 9999;
 		min-height: 120px;
 		overflow: scroll;
