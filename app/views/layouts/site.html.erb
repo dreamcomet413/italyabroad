@@ -120,7 +120,7 @@
                 <%= text_field_tag :text, search_text, :class=> "form-control top-search",  "data-autocomplete"=>"/site/search/autocomplete_search_name", :placeholder => "Search Italyabroad.com", :style=>"" %>
                 <i class="magnifier"><input src="/images/magnifier.png?1462969008" type="image"></i>
               </div>
-              <% id = @page_id == "products_show" ? "all" : params[:id]||'all' %>
+              <% id = ['wine','Other Drinks', 'food', 'recipe', 'hampers', 'people', 'chef', 'all'].include?(params[:id]) ? params[:id] : 'all' %>
               <%= hidden_field_tag :id, id %>
               <div class="input-group-btn">
                 <% option_val = @search_type%>
@@ -315,9 +315,11 @@
         end %>
         <div class="input-group">
           <%= text_field_tag :text, search_text, :class=> "form-control top-search",  "data-autocomplete"=>"/site/search/autocomplete_search_name", :placeholder => "Search Italyabroad.com", :style=>"" %>
-        <%= hidden_field_tag :id, params[:id] %>
+        <% id = ['wine','Other Drinks', 'food', 'recipe', 'hampers', 'people', 'chef', 'all'].include?(params[:id]) ? params[:id] : 'all' %>
+
+        <%= hidden_field_tag :id, id %>
         <div class="input-group-btn">
-          <% option_val = params[:id]%>
+          <% option_val = id %>
           <% option_val = "All Site" if option_val=='all'%>
           <% option_val.capitalize! if !option_val.nil? %>
           <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= option_val || params[:category] || "All site" %> <span class="caret"></span></button>
