@@ -8,7 +8,7 @@
   </div>
   <div class="section-form">
     <div class="row clearfix">
-      <div class="col-xs-2 center-align">
+      <div class="col-xs-4 col-md-2 center-align">
         <% image_tag(@user.photo.image_filename.url) if @user.photo.present? && @user.photo.image_filename.present? && @user.photo.image_filename.url.present?%> 
         <%= avatar_for_user(@user) %>
         <% unless @my_profile %>
@@ -23,7 +23,7 @@
           <%- end -%>
         <% end %>
       </div>
-      <div class="col-xs-10">
+      <div class="col-xs-8 col-md-10">
         <%if @my_profile %>
           <%= form_for(:user, :url => site_customer_path(@user), :html => {:method => :put}) do -%>
             <div class="row form-row clearfix">

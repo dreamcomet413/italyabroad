@@ -29,7 +29,7 @@
       <%- for user in users -%>
         <div class="member-col col-md-1 col-xs-3">
           <div> <%= link_to user.try(:photo).try(:image_filename).present? ? "<div class='user_photo_small' id='user_photo'>#{image_tag(user.photo.image_filename.url,:style => "width :66x;height:66px;")}</div>".html_safe : avatar_for_user(user, 'small', '66px'), site_customer_path(user), :title => user.name  %></div>
-          <div class="member-name"><%= link_to user.name, site_customer_path(user), :class=>'data', :title => user.name %></div>
+          <div class="member-name"><%= link_to(user.name.blank? ? '&nbsp;'.html_safe : user.name  , site_customer_path(user), :class=>'data', :title => user.name) %></div>
         </div>
       <%- end -%>
     </div><!-- End New Members Row-->
