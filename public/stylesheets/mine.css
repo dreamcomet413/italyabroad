@@ -1899,12 +1899,16 @@ a.close-btn, .black-strip  a{
 	color: #030;
 }
 .main-menu-small .sub-menu-2 li a{
-	color:#000;
+	color:#fff;
 	text-decoration: none;
 	display: block;
 }
+
 .main-menu-small .sub-menu-2 li:hover{
 	background: #fff;
+}
+.main-menu-small .sub-menu-2 li a:hover, .main-menu-small .sub-menu-2 li a:active, .main-menu-small .sub-menu-2 li a:focus{
+	color: #000;
 }
 .navbar-nav li:hover .sub-menu {
 	display: block;
@@ -3061,14 +3065,14 @@ width: 72px;
 	}
 	.headerSmall .dropdown-menu{
 		position: absolute;
-		width: 100%;
-		left: 0;
+		width: 60%;
+		left: 40%;
 		top:70px;
 		border-radius: 0px;
 		border: none;
-		background-color: rgba(92,128,24,0.95);
+		background-color: rgba(0,0,0,0.95);
 		z-index: 9999;
-		height: 250px;
+		min-height: 120px;
 		overflow: scroll;
 	}
 	.headerSmall .dropdown-menu > li > a{
