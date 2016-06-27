@@ -1,5 +1,11 @@
 $( document ).ready(function() {
 // swiper best seller
+// toggle class main menu
+$('.switch').on('click', function(e) {
+      $('.menu-main').toggleClass("show"); //you can list several class names 
+      e.preventDefault();
+});
+
 
 // order controller cancel review
 // $(document).on('click', '.cancel_review', function(event){
