@@ -207,36 +207,6 @@
           <button class="btn btn-default dropdown-toggle switch" type="button" id="dropdownMenu1" data-toggle="" aria-haspopup="true" aria-expanded="true">
             <img src="/images/menu-icon.png">
           </button>
-<<<<<<< HEAD
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-          <% for category in ["Wine", "Other Drinks", "Food", "Hampers", "Wine Tours", "Wine Club", "Events"] do %>
-          <% category = Category.find_by_name(category)%>
-            <% if category.present? %>
-            <li id="link-to-<%= category.friendly_identifier %>" class="<%= "active" if active_uri == "/#{category.friendly_identifier}"   %>">
-              <%= link_to category.name, "/#{category.try(:friendly_identifier)}" %>
-              <%- unless category.children.blank? -%>
-              <ul class="sub-menu-2" style="display:none;">
-              <% wine_category = Category.find_by_name("Wine") %>
-              <% children = Category.find(:all,:conditions=>['parent_id = ? and show_in_menu = ?',category.id,true] ) %>
-              <%- for child in children -%>
-                <% if child.products.count > 0 %>
-                  <% if child.name == "Wine Vouchers" %>
-                    <% temp = child %>
-                  <% elsif child.name == "Wine Tours" %>
-                  <!-- Hiding Wine Tours -->
-                  <% elsif child.name == "Wine accessories" %>
-                    <li><%= link_to(child.name.html_safe(), nested_categories_url(category, child)) %></li>
-                    <li><%= link_to(temp.name.html_safe(), nested_categories_url(category, temp)) if temp.present? %></li>
-                  <% else %>
-                  <li><%= link_to(child.name.html_safe(), nested_categories_url(category, child)) %></li>
-                  <%- end -%>
-                <% end %>
-              <%-  end -%>
-              <% if category.products.where(["discount > 0"]).length > 0 %>
-                <li style="font-weight:bold;">
-                  <%= link_to("Special Offers", nested_categories_url(category, "offer"), :type => "special_offer", :class => "red-text") %>
-                </li>
-=======
           <ul class="dropdown-menu menu-main" aria-labelledby="dropdownMenu1">
           <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
             <% cnt = 1 %>
@@ -282,7 +252,6 @@
                     </div>
                   <% end %>
                 </div>
->>>>>>> d29523f988b5e163411c6978a6c82e0aa52d6117
               <% end %>
               <% cnt+=1 %>
             <% end %> 
