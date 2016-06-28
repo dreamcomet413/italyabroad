@@ -54,16 +54,16 @@
                     end
         %>
         
-        <% if params[:parent] != "other-drinks" and mood_opts.length>0 and params[:category]!='other-drinks'%>
+        <% if params[:parent] != "other-drinks" and mood_opts.length>1 and params[:category]!='other-drinks'%>
           
           <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="heading-1">
+            <div class="panel-heading" role="tab" id="headingOne">
               <h4 class="panel-title">
-                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-1" aria-expanded="false" aria-controls="collapse-1" class="collapsed" >Mood:<i></i>
+                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne" class="collapsed" >Mood:<i></i>
                 </a>
               </h4>
             </div>
-            <div id="collapse-1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-1">
+            <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-1">
               <div class="panel-body">
                 <ul>
                   <%= hidden_field_tag :mood , '' , :class=>'field_value' %>
