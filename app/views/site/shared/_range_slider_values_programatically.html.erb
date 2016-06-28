@@ -1,8 +1,8 @@
 <%if params[:start_price] != '' or params[:end_price] != '' %>
   <script type="text/javascript">
     $(document).ready(function(){
-		var start_price =   <%=params[:start_price]%>;
-	    var end_price   =   <%=params[:end_price] %>;
+		var start_price =   <%=params[:start_price]||0%>;
+	    var end_price   =   <%=params[:end_price]||150%>;
 	    $( "#amount" ).val( "£" + start_price + " - £" + end_price );	 
 	    $("#slider-range").slider('values',[start_price, end_price]);
     });

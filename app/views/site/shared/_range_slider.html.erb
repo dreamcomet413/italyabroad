@@ -1,5 +1,5 @@
 <% products = @products || @category.products %>
-<% price_opts = products.collect(&:price_discounted).flatten.sort %>
+<% @price_opts = products.collect(&:price_discounted).flatten.sort %>
 <div class="range-slider">
   <div class="black-heading-16">Price</div>
   <p>
@@ -22,5 +22,5 @@
       </div>
   </div>
 </div>
-<%= hidden_field_tag :start_price , (params[:start_price].nil? or params[:start_price].blank?) ? price_opts.first : params[:start_price] , :class=> 'start_price' %>
-<%= hidden_field_tag :end_price , (params[:end_price].nil? or params[:end_price].blank?) ? price_opts.last : params[:end_price] , :class=> 'end_price' %>
+<%= hidden_field_tag :start_price , '' , :class=> 'start_price' %>
+<%= hidden_field_tag :end_price , '' , :class=> 'end_price' %>
