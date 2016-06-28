@@ -48,7 +48,7 @@
       <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
          <%   
                     if @products and @products.length > 0
-                      mood_opts = @products.select{|p| p.moods.collect(&:name).length > 0}.collect{|p| p.moods.collect(&:name)}.uniq rescue []
+                      mood_opts = [["Any",""]]+@products.select{|p| p.moods.collect(&:name).length > 0}.collect{|p| p.moods.collect(&:name)}.uniq rescue []
                     else
                       mood_opts = [["Any",""]]+Mood.all.map{ |x| [x.name,x.id]}
                     end
@@ -86,7 +86,7 @@
         %>
 
 
-        <% if region_opts.length > 1 %>
+        <% if region_opts.length > 2 %>
           <div class="panel panel-default">
             <div class="panel-heading" role="tab" id="headingTwo">
               <h4 class="panel-title">
@@ -116,7 +116,7 @@
             grape_opts = @category.products.grapes.inject([["Any", ""]]) {|gs, g| gs << [g.name.include?("Avola") ? "Nero d' Avola": g.name, g.id]}
           end
         %>
-        <% if grape_opts.length>1 %>
+        <% if grape_opts.length>2 %>
           <div class="panel panel-default">
             <div class="panel-heading" role="tab" id="headingThree">
               <h4 class="panel-title">
@@ -143,7 +143,7 @@
               color_opts = Product.colors(@category) 
             end
         %>
-        <% if color_opts.length>1 %>
+        <% if color_opts.length>2 %>
           <div class="panel panel-default">
             <div class="panel-heading" role="tab" id="headingFour">
               <h4 class="panel-title">
@@ -170,7 +170,7 @@
               prodcuer_opts = @category.products.producers.inject([["Any", ""]]) { |ps, p| ps << [p.name, p.id]} 
             end
         %>
-        <% if prodcuer_opts.length>1%>
+        <% if prodcuer_opts.length>2%>
           <div class="panel panel-default">
             <div class="panel-heading" role="tab" id="headingFive">
               <h4 class="panel-title">
