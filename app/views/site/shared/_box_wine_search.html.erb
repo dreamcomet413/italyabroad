@@ -43,20 +43,62 @@
     
       <i class="magnifier"><%= image_submit_tag "magnifier.png" %></i>
     </div>
-    <div class="black-strip clearfix selected-filters" style="display: none;"></div>
+    <div class="black-strip clearfix selected-filters">
+      <% unless params[:mood].blank? %>
+        <div class="black-strip clearfix">
+        <span><%= Mood.find(params[:mood]).name %></span>
+        <span class="pull-right"><a href="#." target="mood" class="close-btn">X</a></span>
+        </div>
+      <% end %>
+
+      <% unless params[:region_id].blank? %>
+        <div class="black-strip clearfix">
+        <span><%= Region.find(params[:region_id]).name %></span>
+        <span class="pull-right"><a href="#." target="region_id" class="close-btn">X</a></span>
+        </div>
+      <% end %>
+
+      <% unless params[:grape_id].blank? %>
+        <div class="black-strip clearfix">
+        <span><%= Grape.find(params[:grape_id]).name %></span>
+        <span class="pull-right"><a href="#." target="grape_id" class="close-btn">X</a></span>
+        </div>
+      <% end %>
+
+      <% unless params[:producer_id].blank? %>
+        <div class="black-strip clearfix">
+        <span><%= Producer.find(params[:producer_id]).name %></span>
+        <span class="pull-right"><a href="#." target="producer_id" class="close-btn">X</a></span>
+        </div>
+      <% end %>
+
+      <% unless params[:organic].blank? %>
+        <div class="black-strip clearfix">
+        <span><%= "Organic" %></span>
+        <span class="pull-right"><a href="#." target="organic" class="close-btn">X</a></span>
+        </div>
+      <% end %>
+
+    </div>
+
     <div class="sidebar-filter-wrapper">
       <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
          <%   
                     if @products and @products.length > 0
-                      mood_opts = [["Any",""]]+@products.select{|p| p.moods.collect(&:name).length > 0}.collect{|p| p.moods.collect(&:name)}.uniq rescue []
+                      mood_opts = [["Any",""]]+@products.select{|p| p.moods.collect(&:name).length > 0}.collect{|p| p.moods.collect{|i| [i.name,i.id]}.flatten}.uniq rescue []
                     else
                       mood_opts = [["Any",""]]+Mood.all.map{ |x| [x.name,x.id]}
                     end
         %>
-        
-        <% if params[:parent] != "other-drinks" and mood_opts.length>1 and params[:category]!='other-drinks'%>
-          
-          <div class="panel panel-default">
+
+        <%  display="none"
+            if params[:parent] != "other-drinks" and mood_opts.length>2 and params[:category]!='other-drinks'
+              display="block"
+            end 
+        %>
+
+
+          <div class="panel panel-default" style="display:<%=display%>">
             <div class="panel-heading" role="tab" id="headingOne">
               <h4 class="panel-title">
                 <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne" class="collapsed" >Mood:<i></i>
@@ -68,14 +110,15 @@
                 <ul>
                   <%= hidden_field_tag :mood , '' , :class=>'field_value' %>
                   <% mood_opts.each do |item| %>
-                    <li><a href="#." value="<%= item[1] %>" class='field_text'> <%= item[0] %></a></li>
+                    <li>
+                       <a href="#." value="<%= item[1] %>" class='field_text'> <%= item[0] %></a>
+                    </li>
                     <%#= link_to "Add", "/site/cart?product_id=#{product.id}", :remote => true, :method => :post %>
                   <% end %>
                 </ul>
               </div>
             </div>
           </div>
-        <% end %>
 
         <% 
           if @products and @products.length > 0
@@ -86,8 +129,12 @@
         %>
 
 
-        <% if region_opts.length > 2 %>
-          <div class="panel panel-default">
+        <% display='none' 
+          if region_opts.length > 2 
+            display='block'
+          end 
+        %>
+          <div class="panel panel-default" style="display:<%=display%>">
             <div class="panel-heading" role="tab" id="headingTwo">
               <h4 class="panel-title">
                 <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" class="collapsed">Region:<i></i></a>
@@ -106,7 +153,7 @@
               </div>
             </div>
           </div>
-        <% end %>
+
 
         <% 
           if @products and @products.length > 0
@@ -116,8 +163,12 @@
             grape_opts = @category.products.grapes.inject([["Any", ""]]) {|gs, g| gs << [g.name.include?("Avola") ? "Nero d' Avola": g.name, g.id]}
           end
         %>
-        <% if grape_opts.length>2 %>
-          <div class="panel panel-default">
+        <% display='none' 
+          if grape_opts.length > 2 
+            display='block'
+          end 
+        %>
+          <div class="panel panel-default" style="display:<%=display%>">
             <div class="panel-heading" role="tab" id="headingThree">
               <h4 class="panel-title">
                 <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree" class="collapsed"> Grape:<i></i></a>
@@ -136,15 +187,20 @@
               </div>
             </div>
           </div>
-        <% end %>
+
         <%  if @products and @products.length>0 
               color_opts = [["Any",'']]+@products.collect(&:color).uniq.collect{|c| [c,c]}
             else 
               color_opts = Product.colors(@category) 
             end
         %>
-        <% if color_opts.length>2 %>
-          <div class="panel panel-default">
+        
+        <% display='none' 
+          if color_opts.length > 2 
+            display='block'
+          end 
+        %>
+          <div class="panel panel-default" style="display:<%=display%>">
             <div class="panel-heading" role="tab" id="headingFour">
               <h4 class="panel-title">
                 <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour" class="collapsed">Colour: <i></i></a>
@@ -163,15 +219,19 @@
               </div>
             </div>
           </div>
-        <% end %>
+        
         <%  if @products and @products.length >0 
-              prodcuer_opts = [["Any",'']]+Producer.find(@products.collect(&:producer_id)).collect{|p| [p.name, p.id]}
+              producer_opts = [["Any",'']]+Producer.find(@products.collect(&:producer_id)).collect{|p| [p.name, p.id]}
             else
-              prodcuer_opts = @category.products.producers.inject([["Any", ""]]) { |ps, p| ps << [p.name, p.id]} 
+              producer_opts = @category.products.producers.inject([["Any", ""]]) { |ps, p| ps << [p.name, p.id]} 
             end
         %>
-        <% if prodcuer_opts.length>2%>
-          <div class="panel panel-default">
+        <% display='none' 
+          if producer_opts.length > 2 
+            display='block'
+          end 
+        %>
+          <div class="panel panel-default" style="display:<%=display%>">
             <div class="panel-heading" role="tab" id="headingFive">
               <h4 class="panel-title">
                 <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapsefive" class="collapsed">
@@ -184,7 +244,7 @@
                 <ul>
                   <% if !@category.nil? %>
                     <%= hidden_field_tag :producer_id , '',  :class=>'field_value' %>
-                    <% prodcuer_opts.each do |item| %>
+                    <% producer_opts.each do |item| %>
                     <li><a href="#." value="<%= item[1] %>" class="field_text" >  <%= item[0] %></a></li>
                     <% end %>
                   <% end %>
@@ -192,10 +252,13 @@
               </div>
             </div>
           </div>
-        <% end %>
-
-        <% products = @products || @category.products %>
-          <div class="panel panel-default">
+        
+        <% display='none' 
+          if params[:organic].blank? 
+            display='block'
+          end 
+        %>
+          <div class="panel panel-default" style="display:<%=display%>">
             <div class="panel-heading" role="tab" id="headingSix">
               <h4 class="panel-title">
                 <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseSix" aria-expanded="false" aria-controls="collapseSix" class="collapsed">
@@ -215,7 +278,13 @@
               </div>
             </div>
           </div>
-        <div class="panel panel-default">
+
+        <% display='none' 
+          if params[:vegetarian].blank? 
+            display='block'
+          end 
+        %>
+          <div class="panel panel-default" style="display:<%=display%>">
           <div class="panel-heading" role="tab" id="headingSeven">
             <h4 class="panel-title">
               <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseSeven" aria-expanded="false" aria-controls="collapseSix" class="collapsed">

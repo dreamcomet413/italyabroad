@@ -7,14 +7,22 @@
  	if (filters.length > 0) {
  		$('.selected-filters span.'+parent_name).html($(this).html());
  	}else{
- 		$('.selected-filters').append("<div class='"+parent_name+"'></div>");
- 		$('.selected-filters div.'+parent_name).append("<span class='"+ parent_name + "' >" + $(this).html() + "</span>" ) ;
- 		$('.selected-filters div.'+parent_name).append("<span class='pull-right'><a href='#.' class='close-btn'>X</a></span> <br/>")
+ 		// $('.selected-filters').append("<div class='"+parent_name+"'></div>");
+ 		// $('.selected-filters div.'+parent_name).append("<span class='"+ parent_name + "' >" + $(this).html() + "</span>" ) ;
+ 		// $('.selected-filters div.'+parent_name).append("<span class='pull-right'><a href='#.' class='close-btn'>X</a></span> <br/>")
   	}
  	// $('.selected-filters').show();
  	$('.search_form').submit();
  	
   });
+
+  $(document).on('click', ".close-btn", function(){
+  	$('#'+$(this).attr('target')).val('');
+  	$('.search_form').submit();
+  	event.preventDefault();
+  });
+
+
   $('.submit_cart_form').click(function(){
   	
   	quantity = $(this).parent().siblings('.seller-field').find('.quantity').val();
