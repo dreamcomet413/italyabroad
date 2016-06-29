@@ -79,6 +79,12 @@
         </div>
       <% end %>
 
+      <% unless params[:vegetarian].blank? %>
+        <div class="black-strip clearfix">
+        <span><%= "Vegan" %></span>
+        <span class="pull-right"><a href="#." target="vegetarian" class="close-btn">X</a></span>
+        </div>
+      <% end %>
     </div>
 
     <div class="sidebar-filter-wrapper">
@@ -270,9 +276,9 @@
               <div class="panel-body">
                 <ul>
                   <li>
-                    <span><% checked = (params[:organic] == 'organic') ? true : false %>
-                    <%= check_box_tag :organic, 'organic',checked  %></span> 
-                    <span>Organinc</span>
+                    <span>
+                    <%= check_box_tag :organic, 'organic', false, :onclick=>"$('.search_form').submit();" %></span> 
+                    <span>Organic</span>
                   </li>
                 </ul>
               </div>
@@ -296,8 +302,8 @@
             <div class="panel-body">
               <ul>
                 <li>
-                  <span><% checked = (params[:vegetarian] == 'vegetarian') ? true : false %>
-                  <%= check_box_tag :vegetarian, 'vegetarian', checked  %></span> 
+                  <span>
+                  <%= check_box_tag :vegetarian, 'vegetarian', false,:onclick=>"$('.search_form').submit();"  %></span> 
                   <span>Vegan</span>
                 </li>
               </ul>

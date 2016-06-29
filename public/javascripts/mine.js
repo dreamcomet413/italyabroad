@@ -17,7 +17,15 @@
   });
 
   $(document).on('click', ".close-btn", function(){
-  	$('#'+$(this).attr('target')).val('');
+  	var target = $(this).attr('target');
+  	if(target=='vegetarian'){
+  		$('#'+target).prop('checked',false);
+  	}else if(target=='organic'){
+  		$('#'+target).prop('checked',false);
+  	}else{
+  		$('#'+target).val('');
+  	}
+
   	$('.search_form').submit();
   	event.preventDefault();
   });
