@@ -65,6 +65,14 @@
         </div>
       <% end %>
 
+      <% unless params[:color].blank? %>
+        <div class="black-strip clearfix">
+        <span><%= params[:color] %></span>
+        <span class="pull-right"><a href="#." target="color" class="close-btn">X</a></span>
+        </div>
+      <% end %>
+
+
       <% unless params[:producer_id].blank? %>
         <div class="black-strip clearfix">
         <span><%= Producer.find(params[:producer_id]).name %></span>
