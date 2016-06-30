@@ -101,7 +101,7 @@
       <% end %>
     </div>
 
-    <% products = @products.limit(1000).offset(0) %>
+    <% products = @products.limit(1000).offset(0) rescue [] %>
     <div class="sidebar-filter-wrapper">
       <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
          <%   
@@ -229,6 +229,8 @@
                    Drinks
                 <% elsif params[:parent] == 'food' or params[:category]=='food'%>
                   Category
+                <% elsif params[:parent]=='hampers' or params[:category]=='hampers' %>
+                  Recipient
                 <% else %>
                   Colour:
                 <% end %>
