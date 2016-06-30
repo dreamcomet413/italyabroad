@@ -110,7 +110,7 @@
         %>
 
         <%  display="none"
-            if params[:parent] != "other-drinks" and mood_opts.length>2 and params[:category]!='other-drinks'
+            if( (params[:parent] == "wine" or params[:category]=='wine') and  mood_opts.length>2 )
               display="block"
             end 
         %>
