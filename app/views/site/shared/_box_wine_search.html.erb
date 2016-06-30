@@ -101,11 +101,12 @@
       <% end %>
     </div>
 
+    <% products = @products.limit(1000).offset(0) %>
     <div class="sidebar-filter-wrapper">
       <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
          <%   
                     if @products and @products.length > 0
-                      mood_opts = [["Any",""]]+@products.select{|p| p.moods.collect(&:name).length > 0}.collect{|p| p.moods.collect{|i| [i.name,i.id]}.flatten}.uniq rescue []
+                      mood_opts = [["Any",""]]+products.select{|p| p.moods.collect(&:name).length > 0}.collect{|p| p.moods.collect{|i| [i.name,i.id]}.flatten}.uniq rescue []
                     else
                       mood_opts = [["Any",""]]+Mood.all.map{ |x| [x.name,x.id]}
                     end
@@ -142,7 +143,7 @@
 
         <% 
           if @products and @products.length > 0
-            region_opts = Region.where(:id => @products.collect(&:region_id)).inject([["Any", ""]]) {|rs, r| rs << [r.name, r.id]}
+            region_opts = Region.where(:id => products.collect(&:region_id)).inject([["Any", ""]]) {|rs, r| rs << [r.name, r.id]}
           else
             region_opts = @category.products.regions.inject([["Any", ""]]) {|rs, r| rs << [r.name, r.id]}
           end
@@ -177,7 +178,7 @@
 
         <% 
           if @products and @products.length > 0
-            grape_opts = Grape.find(@products.collect(&:grape_ids).flatten).inject([["Any", ""]]) {|gs, g| gs << [g.name.include?("Avola") ? "Nero d' Avola": g.name, g.id]}
+            grape_opts = Grape.find(products.collect(&:grape_ids).flatten).inject([["Any", ""]]) {|gs, g| gs << [g.name.include?("Avola") ? "Nero d' Avola": g.name, g.id]}
 
           else
             grape_opts = @category.products.grapes.inject([["Any", ""]]) {|gs, g| gs << [g.name.include?("Avola") ? "Nero d' Avola": g.name, g.id]}
@@ -209,7 +210,7 @@
           </div>
 
         <%  if @products and @products.length>0 
-              color_opts = [["Any",'']]+@products.collect(&:color).uniq.collect{|c| [c,c]}
+              color_opts = [["Any",'']]+products.collect(&:color).uniq.collect{|c| [c,c]}
             else 
               color_opts = Product.colors(@category) 
             end
@@ -250,7 +251,8 @@
           </div>
         
         <%  if @products and @products.length >0 
-              producer_opts = [["Any",'']]+Producer.find(@products.collect(&:producer_id)).collect{|p| [p.name, p.id]}
+
+              producer_opts = [["Any",'']]+Producer.find(products.collect(&:producer_id)).collect{|p| [p.name, p.id]}
             else
               producer_opts = @category.products.producers.inject([["Any", ""]]) { |ps, p| ps << [p.name, p.id]} 
             end
