@@ -209,7 +209,16 @@
           <div class="panel panel-default" style="display:<%=display%>">
             <div class="panel-heading" role="tab" id="headingFour">
               <h4 class="panel-title">
-                <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour" class="collapsed">Colour: <i></i></a>
+                <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour" class="collapsed">
+                <% if params[:parent] == 'other-drinks' or params[:category]=='other-drinks' %>
+                   Drinks
+                <% elsif params[:parent] == 'food' or params[:category]=='food'%>
+                  Category
+                <% else %>
+                  Colour:
+                <% end %>
+
+                <i></i></a>
               </h4>
             </div>
             <div id="collapseFour" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingFour">
