@@ -12,17 +12,21 @@
 
 <!-- Creating form action url for wine/other-drinks index pages and their subcategory products like, white wine, red wine -->
 <%- search_url ||= @category == @parent ? site_search_index_path(:id => @parent) : site_search_index_path(:id => 'other_drinks')   -%>
+
 <%if params[:parent]%>
   <%search_url = nested_categories_url(@parent, @category)%>
 <%end%>
+
 <div class="block" id="box_wine_search">
   <%# if params[:category] == "wine" || ~ /search/ %>
-  <% if params[:parent] != "other-drinks" and params[:parent_type] != 'other-drinks' and params[:category] != "other-drinks" %>
+  <% if params[:parent] == "other-drinks" or params[:parent_type] == 'other-drinks' or params[:category] == "other-drinks" %>
+     <div class="green-heading-16">Other Drink Search</div>
+  <% elsif params[:parent] == "foot" or params[:parent_type] == 'food' or params[:category] == 'food' %> 
+     <div class="green-heading-16">Deli Finder</div>
+  <% else %>
     <div class="green-heading-16">
       <%= (@product.present? && @product.root_category.present?) ? @product.root_category : "Wine" -%> Search
     </div>
-  <% else %>
-    <div class="green-heading-16">Other Drink Search</div>
   <% end %>
   <%= form_tag search_url, :class=>'search_form'   ,:method => :get do %>
     <%= hidden_field_tag :id,@category.name.downcase if !@category.nil? %>
