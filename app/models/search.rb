@@ -6,8 +6,6 @@ class Search
     @region           = params[:region_id] ||= ""
     @color            = params[:color] ||= ""
     @grape            = params[:grape_id] ||= ""
-    params[:organic] = params[:organic].nil? ? "" : "1"
-    params[:vegetarian] = params[:vegetarian].nil? ? "" : "1" 
     @organic          = params[:organic]||= ""
     @vegetarian       = params[:vegetarian] ||= ""
     @price            = params[:price] ||= ""

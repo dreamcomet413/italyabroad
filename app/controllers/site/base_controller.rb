@@ -1,8 +1,9 @@
 class Site::BaseController < ApplicationController
   layout "site", :except => :landing_page
+  
   def landing_page
-    
   end
+
   def index
     # debugger
     @setting = Setting.first

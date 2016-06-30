@@ -13,10 +13,14 @@
 	    $('#grape_id').val('<%= params[:grape_id]%>');
 	    <% if @organic=="1" %>
 	    	$('#organic').prop('checked',true);
+	    	$('#organic').val('1');
 	    <% end %>
 	    <% if @vegetarian=="1" %>
 	    	$('#vegetarian').prop('checked',false);
+	    	$('#organic').val('1');
 	    <% end %>
+	    $('#occasion_id').val('<%= params[:occasion_id]%>');
+	    
 
     });
   </script>

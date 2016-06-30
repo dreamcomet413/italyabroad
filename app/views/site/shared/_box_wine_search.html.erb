@@ -23,6 +23,8 @@
      <div class="green-heading-16">Other Drink Search</div>
   <% elsif params[:parent] == "foot" or params[:parent_type] == 'food' or params[:category] == 'food' %> 
      <div class="green-heading-16">Deli Finder</div>
+  <% elsif params[:parent]=="hampers" or params[:parent_type] == 'hampers' or params[:category]=='hampers'%>
+     <div class="green-heading-16">Gift Finder</div>
   <% else %>
     <div class="green-heading-16">
       <%= (@product.present? && @product.root_category.present?) ? @product.root_category : "Wine" -%> Search
@@ -140,7 +142,7 @@
 
         <% 
           if @products and @products.length > 0
-            region_opts = Region.find(@products.collect(&:region_id)).inject([["Any", ""]]) {|rs, r| rs << [r.name, r.id]}
+            region_opts = Region.where(:id => @products.collect(&:region_id)).inject([["Any", ""]]) {|rs, r| rs << [r.name, r.id]}
           else
             region_opts = @category.products.regions.inject([["Any", ""]]) {|rs, r| rs << [r.name, r.id]}
           end
@@ -298,7 +300,7 @@
                 <ul>
                   <li>
                     <span>
-                    <%= check_box_tag :organic, 'organic', false, :onclick=>"$('.search_form').submit();" %></span> 
+                    <%= check_box_tag :organic, '', false, :onclick=>"$(this).val('1'); $('.search_form').submit();" %></span> 
                     <span>Organic</span>
                   </li>
                 </ul>
@@ -324,13 +326,46 @@
               <ul>
                 <li>
                   <span>
-                  <%= check_box_tag :vegetarian, 'vegetarian', false,:onclick=>"$('.search_form').submit();"  %></span> 
+                  <%= check_box_tag :vegetarian, 'vegetarian', false,:onclick=>"$(this).val('1'); $('.search_form').submit();"  %></span> 
                   <span>Vegan</span>
                 </li>
               </ul>
             </div>
           </div>
         </div>
+
+
+        <% display='none' 
+            
+          if params[:category] == 'hampers'
+            display='block'
+          end
+        %>
+
+          <div class="panel panel-default" style="display:<%=display%>">
+            <div class="panel-heading" role="tab" id="headingFiv">
+              <h4 class="panel-title">
+                <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                  Occasion: <i></i>
+                </a>
+              </h4>
+            </div>
+            <div id="collapseEight" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingFive">
+              <div class="panel-body">
+                <ul>
+                  <%= hidden_field_tag :occasion_id, '' , :class=>'field_value' %>
+                  <% @occasions = Occasion.find(:all,:include=>'products',:conditions=>['products.active = ?',true]) %>
+                  <% @occasions.collect{|i| [i.name,i.id]}.each do |item| %>
+                    <li><a href="#." value="<%= item[1] %>" class="field_text"> <%= item[0] %></a></li>
+                  <% end %>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+
+
+
       </div>
     </div>
     <%=render partial: 'site/shared/range_slider' %>
