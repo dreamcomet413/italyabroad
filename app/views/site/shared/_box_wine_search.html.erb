@@ -252,9 +252,9 @@
             </div>
           </div>
         
-        <%  if @products and @products.length >0 
+        <%  if @products and @products.length >0
 
-              producer_opts = [["Any",'']]+Producer.find(products.collect(&:producer_id)).collect{|p| [p.name, p.id]}
+              producer_opts = [["Any",'']]+(Producer.find(products.collect(&:producer_id)).collect{|p| [p.name, p.id]} rescue [])
             else
               producer_opts = @category.products.producers.inject([["Any", ""]]) { |ps, p| ps << [p.name, p.id]} 
             end
