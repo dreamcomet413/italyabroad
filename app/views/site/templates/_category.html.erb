@@ -46,12 +46,24 @@
                   <div class="clearfix">
                     <div class="col-xs-4 price-col">
                       <% if product.product_prices.present? %>
-                        <% product.product_prices.each do |p| %>
-                          <div class="price">
-                            <%= number_to_currency p.price, :unit => "&pound;" %>
-                          </div>
-                        <% end %>
-                      <% end %>
+                              <% if product.discounted? && product.discount > 0.0 %>
+                                <% product.product_prices.each do |pp| %>
+                                 <div class="line-through">
+                                  Was <%= number_to_currency pp.price, :unit => "&pound;" %></div>
+                                <% end %>
+                                <div class="current-price">
+                                  <% product.price_discounted.each do |price| %>
+                                    <%= number_to_currency price, :unit => "&pound;" %>
+                                  <% end %>
+                                </div>
+                              <% else %>
+                                <div class="price">
+                                  <% product.product_prices.each do |pp| %>
+                                    <%= number_to_currency pp.price, :unit => "&pound;" %>
+                                  <% end %>
+                                  </div>
+                              <% end %>
+                            <% end %>
                     </div>
                     <div class="col-xs-8 ">
                       <%- if product.out_of_stock? -%>
@@ -80,12 +92,24 @@
                 <div class="row clearfix">
                   <div class="col-xs-4 price-col">
                     <% if product.product_prices.present? %>
-                      <% product.product_prices.each do |p| %>
-                        <div class="price">
-                          <%= number_to_currency p.price, :unit => "&pound;" %>
-                        </div>
-                      <% end %>
-                    <% end %>
+                              <% if product.discounted? && product.discount > 0.0 %>
+                                <% product.product_prices.each do |pp| %>
+                                 <div class="line-through">
+                                  Was <%= number_to_currency pp.price, :unit => "&pound;" %></div>
+                                <% end %>
+                                <div class="current-price">
+                                  <% product.price_discounted.each do |price| %>
+                                    <%= number_to_currency price, :unit => "&pound;" %>
+                                  <% end %>
+                                </div>
+                              <% else %>
+                                <div class="price">
+                                  <% product.product_prices.each do |pp| %>
+                                    <%= number_to_currency pp.price, :unit => "&pound;" %>
+                                  <% end %>
+                                  </div>
+                              <% end %>
+                            <% end %>
                   </div>
                   <div class="col-xs-8">
                     <%- if product.out_of_stock? -%>
@@ -158,12 +182,24 @@
                   <div class="clearfix">
                     <div class="col-xs-4 price-col">
                       <% if product.product_prices.present? %>
-                        <% product.product_prices.each do |p| %>
-                          <div class="price">
-                            <%= number_to_currency p.price, :unit => "&pound;" %>
-                          </div>
-                        <% end %>
-                      <% end %>
+                              <% if product.discounted? && product.discount > 0.0 %>
+                                <% product.product_prices.each do |pp| %>
+                                 <div class="line-through">
+                                  Was <%= number_to_currency pp.price, :unit => "&pound;" %></div>
+                                <% end %>
+                                <div class="current-price">
+                                  <% product.price_discounted.each do |price| %>
+                                    <%= number_to_currency price, :unit => "&pound;" %>
+                                  <% end %>
+                                </div>
+                              <% else %>
+                                <div class="price">
+                                  <% product.product_prices.each do |pp| %>
+                                    <%= number_to_currency pp.price, :unit => "&pound;" %>
+                                  <% end %>
+                                  </div>
+                              <% end %>
+                            <% end %>
                     </div>
                     <div class="col-xs-8">
                       <%- if product.out_of_stock? -%>
@@ -191,12 +227,24 @@
                 </div>
                 <div class="col-xs-4 price-col">
                   <% if product.product_prices.present? %>
-                    <% product.product_prices.each do |p| %>
-                      <div class="price">
-                        <%= number_to_currency p.price, :unit => "&pound;" %>
-                      </div>
-                    <% end %>
-                  <% end %>
+                              <% if product.discounted? && product.discount > 0.0 %>
+                                <% product.product_prices.each do |pp| %>
+                                 <div class="line-through">
+                                  Was <%= number_to_currency pp.price, :unit => "&pound;" %></div>
+                                <% end %>
+                                <div class="current-price">
+                                  <% product.price_discounted.each do |price| %>
+                                    <%= number_to_currency price, :unit => "&pound;" %>
+                                  <% end %>
+                                </div>
+                              <% else %>
+                                <div class="price">
+                                  <% product.product_prices.each do |pp| %>
+                                    <%= number_to_currency pp.price, :unit => "&pound;" %>
+                                  <% end %>
+                                  </div>
+                              <% end %>
+                            <% end %>
                 </div>
                 <div class="col-xs-8">
                   <%- if product.out_of_stock? -%>
