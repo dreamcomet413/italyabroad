@@ -99,7 +99,7 @@
                               <% end %>
                             </div>
                           <% else %>
-                            <div class="price"line-through>
+                            <div class="price" style="text-align: right;">
                               <% product.product_prices.each do |pp| %>
                                 <%= number_to_currency pp.price, :unit => "&pound;" %>
                               <% end %>

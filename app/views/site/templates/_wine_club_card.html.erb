@@ -14,6 +14,28 @@
       <div class="wine-detail-wrapper">
         <div class="green-heading-with-border"><%= @product.name %></div>
         <div class="bottom-50"><%= @product.description.gsub("\n","<br />").html_safe rescue "Product has no description" %>
+          <div class="row clearfix">
+            <div class="col-xs-10 price-col" style="margin-top: -0.5em;">
+                <% if @product.product_prices.present? %>
+                  <% if @product.discounted? && product.discount > 0.0 %>
+                    <% @product.product_prices.each do |pp| %>
+                     <div class="line-through" style="text-align: right;">
+                      Was <%= number_to_currency pp.price, :unit => "&pound;" %></div>
+                    <% end %>
+                    <div class="current-price" style="text-align: right;">
+                      <% @product.price_discounted.each do |price| %>
+                        <%= number_to_currency price, :unit => "&pound;" %>
+                      <% end %>
+                    </div>
+                  <% else %>
+                    <div class="price" style="text-align: right;">
+                      <% @product.product_prices.each do |pp| %>
+                        <%= number_to_currency pp.price, :unit => "&pound;" %>
+                      <% end %>
+                      </div>
+                  <% end %>
+                <% end %>
+            </div>
           <div class="club-btn">
             <div class="green-button"> 
               <%= link_to "Add to cart", "/site/cart?product_id=#{@product.id}", :remote => true, :method => :post %>
