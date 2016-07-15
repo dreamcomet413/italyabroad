@@ -75,19 +75,42 @@
                 <div class="col-md-10">
                   <div class="green-heading-24"><%= product.name %></div>
                   <div class="club-detail">
-                    <%= product.description_short.html_safe() %>
-                    <% if product.product_prices.present? %>
-                      <% product.product_prices.each do |p| %>
+                    <%= product.description_short.html_safe() %><!-- 
+                    < % if product.product_prices.present? %>
+                      < % product.product_prices.each do |p| %>
                         <div style="margin-bottom:15px;">
-                          <%= number_to_currency p.price, :unit => "&pound;" %><br />
+                          < %= number_to_currency p.price, :unit => "&pound;" %><br />
                         </div>
-                      <% end %>
-                    <% end %>
+                      < % end %>
+                    < % end %> -->
                     <div><%= link_to "Discover More", nested_products_uri(product)  %></div>
                   </div>
-                  <div class="club-btn">
-                    <div class="green-button"> 
-                      <%= link_to "Add to cart", "/site/cart?product_id=#{product.id}", :remote => true, :method => :post %>
+                  <div class="row clearfix">
+                    <div class="col-xs-10 price-col" style="margin-top: -0.5em;">
+                        <% if product.product_prices.present? %>
+                          <% if product.discounted? && product.discount > 0.0 %>
+                            <% product.product_prices.each do |pp| %>
+                             <div class="line-through" style="text-align: right;">
+                              Was <%= number_to_currency pp.price, :unit => "&pound;" %></div>
+                            <% end %>
+                            <div class="current-price" style="text-align: right;">
+                              <% product.price_discounted.each do |price| %>
+                                <%= number_to_currency price, :unit => "&pound;" %>
+                              <% end %>
+                            </div>
+                          <% else %>
+                            <div class="price"line-through>
+                              <% product.product_prices.each do |pp| %>
+                                <%= number_to_currency pp.price, :unit => "&pound;" %>
+                              <% end %>
+                              </div>
+                          <% end %>
+                        <% end %>
+                    </div>
+                    <div class="club-btn">
+                      <div class="green-button"> 
+                        <%= link_to "Add to cart", "/site/cart?product_id=#{product.id}", :remote => true, :method => :post %>
+                      </div>
                     </div>
                   </div>
                 </div>
