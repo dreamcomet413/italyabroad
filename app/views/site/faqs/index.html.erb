@@ -30,20 +30,20 @@
         Your questions answered <span><a href="#askQuestion">(ask your question)</a></span>
       </div>
       <div class="bottom-50">
-        <p>If you have questions about any of our products, ask our experts <%= params[:show] %>.</p>
+        <p>If you have questions about any of our products, ask our experts  .</p>
       </div>
       <!-- Start Faqs Wrapper-->
       <% if @faqs && @faqs.size > 0 %>
         <div class="faq-wrapper">
           <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
             <% count = 0 %>
-              <% for faq in @faqs %>
+              <% for faq in Faq.all %>
                 <% cls = count==0 ? 'pressed' : '' %>
                 <% cls1 = count==0 ? 'in' : '' %>
                 <div class="panel panel-default <%= cls %>">
                   <div class="panel-heading" role="tab" id="heading<%= count %>">
                     <h4 class="panel-title">
-                      <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse<%= count %>" aria-expanded="true" aria-controls="collapse<%= count %>" class="collapse<%= count %>">
+                      <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse<%= count %>" aria-expanded="true" aria-controls="collapse<%= count %>" class="show<%= faq.id %>">
                         <i></i> Q. <%=  faq.question %>
                       </a>
                     </h4>
@@ -67,7 +67,8 @@
                 <%= will_paginate @posts, :container => false %>
               </div>
             </div>
-          </div><!--End FAQs Pagination-->
+          </div>
+          <!--End FAQs Pagination-->
         </div>  
       <% end %><!-- end Faqs Wrapper-->
       <div id="askQuestion">

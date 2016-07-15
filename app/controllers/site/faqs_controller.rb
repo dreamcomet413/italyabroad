@@ -4,7 +4,7 @@ class Site::FaqsController < ApplicationController
 
   def index
     store_location
-    @faqs = Faq.where(['publish = true AND  answer != ""']).order("created_at DESC").paginate(:page => params[:page], :per_page => 10)
+    @faqs = Faq.where(['publish = true AND  answer != ""']).order("created_at DESC").paginate(:page => params[:page], :per_page => 15)
   end
 
 
