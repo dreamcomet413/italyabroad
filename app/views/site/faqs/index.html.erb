@@ -30,7 +30,7 @@
         Your questions answered <span><a href="#askQuestion">(ask your question)</a></span>
       </div>
       <div class="bottom-50">
-        <p>If you have questions about any of our products, ask our experts.</p>
+        <p>If you have questions about any of our products, ask our experts <%= params[:show] %>.</p>
       </div>
       <!-- Start Faqs Wrapper-->
       <% if @faqs && @faqs.size > 0 %>
@@ -43,7 +43,7 @@
                 <div class="panel panel-default <%= cls %>">
                   <div class="panel-heading" role="tab" id="heading<%= count %>">
                     <h4 class="panel-title">
-                      <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse<%= count %>" aria-expanded="true" aria-controls="collapse<%= count %>" class="">
+                      <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse<%= count %>" aria-expanded="true" aria-controls="collapse<%= count %>" class="collapse<%= count %>">
                         <i></i> Q. <%=  faq.question %>
                       </a>
                     </h4>
@@ -89,3 +89,6 @@
   <%= render :partial => '/site/shared/wine_club' %>
   <%= render :partial => '/site/shared/box_blog' %> 
 </div>
+<script type="text/javascript">
+  $('.'+"<%= params[:show] %>").click();
+</script>

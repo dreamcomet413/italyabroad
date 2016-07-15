@@ -98,11 +98,13 @@
           </div>
           <% @faqs = Faq.find(:all, :limit => 6, :conditions=>['publish = true and answer != ""']) %>
           <% unless @faqs.blank? %>
+          <%i =0 %>
             <% @faqs.each do |faq| %>
-              <div class="row-30">
+              <div class="row-30 " >
                 <div><%= faq.question %></div>
-                <div><%= link_to 'Read the answer', site_faqs_path %></div>
+                <div><%= link_to 'Read the answer', "/site/faqs?show=collapse#{i}#heading#{i}" %></div>
               </div>
+              <% i +=1%>
             <%- end-%>
           <%- end-%>
         </div>
