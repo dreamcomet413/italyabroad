@@ -40,7 +40,7 @@
               <% for faq in Faq.all %>
                 <% cls = count==0 ? 'pressed' : '' %>
                 <% cls1 = count==0 ? 'in' : '' %>
-                <div class="panel panel-default <%= cls %>">
+                <div class="panel panel-default <%= cls %>" id = "show<%= faq.id%>">
                   <div class="panel-heading" role="tab" id="heading<%= count %>">
                     <h4 class="panel-title">
                       <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse<%= count %>" aria-expanded="true" aria-controls="collapse<%= count %>" class="show<%= faq.id %>">

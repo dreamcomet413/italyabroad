@@ -102,7 +102,7 @@
             <% @faqs.each do |faq| %>
               <div class="row-30 " >
                 <div><%= faq.question %></div>
-                <div><%= link_to 'Read the answer', "/site/faqs?show=show#{faq.id}#heading#{faq.id}" %></div>
+                <div><%= link_to 'Read the answer', "/site/faqs?show=show#{faq.id}#show#{faq.id}" %></div>
               </div>
             <%- end-%>
           <%- end-%>
