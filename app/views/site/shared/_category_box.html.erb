@@ -1,0 +1,148 @@
+<div class="row clearfix">
+        <%- products.each do |product| -%>
+          <% path = thumb_image(product)%>
+          <%unless product.is_landscape%>
+            <div class="col-md-4 portrait">
+              <div class="slider-box">
+                <div class="clearfix">
+                  <div class="col-xs-4 box-image"><%= link_to image_tag(path),nested_products_uri(product)  %></div>
+                  <div class="col-xs-8 slider-box-text">
+                    <div class="item-name"><%= link_to product.name, nested_products_uri(product) if product.categories.root.present? && (product.categories.root.name.upcase != 'WINE TOURS') %>
+                      <%# product.description_short[0..70].html_safe() %>
+                      <%if template_name == 'special_offer' or  template_name == 'sub_category'  %>
+                         <div class="red-text"><%= limited_stock(product) -%></div>
+                      <%end%>
+                      <%if template_name == 'search' %>
+                        <div class="ratings">
+                            <% if product.root_category.present? && %w(Food Hampers).include?(product.root_category) %>
+                              <%= show_review_ratings(product, product.average_rating_round).html_safe() %>
+                            <% else %>
+                              <%= show_ratings(product, product.average_rating_round).html_safe() %>
+                            <% end %>
+                        </div>
+                      <% end %>
+                      <div class="row clearfix">
+                        <div class="veg-wrapper" style="margin: 10px;">
+                          <% if  product.vegetarian %>
+                            <span class="vegan"><img src="/images/vegan-icon.jpg"></span>
+                          <% end %>
+                          <% if  product.organic %>
+                            <span class="organic">
+                              <img src="/images/organic-icon.jpg">
+                            </span>
+                          <% end %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="clr"></div>
+                  <div class="clearfix">
+                    <div class="col-xs-4 price-col">
+                      <% if product.product_prices.present? %>
+                        <% if product.discounted? && product.discount > 0.0 %>
+                          <% product.product_prices.each do |pp| %>
+                           <div class="line-through">
+                            Was <%= number_to_currency pp.price, :unit => "&pound;" %></div>
+                          <% end %>
+                          <div class="current-price">
+                            <% product.price_discounted.each do |price| %>
+                              <%= number_to_currency price, :unit => "&pound;" %>
+                            <% end %>
+                          </div>
+                        <% else %>
+                          <div class="price">
+                            <% product.product_prices.each do |pp| %>
+                              <%= number_to_currency pp.price, :unit => "&pound;" %>
+                            <% end %>
+                            </div>
+                        <% end %>
+                      <% end %>
+                    </div>
+                    <div class="col-xs-8 ">
+                      <%- if product.out_of_stock? -%>
+                        <div class="add-row clearfix">
+                          <%= image_tag('out_of_stock.png') %>
+                        </div>
+                      <%- else -%>
+                        <div class="add-row clearfix">
+                          <%=render partial: 'site/templates/product_cart_form' ,  locals: {product: product} %>
+                        </div>
+                      <%- end -%>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <%else%>  
+            <div class="col-md-4 landscape">
+              <div class="slider-box2">
+                <div class="box-image">
+                  <%= link_to image_tag(path),nested_products_uri(product)  %>
+                </div>
+                <div class="item-name">
+                  <!-- #if check is only _category partial -->
+                  <%= link_to product.name, nested_products_uri(product) if product.categories.root.present? && (product.categories.root.name.upcase != 'WINE TOURS') %>
+                  <%if template_name == 'special_offer'%>
+                     <div class="red-text"><%= limited_stock(product) -%></div>
+                  <%end%>
+                  <%if template_name == 'search' %>
+                    <div class="ratings">
+                        <% if product.root_category.present? && %w(Food Hampers).include?(product.root_category) %>
+                          <%= show_review_ratings(product, product.average_rating_round).html_safe() %>
+                        <% else %>
+                          <%= show_ratings(product, product.average_rating_round).html_safe() %>
+                        <% end %>
+                    </div>
+                  <% end %>
+                  <div class="row clearfix">
+                    <div class="veg-wrapper" style="margin: 10px;">
+                      <% if  product.vegetarian %>
+                        <span class="vegan"><img src="/images/vegan-icon.jpg"></span>
+                      <% end %>
+                      <% if  product.organic %>
+                        <span class="organic">
+                          <img src="/images/organic-icon.jpg">
+                        </span>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+                <div class="row clearfix">
+                  <div class="col-xs-4 price-col">
+                    <% if product.product_prices.present? %>
+                              <% if product.discounted? && product.discount > 0.0 %>
+                                <% product.product_prices.each do |pp| %>
+                                 <div class="line-through">
+                                  Was <%= number_to_currency pp.price, :unit => "&pound;" %></div>
+                                <% end %>
+                                <div class="current-price">
+                                  <% product.price_discounted.each do |price| %>
+                                    <%= number_to_currency price, :unit => "&pound;" %>
+                                  <% end %>
+                                </div>
+                              <% else %>
+                                <div class="price">
+                                  <% product.product_prices.each do |pp| %>
+                                    <%= number_to_currency pp.price, :unit => "&pound;" %>
+                                  <% end %>
+                                  </div>
+                              <% end %>
+                            <% end %>
+                  </div>
+                  <div class="col-xs-8">
+                    <%- if product.out_of_stock? -%>
+                      <div class="add-row clearfix">
+                        <%= image_tag('out_of_stock.png') %>
+                      </div>
+                    <%- else -%>
+                      <div class="add-row clearfix">
+                        <%=render partial: 'site/templates/product_cart_form' ,  locals: {product: product} %>
+                      </div>
+                    <%- end -%>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <%end%>
+        <%- end -%>
+      </div>
