@@ -188,7 +188,6 @@ class Admin::ProductsController < ApplicationController
 
   def update
     @product = Product.find(params[:id])
-
     if params[:product].present?
       if params[:product][:price] == [""]
         @product.product_prices.delete_all
@@ -315,7 +314,7 @@ class Admin::ProductsController < ApplicationController
 
 
     p_ids = []
-    @product = Product.find(params[:id])
+    @product = Product.find(params[:id]) || @product.reload
     if !params[:search_name].blank?
       if @product.root_category == 'Hampers' || @product.sub_categories.include?('Mixed case')
         @products = Product.find(:all, :conditions => ["products.id NOT IN (?)  AND quantity > ? AND active = ? AND products.name LIKE ? ", @product.id,0,true,"%#{params[:search_name]}%"])
