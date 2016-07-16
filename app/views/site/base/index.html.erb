@@ -177,13 +177,13 @@
             <%if blog_home and blog_home.image%>
 
               <div class="col-xs-6">
-                <%= link_to image_tag(blog_home.image.image_filename.try(:url)), site_blog_path(:id => @post.id) -%>
+                <%= link_to image_tag(blog_home.image.image_filename.try(:url)), site_blog_path(:id => @post.friendly_identifier) -%>
               </div>
             <%end%>  
             <div class="col-xs-6">
               <h3><%=@post.name%></h3>
               <div class="medium-box-text"><p class="truncate_blog_text"><%=truncate(@post.description, length: 200)%></p></div>
-              <div class="read-more"><%= link_to "Read More", site_blog_path(:id => @post.id) %></div>
+              <div class="read-more"><%= link_to "Read More", site_blog_path(:id => @post.friendly_identifier) %></div>
             </div>
           </div>
         </div>
