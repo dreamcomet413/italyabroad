@@ -295,5 +295,10 @@ class Site::CustomersController < ApplicationController
 
   end
 
+
+  def destroy
+    
+  end
+
 end
 

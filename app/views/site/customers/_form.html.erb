@@ -225,3 +225,21 @@
   <% end %>
 </div>
 
+<div class="section-box-2">
+  <div class="section-heading">Delete Account</div>
+  <div class="permission-row">
+      <div class="section-des">Deleting an account is irreversible process and all you data would be permanently erased
+
+      <div class="register-btn">
+        <div class="green-button">
+          <%= link_to site_customers_path(current_user.id), method: :delete, confirm: 'Are you sure you want to permanently delete your account ?', class: 'link-delete', 'data-message' => 'Are you sure?', 'data-severity' => 'danger', :remote => true do %>
+          Delete
+          <% end %>  
+
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+</div>
