@@ -4,7 +4,7 @@ module ActionView
     module FormOptionsHelper
       # Return select and option tags for the given object and method, using country_options_for_select to generate the list of option tags.
       def custom_country_select(object, method, priority_countries = nil, options = {}, html_options = {})
-        InstanceTag.new(object, method, self, options.delete(:object)).custom_to_country_select_tag(priority_countries, options, html_options)
+        InstanceTag.new(object, method, self, options.delete(:object)).custom_to_country_select_tag(priority_countries, options, html_options).html_safe
       end
       # Returns a string of option tags for pretty much any country in the world. Supply a country name as +selected+ to
       # have it marked as the selected option tag. You can also supply an array of countries as +priority_countries+, so
@@ -19,7 +19,7 @@ module ActionView
           country_options += "<option value=\"\" disabled=\"disabled\">-------------</option>\n"
         end
 
-        return country_options + options_for_select(COUNTRIES, selected)
+        return (country_options + options_for_select(COUNTRIES, selected)).html_safe
       end
       # All the countries included in the country_options output.
 
@@ -80,13 +80,13 @@ COUNTRIES = [["AFGHANISTAN", "AF"], ["ALBANIA", "AL"], ["ALGERIA", "DZ"], ["AMER
             custom_country_options_for_select(value, priority_countries),
             options, value
           ), html_options
-        )
+        ).html_safe
       end
     end
 
     class FormBuilder
       def custom_country_select(method, priority_countries = nil, options = {}, html_options = {})
-        @template.custom_country_select(@object_name, method, priority_countries, options.merge(:object => @object), html_options)
+        @template.custom_country_select(@object_name, method, priority_countries, options.merge(:object => @object), html_options).html_safe
       end
     end
   end
