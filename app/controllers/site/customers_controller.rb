@@ -297,7 +297,13 @@ class Site::CustomersController < ApplicationController
 
 
   def destroy
-    
+
+    user = User.regulars.find(params[:id])
+    current_user.forget_me if logged_in? 
+    cookies.delete :auth_token
+    reset_session
+    user.destroy
+    current_user = nil 
   end
 
 end
