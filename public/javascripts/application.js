@@ -93,7 +93,7 @@ var RemoteForm = {
 
       remote_form_popup.writeAttribute("id", remote_form_popup_id);
 
-      $(remote_form_popup_id).observe('click', function(event){
+      $(remote_form_popup_id).bind('click', function(event){
         var dialog_id = "remote_form_container";
 
         if ($(dialog_id) == null) {
@@ -125,7 +125,7 @@ var RemoteForm = {
 
 var RemoteAddressFrom = {
   setup: function(path) {
-    $('ship_address_form_continue').observe('click', function(event) {
+    $('ship_address_form_continue').bind('click', function(event) {
      $('ship_address_form').action = path;
     })
   }
@@ -133,12 +133,12 @@ var RemoteAddressFrom = {
 
 var RemotePaymentMethodForm = {
   setup: function() {
-    var payment_methods = $$("input.payment_method");
+    var payment_methods = $("input.payment_method");
 
     for (var i=1; i < payment_methods.length+1; i++) {
       var payment_method_id = "payment_method_"+i;
 
-      $(payment_method_id).observe('click', function(event) {
+      $(payment_method_id).bind('click', function(event) {
         new Ajax.Updater("form", "/orders/new", {method: 'get', parameters: {payment_method: $(this).value}});
         return false;
       })
