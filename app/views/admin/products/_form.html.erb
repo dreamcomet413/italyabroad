@@ -55,18 +55,6 @@
         document.getElementById('addmore').show();
 
     }
-    document.observe('dom:loaded', function () {
-
-        $('product_multiple_true').observe('click', handler1);
-        $('product_multiple_false').observe('click', handler2);
-        $('addmore').observe('click', handler3);
-        <% if @product.multiple == true %>
-        <% @product.product_sizes.each do |gr| %>
-        addInput2(<%= gr.size %>, <%= gr.price %>)
-        displayField();
-        <% end %>
-        <% end %>
-    });
 
     function handler1(event) {
         displayField();
@@ -77,6 +65,19 @@
     function handler3(event) {
         addInput();
     }
+
+    $(document).ready(function(){
+    
+      $('product_multiple_true').bind('click', handler1);
+      $('product_multiple_false').bind('click', handler2);
+      $('addmore').bind('click', handler3);
+      <% if @product.multiple == true %>
+        <% @product.product_sizes.each do |gr| %>
+        addInput2(<%= gr.size %>, <%= gr.price %>)
+        displayField();
+        <% end %>
+      <% end %>
+    });
 
 
 </script>

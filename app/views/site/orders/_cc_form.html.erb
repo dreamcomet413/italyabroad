@@ -78,14 +78,14 @@
 	extraFields('<%= @credit_card.try(:type) %>')
 	function extraFields(value){
 		if (value == "solo") {
-			$('issue_number_row').style.display = "";
-			$('valid_form_row').style.display = "";
+			$('issue_number_row').show();
+			$('valid_form_row').show();
 		} else if (value == "maestro") {
-			$('valid_form_row').style.display = "";
-			$('issue_number_row').style.display = "";
+			$('valid_form_row').show();
+			$('issue_number_row').show();
 		} else {
-			$('issue_number_row').style.display = "none";
-			$('valid_form_row').style.display = "none";
+			$('issue_number_row').hide();
+			$('valid_form_row').hide();
 		}
 	}
 </script>

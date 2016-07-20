@@ -64,6 +64,11 @@
       <div><%= text_area :ship_address, :note, :rows => 4, :style => "width:100%" %></div>
     </div>
   </div>
+  <div class="address-row clearfix">
+    <div class="col-md-9 free-delivery">
+      Please note that currently we only deliver to the UK
+    </div>
+  </div>
    <% disp = ship_address.is_new ? 'block' : 'none' -%>
   <div class="address-row clearfix" style="display:<%=disp%>;">
     <div class="col-xs-2 green-button">
@@ -78,10 +83,11 @@
 <script>
   $('.address_edit_btn').unbind('click');
   $('.address_edit_btn').click(function(e){
+     console.log('called');
     $('#shipping_address input').removeAttr('disabled');
     $('#shipping_address select').removeAttr('disabled');
     
-    $('table tr:last').show();;
+    $('.address-row:last').show();;
 
     e.preventDefault();
   })

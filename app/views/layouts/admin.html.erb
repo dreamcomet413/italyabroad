@@ -11,11 +11,11 @@
 <body>
 <div id="container">
   <% if flash[:alert] && flash[:alert] != "Product not found"%>
-      <script type="text/javascript">
-          document.observe('dom:loaded', function() {
-              alert("<%= flash[:alert] %>");
-          });
-      </script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+          alert("<%= flash[:alert] %>");
+      });
+    </script>
   <% end %>
 
   <div id="header">

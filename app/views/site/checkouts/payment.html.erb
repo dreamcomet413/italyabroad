@@ -3,7 +3,7 @@
 <%- @breadcrumbs = "#{link_to "Home", root_url} &raquo; Checkout &raquo; Payment Information" -%>
 <% @class = "no-padding" %>
 
-<%= javascript_tag "document.observe('dom:loaded', function(e){ RemotePaymentMethodForm.setup() });" %>
+<%= javascript_tag "$(document).ready(function(e){ RemotePaymentMethodForm.setup() });" %>
 
 <div id="header" class="green-heading-with-border">Payment Information </div>
 <div class="full-width">

@@ -31,7 +31,7 @@
         <div class="continue-btn green-button">
           <%= link_to ("Continue"), payment_site_checkouts_path, :id => "ship_address_form_continue" -%>
         </div>
-        <%= javascript_tag "document.observe('dom:loaded', function(e){ RemoteAddressFrom.setup('#{confirm_address_site_checkouts_path}') });" %>
+        <%= javascript_tag "$(document).ready(function(e){ RemoteAddressFrom.setup('#{confirm_address_site_checkouts_path}') });" %>
       </div>
     </div>
     

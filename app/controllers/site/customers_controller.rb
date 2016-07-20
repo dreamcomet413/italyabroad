@@ -185,11 +185,12 @@ class Site::CustomersController < ApplicationController
 
     # @user.set_photo_from_upload(params[:photo])
     if @user.update_attributes(params[:user])
-      Notifier.account_data(User.find(@user.id)).deliver
+      Notifier.account_data(User.find(@user.id)).deliver unless(params[:user][:password].blank?)
+      
       flash[:title] = "Congratulations"
       flash[:message] = "Your account has been update, you will now receive an email"
       #   render :action => :messages
-      redirect_to site_customer_path(@user.id)
+      redirect_to '/my-account'
       #  redirect_to root_url
     else
 
