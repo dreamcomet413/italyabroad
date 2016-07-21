@@ -501,7 +501,7 @@ h3{
 	position: relative;
 }
 footer{
-
+	
 	border-top:solid 1px #dcdcdc;
 }
 .footer-col1{
@@ -3377,10 +3377,4 @@ width: 72px;
 	.headerSmall .dropdown-menu{
 		top:70px;
 	}
-}
-.wine-club-option-wrapper .price{
-	text-align: right;
-}
-.register-btn input[type=submit]{
-	padding: 10px 4px 10px !important; 
 }
