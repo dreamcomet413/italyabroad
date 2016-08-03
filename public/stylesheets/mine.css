@@ -2862,6 +2862,7 @@ width: 72px;
 }
 .click-here a{
 	text-decoration: none;
+	color: #444;
 }
 .save-amount{
 	text-align: right;
