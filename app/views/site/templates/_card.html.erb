@@ -53,8 +53,7 @@
           <% if @limited_stock.present? %>                
             <b><%= @limited_stock %></b>
           <% else %>
-              Quantity:
-              <%= @quantity %>
+              <% @quantity %>
         <% end %>
         </div>
         <div class="earn-reward">Earn <%= (@product.product_prices.first.price * Setting.find(:first).points_per_pound).to_i  rescue 0 %> reward points on this produce</div>
