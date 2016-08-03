@@ -17,16 +17,36 @@
     <div class="col-md-9">
       <!-- start wine detail wrapper-->
       <div class="wine-detail-wrapper">
-        <div class="red-heading"><%= @product.name %> Wine Tour</div>
-        <div class="green-heading-24">THE BEST OF <%= @product.name %><br/>
-            A Luxury Tour for Lovers of <%= @product.name %> Food and Wine</div>
-        <div class="tour-date-row">
-          <span>October 10 - 14, 2016</span>
-          <span><b>Hosted by Philip Goodband MW</b></span>          
-          <span class="red-text"><b>£2400.99</b></span>
-        </div>
+        <div class="green-heading-with-border"><%= @product.name %></div>
         <div class="bottom-50">
-          <%= @product.description.gsub("\n","<br />").html_safe rescue "Product has no description" %>
+         <div style="margin-bottom:15px"> <%= @product.description.gsub("\n","<br />").html_safe rescue "Product has no description" %></div>
+	 <div class="row clearfix">
+            <div class="col-xs-10 price-col" style="margin-top: -0.5em;">
+                <% if @product.product_prices.present? %>
+                  <% if @product.discounted? && product.discount > 0.0 %>
+                    <% @product.product_prices.each do |pp| %>
+                     <div class="line-through" style="text-align: right;">
+                      Was <%= number_to_currency pp.price, :unit => "&pound;" %></div>
+                    <% end %>
+                    <div class="current-price" style="text-align: right;">
+                      <% @product.price_discounted.each do |price| %>
+                        <%= number_to_currency price, :unit => "&pound;" %>
+                      <% end %>
+                    </div>
+                  <% else %>
+                    <div class="price" style="text-align: right;">
+                      <% @product.product_prices.each do |pp| %>
+                        <%= number_to_currency pp.price, :unit => "&pound;" %>
+                      <% end %>
+                      </div>
+                  <% end %>
+                <% end %>
+            </div>
+          <div class="club-btn">
+            <div class="green-button"> 
+              <%= link_to "Add to cart", "/site/cart?product_id=#{@product.id}", :remote => true, :method => :post %>
+            </div>
+          </div>
         </div>
         <div class="green-heading-2">Invite a Friend</div>
         <div class="invite-friend-box bottom-50">

@@ -96,7 +96,7 @@ class ApplicationController < ActionController::Base
     end
   end
   def check_if_cookie_exists
-    unless cookies[:existing_user]
+    if !cookies[:existing_user] and params[:controller] == "site/base" and params[:action]="index"
       cookies[:existing_user] = true
       session[:return_path] = request.fullpath
       redirect_to '/landing.html'
