@@ -50,9 +50,8 @@
         </div>
         <div class="click-here"><a href="#.">Click here to enlarge the image</a></div>
         <div class="item-left">
-          <% if @limited_stock.present? %>
-            Quantity:
-                <b><%= @limited_stock %></b>
+          <% if @limited_stock.present? %>                
+            <b><%= @limited_stock %></b>
           <% else %>
               Quantity:
               <%= @quantity %>

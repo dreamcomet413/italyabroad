@@ -15,7 +15,7 @@ class Site::ProductsController < ApplicationController
         if @product.product_prices.empty?
           ""
         elsif @quantity.to_i <= Product::LIMITED_QUANTITY
-          "Only #{@quantity} left in stock."
+          "Hurry up, we only have #{@quantity} left."
         end
           #(@product.present? and @product.quantity.to_i < 12) ? "Only #{quantity} left in stock." : ""
       unless @product.nil?
