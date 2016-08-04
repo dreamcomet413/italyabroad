@@ -35,12 +35,16 @@
         <div class="producer-link"><%= link_to producer.name, site_producer_path(producer) %></div>
       <% end %>
       <% @grape_products = @grape.products.find(:all,:include=>:categories,:conditions=>['upper(categories.name)=?','WINE'])%>
-        <% if @grape_products.size == 0 %>
-          <% @grape_products = Product.find(:all, :include => [:categories] ,:conditions => ['upper(categories.name) LIKE ?  AND products.active = ? AND quantity > ? ','WINE',true,0],:order=>'RAND()',:limit=>5) %>
-        <% end %>
+        
         <div class="prdoucer-products-wrapper">
            <%- if  @grape_products.size > 0 -%> 
-            <div class="producer-products-heading">Wines made with this grape</div>
+            <% if @grape_products.size == 0 %>
+              <% @grape_products = Product.find(:all, :include => [:categories] ,:conditions => ['upper(categories.name) LIKE ?  AND products.active = ? AND quantity > ? ','WINE',true,0],:order=>'RAND()',:limit=>5) %>
+
+              <div class="producer-products-heading">No Wines made with this grape, perhaps you might like one of the following wines</div>
+            <% else %>
+              <div class="producer-products-heading">Wines made with this grape</div>
+            <% end %>
           <%end %>
           <div class="producer-products-row clearfix">
             <%- @grape_products.each do |product| -%>
