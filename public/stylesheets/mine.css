@@ -3245,6 +3245,28 @@ width: 72px;
 		float: left;
 		width: 50%;
 	}
+	.community-row .col-md-4:nth-child(1){
+		display: none;
+	}
+	.community-row .col-md-4, .product-list .col-md-4, .product-list-search .col-md-4{
+		display: inline-block;
+		width: 49.7%;
+		vertical-align: top;}
+	
+	.product-list .col-md-4:nth-child(3){
+		display: none;
+	}
+	.wine-club-box .col-md-2{
+		display: inline-block;
+		width: 20%;
+		vertical-align: top;}
+	.wine-club-box .col-md-10{
+		display: inline-block;
+		width: 79%;
+	}
+
+}
+
 	/*#carousel-example-generic{
 		display: none;
 	}*/
@@ -3290,6 +3312,17 @@ width: 72px;
 	}
 }
 @media only screen and (max-width: 767px) {
+	.community-row .col-md-4, .product-list .col-md-4, .product-list-search .col-md-4, .wine-club-box .col-md-2,
+	.wine-club-box .col-md-10{
+		display: block;
+		width: 100%;
+	}
+	.club-btn{
+		margin-left: 15px;
+	}
+	.product-list .col-md-4{
+		margin-bottom: 15px;
+	}
 	.col-md-4.half-on-tab{
 		width: 100%;
 		display: block;
