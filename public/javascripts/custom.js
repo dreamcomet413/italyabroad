@@ -37,14 +37,25 @@ $(document).on('click','.head_search_small form ul li a',function(){
 });
 
 
-if (window.innerWidth < 850)  {
-	var swiper = new Swiper('#firstSwiper', {
+if (window.innerWidth <= 767)  {
+  var swiper = new Swiper('#firstSwiper', {
     pagination: '#firstSwiper .swiper-pagination',
     paginationClickable: true,
     nextButton: '.best-seller-wrapper .swiper-button-next',
     prevButton: '.best-seller-wrapper .swiper-button-prev',
     slidesPerView: 1,
     spaceBetween: 0,
+    
+  });
+
+}else if (window.innerWidth <= 1025)  {
+	var swiper = new Swiper('#firstSwiper', {
+    pagination: '#firstSwiper .swiper-pagination',
+    paginationClickable: true,
+    nextButton: '.best-seller-wrapper .swiper-button-next',
+    prevButton: '.best-seller-wrapper .swiper-button-prev',
+    slidesPerView: 2,
+    spaceBetween: 20,
     
 	});
 
@@ -64,7 +75,7 @@ if (window.innerWidth < 850)  {
 
 //Swiper food counter
 
-if (window.innerWidth < 850)  {
+if (window.innerWidth <= 767)  {
 	var swiper = new Swiper('#secondSwiper', {
     pagination: '.food-counter-wrapper .swiper-pagination',
     paginationClickable: true,
@@ -74,7 +85,19 @@ if (window.innerWidth < 850)  {
     spaceBetween: 0,
     
 	});
-} else{
+
+}else if (window.innerWidth <= 1025)  {
+  var swiper = new Swiper('#secondSwiper', {
+    pagination: '.food-counter-wrapper .swiper-pagination',
+    paginationClickable: true,
+    nextButton: '.food-counter-wrapper .swiper-button-next',
+    prevButton: '.food-counter-wrapper .swiper-button-prev',
+    slidesPerView: 2,
+    spaceBetween: 20,
+    
+  }); 
+
+}else{
   var swiper = new Swiper('#secondSwiper', {
   pagination: '.food-counter-wrapper .swiper-pagination',
   paginationClickable: true,
