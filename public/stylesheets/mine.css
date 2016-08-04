@@ -3237,7 +3237,13 @@ width: 72px;
 	}
 }
 @media only screen and (max-width: 890px){
-	
+	.hide-on-tab{
+		display: none;
+	}
+	.col-md-4.half-on-tab{
+		width: 49.7%;
+		display: inline-block;
+	}
 	.small-box{
 		margin-bottom: 15px;
 	}
