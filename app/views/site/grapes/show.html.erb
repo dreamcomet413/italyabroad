@@ -37,7 +37,6 @@
       <% @grape_products = @grape.products.find(:all,:include=>:categories,:conditions=>['upper(categories.name)=?','WINE'])%>
         
         <div class="prdoucer-products-wrapper">
-           <%- if  @grape_products.size > 0 -%> 
             <% if @grape_products.size == 0 %>
               <% @grape_products = Product.find(:all, :include => [:categories] ,:conditions => ['upper(categories.name) LIKE ?  AND products.active = ? AND quantity > ? ','WINE',true,0],:order=>'RAND()',:limit=>5) %>
 
@@ -45,7 +44,6 @@
             <% else %>
               <div class="producer-products-heading">Wines made with this grape</div>
             <% end %>
-          <%end %>
           <div class="producer-products-row clearfix">
             <%- @grape_products.each do |product| -%>
               <div class="producer-products-col">
