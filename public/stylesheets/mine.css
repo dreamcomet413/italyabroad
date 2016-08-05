@@ -1598,6 +1598,7 @@ padding: 0px 3px 10px !important;
 	text-align: right;
 	margin-right: 15px;
 	padding-bottom: 10px;
+	margin-top: 35px;
 }
 /* ============Wine Tour Details=======================*/
 .tour-date-row{
@@ -2970,6 +2971,9 @@ width: 72px;
 .show-on-tab{
 	display: none;
 }
+.stButton .stArrow{
+	display: none !important;
+}
 /*=============== Media quires=================*/
 @media only screen and (max-width: 1200px) {
 	.landscape img{
@@ -3237,6 +3241,26 @@ width: 72px;
 	}
 }
 @media only screen and (max-width: 890px){
+	.star-rating, .product-review-count{
+		display: inline-block;
+		float: none;
+	}
+	.product-share{
+		display: block;
+		float: none;
+	}
+	.product-detail-row .col-md-3{
+		float: left;
+		width: 27%;
+	}
+	.product-detail-row .col-md-9{
+		float: left;
+		width: 73%;
+	}
+	.product-detail-row .green-button a{
+		display: block;
+		padding: 10px 5px;
+	}
 	.hide-on-tab{
 		display: none;
 	}
@@ -3318,6 +3342,18 @@ width: 72px;
 	}
 }
 @media only screen and (max-width: 767px) {
+	.product-detail-row .col-md-3{
+		float: none;
+		width: 100%;
+	}
+	.product-detail-row .col-md-9{
+		float: none;
+		width: 100%;
+	}
+	.product-detail-row .green-button a{
+		display: inline-block;
+		padding: 10px 15px;
+	}
 	.community-row .col-md-4, .product-list .col-md-4, .product-list-search .col-md-4, .wine-club-box .col-md-2,
 	.wine-club-box .col-md-10{
 		display: block;
