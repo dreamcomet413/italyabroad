@@ -9,9 +9,9 @@
                   <div class="col-xs-8 slider-box-text">
                     <div class="item-name"><%= link_to product.name, nested_products_uri(product) if product.categories.root.present? && (product.categories.root.name.upcase != 'WINE TOURS') %>
                       <%# product.description_short[0..70].html_safe() %>
-                      <%if template_name == 'special_offer' or  template_name == 'sub_category'  %>
-                         <div class="red-text"><%= limited_stock(product) -%></div>
-                      <%end%>
+                      <%#if template_name == 'special_offer' or  template_name == 'sub_category'  %>
+                         <!-- <div class="red-text"><%#= limited_stock(product) -%></div> -->
+                      <%#end%>
                       <%if template_name == 'search' %>
                         <div class="ratings">
                             <% if product.root_category.present? && %w(Food Hampers).include?(product.root_category) %>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+  <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <title><%= h(title) %></title>
   <%= csrf_meta_tag %>
@@ -72,10 +72,10 @@
     <div class="header-top clearfix">
       <div class="pull-right social-links clearfix">
         <div class="social-icon">
-          <a href="#."><%= link_to image_tag("/images/gplus-icon.png"), "https://plus.google.com/105030552023597415239/posts", :target=>"_blank" -%></div>
-          <div class="social-icon"><%= link_to image_tag("/images/fb-icon.png"), "https://www.facebook.com/pages/Italyabroadcom/144011672282174", :target=>"_blank"  -%></div>
-          <div class="social-icon"><%= link_to image_tag("/images/twitter-icon.png"), "https://twitter.com/Italyabroad", :id => "b", :target=>"_blank"  -%></div>
-          <div class="social-icon"><%= link_to image_tag("/images/instagram-icon.png"), "https://instagram.com/italyabroad", :target=>"_blank"  -%></div>
+          <a href="#."><%= link_to image_tag("/images/gplus-icon.png"), "https://plus.google.com/105030552023597415239/posts" -%></div>
+          <div class="social-icon"><%= link_to image_tag("/images/fb-icon.png"), "https://www.facebook.com/pages/Italyabroadcom/144011672282174" -%></div>
+          <div class="social-icon"><%= link_to image_tag("/images/twitter-icon.png"), "https://twitter.com/Italyabroad", :id => "b" -%></div>
+          <div class="social-icon"><%= link_to image_tag("/images/instagram-icon.png"), "https://instagram.com/italyabroad" -%></div>
         </div>
         <div class="pull-right top-bar-links">
           <span>
@@ -256,7 +256,7 @@
               <% cnt+=1 %>
             <% end %> 
             <div id="link-to-forum" class ="menu-list" ><%= link_to "Hampers", '/hampers' %></div>
-            <div id="link-to-forum" class ="menu-list" ><%= link_to "Wine Tours", '/wine-tours' %></div>
+            <div id="lin  `k-to-forum" class ="menu-list" ><%= link_to "Wine Tours", '/wine-tours' %></div>
             <div id="link-to-forum" class ="menu-list" ><%= link_to "Wine Club", '/wine-club' %></div>
             <div id="link-to-forum" class ="menu-list" ><%= link_to "Events", '/events' %></div>
             <div id="link-to-forum" class ="menu-list" class="<%= "active" if active_uri == "/wine-community" %>"><%= link_to "Community", wine_community_path %></div>
