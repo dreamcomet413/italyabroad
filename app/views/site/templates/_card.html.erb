@@ -295,48 +295,52 @@
             </div>
           <% end %>
         </div>
-        <div class="green-heading-2">Why we love it</div>
-        <div class="product-detail-text">
-          <%= (@product.description.html_safe) rescue "Product has no description" %>
-        </div>
-        <% if @product.root_category != 'Hampers' and !@product.sub_categories.include?('Mixed case') %>
-          <div class="green-heading-2">The artisan who made it</div>
-          <% if @product.producer
-            if @product.producer.active %>
-              <div class="product-detail-text">
-                <%= @product.producer.description.html_safe if @product.producer.description.present? %>
-              </div>
+      </div>
+      <div class="clearfix">
+        <div class="col-md-9 detail-des-view col-md-offset-3 col-sm-12">
+          <div class="green-heading-2">Why we love it</div>
+          <div class="product-detail-text">
+            <%= (@product.description.html_safe) rescue "Product has no description" %>
+          </div>
+          <% if @product.root_category != 'Hampers' and !@product.sub_categories.include?('Mixed case') %>
+            <div class="green-heading-2">The artisan who made it</div>
+            <% if @product.producer
+              if @product.producer.active %>
+                <div class="product-detail-text">
+                  <%= @product.producer.description.html_safe if @product.producer.description.present? %>
+                </div>
+              <% else %>
+                <div class="product-detail-text">
+                  Product has no producer description  
+                </div>
+              <% end %>
             <% else %>
               <div class="product-detail-text">
-                Product has no producer description  
+                Product has no producer description
               </div>
             <% end %>
-          <% else %>
-            <div class="product-detail-text">
-              Product has no producer description
-            </div>
-          <% end %>
-        <% end %> <!-- end Producers-->
-        <div class="review-wrapper_1" id="reviews" name="reviews">
-          <% unless logged_in? %>
-            <div class="green-heading-2">
-              Latest Reviews <%= link_to "(Add Review)", login_path %>
-            </div>
-            <div class="latest-review-box"><%= render :partial => 'site/shared/review_view_short', :locals => {:reviewer => @product} %></div>
-          <% end %>
-          <%- if logged_in? -%>
-            <div class="green-heading-2">
-              Latest Review <%= link_to '(Add Review)', "#",  :onclick => "document.getElementById('add_review').style.display='block';document.getElementById('hide_this').style.display='none';document.getElementById('no_review').style.display='none';return false;" %>
-            </div>
-            <div class="latest-review-box" style="margin-bottom: 12px;">
-              <div id="add_review" style="display:none;">
-                <%= render(:partial => 'site/reviews/new', :locals => {:create_url => site_reviews_path(@product, :return_to => nested_products_uri(@product)), :product_id => @product.id}) %>
+          <% end %> <!-- end Producers-->
+          <div class="review-wrapper_1" id="reviews" name="reviews">
+            <% unless logged_in? %>
+              <div class="green-heading-2">
+                Latest Reviews <%= link_to "(Add Review)", login_path %>
               </div>
-            </div>
-            <div>
-              <%= render :partial => 'site/shared/review_view_short', :locals => {:reviewer => @product} %>
-            </div>
-          <% end %>
+              <div class="latest-review-box"><%= render :partial => 'site/shared/review_view_short', :locals => {:reviewer => @product} %></div>
+            <% end %>
+            <%- if logged_in? -%>
+              <div class="green-heading-2">
+                Latest Review <%= link_to '(Add Review)', "#",  :onclick => "document.getElementById('add_review').style.display='block';document.getElementById('hide_this').style.display='none';document.getElementById('no_review').style.display='none';return false;" %>
+              </div>
+              <div class="latest-review-box" style="margin-bottom: 12px;">
+                <div id="add_review" style="display:none;">
+                  <%= render(:partial => 'site/reviews/new', :locals => {:create_url => site_reviews_path(@product, :return_to => nested_products_uri(@product)), :product_id => @product.id}) %>
+                </div>
+              </div>
+              <div>
+                <%= render :partial => 'site/shared/review_view_short', :locals => {:reviewer => @product} %>
+              </div>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>

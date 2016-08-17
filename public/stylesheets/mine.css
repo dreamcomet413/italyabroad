@@ -3257,6 +3257,9 @@ width: 72px;
 		float: left;
 		width: 73%;
 	}
+	.product-detail-row .col-md-9.detail-des-view{
+		width: 100%;
+	}
 	.product-detail-row .green-button a{
 		display: block;
 		padding: 10px 5px;
