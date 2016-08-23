@@ -1,5 +1,6 @@
 
 <table>
+  <%= show_messages(flash[:notice]) %>
   <tr>
     <td style="width:60%;">
       <table>
@@ -22,7 +23,6 @@
     </td>
     <td style="width:40%; vertical-align: top;" >
       <table>
-        <%= show_messages(flash[:notice]) %>
         <tr>
           <td><h3>Meta Info</h3></td>
         </tr>
