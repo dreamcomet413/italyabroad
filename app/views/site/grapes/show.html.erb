@@ -1,4 +1,8 @@
-<% @title = "#{@grape.name}";
+<% 
+    @title = @grape.page_title_formatted; 
+    @description = @grape.meta_description_formatted; 
+    @keys = @grape.meta_keys_formatted
+   
    @class= "no-padding";
    @breadcrumbs = "#{link_to("Home", root_url)} &raquo; #{link_to('Community',wine_community_path)} &raquo; #{link_to("Grapes", grape_guide_path)} &raquo; #{@grape.name}".html_safe()
 %>

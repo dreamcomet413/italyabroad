@@ -1,4 +1,7 @@
-<%- @title = "#{@region.name}"; @breadcrumbs = "#{link_to("Home", root_url)}  &raquo; #{link_to('Community',wine_community_path)} &raquo;  #{link_to("Regions", site_regions_path)} &raquo; #{@region.name}" -%>
+<%- @title = @region.page_title_formatted; 
+    @description = @region.meta_description_formatted; 
+    @keys = @region.meta_keys_formatted
+  @breadcrumbs = "#{link_to("Home", root_url)}  &raquo; #{link_to('Community',wine_community_path)} &raquo;  #{link_to("Regions", site_regions_path)} &raquo; #{@region.name}" -%>
 <%- @class = "no-padding" -%>
 <% if @region && @region.image %>
   <div class="main-banner">

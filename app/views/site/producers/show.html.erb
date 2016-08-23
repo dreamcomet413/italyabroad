@@ -1,4 +1,7 @@
-<%- @title = @producer.name;
+<%- @title = @producer.page_title_formatted; 
+    @description = @producer.meta_description_formatted; 
+    @keys = @producer.meta_keys_formatted
+    
     @class = "no-padding";
     @breadcrumbs = "#{link_to("Home", root_url)} &raquo;#{link_to('Community',wine_community_path)}&raquo; #{link_to("Producers", site_producers_path)} &raquo; #{@title}".html_safe()
 -%>
