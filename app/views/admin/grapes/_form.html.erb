@@ -1,5 +1,32 @@
 <table>
   <%= show_messages(flash[:notice]) %>
+
+  
+  <tr>
+    <td><h3>Meta Info</h3></td>
+  <tr>
+
+  <tr>
+    <td>Meta Page Title</td>
+    <td><%= text_field :grape, :page_title %></td>
+  </tr>
+  
+  <tr>
+    <td>Meta Keys</td>
+    <td><%= text_field :grape, :meta_keys %></td>
+  </tr>
+  
+  <tr>
+    <td>Meta Description</td>
+    <td><%= text_area :grape, :meta_description %></td>
+  </tr>
+  
+</table>
+<table>
+  <tr>
+    <td><h3>Grape Info</h3></td>
+  <tr>
+
   <tr>
     <td>Name</td>
     <td><%= text_field :grape, :name %></td>
