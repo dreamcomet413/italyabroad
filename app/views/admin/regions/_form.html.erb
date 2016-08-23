@@ -1,55 +1,69 @@
 <table>
-  <%= show_messages(flash[:notice]) %>
   <tr>
-    <td><h3>Meta Info</h3></td>
-  <tr>
+    <td style="width:60%;">
+      <table>
+        <tr>
+          <td><h3>Grape Info</h3></td>
+        </tr>
 
-  <tr>
-    <td>Meta Page Title</td>
-    <td><%= text_field :region, :page_title %></td>
-  </tr>
-  
-  <tr>
-    <td>Meta Keys</td>
-    <td><%= text_field :region, :meta_keys %></td>
-  </tr>
-  
-  <tr>
-    <td>Meta Description</td>
-    <td><%= text_area :region, :meta_description %></td>
-  </tr>
-  
-</table>
-<table>
-  <tr>
-    <td><h3>Grape Info</h3></td>
-  <tr>
+        <tr>
+          <td valign="top">Name</td>
+          <td><%= text_field :region, :name %></td>
+        </tr>
+        <tr>
+          <td valign="top">Description</td>
+          <td><%= text_area :region, :description %></td>
+        </tr>
+        <tr>
+          <td>Quote on Region: </td>
+          <td><%= text_field :region, :region_quote %></td>
+        </tr>
+      </table>
+    </td>
+    <td style="width:40%;vertical-align:top;">
+      <table>
+        <%= show_messages(flash[:notice]) %>
+        <tr>
+          <td><h3>Meta Info</h3></td>
+        </tr>
 
-  <tr>
-    <td valign="top">Name</td>
-    <td><%= text_field :region, :name %></td>
+        <tr>
+          <td>Meta Page Title</td>
+          <td><%= text_field :region, :page_title %></td>
+        </tr>
+        
+        <tr>
+          <td>Meta Keys</td>
+          <td><%= text_field :region, :meta_keys %></td>
+        </tr>
+        
+        <tr>
+          <td>Meta Description</td>
+          <td><%= text_area :region, :meta_description, :style => "height:100" %></td>
+        </tr>
+        
+      </table>      
+    </td>
   </tr>
   <tr>
-    <td valign="top">Description</td>
-    <td><%= text_area :region, :description %></td>
-  </tr>
-  <tr>
-    <td>Quote on Region: </td>
-    <td><%= text_field :region, :region_quote %></td>
-  </tr>
-  <tr>
-	  <td >Active:</td>
-	  <td><%= check_box :region, :active %>
-  </tr>
-  <tr>
-    <td>Image</td>
-    <td><%= file_field_tag :image %></td>
-    <td><%= image_tag(@region.image.image_filename.url, height: '150', width: '220') if @region && @region.image %></td>
-    <td><%= link_to "Destroy", admin_region_image_path(@region, @region.image_id), :confirm => "Are you sure?", :method => :delete if @region && @region.image %></td>
-  </tr>
-  <tr>
-    <td valign="top">Producers in this region</td>
-    <td><%= select :region, :producer_ids, Producer.find(:all,:order=>'name').collect { |p| [p.name, p.id] }, {}, {:multiple => true} %></td>
+    <td colspan="2">
+      <table>
+        <tr>
+      	  <td >Active:</td>
+      	  <td><%= check_box :region, :active %></td>
+        </tr>
+        <tr>
+          <td>Image</td>
+          <td><%= file_field_tag :image %></td>
+          <td><%= image_tag(@region.image.image_filename.url, height: '150', width: '220') if @region && @region.image %></td>
+          <td><%= link_to "Destroy", admin_region_image_path(@region, @region.image_id), :confirm => "Are you sure?", :method => :delete if @region && @region.image %></td>
+        </tr>
+        <tr>
+          <td valign="top">Producers in this region</td>
+          <td><%= select :region, :producer_ids, Producer.find(:all,:order=>'name').collect { |p| [p.name, p.id] }, {}, {:multiple => true} %></td>
+        </tr>
+      </table>
+    </td>
   </tr>
 </table>
 

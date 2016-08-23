@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20160517123140) do
+ActiveRecord::Schema.define(:version => 20160823073347) do
 
   create_table "about_us", :force => true do |t|
     t.string   "title"
@@ -232,6 +233,9 @@ ActiveRecord::Schema.define(:version => 20160517123140) do
     t.datetime "updated_at"
     t.string   "friendly_identifier"
     t.string   "grape_quote"
+    t.string   "page_title"
+    t.string   "meta_keys"
+    t.text     "meta_description"
   end
 
   create_table "grapes_producers", :id => false, :force => true do |t|
@@ -429,6 +433,9 @@ ActiveRecord::Schema.define(:version => 20160517123140) do
     t.string   "producer_quote"
     t.boolean  "active",              :default => true
     t.text     "producer_text"
+    t.string   "page_title"
+    t.string   "meta_keys"
+    t.text     "meta_description"
   end
 
   create_table "producers_products", :force => true do |t|
@@ -596,6 +603,9 @@ ActiveRecord::Schema.define(:version => 20160517123140) do
     t.integer  "image_id"
     t.string   "region_quote"
     t.boolean  "active",              :default => true
+    t.string   "page_title"
+    t.string   "meta_keys"
+    t.text     "meta_description"
   end
 
   create_table "reservations", :force => true do |t|
@@ -719,6 +729,8 @@ ActiveRecord::Schema.define(:version => 20160517123140) do
     t.boolean "chat_available",                                           :default => false
     t.integer "wine_discount_number",                                     :default => 0
     t.float   "wine_discount_amount",                                     :default => 0.0
+    t.integer "sommelier_image_id"
+    t.integer "wine_mood_image_id"
   end
 
   create_table "ship_addresses", :force => true do |t|

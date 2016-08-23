@@ -2974,6 +2974,9 @@ width: 72px;
 .stButton .stArrow{
 	display: none !important;
 }
+.show-on-tablet{
+	display: none;
+}
 /*=============== Media quires=================*/
 @media only screen and (max-width: 1200px) {
 	.landscape img{
@@ -2990,6 +2993,13 @@ width: 72px;
 	.footer-col1, .footer-col2, .footer-col3, .footer-col4, .footer-col5, .footer-col6, .footer-col7{
 		width: 24%;
 		margin-right: 1%;
+	}
+	.footer-col1, .footer-col2, .footer-col3, .footer-col4, .footer-col5,
+	.footer-col6, .footer-col7, .footer-col8{
+		display: none;
+	}
+	.show-on-tablet{
+		display: block;
 	}
 	
 }

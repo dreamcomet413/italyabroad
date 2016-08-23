@@ -1,52 +1,63 @@
-<table>
-  <%= show_messages(flash[:notice]) %>
 
-  
-  <tr>
-    <td><h3>Meta Info</h3></td>
-  <tr>
-
-  <tr>
-    <td>Meta Page Title</td>
-    <td><%= text_field :grape, :page_title %></td>
-  </tr>
-  
-  <tr>
-    <td>Meta Keys</td>
-    <td><%= text_field :grape, :meta_keys %></td>
-  </tr>
-  
-  <tr>
-    <td>Meta Description</td>
-    <td><%= text_area :grape, :meta_description %></td>
-  </tr>
-  
-</table>
 <table>
   <tr>
-    <td><h3>Grape Info</h3></td>
-  <tr>
+    <td style="width:60%;">
+      <table>
+      <tr>
+        <td><h3>Grape Info</h3></td>
+      </tr>
+      <tr>
+        <td>Name</td>
+        <td><%= text_field :grape, :name %></td>
+      </tr>
+      <tr>
+        <td valign="top">Description</td>
+        <td><%= text_area :grape, :description %></td>
+      </tr>
+      <tr>
+          <td>Quote on Grape: </td>
+          <td><%= text_field :grape, :grape_quote %></td>
+      </tr>
+      </table>
+    </td>
+    <td style="width:40%; vertical-align: top;" >
+      <table>
+        <%= show_messages(flash[:notice]) %>
+        <tr>
+          <td><h3>Meta Info</h3></td>
+        </tr>
 
-  <tr>
-    <td>Name</td>
-    <td><%= text_field :grape, :name %></td>
+        <tr>
+          <td>Meta Page Title</td>
+          <td><%= text_field :grape, :page_title %></td>
+        </tr>
+        
+        <tr>
+          <td>Meta Keys</td>
+          <td><%= text_field :grape, :meta_keys %></td>
+        </tr>
+        
+        <tr>
+          <td>Meta Description</td>
+          <td><%= text_area :grape, :meta_description , :style => "height:100" %></td>
+        </tr>
+      </table>
+    </td>
   </tr>
   <tr>
-    <td valign="top">Description</td>
-    <td><%= text_area :grape, :description %></td>
-  </tr>
-  <tr>
-      <td>Quote on Grape: </td>
-      <td><%= text_field :grape, :grape_quote %></td>
-    </tr>
-  <tr>
-    <td>Image</td>
-    <td><%= file_field_tag :image %></td>
-    <td><%= image_tag(@grape.image.image_filename.url, height: '150', width: '220') if @grape && @grape.image %></td>
-    <td><%= link_to "Destroy", admin_grape_image_path(@grape, @grape.image_id), :confirm => "Are you sure?", :method => :delete if @grape && @grape.image %></td>
-  </tr>
-  <tr>
-    <td valign="top">Producers</td>
-    <td valign="top"><%= select :grape, :producer_ids, Producer.find(:all,:order=>'name').collect {|p| [p.name, p.id]}, {}, {:multiple => true} %></td>
+    <td colspan="2">
+      <table>
+        <tr>
+          <td>Image</td>
+          <td><%= file_field_tag :image %></td>
+          <td><%= image_tag(@grape.image.image_filename.url, height: '150', width: '220') if @grape && @grape.image %></td>
+          <td><%= link_to "Destroy", admin_grape_image_path(@grape, @grape.image_id), :confirm => "Are you sure?", :method => :delete if @grape && @grape.image %></td>
+        </tr>
+        <tr>
+          <td valign="top">Producers</td>
+          <td valign="top"><%= select :grape, :producer_ids, Producer.find(:all,:order=>'name').collect {|p| [p.name, p.id]}, {}, {:multiple => true} %></td>
+        </tr> 
+      </table>
+    </td>
   </tr>
 </table>

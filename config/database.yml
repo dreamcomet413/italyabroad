@@ -1,9 +1,9 @@
 
 development:
   adapter: mysql2
-  database: italyabroad
+  database: italyabroad_dev
   username: root
-  password: "glogics123"
+  password: "root"
 #  socket: /var/mysql/mysql.sock
 
 test:
