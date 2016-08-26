@@ -122,7 +122,7 @@
           <% end %>
           <li class="cart_form">
             <%- if @product.out_of_stock? -%>
-              <%= image_tag('out_of_stock.png') %>
+              <%= image_tag('out_of_stock.png', alt:"Out of Stock", title:"Out of Stock") %>
             <%- else -%>
               <%= form_for(:cart, :url => product_cart_index_path(@product), :remote => true) do  -%>
                                   Qty: <%#= select :cart, :quantity, [1,2,3,4,5,6,7,8,9] %>

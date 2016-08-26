@@ -9,7 +9,7 @@
 %>
 <% if @category.image %>
     <div id="wineBanner" class="main-banner">
-      <%= link_to image_tag(site_image_url('home_image', @category.image, :jpg),:alt=>@category.name), link%>
+      <%= link_to image_tag(site_image_url('home_image', @category.image, :jpg),:alt=>@category.name,:title=>@category.name), link%>
     </div>
 <% else %>
     <div id="wineBanner" class="main-banner">
@@ -25,7 +25,7 @@
         events</strong>
       </span>
       
-      <%= link_to image_tag("events.jpg",:alt=>'Events'), link%>
+      <%= link_to image_tag("events.jpg",:alt=>'Events', :title=>"Events"), link%>
     </div>
 <% end %>
 <div class="row">

@@ -11,7 +11,7 @@ module ApplicationHelper
         image = user.photo.image_filename.url if user.photo.image_filename.present? && user.photo.image_filename.url.present?
       end
     end
-    content_tag(:div, image_tag(image,:style => "width:#{imgSize}"), :class => "user_photo_#{size}", :id => "user_photo")
+    content_tag(:div, image_tag(image,:style => "width:#{imgSize}", :title=> "User", :alt=> "user"), :class => "user_photo_#{size}", :id => "user_photo")
   end
 
   def humanize_date(date)
@@ -122,10 +122,10 @@ module ApplicationHelper
     elsif image_type
       #return image_tag("no_images/#{image_type}.jpg", :size => "100x120", :alt => image_alt)
       #return image_tag("no_images/#{image_type}.jpg", :alt => image_alt, :width => "80")
-      return image_tag("no_images/#{image_type}.jpg", :alt => image_alt).html_safe()
+      return image_tag("no_images/#{image_type}.jpg", :alt => image_alt, :title => image_alt).html_safe()
     else
       #return image_tag("no_images/noimage.png", :alt => image_alt, :width => "80")
-      return image_tag("no_images/noimage.png", :alt => image_alt).html_safe()
+      return image_tag("no_images/noimage.png", :alt => image_alt, :title => image_alt).html_safe()
     end
   end
 
@@ -365,7 +365,7 @@ module ApplicationHelper
 
   def limited_stock(product)
     if product.out_of_stock? || (product.product_prices.first.try(:quantity).to_i == 0)
-      "#{image_tag('out_of_stock.png')}".html_safe
+      "#{image_tag('out_of_stock.png', alt:"Out of stock", title:"Out of stock")}".html_safe
     elsif (quantity = product.product_prices.first.try(:quantity).to_i) <= Product::LIMITED_QUANTITY
       "<b style='color: red'>Quantity: #{quantity} left.</b>".html_safe
     end

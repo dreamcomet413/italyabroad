@@ -1,8 +1,8 @@
 <%- @class = "wine_club"; @breadcrumbs = "#{link_to("Home", root_url)} &raquo; #{link_to("Wine club", "/wine-club")} &raquo; #{@product.name + '...'}" -%>
 <% if @product.image_1  %>
-<div id="wineBanner" class="main-banner"><%= image_tag(site_image_url("product_wine_club", @product.image_1, :jpg),:alt=>@product.name)  %></div>
+<div id="wineBanner" class="main-banner"><%= image_tag(site_image_url("product_wine_club", @product.image_1, :jpg),:alt=>@product.name, :title=>@product.name)  %></div>
 <% else %>
-  <div class="main-banner"><img src="/images/wine-club-banner.png" /></div>
+  <div class="main-banner"><img src="/images/wine-club-banner.png" alt="Wine club banner" title="Wine club banner" /></div>
 <% end %>
 <div class="row">
   <div class="two-colum-row clearfix">

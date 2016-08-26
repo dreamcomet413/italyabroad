@@ -16,26 +16,26 @@
         %>
         <%#= avatar_for_user(@user, "big") %>
         <% if !@photo.nil? and current_user %>
-          <%= image_tag(@photo.image_filename.url,:width => "100px") if @photo.image_filename.present? %>
+          <%= image_tag(@photo.image_filename.url,:width => "100px", :alt=>"Avatar", :title=>"Avatar") if @photo.image_filename.present? %>
         <% elsif @user.new_record? %>
           <% if session[:omniauth].present? %>
             <%#= image_tag(session[:omniauth]["info"]["image"]) -%>
-            <%= content_tag(:div, image_tag(profile_image, :height => "100px", :width => "100px"), :class => "user_photo_big", :id => "user_photo") -%>
+            <%= content_tag(:div, image_tag(profile_image, :height => "100px", :width => "100px", :alt=>"Avatar", :title=>"Avatar"), :class => "user_photo_big", :id => "user_photo") -%>
           <% else %>
             <%= avatar_for_user(@user, "big") %>
               <input type="hidden" name="kind" value="1">
             <% end %>
           <% elsif @user.photo_id.nil? %>
             <% if !@user.photo_default.nil? %>
-              <img src ="images/<%= @user.photo_default+'.jpg'%>">
+              <img src ="images/<%= @user.photo_default+'.jpg'%>" title="Avatar" alt="avatar">
             <% elsif session[:omniauth].present? %>
               <%#= image_tag(session[:omniauth]["info"]["image"]) -%>
-              <%= content_tag(:div, image_tag(profile_image, :height => "100px", :width => "100px"), :class => "user_photo_big", :id => "user_photo") -%>
+              <%= content_tag(:div, image_tag(profile_image, :height => "100px", :width => "100px", :alt=>"Avatar", :title=>"Avatar"), :class => "user_photo_big", :id => "user_photo") -%>
           <% else %>
-            <img src ="images/default.jpg">
+            <img src ="images/default.jpg" alt="avatar" title="Avatar">
           <% end %>
         <% end %>
-        <div id="loader-image" style="display:none" align="center"><%= image_tag "loading.gif" %></div>
+        <div id="loader-image" style="display:none" align="center"><%= image_tag "loading.gif", :alt=>"loading", :title=>"loading" %></div>
       </div>
       <div class="profile-col-2">
           <div class="chose-img">
@@ -47,27 +47,27 @@
           <div class="chose-text">Or if you would not like to upload an image please select your preferred color from the default images below.</div>
           <div class="avatar-row clearfix">
             <div class="avatar-col">
-              <div class="avatar-img"><%= image_tag('default.jpg') %></div>
+              <div class="avatar-img"><%= image_tag('default.jpg', :alt=>"Avatar", :title=>"Avatar") %></div>
               <div class="avatar-radio"><input type=radio value="1" name=kind ></div>
             </div>
             <div class="avatar-col">
-              <div class="avatar-img"><%= image_tag('default_a.jpg') %></div>
+              <div class="avatar-img"><%= image_tag('default_a.jpg', :alt=>"Avatar", :title=>"Avatar") %></div>
               <div class="avatar-radio"><input type=radio value="a" name=kind ></div>
             </div>
             <div class="avatar-col">
-              <div class="avatar-img"><%= image_tag('default_b.jpg') %></div>
+              <div class="avatar-img"><%= image_tag('default_b.jpg', :alt=>"Avatar", :title=>"Avatar") %></div>
               <div class="avatar-radio"><input type=radio value="b" name=kind ></div>
             </div>
             <div class="avatar-col">
-              <div class="avatar-img"><%= image_tag('default_c.jpg') %></div>
+              <div class="avatar-img"><%= image_tag('default_c.jpg', :alt=>"Avatar", :title=>"Avatar") %></div>
               <div class="avatar-radio"><input type=radio value="c" name=kind ></div>
             </div>
             <div class="avatar-col">
-              <div class="avatar-img"><%= image_tag('default_d.jpg') %></div>
+              <div class="avatar-img"><%= image_tag('default_d.jpg', :alt=>"Avatar", :title=>"Avatar") %></div>
               <div class="avatar-radio"><input type=radio value="d" name=kind ></div>
             </div>
             <div class="avatar-col">
-              <div class="avatar-img"><%= image_tag('default_e.jpg') %></div>
+              <div class="avatar-img"><%= image_tag('default_e.jpg', :alt=>"Avatar", :title=>"Avatar") %></div>
               <div class="avatar-radio"><input type=radio value="e" name=kind ></div>
             </div>
           </div>

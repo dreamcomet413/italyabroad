@@ -15,9 +15,9 @@
     <strong style="font-size:24px;">tasting notes</strong> and get <strong style="font-size:24px;">recommendations</strong> -->
   </span>
   <% if  @about and !@about.image_id.nil? %>
-      <%=  image_tag(site_image_url(:about_thumb, @about.image, :jpg),:alt=>@about.title)   unless @about.blank? %>
+      <%=  image_tag(site_image_url(:about_thumb, @about.image, :jpg),:alt=>"Wine Community", :title=>"Wine Community")   unless @about.blank? %>
   <% else %>
-      <%= image_tag("forum_home.jpg",:alt=>'Community') if @about.blank? %>
+      <%= image_tag("forum_home.jpg",:alt=>'Community',:title=>'Community') if @about.blank? %>
   <% end %>
 </div><!--div id="wineBanner"-->
 <div class="full-width">
@@ -28,7 +28,7 @@
       <% users = User.find(:all, :order => "created_at DESC", :limit => 12 ) %>
       <%- for user in users -%>
         <div class="member-col col-md-1 col-xs-3">
-          <div> <%= link_to user.try(:photo).try(:image_filename).present? ? "<div class='user_photo_small' id='user_photo'>#{image_tag(user.photo.image_filename.url,:style => "width :66x;height:66px;")}</div>".html_safe : avatar_for_user(user, 'small', '66px'), site_customer_path(user), :title => user.name  %></div>
+          <div> <%= link_to user.try(:photo).try(:image_filename).present? ? "<div class='user_photo_small' id='user_photo'>#{image_tag(user.photo.image_filename.url,  :style => "width:66x;height:66px;")}</div>".html_safe : avatar_for_user(user, 'small', '66px'), site_customer_path(user), :title => user.name  %></div>
           <div class="member-name"><%= link_to(user.name.blank? ? '&nbsp;'.html_safe : user.name  , site_customer_path(user), :class=>'data', :title => user.name) %></div>
         </div>
       <%- end -%>
@@ -41,9 +41,9 @@
             <div class="green-heading">Grape Guide</div>
             <div class="box-image">
               <% if grape && grape.image %>
-              <%= image_tag(site_image_url(:recipe, grape.image, :jpg),:alt=>grape.name) if grape && grape.image %>
+              <%= image_tag(site_image_url(:recipe, grape.image, :jpg),:alt=>grape.name, :title=>grape.name) if grape && grape.image %>
               <% else %>
-                <%= image_tag("grape_guide_small.png", :alt=>grape.name) %>
+                <%= image_tag("grape_guide_small.png", :alt=>grape.name, :title=>grape.name) %>
               <%- end -%>
             </div>
             <div class="green-heading-20"><%= grape.name %></div>
@@ -68,9 +68,9 @@
             <%- for producer in producers -%>
               <div class="box-image">
                 <% if producer.image %>
-                  <%=  image_tag(site_image_url(:community_producer_thumb, producer.image, :jpg),:alt=> producer.name) %>
+                  <%=  image_tag(site_image_url(:community_producer_thumb, producer.image, :jpg),:alt=> producer.name,:title=> producer.name) %>
                 <% else %>
-                  <%= image_tag("default.jpg", :alt=>producer.name) %>
+                  <%= image_tag("default.jpg", :alt=>producer.name, :title=>producer.name) %>
                 <% end %>
               </div>
               <div class="green-heading-20"><%= producer.name %></div>
@@ -113,7 +113,7 @@
             <div class="green-heading">Get to Know Italy</div>
             <div class="box-image">
               <% if region && region.image %>
-                <%= image_tag(site_image_url(:recipe, region.image, :jpg), :alt=>region.name) if region && region.image %>
+                <%= image_tag(site_image_url(:recipe, region.image, :jpg), :alt=>region.name, :title=>region.name) if region && region.image %>
               <% else %>
                   <%= image_tag("get_to_know_italy.png", :alt=>region.name) %>
               <%- end -%>
@@ -170,9 +170,9 @@
                                 <%i = 1 %>
                                 <%while i <= 5 %>
                                   <%if i <= review.score%>
-                                    <span><img src="/images/star-active.png"></span>
+                                    <span><img src="/images/star-active.png" alt="Star" title="Star"></span>
                                   <%else%>
-                                    <span><img src="/images/star.png"></span>
+                                    <span><img src="/images/star.png" alt="Star" title="Star"></span>
                                   <%end%>
                                   <%i+=1%>
                                 <%end%>
@@ -221,7 +221,7 @@
           <div class="green-heading">Blog</div>
           <% if !blog.nil? %>
           <div class="box-image">
-            <%= image_tag(site_image_url('blog_banner', (blog.image_1 or blog.image_2 or blog.image_3), :jpg),:alt=>blog.name) if blog.image_1 or blog.image_2 or blog.image_3 %>
+            <%= image_tag(site_image_url('blog_banner', (blog.image_1 or blog.image_2 or blog.image_3), :jpg),:alt=>blog.name, :title=>blog.name) if blog.image_1 or blog.image_2 or blog.image_3 %>
           </div>
             <div class="green-heading-20"><%=  blog.name.upcase %></div>
             <div class="blog-date"><%= blog.created_at.strftime("%d/%m/%Y") %></div>
@@ -240,7 +240,7 @@
           <div class="green-heading"><%= "Upcoming Events" %></div>
           <div class="">
             <div class="row clearfix">
-              <div class="col-xs-5"><img src="/images/event-image-01.png"></div>
+              <div class="col-xs-5"><img src="/images/event-image-01.png" alt="Event" title="Event"></div>
               <div class="col-xs-7">
                 <%- products.each do |product| -%>
                   <div class="upcoming-event-box">
@@ -248,7 +248,7 @@
                     <div class="upcoming-location-row">
                       <div class="date-n-time"><%= product.date.strftime("%d %B %Y at %H:%M") if product.date %></div>
                       <%if product.location%>
-                        <div class="location"><i><img src="images/location-pin.png" alt="location"><%=product.location%></i></div>
+                        <div class="location"><i><img src="images/location-pin.png" alt="location" title="location"><%=product.location%></i></div>
                       <%end%>
                     </div>
                   </div>

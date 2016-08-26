@@ -5,11 +5,11 @@
 <%- @class = "no-padding" -%>
 <% if @region && @region.image %>
   <div class="main-banner">
-    <%= image_tag(site_image_url('region_thumb', @region.image, :jpg),:alt=>@region.name) if @region && @region.image %>
+    <%= image_tag(site_image_url('region_thumb', @region.image, :jpg),:alt=>@region.name,:title=>@region.name) if @region && @region.image %>
   </div>
 <% else %>
   <div class="main-banner">
-    <%= image_tag("region-home-image.jpg", :alt=>@region.name) %>
+    <%= image_tag("region-home-image.jpg", :alt=>@region.name, :title=>@region.name) %>
   </div>  
 <%- end -%>
 <div class="row">

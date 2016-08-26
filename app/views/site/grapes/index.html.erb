@@ -2,9 +2,9 @@
 <% @breadcrumbs = "#{link_to("Home", root_url)}&raquo; #{link_to('Community',wine_community_path)} &raquo; Guide to Italian wines and Italian grapes".html_safe() %>
 <% @about = AboutU.find(:first, :conditions => {:link_type => "grape-guide"} ) %>
 <% if @about.present? and @about.image.present? %>
-    <div class="main-banner"><%= link_to image_tag(site_image_url(:about_thumb, @about.image, :jpg),:alt=>@about.title) , site_search_index_path(:id => "grapes") unless @about.blank? %></div>
+    <div class="main-banner"><%= link_to image_tag(site_image_url(:about_thumb, @about.image, :jpg),:alt=>@about.title,:title=>@about.title) , site_search_index_path(:id => "grapes") unless @about.blank? %></div>
   <% else %>
-    <div class="main-banner"><%= link_to image_tag("guide_home_image.jpg",:alt=>'Grape guide'), site_search_index_path(:id => "grapes") %></div>
+    <div class="main-banner"><%= link_to image_tag("guide_home_image.jpg",:alt=>'Grape guide',:title=>'Grape guide'), site_search_index_path(:id => "grapes") %></div>
   <% end %>
   <div class="row">
     <div class="search-blog-wrapper clearfix">

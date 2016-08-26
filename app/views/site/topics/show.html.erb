@@ -2,7 +2,7 @@
 <% @page_title = @topic.title %>
 <% @monitoring = logged_in? && !Monitorship.count(:id, :conditions => ['user_id = ? and topic_id = ? and active = ?', current_user.id, @topic.id, true]).zero? %>
 
-<div id="wineBanner"><%= image_tag("forum-topics-post.jpg") %></div>
+<div id="wineBanner"><%= image_tag("forum-topics-post.jpg", alt:"wine Banner", title: "Wine Banner") %></div>
 <div style="margin:10px;">
   <h1 style="text-align:center;font-size:20px;color:#666666;">Forum - <%= link_to h(@topic.forum.name), forum_path(@topic.forum) %></h1>
   <%= render :partial => "site/topics/monitorship" %>

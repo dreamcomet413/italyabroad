@@ -59,7 +59,7 @@
             <% end %>
             <div class="bottom-5">
               <%= if order_item.product.present? and order_item.product.quantity.to_i == 0 
-                image_tag('out_of_stock.png')
+                image_tag('out_of_stock.png', alt:"Out of Stock", title:"Out of Stock")
               else
                 link_to image_tag("buttons/download_invoice.png"), :action => 'download_pdf',:id => @order.id,:format => "pdf"
                 end

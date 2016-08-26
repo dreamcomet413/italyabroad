@@ -16,7 +16,7 @@ end
           </div>-->
           <%# end %>
           </span>
-	          <%= link_to image_tag(site_image_url('home_image', @category.image, :jpg),:alt=>@category.name),  link %>
+	          <%= link_to image_tag(site_image_url('home_image', @category.image, :jpg),:alt=>@category.name, :title=>@category.name),  link %>
 	</div>
 <% else %>
   <div id="wineBanner" class="main-banner">
@@ -31,7 +31,7 @@ end
       <%# if  @about and !@about.image_id.nil? %>
       <%#= link_to image_tag(site_image_url(:about_thumb, @about.image, :jpg)) , site_search_index_path(:id => @category.friendly_identifier)  unless @about.blank?  %>
       <%# else %>
-      <%= link_to image_tag("wine_tours_home.jpg",:alt=>@category.name),link %>
+      <%= link_to image_tag("wine_tours_home.jpg",:alt=>@category.name,:title=>@category.name),link %>
       <%# end %>
 	</div>
 <% end %>

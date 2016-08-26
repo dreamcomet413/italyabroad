@@ -46,10 +46,10 @@
 
 <% if !@setting.nil? %>
   <% if @setting.wine_mood_image %>
-   <div class="main-banner"> <%= image_tag(@setting.wine_mood_image.image_filename.url) %></div>
+   <div class="main-banner"> <%= image_tag(@setting.wine_mood_image.image_filename.url, :alt=>"Main Banner", :title=>"Main Banner") %></div>
   <%end%>
 <% else %>
-  <div class="main-banner"><%= image_tag("/images/mood-banner.jpg")-%></div>
+  <div class="main-banner"><%= image_tag("/images/mood-banner.jpg", :alt=>"Mood Banner", :title=>"Mood Banner")-%></div>
 <%end%>
 <%- if !params[:category].blank?
   @category = Category.find(params[:category])
@@ -67,7 +67,7 @@ end %>
       <% for mood in @moods %>
         <div class="col-xs-4 col-md-2 mood-selection">
           <div class="">
-            <%= image_tag("#{mood.try(:image).url}")-%>
+            <%= image_tag("#{mood.try(:image).url}", :alt=>"Mood", :title=>"Mood")-%>
           </div>
           <div><%= radio_button_tag :mood, mood.id %></div>
           <div><%= mood.name.upcase-%></div>

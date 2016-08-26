@@ -1,5 +1,5 @@
 <div class="hide-tablet cart-top">
-	<div class="cart_main"><%= image_tag "cart-icon.png" %></div>
+	<div class="cart_main"><%= image_tag "cart-icon.png", alt: "Cart", title:"Cart"  %></div>
 	<div class="total">
 	    <div class="">
 	    	<b><%= @cart.items.size.to_i %></b> item(s)   -  Sub Total: 
@@ -14,7 +14,7 @@
 	<div class="clearfix"></div>
 </div>
 <li class="hide-desktop cart-top">
-  <div class="cart"><%= image_tag "cart-icon-small.png" %></div>
+  <div class="cart"><%= image_tag "cart-icon-small.png", alt: "Cart", title:"cart" %></div>
   <div class="total">
       <div><b><%= @cart.items.size.to_i %></b> item(s)  -  Sub Total: 
       	<% if @cart.items.size > 0 %>

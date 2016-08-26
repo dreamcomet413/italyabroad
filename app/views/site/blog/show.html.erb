@@ -13,12 +13,12 @@
 <% @title = @post.page_title_formatted; @description = @post.meta_description_formatted; @keys = @post.meta_keys_formatted %>
 <% @class = "no-padding"; @breadcrumbs = "#{link_to("Home", root_url)} &raquo; #{link_to('Community',wine_community_path)} &raquo; #{link_to("Blog", site_blog_index_path)} &raquo; #{@post.name[0..25] + '...'}" %>
 <div id="blog_show_container" class="main-banner">
-  <%= image_tag(site_image_url('blog_banner', (@post.image_1 or @post.image_2 or @post.image_3), :jpg),:alt=>@post.name) if @post.image_1 or @post.image_2 or @post.image_3 %>
+  <%= image_tag(site_image_url('blog_banner', (@post.image_1 or @post.image_2 or @post.image_3), :jpg),:alt=> @title, :title=> @title) if @post.image_1 or @post.image_2 or @post.image_3 %>
 </div>
 <div class="row">
   <div class="search-blog-wrapper clearfix">
     <div class="subscribe-rss col-md-3">
-      <%= link_to "Subscribe to our RSS feed", site_blog_index_path(:format => :xml, :show => :all) %> <%= link_to image_tag('RSS.png'), site_blog_index_path(:format   => :xml, :show => :all) %>
+      <%= link_to "Subscribe to our RSS feed", site_blog_index_path(:format => :xml, :show => :all) %> <%= link_to image_tag('RSS.png', :title=>"RSS", :alt=>"RSS"), site_blog_index_path(:format   => :xml, :show => :all) %>
     </div>
     <div class="col-md-9 clearfix">
       <div class="search-blog-box clearfix">

@@ -6,9 +6,8 @@
     <!--[if IE]><meta http-equiv="x-ua-compatible" content="IE=9" /><![endif]-->
     <b></b>
     <title>Italian Wines & Italian Food made by Small Producers</title>
-    <meta name="description" content="Italian Food &amp; Deli from Small Producers in the UK, High Quality Italian Food online"/>
-    
-  <meta name="keywords" content="Italian delicatessen, extra virgin olive oil, tuscan extra virgin olive oil, viola extra virgin olive oil, modena balsamic vinegar"/>
+    <meta name="description" content="<%= h(description) %>" />
+  <meta name="keywords" content="<%= h(keys) %>" />
   <meta name="copyright" content="italyabroad.com"/>
     <meta name="Abdul Malik" content="Goodlogics">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -33,7 +32,7 @@
                             </div>
                             <div class="enter-button2 dark-green-button">
                                 <!-- <a href="/login"><img src="landing-img/login-btn.png" alt="login button" /></a> -->
-                                <a href="/login"><i class="lock"><img src="landing-img/lock.png"></i>Login</a>
+                                <a href="/login"><i class="lock"><img src="landing-img/lock.png" alt="lock" title="lock"></i>Login</a>
                             </div>
                          </div>
                         <div class="welcome-board">
@@ -52,7 +51,7 @@
                                                     <a href="<%=session[:return_path]%>">Welcome to italy...abroad</a>
                                                 </div>
                                             </div>
-                                            <div class="welcome-logo"><a href="/"><img src="landing-img/logo_hi_res.gif" alt="logo" /></a></div>
+                                            <div class="welcome-logo"><a href="/"><img src="landing-img/logo_hi_res.gif" alt="logo" title="Logo" /></a></div>
                                         </div>
                                     </div>
                                 </div>
@@ -72,10 +71,10 @@
                             <p>In post war Italy, cars were for rich people, and Ida and Ettore were not; they would get up at 3:00 am in the morning, and would set off with a donkey carrying all the necessary equipment. My grandparents would walk some 10km and work until 12:00pm, and then return home, weary from the days physical excursions, almost every day of the year, come rain or shine, just to make their own wine. </p>
                             <p><b>This is where my and our story started</b></p>
                         </div>
-                        <div class="col-md-5 image-box"><img src="landing-img/image-01.png" alt="image" /></div>
+                        <div class="col-md-5 image-box"><img src="landing-img/image-01.png" alt="image" title="image" /></div>
                     </div>
                     <div class="border-box clearfix">
-                        <div class="col-md-5 image-box"><img src="landing-img/image-02.png" alt="image" /></div>
+                        <div class="col-md-5 image-box"><img src="landing-img/image-02.png" alt="image" title="image" /></div>
                         <div class="col-md-7 text-box">
                             <p>Then I came along, and along came the tractors; the donkey was retired; but still, almost every morning for a few more years, my grandparents continued their work on the vineyards with the same commitment and the same pride that went into making their own wine and freely sharing their enthusiasm and knowledge of winemaking with their grandsons. </p>
                             <p>In our family food and wine were not considered commodities, for us, they are one of life’s real pleasures to be savoured and remembered.</p>
@@ -104,22 +103,22 @@
                 <div class="promise">Having read this far, these are our promises to you: </div>
                 <div class="three-column clearfix">
                     <div class="col-md-4">
-                        <div class="col-icon"><img src="landing-img/customer-icon.png"></div>
+                        <div class="col-icon"><img src="landing-img/customer-icon.png" title="cutomer" alt="cutomer"></div>
                         <div class="col-title">Outstanding Customer Service</div>
                         <div class="col-des">We know <b>everything</b> there is to know about our produce and are happy to help you find what you looking for.</div>
                     </div>
                     <div class="col-md-4">
-                        <div class="col-icon"><img src="landing-img/delivery-icon.png"></div>
+                        <div class="col-icon"><img src="landing-img/delivery-icon.png" alt="Delivery" title="Delivery"></div>
                         <div class="col-title">Delivered To Your Doorstep</div>
                         <div class="col-des">Free <b>next day</b> delivery when you spend &pound;100 or more.</div>
                     </div>
                     <div class="col-md-4">
-                        <div class="col-icon"><img src="landing-img/wine-icon.png"></div>
+                        <div class="col-icon"><img src="landing-img/wine-icon.png" alt="Wine" title="Wine"></div>
                         <div class="col-title">The Italyabroad.com Promise</div>
                         <div class="col-des">If you dont like the wine or you think it is faulty, we will <b>replace</b> or <b>refund</b> it with  no questions asked.</div>
                     </div>
                 </div>
-                <div class="get-start"><a href="<%=session[:return_path]%>"><img src="landing-img/get-started-btn.png" alt="image" /></a></div>
+                <div class="get-start"><a href="<%=session[:return_path]%>"><img src="landing-img/get-started-btn.png" alt="Get started" title="Get Started" /></a></div>
             </div>
         </div>
     </body>

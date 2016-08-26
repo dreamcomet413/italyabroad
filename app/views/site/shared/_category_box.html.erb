@@ -5,7 +5,7 @@
             <div class="col-md-4 portrait">
               <div class="slider-box">
                 <div class="clearfix">
-                  <div class="col-xs-4 box-image"><%= link_to image_tag(path),nested_products_uri(product)  %></div>
+                  <div class="col-xs-4 box-image"><%= link_to image_tag(path, title:product.name, alt:product.name ),nested_products_uri(product)  %></div>
                   <div class="col-xs-8 slider-box-text">
                     <div class="item-name"><%= link_to product.name, nested_products_uri(product) if product.categories.root.present? && (product.categories.root.name.upcase != 'WINE TOURS') %>
                       <%# product.description_short[0..70].html_safe() %>
@@ -24,11 +24,11 @@
                       <div class="row clearfix">
                         <div class="veg-wrapper" style="margin: 10px;">
                           <% if  product.vegetarian %>
-                            <span class="vegan"><img src="/images/vegan-icon.jpg"></span>
+                            <span class="vegan"><img src="/images/vegan-icon.jpg" alt="Vegan" title="Vegan"></span>
                           <% end %>
                           <% if  product.organic %>
                             <span class="organic">
-                              <img src="/images/organic-icon.jpg">
+                              <img src="/images/organic-icon.jpg" alt="Organic" title="Organic">
                             </span>
                           <% end %>
                         </div>
@@ -61,7 +61,7 @@
                     <div class="col-xs-8 ">
                       <%- if product.out_of_stock? -%>
                         <div class="add-row clearfix">
-                          <%= image_tag('out_of_stock.png') %>
+                          <%= image_tag('out_of_stock.png', alt: "Out of stock", title:"Out of stock") %>
                         </div>
                       <%- else -%>
                         <div class="add-row clearfix">
@@ -77,7 +77,7 @@
             <div class="col-md-4 landscape">
               <div class="slider-box2">
                 <div class="box-image">
-                  <%= link_to image_tag(path),nested_products_uri(product)  %>
+                  <%= link_to image_tag(path, alt:product.name, title:product.name),nested_products_uri(product)  %>
                 </div>
                 <div class="item-name">
                   <!-- #if check is only _category partial -->
@@ -97,11 +97,11 @@
                   <div class="row clearfix">
                     <div class="veg-wrapper" style="margin: 10px;">
                       <% if  product.vegetarian %>
-                        <span class="vegan"><img src="/images/vegan-icon.jpg"></span>
+                        <span class="vegan"><img src="/images/vegan-icon.jpg" alt="Vegan" title="Vegan"></span>
                       <% end %>
                       <% if  product.organic %>
                         <span class="organic">
-                          <img src="/images/organic-icon.jpg">
+                          <img src="/images/organic-icon.jpg" alt="Organic" title="Organic">
                         </span>
                       <% end %>
                     </div>
@@ -132,7 +132,7 @@
                   <div class="col-xs-8">
                     <%- if product.out_of_stock? -%>
                       <div class="add-row clearfix">
-                        <%= image_tag('out_of_stock.png') %>
+                        <%= image_tag('out_of_stock.png', alt:"Out of stock", title:"Out of stock") %>
                       </div>
                     <%- else -%>
                       <div class="add-row clearfix">

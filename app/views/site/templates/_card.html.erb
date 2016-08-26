@@ -15,16 +15,16 @@
             <% if @product.categories.first.name == ("Wine" || "wine") %>
               <%#= show_image_tag(:wine, @product.image_1, :jpg) %>
               <% if params[:category] == "mixed-case" %>
-                <%= link_to image_tag(path), (@product.image_1.image_filename.present? ? @product.image_1.image_filename.try(:url) : "/resources/images/#{@product.image_1.id}.jpg"), {:rel => "lightbox", :title => @product.name} %>
+                <%= link_to image_tag(path, alt:@product.name, title:@product.name), (@product.image_1.image_filename.present? ? @product.image_1.image_filename.try(:url) : "/resources/images/#{@product.image_1.id}.jpg"), {:rel => "lightbox", :title => @product.name} %>
               <% else %>
-                <%= link_to image_tag(path), (@product.image_1.image_filename.present? ? @product.image_1.image_filename.try(:url) : "/resources/images/#{@product.image_1.id}.jpg"), {:rel => "lightbox", :title => @product.name} %>
+                <%= link_to image_tag(path, title:@product.name, alt:@product.name), (@product.image_1.image_filename.present? ? @product.image_1.image_filename.try(:url) : "/resources/images/#{@product.image_1.id}.jpg"), {:rel => "lightbox", :title => @product.name} %>
               <% end %>
             <% else %>
               <% if params[:root_category] == "food" %>
-                <%= link_to image_tag(path), (@product.image_1.image_filename.present? ? @product.image_1.image_filename.try(:url) : "/resources/images/#{@product.image_1.id}.jpg"), {:rel => "lightbox", :title => @product.name} %>
+                <%= link_to image_tag(path, alt:@product.name, title:@product.name), (@product.image_1.image_filename.present? ? @product.image_1.image_filename.try(:url) : "/resources/images/#{@product.image_1.id}.jpg"), {:rel => "lightbox", :title => @product.name} %>
                 <%#= link_to image_tag(path), (@product.image_1.image_filename.present? ? @product.image_1.image_filename.try(:url) : "/resources/images/#{@product.image_1.id}.jpg"), {:rel => "lightbox", :title => @product.name} %>
               <% else %>
-                <%= link_to image_tag(path), (@product.image_1.image_filename.present? ? @product.image_1.image_filename.try(:url) : "/resources/images/#{@product.image_1.id}.jpg"), {:rel => "lightbox", :title => @product.name} %>
+                <%= link_to image_tag(path, alt:@product.name, title:@product.name ), (@product.image_1.image_filename.present? ? @product.image_1.image_filename.try(:url) : "/resources/images/#{@product.image_1.id}.jpg"), {:rel => "lightbox", :title => @product.name} %>
               <% end %>
                 <%#= show_image_tag('product', @product.image_1, :jpg) %>
             <% end %>
@@ -32,19 +32,19 @@
               <% if params[:root_category] == "wine" %>
                 <%#= image_tag("no_images/product_wine.jpg",:size => "230x250") %>
                 <%#= image_tag("no_images/product_wine.jpg",:size => "80x150") %>
-                <%= image_tag("no_images/product_wine.jpg", :height => "254") %>
+                <%= image_tag("no_images/product_wine.jpg", :alt=>"no image", :title=>"No iamge", :height => "254") %>
               <% elsif params[:root_category] == "food" %>
                 <%#= image_tag("no_images/product_food.jpg",:size => "230x250") %>
                 <%#= image_tag("no_images/product_food.jpg",:size => "120x150") %>
-                <%= image_tag("no_images/product_food.jpg", :size => "120") %>
+                <%= image_tag("no_images/product_food.jpg", :alt=>"food", :title=>"food", :size => "120") %>
               <% elsif params[:root_category] == "hampers" %>
                 <%#= image_tag("no_images/product_hamper.jpg",:size => "230x250") %>
                 <%#= image_tag("no_images/product_hamper.jpg",:size => "120x150") %>
-                <%= image_tag("no_images/product_hamper.jpg", :size => "120") %>
+                <%= image_tag("no_images/product_hamper.jpg", :alt=>"hamper", :title=>"hamper", :size => "120") %>
               <% else %>
                 <%#= image_tag("no_images/product_wine.jpg",:size => "230x250") %>
                 <%#= image_tag("no_images/product_wine.jpg",:size => "120x150") %>
-                <%= image_tag("no_images/product_wine.jpg", :size => "120") %>
+                <%= image_tag("no_images/product_wine.jpg", :alt=>"wine", :title=>"wine", :size => "120") %>
               <% end %>
             <% end %>        
         </div>
@@ -75,9 +75,9 @@
                   <%i = 1 %>
                   <%while i <= 5 %>
                     <%if i <= score%>
-                      <span><img src="/images/star-active.png"></span>
+                      <span><img src="/images/star-active.png" alt="Star" title="Star"></span>
                     <%else%>
-                      <span><img src="/images/star.png"></span>
+                      <span><img src="/images/star.png" alt="Star" title="Star"></span>
                     <%end%>
                     <%i+=1%>
                   <%end%>
@@ -172,11 +172,11 @@
                     <!-- <div class="col-xs-3 product-des-title"> &nbsp;</div> -->
                     <div class="veg-wrapper"><%#= @product.vegetarian ? "YES" : "NO" %>
                       <% if  @product.vegetarian %>
-                        <span class="vegan"><img src="/images/vegan-icon.jpg"></span>
+                        <span class="vegan"><img src="/images/vegan-icon.jpg" title="Vegan" alt="Vegan"></span>
                       <% end %>
                       <% if  @product.organic %>
                         <span class="organic">
-                          <img src="/images/organic-icon.jpg">
+                          <img src="/images/organic-icon.jpg" alt="Organic" title="Organic">
                         </span>
                       <% end %>
                     </div>
@@ -246,19 +246,19 @@
                               </div>
                             <%- end -%>
                             <%- else -%>
-                              <b>&pound; <%= quantity.price %> is <%= image_tag('out_of_stock.png') %></b>
+                              <b>&pound; <%= quantity.price %> is <%= image_tag('out_of_stock.png', :alt=>"Out of stock", :title=>"Out of stock") %></b>
                             <%- end -%>
                           <% end %>
                       </div>
                       <div class="wishlist-row row clearfix">
                         <% if @product.categories.root.present? && @product.categories.root.name == 'Wine' %>
                           <div class="wish-list">
-                            <i><img src="/images/heart-icon.png"></i> <%= link_to "Add to wish list" , "/site/wish_list?product_id=#{@product.id}", :remote => true, :method => :post %>
+                            <i><img src="/images/heart-icon.png" title="Heart" alt="Heart"></i> <%= link_to "Add to wish list" , "/site/wish_list?product_id=#{@product.id}", :remote => true, :method => :post %>
                           </div>
                         <% end %>
                         <% if  @product.categories.root.present? && @product.categories.root.name.downcase == 'wine' %>
                           <div class="wine-list">
-                            <i><img src="/images/bottle-icon.png"></i><%= link_to "Add to Wine List", "/site/wine_lists?product_id=#{@product.id}", :remote => true, :method => :post %>
+                            <i><img src="/images/bottle-icon.png" title="wine" alt="wine bottle"></i><%= link_to "Add to Wine List", "/site/wine_lists?product_id=#{@product.id}", :remote => true, :method => :post %>
                           </div>
                         <% end %>
                       </div>
@@ -362,7 +362,7 @@
                 <div class="col-md-3">
                   <div class="small-box clearfix">
                     <div class="col-xs-4">
-                      <%= link_to image_tag(path), nested_products_uri(inc_product) %>
+                      <%= link_to image_tag(path, alt:inc_product.name, title:inc_product.name), nested_products_uri(inc_product) %>
                     </div>
                     <div class="col-xs-8 slider-box-text">
                       <div class="item-name"><%= link_to truncate(inc_product.name, {:length => 80}), nested_products_uri(inc_product) %></div>
@@ -394,7 +394,7 @@
                 <div class="col-md-3">
                   <div class="small-box clearfix">
                     <div class="col-xs-4">
-                      <%= link_to image_tag(path), nested_products_uri(inc_product) %>
+                      <%= link_to image_tag(path, alt:inc_product.name, title:inc_product.name), nested_products_uri(inc_product) %>
                     </div>
                     <div class="col-xs-8 slider-box-text">
                       <div class="item-name">
@@ -426,7 +426,7 @@
             <div class="col-md-3">
               <div class="small-box clearfix">
                 <div class="col-xs-4">
-                  <%= link_to image_tag(path), nested_products_uri(related_product) %>
+                  <%= link_to image_tag(path, alt:related_product.name, title:related_product.name ), nested_products_uri(related_product) %>
                 </div>
                 <div class="col-xs-8 slider-box-text">
                   <div class="item-name"><%= link_to related_product.name, nested_products_uri(related_product) %></div>

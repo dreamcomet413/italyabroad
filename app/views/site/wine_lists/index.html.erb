@@ -36,7 +36,7 @@
 			                    <%end%>
 			                    <div class="hamper-quantity-row clearfix">
 			                    	<%- if product.out_of_stock? -%>
-			        					<div class="hamper-button"><%= image_tag('out_of_stock.png') %></div>
+			        					<div class="hamper-button"><%= image_tag('out_of_stock.png', :alt=>"Out of stock", :title=>"Out of stock") %></div>
 			      					<%- else -%>
 			                        	<div class="bottom-15 green-button">
 			                            	<%= link_to(("Add to Cart"), "/site/cart?product_id=#{product.id}", :remote => true, :method => :post) -%>
@@ -44,7 +44,7 @@
 			                        <%- end -%>
 			                        <div class="wishlist-row row clearfix">
 			                        	<div class="wine-list">
-				                            <i><img src="/images/bottle-icon.png"></i><%= link_to ("Remove from Wine list"), product_wine_list_path(product, wine_list), :method => :delete, :confirm => "Are you sure want to delete this product from your wine list?" %>
+				                            <i><img src="/images/bottle-icon.png" alt="bottle" title="Remove form wish list"></i><%= link_to ("Remove from Wine list"), product_wine_list_path(product, wine_list), :method => :delete, :confirm => "Are you sure want to delete this product from your wine list?" %>
 				                        </div>
 			                        </div>
 			                    </div>

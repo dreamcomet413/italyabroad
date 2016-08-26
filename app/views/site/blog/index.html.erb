@@ -5,15 +5,15 @@
 <div id="blog_home" class="main-banner">
   <div class="title"><%= @about.title[0..150] if @about %></div>
   <% if  @about and !@about.image_id.nil? %>
-   <div class="main-banner"><%=  image_tag(site_image_url(:about_thumb, @about.image, :jpg),:alt=>@about.title[0..150]) unless @about.blank?  %></div>
+   <div class="main-banner"><%=  image_tag(site_image_url(:about_thumb, @about.image, :jpg)) unless @about.blank?  %></div>
   <% else %>
-    <div class="main-banner"><%= image_tag("blog_home.jpg",:alt=>@about.title[0..150]) unless @about.blank?  %></div>
+    <div class="main-banner"><%= image_tag("blog_home.jpg",:alt=>"Blog Banner", :title=>"Blog Banner") unless @about.blank?  %></div>
   <% end %>
 </div>
 <div class="row">
   <div class="search-blog-wrapper clearfix">
     <div class="subscribe-rss col-md-3">
-      <%= link_to "Subscribe to our RSS feed", site_blog_index_path(:format => :xml, :show => :all) %> <%= link_to image_tag('RSS.png'), site_blog_index_path(:format => :xml, :show => :all) %>
+      <%= link_to "Subscribe to our RSS feed", site_blog_index_path(:format => :xml, :show => :all) %> <%= link_to image_tag('RSS.png', :alt=>"RSS", :title=>"Rss"), site_blog_index_path(:format => :xml, :show => :all) %>
     </div>
     <div class="col-md-9 clearfix">     
       <div class="search-blog-box clearfix">

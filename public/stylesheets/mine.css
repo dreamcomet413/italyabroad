@@ -968,14 +968,17 @@ margin-right: 5px;}
 }
 .grape-list{
 	margin-bottom: 80px;
-	margin-top: 40px;
+	margin-top: 10px;
 }
 .grape-list .green-heading{
 	font-size: 18px;
 	margin-bottom: 30px;
 }
 .grape-list a{
-	line-height: 28px;
+	line-height: 20px;
+}
+.grape-list .green-heading{
+	margin-bottom: 0px;
 }
 /*===============Community============================*/
 .new-member-row{

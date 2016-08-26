@@ -11,11 +11,11 @@ end
     <span class="title_wine_tours">
     <%#= @category.text_on_image %>
     </span>
-	  <%= link_to image_tag(site_image_url('home_image', @category.image, :jpg),:alt=>@category.name), link %>
+	  <%= link_to image_tag(site_image_url('home_image', @category.image, :jpg),:alt=>@category.name, :title=>@category.name), link %>
 	</div>
 <% else %>
   <div id="wineBanner">
-  	<%= link_to image_tag("hamper.png",:alt=>@category.name),link %>
+  	<%= link_to image_tag("hamper.png",:alt=>@category.name, :title=>@category.name),link %>
 	</div>
 <% end %>
 <!-- start category content-->

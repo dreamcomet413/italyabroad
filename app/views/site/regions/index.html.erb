@@ -3,10 +3,10 @@
 
 <% @about = AboutU.find(:first, :conditions => {:link_type => "region"} ) %>
   <% if  @about and !@about.image_id.nil? %>
-    <div class="main-banner"><%= link_to image_tag(site_image_url('region_card', @about.image, :jpg),:alt=>@about.title) , site_search_index_path(:id => "regions") unless @about.blank? %></div>
+    <div class="main-banner"><%= link_to image_tag(site_image_url('region_card', @about.image, :jpg),:alt=>@about.title,:title=>@about.title) , site_search_index_path(:id => "regions") unless @about.blank? %></div>
   <% else %>
     <div class="main-banner">
-      <%= link_to image_tag("blog_home.jpg",:alt=>'Regions'),site_search_index_path(:id => "regions") %>
+      <%= link_to image_tag("blog_home.jpg",:alt=>'Regions',:title=>'Regions'),site_search_index_path(:id => "regions") %>
     </div>
   <% end %>
   <div class="row">

@@ -17,9 +17,9 @@
     <% end %>
   <% end %>
   <% if  @about and !@about.image_id.nil? %>
-    <%= image_tag(site_image_url('region_card', @about.image, :jpg),:alt=>@about.title) unless @about.blank? %>
+    <%= image_tag(site_image_url('region_card', @about.image, :jpg),:alt=>@about.title, :title=>@about.title) unless @about.blank? %>
   <% else %>
-    <%= image_tag("blog_home.jpg",:alt=>'Producers') %>
+    <%= image_tag("blog_home.jpg",:alt=>'Producers',:title=>'Producers') %>
   <% end %>
 </div>
 <div class="row">
