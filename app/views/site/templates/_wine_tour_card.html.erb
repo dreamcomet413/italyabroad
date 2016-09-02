@@ -1,4 +1,4 @@
-<%- @class = "wine_tours"; @breadcrumbs = "#{link_to("Home", root_url)} &raquo; #{link_to("Wine Tours", "/wine-tours")} &raquo; #{@product.name+ '...'}" -%>
+<%- @class = "wine_tours"; @breadcrumbs = "#{link_to("Home", root_url, :title=>"Home")} &raquo; #{link_to("Wine Tours", "/wine-tours", :title=>"Wine Tours")} &raquo; #{@product.name+ '...'}" -%>
 
 <div id="wineBanner" class="main-banner"><%#= image_tag("wine_tours_card_home.jpg") %>
   <%- if @product.image_1 or @product.image_2 or @product.image_3 -%>
@@ -44,7 +44,7 @@
             </div>
           <div class="club-btn">
             <div class="green-button"> 
-              <%= link_to "Add to cart", "/site/cart?product_id=#{@product.id}", :remote => true, :method => :post %>
+              <%= link_to "Add to cart", "/site/cart?product_id=#{@product.id}", :remote => true, :method => :post, :title=>"Add to cart" %>
             </div>
           </div>
         </div>

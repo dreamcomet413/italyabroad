@@ -1,4 +1,4 @@
-<% @title = "Terms and Condition"; @class = "help no-padding"; @breadcrumbs = "#{link_to("Home", root_url)} &raquo; Help &raquo; Terms and Condition" %>
+<% @title = "Terms and Condition"; @class = "help no-padding"; @breadcrumbs = "#{link_to("Home", root_url, :title=>"Home")} &raquo; Help &raquo; Terms and Condition" %>
 
 <% @about = AboutU.find(:first, :conditions => {:link_type => "terms_conditions"} ) %>
 <div class="help-container">

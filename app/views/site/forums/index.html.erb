@@ -1,5 +1,5 @@
 <%- set_title "Community" -%>
-<% @breadcrumbs = "#{link_to("Home", root_url)} &raquo; #{link_to('Community',wine_community_path)}".html_safe() %>
+<% @breadcrumbs = "#{link_to("Home", root_url, :title=>"Home")} &raquo; #{link_to('Community',wine_community_path, :title=>"Community")}".html_safe() %>
 <% @about = AboutU.find(:first, :conditions => {:link_type => "community"} ) %>
 <div id="wineBanner" class="main-banner">
   <span class="community_home_title">
@@ -28,7 +28,7 @@
       <% users = User.find(:all, :order => "created_at DESC", :limit => 12 ) %>
       <%- for user in users -%>
         <div class="member-col col-md-1 col-xs-3">
-          <div> <%= link_to user.try(:photo).try(:image_filename).present? ? "<div class='user_photo_small' id='user_photo'>#{image_tag(user.photo.image_filename.url,  :style => "width:66x;height:66px;")}</div>".html_safe : avatar_for_user(user, 'small', '66px'), site_customer_path(user), :title => user.name  %></div>
+          <div> <%= link_to user.try(:photo).try(:image_filename).present? ? "<div class='user_photo_small' id='user_photo'>#{image_tag(user.photo.image_filename.url,  :style => "width:66x;height:66px;", :title=>"user.name")}</div>".html_safe : avatar_for_user(user, 'small', '66px'), site_customer_path(user), :title => user.name  %></div>
           <div class="member-name"><%= link_to(user.name.blank? ? '&nbsp;'.html_safe : user.name  , site_customer_path(user), :class=>'data', :title => user.name) %></div>
         </div>
       <%- end -%>
@@ -51,7 +51,7 @@
               <%=
                 if grape.description
                   if grape.description.length > @enough_chars
-                    grape.description[0..@enough_chars].html_safe() + "..." + link_to('(Continue Reading)', site_grape_path(grape)).html_safe()
+                    grape.description[0..@enough_chars].html_safe() + "..." + link_to('(Continue Reading)', site_grape_path(grape),:title=>"Continue Reading").html_safe()
                   else
                     grape.description.html_safe()
                   end
@@ -59,7 +59,7 @@
                 end
               %>
             </div>
-            <div class="right-link"><%= link_to "(More Grapes)", grape_guide_path %></div>
+            <div class="right-link"><%= link_to "(More Grapes)", grape_guide_path, :title=>"More Grapes" %></div>
           </div>
         <%- end -%>
         <div class="border-box">
@@ -78,14 +78,14 @@
                 <p>
                   <%- if producer.description
                     if producer.description.length > @enough_chars -%>
-                      <%= producer.description[0..@enough_chars].html_safe() + "... " + link_to('(Continue Reading)', site_producer_path(producer)) %>
+                      <%= producer.description[0..@enough_chars].html_safe() + "... " + link_to('(Continue Reading)', site_producer_path(producer), :title=>"Continue Reading") %>
                     <%- else -%>
                       <%= producer.description.html_safe() %>
                     <%end
                     else
                     end-%>
                 </p>
-              <div class="right-link"><%= link_to "More Producers", site_producers_path %></div>
+              <div class="right-link"><%= link_to "More Producers", site_producers_path, :title=>"More Producers" %></div>
             </div>
           <% end -%>
         </div>
@@ -94,7 +94,7 @@
         <div class="border-box">
           <div class="clearfix">
             <div class="green-heading pull-left">Q&A</div>
-            <div class="heading-link pull-left"><%= link_to '(Ask Our Experts)', site_faqs_path %></div>
+            <div class="heading-link pull-left"><%= link_to '(Ask Our Experts)', site_faqs_path, :title=>"Ask Our Experts" %></div>
           </div>
           <% @faqs = Faq.find(:all, :limit => 6, :conditions=>['publish = true and answer != ""']) %>
           <% unless @faqs.blank? %>
@@ -102,7 +102,7 @@
             <% @faqs.each do |faq| %>
               <div class="row-30 " >
                 <div><%= faq.question %></div>
-                <div><%= link_to 'Read the answer', "/site/faqs?show=show#{faq.id}#show#{faq.id}" %></div>
+                <div><%= link_to 'Read the answer', "/site/faqs?show=show#{faq.id}#show#{faq.id}", :title=>"Read the answer" %></div>
               </div>
             <%- end-%>
           <%- end-%>
@@ -115,7 +115,7 @@
               <% if region && region.image %>
                 <%= image_tag(site_image_url(:recipe, region.image, :jpg), :alt=>region.name, :title=>region.name) if region && region.image %>
               <% else %>
-                  <%= image_tag("get_to_know_italy.png", :alt=>region.name) %>
+                  <%= image_tag("get_to_know_italy.png", :alt=>region.name, :title=>region.name) %>
               <%- end -%>
             </div>
             <div class="green-heading-20"><%= region.name %></div>
@@ -124,7 +124,7 @@
                 <%=
                 if region.description and !region.description.empty? and !region.description.nil?
                   if region.description.length > @enough_chars
-                    region.description[0..@enough_chars].html_safe() + "..." + link_to('(Continue Reading)', site_region_path(region)).html_safe()
+                    region.description[0..@enough_chars].html_safe() + "..." + link_to('(Continue Reading)', site_region_path(region),:title=>"Continue Reading").html_safe()
                   else
                     region.description.html_safe()
                   end
@@ -133,7 +133,7 @@
                 end%>
               </p>
             </div>
-            <div class="right-link"><%= link_to "(More Regions)", site_regions_path %></div>
+            <div class="right-link"><%= link_to "(More Regions)", site_regions_path,:title=>"More Regions" %></div>
           </div>
         <%- end -%>
       </div>
@@ -153,14 +153,14 @@
                       <div class="slide-text">
                         <div class="row clearfix">
                           <div class="col-xs-3">
-                            <%= link_to avatar_for_user(review.user, 'small'), site_customer_path(review.user_id)%>
+                            <%= link_to avatar_for_user(review.user, 'small'), site_customer_path(review.user_id),:title=>user.name %>
                           </div>
                           <div class="col-xs-9">
                             
                               <div class="reviewer-name">
                                 <%if review.user%>
                                   <b>
-                                    <%= link_to review.user.name, site_customer_path(review.user.id), :class=>'data', :id => 'latest_review_name'%>
+                                    <%= link_to review.user.name, site_customer_path(review.user.id), :class=>'data', :id => 'latest_review_name',:title=>review.user.name %>
                                   </b> - 
                                 <%end%>
                                 <%=review.created_at.to_date.to_s(:long)%>
@@ -182,11 +182,11 @@
                               <p>
                                 <% unless review.description.blank? %> 
                                   <% if review.reviewer_type == 'Product' %>
-                                    "<%= link_to review.description[0..300] + "..." ,nested_products_uri(Product.find(review.reviewer_id)  ),:class=>'data' %>"
-                                    <%= link_to "(Continue reading)", nested_products_uri(Product.find(review.reviewer_id)  ) %>"
+                                    "<%= link_to review.description[0..300] + "..." ,nested_products_uri(Product.find(review.reviewer_id)  ),:class=>'data',:title=>"Review" %>"
+                                    <%= link_to "(Continue reading)", nested_products_uri(Product.find(review.reviewer_id)),:title=>"Continue Reading" %>"
                                   <% elsif review.reviewer_type == 'Recipe' %>
-                                    "<%= link_to review.description[0..300] + "...", site_recipe_path(Recipe.find(review.reviewer_id)  ),:class=>'data' %>"
-                                    <%= link_to "(Continue reading)", site_recipe_path(Recipe.find(review.reviewer_id)  ) %>"
+                                    "<%= link_to review.description[0..300] + "...", site_recipe_path(Recipe.find(review.reviewer_id)  ),:class=>'data',:title=>"Review" %>"
+                                    <%= link_to "(Continue reading)", site_recipe_path(Recipe.find(review.reviewer_id),:title=>"Continue Reading"  ) %>"
                                   <% end %>
                                 <% end %>
                               </p>
@@ -226,9 +226,9 @@
             <div class="green-heading-20"><%=  blog.name.upcase %></div>
             <div class="blog-date"><%= blog.created_at.strftime("%d/%m/%Y") %></div>
             <div>
-                <p><%= blog.description_short.html_safe() %>... <%= link_to "(Continue Reading)", site_blog_path(blog.id) %></p>
+                <p><%= blog.description_short.html_safe() %>... <%= link_to "(Continue Reading)", site_blog_path(blog.id),:title=>"Continue Reading" %></p>
             </div>
-            <div class="right-link"><%= link_to("View all", site_blog_index_path) %></div>
+            <div class="right-link"><%= link_to("View all", site_blog_index_path,:title=>"View All") %></div>
           <% end %>
         </div>
       </div>
@@ -253,7 +253,7 @@
                     </div>
                   </div>
                 <%- end -%>
-                <div><%= link_to "View All", '/events' %></div>
+                <div><%= link_to "View All", '/events',:title=>"View All" %></div>
               </div>
             </div>
           </div>

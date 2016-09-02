@@ -2,10 +2,10 @@
   <%- if !ship_address.is_new -%>
     <div class="address-row clearfix">
       <div class="col-md-2 col-xs-4 green-button">
-        <a href="#" class="address_edit_btn">Edit</a>
+        <a href="#" class="address_edit_btn" title="Edit">Edit</a>
       </div>
       <div class="col-md-3 col-xs-5 green-button" id="delete_shipping_address">
-        <%= link_to ("Delete"), "/site/ship_addresses/#{ship_address.id}", :method => :delete, :confirm => "Are you sure?", :remote => true -%>
+        <%= link_to ("Delete"), "/site/ship_addresses/#{ship_address.id}", :method => :delete, :confirm => "Are you sure?", :remote => true, :title=>"Delete" -%>
       </div>
     </div>
   <% end %>

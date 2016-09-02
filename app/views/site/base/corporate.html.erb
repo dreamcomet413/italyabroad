@@ -1,7 +1,7 @@
 <%# @title = "Corporate services"; @description = "Corporate services, corporate gifts in the UK"; @keys = "corporate services, corporate gifts, corporate hampers" %>
 <% @title = "Corporate services"; @description = "Corporate services, corporate gifts in the UK"; @key = "corporate services, corporate gifts, corporate hampers" %>
 <% @class = "about-us no-padding" %>
-<% @breadcrumbs = "#{link_to("Home", root_url)} &raquo; About us &raquo; Corporate services" %>
+<% @breadcrumbs = "#{link_to("Home", root_url, :title=>"Home")} &raquo; About us &raquo; Corporate services" %>
 
   <% @about = AboutU.find(:first, :conditions => {:link_type => "corporate services"} ) %>
     <div class="help-container">

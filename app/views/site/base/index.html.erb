@@ -17,27 +17,27 @@
       <% if !@setting.nil? %>
         <% if @setting.home_image_1 %>
           <div class="item active">
-            <%= link_to((image_tag(@setting.home_image_1.image_filename.url, :title=>@setting.home_image_1_title, :alt=>@setting.home_image_1_title  ) || @setting.home_image_1_title), (@setting.home_image_1_url || root_url)) %>
+            <%= link_to((image_tag(@setting.home_image_1.image_filename.url, :title=>@setting.home_image_1_title, :alt=>@setting.home_image_1_title  ) || @setting.home_image_1_title), (@setting.home_image_1_url || root_url), :title=>@setting.home_image_1_title) %>
           </div>
         <% end %>
         <% if @setting.home_image_2 %>
         <div class="item">
-          <%= link_to((image_tag(@setting.home_image_2.image_filename.url, :title=>@setting.home_image_2_title, :alt=>@setting.home_image_2_title) || @setting.home_image_2_title), (@setting.home_image_2_url || root_url)) %>
+          <%= link_to((image_tag(@setting.home_image_2.image_filename.url, :title=>@setting.home_image_2_title, :alt=>@setting.home_image_2_title) || @setting.home_image_2_title), (@setting.home_image_2_url || root_url), :title=>@setting.home_image_2_title) %>
         </div>
         <% end %>
         <% if @setting.home_image_3 %>
         <div class="item">
-          <%= link_to((image_tag(@setting.home_image_3.image_filename.url, :title=>@setting.home_image_3_title, :alt=>@setting.home_image_3_title) || @setting.home_image_3_title), (@setting.home_image_3_url || root_url)) %>
+          <%= link_to((image_tag(@setting.home_image_3.image_filename.url, :title=>@setting.home_image_3_title, :alt=>@setting.home_image_3_title) || @setting.home_image_3_title), (@setting.home_image_3_url || root_url), :title=>@setting.home_image_3_title) %>
         </div>
         <% end %>
         <% if @setting.home_image_4 %>
         <div class="item">
-          <%= link_to((image_tag(@setting.home_image_4.image_filename.url, :title=>@setting.home_image_4_title, :alt=>@setting.home_image_4_title) || @setting.home_image_4_title), (@setting.home_image_4_url || root_url)) %>
+          <%= link_to((image_tag(@setting.home_image_4.image_filename.url, :title=>@setting.home_image_4_title, :alt=>@setting.home_image_4_title) || @setting.home_image_4_title), (@setting.home_image_4_url || root_url), :title=>@setting.home_image_4_title) %>
         </div>
         <% end %>
         <% if @setting.home_image_5 %>
         <div class="item">
-          <%= link_to((image_tag(@setting.home_image_5.image_filename.url, :title=>@setting.home_image_5_title, :alt=>@setting.home_image_5_title) || @setting.home_image_5_title), (@setting.home_image_5_url || root_url)) %>
+          <%= link_to((image_tag(@setting.home_image_5.image_filename.url, :title=>@setting.home_image_5_title, :alt=>@setting.home_image_5_title) || @setting.home_image_5_title), (@setting.home_image_5_url || root_url), :title=>@setting.home_image_5_title) %>
         </div>
         <% end %>
       <% end %>
@@ -70,7 +70,7 @@
                     <%= link_to image_tag(path, :title=> food.name, :alt=> food.name), nested_products_uri(food),{:title => food.name} %>
                   </div>
                   <div class="col-xs-8 slider-box-text">
-                    <div class="item-name"><%= link_to truncate(food.name, length:60), nested_products_uri(food) -%></div>
+                    <div class="item-name"><%= link_to truncate(food.name, length:60), nested_products_uri(food), :title=> food.name -%></div>
                   </div>
                   <div class="clr"></div>
                   <div class="celarfix">
@@ -119,7 +119,7 @@
                 <div class="slider-box2 clearfix ">
                   <div class="">
                     <div class="box-image"><%= link_to image_tag(path, :title=> food.name, :alt=> food.name), nested_products_uri(food),{:title => food.name} %></div>
-                    <div class="item-name"><%= link_to truncate(food.name, length:65), nested_products_uri(food)  -%></div>
+                    <div class="item-name"><%= link_to truncate(food.name, length:65), nested_products_uri(food), :title => food.name  -%></div>
                     <div class="row clearfix">
                       <div class="col-xs-4 price-col">
                         <% product = food 
@@ -177,13 +177,13 @@
             <%if blog_home and blog_home.image%>
 
               <div class="col-xs-6">
-                <%= link_to image_tag(blog_home.image.image_filename.try(:url), :title => @post.friendly_identifier, :alt => @post.friendly_identifier), site_blog_path(:id => @post.friendly_identifier) -%>
+                <%= link_to image_tag(blog_home.image.image_filename.try(:url), :title => @post.friendly_identifier, :alt => @post.friendly_identifier), site_blog_path(:id => @post.friendly_identifier), :title => @post.friendly_identifier -%>
               </div>
             <%end%>  
             <div class="col-xs-6">
               <h3><%=@post.name%></h3>
               <div class="medium-box-text"><p class="truncate_blog_text"><%=truncate(@post.description, length: 200)%></p></div>
-              <div class="read-more"><%= link_to "Read More", site_blog_path(:id => @post.friendly_identifier) %></div>
+              <div class="read-more"><%= link_to "Read More", site_blog_path(:id => @post.friendly_identifier), :title=>"Read More" %></div>
             </div>
           </div>
         </div>
@@ -196,12 +196,12 @@
           <%wine_club = SmallBoxSetting.find_by_box_title("wine_club_home")%>
           <% if wine_club and wine_club.image %>
             <div class="col-xs-6">
-              <%= link_to image_tag(wine_club.image.image_filename.try(:url), :title=>"Wine Club", :alt=> "Wine Club"), "/wine-club" -%>
+              <%= link_to image_tag(wine_club.image.image_filename.try(:url), :title=>"Wine Club", :alt=> "Wine Club"), "/wine-club", :title=>"Wine Club" -%>
             </div>
           <%end%>
           <div class="col-xs-6">
             <div class="truncate_wine_text"><%=wine_club.description.html_safe rescue 'Discover the best Italian wines sat on the confort of your home'%></div>
-            <div class="read-more"><%= link_to "Read More", "/wine-club" %></div>
+            <div class="read-more"><%= link_to "Read More", "/wine-club", :title=>"Read More" %></div>
           </div>
         </div>
       </div>
@@ -227,7 +227,7 @@
                   <div class="counter-image"><%= link_to image_tag(path, :title => food.name, :alt => food.name), nested_products_uri(food), {:title => food.name} %></div>
                 </div>
                 <div class="col-xs-8 slider-box-text">
-                  <div class="item-name"><%=link_to truncate(food.name, length:60), nested_products_uri(food) -%></div>
+                  <div class="item-name"><%=link_to truncate(food.name, length:60), nested_products_uri(food), :title => food.name -%></div>
                 </div>
                 <div class="clr"></div>
                 <div class="clearfix">
@@ -274,7 +274,7 @@
               <div class="slider-box2 clearfix ">
                 <div class="">
                   <div class="box-image"><%= link_to image_tag(path, :title => food.name), nested_products_uri(food), {:title => food.name} %></div>
-                  <div class="item-name"><%= link_to  truncate(food.name, length:65), nested_products_uri(food) -%></div>
+                  <div class="item-name"><%= link_to  truncate(food.name, length:65), nested_products_uri(food), :title => food.name -%></div>
                   <div class="row clearfix">
                     <div class="col-xs-4 price-col">
                       <% product=food 

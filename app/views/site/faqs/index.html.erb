@@ -2,7 +2,7 @@
   @description = "Andrea’s Wine Blog, The Italian Wine Blog, A Guide to Italian Wines, Journey Through Italian Wines";
   @keys = "Wine Blog,Italian Wine Blog,Italian Red and White Wine,Italian Food,Wine Tasting,Wine Expert"
 %>
-<%- @breadcrumbs = "#{link_to("Home", root_url)} &raquo; #{link_to('Community',wine_community_path)} &raquo; #{link_to("Ask our Experts", site_faqs_path)}".html_safe() -%>
+<%- @breadcrumbs = "#{link_to("Home", root_url, :title=>"Home")} &raquo; #{link_to('Community',wine_community_path, :title=>"Community")} &raquo; #{link_to("Ask our Experts", site_faqs_path, :title=>"Ask our Experts")}".html_safe() -%>
 
 <% @about = AboutU.find(:first, :conditions => {:link_type => "faqs"} ) %>
 
@@ -17,7 +17,7 @@
     <% end %>
   <% end %>
   <% if  @about and !@about.image_id.nil? %>
-    <%= image_tag(site_image_url('region_card', @about.image, :jpg),:alt=>@about.title, :title=>@about.title) unless @about.blank? %>
+    <%= image_tag(site_image_url('region_card', @about.image, :jpg),:alt=>"Faq Banner", :title=>"Faq Banner") unless @about.blank? %>
   <% else %>
     <%= image_tag("blog_home.jpg",:alt=>'Producers',:title=>'Producers') %>
   <% end %>
@@ -77,8 +77,8 @@
         <% else %>
           <div>
             <div class="green-heading-with-border">Please login or register to ask questions.</div>
-            <div class="login-reg" ><%= link_to("Login", login_path) %> ||
-              <%= link_to("Register", login_path) %> </div>
+            <div class="login-reg" ><%= link_to("Login", login_path, :title=>"Login") %> ||
+              <%= link_to("Register", login_path, :title=>"Register") %> </div>
           </div>
         <% end %>
       </div>

@@ -1,5 +1,5 @@
 
-<% @class = "no-padding"; @title = "Create a new user"; @breadcrumbs = "#{link_to("Home", root_url)} &raquo; Register".html_safe()%>
+<% @class = "no-padding"; @title = "Create a new user"; @breadcrumbs = "#{link_to("Home", root_url, :title=>"Home")} &raquo; Register".html_safe()%>
 <div class="full-width">
   <div class="green-heading-with-border hide-on-tab">Register</div>
   <div class="login-wrapper">
@@ -13,10 +13,10 @@
               <%= form_tag login_url do  %>
                 <div class="row clearfix bottom-15">
                   <div class="col-xs-6 center">
-                  <%= link_to image_tag('/images/fb-login-btn.png', :alt=>"facebook", :title=>"facebook",:class => "facebook-login-btn width154"), "/auth/facebook" %>
+                  <%= link_to image_tag('/images/fb-login-btn.png', :alt=>"facebook", :title=>"facebook",:class => "facebook-login-btn width154"), "/auth/facebook", :title=>"facebook" %>
                   </div>
                   <div class="col-xs-6 center">
-                    <%= link_to image_tag('/images/twitter-login-btn.png', :alt=>"twitter", :title=>"twitter", :class => "twitter-login-btn width154"), "/auth/twitter" %>
+                    <%= link_to image_tag('/images/twitter-login-btn.png', :alt=>"twitter", :title=>"twitter", :class => "twitter-login-btn width154"), "/auth/twitter", :title=>"twitter" %>
                   </div>
                 </div>
                 <div class="or">
@@ -44,7 +44,7 @@
                     </div>
                   </div>
                   <div class="pull-right">
-                    <%= link_to "Forgot your password", request_new_password_path %>
+                    <%= link_to "Forgot your password", request_new_password_path, :title=>"Forgot password" %>
                   </div>
                 </div>
                 <div class="row clearfix">
@@ -161,7 +161,7 @@
                   <% if @user.new_record? %>
                       <label class="red-text">
                         <%= check_box_tag 'conditions' %> 
-                        <%= link_to 'I agree to the italyabroad.com terms and conditions.' , '/help/terms-and-conditions'  %>
+                        <%= link_to 'I agree to the italyabroad.com terms and conditions.' , '/help/terms-and-conditions', :title=>"Terms and conditions"  %>
                       </label>  
                   <% end %>
                 </div>

@@ -6,7 +6,7 @@
         <div class="panel">
           <div class="panel-heading" role="tab" id="heading<%= archive[:year] %>">
             <h4 class="panel-title">
-              <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse<%= archive[:year] %>" aria-expanded="true" aria-controls="collapse<%= archive[:year] %>">
+              <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse<%= archive[:year] %>" aria-expanded="true" aria-controls="collapse<%= archive[:year] %>" title="<%= archive[:year] %>">
                 <%= archive[:year] %>
               </a>
             </h4>
@@ -15,7 +15,7 @@
             <div class="panel-body">
               <ul>
                 <%- archive[:months].each do |m| -%>
-                <li><%= link_to(Date::MONTHNAMES[m[0]], blog_by_month_page_path(:year => archive[:year], :month => m[0])) %> (<%= m[1] %>)</li>
+                <li><%= link_to(Date::MONTHNAMES[m[0]], blog_by_month_page_path(:year => archive[:year], :month => m[0]), :title=>Date::MONTHNAMES[m[0]]) %> (<%= m[1] %>)</li>
                 <%- end -%>
               </ul>
             </div>

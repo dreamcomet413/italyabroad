@@ -17,7 +17,7 @@
     <% @popular_tags.each do |result| %>
     <%result.popularity%>
     <span style="font-size:<%= ((pmax - pmin) * (Math.log(vmax)==0 ? 0 : (Math.log(result.popularity.to_f)) / (Math.log(vmax))) + pmin).to_s %>%">
-    <%= link_to result.tag.name.titleize, :controller=>'blog',:action=>"index",:tag_id=>result.tag.id %>
+    <%= link_to result.tag.name.titleize, {:controller=>'blog',:action=>"index",:tag_id=>result.tag.id}, :title=>result.tag.name.titleize %>
     </span>
     <% if index != @popular_tags.count %>
       ,

@@ -1,12 +1,12 @@
 <% @title = "Your cart"; %>
 <% cart_total = 0 %>
 <% #debugger %>
-<%- @class = "no-padding"; @breadcrumbs = "#{link_to "Home", root_url} &raquo; Checkout &raquo; Review Order" -%>
+<%- @class = "no-padding"; @breadcrumbs = "#{link_to "Home", root_url, :title=>"Home"} &raquo; Checkout &raquo; Review Order" -%>
 <div class="green-heading-with-border">Your Cart</div>
 <div class="full-width">
   <% if @cart.items.size > 0 %>
     <div class="bottom-50"><%= show_messages(flash[:notice]||@cart.show_errors) %></div>
-    <div class="center-align"><%= image_tag("cart_step_1.png") %></div>
+    <div class="center-align"><%= image_tag("cart_step_1.png", :alt=>"Cart step 1", :title=>"Cart Setp 1") %></div>
     <%= form_tag(site_cart_path(@cart.object_id), :id => "form_cart", :method => :put) do %>
       <div class="cart-table-head  clearfix">
         <div class="col-md-6">Product</div>
@@ -23,7 +23,7 @@
         <div class="cart-row  clearfix">
           <div class="col-md-6 clearfix white-col">
             <div class="col-xs-4 col-md-4 mobile-top-15 center-align">
-              <%= image_tag(path) %>
+              <%= image_tag(path, :title=>"Product", :alt=>"Product" ) %>
             </div>
             <div class="col-xs-8 col-md-10 top-20">
               <%= hidden_field_tag "cart[][id]", nil, :value => cart_item.product.id %>
@@ -34,9 +34,9 @@
               <% if product.from_quantity > 0 && product.from_quantity_price > 0 && cart_item.quantity < product.from_quantity %>
                 <div style="color:#cb0d2b">
                   <% if product.categories.root.name == "Wine" %>
-                    <%= link_to "(Buy a case of #{product.from_quantity} and save #{number_to_currency(product.from_quantity_price, {:unit=> '£'} )} )",  '#', :onclick => "$('txt_qty_#{cart_item.product.id }').value=#{product.from_quantity}; $('form_cart').submit(); " %>
+                    <%= link_to "(Buy a case of #{product.from_quantity} and save #{number_to_currency(product.from_quantity_price, {:unit=> '£'} )} )",  '#', :onclick => "$('txt_qty_#{cart_item.product.id }').value=#{product.from_quantity}; $('form_cart').submit(); ", :title=>"Buy a case" %>
                   <% elsif product.categories.root.name == "Food" %>
-                    <%= link_to "(Buy #{product.from_quantity} and save  #{number_to_currency product.from_quantity_price, :unit => '£'} )",  '#', :onclick => "$('txt_qty_#{cart_item.product.id }').value=#{product.from_quantity}; $('form_cart').submit();" %>
+                    <%= link_to "(Buy #{product.from_quantity} and save  #{number_to_currency product.from_quantity_price, :unit => '£'} )",  '#', :onclick => "$('txt_qty_#{cart_item.product.id }').value=#{product.from_quantity}; $('form_cart').submit();", :title=>"Buy" %>
 
                   <% end %>
                 </div>
@@ -54,7 +54,7 @@
             </div>
             <div class="col-md-3">
               <span class="show-on-mobile">Remove</span>
-              <%= link_to(image_tag("icon-cancel.png", :alt => "Delete Item", :style => "vertical-align:bottom"), "/site/cart/#{@cart.object_id}?product_id=#{cart_item.product.id}", :method => :delete, :confirm => "Are you sure want to delete this product?")  %>
+              <%= link_to(image_tag("icon-cancel.png", :alt => "Delete Item", :title=>"Delete Item", :style => "vertical-align:bottom"), "/site/cart/#{@cart.object_id}?product_id=#{cart_item.product.id}", :method => :delete, :confirm => "Are you sure want to delete this product?", :title=>"Delete Item")  %>
             </div>
           </div>
         </div>
@@ -109,9 +109,9 @@
             <div>
               <div>
                 <% if @cupon.cupon_type != "percentage" %>
-                    Promotional Code: - <%= number_to_currency @cupon.price, :unit => "&pound;" %> <%= link_to_function image_tag("icon-cancel.png", :alt => "Delete Cupon", :style => "vertical-align:bottom"), "$('cupon_code').value = '';$('form_cart').submit()" %>
+                    Promotional Code: - <%= number_to_currency @cupon.price, :unit => "&pound;" %> <%= link_to_function image_tag("icon-cancel.png", :alt => "Delete Cupon", :title=>"Delete Cupon", :style => "vertical-align:bottom"), "$('cupon_code').value = '';$('form_cart').submit()", :title=>"Delete Cupon" %>
                 <% else %>
-                    Promotional Code: - <%= number_to_currency (cart_total-@cart.sub_total), :unit => "&pound;" %> <%= link_to_function image_tag("icon-cancel.png", :alt => "Delete Cupon", :style => "vertical-align:bottom"), "$('cupon_code').value = '';$('form_cart').submit()" %>
+                    Promotional Code: - <%= number_to_currency (cart_total-@cart.sub_total), :unit => "&pound;" %> <%= link_to_function image_tag("icon-cancel.png", :alt => "Delete Cupon", :title => "Delete Cupon", :style => "vertical-align:bottom"), "$('cupon_code').value = '';$('form_cart').submit()", :title => "Delete Cupon" %>
                 <% end %>
                 <%= hidden_field :cupon, :code %>
               </div>
@@ -150,7 +150,7 @@
       </div>
       <div class="top-30 right-align">
         <div class="continue-shopping green-button">
-          <%= link_to ("Continue Shopping"), '/' %>
+          <%= link_to ("Continue Shopping"), '/', :title=>"Continue Shopping" %>
         </div>
         <div class="pay-now green-button">
           <% if (current_user.admin? rescue false)
@@ -159,14 +159,14 @@
               action = 'gift_options'
             end
           %>
-            <%= link_to ("Pay Now"),:controller=>'cart',:action=> action %>
+            <%= link_to ("Pay Now"),{:controller=>'cart',:action=> action}, :title=>"Pay now" %>
         </div>
         <div class="empty">
-          or <%= link_to "Empty", empty_site_cart_index_path, :confirm => "Are you sure want to empty this cart?" %>
+          or <%= link_to "Empty", empty_site_cart_index_path, :confirm => "Are you sure want to empty this cart?",  :title=>"Empty" %>
         </div>
       </div>
       <div class="note-text">
-        * Please note that the delivery fees refer to deliveries to Mainland UK addresses only, for all other destinations please <%= mail_to "info@italyabroad.com", "contact us" %>
+        * Please note that the delivery fees refer to deliveries to Mainland UK addresses only, for all other destinations please <%= mail_to "info@italyabroad.com", "contact us", :title=>"info@italyabroad.com" %>
       </div>
     <% end %> <!-- end form-->
   <% else %>
@@ -181,8 +181,8 @@
         <%- for product in products -%>
           <%path =  thumb_image(product)%>
           <div class="col-md-2 col-xs-4">
-            <div><%= link_to image_tag(path), nested_products_uri(product) %></div>
-            <div class="producer-product-text"><%= link_to product.name, nested_products_uri(product) %></div>
+            <div><%= link_to image_tag(path, :title=>product.name, :alt=>product.name), nested_products_uri(product), :title=>product.name %></div>
+            <div class="producer-product-text"><%= link_to product.name, nested_products_uri(product), :title=>product.name %></div>
           </div>
         <% end %>
       </div>

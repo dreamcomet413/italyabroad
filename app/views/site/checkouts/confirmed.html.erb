@@ -13,11 +13,11 @@ var google_conversion_value = 0;
 </script>
 <noscript>
 <div style="display:inline;">
-<img height="1" width="1" style="border-style:none;" alt="" src="https://www.googleadservices.com/pagead/conversion/998283630/?value=0&amp;label=KNvKCJLbrwMQ7rKC3AM&amp;guid=ON&amp;script=0"/>
+<img height="1" width="1" style="border-style:none;" alt="image" title="image" src="https://www.googleadservices.com/pagead/conversion/998283630/?value=0&amp;label=KNvKCJLbrwMQ7rKC3AM&amp;guid=ON&amp;script=0"/>
 </div>
 </noscript>
 <% @title = "Order Completed" %>
-<%- @breadcrumbs = "#{link_to "Home", root_url} &raquo; Checkout &raquo; Order Complete" -%>
+<%- @breadcrumbs = "#{link_to "Home", root_url, :title=>"Home"} &raquo; Checkout &raquo; Order Complete" -%>
 <% @class = "no-padding" %>
 <!--Response - <%#= session[:response] %><br />
 Success or failure - <%#= session[:response_success] %>
@@ -39,7 +39,7 @@ Response Params is <%#= session[:response_params] %>-->
   <div>
     <% if @was_admin %>
       <span style="display: block;text-align: left;padding: 0px 10px 7px;font-weight: bold;">
-        <%= link_to "Print Invoice", print_invoice_admin_order_path(@order,:format => "pdf"), :target => "_blank" %>
+        <%= link_to "Print Invoice", print_invoice_admin_order_path(@order,:format => "pdf"), :target => "_blank", :title=>"Print Invoice" %>
       </span>
     <% end %>
   </div>

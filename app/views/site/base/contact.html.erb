@@ -1,6 +1,6 @@
 <% @title = "Contact us"; @description = "let us know what you think about italyabroad.com"; @keys = "italian wine, italian red and white wine, italian food, wine tasting, wine expert" %>
 <% @class = "about-us no-padding" %>
-<% @breadcrumbs = "#{link_to("Home", root_url)} &raquo; About us &raquo; Contact us" %>
+<% @breadcrumbs = "#{link_to("Home", root_url, :title=>"Home")} &raquo; About us &raquo; Contact us" %>
 <div class="full-width bottom-50">
   <div class="green-heading-with-border">Contact Us</div>
   <div class="section-form">
@@ -48,7 +48,7 @@
         <% end %>
       <% end %>
       <div class="col-md-3 right-align">
-        <%= link_to image_tag('LiveChatHelpIcon.jpg', :title=>"Live Chat", :alt=>"Live Chat"), "#",:onclick=>"popupwindow('http://#{Rails.env == 'production' ? 'www.italyabroad.com' : 'localhost:3000'}/chat_messages', 700, 650)" %> <br />
+        <%= link_to image_tag('LiveChatHelpIcon.jpg', :title=>"Live Chat", :alt=>"Live Chat"), "#",:onclick=>"popupwindow('http://#{Rails.env == 'production' ? 'www.italyabroad.com' : 'localhost:3000'}/chat_messages', 700, 650)", :title=>"Live Chat" %> <br />
         <% if !Setting.first.blank?%>
           <%
             if Setting.first.chat_available
@@ -58,7 +58,7 @@
             end
           %>
         <% end %>
-        <span style="font:bold 13px Arial"><%= link_to "Live chat (#{support_link})","#", :onclick=>"popupwindow('http://#{Rails.env == 'production' ? 'www.italyabroad.com' : 'localhost:3000'}/chat_messages', 700, 650)" %>
+        <span style="font:bold 13px Arial"><%= link_to "Live chat (#{support_link})","#", :onclick=>"popupwindow('http://#{Rails.env == 'production' ? 'www.italyabroad.com' : 'localhost:3000'}/chat_messages', 700, 650)", :title=>"Live Chat" %>
         </span>
       </div>
     </div>

@@ -1,6 +1,6 @@
 <%
-  @breadcrumbs = "#{link_to "Home", root_url} &raquo; "
-  @breadcrumbs += "#{@product.unique_categories.collect {|c| link_to(c.name, "#{"/" + c.root.friendly_identifier unless c.is_root?}/#{c.friendly_identifier}")}.join(" &raquo; ")}"
+  @breadcrumbs = "#{link_to "Home", root_url, :title=>"Home"} &raquo; "
+  @breadcrumbs += "#{@product.unique_categories.collect {|c| link_to(c.name, "#{"/" + c.root.friendly_identifier unless c.is_root?}/#{c.friendly_identifier}", :title=>c.name)}.join(" &raquo; ")}"
   @breadcrumbs += " &raquo; #{@product.name[0..25]+ '...'}"
 %>
 <%- @class = "wine_tours" -%>
@@ -59,7 +59,7 @@
         <div class="green-heading-2">Wines</div>
         <div class="bottom-50">
           <% for included_product in included_products %>
-            <div><%= link_to included_product.name, "/wine-events/#{included_product.friendly_identifier}" %></div>
+            <div><%= link_to included_product.name, "/wine-events/#{included_product.friendly_identifier}", :title=>included_product.name %></div>
           <%- end -%>
         </div>   
       <% end %>

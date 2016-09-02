@@ -53,28 +53,28 @@
       <% unless params[:mood].blank? %>
         <div class="black-strip clearfix">
         <span><%= Mood.find(params[:mood]).name %></span>
-        <span class="pull-right"><a href="#." target="mood" class="close-btn">X</a></span>
+        <span class="pull-right"><a href="#." target="mood" class="close-btn" title="Close">X</a></span>
         </div>
       <% end %>
 
       <% unless params[:region_id].blank? %>
         <div class="black-strip clearfix">
         <span><%= Region.find(params[:region_id]).name %></span>
-        <span class="pull-right"><a href="#." target="region_id" class="close-btn">X</a></span>
+        <span class="pull-right"><a href="#." target="region_id" class="close-btn" title="Close">X</a></span>
         </div>
       <% end %>
 
       <% unless params[:grape_id].blank? %>
         <div class="black-strip clearfix">
         <span><%= Grape.find(params[:grape_id]).name %></span>
-        <span class="pull-right"><a href="#." target="grape_id" class="close-btn">X</a></span>
+        <span class="pull-right"><a href="#." target="grape_id" class="close-btn" title="Close">X</a></span>
         </div>
       <% end %>
 
       <% unless params[:color].blank? %>
         <div class="black-strip clearfix">
         <span><%= params[:color] %></span>
-        <span class="pull-right"><a href="#." target="color" class="close-btn">X</a></span>
+        <span class="pull-right"><a href="#." target="color" class="close-btn" title="Close">X</a></span>
         </div>
       <% end %>
 
@@ -82,21 +82,21 @@
       <% unless params[:producer_id].blank? %>
         <div class="black-strip clearfix">
         <span><%= Producer.find(params[:producer_id]).name %></span>
-        <span class="pull-right"><a href="#." target="producer_id" class="close-btn">X</a></span>
+        <span class="pull-right"><a href="#." target="producer_id" class="close-btn" title="Close">X</a></span>
         </div>
       <% end %>
 
       <% unless params[:organic].blank? %>
         <div class="black-strip clearfix">
         <span><%= "Organic" %></span>
-        <span class="pull-right"><a href="#." target="organic" class="close-btn">X</a></span>
+        <span class="pull-right"><a href="#." target="organic" class="close-btn" title="Close">X</a></span>
         </div>
       <% end %>
 
       <% unless params[:vegetarian].blank? %>
         <div class="black-strip clearfix">
         <span><%= "Vegan" %></span>
-        <span class="pull-right"><a href="#." target="vegetarian" class="close-btn">X</a></span>
+        <span class="pull-right"><a href="#." target="vegetarian" class="close-btn" title="Close">X</a></span>
         </div>
       <% end %>
     </div>
@@ -122,7 +122,7 @@
           <div class="panel panel-default" style="display:<%=display%>">
             <div class="panel-heading" role="tab" id="headingOne">
               <h4 class="panel-title">
-                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne" class="collapsed" >Mood:<i></i>
+                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne" class="collapsed" title="Mood">Mood:<i></i>
                 </a>
               </h4>
             </div>
@@ -132,7 +132,7 @@
                   <%= hidden_field_tag :mood , '' , :class=>'field_value' %>
                   <% mood_opts.each do |item| %>
                     <li>
-                       <a href="#." value="<%= item[1] %>" class='field_text'> <%= item[0] %></a>
+                       <a href="#." title="<%= item[0] %>" value="<%= item[1] %>" class='field_text'> <%= item[0] %></a>
                     </li>
                     <%#= link_to "Add", "/site/cart?product_id=#{product.id}", :remote => true, :method => :post %>
                   <% end %>
@@ -158,7 +158,7 @@
           <div class="panel panel-default" style="display:<%=display%>">
             <div class="panel-heading" role="tab" id="headingTwo">
               <h4 class="panel-title">
-                <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" class="collapsed">Region:<i></i></a>
+                <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" class="collapsed" title="Region"> Region:<i></i></a>
               </h4>
             </div>
             <div id="collapseTwo" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingTwo">
@@ -167,7 +167,7 @@
                   <% if !@category.nil? %>
                     <%= hidden_field_tag :region_id , '' , :class=>'field_value' %>
                     <% region_opts.each do |item|  %>
-                    <li><a href="#." value="<%= item[1] %>" class='field_text'> <%= item[0] %></a></li>
+                    <li><a href="#." title="<%= item[0] %>" value="<%= item[1] %>" class='field_text'> <%= item[0] %></a></li>
                     <% end %>
                   <% end %>
                 </ul>
@@ -192,7 +192,7 @@
           <div class="panel panel-default" style="display:<%=display%>">
             <div class="panel-heading" role="tab" id="headingThree">
               <h4 class="panel-title">
-                <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree" class="collapsed"> Grape:<i></i></a>
+                <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree" class="collapsed" title="Grape"> Grape:<i></i></a>
               </h4>
             </div>
             <div id="collapseThree" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingThree">
@@ -201,7 +201,7 @@
                   <% if !@category.nil? %>
                     <%= hidden_field_tag :grape_id , '', :class=>'field_value' %>
                     <% grape_opts.each do |item| %>
-                    <li><a href="#." value="<%= item[1] %>" class='field_text'>  <%= item[0] %></a></li>
+                    <li><a href="#." title="<%= item[0] %>"  value="<%= item[1] %>" class='field_text'>  <%= item[0] %></a></li>
                     <% end %> 
                   <% end %>
                 </ul>
@@ -224,7 +224,7 @@
           <div class="panel panel-default" style="display:<%=display%>">
             <div class="panel-heading" role="tab" id="headingFour">
               <h4 class="panel-title">
-                <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour" class="collapsed">
+                <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour" class="collapsed" title="products">
                 <% if params[:parent] == 'other-drinks' or params[:category]=='other-drinks' %>
                    Drinks
                 <% elsif params[:parent] == 'food' or params[:category]=='food'%>
@@ -244,7 +244,7 @@
                   <% unless Product.all.blank? %>
                     <%= hidden_field_tag :color , '', :class=>'field_value' %>
                       <% color_opts.each do |item| %>
-                      <li><a href="#." value="<%= item[1] %>" class = 'field_text'>  <%= item[0] %></a></li>
+                      <li><a href="#." title="<%= item[0] %>" value="<%= item[1] %>" class = 'field_text'>  <%= item[0] %></a></li>
                     <% end %>
                   <% end %>
                 </ul>
@@ -267,7 +267,7 @@
           <div class="panel panel-default" style="display:<%=display%>">
             <div class="panel-heading" role="tab" id="headingFive">
               <h4 class="panel-title">
-                <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapsefive" class="collapsed">
+                <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapsefive" class="collapsed" title="Producer">
                   Producer: <i></i>
                 </a>
               </h4>
@@ -278,7 +278,7 @@
                   <% if !@category.nil? %>
                     <%= hidden_field_tag :producer_id , '',  :class=>'field_value' %>
                     <% producer_opts.each do |item| %>
-                    <li><a href="#." value="<%= item[1] %>" class="field_text" >  <%= item[0] %></a></li>
+                    <li><a href="#." title="<%= item[0] %>" value="<%= item[1] %>" class="field_text" >  <%= item[0] %></a></li>
                     <% end %>
                   <% end %>
                 </ul>
@@ -294,7 +294,7 @@
           <div class="panel panel-default" style="display:<%=display%>">
             <div class="panel-heading" role="tab" id="headingSix">
               <h4 class="panel-title">
-                <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseSix" aria-expanded="false" aria-controls="collapseSix" class="collapsed">
+                <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseSix" aria-expanded="false" aria-controls="collapseSix" class="collapsed" title="Organic">
                   Organic: <i></i>
                 </a>
               </h4>
@@ -320,7 +320,7 @@
           <div class="panel panel-default" style="display:<%=display%>">
           <div class="panel-heading" role="tab" id="headingSeven">
             <h4 class="panel-title">
-              <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseSeven" aria-expanded="false" aria-controls="collapseSix" class="collapsed">
+              <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseSeven" aria-expanded="false" aria-controls="collapseSix" class="collapsed" title="Vegan">
                 Vegan: <i></i>
               </a>
             </h4>
@@ -349,7 +349,7 @@
           <div class="panel panel-default" style="display:<%=display%>">
             <div class="panel-heading" role="tab" id="headingFiv">
               <h4 class="panel-title">
-                <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseEight" aria-expanded="false" aria-controls="collapseEight" title="Occasion">
                   Occasion: <i></i>
                 </a>
               </h4>
@@ -360,7 +360,7 @@
                   <%= hidden_field_tag :occasion_id, '' , :class=>'field_value' %>
                   <% @occasions = Occasion.find(:all,:include=>'products',:conditions=>['products.active = ?',true]) %>
                   <% @occasions.collect{|i| [i.name,i.id]}.each do |item| %>
-                    <li><a href="#." value="<%= item[1] %>" class="field_text"> <%= item[0] %></a></li>
+                    <li><a href="#." title="<%= item[0] %>" value="<%= item[1] %>" class="field_text"> <%= item[0] %></a></li>
                   <% end %>
                 </ul>
               </div>

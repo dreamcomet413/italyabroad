@@ -12,7 +12,7 @@
             <%end%>
           </div>
           <div class="event-detail">
-            <p><%= product.description_short[0..400].html_safe() %>  <%= link_to "Discover more", nested_products_uri(product) %></p>
+            <p><%= product.description_short[0..400].html_safe() %>  <%= link_to "Discover more", nested_products_uri(product), :title=>"Discover More" %></p>
           </div>
         <%- end -%>
       </div>

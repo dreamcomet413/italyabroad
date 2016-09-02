@@ -24,10 +24,10 @@
 <%- @breadcrumbs = "Welcome to Italyabroad.com" -%>
 <% if !@setting.nil? %>
   <% if @setting.sommelier_image %>
-    <div class="main-banner"> <%= image_tag(@setting.sommelier_image.image_filename.url, :alt=>"Main Banner", :title=>"Main Banner") %></div>
+    <div class="main-banner"> <%= image_tag(@setting.sommelier_image.image_filename.url, :title=>"Banner", :alt=>"Banner") %></div>
   <%end%>
 <% else %>
-  <div class="main-banner"><%= image_tag("/images/cercavino-banner.png", :alt=>"Cercavino", :title=>"Cercavino")-%></div>
+  <div class="main-banner"><%= image_tag("/images/cercavino-banner.png", :alt=>"Cercavino", :title=>"Cercavino") -%></div>
 <%end%>
 
 <div class="row">

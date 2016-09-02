@@ -5,9 +5,9 @@
             <div class="col-md-4 portrait">
               <div class="slider-box">
                 <div class="clearfix">
-                  <div class="col-xs-4 box-image"><%= link_to image_tag(path, title:product.name, alt:product.name ),nested_products_uri(product)  %></div>
+                  <div class="col-xs-4 box-image"><%= link_to image_tag(path, title:product.name, alt:product.name ),nested_products_uri(product), :title=>product.name  %></div>
                   <div class="col-xs-8 slider-box-text">
-                    <div class="item-name"><%= link_to product.name, nested_products_uri(product) if product.categories.root.present? && (product.categories.root.name.upcase != 'WINE TOURS') %>
+                    <div class="item-name"><%= link_to product.name, nested_products_uri(product), :title=>product.name if product.categories.root.present? && (product.categories.root.name.upcase != 'WINE TOURS') %>
                       <%# product.description_short[0..70].html_safe() %>
                       <%#if template_name == 'special_offer' or  template_name == 'sub_category'  %>
                          <!-- <div class="red-text"><%#= limited_stock(product) -%></div> -->
@@ -77,13 +77,13 @@
             <div class="col-md-4 landscape">
               <div class="slider-box2">
                 <div class="box-image">
-                  <%= link_to image_tag(path, alt:product.name, title:product.name),nested_products_uri(product)  %>
+                  <%= link_to image_tag(path, alt:product.name, title:product.name),nested_products_uri(product), :title=>product.name  %>
                 </div>
                 <div class="item-name">
                   <!-- #if check is only _category partial -->
-                  <%= link_to product.name, nested_products_uri(product) if product.categories.root.present? && (product.categories.root.name.upcase != 'WINE TOURS') %>
+                  <%= link_to product.name, nested_products_uri(product), :title=>product.name if product.categories.root.present? && (product.categories.root.name.upcase != 'WINE TOURS') %>
                   <%if template_name == 'special_offer'%>
-                     <div class="red-text"><%= limited_stock(product) -%></div>
+                     <!-- <div class="red-text"><% limited_stock(product) -%></div> -->
                   <%end%>
                   <%if template_name == 'search' %>
                     <div class="ratings">

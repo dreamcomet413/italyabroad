@@ -1,6 +1,6 @@
 <%- @order_title = "Order no. #{@order.id} of #{@order.created_at.strftime("%d/%m/%y")}" -%>
 <%- @title = "Print invoice for #{@order_title}" -%>
-<%- @breadcrumbs = "#{link_to "Home", root_url} &raquo; #{link_to "My Orders and Tracking", orders_path} &raquo; #{@title}" -%>
+<%- @breadcrumbs = "#{link_to "Home", root_url, :title=>"Home"} &raquo; #{link_to "My Orders and Tracking", orders_path, :title=>"My Orders and Tracking"} &raquo; #{@title}" -%>
 <% @class = "no-padding" %>
 
 <div id="header"><%= @title %></div>

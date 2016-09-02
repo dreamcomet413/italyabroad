@@ -72,10 +72,10 @@
     <div class="header-top clearfix">
       <div class="pull-right social-links clearfix">
         <div class="social-icon">
-          <a href="#."><%= link_to image_tag("/images/gplus-icon.png", :title=>"gplus", :alt=>"gplus"), "https://plus.google.com/105030552023597415239/posts" -%></div>
-          <div class="social-icon"><%= link_to image_tag("/images/fb-icon.png", :title=> "facebook", :alt=> "facebook"), "https://www.facebook.com/pages/Italyabroadcom/144011672282174" -%></div>
-          <div class="social-icon"><%= link_to image_tag("/images/twitter-icon.png", :title=>"twitter", :alt=>"twitter" ), "https://twitter.com/Italyabroad", :id => "b" -%></div>
-          <div class="social-icon"><%= link_to image_tag("/images/instagram-icon.png", :title=>"instagram", :alt=>"instagram"), "https://instagram.com/italyabroad" -%></div>
+          <%= link_to image_tag("/images/gplus-icon.png", :title=>"gplus", :alt=>"gplus"), "https://plus.google.com/105030552023597415239/posts", :title=>"gplus" -%></div>
+          <div class="social-icon"><%= link_to image_tag("/images/fb-icon.png", :title=> "facebook", :alt=> "facebook"), "https://www.facebook.com/pages/Italyabroadcom/144011672282174", :title=> "facebook" -%></div>
+          <div class="social-icon"><%= link_to image_tag("/images/twitter-icon.png", :title=>"twitter", :alt=>"twitter" ), "https://twitter.com/Italyabroad", :id => "b", :title=>"twitter" -%></div>
+          <div class="social-icon"><%= link_to image_tag("/images/instagram-icon.png", :title=>"instagram", :alt=>"instagram"), "https://instagram.com/italyabroad", :title=>"instagram" -%></div>
         </div>
         <div class="pull-right top-bar-links">
           <span>
@@ -84,29 +84,29 @@
                 <%= form_tag '/site/cart/user_select', :id => 'reset_form' do %>
                 <%= hidden_field_tag 'reset_user_id', session[:previous_admin_id] %>
               <% end %>
-              <%= link_to "reset session", '#', :onclick => "$('form#reset_form').submit();return false;"%>
+              <%= link_to "reset session", '#', :onclick => "$('form#reset_form').submit();return false;", :title=>"Reset" %>
               <% end %>
-              Welcome <%= current_user.name %> <% if current_user.type_id == 1 %> | <%= link_to "Admin Site",siteadmin_path %><% end %> |
+              Welcome <%= current_user.name %> <% if current_user.type_id == 1 %> | <%= link_to "Admin Site",siteadmin_path, :title=>"Admin Site" %><% end %> |
               <% if Message.find(:all,:conditions=>['user_id = ?',current_user.id]).count > 0 %>
-                <%= link_to "My Account",  :controller=>'site/customers',:action=>'show',:id=>current_user.id  %> |
+                <%= link_to "My Account" , {:controller=>'site/customers',:action=>'show', :id=>current_user.id}, :title=>"My Account"  %> |
               <% else %>
-                <%= link_to "My Account", account_path %> |
+                <%= link_to "My Account", account_path, :title=>"My Account" %> |
               <% end %>
-                <%= link_to "Log out", logout_path %>
+                <%= link_to "Log out", logout_path, :title=>"Log Out" %>
               <% else %>
-                <%= link_to "Log in", login_path %> 
+                <%= link_to "Log in", login_path, :title=>"Login" %> 
           </span>
           <span>|</span>
           <span>
-              <%= link_to "Sign up", signup_path %>
+              <%= link_to "Sign up", signup_path, :title=>"Sign Up" %>
             <% end %>
           </span>
           <span>|</span>
-          <span><%= link_to "Contact Us", contact_us_path %></span>
+          <span><%= link_to "Contact Us", contact_us_path, :title=>"Contact Us" %></span>
       </div>
     </div>
     <div class="logo-row clearfix">
-      <div class="logo col-md-3"><%= link_to image_tag('logo_hi_res.gif', :alt => "Italian wine and food", :title => "Italian wine and food"), root_path, :id => "logo" %></div>
+      <div class="logo col-md-3"><%= link_to image_tag('logo_hi_res.gif', :alt => "Italian wine and food", :title => "Italian wine and food"), root_path, :id => "logo", :title=>"Italian wine and food" %></div>
           <!-- Start Main Search-->
       <div class="head_search col-md-4 col-lg-offset-1 col-md-offset-1 top-30">
         <%= form_tag site_search_index_path, :method => :get do -%>
@@ -129,7 +129,7 @@
                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= option_val || "All site" %> <span class="caret"></span></button>
                 <ul class="dropdown-menu dropdown-menu-right">
                   <% [['Wine', 'wine'], ['Other Drinks', 'Other Drinks'], ['Food', 'food'], ['Recipe', 'recipe'],['Hampers','hampers'], ['People', 'people'],['Chef', 'chef'],['All Site','all']].each do |item| %>
-                      <li><a href="#." ival="<%=item[1]%>"><%= item[0]%></a></li>
+                      <li><a href="#." title="<%= item[0]%>" ival="<%=item[1]%>"><%= item[0]%></a></li>
                   <% end %>
                 </ul>
               </div><!-- /btn-group -->
@@ -161,7 +161,7 @@
               <% category = Category.find_by_name(category)%>
               <% if category.present? %>
                 <li id="link-to-<%= category.friendly_identifier %>" class="<%= "active" if active_uri == "/#{category.friendly_identifier}"   %>">
-                  <%= link_to category.name, "/#{category.try(:friendly_identifier)}" %>
+                  <%= link_to category.name, "/#{category.try(:friendly_identifier)}", :title=>category.name %>
                   <%- unless category.children.blank? -%>
                   <ul class="sub-menu">
                     <% wine_category = Category.find_by_name("Wine") %>
@@ -173,16 +173,16 @@
                           <% elsif child.name == "Wine Tours" %>
                           <!-- Hiding Wine Tours -->
                           <% elsif child.name == "Wine accessories" %>
-                          <li><%= link_to(child.name.html_safe(), nested_categories_url(category, child)) %></li>
-                          <li><%= link_to(temp.name.html_safe(), nested_categories_url(category, temp)) if temp.present? %></li>
+                          <li><%= link_to(child.name.html_safe(), nested_categories_url(category, child), :title=>child.name) %></li>
+                          <li><%= link_to(temp.name.html_safe(), nested_categories_url(category, temp), :title=>temp.name) if temp.present? %></li>
                           <% else %>
-                            <li><%= link_to(child.name.html_safe(), nested_categories_url(category, child)) %></li>
+                            <li><%= link_to(child.name.html_safe(), nested_categories_url(category, child), :title=>child.name) %></li>
                           <%- end -%>
                         <% end %>
                       <%-  end -%>
                       <% if category.products.where(["discount > 0"]).length > 0 %>
                         <li style="font-weight:bold;">
-                          <%= link_to("Special Offers", nested_categories_url(category, "offer"), :type => "special_offer", :class => "red-text") %>
+                          <%= link_to("Special Offers", nested_categories_url(category, "offer"), :type => "special_offer", :class => "red-text", :title=>"Special Offers") %>
                         </li>
                       <% end %>
                     </ul>
@@ -190,8 +190,8 @@
                 </li>
               <% end %>
             <%- end -%>
-            <li id="link-to-forum" class="<%= "active" if active_uri == "/wine-community" %>"><%= link_to "Community", wine_community_path %></li>
-            <li id="link-to-blog" class="last<%= " active" if active_uri == "/site/blog" %>"><%= link_to "Blog", site_blog_index_path %></li>
+            <li id="link-to-forum" class="<%= "active" if active_uri == "/wine-community" %>"><%= link_to "Community", wine_community_path, :title=>"Community" %></li>
+            <li id="link-to-blog" class="last<%= " active" if active_uri == "/site/blog" %>"><%= link_to "Blog", site_blog_index_path, :title=>"Blog" %></li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </nav>
@@ -199,7 +199,7 @@
   </header><!-- End Header main -->
   <div class="clearfix headerSmall">
     <div class="logo-small">
-      <%= link_to image_tag('logo_hi_res.gif', :alt => "Italian wine and food", :title => "Italian wine and food"), root_path, :id => "logo" %>
+      <%= link_to image_tag('logo_hi_res.gif', :alt => "Italian wine and food", :title => "Italian wine and food"), root_path, :id => "logo", :title => "Italian wine and food" %>
     </div>
     <div class="main-menu-small col-offset-xs-3">
       <div class="menu-wrapper">
@@ -216,7 +216,7 @@
                 <div class="panel panel-default">
                   <div class="panel-heading" role="tab" id="heading-<%=cnt%>">
                     <h4 class="panel-title">
-                      <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-<%=cnt%>" aria-expanded="false" aria-controls="collapse-<%=cnt%>" class="collapsed"><%= category.name %><i></i>
+                      <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-<%=cnt%>" aria-expanded="false" aria-controls="collapse-<%=cnt%>" class="collapsed" title="<%= category.name %>"><%= category.name %><i></i>
                       </a>
                     </h4>
                   </div>
@@ -225,7 +225,7 @@
                       <div class="panel-body">
                         <ul>
                           <li id="link-to-<%= category.friendly_identifier %>" class="<%= "active" if active_uri == "/#{category.friendly_identifier}"   %>">
-                              <b><%= link_to category.name, "/#{category.try(:friendly_identifier)}" %></b></li>
+                              <b><%= link_to category.name, "/#{category.try(:friendly_identifier)}", :title=>category.name %></b></li>
                           <% wine_category = Category.find_by_name("Wine") %>
                             <% children = Category.find(:all,:conditions=>['parent_id = ? and show_in_menu = ?',category.id,true] ) %>
                             <%- for child in children -%>
@@ -235,16 +235,16 @@
                                 <% elsif child.name == "Wine Tours" %>
                                 <!-- Hiding Wine Tours -->
                                 <% elsif child.name == "Wine accessories" %>
-                                  <li><%= link_to(child.name.html_safe(), nested_categories_url(category, child)) %></li>
-                                  <li><%= link_to(temp.name.html_safe(), nested_categories_url(category, temp)) if temp.present? %></li>
+                                  <li><%= link_to(child.name.html_safe(), nested_categories_url(category, child), :title=>child.name) %></li>
+                                  <li><%= link_to(temp.name.html_safe(), nested_categories_url(category, temp), :title=>temp.name) if temp.present? %></li>
                                 <% else %>
-                                <li><%= link_to(child.name.html_safe(), nested_categories_url(category, child)) %></li>
+                                <li><%= link_to(child.name.html_safe(), nested_categories_url(category, child),:title=>child.name) %></li>
                                 <%- end -%>
                               <% end %>
                             <%-  end -%>
                             <% if category.products.where(["discount > 0"]).length > 0 %>
                               <li style="font-weight:bold;">
-                                <%= link_to("Special Offers", nested_categories_url(category, "offer"), :type => "special_offer", :class => "red-text") %>
+                                <%= link_to("Special Offers", nested_categories_url(category, "offer"), :type => "special_offer", :class => "red-text", :title=>"Special Offers") %>
                               </li>
                             <% end %>
                         </ul>
@@ -255,12 +255,12 @@
               <% end %>
               <% cnt+=1 %>
             <% end %> 
-            <div id="link-to-forum" class ="menu-list" ><%= link_to "Hampers", '/hampers' %></div>
-            <div id="lin  `k-to-forum" class ="menu-list" ><%= link_to "Wine Tours", '/wine-tours' %></div>
-            <div id="link-to-forum" class ="menu-list" ><%= link_to "Wine Club", '/wine-club' %></div>
-            <div id="link-to-forum" class ="menu-list" ><%= link_to "Events", '/events' %></div>
-            <div id="link-to-forum" class ="menu-list" class="<%= "active" if active_uri == "/wine-community" %>"><%= link_to "Community", wine_community_path %></div>
-            <div id="link-to-blog" class="menu-list" class="last<%= " active" if active_uri == "/site/blog" %>"><%= link_to "Blog", site_blog_index_path %></div>
+            <div id="link-to-forum" class ="menu-list" ><%= link_to "Hampers", '/hampers', :title=>"Hampers" %></div>
+            <div id="link-to-forum" class ="menu-list" ><%= link_to "Wine Tours", '/wine-tours', :title=>"Wine Tours" %></div>
+            <div id="link-to-forum" class ="menu-list" ><%= link_to "Wine Club", '/wine-club', :title=>"wine Club" %></div>
+            <div id="link-to-forum" class ="menu-list" ><%= link_to "Events", '/events', :title=>"Events" %></div>
+            <div id="link-to-forum" class ="menu-list" class="<%= "active" if active_uri == "/wine-community" %>"><%= link_to "Community", wine_community_path, :title=>"Wine Community" %></div>
+            <div id="link-to-blog" class="menu-list" class="last<%= " active" if active_uri == "/site/blog" %>"><%= link_to "Blog", site_blog_index_path, :title=>"Blog" %></div>
           </ul>
         </div>
       </div>
@@ -277,37 +277,37 @@
                 <%= form_tag '/site/cart/user_select', :id => 'reset_form' do %>
                 <%= hidden_field_tag 'reset_user_id', session[:previous_admin_id] %>
               <% end %>
-              <%= link_to "reset session", '#', :onclick => "$('form#reset_form').submit();return false;"%>
+              <%= link_to "reset session", '#', :onclick => "$('form#reset_form').submit();return false;", :title=>"Reset"%>
             <% end %>
           </li>
           <li class="logged-in">Welcome <%= current_user.name %></li>
-          <li><% if current_user.type_id == 1 %>  <%= link_to "Admin Site",siteadmin_path %><% end %></li>
+          <li><% if current_user.type_id == 1 %>  <%= link_to "Admin Site",siteadmin_path, :title=>"Admin Site" %><% end %></li>
           <li>
             <% if Message.find(:all,:conditions=>['user_id = ?',current_user.id]).count > 0 %>
-            <%= link_to "My Account",  :controller=>'site/customers',:action=>'show',:id=>current_user.id  %>
+            <%= link_to "My Account",  {:controller=>'site/customers',:action=>'show',:id=>current_user.id},:title=>"My Account"  %>
           </li>
           <li> 
             <% else %>
-              <%= link_to "My Account", account_path %> 
+              <%= link_to "My Account", account_path, :title=>"My Account" %> 
             <% end %>
           </li>
           <li>
-            <%= link_to "Log out", logout_path %>
+            <%= link_to "Log out", logout_path, :title=>"Log Out" %>
           </li>
           <li>
             <% else %>
-            <%= link_to "Log in", login_path %>
+            <%= link_to "Log in", login_path, :title=>"Log in" %>
             <% end %>
           </li>
-          <li><%= link_to "Sign up", signup_path %></li>
-          <li><%= link_to "Contact Us", contact_us_path %></li>
+          <li><%= link_to "Sign up", signup_path, :title=>"Sign Up" %></li>
+          <li><%= link_to "Contact Us", contact_us_path, :title=>"Contact Us" %></li>
           <li role="separator" class="divider"></li>
           <li class="small-icon-row">
             <div class="social-icon">
-              <a href="#."><%= link_to image_tag("/images/gplus-icon.png", :title=>"gplus", :alt=>"gplus"), "https://plus.google.com/105030552023597415239/posts" -%></div>
-            <div class="social-icon"><%= link_to image_tag("/images/fb-icon.png", :title=>"facebook", :alt=>"facebook"), "https://www.facebook.com/pages/Italyabroadcom/144011672282174" -%></div>
-            <div class="social-icon"><%= link_to image_tag("/images/twitter-icon.png", :title=>"twitter", :alt=>"twitter"), "https://twitter.com/Italyabroad", :id => "b" -%></div>
-            <div class="social-icon"><%= link_to image_tag("/images/instagram-icon.png", :title=>"instagram", :alt=>"instagram"), "https://instagram.com/italyabroad" -%></div>
+              <%= link_to image_tag("/images/gplus-icon.png", :title=>"gplus", :alt=>"gplus"), "https://plus.google.com/105030552023597415239/posts", :title=>"gplus" -%></div>
+            <div class="social-icon"><%= link_to image_tag("/images/fb-icon.png", :title=>"facebook", :alt=>"facebook"), "https://www.facebook.com/pages/Italyabroadcom/144011672282174", :title=>"facebook" -%></div>
+            <div class="social-icon"><%= link_to image_tag("/images/twitter-icon.png", :title=>"twitter", :alt=>"twitter"), "https://twitter.com/Italyabroad", :id => "b", :title=>"twitter" -%></div>
+            <div class="social-icon"><%= link_to image_tag("/images/instagram-icon.png", :title=>"instagram", :alt=>"instagram"), "https://instagram.com/italyabroad", :title=>"instagram" -%></div>
           </li>
         </ul>
       </div>
@@ -343,7 +343,7 @@
           <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= option_val || params[:category] || "All site" %> <span class="caret"></span></button>
           <ul class="dropdown-menu dropdown-menu-right">
             <% [['Wine', 'wine'], ['Other Drinks', 'Other Drinks'], ['Food', 'food'], ['Recipe', 'recipe'],['Hampers','hampers'], ['People', 'people'],['Chef', 'chef'],['All Site','all']].each do |item| %>
-            <li><a href="#." ival="<%=item[1]%>"><%= item[0]%></a></li>
+            <li><a href="#." title="<%= item[0]%>" ival="<%=item[1]%>"><%= item[0]%></a></li>
             <% end %>
           </ul>
         </div><!-- /btn-group -->
@@ -369,7 +369,7 @@
           <% if logged_in? and !(current_user.orders.blank?)%>
             <% show_link = check_any_products_remains_for_review(current_user.orders) %>
             <% if show_link == true %>
-              <span class="data"><%= link_to 'Why not review the products you bought?',:controller=>'orders',:action=>'show_order_details' %></span>
+              <span class="data"><%= link_to 'Why not review the products you bought?',{:controller=>'orders',:action=>'show_order_details'} , :title=>"Why not review the products you bought?" %></span>
             <% end %>
           <% end %>
         </strong>

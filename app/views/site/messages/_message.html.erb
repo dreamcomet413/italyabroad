@@ -4,7 +4,7 @@
       <td>
         <%= message.name %><br /><br />
         <% user = User.find(message.send_by_id) %>
-        Posted By  <%=   user.name %> <%= link_to ' (Reply)', messages_send_reply_path(:msg_id=>message.id), :remote => true %>
+        Posted By  <%=   user.name %> <%= link_to ' (Reply)', messages_send_reply_path(:msg_id=>message.id), :remote => true, :title=>"Reply" %>
       </td>
       <tr><td><div id='reply<%=message.id%>'> </div></td></tr>
     </tr>

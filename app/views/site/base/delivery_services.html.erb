@@ -1,4 +1,4 @@
-<% @title = "Delivery services"; @class = "help no-padding"; @breadcrumbs = "#{link_to("Home", root_url)} &raquo; Help &raquo; Delivery services" %>
+<% @title = "Delivery services"; @class = "help no-padding"; @breadcrumbs = "#{link_to("Home", root_url, :title=>"Home")} &raquo; Help &raquo; Delivery services" %>
 
 
 <% @about = AboutU.find(:first, :conditions => {:link_type => "delivery_service"} ) %>

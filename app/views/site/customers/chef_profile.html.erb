@@ -1,11 +1,11 @@
 <% @title = "#{@my_profile ? "My" : @user.full_name}" %>
-<% @breadcrumbs = "#{link_to "Home", root_url} &raquo; #{link_to 'Community',wine_community_path} &raquo #{@title}" %>
+<% @breadcrumbs = "#{link_to "Home", root_url, :title=>"Home"} &raquo; #{link_to 'Community',wine_community_path, :title=>"Community"} &raquo #{@title}" %>
 <div id="header"><%= render :partial => 'site/shared/box_login' %></div>
 
 <% @class = "no-padding" %>
 <h4 class="account-title"></h4>
 <div class="green-heading-with-border">
-  <%= @title %>&nbsp; <span class="chef-icon"><%= image_tag 'chef_icon.png' if @user.type_id == 4 %> is a chef</span>
+  <%= @title %>&nbsp; <span class="chef-icon"><%= image_tag 'chef_icon.png', :title=>"Chef", :alt=>"chef" if @user.type_id == 4 %> is a chef</span>
 </div>
 <div class="full-width">
   <div class="section-box">
@@ -16,15 +16,15 @@
           <% unless @my_profile %>
             <%- if @user.followed_by?(current_user) -%>
               <div class="center-align top-20">
-                <span class="green-button"><%= link_to ("Unfollow"), unfollow_path(@user) %></span>
+                <span class="green-button"><%= link_to ("Unfollow"), unfollow_path(@user), :title=>"Unfollow" %></span>
               </div>
             <%- else -%>
               <div class="center-align top-20">
-                <span class="green-button"><%= link_to ("Follow"), follow_path(@user) %></span>
+                <span class="green-button"><%= link_to ("Follow"), follow_path(@user), :title=>"Follow" %></span>
               </div>
             <%- end -%>
           <% end %>
-          <%= link_to 'My restaurant' unless @user.establishment_link.blank? %>
+          <%= link_to 'My restaurant', :title=>"My restaurant" unless @user.establishment_link.blank? %>
         </div>
         <%- if @my_profile -%>
           <%= form_for :user, :url => site_customer_path(@user), :html => {:method => :put} do -%>
@@ -141,7 +141,7 @@
       <div class="section-des">
         <ol>
           <% @recipes = Recipe.find(:all,:conditions=>['user_id = ?',@user.id]).each do |recipe| %>
-            <li><%= link_to recipe.name, site_recipe_path(recipe) %></li>
+            <li><%= link_to recipe.name, site_recipe_path(recipe), :title=>recipe.name %></li>
           <% end %>
         </ol>
       </div>
@@ -157,12 +157,12 @@
           <ol>
             <%- @messages.each do |msg| -%>
               <li><%= msg.name unless msg.name.blank? %>
-                <%= link_to ' (Reply)', :url => { :controller=>'messages',:action => "send_reply",:msg_id=>msg.id}, :remote => true %>
+                <%= link_to ' (Reply)', :url => { :controller=>'messages',:action => "send_reply",:msg_id=>msg.id}, :remote => true, :title=>"Reply" %>
                 <div id='reply<%=msg.id%>'> </div>
               </li>
             <%- end -%>
             <% if @user.messages.size > 5 %>
-              <li style="list-style:none;text-align:right;margin-top:20px;"><%= link_to("more",:controller=>'site/messages',:action=>'index',:id=>params[:id]) %></li>
+              <li style="list-style:none;text-align:right;margin-top:20px;"><%= link_to("more",:controller=>'site/messages',:action=>'index',:id=>params[:id]), :title=>"More" %></li>
             <% end %>
           </ol>
         </div>
@@ -209,7 +209,7 @@
             <li><%= comment.name unless comment.name.blank? %></li>
           <%- end -%>
           <% if @user.comments.size > 5 %>
-            <li><%= link_to("more",:controller=>'comments',:action=>'index',:id=>params[:id]) %></li>
+            <li><%= link_to("more",:controller=>'comments',:action=>'index',:id=>params[:id]), :title=>"More" %></li>
           <% end %>
         </ol>
       <% end %>
@@ -224,10 +224,10 @@
       <% else %>
         <ol>
           <%- @user.reviews.all(:order=>' id desc', :limit => 5, :conditions=>['publish = ?',true],:select => 'DISTINCT reviewer_id' ).each do |review| -%>
-            <li><%= link_to    Product.find_by_id(review.reviewer_id).name , site_product_path(review.reviewer_id) rescue "" %></li>
+            <li><%= link_to    Product.find_by_id(review.reviewer_id).name , site_product_path(review.reviewer_id) rescue "", :title=>Product.find_by_id(review.reviewer_id).name %></li>
           <%- end -%>
           <% if @user.reviews.size > 5 %>
-            <li><%= link_to("more",site_reviews_path) %></li>
+            <li><%= link_to("more",site_reviews_path), :title=>"More" %></li>
           <% end %>
         </ol>
       <% end %>  
@@ -246,7 +246,7 @@
             <li><%= wine_list.product.name %></li>
           <%- end -%>
           <% if @user.wine_lists.size > 5 %>
-            <li><%= link_to("more",wine_lists_path) %></li>
+            <li><%= link_to("more",wine_lists_path), :title=>"more" %></li>
           <% end %>
         </ol>
       <% end %>
@@ -266,14 +266,14 @@
             <% user = User.find_by_id(people.user_id)%>
             <div class="member-col col-md-2 col-xs-4">
               <div class="user_photo_small">
-                <%= link_to avatar_for_user(user, 'small'), site_customer_path(user.id) %>
+                <%= link_to avatar_for_user(user, 'small'), site_customer_path(user.id), :title=>user.name %>
               </div>
               <div class="member-name">
-                <%= link_to user.name, site_customer_path(user.id) %>
+                <%= link_to user.name, site_customer_path(user.id), :title=>user.name %>
               </div>
               <div class="top-8">
                 <%- if user.followed_by?(current_user) -%>
-                  <span class="green-button"><%= link_to ("unfollow"), unfollow_path(user) %></span>
+                  <span class="green-button"><%= link_to ("unfollow"), unfollow_path(user), :title=>"unfollow" %></span>
                 <%- end -%>
               </div>
             </div>

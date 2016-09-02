@@ -1,6 +1,6 @@
 <% @title = "Payment Information"; %>
 <% months = Date::MONTHNAMES.compact %>
-<%- @breadcrumbs = "#{link_to "Home", root_url} &raquo; Checkout &raquo; Payment Information" -%>
+<%- @breadcrumbs = "#{link_to "Home", root_url, :title=>"Home"} &raquo; Checkout &raquo; Payment Information" -%>
 <% @class = "no-padding" %>
 
 <%= javascript_tag "$(document).ready(function(e){ RemotePaymentMethodForm.setup() });" %>
@@ -12,7 +12,7 @@
       <%= flash[:notice].to_s.html_safe rescue flash[:notice] %>
     </div>
   <% end %>  
-  <div class="step-img"><%= image_tag("cart_step_3.png") %></div>
+  <div class="step-img"><%= image_tag("cart_step_3.png", :alt=>"Cart Step 3", :title=>"Cart Step 3") %></div>
   <%= render :partial => 'site/shared/box_cart_form' %>
   <div>
     <% total_points = current_user.find_total_points(current_user)
@@ -23,7 +23,7 @@
     <%= form_tag site_orders_path, :id => "check_payment" do %>
       <div class="terms-cond-row">
         <span>Please tick here to confirm that you accept our
-        <%= link_to "Terms and Conditions", {:controller => :base, :action => :terms_conditions}, :popup => ['wtc', 'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=Yes,resizable=No,copyhistory=no, width=450, height=520'] %></span>
+        <%= link_to "Terms and Conditions", {:controller => :base, :action => :terms_conditions}, :popup => ['wtc', 'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=Yes,resizable=No,copyhistory=no, width=450, height=520'], :title=>"Terms and Conditions" %></span>
         <span><%=check_box_tag 'accept' %></span>  
       </div>
       <% if total_points - total_points_used > 0 %>
@@ -54,7 +54,7 @@
         </div>
         <div class="top-30 right-align bottom-50">
           <div class="back-btn green-button">
-            <%= link_to ("Back"),:controller=>'checkouts',:action=>'index' %>      
+            <%= link_to ("Back"),{:controller=>'checkouts',:action=>'index'}, :title=>"Back" %>      
           </div>
           <div class="pay-now green-button">
             <div class="submit-btn"><%= submit_tag "Pay Now" %></div>        

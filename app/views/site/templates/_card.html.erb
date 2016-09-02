@@ -1,6 +1,6 @@
 <%
-   @breadcrumbs = "#{link_to "Home", root_url} &raquo; "
-   @breadcrumbs += "#{@product.unique_categories.collect { |c| link_to(c.name, "#{"/" + c.root.friendly_identifier unless c.is_root?}/#{c.friendly_identifier}") }.join(" &raquo; ")}"
+   @breadcrumbs = "#{link_to "Home", root_url, :title=>"Home"} &raquo; "
+   @breadcrumbs += "#{@product.unique_categories.collect { |c| link_to(c.name, "#{"/" + c.root.friendly_identifier unless c.is_root?}/#{c.friendly_identifier}", :title=>c.name) }.join(" &raquo; ")}"
    @breadcrumbs += " &raquo; #{@product.name[0..25]+ '...'}"
 %>
 <%#= params[:category] %>
@@ -48,7 +48,7 @@
               <% end %>
             <% end %>        
         </div>
-        <div class="click-here"><a href="#.">Click here to enlarge the image</a></div>
+        <div class="click-here"><a href="#." title="Click here to enlarge the image">Click here to enlarge the image</a></div>
         <div class="item-left">
           <% if @limited_stock.present? %>                
             <b><%= @limited_stock %></b>
@@ -57,7 +57,7 @@
         <% end %>
         </div>
         <div class="earn-reward">Earn <%= (@product.product_prices.first.price * Setting.find(:first).points_per_pound).to_i  rescue 0 %> reward points on this produce</div>
-        <div class="green-button bottom-50"><a href="#." onclick="goBack()">Go back to previous page</a></div>
+        <div class="green-button bottom-50"><a href="#." onclick="goBack()" title="Back">Go back to previous page</a></div>
       </div>
       <div class="col-md-9">
         <div class="product-detail-wrapper">
@@ -86,8 +86,8 @@
             </div>
             <%reviews = @product.reviews.find(:all,:conditions=>['publish = true  && score is not null '])%>
             <div class="product-review-count">
-              <a href="#reviews"><%=reviews.count%> Reviews</a> / 
-              <%= link_to ' Write a review', "#reviews", :style => "font-size:12px;", :onclick => "document.getElementById('add_review').style.display='block';document.getElementById('hide_this').style.display='none';document.getElementById('no_review').style.display='none';return false;" %>
+              <a href="#reviews" title="Reviews"><%=reviews.count%> Reviews</a> / 
+              <%= link_to ' Write a review', "#reviews", :style => "font-size:12px;", :onclick => "document.getElementById('add_review').style.display='block';document.getElementById('hide_this').style.display='none';document.getElementById('no_review').style.display='none';return false;", :title=>"Write a review" %>
             </div>
             <div class="product-share">
               <%= render :partial => '/site/shared/social_bookmarks' %>
@@ -104,7 +104,7 @@
                       <div class="col-xs-9">
                         <% if @product.region %>
                           <% if @product.region.active %>
-                            <%= link_to(@product.region.name, site_region_path(@product.region)) %>
+                            <%= link_to(@product.region.name, site_region_path(@product.region), :title=>@product.region.name) %>
                           <% end %>
                         <% end %>
                       </div>
@@ -114,7 +114,7 @@
                     <div class="row clearfix">
                       <div class="col-xs-3 product-des-title">Grape:</div>
                       <div class="col-xs-9">
-                        <%= @product.grapes.collect { |g| [link_to(g.name, site_grape_path(g))] }.join(", ").html_safe() %>
+                        <%= @product.grapes.collect { |g| [link_to(g.name, site_grape_path(g), :title=>g.name)] }.join(", ").html_safe() %>
                       </div>
                     </div>
                   <% end %>
@@ -122,7 +122,7 @@
                     <div class="col-xs-3 product-des-title">Producer:</div>
                     <% if @product.producer %>
                       <% if @product.producer.active %>
-                        <div class="col-xs-9"><%= link_to(@product.producer.name, site_producer_path(@product.producer)) %></div>
+                        <div class="col-xs-9"><%= link_to(@product.producer.name, site_producer_path(@product.producer), :title=>@product.producer.name) %></div>
                       <% else %>
                         <div class="col-xs-9">No producer</div>
                       <% end %>
@@ -144,7 +144,7 @@
                     <div class="col-xs-3 product-des-title">Tasting video:</div>
                     <div class="col-xs-9">
                       <% if @product.tasting_video %>
-                        <%= link_to @product.tasting_video, @product.tasting_video, :target => 'blank' %>
+                        <%= link_to @product.tasting_video, @product.tasting_video, :title=>@product.tasting_video, :target => 'blank' %>
                       <% end %>
                     </div>
                   </div>
@@ -237,8 +237,8 @@
                                     <%= hidden_field_tag(:discounted_price, @product.discounted_price(params[:actual_price]) || @product.product_prices.first.price, :id => "actual_price") -%>
                                   </div>
                                   <div class="qty-btns">
-                                    <div class="plus-btn"><a href="#.">+</a></div>
-                                    <div class="minus-btn"><a href="#.">-</a></div>
+                                    <div class="plus-btn"><a href="#." title="Plus">+</a></div>
+                                    <div class="minus-btn"><a href="#." class="Minus" title="Minus">-</a></div>
                                   </div>
                               </div>
                               <div class="col-xs-7">
@@ -253,12 +253,12 @@
                       <div class="wishlist-row row clearfix">
                         <% if @product.categories.root.present? && @product.categories.root.name == 'Wine' %>
                           <div class="wish-list">
-                            <i><img src="/images/heart-icon.png" title="Heart" alt="Heart"></i> <%= link_to "Add to wish list" , "/site/wish_list?product_id=#{@product.id}", :remote => true, :method => :post %>
+                            <i><img src="/images/heart-icon.png" title="Heart" alt="Heart"></i> <%= link_to "Add to wish list" , "/site/wish_list?product_id=#{@product.id}", :remote => true, :method => :post, :title=>"Add to wish list" %>
                           </div>
                         <% end %>
                         <% if  @product.categories.root.present? && @product.categories.root.name.downcase == 'wine' %>
                           <div class="wine-list">
-                            <i><img src="/images/bottle-icon.png" title="wine" alt="wine bottle"></i><%= link_to "Add to Wine List", "/site/wine_lists?product_id=#{@product.id}", :remote => true, :method => :post %>
+                            <i><img src="/images/bottle-icon.png" title="wine" alt="wine bottle"></i><%= link_to "Add to Wine List", "/site/wine_lists?product_id=#{@product.id}", :remote => true, :method => :post, :title=>"Add to Wine List" %>
                           </div>
                         <% end %>
                       </div>
@@ -275,7 +275,7 @@
                           </div>
                           <div class="clearfix top-20 bottom-10">
                             <div class="add-whole-case green-button">
-                              <a href="#.">Add the whole case</a>
+                              <a href="#." title="Add the whole case">Add the whole case</a>
                             </div>
                           </div>
                         </div>
@@ -323,13 +323,13 @@
           <div class="review-wrapper_1" id="reviews" name="reviews">
             <% unless logged_in? %>
               <div class="green-heading-2">
-                Latest Reviews <%= link_to "(Add Review)", login_path %>
+                Latest Reviews <%= link_to "(Add Review)", login_path, :title=>"Add Review" %>
               </div>
               <div class="latest-review-box"><%= render :partial => 'site/shared/review_view_short', :locals => {:reviewer => @product} %></div>
             <% end %>
             <%- if logged_in? -%>
               <div class="green-heading-2">
-                Latest Review <%= link_to '(Add Review)', "#",  :onclick => "document.getElementById('add_review').style.display='block';document.getElementById('hide_this').style.display='none';document.getElementById('no_review').style.display='none';return false;" %>
+                Latest Review <%= link_to '(Add Review)', "#",  :onclick => "document.getElementById('add_review').style.display='block';document.getElementById('hide_this').style.display='none';document.getElementById('no_review').style.display='none';return false;", :title=>"Add Review" %>
               </div>
               <div class="latest-review-box" style="margin-bottom: 12px;">
                 <div id="add_review" style="display:none;">
@@ -362,10 +362,10 @@
                 <div class="col-md-3">
                   <div class="small-box clearfix">
                     <div class="col-xs-4">
-                      <%= link_to image_tag(path, alt:inc_product.name, title:inc_product.name), nested_products_uri(inc_product) %>
+                      <%= link_to image_tag(path, alt:inc_product.name, title:inc_product.name), nested_products_uri(inc_product), :title=>inc_product.name %>
                     </div>
                     <div class="col-xs-8 slider-box-text">
-                      <div class="item-name"><%= link_to truncate(inc_product.name, {:length => 80}), nested_products_uri(inc_product) %></div>
+                      <div class="item-name"><%= link_to truncate(inc_product.name, {:length => 80}), nested_products_uri(inc_product), :title=>inc_product.name %></div>
                       <div class="seller-price">£<%=inc_product.product_prices.first.price%></div>
                       <div class="add-row clearfix">
                         <%=render partial: 'site/templates/cart_product_show_page_form' , locals: {product: inc_product}  %>
@@ -394,11 +394,11 @@
                 <div class="col-md-3">
                   <div class="small-box clearfix">
                     <div class="col-xs-4">
-                      <%= link_to image_tag(path, alt:inc_product.name, title:inc_product.name), nested_products_uri(inc_product) %>
+                      <%= link_to image_tag(path, alt:inc_product.name, title:inc_product.name), nested_products_uri(inc_product), :title=>inc_product.name %>
                     </div>
                     <div class="col-xs-8 slider-box-text">
                       <div class="item-name">
-                        <%= link_to inc_product.name, nested_products_uri(inc_product) %></div>
+                        <%= link_to inc_product.name, nested_products_uri(inc_product), :title=>inc_product.name %></div>
                       <div class="seller-price">
                         <%= number_to_currency inc_product.product_prices.first.price, :unit => "&pound;" %>
                       </div>
@@ -426,10 +426,10 @@
             <div class="col-md-3">
               <div class="small-box clearfix">
                 <div class="col-xs-4">
-                  <%= link_to image_tag(path, alt:related_product.name, title:related_product.name ), nested_products_uri(related_product) %>
+                  <%= link_to image_tag(path, alt:related_product.name, title:related_product.name ), nested_products_uri(related_product), :title=>related_product.name %>
                 </div>
                 <div class="col-xs-8 slider-box-text">
-                  <div class="item-name"><%= link_to related_product.name, nested_products_uri(related_product) %></div>
+                  <div class="item-name"><%= link_to related_product.name, nested_products_uri(related_product), :title=>related_product.name %></div>
                   <div class="seller-price">
                     <%= number_to_currency related_product.product_prices.first.price, :unit => "&pound;" %></div>
                   <div class="add-row clearfix">

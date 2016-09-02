@@ -1,6 +1,6 @@
 <% @title = "Authentic Italian recipes, pasta, antipasti, pesce, carne"; @description = "Authentic italian recipes directly from our grandma secret book, pasta, antipasti,starter, the most authentic Italian recipes for you to recreate at home the italian meal"; @keys ="pasta, lasagne, carne, bolognese, cantuccini, panettone, pandoro, fagioli, osso buco, arancini, pollo" %>
 
-<%- @breadcrumbs = "#{link_to("Home", root_url)} &raquo; #{link_to("Recipes", '/recipes')}" -%>
+<%- @breadcrumbs = "#{link_to("Home", root_url, :title=>"Home")} &raquo; #{link_to("Recipes", '/recipes', :title=>"Recipes")}" -%>
 <% @about = AboutU.find(:first, :conditions => {:link_type => "recipe"} ) %>
 
 <div id="wineBanner">

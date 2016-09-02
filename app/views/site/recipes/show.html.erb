@@ -13,9 +13,9 @@
         <div class="col-xs-4 center-align">
           <% if !@recipe.image_1.blank? %>
             <%#= image_tag(image_url(:original, @recipe.image_1), :alt=>@recipe.name, :size =>"350x350" ) %>
-            <img src= "<%= site_image_url(:original, @recipe.image_1) %>",  title = "<%= @recipe.name %>" %>
+            <img src= "<%= site_image_url(:original, @recipe.image_1) %>",  title = "<%= @recipe.name %>" alt="<%= @recipe.name %>" %>
           <% else %>
-            <%= image_tag("no_images/PastaRecipe.jpg", :alt=>@recipe.name) %>
+            <%= image_tag("no_images/PastaRecipe.jpg", :alt=>@recipe.name, :title=>@recipe.name) %>
           <% end %>
         </div>
         <div class="col-xs-8">
@@ -26,7 +26,7 @@
       <% unless @recipe.region.nil? %>
         <div class="green-heading-2">Region :</div>  
         <div class="bottom-50">
-          <%= link_to @recipe.region.name, "/site/regions/#{@recipe.region.name.parameterize}"  %>
+          <%= link_to @recipe.region.name, "/site/regions/#{@recipe.region.name.parameterize}", :title=>@recipe.region.name  %>
         </div>
       <%end%>
       <% if @recipe.correlations.size > 0 %>
@@ -40,7 +40,7 @@
                   <div class="producer-product-image"><%=image_tag image.image_filename.url %></div>
                 <%end%>
                 <div class="producer-product-text">
-                  <%= link_to product.name, nested_products_uri(product) %>
+                  <%= link_to product.name, nested_products_uri(product), :title=>product.name %>
                 </div>
               </div>
             <%- end -%>
@@ -58,7 +58,7 @@
         <%= @recipe.preparation_cleared.html_safe() %> 
       </div>
       <%- if logged_in? -%>
-        <div class="green-heading-2">Leave your review <%= link_to '(Add a comment)',"#",:onclick=>"document.getElementById('recipe_comments_add').style.display='block';return false;" %></div>
+        <div class="green-heading-2">Leave your review <%= link_to '(Add a comment)',"#",:onclick=>"document.getElementById('recipe_comments_add').style.display='block';return false;", :title=>"Add a Comment" %></div>
         <div id="recipe_comments_add" style="display:none;">
           <div class="latest-review-box bottom-50">
             <%= render(:partial => 'site/reviews/new', :locals => {:create_url => site_reviews_path(@recipe, :return_to => site_recipe_path(@recipe)),:recipe_id => @recipe.id}) %>
@@ -68,7 +68,7 @@
         <div class="green-heading-2">Add a comment</div>
         <div class="bottom-50">
           <p>Comment with your account</p>
-          <div><%= link_to("Login", login_path) %> || <%= link_to("Register", login_path) %></div>
+          <div><%= link_to("Login", login_path, :title=>"Login") %> || <%= link_to("Register", login_path, :title=>"Register") %></div>
         </div>
       <% end %>
       <div class="latest-review-box bottom-50">

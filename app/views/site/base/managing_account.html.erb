@@ -1,4 +1,4 @@
-<% @title = "Managing account"; @class = "help no-padding"; @breadcrumbs = "#{link_to("Home", root_url)} &raquo; Help &raquo; Managing account" %>
+<% @title = "Managing account"; @class = "help no-padding"; @breadcrumbs = "#{link_to("Home", root_url, :title=>"Home")} &raquo; Help &raquo; Managing account" %>
 
 <div id="header"><strong>italyabroad.com</strong> Help</div>
 <% @about = AboutU.find(:first, :conditions => {:link_type => "managing_account"} ) %>

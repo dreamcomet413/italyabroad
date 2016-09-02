@@ -2,6 +2,6 @@
 	<%=hidden_field_tag :product_id , product.id , :class=>'p_id'  %>
 	<div class="seller-field"><%= text_field_tag(:quantity , 1 , :class=>'quantity') %></div>
 	<div class="seller-btn">
-		<%= link_to "Add", "#.", :class=>'submit_cart_form'%>
+		<%= link_to "Add", "#.", :class=>'submit_cart_form', :title=>"Add" %>
 	</div>
 <%end%>

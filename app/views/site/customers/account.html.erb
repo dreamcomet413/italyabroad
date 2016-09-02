@@ -1,5 +1,5 @@
 <% @title = "Account"; %>
-<%- @breadcrumbs = "#{link_to "Home", root_url} &raquo; My Account" -%>
+<%- @breadcrumbs = "#{link_to "Home", root_url, :title=>"Home"} &raquo; My Account" -%>
 <% @class = "no-padding" %>
 
 <%= render :partial => '/site/shared/box_login' %>

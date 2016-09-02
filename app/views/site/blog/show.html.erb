@@ -11,14 +11,14 @@
   }
 </script>
 <% @title = @post.page_title_formatted; @description = @post.meta_description_formatted; @keys = @post.meta_keys_formatted %>
-<% @class = "no-padding"; @breadcrumbs = "#{link_to("Home", root_url)} &raquo; #{link_to('Community',wine_community_path)} &raquo; #{link_to("Blog", site_blog_index_path)} &raquo; #{@post.name[0..25] + '...'}" %>
+<% @class = "no-padding"; @breadcrumbs = "#{link_to("Home", root_url, :title=>"Home")} &raquo; #{link_to('Community',wine_community_path, :title=>"Community")} &raquo; #{link_to("Blog", site_blog_index_path, :title=>"Blog")} &raquo; #{@post.name[0..25] + '...'}" %>
 <div id="blog_show_container" class="main-banner">
   <%= image_tag(site_image_url('blog_banner', (@post.image_1 or @post.image_2 or @post.image_3), :jpg),:alt=> @title, :title=> @title) if @post.image_1 or @post.image_2 or @post.image_3 %>
 </div>
 <div class="row">
   <div class="search-blog-wrapper clearfix">
     <div class="subscribe-rss col-md-3">
-      <%= link_to "Subscribe to our RSS feed", site_blog_index_path(:format => :xml, :show => :all) %> <%= link_to image_tag('RSS.png', :title=>"RSS", :alt=>"RSS"), site_blog_index_path(:format   => :xml, :show => :all) %>
+      <%= link_to "Subscribe to our RSS feed", site_blog_index_path(:format => :xml, :show => :all), :title=>"Subscribe to our RSS feed" %> <%= link_to image_tag('RSS.png', :title=>"RSS", :alt=>"RSS"), site_blog_index_path(:format   => :xml, :show => :all), :title=>"Subscribe to our RSS feed" %>
     </div>
     <div class="col-md-9 clearfix">
       <div class="search-blog-box clearfix">
@@ -51,7 +51,7 @@
             <span class="list-date"><b><%=@post.created_at.to_date.to_s(:long)%></b></span> <span class="list-tags"><b>Tags: </b>
               <% @tag_list ="" %>
               <% @post.tags.each do |p| %>
-                <% @tag_list =  @tag_list + link_to(p.name, site_blog_index_path(:tag_id=>p.id)) + ", "%>
+                <% @tag_list =  @tag_list + link_to(p.name, site_blog_index_path(:tag_id=>p.id), :title=>p.name) + ", "%>
               <% end %>
               <%= @tag_list.chop![0..-2].html_safe if !@tag_list.empty? %>
             </span>   
@@ -65,7 +65,7 @@
           <% if logged_in? %>
             <div class="review-wrapper_1">
               <div class="green-heading-2">
-                Latest review <%= link_to 'Add Review',"#",:onclick=>"document.getElementById('recipe_comments_add').style.display='block';return false;" %>
+                Latest review <%= link_to 'Add Review',"#",:onclick=>"document.getElementById('recipe_comments_add').style.display='block';return false;", :title=>"Add Review" %>
               </div>
               <div class="write-review-wrapper" id="recipe_comments_add" style="display:none;">
                 <%= form_tag comment_site_blog_path(:id => @post.id) do %>
@@ -113,8 +113,8 @@
             <div class="green-heading-2">Add a comment</div>
             <div class="write-review-wrapper">
               <div class="bottom-50">
-                <%= link_to("Login", login_path) %> ||
-                <%= link_to "Register", "/signup" %> 
+                <%= link_to("Login", login_path, :title=>"Login") %> ||
+                <%= link_to "Register", "/signup", :title=>"Register" %> 
               </div>
             </div>
           <% end %>

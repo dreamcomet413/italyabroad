@@ -1,5 +1,5 @@
 <% @title = "Choose a delivery address"; %>
-<%- @breadcrumbs = "#{link_to "Home", root_url} &raquo; Checkout &raquo; Delivery Details" -%>
+<%- @breadcrumbs = "#{link_to "Home", root_url, :title=>"Home"} &raquo; Checkout &raquo; Delivery Details" -%>
 <% @class = "no-padding" %>
 <% unless @cart.items.blank? %>
     <div id="header" class="green-heading-with-border">Delivery details</div>
@@ -23,13 +23,13 @@
           </div>
         <% end %>
       </div>
-      <div class="step-img"><%= image_tag("cart_step_2.png") %></div>
+      <div class="step-img"><%= image_tag("cart_step_2.png", :title=>"Cart Step 2", :alt=>"Cart Step 2") %></div>
       <div class="top-30 right-align bottom-50">
         <div class="back-btn green-button">
-          <%= link_to ("Back"),:controller=>'cart',:action=>'gift_options' %>
+          <%= link_to ("Back"),{:controller=>'cart',:action=>'gift_options'}, :title=>"Back" %>
         </div>
         <div class="continue-btn green-button">
-          <%= link_to ("Continue"), payment_site_checkouts_path, :id => "ship_address_form_continue" -%>
+          <%= link_to ("Continue"), payment_site_checkouts_path, :id => "ship_address_form_continue", :title=>"Continue" -%>
         </div>
         <%= javascript_tag "$(document).ready(function(e){ RemoteAddressFrom.setup('#{confirm_address_site_checkouts_path}') });" %>
       </div>

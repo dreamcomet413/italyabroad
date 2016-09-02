@@ -1,4 +1,4 @@
-<%- @breadcrumbs = "#{link_to("Home", root_url)} &raquo; #{link_to("Hampers", '/hampers')}" -%>
+<%- @breadcrumbs = "#{link_to("Home", root_url, :title=>"Home")} &raquo; #{link_to("Hampers", '/hampers', :title=>"Hampers")}" -%>
 <% if @category.image_link
 link = @category.image_link
 else
@@ -11,11 +11,11 @@ end
     <span class="title_wine_tours">
     <%#= @category.text_on_image %>
     </span>
-	  <%= link_to image_tag(site_image_url('home_image', @category.image, :jpg),:alt=>@category.name, :title=>@category.name), link %>
+	  <%= link_to image_tag(site_image_url('home_image', @category.image, :jpg),:alt=>@category.name, :title=>@category.name), link, :title=>@category.name %>
 	</div>
 <% else %>
   <div id="wineBanner">
-  	<%= link_to image_tag("hamper.png",:alt=>@category.name, :title=>@category.name),link %>
+  	<%= link_to image_tag("hamper.png",:alt=>@category.name, :title=>@category.name),link, :title=>category.name %>
 	</div>
 <% end %>
 <!-- start category content-->

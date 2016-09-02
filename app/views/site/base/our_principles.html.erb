@@ -1,6 +1,6 @@
 <% @title = "Our principles and philosophy" %>
 <% @class = "about-us no-padding" %>
-<% @breadcrumbs = "#{link_to("Home", root_url)} &raquo; About us &raquo; Our principles and philosophy" %>
+<% @breadcrumbs = "#{link_to("Home", root_url, :title=>"Home")} &raquo; About us &raquo; Our principles and philosophy" %>
 <% @about = AboutU.find(:first, :conditions => {:link_type => "pricipal and philosophy"} ) %>
 
 <!-- start main banner-->

@@ -1,4 +1,4 @@
-<%- @breadcrumbs = "#{link_to("Home", root_url)} &raquo; #{link_to("Wine club", '/wine-tours')}" -%>
+<%- @breadcrumbs = "#{link_to("Home", root_url, :title=>"Home")} &raquo; #{link_to("Wine club", '/wine-tours', :title=>"Wine Tours")}" -%>
 
 <% if @category.image && !@category.image_url.blank? %>
   <div id="wineBanner">

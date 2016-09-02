@@ -1,5 +1,5 @@
 <% @title = "Your recent orders" %>
-<%- @breadcrumbs = "#{link_to "Home", root_url} &raquo; My Orders and Tracking" -%>
+<%- @breadcrumbs = "#{link_to "Home", root_url, :title=>"Home"} &raquo; My Orders and Tracking" -%>
 <% @class = "no-padding" %>
 <% total_points = current_user.find_total_points(current_user)
 total_points_used = current_user.orders.sum('points_used')

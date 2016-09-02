@@ -1,24 +1,24 @@
 <%- @title = "#{@my_profile ? "My" : @user.full_name}" -%>
-<%- @breadcrumbs = "#{link_to "Home", root_url} &raquo; #{link_to('Community',wine_community_path)} &raquo #{@title}".html_safe -%>
+<%- @breadcrumbs = "#{link_to "Home", root_url, :title=>"Home"} &raquo; #{link_to('Community',wine_community_path, :title=>"Community")} &raquo #{@title}".html_safe -%>
 <%= render :partial => 'site/shared/box_login' %>
 <div class="full-width">
   <div class="green-heading-with-border">
     <%= @title %>
-    <span><%= link_to 'You have new message',:controller=>'site/messages',:action=>'index',:id=>current_user.id if @unread_msg %></span>
+    <span><%= link_to 'You have new message',:controller=>'site/messages',:action=>'index',:id=>current_user.id, :title=>"You have new message" if @unread_msg %></span>
   </div>
   <div class="section-form">
     <div class="row clearfix">
       <div class="col-xs-4 col-md-2 center-align">
-        <% image_tag(@user.photo.image_filename.url) if @user.photo.present? && @user.photo.image_filename.present? && @user.photo.image_filename.url.present?%> 
+        <% image_tag(@user.photo.image_filename.url, :title=>"user", :alt=>"user") if @user.photo.present? && @user.photo.image_filename.present? && @user.photo.image_filename.url.present?%> 
         <%= avatar_for_user(@user) %>
         <% unless @my_profile %>
           <%- if logged_in? and @user.followed_by?(current_user) -%>
             <div class="center-align top-20">
-              <span class="green-button"><%= link_to ("Unfollow"), unfollow_path(@user) %></span>
+              <span class="green-button"><%= link_to ("Unfollow"), unfollow_path(@user, :title=>"Unfollow") %></span>
             </div>
           <%- else -%>
             <div class="center-align top-20">
-              <span class="green-button"><%= link_to ("Follow"), follow_path(@user) %></span>
+              <span class="green-button"><%= link_to ("Follow"), follow_path(@user), :title=>"Follow" %></span>
             </div>
           <%- end -%>
         <% end %>
@@ -143,7 +143,7 @@
       <div><%= comment.name unless comment.name.blank? %></div>
     <%end%>
     <% if @user.comments.size > 5 %>
-      <div style="margin-top:20px;"><%= link_to("more",:controller=>'comments',:action=>'index',:id=>params[:id]) %></div>
+      <div style="margin-top:20px;"><%= link_to("more",:controller=>'comments',:action=>'index',:id=>params[:id])<%= link , :title=>"more" %></div>
     <% end %>
     <% if @user.comments.size == 0 %>
       <div class="bottom-15">No comment found</div>
@@ -152,10 +152,10 @@
   <div class="green-heading-with-border"><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> Latest Reviews</div>
   <div class="bottom-50">
     <%- @user.reviews.all(:order=>' id desc', :limit => 5, :conditions=>['publish = ?',true],:select => 'DISTINCT reviewer_id' ).each do |review| -%>
-      <%= link_to ('<div>' +  Product.find_by_id(review.reviewer_id).name + '</div>').html_safe(), "/product/#{review.reviewer_id}" %>
+      <%= link_to ('<div>' +  Product.find_by_id(review.reviewer_id).name + '</div>').html_safe(), "/product/#{review.reviewer_id}", :title=>Product.find_by_id(review.reviewer_id).name %>
     <%- end -%>
     <% if @user.reviews.size > 5 %>
-      <div style="margin-top:20px;"><%= link_to("more",reviews_path) %></div>
+      <div style="margin-top:20px;"><%= link_to("more",reviews_path, :title=>"more") %></div>
     <% end %>
     <% if @user.reviews.size == 0 %>
       <div class="bottom-15">No reviews found</div>
@@ -167,7 +167,7 @@
       <div><%= wine_list.product.name %></div>
     <%- end -%>
     <% if @user.wine_lists.size > 5 %>
-      <div style="margin-top:20px;"><%= link_to("more",wine_lists_path) %></div>
+      <div style="margin-top:20px;"><%= link_to("more",wine_lists_path, :title=>"more") %></div>
     <% end %>
     <% if @user.wine_lists.size == 0 %>
       <div class="bottom-15">List is empty.</div>
@@ -183,13 +183,13 @@
           <div>
             <%- @messages.each do |msg| -%>
               <div><%= msg.name unless msg.name.blank? %>
-                <%= link_to ' Reply', :url => { :controller=>'messages',:action => "send_reply",:msg_id=>msg.id}, :remote => true %>
+                <%= link_to ' Reply', {:url => { :controller=>'messages',:action => "send_reply",:msg_id=>msg.id}, :remote => true}, :title=>"reply" %>
                 <%#= link_to_remote '&nbsp;&#171;Reply&#187;&nbsp;', :url => { :controller=>'messages',:action => "send_reply",:msg_id=>msg.id} %>
                 <div id='reply<%=msg.id%>'> </div>
               </div>
             <%- end -%>
             <% if @user.messages.size > 5 %>
-              <div style="list-style:none;text-align:right;margin-top:20px;"><%= link_to("more",:controller=>'site/messages',:action=>'index',:id=>params[:id]) %></div>
+              <div style="list-style:none;text-align:right;margin-top:20px;"><%= link_to("more",:controller=>'site/messages',:action=>'index',:id=>params[:id], :title=>"more") %></div>
             <% end %>
           </div>
         </div>
@@ -225,8 +225,8 @@
       <div>
         <div class="green-heading-with-border">Write a message for <%= @user.name %></div>
         <!-- <p>Comment with italyabroad account</p> -->
-        <p style = "font:bold 14px Arial;" class="bottom-50">&nbsp;<%= link_to("Login", login_path) %> ||
-          <%= link_to "Register", "/signup" %> </p>
+        <p style = "font:bold 14px Arial;" class="bottom-50">&nbsp;<%= link_to("Login", login_path,  :title=>"Login") %> ||
+          <%= link_to "Register", "/signup", :title=>"Register" %> </p>
       </div>
     </div>
   <%end %>
@@ -238,14 +238,14 @@
       <div class="member-col col-md-2 col-xs-3 bottom-30">
         <div class="user_photo_small" id="user_photo">
           <% user = User.find_by_id(people.user_id)%>
-          <%= link_to avatar_for_user(user, 'small'), site_customer_path(user.id) %>
+          <%= link_to avatar_for_user(user, 'small'), site_customer_path(user.id), :title=>user.name %>
         </div>
         <div class="member-name">
-          <%= link_to user.name, site_customer_path(user.id) %>
+          <%= link_to user.name, site_customer_path(user.id), :title=>user.name %>
         </div>
         <div class="green-button top-8">
           <%- if user.followed_by?(current_user) -%>
-              <%= link_to ("Unfollow"), unfollow_path(user) %>
+              <%= link_to ("Unfollow"), unfollow_path(user), :title=>"Unfollow" %>
             <%- end -%>
         </div>
       </div>

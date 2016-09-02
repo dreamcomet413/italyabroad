@@ -1,44 +1,44 @@
 <footer>
     <div class="footer-col1">
-      <div class="footer-heading"><%= link_to"About Us","/about-us" %></div>     	
-      	<div class="footer-link"><%= link_to "Our manifesto", our_principles_path %></div>
-        <div class="footer-link"><%= link_to "Who We Are", about_us_path %></div>        
-        <div class="footer-link"><%= link_to "Meet Us", meet_us_path %></div>
-        <div class="footer-link"><%= link_to "Contact Us", contact_us_path %></div>
-        <div class="footer-link"><%= link_to "Wholesale", wholesale_enquiry_path %></div>
-        <div class="footer-link"><%= link_to "Corporate Services", corporate_path %></div>
-        <div class="footer-link"><%= link_to "Supplier", "/supplier" %></div>
-        <div class="footer-link"><%= link_to "Guarantee of Satisfaction", guarantee_of_satisfaction_path %></div>
-        <div class="footer-link"><%= link_to("Gift Cards", '/wine/gift-cards') %></div>
+      <div class="footer-heading"><%= link_to"About Us","/about-us", :title=>"About Us" %></div>     	
+      	<div class="footer-link"><%= link_to "Our manifesto", our_principles_path, :title=>"Our Manifesto" %></div>
+        <div class="footer-link"><%= link_to "Who We Are", about_us_path, :title=>"Who we are" %></div>        
+        <div class="footer-link"><%= link_to "Meet Us", meet_us_path, :title=>"Meet Us" %></div>
+        <div class="footer-link"><%= link_to "Contact Us", contact_us_path, :title=>"Contact Us" %></div>
+        <div class="footer-link"><%= link_to "Wholesale", wholesale_enquiry_path, :title=>"Wholesale" %></div>
+        <div class="footer-link"><%= link_to "Corporate Services", corporate_path, :title=>"Corporate Service" %></div>
+        <div class="footer-link"><%= link_to "Supplier", "/supplier", :title=>"Supplier" %></div>
+        <div class="footer-link"><%= link_to "Guarantee of Satisfaction", guarantee_of_satisfaction_path, :title=>"Gurantee of Staisfaction" %></div>
+        <div class="footer-link"><%= link_to("Gift Cards", '/wine/gift-cards', :title=>"Gift Cards") %></div>
     </div>
     <div class="footer-col2">
-        <div class="footer-heading"><%= link_to "Wine","/wine" %></div>
+        <div class="footer-heading"><%= link_to "Wine","/wine", :title=>"Wine" %></div>
         <%- parent_category = Category.find('wine') -%>
         <%- if !parent_category.nil? -%>
             <%- parent_category.children[0..5].each do |category| -%>
                 <% num_products  = find_any_active_product_exists(category.products) %>
                 <% if num_products > 0 %>
-                    <div class="footer-link"><%= link_to category.name.html_safe().split(" ").map{|w| w.capitalize}.join(" ").html_safe(), nested_categories_url(parent_category, category) if num_products > 0 %></div>
+                    <div class="footer-link"><%= link_to category.name.html_safe().split(" ").map{|w| w.capitalize}.join(" ").html_safe(), nested_categories_url(parent_category, category), :title=>category.name if num_products > 0 %></div>
                 <% end %>
             <%- end -%>
         <%- end -%>
-        <div class="footer-link"><%= link_to("more", "/wine", :style => "color:#9b0707;") %></div>
+        <div class="footer-link"><%= link_to("more", "/wine", :style => "color:#9b0707;", :title=>"Wine") %></div>
     </div>
     <div class="footer-col3">   
-        <div class="footer-heading"><%= link_to "Other Drinks","/other-drinks" %></div>
+        <div class="footer-heading"><%= link_to "Other Drinks","/other-drinks", :title=>"Other Dirnks" %></div>
         <%- parent_category = Category.find_by_name('Other Drinks') -%>
             <%- if !parent_category.nil? -%>
                 <%- parent_category.children[0..5].each do |category| -%>
                     <% num_products  = find_any_active_product_exists(category.products) %>
                     <%# if num_products > 0 %>
-                    <div class="footer-link"><%= link_to category.name.html_safe().split(" ").map{|w| w.capitalize}.join(" ").html_safe(), nested_categories_url(parent_category, category) %></div>
+                    <div class="footer-link"><%= link_to category.name.html_safe().split(" ").map{|w| w.capitalize}.join(" ").html_safe(), nested_categories_url(parent_category, category), :title=>category.name %></div>
                 <%# end %>
             <%- end -%>
         <%- end -%>
-        <div class="footer-link"><%= link_to("more", "/other-drinks", :style => "color:#9b0707;") %></div>
+        <div class="footer-link"><%= link_to("more", "/other-drinks", :style => "color:#9b0707;", :title=>"More") %></div>
     </div>
     <div class="footer-col4">
-        <div class="footer-heading"><%= link_to"Food","/food" %></div>
+        <div class="footer-heading"><%= link_to"Food","/food", :title=>"Food" %></div>
         <%- parent_category = Category.find('food') -%>
         <%- if !parent_category.nil? -%>
             <% i = 0 %>
@@ -47,69 +47,69 @@
                 <% if num_products > 0 %>
                     <% i += 1 %>
                     <% if i < 9 %>
-                    <div class="footer-link"><%= link_to category.name.split(" ").map{|w| w.capitalize}.join(" "), nested_categories_url(parent_category, category)  %></div>
+                    <div class="footer-link"><%= link_to category.name.split(" ").map{|w| w.capitalize}.join(" "), nested_categories_url(parent_category, category), :title=>category.name  %></div>
                         <% end %>
                 <% end %>
             <%- end -%>
         <%- end -%>
-        <div class="footer-link"><%= link_to("more", "/food", :style => "color:#9b0707;") %></div>
+        <div class="footer-link"><%= link_to("more", "/food", :style => "color:#9b0707;", :title=>"More") %></div>
     </div>
     <div class="footer-col5">
-        <div class="footer-heading"><%= link_to"Hampers","/hampers" %></div>
+        <div class="footer-heading"><%= link_to"Hampers","/hampers", :title=>"Hapers" %></div>
         <%- parent_category = Category.find('hampers') -%>
         <%- if !parent_category.nil? -%>
             <%- parent_category.children.each do |category| -%>
                 <% num_products  = find_any_active_product_exists(category.products) %>
                 <% if num_products > 0 %>
-                    <div class="footer-link"><%= link_to category.name.split(" ").map{|w| w.capitalize}.join(" "), nested_categories_url(parent_category, category)  %></div>
+                    <div class="footer-link"><%= link_to category.name.split(" ").map{|w| w.capitalize}.join(" "), nested_categories_url(parent_category, category), :title=>"category.name"  %></div>
                 <% end %>
             <%- end -%>
         <%- end -%>
-        <div class="footer-link"><%= link_to"Events","/wine-events" %></div>
+        <div class="footer-link"><%= link_to"Events","/wine-events", :title=>"Events" %></div>
         <%- parent_category = Category.find('events') -%>
         <%- if !parent_category.nil? -%>
             <%- parent_category.children.each do |category| -%>
                 <% num_products  = find_any_active_product_exists(category.products) %>
                 <% if num_products > 0 %>
-                    <div class="footer-link"><%= link_to category.name, nested_categories_url(parent_category, category) %></div>
+                    <div class="footer-link"><%= link_to category.name, nested_categories_url(parent_category, category),:title=>category.name %></div>
                 <% end %>
             <%- end -%>
         <%- end -%>
-        <div class="footer-link"><%= link_to"Wine Tours","/wine-tours" %></div>
+        <div class="footer-link"><%= link_to"Wine Tours","/wine-tours", :title=>"Wine Tours" %></div>
         <%- parent_category = Category.find('wine-tours') -%>
         <%- if !parent_category.nil? -%>
             <%- parent_category.children.each do |category| -%>
-                <div class="footer-link"><%= link_to category.name, nested_categories_url(parent_category, category) %></div>
+                <div class="footer-link"><%= link_to category.name, nested_categories_url(parent_category, category), :title=>category.name %></div>
             <%- end -%>
         <%- end -%>
-        <div class="footer-link"><%= link_to"Wine Club","/wine-club" %></div>
-        <div class="footer-link"><%= link_to"Recipes", site_recipes_path %></div>
+        <div class="footer-link"><%= link_to"Wine Club","/wine-club", :title=>"Wine Club" %></div>
+        <div class="footer-link"><%= link_to"Recipes", site_recipes_path, :title=>"Recipes" %></div>
         <!--<%#- parent_category = Category.find('wine-club') -%>
         <%#- parent_category.children.each do |category| -%>
           <li><%#= link_to category.name, nested_categories_url(parent_category, category) %></li>
         <%#- end -%>-->
     </div>
     <div class="footer-col6">
-        <div class="footer-heading"><%= link_to"Community","/wine-community" %></div>
-        <div class="footer-link"><%= link_to "Andrea's Blog", site_blog_index_path %></div>
+        <div class="footer-heading"><%= link_to"Community","/wine-community", :title=>"Community" %></div>
+        <div class="footer-link"><%= link_to "Andrea's Blog", site_blog_index_path, :title=>"Andrea's Blog" %></div>
         <!--<li><%#= link_to "Forum", forums_path %></li>-->
         <!--<li><%#= link_to "Latest Entries", posts_path %></li>-->
         <!--<li><%#= link_to "Browse Threads", forums_path %></li>-->
         <!--<li><%= link_to "Our Members" %></li>-->
-        <div class="footer-link"><%= link_to "Community", wine_community_path %></div>
-        <div class="footer-link"><%= link_to "Producers", site_producers_path %></div>
-        <div class="footer-link"><%= link_to "Grape guide", site_grapes_path %></div>
-        <div class="footer-link"><%= link_to "Regions", site_regions_path %></div>
-        <div class="footer-link"><%= link_to "Testimonials", testimonial_path %></div>
+        <div class="footer-link"><%= link_to "Community", wine_community_path, :title=>"Community" %></div>
+        <div class="footer-link"><%= link_to "Producers", site_producers_path, :title=>"Products" %></div>
+        <div class="footer-link"><%= link_to "Grape guide", site_grapes_path, :title=>"Grape Guide" %></div>
+        <div class="footer-link"><%= link_to "Regions", site_regions_path, :title=>"Regions" %></div>
+        <div class="footer-link"><%= link_to "Testimonials", testimonial_path, :title=>"Testimonials" %></div>
     </div>
     <div class="footer-col7 ">
-        <div class="footer-heading"><%= link_to"Help","/help/terms-and-conditions" %></div>
-        <div class="footer-link"><%= link_to "Terms & Conditions", terms_and_conditions_path %></div>
-        <div class="footer-link"><%= link_to "Privacy Policy ", privacy_policy_path %></div>
-        <div class="footer-link"><%= link_to "Delivery Service", delivery_services_path %></div>
+        <div class="footer-heading"><%= link_to"Help","/help/terms-and-conditions", :title=>"Help" %></div>
+        <div class="footer-link"><%= link_to "Terms & Conditions", terms_and_conditions_path, :title=>"Terms & Conditions" %></div>
+        <div class="footer-link"><%= link_to "Privacy Policy ", privacy_policy_path, :title=>"Privacy Policy" %></div>
+        <div class="footer-link"><%= link_to "Delivery Service", delivery_services_path, :title=>"Delivery Service" %></div>
         <!-- li><%#= link_to "Managing Account", managing_account_path %></li -->
-        <div class="footer-link"><%= link_to "Contact Details", contact_details_path %></div>
-        <div class="footer-link"><%= link_to "Sitemap", "/sitemap" %></div>
+        <div class="footer-link"><%= link_to "Contact Details", contact_details_path, :title=>"Contact Details" %></div>
+        <div class="footer-link"><%= link_to "Sitemap", "/sitemap", :title=>"Sitemap" %></div>
     </div>
     <div class="footer-col8">
         <div class="signup-row">
@@ -118,7 +118,7 @@
             <div class="clearfix"></div>
         </div>
         <div class="signup-text">Increase your italian wine knowledge and receive weekly updates</div>
-        <div class="signup-link"><%= link_to "Sign up now >", subscribe_dali_news_path %></div>
+        <div class="signup-link"><%= link_to "Sign up now >", subscribe_dali_news_path, :title=>"Sign Up Now" %></div>
     </div>
     <div class="clearfix"></div>
     <div class="show-on-tablet footer-mobile-container">
@@ -127,16 +127,16 @@
                 Keep in Touch
             </div>
             <div class="social-icon">
-          <a href="#."></a><a href="https://plus.google.com/105030552023597415239/posts"><img alt="Gplus-icon" src="/images/gplus-icon.png?1459359870" alt="gplus" title="gplus"></a></div>
-          <div class="social-icon"><a href="https://www.facebook.com/pages/Italyabroadcom/144011672282174"><img alt="facebook" title="facebook" src="/images/fb-icon.png?1459359838"></a></div>
-          <div class="social-icon"><a href="https://twitter.com/Italyabroad" id="b"><img alt="Twitter" title="Twitter" src="/images/twitter-icon.png?1459359804"></a></div>
-          <div class="social-icon"><a href="https://instagram.com/italyabroad"><img alt="Instagram" title="Instagram" src="/images/instagram-icon.png?1459359758"></a></div>
+          <a href="https://plus.google.com/105030552023597415239/posts" title="gplus"><img alt="Gplus-icon" src="/images/gplus-icon.png?1459359870" alt="gplus" title="gplus"></a></div>
+          <div class="social-icon"><a href="https://www.facebook.com/pages/Italyabroadcom/144011672282174" title="facebook"><img alt="facebook" title="facebook" src="/images/fb-icon.png?1459359838"></a></div>
+          <div class="social-icon"><a href="https://twitter.com/Italyabroad" id="b" title="Twitter"><img alt="Twitter" title="Twitter" src="/images/twitter-icon.png?1459359804"></a></div>
+          <div class="social-icon"><a href="https://instagram.com/italyabroad" title="Instagram"><img alt="Instagram" title="Instagram" src="/images/instagram-icon.png?1459359758"></a></div>
         </div>
         <div class="panel-group center-align" id="accordion" role="tablist" aria-multiselectable="true">
             <div class="panel panel-default">
               <div class="panel-heading" role="tab" id="heading2016">
                 <h4 class="panel-title">
-                  <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse2016" aria-expanded="false" aria-controls="collapse2016" class="collapsed">
+                  <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse2016" aria-expanded="false" aria-controls="collapse2016" class="collapsed" title="About Us">
                     <span>About Us</span> <i></i>
                   </a>
                 </h4>
@@ -144,16 +144,16 @@
               <div id="collapse2016" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading2016" aria-expanded="false" style="height: 0px;">
                 <div class="panel-body">
                   <ul>
-                  <li><%= link_to"About Us","/about-us" %></li>
-                    <li><%= link_to "Our manifesto", our_principles_path %></li>
-                    <li><%= link_to "Who We Are", about_us_path %></li>        
-                    <li><%= link_to "Meet Us", meet_us_path %></li>
-                    <li><%= link_to "Contact Us", contact_us_path %></li>
-                    <li><%= link_to "Wholesale", wholesale_enquiry_path %></li>
-                    <li><%= link_to "Corporate Services", corporate_path %></li>
-                    <li><%= link_to "Supplier", "/supplier" %></li>
-                    <li><%= link_to "Guarantee of Satisfaction", guarantee_of_satisfaction_path %></li>
-                    <li><%= link_to("Gift Cards", '/wine/gift-cards') %></li>
+                  <li><%= link_to"About Us", "/about-us", :title=>"About Us" %></li>
+                    <li><%= link_to "Our manifesto", our_principles_path, :title=>"Our Manifesto" %></li>
+                    <li><%= link_to "Who We Are", about_us_path, :title=>"Who we are" %></li>        
+                    <li><%= link_to "Meet Us", meet_us_path, :title=>"Meet Us" %></li>
+                    <li><%= link_to "Contact Us", contact_us_path, :title=>"Contact Us" %></li>
+                    <li><%= link_to "Wholesale", wholesale_enquiry_path, :title=>"Wholesale" %></li>
+                    <li><%= link_to "Corporate Services", corporate_path, :title=>"Corporate Services" %></li>
+                    <li><%= link_to "Supplier", "/supplier", :title=>"Supplier" %></li>
+                    <li><%= link_to "Guarantee of Satisfaction", guarantee_of_satisfaction_path, :title=>"Guarantee Of Satisfaction" %></li>
+                    <li><%= link_to("Gift Cards", '/wine/gift-cards', :title=>"Gift Cards") %></li>
                   </ul>
                 </div>
               </div>
@@ -161,7 +161,7 @@
             <div class="panel panel-default">
               <div class="panel-heading" role="tab" id="heading2017">
                 <h4 class="panel-title">
-                  <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse2017" aria-expanded="false" aria-controls="collapse2017" class="collapsed">
+                  <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse2017" aria-expanded="false" aria-controls="collapse2017" class="collapsed" title="Help">
                     <span>Help</span> <i></i>
                   </a>
                 </h4>
@@ -169,12 +169,12 @@
               <div id="collapse2017" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading2017" aria-expanded="false" style="height: 0px;">
                 <div class="panel-body">
                   <ul>
-                    <li><%= link_to"Help","/help/terms-and-conditions" %></li>
-                    <li><%= link_to "Terms & Conditions", terms_and_conditions_path %></li>
-                    <li><%= link_to "Privacy Policy ", privacy_policy_path %></li>
-                    <li><%= link_to "Delivery Service", delivery_services_path %></li>
-                    <li><%= link_to "Contact Details", contact_details_path %></li>
-                    <li><%= link_to "Sitemap", "/sitemap" %></li>
+                    <li><%= link_to"Help","/help/terms-and-conditions", :title=>"Help" %></li>
+                    <li><%= link_to "Terms & Conditions", terms_and_conditions_path, :title=>"Terms & Conditions" %></li>
+                    <li><%= link_to "Privacy Policy ", privacy_policy_path, :title=>"Privacy Policy" %></li>
+                    <li><%= link_to "Delivery Service", delivery_services_path, :title=>"Delivery Service" %></li>
+                    <li><%= link_to "Contact Details", contact_details_path, :title=>"Contact Details" %></li>
+                    <li><%= link_to "Sitemap", "/sitemap", :title=>"Sitemap" %></li>
                   </ul>
                 </div>
               </div>
@@ -185,7 +185,7 @@
     <div class="copyright">
         &copy; Copyright 2004-<%= Date.today.strftime("%Y") %> Italy Abroad Network Ltd, registered in England & Wales No. 4962185. All rights reserved.</div>
     <div class="copyright2">
-        Registered office: Oak Mill, Topcliffe Lane, Leeds, LS27 0HL. For more information see <a href="/about-us">about us</a>
+        Registered office: Oak Mill, Topcliffe Lane, Leeds, LS27 0HL. For more information see <a href="/about-us" title="About Us">about us</a>
     </div>
 </footer>
 

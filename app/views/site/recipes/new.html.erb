@@ -26,10 +26,10 @@
 </script>
 <% @title = "Submit your recipe"; @description = "Share your italian recipes and get featured on the website" %>
 
-<%- @breadcrumbs = "#{link_to("Home", root_url)} &raquo; #{link_to("Recipes", '/recipes')} &raquo; New" -%>
+<%- @breadcrumbs = "#{link_to("Home", root_url, :title=>"Home")} &raquo; #{link_to("Recipes", '/recipes', :title=>"Recipes")} &raquo; New" -%>
 
 <div id="recipe_new_home_image" class="main-banner">
-  <%= image_tag("recipe_new.jpg") %>
+  <%= image_tag("recipe_new.jpg", :title=>"Recipe", :alt=>"Home") %>
 </div>
 <div class="full-width">
 <div class="red-text bottom-15"><%= error_messages_for 'recipe' %></div>
@@ -102,7 +102,7 @@
       </div>
       <div class="section-form">
         <div class="form-row row clearfix">
-          <div class="col-md-2 section-label"><%= image_tag("default.jpg") %></div>
+          <div class="col-md-2 section-label"><%= image_tag("default.jpg", :title=>"Default", :alt=>"Default") %></div>
           <div class="col-md-4">
             <%= file_field_tag :image_1 %>
           </div>

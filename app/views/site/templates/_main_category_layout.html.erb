@@ -1,4 +1,4 @@
-<%- @breadcrumbs = "#{link_to("Home", root_url)} &raquo; #{link_to("Wine", '/wine')}" -%>
+<%- @breadcrumbs = "#{link_to("Home", root_url, :title=>"Home")} &raquo; #{link_to("Wine", '/wine', :title=>"Home")}" -%>
 <% if @category.image_link
 link = @category.image_link
 else
@@ -12,11 +12,11 @@ end
    <span class="title_wine_tours">
     <%#= @category.text_on_image %>
     </span>
-	<%= link_to image_tag(site_image_url('home_image', @category.image, :jpg),:alt=>@category.name, :title=>@category.name),link %>
+	<%= link_to image_tag(site_image_url('home_image', @category.image, :jpg),:alt=>@category.name, :title=>@category.name),link, :title=>@category.name %>
 	</div>
 <% else %>
   <div id="wineBanner">
-	<%= link_to image_tag("flashContent.jpg",:alt=>@category.name), link %>
+	<%= link_to image_tag("flashContent.jpg",:alt=>@category.name, :title=>@category.name), link, :title=>@category.name %>
 	</div>
 <% end %>
 <!-- start category content-->
@@ -37,7 +37,7 @@ end
           <tr>
             <td style="padding:0;width:100px;height:100px;text-align:center;">
             <%#= product.layout_image %>
-       <%= link_to show_image_tag(product.layout_image, product.image_1, :jpg,product.name),nested_products_uri(product)  %>
+       <%= link_to show_image_tag(product.layout_image, product.image_1, :jpg,product.name),nested_products_uri(product), :title=>product.name  %>
             </td> <!--nested_products_path(product.root_category_id, product.sub_category_id, product) -->
             <td valign="top" style="padding:0;width:630px;">
              <!-- <table>
@@ -66,7 +66,7 @@ end
                   <%= image_tag('out_of_stock.png') %>
                 <%- else -%>
                   <%#= link_to_remote image_tag("buttons/add_to_cart_button.png"), product_cart_index_path(product), :method => 'post' %>
-                    <%= link_to(image_tag("buttons/add_to_cart_button.png"), "/site/cart?product_id=#{product.id}", :remote => true, :method => :post) %>
+                    <%= link_to(image_tag("buttons/add_to_cart_button.png"), "/site/cart?product_id=#{product.id}", :remote => true, :method => :post, :title=>"Add to cart") %>
                 <%- end -%>
               </div>
             </td>

@@ -16,7 +16,7 @@ alert("Description must be filled out");
 }
 </script>
 <% @title = "Your recent orders" %>
-<%- @breadcrumbs = "#{link_to "Home", root_url} &raquo; My Orders and Tracking" -%>
+<%- @breadcrumbs = "#{link_to "Home", root_url, :title=>"Home"} &raquo; My Orders and Tracking" -%>
 <% @class = "no-padding" %>
 
 <div id="header"><%= render :partial => 'site/shared/box_login' %></div>

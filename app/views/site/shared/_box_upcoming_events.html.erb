@@ -14,7 +14,7 @@
           </div>
         <div class="event-detail">
           <p><%= product.description_short[0..250].html_safe() %> ...  
-            <%= link_to "Discover More", "/wine-events/#{product.friendly_identifier}"%>
+            <%= link_to "Discover More", "/wine-events/#{product.friendly_identifier}", :title=>"Discover More"%>
           </p>
         </div>
       </div>

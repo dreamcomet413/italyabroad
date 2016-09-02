@@ -1,4 +1,4 @@
-<% @title = "About us"; @class="about-us no-padding"; @breadcrumbs = "#{link_to("Home", root_url)} &raquo; About us &raquo; Who we are" %>
+<% @title = "About us"; @class="about-us no-padding"; @breadcrumbs = "#{link_to("Home", root_url, :title=>"Home")} &raquo; About us &raquo; Who we are" %>
 <% @about = AboutU.find(:first, :conditions => {:link_type => "who we are"} ) %>
 <!-- start main banner-->
 <% if @about.image %>

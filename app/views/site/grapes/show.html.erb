@@ -4,7 +4,7 @@
     @keys = @grape.meta_keys_formatted
    
    @class= "no-padding";
-   @breadcrumbs = "#{link_to("Home", root_url)} &raquo; #{link_to('Community',wine_community_path)} &raquo; #{link_to("Grapes", grape_guide_path)} &raquo; #{@grape.name}".html_safe()
+   @breadcrumbs = "#{link_to("Home", root_url, :title=>"Home")} &raquo; #{link_to('Community',wine_community_path, :title=>"Community")} &raquo; #{link_to("Grapes", grape_guide_path, :title=>"Grapes")} &raquo; #{@grape.name}".html_safe()
 %>
 <div class="row">
   <div class="share-row clearfix">
@@ -18,11 +18,11 @@
       <div class="produer-detail-text clearfix">
         <% if @grape && @grape.image %>
           <div class="col-xs-3 center-align">
-            <%= image_tag(site_image_url('home_image', @grape.image, :jpg),:alt=>@grape.name) %>
+            <%= image_tag(site_image_url('home_image', @grape.image, :jpg),:alt=>@grape.name, :title=>@grape.name) %>
           </div>
         <% else %>
           <div class="col-xs-3 center-align">
-            <%= image_tag("grape_default.png",:alt=>@grape.name) %>
+            <%= image_tag("grape_default.png",:alt=>@grape.name,  :title=>@grape.name) %>
           </div>
         <% end %>
         <div class="col-xs-9">
@@ -36,7 +36,7 @@
         </div>
       <%-end-%>
       <%- @grape.producers.find(:all,:conditions=>['active = ?',true]).each do |producer| -%>
-        <div class="producer-link"><%= link_to producer.name, site_producer_path(producer) %></div>
+        <div class="producer-link"><%= link_to producer.name, site_producer_path(producer), :title=>producers.name %></div>
       <% end %>
       <% @grape_products = @grape.products.find(:all,:include=>:categories,:conditions=>['upper(categories.name)=?','WINE'])%>
         
@@ -52,10 +52,10 @@
             <%- @grape_products.each do |product| -%>
               <div class="producer-products-col">
                   <div class="producer-product-image">
-                    <%= link_to show_image_tag(product.layout_image, product.image_1, :jpg,product.name), nested_products_uri(product) %>
+                    <%= link_to show_image_tag(product.layout_image, product.image_1, :jpg,product.name), nested_products_uri(product), :title=>product.name %>
                   </div>
                   <div class="producer-product-text">
-                    <%= link_to product.name, nested_products_uri(product) %>
+                    <%= link_to product.name, nested_products_uri(product), :title=>product.name %>
                   </div>
               </div>
             <% end %>

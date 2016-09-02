@@ -15,7 +15,7 @@
         <% if !params[:step].present? %>
           <div class="col-md-2 col-xs-4 sommelier-box" >
             <div>
-              <%= image_tag("sommilier-image-#{item.strip.upcase.gsub(" WINE", "").gsub(" ", "-")}.jpg") %>
+              <%= image_tag("sommilier-image-#{item.strip.upcase.gsub(" WINE", "").gsub(" ", "-")}.jpg", :title=>"sommelier", :alt=>"sommelier") %>
             </div>
             <div class="recWine">
               <%= radio_button :selected_option, "", "#{item}",:checked => (session[:selected_search_options].values.flatten.include?(item)) %><br /><%= item.capitalize.gsub(" Wine", "") -%>
@@ -25,7 +25,7 @@
         <% elsif params[:step] == "1" %>
           <div class="col-md-3 col-xs-4 sommelier-box" >
             <div>
-              <%=  image_tag("sommilier-image-#{item.strip.upcase.gsub(" BODY", "").gsub(" ", "-")}-BODIED-new.jpg") %>
+              <%=  image_tag("sommilier-image-#{item.strip.upcase.gsub(" BODY", "").gsub(" ", "-")}-BODIED-new.jpg", :title=>"sommelier", :alt=>"sommelier") %>
             </div>
             <div class="recWine">
               <%= radio_button :selected_option, "", "#{item}",:checked => (session[:selected_search_options].values.flatten.include?(item)) %><br /><%= item.capitalize.gsub(" Wine", "") -%>
@@ -35,7 +35,7 @@
         <% elsif params[:step] == "2" %>
           <div class="col-xs-6 col-md-3 sommelier-box">
             <div>
-              <%=  image_tag("sommilier-image-#{item.downcase.strip.gsub(" ", "-")}.jpg") %>
+              <%=  image_tag("sommilier-image-#{item.downcase.strip.gsub(" ", "-")}.jpg", :title=>"sommelier", :alt=>"sommelier") %>
             </div>
             <div class="recWine">
               <%= radio_button :selected_option, "", "#{item}",:checked => (session[:selected_search_options].values.flatten.include?(item)) %><br /><%= item.capitalize.gsub(" Wine", "") -%>
@@ -45,7 +45,7 @@
         <% elsif params[:step] == "3" and params[:selected_option].downcase.strip == "drink on its own" %>
           <div class="col-md-3 col-xs-4 sommelier-box" >
             <div>
-              <%=  image_tag("sommilier-image-price-#{item.downcase.strip.gsub("£", "").gsub("and", "to").gsub(" ", "-")}.jpg") %>
+              <%=  image_tag("sommilier-image-price-#{item.downcase.strip.gsub("£", "").gsub("and", "to").gsub(" ", "-")}.jpg", :title=>"sommelier", :alt=>"sommelier") %>
             </div>
             <div class="recWine">
               <%= radio_button :selected_option, "", "#{item}",:checked => (session[:selected_search_options].values.flatten.include?(item)) %><br /><%= item.capitalize.gsub(" Wine", "") -%>
@@ -55,7 +55,7 @@
         <% elsif params[:step] == "3" and params[:selected_option].downcase.strip == "with food" %>
           <div class="col-md-2 col-xs-4 sommelier-box" >
             <div>
-              <%=  image_tag("sommilier-image-#{item.downcase.strip.singularize.gsub(" ", "-")}.jpg") %>
+              <%=  image_tag("sommilier-image-#{item.downcase.strip.singularize.gsub(" ", "-")}.jpg", :title=>"sommelier", :alt=>"sommelier") %>
             </div>
             <div class="recWine">
               <%= radio_button :selected_option, "", "#{item}",:checked => (session[:selected_search_options].values.flatten.include?(item)) %><br /><%= item.capitalize.gsub(" Wine", "") -%>
@@ -65,7 +65,7 @@
         <% elsif params[:step] == "4" %>
           <div class="col-md-3 col-xs-4 sommelier-box" >
             <div>
-            <%=  image_tag("sommilier-image-price-#{item.downcase.strip.gsub("£", "").gsub("and", "to").gsub(" ", "-")}.jpg") %>
+            <%=  image_tag("sommilier-image-price-#{item.downcase.strip.gsub("£", "").gsub("and", "to").gsub(" ", "-")}.jpg", :title=>"sommelier", :alt=>"sommelier") %>
             </div>
             <div class="recWine">
               <%= radio_button :selected_option, "", "#{item}",:checked => (session[:selected_search_options].values.flatten.include?(item)) %><br /><%= item.capitalize.gsub(" Wine", "") -%>
@@ -83,7 +83,7 @@
   <% if params[:step].present? %>
     <div class="pull-right green-button" style="">
       <b>
-        <%= link_to "&lt;&ndash; Go Back".html_safe, "#", :id => "go_back" if !params[:st].present? -%>
+        <%= link_to "&lt;&ndash; Go Back".html_safe, "#", :id => "go_back", :title=>"Go Back" if !params[:st].present? -%>
       </b>
     </div>
   <% end %>

@@ -43,10 +43,10 @@
 				<div class="gift-note"><%= text_area :gift, :note,  :rows => 6 %></div>
 			</div>
 		</div>
-		<div class="center-align top-20"><%= image_tag("cart_step_1.png") %></div>
+		<div class="center-align top-20"><%= image_tag("cart_step_1.png", :title=>"Cart step 1", :alt=>"Cart step 1") %></div>
 		<div class=""><%= render :partial => 'site/shared/box_cart_form' %></div>
 		<div class="top-30 right-align bottom-50">
-			<div class="back-btn green-button"><%= link_to ("Back"), :controller=>'cart',:action=>'index' %></div>
+			<div class="back-btn green-button"><%= link_to ("Back"), {:controller=>'cart',:action=>'index'}, :title=>"Back" %></div>
 			<div class="continue-btn green-button">
 				<div class="submit-btn"><%= submit_tag("Continue") %></div>
 			</div>

@@ -1,6 +1,6 @@
 <% @title = "Authentic Italian recipes, pasta, antipasti, pesce, carne"; @description = "Authentic italian recipes directly from our grandma secret book, pasta, antipasti,starter, the most authentic Italian recipes for you to recreate at home the italian meal"; @keys ="pasta, lasagne, carne, bolognese, cantuccini, panettone, pandoro, fagioli, osso buco, arancini, pollo" %>
 
-<%- @breadcrumbs = "#{link_to("Home", root_url)} &raquo; #{link_to("Recipes", '/recipes')}" -%>
+<%- @breadcrumbs = "#{link_to("Home", root_url, :title=>"Home")} &raquo; #{link_to("Recipes", '/recipes', :title=>"Recipes")}" -%>
 <% @about = AboutU.find(:first, :conditions => {:link_type => "recipe"} ) %>
 <div id="wineBanner" class="main-banner">
 <% if @about and !@about.title.blank? %>
@@ -11,9 +11,9 @@
   <% end %>
 
   <% if  @about and !@about.image_id.nil? %>
-  <%= link_to image_tag(@about.image.image_filename.url,:alt=>@about.title, :title=>@about.title) , site_search_index_path(:id => "recipe") unless @about.blank? %>
+  <%= link_to image_tag(@about.image.image_filename.url,:alt=>"Recipes Banner", :title=>"Recipes Banner") , site_search_index_path(:id => "recipe"), :title=>"Recipes Banner" unless @about.blank? %>
   <% else %>
-  <%= link_to image_tag("recipes.jpg",:alt=>'Recipes',:title=>'Recipes'), site_search_index_path(:id => "recipe") %>
+  <%= link_to image_tag("recipes.jpg",:alt=>'Recipes',:title=>'Recipes'), site_search_index_path(:id => "recipe"), :title=>"Recipes" %>
   <% end %>
 </div>
 <div class="row">
@@ -37,13 +37,13 @@
             <%- Recipe.active.latest.paginate(:page => params[:page], :per_page => 3).each do |recipe| -%>
               <div class="col-md-4">
                 <div class="recipe-box">
-                  <div class="green-heading-16"><%= link_to recipe.name, site_recipe_path(recipe) %></div>
+                  <div class="green-heading-16"><%= link_to recipe.name, site_recipe_path(recipe), :title=>recipe.name %></div>
                   <div class="row clearfix">
                     <div class="col-xs-5 box-image">
                       <% begin %>
-                        <%= link_to image_tag(site_image_url('recipe_thumb', recipe.image_1, :jpg), :size => "100x75", :alt=>recipe.name, :title=>recipe.name), site_recipe_path(recipe) %>
+                        <%= link_to image_tag(site_image_url('recipe_thumb', recipe.image_1, :jpg), :size => "100x75", :alt=>recipe.name, :title=>recipe.name), site_recipe_path(recipe), :title=>recipe.name %>
                       <% rescue %>
-                        <%= link_to image_tag("no_images/PastaRecipe.jpg",:size => "100x75",:alt=>recipe.name,:title=>recipe.name), site_recipe_path(recipe) %>
+                        <%= link_to image_tag("no_images/PastaRecipe.jpg",:size => "100x75",:alt=>recipe.name,:title=>recipe.name), site_recipe_path(recipe), :title=>recipe.name %>
                       <% end %>
                     </div>
                     <div class="col-xs-7">
@@ -54,7 +54,7 @@
                         <% if recipe.user_id == 3 %>
                           Guest
                         <%else%>
-                          <%= link_to recipe.user.name.capitalize,customer_path(recipe.user.id) rescue "Admin" %>
+                          <%= link_to recipe.user.name.capitalize,customer_path(recipe.user.id), :title=>recipe.user.name rescue "Admin" %>
                         <% if !recipe.user.nil? %>
                           <%#= link_to recipe.user.establishment_link,recipe.user.establishment_link%>
                         <% end %>
@@ -63,7 +63,7 @@
                     </div>
                   </div>
                   <div class="instructions">
-                    <%= link_to "Ingredients and cooking instructions", site_recipe_path(recipe) %>
+                    <%= link_to "Ingredients and cooking instructions", site_recipe_path(recipe), :title=>"Ingredients and cooking instructions" %>
                   </div>
                 </div>
               </div>
@@ -78,15 +78,15 @@
               <div class="col-md-4">
                 <div class="recipe-box">
                   <div class="green-heading-16">
-                    <%= link_to recipe.name, site_recipe_path(recipe) %>
+                    <%= link_to recipe.name, site_recipe_path(recipe), :title=>recipe.name %>
                   </div>
                   <%= show_ratings(recipe, recipe.average_rating_round).html_safe() %>
                   <div class="row clearfix">
                     <div class="col-xs-5 box-image">
                       <% if !recipe.image_1.blank? %>
-                        <%= link_to image_tag(site_image_url('recipe_thumb', recipe.image_1, :jpg), :alt=>"Recipe", :title=>"Recipe"), site_recipe_path(recipe) if site_image_url('recipe_thumb', recipe.image_1, :jpg).present? %>
+                        <%= link_to image_tag(site_image_url('recipe_thumb', recipe.image_1, :jpg), :alt=>"Recipe", :title=>"Recipe"), site_recipe_path(recipe), :title=>"Recipe" if site_image_url('recipe_thumb', recipe.image_1, :jpg).present? %>
                       <% else %>
-                        <%= link_to image_tag("no_images/PastaRecipe.jpg", :alt=>"Recipe", :title=>"Recipe"), site_recipe_path(recipe) %>
+                        <%= link_to image_tag("no_images/PastaRecipe.jpg", :alt=>"Recipe", :title=>"Recipe"), site_recipe_path(recipe), :title=>"Recipe" %>
                       <% end %>
                     </div>
                     <div class="col-xs-7">
@@ -103,7 +103,7 @@
                     </div>
                   </div>
                   <div class="instructions">
-                    <%= link_to "Ingredients and cooking instructions", site_recipe_path(recipe) %>
+                    <%= link_to "Ingredients and cooking instructions", site_recipe_path(recipe), :title=>"Ingredients and cooking instructions" %>
                   </div>
                 </div>
               </div>

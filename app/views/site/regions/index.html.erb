@@ -1,12 +1,12 @@
 <% @title = "Regions"; @description = "Andrea's Wine Blog, The Italian Wine Blog, A Guide to Italian Wines, Journey Through Italian Wines"; @keys = "Wine Blog,Italian Wine Blog,Italian Red and White Wine,Italian Food,Wine Tasting,Wine Expert" %>
-<%- @breadcrumbs = "#{link_to("Home", root_url)}  &raquo; #{link_to("Community", wine_community_path)} &raquo; #{link_to("Regions", site_regions_path)}" -%>
+<%- @breadcrumbs = "#{link_to("Home", root_url, :title=>"Home")}  &raquo; #{link_to("Community", wine_community_path, :title=>"Community")} &raquo; #{link_to("Regions", site_regions_path, :title=>"Regions")}" -%>
 
 <% @about = AboutU.find(:first, :conditions => {:link_type => "region"} ) %>
   <% if  @about and !@about.image_id.nil? %>
-    <div class="main-banner"><%= link_to image_tag(site_image_url('region_card', @about.image, :jpg),:alt=>@about.title,:title=>@about.title) , site_search_index_path(:id => "regions") unless @about.blank? %></div>
+    <div class="main-banner"><%= link_to image_tag(site_image_url('region_card', @about.image, :jpg),:alt=>"Regions Banner",:title=>"Regions Banner") , site_search_index_path(:id => "regions"), :title=>"Regions" unless @about.blank? %></div>
   <% else %>
     <div class="main-banner">
-      <%= link_to image_tag("blog_home.jpg",:alt=>'Regions',:title=>'Regions'),site_search_index_path(:id => "regions") %>
+      <%= link_to image_tag("blog_home.jpg",:alt=>'Regions',:title=>'Regions'),site_search_index_path(:id => "regions"), :title=>"Regions" %>
     </div>
   <% end %>
   <div class="row">
@@ -25,7 +25,7 @@
             <div class="green-heading">A-G</div>
             <%- for region in @regions_all  -%>
               <% if region.name.upcase =~ /^[A-G]/ %>
-                <div><%= link_to region.name, site_region_path(region) %></div>
+                <div><%= link_to region.name, site_region_path(region), :title=>region.name %></div>
               <%- end -%>
             <%- end -%>
           </div>
@@ -33,7 +33,7 @@
             <div class="green-heading">H-L</div>
             <%- for region in @regions_all -%>
               <% if region.name.upcase =~ /^[H-L]/ %>
-                <div><%= link_to region.name, site_region_path(region) %></div>
+                <div><%= link_to region.name, site_region_path(region), :title=>region.name %></div>
               <%- end -%>
             <%- end -%>
           </div>
@@ -42,7 +42,7 @@
             <%- for region in @regions_all -%>
               <% if region.name.upcase =~ /^[M-Z]/ %>
                 <div>
-                  <%= link_to region.name, site_region_path(region) if region.name.upcase =~ /^[M-Z]/ %>
+                  <%= link_to region.name, site_region_path(region), :title=>region.name if region.name.upcase =~ /^[M-Z]/ %>
                 </div>
               <%- end -%>
             <%- end -%>
@@ -61,7 +61,7 @@
 	<ul>
 	<% for region in @regions %>
 	  <li>
-      <h2><%= link_to region.name, region.friendly_identifier.blank? ? "regions/#{region.id}" : "regions/#{region.friendly_identifier}" %><%#= show_region_image(region) %></h2>
+      <h2><%= link_to region.name, region.friendly_identifier.blank? ? "regions/#{region.id}" : "regions/#{region.friendly_identifier}", :title=>region.name %><%#= show_region_image(region) %></h2>
       <%#= show_region_image(region) %>
       <div><% unless region.description.blank? %>
       <%= region.description[0,250].html_safe() %>
