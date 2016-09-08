@@ -122,7 +122,7 @@ ItalyabroadNew::Application.routes.draw do
   match 'help/managing-account' => 'site/base#managing_account', :as => :managing_account
   match 'help/contact-details' => 'site/base#contact_details', :as => :contact_details
   match 'sitemap' => 'site/base#sitemap', :as => :sitemap
-  #match 'sitemap.xml' => 'site/base#google_sitemap', :defaults => {:format => :xml}
+  match 'google_sitemap.xml' => 'site/base#google_sitemap', :defaults => {:format => :xml}
   match 'guarantee_of_satisfaction' => 'site/base#guarantee_of_satisfaction', :as => :guarantee_of_satisfaction
   match 'enable_disable_chat' => 'admin/base#enable_disable_chat', :as => :enable_disable_chat
   match 'testimonial' => 'site/testimonials#index', :as => :testimonial

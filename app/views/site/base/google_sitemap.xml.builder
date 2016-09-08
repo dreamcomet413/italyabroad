@@ -6,7 +6,7 @@ xml.urlset "xmlns" => "http://www.google.com/schemas/sitemap/0.84" do
     xml.lastmod     w3c_date(Time.now)
     xml.changefreq  "always"
   end
- 
+  
   @products.each do |product|
     xml.url do
       xml.loc         url_for(:only_path => false, :controller => 'site/products', :action => 'show', :id => product.friendly_identifier)
