@@ -110,7 +110,7 @@ xml.urlset(:xmlns=>"http://www.sitemaps.org/schemas/sitemap/0.9", "xmlns:xsi" =>
     xml.priority    0.6
   end
 
-  Producer.all.each do |producer|
+  Producer.where(:active=>true).each do |producer|
     xml.url do
       xml.loc         "#{site_url}/site/producers/#{producer.friendly_identifier}"
       xml.lastmod     w3c_date(Time.now)
@@ -127,9 +127,26 @@ xml.urlset(:xmlns=>"http://www.sitemaps.org/schemas/sitemap/0.9", "xmlns:xsi" =>
     xml.priority    0.6
   end
 
-  Region.all.each do |region|
+  Region.where(:active=>true).each do |region|
     xml.url do
       xml.loc         "#{site_url}/site/regions/#{region.friendly_identifier}"
+      xml.lastmod     w3c_date(Time.now)
+      xml.changefreq  "weekly"
+      xml.priority    0.6
+    end
+  end
+
+  #Recipes
+  xml.url do
+    xml.loc         "#{site_url}/site/recipes"
+    xml.lastmod     w3c_date(Time.now)
+    xml.changefreq  "weekly"
+    xml.priority    0.6
+  end
+
+  Recipe.where(:active=>true).each do |recipe|
+    xml.url do
+      xml.loc         "#{site_url}/site/recipes/#{recipe.friendly_identifier}"
       xml.lastmod     w3c_date(Time.now)
       xml.changefreq  "weekly"
       xml.priority    0.6
