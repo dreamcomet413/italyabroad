@@ -38,12 +38,12 @@ module ApplicationHelper
 
   def title
     return  @title + "" unless @title.blank?
-    return "Italian wine and food made by small producers"
+    return "Italian wine and food from small producers"
   end
 
   def description
     return @description unless @description.blank?
-    return "Italian wine and food made by small producers, fantastic wine from all over Italy and delicious and healthy food made only using natural ingredients"
+    return "Italian wine and food from small producers, fantastic wine from all over Italy and delicious and healthy food made only using natural ingredients"
   end
 
   def keys
