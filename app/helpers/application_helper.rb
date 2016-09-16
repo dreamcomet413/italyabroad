@@ -43,7 +43,7 @@ module ApplicationHelper
 
   def description
     return @description unless @description.blank?
-    return "The best and finest Italian food and wine, olive oil,modena balsamic vinegar, cakes,  and much more"
+    return "Italian wine and food made by small producers, fantastic wine from all over Italy and delicious and healthy food made only using natural ingredients"
   end
 
   def keys
