@@ -36,7 +36,7 @@
         </div>
       <%-end-%>
       <%- @grape.producers.find(:all,:conditions=>['active = ?',true]).each do |producer| -%>
-        <div class="producer-link"><%= link_to producer.name, site_producer_path(producer), :title=>producers.name %></div>
+        <div class="producer-link"><%= link_to producer.name, site_producer_path(producer), :title=>producer.name %></div>
       <% end %>
       <% @grape_products = @grape.products.find(:all,:include=>:categories,:conditions=>['upper(categories.name)=?','WINE'])%>
         
