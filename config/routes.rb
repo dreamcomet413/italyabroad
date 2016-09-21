@@ -307,7 +307,7 @@ ItalyabroadNew::Application.routes.draw do
   match 'admin/xml/xml_options' => 'admin/xml#xml_options', :as => :xml_options
   match 'admin/xml/eval_xml' => 'admin/xml#eval_xml', :as => :eval_xml
   match 'admin/xml/eval_xml_g_comptible' => 'admin/xml#eval_xml_g_comptible', :as => :eval_xml_g_comptible
-  match 'admin/comments/approve_comment' => 'admin/comments#approve_comment'
+  match 'admin/comments/:id/approve_comment' => 'admin/comments#approve_comment', as: 'approve_comment'
 
 
   match 'admin/settings/update_guarantee_of_satisfaction_details' => 'admin/settings#update_guarantee_of_satisfaction_details', :as => :update_guarantee_of_satisfaction_details

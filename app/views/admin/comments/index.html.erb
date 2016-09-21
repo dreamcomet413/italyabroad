@@ -29,7 +29,7 @@
         <td><%= comment.description.html_safe() %></td>
         <td><%= link_to(comment.post.name, blog_path(comment.post.id)) rescue "No posted in" %></td>
         <td><%= comment.public ?  'Approved' : 'Not Approved ' %></td>
-       <td> <%= link_to "Approve", admin_comments_approve_comment_path(:id => comment.id ), :remote => true %>
+       <td> <%= link_to "Approve", approve_comment_path(:id => comment.id ), :remote => true %>
         <%= link_to "Destroy", admin_comment_path(comment), :method => :delete, :confirm => "Are you sure want to delete this comment?" %></td>
       </tr>
       <%- end -%>
