@@ -161,7 +161,8 @@ class Site::CustomersController < ApplicationController
     render :layout => false
   end
 
-  def update
+  def update 
+    
     @user = current_user
     old_mail = @user.email
     unless params[:photo].nil?
@@ -190,7 +191,11 @@ class Site::CustomersController < ApplicationController
       flash[:title] = "Congratulations"
       flash[:message] = "Your account has been update, you will now receive an email"
       #   render :action => :messages
-      redirect_to '/my-account'
+      if params[:return_to_url] == 'true'
+        redirect_to '/site/checkouts'
+      else
+        redirect_to '/my-account'
+      end
       #  redirect_to root_url
     else
 

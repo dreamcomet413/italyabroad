@@ -6,6 +6,18 @@
     <div class="delivery-detail-wrapper">
       <div class="checkout-sub-heading">Delivery and Billing Address (if different from account)</div>
       <div class="checkout-des bottom-50">Your order will be delivered to the address below.</div>
+      <% if current_user.address.blank? or current_user.city.blank? or current_user.cap.blank? %>
+        <div class="checkout-des bottom-50 billing_notification">
+
+          <h4>You Billing Address (also your profile address) is missing the following feilds:</h4>
+          <ul>
+            <%= '<li>Address</li>'.html_safe if current_user.address.blank? %>
+            <%= '<li>Town</li>'.html_safe if current_user.city %>
+            <%= '<li>Postcode</li>'.html_safe if current_user.cap.blank? %>
+            <li>Please <%= link_to 'click here','/my-account?return_to_url=true&#user_address' %> to fix this issue.</li>
+          </ul>
+        </div>
+      <% end %>
       <div class="select-address clearfix">
         <div class="address-label">To use a different address please select here:</div>
         <div class="address-select">
@@ -54,9 +66,15 @@
     })
 
     $("#ship_address_form_continue").click(function(e){
+         billing_notification = $('.billing_notification').toString();
+        if (billing_notification != '' )
+        {
+          alert("Please Add  Billing Address (also your profile address) ");
+          e.preventDefault();
+        }
         if ($("#save_me:visible").attr("ship_id") == 0) {
                 alert("Please fill-up and save shipping address by clicking 'Save Address' button before continue..")
-                e.preventDefault()
+                e.preventDefault();
         }
 
     });

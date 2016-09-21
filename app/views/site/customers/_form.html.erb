@@ -206,6 +206,7 @@
     <div class="form-row row clearfix">
         <div class="col-md-2 section-label">Friend's email:</div>
         <div class="col-md-4"><%= text_field :user, :friend_email %></div>
+        <div class="col-md-4"><%= hidden_field_tag :return_to_url, params[:return_to_url] %></div>
     </div>
   </div>
 </div>
