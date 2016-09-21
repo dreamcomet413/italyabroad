@@ -12,7 +12,7 @@
           <h4>You Billing Address (also your profile address) is missing the following feilds:</h4>
           <ul>
             <%= '<li>Address</li>'.html_safe if current_user.address.blank? %>
-            <%= '<li>Town</li>'.html_safe if current_user.city %>
+            <%= '<li>Town</li>'.html_safe if current_user.city.blank? %>
             <%= '<li>Postcode</li>'.html_safe if current_user.cap.blank? %>
             <li>Please <%= link_to 'click here','/my-account?return_to_url=true&#user_address' %> to fix this issue.</li>
           </ul>
@@ -66,15 +66,17 @@
     })
 
     $("#ship_address_form_continue").click(function(e){
-         billing_notification = $('.billing_notification').toString();
+         billing_notification = $.find('.billing_notification').toString();
+          
         if (billing_notification != '' )
         {
           alert("Please Add  Billing Address (also your profile address) ");
           e.preventDefault();
-        }
-        if ($("#save_me:visible").attr("ship_id") == 0) {
-                alert("Please fill-up and save shipping address by clicking 'Save Address' button before continue..")
-                e.preventDefault();
+        }else{
+          if ($("#save_me:visible").attr("ship_id") == 0) {
+                  alert("Please fill-up and save shipping address by clicking 'Save Address' button before continue..")
+                  e.preventDefault();
+          }
         }
 
     });
