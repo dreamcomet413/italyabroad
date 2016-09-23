@@ -64,7 +64,7 @@
 
 <body <%= @paypal_redirect %> <%= "id='#{@page_id}'" if @page_id %> class="<%= @current_controller %><%= " #{@class}" if @class %>" <%= "onload='#{@onload}'" if @onload %>>
 <%= subscribe_to "/chat_messages/new/*" %>
-<% if current_user.admin? %>
+<% if logged_in? and  current_user.admin? %>
   <div class ="new_message"></div>
 <% end %>
 <% # "session[:keys]: #{session.keys} " %>
