@@ -1,3 +1,4 @@
+
 <%
  if (@chat_message.message_to == "admin")
    publish_to = "/chat_messages/new/#{@chat_message.message_from}"
@@ -20,31 +21,16 @@
 
 %>
 
-<% publish_to publish_to do %>
+<% publish_to '/site*' do %>
 $("#chat").append("<li><span class='created_at'><%= @chat_message.created_at.strftime("%H:%M") %>: <i class='auto'><%= message_from_user %></i> to  <i class='auto'><%= message_to_user %></i> </span> :=>  <strong><%= @chat_message.content %></strong></li>");
 $('#chat').scrollTop($('ul li').last().position().top + $('ul li').last().height());
-
-
-
 $(".auto").click(function (event) {
     $(".message_to_user").val(event.target.innerHTML)
 });
 <% if message_from_user != "Support" %>
-   live_chat= "<a href='#'  onclick=\"popupwindow('/chat_messages', 700, 650); return false;\">Click Here </a>"
-   message = "You have a message from <%= message_from_user %>.Please "+ live_chat +" respond!"
-  $(".new_message").html("<audio id='audio' src='/beep-07.wav' autostart='false'></audio>"+message);
-  $('.new_message').addClass('new_alert')
-  var sound = document.getElementById("audio");
-  sound.play()
-  if ($(".admin_layout").length ) {
-      alert("You have a message from <%= message_from_user %>.Please respond!!")
-  }
-  <% end %>
+if ($(".admin_layout").length ) {
+    alert("You have a message from <%= message_from_user %>.Please respond!!")
+}
 <% end %>
-
+<% end %>
 $("#new_chat_message")[0].reset();
-
-
-
-
-

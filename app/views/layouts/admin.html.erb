@@ -6,7 +6,8 @@
   <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
   <%= javascript_include_tag "private_pub" %>
   <%= javascript_include_tag "jquery_ujs" %>
-  <%= javascript_include_tag :defaults,  "jquery.tablesorter.min.js","chrome.js","prototype.js", "effects.js", "controls.js", "fastinit.js" %>
+  <%= javascript_include_tag :defaults, "jquery.tablesorter.min.js","chrome.js","prototype.js", "effects.js", "controls.js", "fastinit.js" %>
+  <%= javascript_include_tag :defaults, "jquery-ui" %>   
 </head>
 <body>
 <div id="container">
@@ -29,6 +30,8 @@
 </div>
 
  <%= subscribe_to "/chat_messages/new/*" %>
+ <div class ="new_message"></div>
+
 
  <input type="hidden" class=admin_layout id="admin_layout">
 

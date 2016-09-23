@@ -3490,3 +3490,23 @@ width: 72px;
 		top:70px;
 	}
 }
+.billing_notification{
+	color: red
+}
+.billing_notification ul {
+	list-style: none;
+	padding: 15px;
+}
+
+.new_alert {
+    
+     position: fixed;
+    bottom: 10px;
+    background: #ff6600;
+    padding: 10px 20px;
+    border-radius: 999rem;
+    color: white;
+    fill: white;
+    cursor: pointer;
+    z-index: 1000;
+}

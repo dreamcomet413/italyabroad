@@ -3,6 +3,7 @@
 <head>
   <title><%= h(title) %></title>
   <%= csrf_meta_tag %>
+   <%= javascript_include_tag "private_pub" %>
   <link rel="shortcut icon" href="/images/italyabroad.ico" />
   <link rel="alternate" type="application/rss+xml" title="Italyabroad.com Products, Feed RSS 2.0" href="<%= products_url %>" />
   <link rel="alternate" type="application/rss+xml" title="Italyabroad.com Blog, Feed RSS 2.0" href="<%= site_blog_index_url %>" />
@@ -60,12 +61,15 @@
 
 
 </head>
-<body <%= @paypal_redirect %> <%= "id='#{@page_id}'" if @page_id %> class="<%= @current_controller %><%= " #{@class}" if @class %>" <%= "onload='#{@onload}'" if @onload %>>
 
+<body <%= @paypal_redirect %> <%= "id='#{@page_id}'" if @page_id %> class="<%= @current_controller %><%= " #{@class}" if @class %>" <%= "onload='#{@onload}'" if @onload %>>
+<%= subscribe_to "/chat_messages/new/*" %>
+<% if current_user.admin? %>
+  <div class ="new_message"></div>
+<% end %>
 <% # "session[:keys]: #{session.keys} " %>
 
 <%= render :partial => "/site/shared/help_button_overlay" %>
-
 <div id="content" class="container">
   <!--Start Header main-->
   <header id="topContent">

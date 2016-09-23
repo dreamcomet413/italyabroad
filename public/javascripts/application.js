@@ -189,6 +189,6 @@ jQuery.fn.submitWithAjax = function() {
   return this;
 };
 
-$(document).ready(function() {
+jQuery(document).ready(function($){
   $("#chat_window").submitWithAjax();
 })
