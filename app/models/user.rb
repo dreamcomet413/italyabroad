@@ -265,7 +265,7 @@ class User < ActiveRecord::Base
   end
 
   def find_total_points(user)
-    total_points = user.orders.map {|o| o.total}.sum.to_f * Setting.find(:first).points_per_pound
+    total_points = user.orders.where(paid: true).map {|o| o.total}.sum.to_f * Setting.find(:first).points_per_pound
     total_points = total_points + user.points
   end
 

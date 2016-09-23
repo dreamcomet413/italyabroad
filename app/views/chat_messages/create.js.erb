@@ -21,27 +21,59 @@
 %>
 
 <% publish_to publish_to do %>
-$("#chat").append("<li><span class='created_at'><%= @chat_message.created_at.strftime("%H:%M") %>: <i class='auto'><%= message_from_user %></i> to  <i class='auto'><%= message_to_user %></i> </span> :=>  <strong><%= @chat_message.content %></strong></li>");
-$('#chat').scrollTop($('ul li').last().position().top + $('ul li').last().height());
+  $("#chat").append("<li><span class='created_at'><%= @chat_message.created_at.strftime("%H:%M") %>: <i class='auto'><%= message_from_user %></i> to  <i class='auto'><%= message_to_user %></i> </span> :=>  <strong><%= @chat_message.content %></strong></li>");
+  $('#chat').scrollTop($('ul li').last().position().top + $('ul li').last().height());
 
 
 
-$(".auto").click(function (event) {
-    $(".message_to_user").val(event.target.innerHTML)
-});
-<% if message_from_user != "Support" %>
-   live_chat= "<a href='#'  onclick=\"popupwindow('/chat_messages', 700, 650); return false;\">Click Here </a>"
-   message = "You have a message from <%= message_from_user %>.Please "+ live_chat +" respond!"
-  $(".new_message").html("<audio id='audio' src='/beep-07.wav' autostart='false'></audio>"+message);
-  $('.new_message').addClass('new_alert')
-  var sound = document.getElementById("audio");
-  sound.play()
-  if ($(".admin_layout").length ) {
-      alert("You have a message from <%= message_from_user %>.Please respond!!")
-  }
-  <% end %>
+  $(".auto").click(function (event) {
+      $(".message_to_user").val(event.target.innerHTML)
+  });
+    <% if message_from_user != "Support" %>
+        live_chat= "<a href='#'  onclick=\"popupwindow('/chat_messages', 700, 650); return false;\">Click Here </a>"
+        message = "You have a message from <%= cookies[:last_reply] %><%= message_from_user %>.Please "+ live_chat +" respond!"
+        // if time since last timestamp is greater then 1 min
+          // read Cookies and convert time 
+            last_reply = getCookie('last_reply').replace(/\%3A/g, ':');
+            last_reply = last_reply.replace(/\+/g, ' ');
+            last_reply = last_reply.replace(/\%2B/g, '+');
+            last_reply = new Date(last_reply)
+          // take diffrence and convet minutes 
+            diff = (new Date() - last_reply)/ 60000
+
+        if( diff > 1.0 )
+          {
+            message = "<audio id='audio' src='/beep-07.wav' autostart='false'></audio>" + message;
+          }
+        $(".new_message").html(message);
+
+        $('.new_message').addClass('new_alert')
+        var sound = document.getElementById("audio");
+        if(sound){ sound.play() }
+          // if ($(".admin_layout").length ) {
+              // alert("You have a message from <%= message_from_user %>.Please respond!!")
+          // }
+       
+    <% else %>
+      // set cookie with new time
+        <% cookies[:last_reply] = Time.now.strftime('%a %e %b %Y %H:%M:%S %z').to_s  %>
+      
+    <% end %>
+    function getCookie(cname) {
+        var name = cname + "=";
+        var ca = document.cookie.split(';');
+        for(var i = 0; i <ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0)==' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length,c.length);
+            }
+        }
+        return "";
+    }
 <% end %>
-
 $("#new_chat_message")[0].reset();
 
 
