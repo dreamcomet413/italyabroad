@@ -435,3 +435,15 @@ ul.makeMenu, ul.makeMenu ul {
   border: 1px solid #ccc;
   padding: 20px;
 }
+.new_alert {
+    
+     position: fixed;
+    bottom: 10px;
+    background: #ff6600;
+    padding: 10px 20px;
+    border-radius: 999rem;
+    color: white;
+    fill: white;
+    cursor: pointer;
+    z-index: 1000;
+}
