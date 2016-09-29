@@ -181,14 +181,18 @@
         <div>
           <!-- <h1><%#= "#{@my_profile ? "My" : @user.name+"'s"}" %> Messages</h1> -->
           <div>
+
+            <!-- <ul style="padding:0;list-style:none;" id="my_reviews_list">
+               < %= render :partial => '/site/messages/message', :collection => @messages %>
+            </ul> -->
             <%- @messages.each do |msg| -%>
               <div><%= msg.name unless msg.name.blank? %>
-                <%= link_to ' Reply', {:url => { :controller=>'messages',:action => "send_reply",:msg_id=>msg.id}, :remote => true}, :title=>"reply" %>
+                <%= link_to ' (Reply)', messages_send_reply_path(:msg_id=>msg.id), :remote => true, :title=>"Reply" %>
                 <%#= link_to_remote '&nbsp;&#171;Reply&#187;&nbsp;', :url => { :controller=>'messages',:action => "send_reply",:msg_id=>msg.id} %>
                 <div id='reply<%=msg.id%>'> </div>
               </div>
             <%- end -%>
-            <% if @user.messages.size > 5 %>
+            <% if @user.messages.count > 5 %>
               <div style="list-style:none;text-align:right;margin-top:20px;"><%= link_to("more",:controller=>'site/messages',:action=>'index',:id=>params[:id], :title=>"more") %></div>
             <% end %>
           </div>
