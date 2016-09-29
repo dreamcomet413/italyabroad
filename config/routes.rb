@@ -154,34 +154,52 @@ ItalyabroadNew::Application.routes.draw do
   get '/landing.html'=> 'site/base#landing_page'
   get '/messages/send_reply'=> 'site/messages#send_reply'
   post '/messages/send_message' => 'site/messages#send_message'
-  resources :products, :only => [:index, :show, :wine_of_the_week, :food_of_the_week] do
-    resources :reviews, :only => [:new, :create]
-    resources :wish_list, :only => [:index, :create, :destroy]
-    resources :wine_list, :only => [:index, :create, :destroy]
-    resources :cart, :only => [:create, :update, :destroy] do
-      collection do
-        get :empty
+# ------- write action and view but not call------------------------------------------------
+    resources :products, :only => [:index, :show, :wine_of_the_week, :food_of_the_week] do
+      resources :reviews, :only => [:new, :create]
+      resources :wish_list, :only => [:index, :create, :destroy]
+      resources :wine_list, :only => [:index, :create, :destroy]
+      resources :cart, :only => [:create, :update, :destroy] do
+        collection do
+          get :empty
+        end
       end
     end
+
+
+  resources :forums do
+    resources :topics do
+      resources :posts
+      resource :monitorship
+    end
   end
+# -------------------------------------------------------------------------------------
+    #     resources :products, :only => [:index, :show, :wine_of_the_week, :food_of_the_week] do
+    #     resources :reviews, :only => [:new, :create]
+    #     resources :wish_list, :only => [:index, :create, :destroy]
+    #     resources :cart, :only => [:create, :update, :destroy] do
+    #       collection do
+    #         get :empty
+    #       end
+    #     end
+    #   end
 
-
-  # resources :forums do
-  #   resources :topics do
-  #     resources :posts
-  #     resource :monitorship
-  #   end
-  # end
-
-  # resources :wine_lists
-  # # resources :reviews
+    # resources :forums do
+    #   resources :topics do
+    #     resources :posts
+    #     resource :monitorship 
+    #   end
+    # end
+#-------------------------------------NOT USED-----------------------------------------
+  # resources :wine_lists 
+  # resources :reviews
   # resources :messages do
   #   collection do
   #   end
   # end
 
   # resources :comments
-  
+#----------------------------------------------------------------------------------------
   # match "/search" => "site/search#index", :as => "search_index"
   # match "/search/find_wines" => "site/search#find_wines", :as => "find_wines"
   # match "/search/find_other_drinks" => "site/search#find_other_drinks", :as => "find_other_drinks"
@@ -198,6 +216,24 @@ ItalyabroadNew::Application.routes.draw do
   match 'cart/update_gift' => 'site/cart#update_gift'
 
   scope module: 'site' do  
+     #------------ not_use But genrate for save hand ------------------------------------------
+      resources :products, :only => [:index, :show, :wine_of_the_week, :food_of_the_week] do
+        resources :reviews, :only => [:new, :create]
+        resources :wish_list, :only => [:index, :create, :destroy]
+        resources :cart, :only => [:create, :update, :destroy] do
+          collection do
+            get :empty
+          end
+        end
+      end
+
+    resources :forums do
+      resources :topics do
+        resources :posts
+        resource :monitorship
+      end
+    end
+    # -----------------------------------------------------------------------------------------
     resources :authentications
     resources :search, :only => [:index] do
       collection do 
@@ -288,7 +324,7 @@ ItalyabroadNew::Application.routes.draw do
     resources :moods, :only => :index
   end
 
-  match 'site/image' => 'site/images#show', :path_prefix => ':image_type'
+  match 'image' => 'site/images#show', :path_prefix => ':image_type'
   resources :image, :controller => 'site/images', :only => [:show], :path_prefix => ':image_type'
 
   resources :posts do
@@ -303,7 +339,7 @@ ItalyabroadNew::Application.routes.draw do
   match 'admin/products/xml' => 'admin/products#xml'
   match '/show_order_details' => 'site/orders#show_order_details'
   match 'admin/products/products_sortby_quantity' => 'admin/products#products_sortby_quantity'
-  match 'site/orders/review' => 'site/orders#review'
+  match 'orders/review' => 'site/orders#review'
   match 'admin/recipes/xml' => 'admin/recipes#xml'
   match 'admin/xml' => 'admin/xml#index', :as => :xml
   match 'admin/xml/xml_options' => 'admin/xml#xml_options', :as => :xml_options
