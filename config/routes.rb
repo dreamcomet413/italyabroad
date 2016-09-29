@@ -155,25 +155,7 @@ ItalyabroadNew::Application.routes.draw do
   get '/messages/send_reply'=> 'site/messages#send_reply'
   post '/messages/send_message' => 'site/messages#send_message'
 # ------- write action and view but not call------------------------------------------------
-    resources :products, :only => [:index, :show, :wine_of_the_week, :food_of_the_week] do
-      resources :reviews, :only => [:new, :create]
-      resources :wish_list, :only => [:index, :create, :destroy]
-      resources :wine_list, :only => [:index, :create, :destroy]
-      resources :cart, :only => [:create, :update, :destroy] do
-        collection do
-          get :empty
-        end
-      end
-    end
 
-
-  resources :forums do
-    resources :topics do
-      resources :posts
-      resource :monitorship
-    end
-  end
-# -------------------------------------------------------------------------------------
     #     resources :products, :only => [:index, :show, :wine_of_the_week, :food_of_the_week] do
     #     resources :reviews, :only => [:new, :create]
     #     resources :wish_list, :only => [:index, :create, :destroy]
