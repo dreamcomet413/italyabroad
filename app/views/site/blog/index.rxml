@@ -11,11 +11,11 @@ xml.rss "version" => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/" do
     @posts.each do |post|
       xml.item do
         xml.title       post.name
-        xml.link        site_blog_url(post.id)
+        xml.link        blog_url(post.id)
         # xml.description render :partial => "/site/templates/feed_post", :object => post
         xml.description post.description_short
         xml.pubDate     CGI.rfc1123_date post.updated_at
-        xml.guid        site_blog_url(post.id)
+        xml.guid        blog_url(post.id)
         xml.author      "Andrea D'Ercole"
       end
     end

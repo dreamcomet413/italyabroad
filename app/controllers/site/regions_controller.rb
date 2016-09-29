@@ -18,7 +18,7 @@ class Site::RegionsController < ApplicationController
     @region = Region.find(params[:id])
 
     if @region.nil?
-      redirect_to site_regions_path
+      redirect_to regions_path
       return
     end
     

@@ -46,12 +46,12 @@
   			      <%- if product.out_of_stock? -%>
   			        <%= image_tag('out_of_stock.png') %>
   			      <%- else -%>
-                      <%= link_to(image_tag("buttons/add_to_cart_button.png"), "/site/cart?product_id=#{product.id}", :remote => true, :method => :post) %>
+                      <%= link_to(image_tag("buttons/add_to_cart_button.png"), "/cart?product_id=#{product.id}", :remote => true, :method => :post) %>
   			      <%- end -%>
   			    </li>
 
     				<li style="margin-bottom:5px;">
-                      <%= link_to(image_tag("add_to_wish_list.png"), "/site/wish_list?product_id=#{product.id}", :remote => true, :method => :post, :style => "color:#464646;") %>
+                      <%= link_to(image_tag("add_to_wish_list.png"), "/wish_list?product_id=#{product.id}", :remote => true, :method => :post, :style => "color:#464646;") %>
     				</li>
 
 
@@ -80,8 +80,8 @@
     
 
 <% content_for :right do %>
-	<%#= render :partial => 'site/shared/box_wine_search', :locals => {:search_url => site_search_index_path} %>
-	<%= render :partial => 'site/shared/box_food_search', :locals => {:search_url => site_search_index_path} %>
+	<%#= render :partial => 'site/shared/box_wine_search', :locals => {:search_url => search_index_path} %>
+	<%= render :partial => 'site/shared/box_food_search', :locals => {:search_url => search_index_path} %>
 
 	<br />
 	<%= render :partial => 'site/shared/box_products_on_offer' %>

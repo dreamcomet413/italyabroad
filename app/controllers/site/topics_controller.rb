@@ -13,6 +13,7 @@ class Site::TopicsController < ApplicationController
   cache_sweeper :posts_sweeper, :only => [:create, :update, :destroy]
 
   def index
+    logger.info('---------------------------------------------------------------------------------------')
     respond_to do |format|
       format.html { redirect_to forum_path(params[:forum_id]) }
       format.xml do
@@ -29,6 +30,7 @@ class Site::TopicsController < ApplicationController
   def show
     respond_to do |format|
       format.html do
+         redirect_to forum_path(params[:forum_id]) 
         # see notes in application.rb on how this works
         #update_last_seen_at
         # keep track of when we last viewed this topic for activity indicators

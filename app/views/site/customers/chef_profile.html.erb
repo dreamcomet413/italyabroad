@@ -27,7 +27,7 @@
           <%= link_to 'My restaurant', :title=>"My restaurant" unless @user.establishment_link.blank? %>
         </div>
         <%- if @my_profile -%>
-          <%= form_for :user, :url => site_customer_path(@user), :html => {:method => :put} do -%>
+          <%= form_for :user, :url => customer_path(@user), :html => {:method => :put} do -%>
             <div class="col-xs-8 col-md-10 chef_profile">
               <div class="form-row row clearfix">
                 <div class="col-md-2 section-label2">
@@ -141,7 +141,7 @@
       <div class="section-des">
         <ol>
           <% @recipes = Recipe.find(:all,:conditions=>['user_id = ?',@user.id]).each do |recipe| %>
-            <li><%= link_to recipe.name, site_recipe_path(recipe), :title=>recipe.name %></li>
+            <li><%= link_to recipe.name, recipe_path(recipe), :title=>recipe.name %></li>
           <% end %>
         </ol>
       </div>
@@ -224,10 +224,10 @@
       <% else %>
         <ol>
           <%- @user.reviews.all(:order=>' id desc', :limit => 5, :conditions=>['publish = ?',true],:select => 'DISTINCT reviewer_id' ).each do |review| -%>
-            <li><%= link_to    Product.find_by_id(review.reviewer_id).name , site_product_path(review.reviewer_id) rescue "", :title=>Product.find_by_id(review.reviewer_id).name %></li>
+            <li><%= link_to    Product.find_by_id(review.reviewer_id).name , product_path(review.reviewer_id) rescue "", :title=>Product.find_by_id(review.reviewer_id).name %></li>
           <%- end -%>
           <% if @user.reviews.size > 5 %>
-            <li><%= link_to("more",site_reviews_path), :title=>"More" %></li>
+            <li><%= link_to("more",reviews_path), :title=>"More" %></li>
           <% end %>
         </ol>
       <% end %>  
@@ -266,10 +266,10 @@
             <% user = User.find_by_id(people.user_id)%>
             <div class="member-col col-md-2 col-xs-4">
               <div class="user_photo_small">
-                <%= link_to avatar_for_user(user, 'small'), site_customer_path(user.id), :title=>user.name %>
+                <%= link_to avatar_for_user(user, 'small'), customer_path(user.id), :title=>user.name %>
               </div>
               <div class="member-name">
-                <%= link_to user.name, site_customer_path(user.id), :title=>user.name %>
+                <%= link_to user.name, customer_path(user.id), :title=>user.name %>
               </div>
               <div class="top-8">
                 <%- if user.followed_by?(current_user) -%>

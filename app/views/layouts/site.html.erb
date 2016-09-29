@@ -6,7 +6,7 @@
    <%= javascript_include_tag "private_pub" %>
   <link rel="shortcut icon" href="/images/italyabroad.ico" />
   <link rel="alternate" type="application/rss+xml" title="Italyabroad.com Products, Feed RSS 2.0" href="<%= products_url %>" />
-  <link rel="alternate" type="application/rss+xml" title="Italyabroad.com Blog, Feed RSS 2.0" href="<%= site_blog_index_url %>" />
+  <link rel="alternate" type="application/rss+xml" title="Italyabroad.com Blog, Feed RSS 2.0" href="<%= blog_index_url %>" />
   <meta name="description" content="<%= h(description) %>" />
   <meta name="keywords" content="<%= h(keys) %>" />
   <meta name="copyright" content="italyabroad.com" />
@@ -85,7 +85,7 @@
           <span>
             <% if logged_in? %>
               <% if session[:previous_admin_id]!=nil %>
-                <%= form_tag '/site/cart/user_select', :id => 'reset_form' do %>
+                <%= form_tag '/cart/user_select', :id => 'reset_form' do %>
                 <%= hidden_field_tag 'reset_user_id', session[:previous_admin_id] %>
               <% end %>
               <%= link_to "reset session", '#', :onclick => "$('form#reset_form').submit();return false;", :title=>"Reset" %>
@@ -113,7 +113,7 @@
       <div class="logo col-md-3"><%= link_to image_tag('logo_hi_res.gif', :alt => "Italian wine and food", :title => "Italian wine and food"), root_path, :id => "logo", :title=>"Italian wine and food" %></div>
           <!-- Start Main Search-->
       <div class="head_search col-md-4 col-lg-offset-1 col-md-offset-1 top-30">
-        <%= form_tag site_search_index_path, :method => :get do -%>
+        <%= form_tag search_index_path, :method => :get do -%>
           <% if params[:text]
             search_text = params["text"]
             else
@@ -121,7 +121,7 @@
             end %>
             <div class="input-group left-bar-search">
               <div style="position:relative;">
-                <%= text_field_tag :text, search_text, :class=> "form-control top-search",  "data-autocomplete"=>"/site/search/autocomplete_search_name", :placeholder => "Search Italyabroad.com", :style=>"" %>
+                <%= text_field_tag :text, search_text, :class=> "form-control top-search",  "data-autocomplete"=>"/search/autocomplete_search_name", :placeholder => "Search Italyabroad.com", :style=>"" %>
                 <i class="magnifier"><input src="/images/magnifier.png?1462969008" type="image"></i>
               </div>
               <% id = ['wine','Other Drinks', 'food', 'recipe', 'hampers', 'people', 'chef', 'all'].include?(params[:id]) ? params[:id] : 'all' %>
@@ -195,7 +195,7 @@
               <% end %>
             <%- end -%>
             <li id="link-to-forum" class="<%= "active" if active_uri == "/wine-community" %>"><%= link_to "Community", wine_community_path, :title=>"Community" %></li>
-            <li id="link-to-blog" class="last<%= " active" if active_uri == "/site/blog" %>"><%= link_to "Blog", site_blog_index_path, :title=>"Blog" %></li>
+            <li id="link-to-blog" class="last<%= " active" if active_uri == "/blog" %>"><%= link_to "Blog", blog_index_path, :title=>"Blog" %></li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </nav>
@@ -264,7 +264,7 @@
             <div id="link-to-forum" class ="menu-list" ><%= link_to "Wine Club", '/wine-club', :title=>"wine Club" %></div>
             <div id="link-to-forum" class ="menu-list" ><%= link_to "Events", '/events', :title=>"Events" %></div>
             <div id="link-to-forum" class ="menu-list" class="<%= "active" if active_uri == "/wine-community" %>"><%= link_to "Community", wine_community_path, :title=>"Wine Community" %></div>
-            <div id="link-to-blog" class="menu-list" class="last<%= " active" if active_uri == "/site/blog" %>"><%= link_to "Blog", site_blog_index_path, :title=>"Blog" %></div>
+            <div id="link-to-blog" class="menu-list" class="last<%= " active" if active_uri == "/blog" %>"><%= link_to "Blog", blog_index_path, :title=>"Blog" %></div>
           </ul>
         </div>
       </div>
@@ -278,7 +278,7 @@
           <li>
             <% if logged_in? %>
               <% if session[:previous_admin_id]!=nil %>
-                <%= form_tag '/site/cart/user_select', :id => 'reset_form' do %>
+                <%= form_tag '/cart/user_select', :id => 'reset_form' do %>
                 <%= hidden_field_tag 'reset_user_id', session[:previous_admin_id] %>
               <% end %>
               <%= link_to "reset session", '#', :onclick => "$('form#reset_form').submit();return false;", :title=>"Reset"%>
@@ -329,14 +329,14 @@
     </div>
     <div class="clearfix"></div>
     <div class="small-search-box head_search_small">
-      <%= form_tag site_search_index_path, :method => :get do -%>
+      <%= form_tag search_index_path, :method => :get do -%>
         <% if params[:text]
           search_text = params["text"]
         else
           search_text = ''
         end %>
         <div class="input-group">
-          <%= text_field_tag :text, search_text, :class=> "form-control top-search",  "data-autocomplete"=>"/site/search/autocomplete_search_name", :placeholder => "Search Italyabroad.com", :style=>"" %>
+          <%= text_field_tag :text, search_text, :class=> "form-control top-search",  "data-autocomplete"=>"/search/autocomplete_search_name", :placeholder => "Search Italyabroad.com", :style=>"" %>
         <% id = ['wine','Other Drinks', 'food', 'recipe', 'hampers', 'people', 'chef', 'all'].include?(params[:id]) ? params[:id] : 'all' %>
 
         <%= hidden_field_tag :id, id %>
@@ -418,7 +418,7 @@
     });
     $(".chat_available").click(function (event) {
       event.preventDefault();
-        var w = window.open("<%= site_chat_index_path -%>", "popupWindow", "width=490, height=540, scrollbars=yes");
+        var w = window.open("<%= chat_index_path -%>", "popupWindow", "width=490, height=540, scrollbars=yes");
         var $w = $(w.document.body);
         $w.html($('#modalText').html());
         $w.find(".addimage").click(function(e) {

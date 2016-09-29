@@ -39,7 +39,7 @@ class Site::CartController < ApplicationController
     respond_to do |format|
       format.html do
         flash[:notice] = status
-        redirect_back_or_default(site_cart_index_path)
+        redirect_back_or_default(cart_index_path)
       end
 
       format.js do
@@ -137,7 +137,7 @@ class Site::CartController < ApplicationController
       redirect_to :controller=>'cart',:action=>'index'
     end
     if !logged_in? and @cart.sub_total > 10
-      session[:return_to] = '/site/cart/gift_options'
+      session[:return_to] = '/cart/gift_options'
       redirect_to login_path
     end
     if logged_in?
@@ -154,13 +154,13 @@ class Site::CartController < ApplicationController
         @user = User.find(params[:user_id])
         switch_session
       end
-      redirect_to '/site/cart/gift_options'
+      redirect_to '/cart/gift_options'
     end
   end
 
   def update_gift
     @cart.gift = params[:gift]
-    redirect_to site_checkouts_url
+    redirect_to checkouts_url
   end
 
   private

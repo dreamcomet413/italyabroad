@@ -50,8 +50,11 @@ class Site::CategoriesController < ApplicationController
       
           @product = Product.find(:first,:conditions=>['friendly_identifier = ? OR mood= ?',params[:category], params[:mood]])
           if !@product.blank?
-            redirect_to site_product_path(@product)
+            logger.info("-------------------------------if#{@product.inspect}---------------------------------")
+            redirect_to product_path(@product)
           else
+            logger.info('-------------------------------else---------------------------------')
+
             redirect_to root_url and return
           end
         end

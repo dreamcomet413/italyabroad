@@ -2,9 +2,9 @@
 <% @breadcrumbs = "#{link_to("Home", root_url, :title=>"Home")}&raquo; #{link_to('Community',wine_community_path, :title=>"Community")} &raquo; Guide to Italian wines and Italian grapes".html_safe() %>
 <% @about = AboutU.find(:first, :conditions => {:link_type => "grape-guide"} ) %>
 <% if @about.present? and @about.image.present? %>
-    <div class="main-banner"><%= link_to image_tag(site_image_url(:about_thumb, @about.image, :jpg),:alt=>@about.title,:title=>@about.title) , site_search_index_path(:id => "grapes"), :title=>@about.title unless @about.blank? %></div>
+    <div class="main-banner"><%= link_to image_tag(image_url(:about_thumb, @about.image, :jpg),:alt=>@about.title,:title=>@about.title) , search_index_path(:id => "grapes"), :title=>@about.title unless @about.blank? %></div>
   <% else %>
-    <div class="main-banner"><%= link_to image_tag("guide_home_image.jpg",:alt=>'Grape guide',:title=>'Grape guide'), site_search_index_path(:id => "grapes") %></div>
+    <div class="main-banner"><%= link_to image_tag("guide_home_image.jpg",:alt=>'Grape guide',:title=>'Grape guide'), search_index_path(:id => "grapes") %></div>
   <% end %>
   <div class="row">
     <div class="search-blog-wrapper clearfix">
@@ -12,7 +12,7 @@
         <div class="search-blog-box clearfix"> 
           <div class="blog-search-text">Grape Search</div>
             <div class="blog-search-field">
-              <%= form_tag site_grapes_path, :method => :get do -%>
+              <%= form_tag grapes_path, :method => :get do -%>
               <%= text_field_tag 'search_by_name',params[:search_by_name], :class => 'blog-search' %>
               <i class="magnifier">
                 <%= image_submit_tag ("/images/magnifier.png"), :name => 'search', :value => 'search' %> </i>
@@ -62,7 +62,7 @@
             <%- for grape in @grapes_all -%>
               <% if grape.name.upcase =~ /^[A-H]/  %>
                 <div>
-                  <%= link_to(grape.name, site_grape_path(grape), :title => grape.name) if grape.name.upcase =~ /^[A-H]/ %>
+                  <%= link_to(grape.name, grape_path(grape), :title => grape.name) if grape.name.upcase =~ /^[A-H]/ %>
                 </div>
               <% end %>
             <%- end -%>
@@ -71,7 +71,7 @@
             <div class="green-heading">I-P</div>
             <%- for grape in @grapes_all -%>
               <%- if grape.name.upcase =~ /^[I-P]/ -%>
-                <div><%= link_to(grape.name, site_grape_path(grape), :title => grape.name) %></div>
+                <div><%= link_to(grape.name, grape_path(grape), :title => grape.name) %></div>
               <%- end -%>
             <%- end -%>
           </div>
@@ -79,7 +79,7 @@
             <div class="green-heading">Q-Z</div>
             <%- for grape in @grapes_all -%>
               <% if grape.name.upcase =~ /^[Q-Z]/ %>
-                <div><%= link_to grape.name, site_grape_path(grape), :title=>grape.name  %></div>
+                <div><%= link_to grape.name, grape_path(grape), :title=>grape.name  %></div>
               <% end %>
             <%- end -%>
           </div>

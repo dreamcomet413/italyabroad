@@ -1,14 +1,14 @@
 <% if logged_in? %>
     <% params[:id] ||= current_user.id.to_s %>
-    <% if (params[:id] and params[:id].to_i == current_user.id.to_i) or (request.url.to_s == '/my-account'.to_s or request.url.to_s == '/site/orders'.to_s or request.url.to_s == '/site/wish_list'.to_s or request.url.to_s == '/site/reviews'.to_s or request.url.to_s == '/site/wine_lists'.to_s)   %>
+    <% if (params[:id] and params[:id].to_i == current_user.id.to_i) or (request.url.to_s == '/my-account'.to_s or request.url.to_s == '/orders'.to_s or request.url.to_s == '/wish_list'.to_s or request.url.to_s == '/reviews'.to_s or request.url.to_s == '/wine_lists'.to_s)   %>
       <div id="header" class="green-strip clearfix align-left">
         <ul style="margin:0 0 0 0px;padding:0;list-style:none;" class="my-account-links">
           <li style="display:inline-block;margin-left:10px;"><%= link_to "My Account", account_path, :title=>"My Account" %></li>
-          <li style="display:inline-block;margin-left:10px;"><%= link_to "My Orders and Tracking", site_orders_path, :title=>"My Orders and Tracking" %></li>
-          <li style="display:inline-block;margin-left:10px;"><%= link_to "My Wishlist", site_wish_list_index_path, :title=>"My wish list" %></li>
-          <li style="display:inline-block;margin-left:10px;"><%= link_to "My Reviews", site_reviews_path, :title=>"My Reviews" %></li>
+          <li style="display:inline-block;margin-left:10px;"><%= link_to "My Orders and Tracking", orders_path, :title=>"My Orders and Tracking" %></li>
+          <li style="display:inline-block;margin-left:10px;"><%= link_to "My Wishlist", wish_list_index_path, :title=>"My wish list" %></li>
+          <li style="display:inline-block;margin-left:10px;"><%= link_to "My Reviews", reviews_path, :title=>"My Reviews" %></li>
           <li style="display:inline-block;margin-left:10px;"><%= link_to "My Messages",{:controller=>'site/messages',:action=>'index',:id=>current_user.id}, :title=>"My Messages" %></li>
-          <li style="display:inline-block;margin-left:10px;"><%= link_to "My Winelist", site_wine_lists_path, :title=>"My Wine list" %></li>
+          <li style="display:inline-block;margin-left:10px;"><%= link_to "My Winelist", wine_lists_path, :title=>"My Wine list" %></li>
           <li style="display:inline-block;margin-left:10px;"><%= link_to "My Profile", {:controller=>'site/customers',:action=>'show',:id=>current_user.id},  :title=>"My Profile" %></li>
         </ul>
       </div>

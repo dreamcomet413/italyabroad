@@ -86,8 +86,8 @@ class Site::CustomersController < ApplicationController
         end
         #redirect_to root_path
         #New added
-        if (!session[:return_to].blank? && session[:return_to] == '/site/cart/gift_options') || @cart.try(:items).try(:size).to_i > 0
-          return_to = "/site/cart/gift_options"
+        if (!session[:return_to].blank? && session[:return_to] == '/cart/gift_options') || @cart.try(:items).try(:size).to_i > 0
+          return_to = "/cart/gift_options"
           session[:return_to] = ""
           redirect_to return_to and return
         else
@@ -192,7 +192,7 @@ class Site::CustomersController < ApplicationController
       flash[:message] = "Your account has been update, you will now receive an email"
       #   render :action => :messages
       if params[:return_to_url] == 'true'
-        redirect_to '/site/checkouts'
+        redirect_to '/checkouts'
       else
         redirect_to '/my-account'
       end
@@ -224,9 +224,9 @@ class Site::CustomersController < ApplicationController
 
     respond_to do |format|
       if follower
-        format.html { redirect_to(site_customer_path(follower)) }
+        format.html { redirect_to(customer_path(follower)) }
       else
-        format.html { redirect_to(site_customer_path(current_user)) }
+        format.html { redirect_to(customer_path(current_user)) }
       end
     end
   end
@@ -235,10 +235,10 @@ class Site::CustomersController < ApplicationController
     @message = Message.new(:name=>params[:name],:user_id=>params[:user_id],:send_by_id=>params[:send_by_id])
     if @message.save
       Notifier.new_message_received(params[:name],User.find(params[:user_id]),User.find(params[:send_by_id])).deliver
-      redirect_to site_customer_path(params[:user_id])
+      redirect_to customer_path(params[:user_id])
     else
       flash[:notice] = @message.show_errors
-      redirect_to site_customer_path(params[:user_id])
+      redirect_to customer_path(params[:user_id])
     end
   end
 
@@ -250,9 +250,9 @@ class Site::CustomersController < ApplicationController
       if user && follower
         follower_id = follower.follower_id
         follower.destroy
-        format.html { redirect_to(site_customer_path(user)) }
+        format.html { redirect_to(customer_path(user)) }
       else
-        format.html { redirect_to(site_customer_path(current_user)) }
+        format.html { redirect_to(customer_path(current_user)) }
       end
     end
   end

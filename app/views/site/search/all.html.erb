@@ -45,7 +45,7 @@
       <!--<div id="header">Your search has found the following wines:</div>-->
       <div class="search-heading">Other Drinks</div>
       <%#= link_to_remote @wines.count.to_s + 'Wines' , :url => { :action => "find_wines",:text=>params[:text]} %>
-        <div class="search-links"><%#= link_to((@other_drinks.count.to_s + '&nbsp; Other Drinks').html_safe(), find_other_drinks_site_search_index_path(:text=>params[:text])) %>
+        <div class="search-links"><%#= link_to((@other_drinks.count.to_s + '&nbsp; Other Drinks').html_safe(), find_other_drinks_search_index_path(:text=>params[:text])) %>
         <%= link_to (@other_drinks.count.to_s + '&nbsp; Other Drinks').html_safe() ,  :text=>params[:text], :id=> 'Other Drinks', :title=>"other_drinks" %>
         <div id="all_wines"></div>
       </div>

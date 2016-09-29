@@ -2,7 +2,7 @@
 <% if @category.image_link
 link = @category.image_link
 else
-link = site_search_index_path(:id=>@category)
+link = search_index_path(:id=>@category)
 end
 
 %>
@@ -11,7 +11,7 @@ end
     <span class="title_wine_tours">
     <%#= @category.text_on_image %>
     </span>
-	  <%= link_to image_tag(site_image_url('home_image', @category.image, :jpg),:alt=>@category.name, :title=>@category.name), link, :title=>@category.name %>
+	  <%= link_to image_tag(image_url('home_image', @category.image, :jpg),:alt=>@category.name, :title=>@category.name), link, :title=>@category.name %>
 	</div>
 <% else %>
   <div id="wineBanner">

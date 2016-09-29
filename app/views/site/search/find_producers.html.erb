@@ -7,7 +7,7 @@
           <td width="98px;">
           <%#= link_to show_producer_image(producer), producer_path(producer) %>
           <% if producer.image %>
-            <%=  image_tag(site_image_url(:community_producer_thumb, producer.image, :jpg),:alt=>producer.name, :width=>"150") %>
+            <%=  image_tag(image_url(:community_producer_thumb, producer.image, :jpg),:alt=>producer.name, :width=>"150") %>
           <% else %>
             <%= image_tag("default.jpg",:width => "150",:alt=>producer.name) %>
           <% end %>
@@ -16,7 +16,7 @@
             <table cellspacing="5">
               <tr>
                 <td>
-                 <h1><%= link_to producer.name, site_producer_path(producer) %><br /><span style="font-size:10px;font-weight:bold;">Region:&nbsp;&nbsp;<%= producer.region.name rescue "No region" %><span></h1>
+                 <h1><%= link_to producer.name, producer_path(producer) %><br /><span style="font-size:10px;font-weight:bold;">Region:&nbsp;&nbsp;<%= producer.region.name rescue "No region" %><span></h1>
 
                 </td>
               </tr>

@@ -5,7 +5,7 @@
         <a href="#" class="address_edit_btn" title="Edit">Edit</a>
       </div>
       <div class="col-md-3 col-xs-5 green-button" id="delete_shipping_address">
-        <%= link_to ("Delete"), "/site/ship_addresses/#{ship_address.id}", :method => :delete, :confirm => "Are you sure?", :remote => true, :title=>"Delete" -%>
+        <%= link_to ("Delete"), "/ship_addresses/#{ship_address.id}", :method => :delete, :confirm => "Are you sure?", :remote => true, :title=>"Delete" -%>
       </div>
     </div>
   <% end %>

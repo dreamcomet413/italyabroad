@@ -35,14 +35,14 @@
 			            			<%- if product.out_of_stock? -%>
 			        					<div class="red-text"><b>Out of Stock</b></div>
 			      					<%- else -%>
-                    					<%= link_to("Add to Cart", "/site/cart?product_id=#{product.id}", :remote => true, :method => :post), :title=>"Add to cart" -%>
+                    					<%= link_to("Add to Cart", "/cart?product_id=#{product.id}", :remote => true, :method => :post) -%>
 			      					<%- end -%>
 			      				</div>
 			      			</div>
 			      			<div class="wishlist-row row clearfix">
 			      				<div class="wish-list">
                             		<i><img src="/images/heart-icon.png" alt="heart" title="Wis List"></i> 
-                            		<%= link_to "Remove from Wish list", site_wish_list_path(product, wish_list), :method => :delete, :confirm => "Are you sure want to delete this product from your wish list?", :title=>"Remove form wish list" %>
+                            		<%= link_to "Remove from Wish list", wish_list_path(product, wish_list), :method => :delete, :confirm => "Are you sure want to delete this product from your wish list?", :title=>"Remove form wish list" %>
                           		</div>
                           	</div>
 			            </div>

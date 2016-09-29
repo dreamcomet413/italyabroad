@@ -26,7 +26,7 @@ class Site::ShipAddressesController < ApplicationController
           page["#shipping_address"].html( render :partial => "ship_address", :locals => {:ship_address => @ship_address} )
         end
       }
-      format.html { redirect_to site_checkouts_path }
+      format.html { redirect_to checkouts_path }
     end
   end
 
@@ -52,7 +52,7 @@ class Site::ShipAddressesController < ApplicationController
     respond_to do |format|
       session[:ship_address] = @ship_address
       @ship_address.is_new = true
-      format.html { redirect_to site_checkouts_path }
+      format.html { redirect_to checkouts_path }
     end
   end
 

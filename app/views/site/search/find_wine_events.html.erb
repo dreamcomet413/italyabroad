@@ -52,7 +52,7 @@
                         <td>Ticket qty: </td>
                         <td><%= text_field :cart, :quantity, :size => 2, :value => 1 %></td>
                         <td>
-                          <%= link_to image_tag("buttons/buy_button_new.png"), "/site/cart?product_id=#{product.id}", :method => :post, :remote => true %>
+                          <%= link_to image_tag("buttons/buy_button_new.png"), "/cart?product_id=#{product.id}", :method => :post, :remote => true %>
                         </td>
                       </tr>
                     </table>

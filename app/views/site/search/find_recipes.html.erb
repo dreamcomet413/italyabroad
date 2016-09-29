@@ -10,7 +10,7 @@
         <div class="green-heading-with-border">Recipes sd
           <div class="sort-by-box clearfix">
             <div class="sort-select">
-              <%= form_tag find_recipes_site_search_index_path, :method => :get, :id => "sort_by_form" do -%>
+              <%= form_tag find_recipes_search_index_path, :method => :get, :id => "sort_by_form" do -%>
               <%= hidden_field_tag :page, (params[:page] || 1) %>
               <%= hidden_field_tag :text, params[:text] %>
               <%= hidden_field_tag :id, (params[:id] || params[:category]) %>
@@ -42,27 +42,27 @@
             <div class="col-md-4">
               <div class="recipe-box">
                 <div class="green-heading-16">
-                  <%= link_to recipe.name, site_recipe_path(recipe), :class => "recipe_title", :title=>recipe.name %>
+                  <%= link_to recipe.name, recipe_path(recipe), :class => "recipe_title", :title=>recipe.name %>
                 </div>
                 <div class="row clearfix">
                   <div class="col-xs-5 box-image">
                     <% if !recipe.image_1.blank? %>
-                    <%#= link_to image_tag(site_image_url('recipe_thumb', recipe.image_1, :jpg),:alt=>recipe.name), site_recipe_path(recipe) %>
-                    <%= link_to image_tag("/resources/images/#{recipe.image_1.id}.jpg", :height => "75", :width => "100", :alt => recipe.name,, :title=>recipe.name), site_recipe_path(recipe), :title=>recipe.name %>
+                    <%#= link_to image_tag(image_url('recipe_thumb', recipe.image_1, :jpg),:alt=>recipe.name), recipe_path(recipe) %>
+                    <%= link_to image_tag("/resources/images/#{recipe.image_1.id}.jpg", :height => "75", :width => "100", :alt => recipe.name,, :title=>recipe.name), recipe_path(recipe), :title=>recipe.name %>
                     <% else %>
-                      <%= link_to image_tag("no_images/PastaRecipe.jpg",:size => "100x75",:alt=>recipe.name, :title=>recipe.name), site_recipe_path(recipe), :title=>recipe.name %>
+                      <%= link_to image_tag("no_images/PastaRecipe.jpg",:size => "100x75",:alt=>recipe.name, :title=>recipe.name), recipe_path(recipe), :title=>recipe.name %>
                     <% end %>
                   </div>
                   <div class="col-xs-7">
                     <%= show_ratings(recipe, recipe.average_rating_round).html_safe() if recipe.average_rating_round %><br />
                     <div id="recipe_caption"><b>Prep Time: </b> <%= link_to "#{recipe.preparation_time} min"  ,{:category=>'recipe',:preparation_time => recipe.preparation_time,:text=>params[:text]},:style=>"color:black;", :title=>"Prep Time" %></div>
                     <div id=""><b>Difficulty: </b> <%= link_to "#{recipe.recipe_level.name}",{:category=>'recipe',:difficulty => recipe.recipe_level_id,:text=>params[:text]},:style=>"color:black;", :title=>"Difficulty" %></div>
-                    <div id=""><b>Created by: </b> <%= (recipe.user)?(link_to "#{recipe.user.name}",site_customer_path(recipe.user),:style=>"color:black;", :title=>recip.user):("Admin")%>
+                    <div id=""><b>Created by: </b> <%= (recipe.user)?(link_to "#{recipe.user.name}",customer_path(recipe.user),:style=>"color:black;", :title=>recip.user):("Admin")%>
                     </div>              
                   </div>
                 </div>
                 <div class="instructions">
-                  <%= link_to "Ingredients and cooking instructions",  site_recipe_path(recipe, :title=>"Ingredients and cooking instructions" ) %>
+                  <%= link_to "Ingredients and cooking instructions",  recipe_path(recipe, :title=>"Ingredients and cooking instructions" ) %>
                 </div>
               </div>
             </div>   

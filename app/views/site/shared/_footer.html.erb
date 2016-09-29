@@ -83,7 +83,7 @@
             <%- end -%>
         <%- end -%>
         <div class="footer-link"><%= link_to"Wine Club","/wine-club", :title=>"Wine Club" %></div>
-        <div class="footer-link"><%= link_to"Recipes", site_recipes_path, :title=>"Recipes" %></div>
+        <div class="footer-link"><%= link_to"Recipes", recipes_path, :title=>"Recipes" %></div>
         <!--<%#- parent_category = Category.find('wine-club') -%>
         <%#- parent_category.children.each do |category| -%>
           <li><%#= link_to category.name, nested_categories_url(parent_category, category) %></li>
@@ -91,15 +91,15 @@
     </div>
     <div class="footer-col6">
         <div class="footer-heading"><%= link_to"Community","/wine-community", :title=>"Community" %></div>
-        <div class="footer-link"><%= link_to "Andrea's Blog", site_blog_index_path, :title=>"Andrea's Blog" %></div>
+        <div class="footer-link"><%= link_to "Andrea's Blog", blog_index_path, :title=>"Andrea's Blog" %></div>
         <!--<li><%#= link_to "Forum", forums_path %></li>-->
         <!--<li><%#= link_to "Latest Entries", posts_path %></li>-->
         <!--<li><%#= link_to "Browse Threads", forums_path %></li>-->
         <!--<li><%= link_to "Our Members" %></li>-->
         <div class="footer-link"><%= link_to "Community", wine_community_path, :title=>"Community" %></div>
-        <div class="footer-link"><%= link_to "Producers", site_producers_path, :title=>"Products" %></div>
+        <div class="footer-link"><%= link_to "Producers", producers_path, :title=>"Products" %></div>
         <div class="footer-link"><%= link_to "Grape guide", grape_guide_path, :title=>"Grape Guide" %></div>
-        <div class="footer-link"><%= link_to "Regions", site_regions_path, :title=>"Regions" %></div>
+        <div class="footer-link"><%= link_to "Regions", regions_path, :title=>"Regions" %></div>
         <div class="footer-link"><%= link_to "Testimonials", testimonial_path, :title=>"Testimonials" %></div>
     </div>
     <div class="footer-col7 ">

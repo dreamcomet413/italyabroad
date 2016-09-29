@@ -39,7 +39,7 @@
 			        					<div class="hamper-button"><%= image_tag('out_of_stock.png', :alt=>"Out of stock", :title=>"Out of stock") %></div>
 			      					<%- else -%>
 			                        	<div class="bottom-15 green-button">
-			                            	<%= link_to(("Add to Cart"), "/site/cart?product_id=#{product.id}", :remote => true, :method => :post, :title=>"Add to cart") -%>
+			                            	<%= link_to(("Add to Cart"), "/cart?product_id=#{product.id}", :remote => true, :method => :post, :title=>"Add to cart") -%>
 			                        	</div>
 			                        <%- end -%>
 			                        <div class="wishlist-row row clearfix">

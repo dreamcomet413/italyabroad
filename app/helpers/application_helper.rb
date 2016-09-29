@@ -114,7 +114,7 @@ module ApplicationHelper
 
       #return image_tag(image_url(image_type, image, format), {:alt => image_alt, :title => image_alt, :height => "80"})
       #"http://localhost:3000/site/image/product_wine/541.jpg"
-      #return image_tag(site_image_url(image_type, image, format), {:alt => image_alt, :title => image_alt})
+      #return image_tag(image_url(image_type, image, format), {:alt => image_alt, :title => image_alt})
       return image_tag("/resources/images/#{image.id}.#{format}", image_dimensions(image_type).merge!(:alt => image_alt, :title => image_alt))
       #return image_tag("/site/image?id=#{image.id}&image_type=#{image_type}&format=#{format}")
       #return image_tag(url_for(:controller => "site/images", :action => "show", :id => image.id, :format => format))
@@ -229,7 +229,7 @@ module ApplicationHelper
   def show_image_tag_in_cart(image_type, image, format = :jpg, image_alt = "italyabroad.com")
     if image_type && image && format
 
-      return '<div style="width:100px;height:150px;text-align:center;margin:auto;border-style:solid;border-width:1px;border-color:white;overflow:hidden;v-align:bottom;">' + image_tag(site_image_url(image_type, image, format), {:alt => image_alt, :title => image_alt, :size => "150"}) + '</div>'
+      return '<div style="width:100px;height:150px;text-align:center;margin:auto;border-style:solid;border-width:1px;border-color:white;overflow:hidden;v-align:bottom;">' + image_tag(image_url(image_type, image, format), {:alt => image_alt, :title => image_alt, :size => "150"}) + '</div>'
 
     elsif image_type
       return image_tag("no_images/#{image_type}.jpg", :size => "100x120", :alt => image_alt)
@@ -241,7 +241,7 @@ module ApplicationHelper
   def show_home_image_tag(image, format = :jpg)
     if image && format
       return image_tag("/resources/images/#{image.id}.#{format}", image_dimensions(:original))
-      #return image_tag(site_image_url(:original, image, format), :size => "723x284").html_safe()
+      #return image_tag(image_url(:original, image, format), :size => "723x284").html_safe()
     else
       return nil
     end
@@ -283,26 +283,26 @@ module ApplicationHelper
     return %Q(<span class="ratings" style="#{"background:transparent url(/images/#{ratings_icon}) no-repeat -#{(86 - (score.to_f/5.to_f * 86)).round}px center;"}">&nbsp;</span>)
   end
 
-  def site_image_url(image_version, image, format = :jpg)
+  def image_url(image_version, image, format = :jpg)
     image.image_filename.url
   end
 
   def show_grape_image(grape)
-    return image_tag(site_image_path(:grape_original, grape.image, :jpg), :width => "300px") if grape.image
+    return image_tag(image_path(:grape_original, grape.image, :jpg), :width => "300px") if grape.image
     return image_tag("grape_default.png", :width => "300px")
   end
 
   def show_region_image(region)
-    return image_tag(site_image_url(:region_original, region.image, :jpg), :width => "300px") if region.image
+    return image_tag(image_url(:region_original, region.image, :jpg), :width => "300px") if region.image
     return image_tag("region-home-image.jpg", :width => "300px")
   end
 
   def show_producer_image(producer)
-    return image_tag(site_image_url(:producer_thumb, producer.image, :jpg), :width => "98px") if producer.image
+    return image_tag(image_url(:producer_thumb, producer.image, :jpg), :width => "98px") if producer.image
     return image_tag("default.jpg", :width => "98px")
   end
   def show_producer_image1(producer)
-    return image_tag(site_image_url(:producer_thumb, producer.image, :jpg), :title=>"Producer", :alt=>"Producer") if producer.image
+    return image_tag(image_url(:producer_thumb, producer.image, :jpg), :title=>"Producer", :alt=>"Producer") if producer.image
     return image_tag("default.jpg", :width => "98px", :title=>"Producer", :alt=>"Producer" )
   end
 

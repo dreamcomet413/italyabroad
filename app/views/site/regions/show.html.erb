@@ -1,11 +1,11 @@
 <%- @title = @region.page_title_formatted; 
     @description = @region.meta_description_formatted; 
     @keys = @region.meta_keys_formatted
-  @breadcrumbs = "#{link_to("Home", root_url, :title=>"Home")}  &raquo; #{link_to('Community',wine_community_path, :title=>"Community")} &raquo;  #{link_to("Regions", site_regions_path, :title=>"Regions")} &raquo; #{@region.name}" -%>
+  @breadcrumbs = "#{link_to("Home", root_url, :title=>"Home")}  &raquo; #{link_to('Community',wine_community_path, :title=>"Community")} &raquo;  #{link_to("Regions", regions_path, :title=>"Regions")} &raquo; #{@region.name}" -%>
 <%- @class = "no-padding" -%>
 <% if @region && @region.image %>
   <div class="main-banner">
-    <%= image_tag(site_image_url('region_thumb', @region.image, :jpg),:alt=>@region.name,:title=>@region.name) if @region && @region.image %>
+    <%= image_tag(image_url('region_thumb', @region.image, :jpg),:alt=>@region.name,:title=>@region.name) if @region && @region.image %>
   </div>
 <% else %>
   <div class="main-banner">
@@ -25,7 +25,7 @@
         <div class="green-heading-2">Our producers from <%= @region.name %></div>
       <% end %>
       <%- @region.producers.each do |p| -%>
-        <div><%= link_to p.name,site_producer_path(p), :title=>p.name %></div>
+        <div><%= link_to p.name,producer_path(p), :title=>p.name %></div>
       <%- end -%>
       <div class="prdoucer-products-wrapper">
         <% unless  @region.products.find(:all,:include => 'product_prices', :conditions=>['active = ? and product_prices.quantity > ?',true,0]).blank? %>

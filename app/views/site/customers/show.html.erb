@@ -25,7 +25,7 @@
       </div>
       <div class="col-xs-8 col-md-10">
         <%if @my_profile %>
-          <%= form_for(:user, :url => site_customer_path(@user), :html => {:method => :put}) do -%>
+          <%= form_for(:user, :url => customer_path(@user), :html => {:method => :put}) do -%>
             <div class="row form-row clearfix">
               <div class="col-md-2 section-label2" id="favorite_meal">
                 <%= "#{@my_profile ? "My" : @user.name+"'s"}" %> favorite Meal:
@@ -142,10 +142,10 @@
     <%@user.comments.all(:order=>' id desc',:limit => 5).each do |comment| %>
       <div><%= comment.name unless comment.name.blank? %></div>
     <%end%>
-    <% if @user.comments.size > 5 %>
+    <% if @user.comments.count > 5 %>
       <div style="margin-top:20px;"><%= link_to("more",:controller=>'comments',:action=>'index',:id=>params[:id])<%= link , :title=>"more" %></div>
     <% end %>
-    <% if @user.comments.size == 0 %>
+    <% if @user.comments.count == 0 %>
       <div class="bottom-15">No comment found</div>
     <%end%>
   </div>
@@ -154,10 +154,10 @@
     <%- @user.reviews.all(:order=>' id desc', :limit => 5, :conditions=>['publish = ?',true],:select => 'DISTINCT reviewer_id' ).each do |review| -%>
       <%= link_to ('<div>' +  Product.find_by_id(review.reviewer_id).name + '</div>').html_safe(), "/product/#{review.reviewer_id}", :title=>Product.find_by_id(review.reviewer_id).name %>
     <%- end -%>
-    <% if @user.reviews.size > 5 %>
+    <% if @user.reviews.count > 5 %>
       <div style="margin-top:20px;"><%= link_to("more",reviews_path, :title=>"more") %></div>
     <% end %>
-    <% if @user.reviews.size == 0 %>
+    <% if @user.reviews.count == 0 %>
       <div class="bottom-15">No reviews found</div>
     <% end %>
   </div>
@@ -166,10 +166,10 @@
     <%- @user.wine_lists.all(:order=>' id desc',:limit => 5).each do |wine_list| -%>
       <div><%= wine_list.product.name %></div>
     <%- end -%>
-    <% if @user.wine_lists.size > 5 %>
+    <% if @user.wine_lists.count > 5 %>
       <div style="margin-top:20px;"><%= link_to("more",wine_lists_path, :title=>"more") %></div>
     <% end %>
-    <% if @user.wine_lists.size == 0 %>
+    <% if @user.wine_lists.count == 0 %>
       <div class="bottom-15">List is empty.</div>
     <% end %>
   </div>
@@ -238,10 +238,10 @@
       <div class="member-col col-md-2 col-xs-3 bottom-30">
         <div class="user_photo_small" id="user_photo">
           <% user = User.find_by_id(people.user_id)%>
-          <%= link_to avatar_for_user(user, 'small'), site_customer_path(user.id), :title=>user.name %>
+          <%= link_to avatar_for_user(user, 'small'), customer_path(user.id), :title=>user.name %>
         </div>
         <div class="member-name">
-          <%= link_to user.name, site_customer_path(user.id), :title=>user.name %>
+          <%= link_to user.name, customer_path(user.id), :title=>user.name %>
         </div>
         <div class="green-button top-8">
           <%- if user.followed_by?(current_user) -%>

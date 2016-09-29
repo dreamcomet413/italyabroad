@@ -22,7 +22,7 @@
             <%= params[:id] ? params[:id] : params[:parent_type] %>
             <div class="sort-by-box clearfix">
               <div class="sort-select">
-                <%= form_tag '/site/search' , :method => :get, :id => "sort_by_form" do -%>
+                <%= form_tag '/search' , :method => :get, :id => "sort_by_form" do -%>
                   <%=render partial: 'hidden_fields'%>
                   <strong>Sort by:</strong>&nbsp;
                   <%= select_tag("sort_by", options_for_select([["Price: Low to high", "product_prices.price asc"],["Price: High to low", "product_prices.price desc"], ["Name", "name"], ["Region", "region_id"]], @sort_by), :onchange => "$('#sort_by_form').submit()") %>
@@ -67,7 +67,7 @@
       <div id="header">Your search returned no result</div>
         <% if params[:wine_type].present? || params[:body_type].present? || params[:price_type].present? || params[:food_type].present? %>
           <div class="" style="margin-right: 12px; padding: 45px;font-size:14px;">
-            <strong>Sorry, there are no wines in your chosen price range, <%= link_to "go back", site_sommelier_index_url(:st=>1,:step => 4), :title=>"Go Back" -%> to the previous page and try a different range</strong>
+            <strong>Sorry, there are no wines in your chosen price range, <%= link_to "go back", sommelier_index_url(:st=>1,:step => 4), :title=>"Go Back" -%> to the previous page and try a different range</strong>
           </div>
         <% else %>
           <div class="fRight" style="margin-right: 12px; padding: 5px;"><%= link_to "Go Back", :back, :title=>"Go Back" -%></div>
@@ -88,7 +88,7 @@
       <% end %>
       <% if params[:wine_type].present? || params[:body_type].present? || params[:price_type].present? || params[:food_type].present? %>
         <div class="center-align top-30">
-          <div class="green-button"><%= link_to "Discover more wines with Cercavino", site_sommelier_index_url, :title=>"Discover more wines with Cercavino"  -%></div>
+          <div class="green-button"><%= link_to "Discover more wines with Cercavino", sommelier_index_url, :title=>"Discover more wines with Cercavino"  -%></div>
         </div>  
       <% end %>
     </div>
@@ -106,7 +106,7 @@
       <br />
     <%end
   else %>
-    <%= render :partial => 'site/shared/box_wine_search', :locals => {:search_url => site_search_index_path} %>
+    <%= render :partial => 'site/shared/box_wine_search', :locals => {:search_url => search_index_path} %>
     <br />
   <% end %>
   <%= render :partial => 'site/shared/box_products_on_offer' %>

@@ -3,7 +3,7 @@
 <% if @category.image_link
      link = @category.image_link
    else
-     link = site_search_index_path(:id=>@category)
+     link = search_index_path(:id=>@category)
    end
 
 %>
@@ -16,7 +16,7 @@
     </div> -->
       <%# end %>
   </span>
-      <%= link_to image_tag(site_image_url('home_image', @category.image, :jpg),:alt=>@category.name,:title=>@category.name), link, :title=>@category.name %>
+      <%= link_to image_tag(image_url('home_image', @category.image, :jpg),:alt=>@category.name,:title=>@category.name), link, :title=>@category.name %>
     </div>
 <% else %>
     <div id="wineBanner" class="main-banner">
@@ -26,9 +26,9 @@
       <strong style="font-size:24px;">vineyards,</strong> the cellar, <strong style="font-size:24px;">taste the<br />
       wines</strong> directly from the barrels,<br />
       <strong style="font-size:24px;">harvest</strong> the grapes and <strong style="font-size:24px;">make your<br />own wine</strong> with our <strong style="font-size:24px;">wine tours</strong></span>
-      <%#= link_to image_tag("wine_tours_home.jpg"), site_search_index_path(:id => @category.friendly_identifier) %>
+      <%#= link_to image_tag("wine_tours_home.jpg"), search_index_path(:id => @category.friendly_identifier) %>
       <%# if  @about and !@about.image_id.nil? %>
-      <%#= link_to image_tag(site_image_url(:about_thumb, @about.image, :jpg)) , site_search_index_path(:id => @category.friendly_identifier)  unless @about.blank?  %>
+      <%#= link_to image_tag(image_url(:about_thumb, @about.image, :jpg)) , search_index_path(:id => @category.friendly_identifier)  unless @about.blank?  %>
       <%# else %>
       <%= link_to image_tag("wine_tours_home.jpg",:alt=>@category.name,:title=>@category.name), link, :title=>@category.name %>
       <%# end %>
@@ -109,7 +109,7 @@
                     </div>
                     <div class="club-btn">
                       <div class="green-button"> 
-                        <%= link_to "Add to cart", "/site/cart?product_id=#{product.id}", :remote => true, :method => :post, :title=>"Add to cart" %>
+                        <%= link_to "Add to cart", "/cart?product_id=#{product.id}", :remote => true, :method => :post, :title=>"Add to cart" %>
                       </div>
                     </div>
                   </div>

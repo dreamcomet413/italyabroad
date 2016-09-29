@@ -1,5 +1,5 @@
 <%# @title = @recipe.page_title_formatted; @description = @recipe.meta_description_formatted; @keys = @recipe.meta_keys_formatted %>
-<%# @class = "no-padding"; @breadcrumbs = "#{link_to("Home", root_url)} &raquo; #{link_to("Recipes", site_recipes_path)} &raquo; #{@recipe.name}" %>
+<%# @class = "no-padding"; @breadcrumbs = "#{link_to("Home", root_url)} &raquo; #{link_to("Recipes", recipes_path)} &raquo; #{@recipe.name}" %>
 <div class="row">
   <div class="share-row clearfix">
     <div class="pull-right">
@@ -13,7 +13,7 @@
         <div class="col-xs-4 center-align">
           <% if !@recipe.image_1.blank? %>
             <%#= image_tag(image_url(:original, @recipe.image_1), :alt=>@recipe.name, :size =>"350x350" ) %>
-            <img src= "<%= site_image_url(:original, @recipe.image_1) %>",  title = "<%= @recipe.name %>" alt="<%= @recipe.name %>" %>
+            <img src= "<%= image_url(:original, @recipe.image_1) %>",  title = "<%= @recipe.name %>" alt="<%= @recipe.name %>" %>
           <% else %>
             <%= image_tag("no_images/PastaRecipe.jpg", :alt=>@recipe.name, :title=>@recipe.name) %>
           <% end %>
@@ -26,7 +26,7 @@
       <% unless @recipe.region.nil? %>
         <div class="green-heading-2">Region :</div>  
         <div class="bottom-50">
-          <%= link_to @recipe.region.name, "/site/regions/#{@recipe.region.name.parameterize}", :title=>@recipe.region.name  %>
+          <%= link_to @recipe.region.name, "/regions/#{@recipe.region.name.parameterize}", :title=>@recipe.region.name  %>
         </div>
       <%end%>
       <% if @recipe.correlations.size > 0 %>
@@ -61,7 +61,7 @@
         <div class="green-heading-2">Leave your review <%= link_to '(Add a comment)',"#",:onclick=>"document.getElementById('recipe_comments_add').style.display='block';return false;", :title=>"Add a Comment" %></div>
         <div id="recipe_comments_add" style="display:none;">
           <div class="latest-review-box bottom-50">
-            <%= render(:partial => 'site/reviews/new', :locals => {:create_url => site_reviews_path(@recipe, :return_to => site_recipe_path(@recipe)),:recipe_id => @recipe.id}) %>
+            <%= render(:partial => 'site/reviews/new', :locals => {:create_url => reviews_path(@recipe, :return_to => recipe_path(@recipe)),:recipe_id => @recipe.id}) %>
           </div>
         </div>
       <%- else -%>

@@ -31,7 +31,7 @@ class Site::GrapesController < ApplicationController
     @grape = Grape.find(params[:id])
     
     if @grape.nil?
-      redirect_to site_grapes_path
+      redirect_to grapes_path
       flash[:notice]="Sorry the grape you are looking for cannot be found"
       return
     end

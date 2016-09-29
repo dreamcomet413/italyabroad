@@ -2,9 +2,9 @@
 
 <div id="wineBanner" class="main-banner"><%#= image_tag("wine_tours_card_home.jpg") %>
   <%- if @product.image_1 or @product.image_2 or @product.image_3 -%>
-    <%= image_tag(site_image_url("region_card", @product.image_1, :jpg),:alt=>@product.name, :title=>@product.name) if @product.image_1 %>
-          <%#= image_tag(site_image_url("region_card", @product.image_2, :jpg)) if @product.image_2 %>
-          <%#=  image_tag(site_image_url("region_card", @product.image_3, :jpg)) if @product.image_3 %>
+    <%= image_tag(image_url("region_card", @product.image_1, :jpg),:alt=>@product.name, :title=>@product.name) if @product.image_1 %>
+          <%#= image_tag(image_url("region_card", @product.image_2, :jpg)) if @product.image_2 %>
+          <%#=  image_tag(image_url("region_card", @product.image_3, :jpg)) if @product.image_3 %>
   <% else %>
     <div class="main-banner"><img src="/images/wine-tour-detail-banner.png" alt="wine tour detail" title="wine tour detail" /></div>
   <%- end -%>
@@ -44,7 +44,7 @@
             </div>
           <div class="club-btn">
             <div class="green-button"> 
-              <%= link_to "Add to cart", "/site/cart?product_id=#{@product.id}", :remote => true, :method => :post, :title=>"Add to cart" %>
+              <%= link_to "Add to cart", "/cart?product_id=#{@product.id}", :remote => true, :method => :post, :title=>"Add to cart" %>
             </div>
           </div>
         </div>

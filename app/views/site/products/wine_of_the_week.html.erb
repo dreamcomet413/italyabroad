@@ -66,7 +66,7 @@
               <td class="data">
                 <%  if @product.producer
                       if @product.producer.active %>
-                        <%= link_to(@product.producer.name, site_producer_path(@product.producer))  %>
+                        <%= link_to(@product.producer.name, producer_path(@product.producer))  %>
                     <% else %>
                         No producer
                     <% end %>
@@ -193,7 +193,7 @@
                     </tr>
                     <tr>
                       <td>
-                        <%= link_to(image_tag("buttons/add_to_cart_button.png"), "/site/cart?product_id=#{inc_product.id}", :remote => true, :method => :post) %>
+                        <%= link_to(image_tag("buttons/add_to_cart_button.png"), "/cart?product_id=#{inc_product.id}", :remote => true, :method => :post) %>
                       </td>
                     </tr>
                   </table>

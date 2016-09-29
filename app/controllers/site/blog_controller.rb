@@ -36,7 +36,7 @@ class Site::BlogController < ApplicationController
     end
     @post = post
     unless @post
-      redirect_to "/site/blog"
+      redirect_to "/blog"
     else
       @post.count_view if @post
       @comments = @post.comments.where(['public=?',true]).paginate(:page => params[:page], :per_page => 5).order("created_at DESC")
@@ -60,10 +60,10 @@ class Site::BlogController < ApplicationController
       Notifier.comment(@comment,current_user).deliver
       check_mail_list(@post, current_user)
       flash[:notice] = "comment is successfully posted"
-      redirect_to site_blog_path(:id => @post.id)
+      redirect_to blog_path(:id => @post.id)
     else
       flash[:notice] = @comment.show_errors
-       redirect_to site_blog_path(:id => @post.id)
+       redirect_to blog_path(:id => @post.id)
      # render :action => :show
     end
   end

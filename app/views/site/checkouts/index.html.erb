@@ -25,7 +25,7 @@
         </div>
       </div>
       <div class="shipping-address clearfix">
-        <%= form_tag site_ship_addresses_path, :id => "ship_address_form", :protocol => "https" do %>
+        <%= form_tag ship_addresses_path, :id => "ship_address_form", :protocol => "https" do %>
           <div class="col-md-8 shipping-address-box">
             <div class="shipping-title">Shipping Address</div>
             <div id="ship_address">
@@ -41,9 +41,9 @@
           <%= link_to ("Back"),{:controller=>'cart',:action=>'gift_options'}, :title=>"Back" %>
         </div>
         <div class="continue-btn green-button">
-          <%= link_to ("Continue"), payment_site_checkouts_path, :id => "ship_address_form_continue", :title=>"Continue" -%>
+          <%= link_to ("Continue"), payment_checkouts_path, :id => "ship_address_form_continue", :title=>"Continue" -%>
         </div>
-        <%= javascript_tag "$(document).ready(function(e){ RemoteAddressFrom.setup('#{confirm_address_site_checkouts_path}') });" %>
+        <%= javascript_tag "$(document).ready(function(e){ RemoteAddressFrom.setup('#{confirm_address_checkouts_path}') });" %>
       </div>
     </div>
     
@@ -56,7 +56,7 @@
         $("#loader").show();
         $.ajax({
             type: 'GET',
-            url: "<%= new_site_ship_address_path -%>",
+            url: "<%= new_ship_address_path -%>",
             data: {ship_address_id: $(this).val(), format: 'js'},
             cache: false,
             success: function(data){

@@ -18,7 +18,7 @@
       <div class="produer-detail-text clearfix">
         <% if @grape && @grape.image %>
           <div class="col-xs-3 center-align">
-            <%= image_tag(site_image_url('home_image', @grape.image, :jpg),:alt=>@grape.name, :title=>@grape.name) %>
+            <%= image_tag(image_url('home_image', @grape.image, :jpg),:alt=>@grape.name, :title=>@grape.name) %>
           </div>
         <% else %>
           <div class="col-xs-3 center-align">
@@ -36,7 +36,7 @@
         </div>
       <%-end-%>
       <%- @grape.producers.find(:all,:conditions=>['active = ?',true]).each do |producer| -%>
-        <div class="producer-link"><%= link_to producer.name, site_producer_path(producer), :title=>producer.name %></div>
+        <div class="producer-link"><%= link_to producer.name, producer_path(producer), :title=>producer.name %></div>
       <% end %>
       <% @grape_products = @grape.products.find(:all,:include=>:categories,:conditions=>['upper(categories.name)=?','WINE'])%>
         

@@ -46,7 +46,7 @@ class Admin::CustomersController < ApplicationController
       # save admin to restore later and redirect to cart after loging in the new user
       if from_cart
         switch_session
-        redirect_to '/site/cart/gift_options'
+        redirect_to '/cart/gift_options'
       else
         redirect_to :action => :index
       end

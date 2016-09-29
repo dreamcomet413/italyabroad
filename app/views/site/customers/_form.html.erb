@@ -233,7 +233,7 @@
 
       <div class="register-btn">
         <div class="green-button">
-          <%= link_to site_customer_path(current_user.id), method: :delete, confirm: 'Are you sure you want to permanently delete your account ?', class: 'link-delete', 'data-message' => 'Are you sure?', 'data-severity' => 'danger' do %>
+          <%= link_to customer_path(current_user.id), method: :delete, confirm: 'Are you sure you want to permanently delete your account ?', class: 'link-delete', 'data-message' => 'Are you sure?', 'data-severity' => 'danger' do %>
           Delete
           <% end %>  
 

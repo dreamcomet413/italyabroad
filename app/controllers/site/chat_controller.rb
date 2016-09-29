@@ -95,7 +95,7 @@ class Site::ChatController < ApplicationController
       session[:chat_user_name] = params[:chat_user]
     end
 
-    redirect_to site_chat_index_path
+    redirect_to chat_index_path
   end
 
   private

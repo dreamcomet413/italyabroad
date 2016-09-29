@@ -5,7 +5,7 @@
   <div class="green-heading-with-border"><%= @title %></div>
   <div class="row clearfix">
     <div class="col-md-5 ">
-      <%= form_for :faq, :url => site_faqs_path  do %>
+      <%= form_for :faq, :url => faqs_path  do %>
         <%= render :partial => "form" %>
         <div class="faq-btn">
           <div class="green-button"><%=link_to 'Submit' , '#.' , :class=>'submit_faq' %> </div>

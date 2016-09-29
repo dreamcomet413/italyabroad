@@ -10,8 +10,8 @@
         <tr>
           <%if latest_review.user%>
             <td>
-              <%= link_to avatar_for_user(latest_review.user, 'small'), site_customer_path(latest_review.user.id)%>
-              <%= link_to latest_review.user.name, site_customer_path(latest_review.user.id), :class=>'data', :id => 'latest_review_name'%>
+              <%= link_to avatar_for_user(latest_review.user, 'small'), customer_path(latest_review.user.id)%>
+              <%= link_to latest_review.user.name, customer_path(latest_review.user.id), :class=>'data', :id => 'latest_review_name'%>
             </td>
           <%end%> 
           <td>
@@ -21,7 +21,7 @@
                     "<%= link_to latest_review.description[0..120].html_safe() + "..." ,nested_products_uri(Product.find(latest_review.reviewer_id)  ),:class=>'data' %>"
                     <%= link_to "(Continue reading)", nested_products_uri(Product.find(latest_review.reviewer_id)  ) %>"
                 <% elsif latest_review.reviewer_type == 'Recipe' %>
-                    "<%= link_to latest_review.description[0..120].html_safe() + "...", site_recipe_path(Recipe.find(latest_review.reviewer_id)  ),:class=>'data' %>"
+                    "<%= link_to latest_review.description[0..120].html_safe() + "...", recipe_path(Recipe.find(latest_review.reviewer_id)  ),:class=>'data' %>"
                     <%#= link_to "(Continue reading)", recipe_path(Recipe.find(latest_review.reviewer_id)  ) %>"
                 <% end %>
             <% else %>

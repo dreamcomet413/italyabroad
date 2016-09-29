@@ -10,7 +10,7 @@
     %>
   <div class="red-text">You have <%= (total_points - total_points_used).to_i %> points on your account, equivalent to <%= number_to_currency(((total_points - total_points_used) * Setting.find(:first).points_to_pound.to_f), :unit => "&pound;")%></div>
   <div>
-    <%= form_tag("/site/customers/#{@user.id}", :method => :put, :multipart => true) do %>
+    <%= form_tag("/customers/#{@user.id}", :method => :put, :multipart => true) do %>
       <%= errors_for(@user) -%>
     <%= render :partial => 'form' %>
     <div class="register-btn">

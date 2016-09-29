@@ -150,7 +150,7 @@ class Site::OrdersController < ApplicationController
               end
               # => :status_order_id => 3 ORDER COMPLETED
               session[:card_last_name] = ""
-              redirect_to confirmed_site_checkouts_path
+              redirect_to confirmed_checkouts_path
             else
               if request.remote_ip != "127.0.0.1"
                 flash[:notice] = response.message
@@ -159,7 +159,7 @@ class Site::OrdersController < ApplicationController
                 flash[:notice] = "Payment not complete"
               end
 
-              redirect_to payment_site_checkouts_path
+              redirect_to payment_checkouts_path
 
 
             end
@@ -185,7 +185,7 @@ class Site::OrdersController < ApplicationController
           if(flash[:notice][:number].length==0)
             flash[:notice].delete(:number)
           end
-          redirect_to payment_site_checkouts_path
+          redirect_to payment_checkouts_path
         end
 
 

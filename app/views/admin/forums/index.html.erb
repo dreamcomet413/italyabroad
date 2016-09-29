@@ -34,7 +34,7 @@
         <td><%=h forum.topics_count %></td>
         <td><%=h forum.posts_count %></td>
         <td>
-          <%=link_to "Show", site_forum_path(:id => forum.id), :popup => true %> |
+          <%=link_to "Show", forum_path(:id => forum.id), :popup => true %> |
           <%=link_to "Edit", edit_forum_path(:id => forum.id) %> | 
           <%=link_to "Delete", "/forums/#{forum.id}", :confirm => "It'll delete forum forever !Are you sure ? ", :method => 'delete'%>
         </td>

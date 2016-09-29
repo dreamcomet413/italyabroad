@@ -1,6 +1,6 @@
 <%- @title = "Your Invoice" -%>
 <%- @order_title = "Order no. #{@order.id} of #{@order.created_at.strftime("%d/%m/%y")}" -%>
-<%- @breadcrumbs = "#{link_to "Home", root_url, :title=>"Home"} &raquo; #{link_to("My Orders and Tracking", site_orders_path, :title=>"My Orders and Tracking")} &raquo; #{@order_title}" -%>
+<%- @breadcrumbs = "#{link_to "Home", root_url, :title=>"Home"} &raquo; #{link_to("My Orders and Tracking", orders_path, :title=>"My Orders and Tracking")} &raquo; #{@order_title}" -%>
 <% @class = "no-padding" %>
 <div class="bottom-50 full-width">
   <div id="header"><%= render :partial => 'site/shared/box_login' %></div>

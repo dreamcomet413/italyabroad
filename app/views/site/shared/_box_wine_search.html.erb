@@ -11,7 +11,7 @@
 <%- @parent = Category.find(params[:parent] || params[:category] || 'wine')  -%>
 
 <!-- Creating form action url for wine/other-drinks index pages and their subcategory products like, white wine, red wine -->
-<%- search_url ||= @category == @parent ? site_search_index_path(:id => @parent) : site_search_index_path(:id => 'other_drinks')   -%>
+<%- search_url ||= @category == @parent ? search_index_path(:id => @parent) : search_index_path(:id => 'other_drinks')   -%>
 
 <%if params[:parent]%>
   <%search_url = nested_categories_url(@parent, @category)%>
@@ -36,11 +36,11 @@
       <%#= text_field_tag :text, params[:text], {:id => "search_text"} %>
       <%page = request.url%>
       <%if page.include?('other')%>
-        <%path = "/site/search/autocomplete_search_drinks_name"%>
+        <%path = "/search/autocomplete_search_drinks_name"%>
         <%= hidden_field_tag :parent_type , 'other-drinks' %>
     
       <%else%>
-        <%path = "/site/search/autocomplete_search_wine_name"%> 
+        <%path = "/search/autocomplete_search_wine_name"%> 
           <%= hidden_field_tag :parent_type , 'wine' %>
     
       <%end%>
@@ -134,7 +134,7 @@
                     <li>
                        <a href="#." title="<%= item[0] %>" value="<%= item[1] %>" class='field_text'> <%= item[0] %></a>
                     </li>
-                    <%#= link_to "Add", "/site/cart?product_id=#{product.id}", :remote => true, :method => :post %>
+                    <%#= link_to "Add", "/cart?product_id=#{product.id}", :remote => true, :method => :post %>
                   <% end %>
                 </ul>
               </div>

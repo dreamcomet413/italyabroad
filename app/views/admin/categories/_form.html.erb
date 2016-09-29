@@ -82,7 +82,7 @@
   </tr>
   <tr>
     <td></td>
-    <td><%= image_tag(site_image_url(:home_image_thumb, @category.image, :jpg), :alt => @category.name) rescue "No image" %></td>
+    <td><%= image_tag(image_url(:home_image_thumb, @category.image, :jpg), :alt => @category.name) rescue "No image" %></td>
   </tr>
 </table>
 

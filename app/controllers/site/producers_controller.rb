@@ -19,7 +19,7 @@ class Site::ProducersController < ApplicationController
     @producer = Producer.find(params[:id])
 
     if @producer.nil? 
-      redirect_to site_producers_path
+      redirect_to producers_path
       return
     end
 

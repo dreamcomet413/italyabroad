@@ -9,7 +9,7 @@ ItalyabroadNew::Application.routes.draw do
     resources :regions do
       resources :images, :only => [:destroy]
     end
-    resources :producers do
+    resources :producers  do
       resources :images, :only => [:destroy]
     end
     resources :grapes do
@@ -102,7 +102,7 @@ ItalyabroadNew::Application.routes.draw do
     resources :manage_sommeliers, :only => [:index, :create]
   }
 
-  namespace(:site){ resources :authentications }
+  # namespace(:site){ resources :authentications }
 
   match "/auth/:provider/callback" => "site/authentications#create"
   #match "/signout" => "site/sessions#destroy", :as => :signout
@@ -110,17 +110,17 @@ ItalyabroadNew::Application.routes.draw do
   #match '/auth/:provider/callback' => 'authentications#create'
 
   match 'supplier' => 'site/base#supplier', :as => :meet_us
-  match 'about-us/contact-us' => 'site/base#contact', :as => :contact_us
-  match 'about-us/corporate-services' => 'site/base#corporate', :as => :corporate
-  match 'about-us/wholesale-enquiry' => 'site/base#enquiries', :as => :wholesale_enquiry
+  match 'contact-us' => 'site/base#contact', :as => :contact_us
+  match 'corporate-services' => 'site/base#corporate', :as => :corporate
+  match 'wholesale-enquiry' => 'site/base#enquiries', :as => :wholesale_enquiry
   match 'about-us' => 'site/base#about_us', :as => :about_us
-  match 'about-us/our-principles' => 'site/base#our_principles', :as => :our_principles
-  match 'about-us/meet-us' => 'site/base#meet_us', :as => :meet_us
-  match 'help/terms-and-conditions' => 'site/base#conditions', :as => :terms_and_conditions
-  match 'help/privacy-policy' => 'site/base#privacy', :as => :privacy_policy
-  match 'help/delivery-services' => 'site/base#delivery_services', :as => :delivery_services
-  match 'help/managing-account' => 'site/base#managing_account', :as => :managing_account
-  match 'help/contact-details' => 'site/base#contact_details', :as => :contact_details
+  match 'our-principles' => 'site/base#our_principles', :as => :our_principles
+  match 'meet-us' => 'site/base#meet_us', :as => :meet_us
+  match 'terms-and-conditions' => 'site/base#conditions', :as => :terms_and_conditions
+  match 'privacy-policy' => 'site/base#privacy', :as => :privacy_policy
+  match 'delivery-services' => 'site/base#delivery_services', :as => :delivery_services
+  match 'managing-account' => 'site/base#managing_account', :as => :managing_account
+  match 'contact-details' => 'site/base#contact_details', :as => :contact_details
   match 'sitemap' => 'site/base#sitemap', :as => :sitemap
   match 'google_sitemap.xml' => 'site/base#google_sitemap', :defaults => {:format => :xml}
   match 'guarantee_of_satisfaction' => 'site/base#guarantee_of_satisfaction', :as => :guarantee_of_satisfaction
@@ -166,21 +166,21 @@ ItalyabroadNew::Application.routes.draw do
   end
 
 
-  resources :forums do
-    resources :topics do
-      resources :posts
-      resource :monitorship
-    end
-  end
+  # resources :forums do
+  #   resources :topics do
+  #     resources :posts
+  #     resource :monitorship
+  #   end
+  # end
 
-  resources :wine_lists
-  resources :reviews
-  resources :messages do
-    collection do
-    end
-  end
+  # resources :wine_lists
+  # # resources :reviews
+  # resources :messages do
+  #   collection do
+  #   end
+  # end
 
-  resources :comments
+  # resources :comments
   
   # match "/search" => "site/search#index", :as => "search_index"
   # match "/search/find_wines" => "site/search#find_wines", :as => "find_wines"
@@ -193,11 +193,12 @@ ItalyabroadNew::Application.routes.draw do
   # match "/search/find_wine_events" => "site/search#find_wine_events", :as => "find_wine_events"
   # match "/search/find_grapes" => "site/search#find_grapes", :as => "find_grapes"
 
-  match 'site/cart/gift_options' => 'site/cart#gift_options'
-  match 'site/checkouts/order_confirmation' => 'site/checkouts#order_confirmation'
-  match 'site/cart/update_gift' => 'site/cart#update_gift'
+  match 'cart/gift_options' => 'site/cart#gift_options'
+  match 'checkouts/order_confirmation' => 'site/checkouts#order_confirmation'
+  match 'cart/update_gift' => 'site/cart#update_gift'
 
-  namespace :site do
+  scope module: 'site' do  
+    resources :authentications
     resources :search, :only => [:index] do
       collection do 
         get :find_wines
@@ -241,6 +242,7 @@ ItalyabroadNew::Application.routes.draw do
       get :autocomplete_user_name, :on => :collection
       collection do
         get :empty
+        get "gift_options"
       end
     end
     resources :recipes do
@@ -253,7 +255,7 @@ ItalyabroadNew::Application.routes.draw do
       match :comment, :on => :member
     end
 
-    resources :producers, :only => [:show, :index]
+    resources :producers , :only => [:show, :index]
     resources :grapes, :only => [:index, :show]
     resources :faqs
     resources :customers do

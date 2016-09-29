@@ -1,6 +1,6 @@
 <%- @class = "wine_club"; @breadcrumbs = "#{link_to("Home", root_url, :title=>"Home")} &raquo; #{link_to("Wine club", "/wine-club", :title=>"Wine Club")} &raquo; #{@product.name + '...'}" -%>
 <% if @product.image_1  %>
-<div id="wineBanner" class="main-banner"><%= image_tag(site_image_url("product_wine_club", @product.image_1, :jpg),:alt=>@product.name, :title=>@product.name)  %></div>
+<div id="wineBanner" class="main-banner"><%= image_tag(image_url("product_wine_club", @product.image_1, :jpg),:alt=>@product.name, :title=>@product.name)  %></div>
 <% else %>
   <div class="main-banner"><img src="/images/wine-club-banner.png" alt="Wine club banner" title="Wine club banner" /></div>
 <% end %>
@@ -38,7 +38,7 @@
             </div>
           <div class="club-btn">
             <div class="green-button"> 
-              <%= link_to "Add to cart", "/site/cart?product_id=#{@product.id}", :remote => true, :method => :post, :title=>"Add to cart" %>
+              <%= link_to "Add to cart", "/cart?product_id=#{@product.id}", :remote => true, :method => :post, :title=>"Add to cart" %>
             </div>
           </div>
         </div>
@@ -87,7 +87,7 @@
           <div class="green-heading-with-border">Leave your review <%= link_to '(Add Review)',"#",:onclick=>"document.getElementById('add_review').style.display='block';return false;", :title=>"Add Review" %></div>
           <div id="add_review" style="display:none;">
             <div class="latest-review-box bottom-50">
-              <%= render(:partial => 'site/reviews/new', :locals => {:product_id=>@product.id  ,:create_url => site_reviews_path(@product, :return_to => nested_products_uri(@product))}) %>
+              <%= render(:partial => 'site/reviews/new', :locals => {:product_id=>@product.id  ,:create_url => reviews_path(@product, :return_to => nested_products_uri(@product))}) %>
             </div>
         <%- end -%>
       </div><!-- end wine detail wrapper-->

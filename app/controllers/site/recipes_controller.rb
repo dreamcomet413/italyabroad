@@ -53,7 +53,7 @@ class Site::RecipesController < ApplicationController
       @reviews = @recipe.reviews.where(['publish = ?',true]).
           paginate(:page => params[:page], :per_page => 5).offset(2).order('created_at DESC')
     else
-      redirect_to site_recipes_path
+      redirect_to recipes_path
     end
 
   end
@@ -107,7 +107,7 @@ class Site::RecipesController < ApplicationController
   def print
     @recipe = Recipe.find(params[:id])
     if logged_in?
-      make_and_send_pdf("/site/recipes/print", "Italyabroad_Recipe_#{@recipe.id}.pdf")
+      make_and_send_pdf("/recipes/print", "Italyabroad_Recipe_#{@recipe.id}.pdf")
     else
       session[:return_to] = url_for :action => :show, :id => @recipe
       redirect_to :controller => :base, :action => 'login'

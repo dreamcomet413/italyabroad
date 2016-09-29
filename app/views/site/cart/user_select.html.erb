@@ -31,7 +31,7 @@
 				<div class="form-wrapper">
 					<div class="row clearfix bottom-50">
 						<div class="col-md-4  auto-field bottom-15">
-							<%= autocomplete_field_tag :name, '', autocomplete_user_name_site_cart_index_path, :id_element=>"#user_id", :placeholder => 'type user name' %>
+							<%= autocomplete_field_tag :name, '', autocomplete_user_name_cart_index_path, :id_element=>"#user_id", :placeholder => 'type user name' %>
 							<%= hidden_field_tag 'user_id' %>
 						</div>
 						<div class="col-md-2 col-xs-3 green-button">
@@ -52,7 +52,7 @@
 			// hide form
 			$('.form_container').hide();
 			$('.form_container_select').hide();
-			window.location='/site/cart/gift_options';
+			window.location='/cart/gift_options';
 		}
 		else if(role=='UserNew'){
 			$('.form_container').show();

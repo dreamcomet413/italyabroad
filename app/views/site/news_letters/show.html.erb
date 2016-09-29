@@ -34,7 +34,7 @@ height: 100%;
 	float:left;
 	width:600px;
 	height:35px;
-	background-image: <%= AppConfig.site_url %>/images/NLLBG.png);
+	background-image: <%= AppConfig.url %>/images/NLLBG.png);
 	text-align:center;
 	font-family:Verdana;
 	font-size:11px;
@@ -346,31 +346,31 @@ height: 100%;
 	<div class="clear"></div>
 	<div id="header-menu">
 		<ul id="navmenu">
-			<li><%= link_to "Home", "#{AppConfig.site_url}"+ url_for(:controller => :base, :action => :index) %></li>
+			<li><%= link_to "Home", "#{AppConfig.url}"+ url_for(:controller => :base, :action => :index) %></li>
 			<% for category in Category.find(:all, :conditions => ["parent_id is ? AND show_in_menu = ?", nil, true] ) do %>
 				<li>
-					<%= link_to category.name, "#{AppConfig.site_url}"+ url_for(:controller => :categories, :action => :show, :id => category) %>
+					<%= link_to category.name, "#{AppConfig.url}"+ url_for(:controller => :categories, :action => :show, :id => category) %>
 					<% if category.children.size > 0 %>
 						<ul>
 						<% for child in category.children do %>
 							<% if child.all_products.size > 0 %>
-							<li><%= link_to child.name, "#{AppConfig.site_url}"+ url_for(:controller => :categories, :action => :show_sub, :id => child) %></li>
+							<li><%= link_to child.name, "#{AppConfig.url}"+ url_for(:controller => :categories, :action => :show_sub, :id => child) %></li>
 							<% end %>
 						<% end %>
 						<% if category.name == "Wine" %>
 							<% if wc = Category.find_by_name("Wine Club") %>
-								<li><%= link_to wc.name.html_safe(), "#{AppConfig.site_url}"+ url_for(:controller => :categories, :action => :show, :id => wc) %></li>
+								<li><%= link_to wc.name.html_safe(), "#{AppConfig.url}"+ url_for(:controller => :categories, :action => :show, :id => wc) %></li>
 								
 							<% end %>
-							<li><%= link_to "Grape & Wine guide", "#{AppConfig.site_url}"+ url_for(:controller => :base, :action => :guide) %></li>
+							<li><%= link_to "Grape & Wine guide", "#{AppConfig.url}"+ url_for(:controller => :base, :action => :guide) %></li>
 						<% end %>
 						</ul>
 					<% end %>
 				</li>
 			<% end %>
-			<li><%= link_to "Recipes", "#{AppConfig.site_url}"+ url_for(:controller => :recipes, :action => :index) %></li>
-			<li><%= link_to "Corporate", "#{AppConfig.site_url}"+ url_for(:controller => :base, :action => :corporate) %></li>
-			<li><%= link_to "Blog", "#{AppConfig.site_url}"+ url_for(:controller => :blog, :action => :index) %></li>
+			<li><%= link_to "Recipes", "#{AppConfig.url}"+ url_for(:controller => :recipes, :action => :index) %></li>
+			<li><%= link_to "Corporate", "#{AppConfig.url}"+ url_for(:controller => :base, :action => :corporate) %></li>
+			<li><%= link_to "Blog", "#{AppConfig.url}"+ url_for(:controller => :blog, :action => :index) %></li>
 		</ul>
 	</div>
 </div>

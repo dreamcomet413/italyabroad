@@ -66,7 +66,7 @@ class Site::SommelierController < ApplicationController
             page[".items"].html("")
             page[".items"].html(render :partial => "search_options", :locals => {:item_options => search_options, :step => (params[:step].to_i + 1).to_s})
           else
-            page.redirect_to site_search_index_path(price_type: session[:selected_search_options][:price_type] , wine_type: cookies[:selected_wine] , parent_type: 'wine')
+            page.redirect_to search_index_path(price_type: session[:selected_search_options][:price_type] , wine_type: cookies[:selected_wine] , parent_type: 'wine')
           end
         end
       }

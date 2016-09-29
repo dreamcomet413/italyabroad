@@ -5,12 +5,12 @@
 %>
 <%- @class = "wine_tours" -%>
 <div id="wineBanner" class="main-banner"><%#= image_tag("wine_tours_card_home.jpg") %>
- <%= image_tag site_image_url('region_card', @product.image_1, :jpg),:alt=>@product.name, :title=>@product.name if @product && @product.image_1 if @product && @product.image_1 %>
+ <%= image_tag image_url('region_card', @product.image_1, :jpg),:alt=>@product.name, :title=>@product.name if @product && @product.image_1 if @product && @product.image_1 %>
 </div>
 
 <!-- div id="wineBanner" style="padding-top:5px;"><%#= image_tag("wine_tours_card_home.jpg") %>
  <%- if @product.image_1 or @product.image_2 or @product.image_3 -%>
-    <%= image_tag(site_image_url("region_card", @product.image_1, :jpg),:alt=>@product.name) if @product.image_1 %>
+    <%= image_tag(image_url("region_card", @product.image_1, :jpg),:alt=>@product.name) if @product.image_1 %>
        <%- end -%>
 </div-->
 <div class="row">
@@ -35,7 +35,7 @@
       <% if @product.product_prices.first.quantity > 0 %>
 
         <div class="green-heading-2">Tickets</div>
-        <%= form_for :cart, :url => "/site/cart?product_id=#{@product.id}", :html => {:method => :post}, :remote => true do  -%>
+        <%= form_for :cart, :url => "/cart?product_id=#{@product.id}", :html => {:method => :post}, :remote => true do  -%>
           <div class="bottom-50">
             <div class="row form-row clearfix">
               <div class="col-md-2 section-label">Ticket qty: </div>

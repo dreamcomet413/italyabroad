@@ -1,7 +1,7 @@
-site_url = "https://www.italyabroad.com"
+url = "https://www.italyabroad.com"
 xml.urlset(:xmlns=>"http://www.sitemaps.org/schemas/sitemap/0.9", "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance", "xsi:schemaLocation"=>"http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd") do 
 	xml.url do
-	    xml.loc         "#{site_url}"
+	    xml.loc         "#{url}"
 	    xml.lastmod     w3c_date(Time.now)
 	    xml.changefreq  "always"
 	end
@@ -9,7 +9,7 @@ xml.urlset(:xmlns=>"http://www.sitemaps.org/schemas/sitemap/0.9", "xmlns:xsi" =>
 	Category.where(:parent_id=>nil).each do |category|
 	    
       xml.url do
-	      xml.loc         "#{site_url}/#{category.friendly_identifier}"
+	      xml.loc         "#{url}/#{category.friendly_identifier}"
 	      xml.lastmod     w3c_date(Time.now)
 	      xml.changefreq  "weekly"
         xml.priority    0.6
@@ -23,7 +23,7 @@ xml.urlset(:xmlns=>"http://www.sitemaps.org/schemas/sitemap/0.9", "xmlns:xsi" =>
             # for events only show future events
             if category.friendly_identifier != 'events' or (product.date and product.date>Time.now)
               xml.url do
-                xml.loc         "#{site_url}/#{category.friendly_identifier}/#{product.friendly_identifier}"
+                xml.loc         "#{url}/#{category.friendly_identifier}/#{product.friendly_identifier}"
                 xml.lastmod     w3c_date(Time.now)
                 xml.changefreq  "daily"
                 xml.priority    0.8
@@ -37,7 +37,7 @@ xml.urlset(:xmlns=>"http://www.sitemaps.org/schemas/sitemap/0.9", "xmlns:xsi" =>
       category.categories.each do |subcategory|
 
         xml.url do
-          xml.loc         "#{site_url}/#{category.friendly_identifier}/#{subcategory.friendly_identifier}"
+          xml.loc         "#{url}/#{category.friendly_identifier}/#{subcategory.friendly_identifier}"
           xml.lastmod     w3c_date(Time.now)
           xml.changefreq  "weekly"
           xml.priority    0.6
@@ -47,7 +47,7 @@ xml.urlset(:xmlns=>"http://www.sitemaps.org/schemas/sitemap/0.9", "xmlns:xsi" =>
         subcategory.products.each do |product|
           if product.active
             xml.url do
-              xml.loc         "#{site_url}/#{category.friendly_identifier}/#{subcategory.friendly_identifier}/#{product.friendly_identifier}"
+              xml.loc         "#{url}/#{category.friendly_identifier}/#{subcategory.friendly_identifier}/#{product.friendly_identifier}"
               xml.lastmod     w3c_date(Time.now)
               xml.changefreq  "daily"
               xml.priority    0.8
@@ -59,7 +59,7 @@ xml.urlset(:xmlns=>"http://www.sitemaps.org/schemas/sitemap/0.9", "xmlns:xsi" =>
 
   # Community
   xml.url do
-    xml.loc         "#{site_url}/wine-community"
+    xml.loc         "#{url}/wine-community"
     xml.lastmod     w3c_date(Time.now)
     xml.changefreq  "daily"
     xml.priority    0.6
@@ -68,7 +68,7 @@ xml.urlset(:xmlns=>"http://www.sitemaps.org/schemas/sitemap/0.9", "xmlns:xsi" =>
   # Members
   User.last(12).each do |customer|
     xml.url do
-      xml.loc         "#{site_url}/site/customers/id"
+      xml.loc         "#{url}/customers/id"
       xml.lastmod     w3c_date(Time.now)
       xml.changefreq  "weekly"
       xml.priority    0.6
@@ -79,7 +79,7 @@ xml.urlset(:xmlns=>"http://www.sitemaps.org/schemas/sitemap/0.9", "xmlns:xsi" =>
   # grape guide
   
   xml.url do
-    xml.loc         "#{site_url}/grape-guide"
+    xml.loc         "#{url}/grape-guide"
     xml.lastmod     w3c_date(Time.now)
     xml.changefreq  "weekly"
     xml.priority    0.6
@@ -87,7 +87,7 @@ xml.urlset(:xmlns=>"http://www.sitemaps.org/schemas/sitemap/0.9", "xmlns:xsi" =>
 
   Grape.all.each do |grape|
     xml.url do
-      xml.loc         "#{site_url}/site/grapes/#{grape.friendly_identifier}"
+      xml.loc         "#{url}/grapes/#{grape.friendly_identifier}"
       xml.lastmod     w3c_date(Time.now)
       xml.changefreq  "weekly"
       xml.priority    0.6
@@ -96,7 +96,7 @@ xml.urlset(:xmlns=>"http://www.sitemaps.org/schemas/sitemap/0.9", "xmlns:xsi" =>
 
   # Q & A
   xml.url do
-    xml.loc         "#{site_url}/site/faqs"
+    xml.loc         "#{url}/faqs"
     xml.lastmod     w3c_date(Time.now)
     xml.changefreq  "weekly"
     xml.priority    0.6
@@ -104,7 +104,7 @@ xml.urlset(:xmlns=>"http://www.sitemaps.org/schemas/sitemap/0.9", "xmlns:xsi" =>
 
   #Producers
   xml.url do
-    xml.loc         "#{site_url}/site/producers"
+    xml.loc         "#{url}/producers"
     xml.lastmod     w3c_date(Time.now)
     xml.changefreq  "weekly"
     xml.priority    0.6
@@ -112,7 +112,7 @@ xml.urlset(:xmlns=>"http://www.sitemaps.org/schemas/sitemap/0.9", "xmlns:xsi" =>
 
   Producer.where(:active=>true).each do |producer|
     xml.url do
-      xml.loc         "#{site_url}/site/producers/#{producer.friendly_identifier}"
+      xml.loc         "#{url}/producers/#{producer.friendly_identifier}"
       xml.lastmod     w3c_date(Time.now)
       xml.changefreq  "weekly"
       xml.priority    0.6
@@ -121,7 +121,7 @@ xml.urlset(:xmlns=>"http://www.sitemaps.org/schemas/sitemap/0.9", "xmlns:xsi" =>
 
   #Regions
   xml.url do
-    xml.loc         "#{site_url}/site/regions"
+    xml.loc         "#{url}/regions"
     xml.lastmod     w3c_date(Time.now)
     xml.changefreq  "weekly"
     xml.priority    0.6
@@ -129,7 +129,7 @@ xml.urlset(:xmlns=>"http://www.sitemaps.org/schemas/sitemap/0.9", "xmlns:xsi" =>
 
   Region.where(:active=>true).each do |region|
     xml.url do
-      xml.loc         "#{site_url}/site/regions/#{region.friendly_identifier}"
+      xml.loc         "#{url}/regions/#{region.friendly_identifier}"
       xml.lastmod     w3c_date(Time.now)
       xml.changefreq  "weekly"
       xml.priority    0.6
@@ -138,7 +138,7 @@ xml.urlset(:xmlns=>"http://www.sitemaps.org/schemas/sitemap/0.9", "xmlns:xsi" =>
 
   #Recipes
   xml.url do
-    xml.loc         "#{site_url}/site/recipes"
+    xml.loc         "#{url}/recipes"
     xml.lastmod     w3c_date(Time.now)
     xml.changefreq  "weekly"
     xml.priority    0.6
@@ -146,7 +146,7 @@ xml.urlset(:xmlns=>"http://www.sitemaps.org/schemas/sitemap/0.9", "xmlns:xsi" =>
 
   Recipe.where(:active=>true).each do |recipe|
     xml.url do
-      xml.loc         "#{site_url}/site/recipes/#{recipe.friendly_identifier}"
+      xml.loc         "#{url}/recipes/#{recipe.friendly_identifier}"
       xml.lastmod     w3c_date(Time.now)
       xml.changefreq  "weekly"
       xml.priority    0.6
@@ -158,7 +158,7 @@ xml.urlset(:xmlns=>"http://www.sitemaps.org/schemas/sitemap/0.9", "xmlns:xsi" =>
     post.save unless post.friendly_identifier # create friendly identifier if it is null, because some were null in db
     
     xml.url do
-      xml.loc         "#{site_url}/site/blog/#{post.friendly_identifier}"
+      xml.loc         "#{url}/blog/#{post.friendly_identifier}"
       xml.lastmod     w3c_date(Time.now)
       xml.changefreq  "daily"
       xml.priority    0.6
@@ -169,7 +169,7 @@ xml.urlset(:xmlns=>"http://www.sitemaps.org/schemas/sitemap/0.9", "xmlns:xsi" =>
 
   # testimonials
   xml.url do
-    xml.loc         "#{site_url}/testimonials"
+    xml.loc         "#{url}/testimonials"
     xml.lastmod     w3c_date(Time.now)
     xml.changefreq  "weekly"
     xml.priority    0.6
@@ -177,63 +177,63 @@ xml.urlset(:xmlns=>"http://www.sitemaps.org/schemas/sitemap/0.9", "xmlns:xsi" =>
 
   # About us pages
   xml.url do
-    xml.loc         "#{site_url}/about-us/our-principles"
+    xml.loc         "#{url}/about-us/our-principles"
     xml.lastmod     w3c_date(Time.now)
     xml.changefreq  "weekly"
     xml.priority    0.6
   end
 
   xml.url do
-    xml.loc         "#{site_url}/about-us"
+    xml.loc         "#{url}/about-us"
     xml.lastmod     w3c_date(Time.now)
     xml.changefreq  "weekly"
     xml.priority    0.6
   end
 
   xml.url do
-    xml.loc         "#{site_url}/about-us/meet-us"
+    xml.loc         "#{url}/about-us/meet-us"
     xml.lastmod     w3c_date(Time.now)
     xml.changefreq  "weekly"
     xml.priority    0.6
   end
 
   xml.url do
-    xml.loc         "#{site_url}/about-us/contact-us"
+    xml.loc         "#{url}/about-us/contact-us"
     xml.lastmod     w3c_date(Time.now)
     xml.changefreq  "weekly"
     xml.priority    0.6
   end
 
   xml.url do
-    xml.loc         "#{site_url}/about-us/wholesale-enquiry"
+    xml.loc         "#{url}/about-us/wholesale-enquiry"
     xml.lastmod     w3c_date(Time.now)
     xml.changefreq  "weekly"
     xml.priority    0.6
   end
 
   xml.url do
-    xml.loc         "#{site_url}/about-us/corporate-services"
+    xml.loc         "#{url}/about-us/corporate-services"
     xml.lastmod     w3c_date(Time.now)
     xml.changefreq  "weekly"
     xml.priority    0.6
   end
 
   xml.url do
-    xml.loc         "#{site_url}/supplier"
+    xml.loc         "#{url}/supplier"
     xml.lastmod     w3c_date(Time.now)
     xml.changefreq  "weekly"
     xml.priority    0.6
   end
 
   xml.url do
-    xml.loc         "#{site_url}/guarantee-of-satisfaction"
+    xml.loc         "#{url}/guarantee-of-satisfaction"
     xml.lastmod     w3c_date(Time.now)
     xml.changefreq  "weekly"
     xml.priority    0.6
   end
 
   xml.url do
-    xml.loc         "#{site_url}/wine/gift-cards"
+    xml.loc         "#{url}/wine/gift-cards"
     xml.lastmod     w3c_date(Time.now)
     xml.changefreq  "weekly"
     xml.priority    0.6
@@ -241,35 +241,35 @@ xml.urlset(:xmlns=>"http://www.sitemaps.org/schemas/sitemap/0.9", "xmlns:xsi" =>
 
   # Help pages
   xml.url do
-    xml.loc         "#{site_url}/help/terms-and-conditions"
+    xml.loc         "#{url}/help/terms-and-conditions"
     xml.lastmod     w3c_date(Time.now)
     xml.changefreq  "weekly"
     xml.priority    0.6
   end
 
   xml.url do
-    xml.loc         "#{site_url}/help/privacy-policy"
+    xml.loc         "#{url}/help/privacy-policy"
     xml.lastmod     w3c_date(Time.now)
     xml.changefreq  "weekly"
     xml.priority    0.6
   end
 
   xml.url do
-    xml.loc         "#{site_url}/help/delivery-services"
+    xml.loc         "#{url}/help/delivery-services"
     xml.lastmod     w3c_date(Time.now)
     xml.changefreq  "weekly"
     xml.priority    0.6
   end
 
   xml.url do
-    xml.loc         "#{site_url}/help/contact-details"
+    xml.loc         "#{url}/help/contact-details"
     xml.lastmod     w3c_date(Time.now)
     xml.changefreq  "weekly"
     xml.priority    0.6
   end
 
   xml.url do
-    xml.loc         "#{site_url}/sitemap"
+    xml.loc         "#{url}/sitemap"
     xml.lastmod     w3c_date(Time.now)
     xml.changefreq  "weekly"
     xml.priority    0.6
@@ -279,7 +279,7 @@ xml.urlset(:xmlns=>"http://www.sitemaps.org/schemas/sitemap/0.9", "xmlns:xsi" =>
 
   # news letter subscribe
   xml.url do
-    xml.loc         "#{site_url}/subscribe-dali-news"
+    xml.loc         "#{url}/subscribe-dali-news"
     xml.lastmod     w3c_date(Time.now)
     xml.changefreq  "weekly"
     xml.priority    0.6

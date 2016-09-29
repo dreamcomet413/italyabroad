@@ -3,7 +3,7 @@
     @keys = @producer.meta_keys_formatted
     
     @class = "no-padding";
-    @breadcrumbs = "#{link_to("Home", root_url, :title=>"Home")} &raquo;#{link_to('Community',wine_community_path, :title=>"Community")}&raquo; #{link_to("Producers", site_producers_path, :title=>"producer")} &raquo; #{@title}".html_safe()
+    @breadcrumbs = "#{link_to("Home", root_url, :title=>"Home")} &raquo;#{link_to('Community',wine_community_path, :title=>"Community")}&raquo; #{link_to("Producers", producers_path, :title=>"producer")} &raquo; #{@title}".html_safe()
 -%>
 <div class="main-banner">
   <%= show_producer_image1(@producer) -%>
@@ -22,7 +22,7 @@
         </div>
       <%- end -%>
       <%- @producer.grapes.each do |grape| -%>
-        <div class="producer-link"><%= link_to grape.name, site_grape_path(grape), :title=>grape.name %></div>
+        <div class="producer-link"><%= link_to grape.name, grape_path(grape), :title=>grape.name %></div>
       <%- end -%>
       <%- if @producer_products = @producer.products.find(:all, :include => 'product_prices', :conditions=>['active = ? and product_prices.quantity > ?',true,0]) %>    
         <div class="prdoucer-products-wrapper">

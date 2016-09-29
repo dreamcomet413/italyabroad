@@ -27,7 +27,7 @@ Dear <%= @user.name -%>
         <td><%= image_tag("/resources/images/#{product.image_1.id}.jpg", :height => "50px", :width => "50px", :alt => product.name) -%></td>
         <td><%= product.code -%></td>
         <td><%= product.description.html_safe() -%></td>
-        <td><%= link_to "Add Your Review", new_site_review_path -%></td>
+        <td><%= link_to "Add Your Review", new_review_path -%></td>
       </tr>
   <% end %>
 </table>

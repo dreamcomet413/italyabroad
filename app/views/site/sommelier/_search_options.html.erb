@@ -94,7 +94,7 @@
         if($(this).is(":checked")){
             $.ajax({
                 type: 'POST',
-                url: "/site/sommelier",
+                url: "/sommelier",
                 data: {selected_option: $(this).val(), step: $("#step").val()},
                 cache: false,
                 success: function(data){
@@ -115,7 +115,7 @@
 
     $("#go_back").click(function(){
         if ("<%= params[:step]-%>" == "1"){
-          window.location.href = "/site/sommelier?rt=1"
+          window.location.href = "/sommelier?rt=1"
         }
         else {
             $.ajax({

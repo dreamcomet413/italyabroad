@@ -38,6 +38,6 @@ class Site::AuthenticationsController < ApplicationController
     @authentication = current_user.authentications.find(params[:id])
     @authentication.destroy
     flash[:notice] = "Successfully destroyed authentication."
-    redirect_to site_authentications_path
+    redirect_to authentications_path
   end
 end

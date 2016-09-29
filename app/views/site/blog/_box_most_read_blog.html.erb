@@ -4,7 +4,7 @@
 	<div class="favourite">
 	  <ol>
 	  	<%- posts.each do |post| -%>
-	    	<li><%= link_to post.name, site_blog_path(post.id),:class=>'data', :title=>post.name %></li>
+	    	<li><%= link_to post.name, blog_path(post.id),:class=>'data', :title=>post.name %></li>
 	    <%- end -%>
 	  </ol>
 	</div>

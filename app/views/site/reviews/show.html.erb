@@ -16,12 +16,12 @@
         <table>
           <tr><td>
             <%# if !@review.reviewer.image_1.blank? %>
-            <%#= link_to image_tag site_image_url(:review_thumb, @review.reviewer.image_1) ,product_path(@review.reviewer)%>
+            <%#= link_to image_tag image_url(:review_thumb, @review.reviewer.image_1) ,product_path(@review.reviewer)%>
             <%# else %>
             <%#= link_to image_tag("no_images/product_wine.jpg",:size => "150x150") ,product_path(@review.reviewer)%>
             <%# end %>
 
-            <%= link_to(image_tag(site_image_url(:review_thumb, @review.reviewer.image_1)) ,product_path(@review.reviewer), :title=>"Review") rescue
+            <%= link_to(image_tag(image_url(:review_thumb, @review.reviewer.image_1)) ,product_path(@review.reviewer), :title=>"Review") rescue
                 link_to (image_tag("no_images/product_wine.jpg",:size => "150x150") ,product_path(@review.reviewer), :title=>"Wine")
             %>
           </td><td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
@@ -46,9 +46,9 @@
 
                   <%- end -%>
               <%- end -%>
-              <%= link_to(image_tag("add_to_wish_list.png", :title=>"Add to wish List", :alt=>"Add to wish list"), "/site/wish_list?product_id=#{@review.reviewer.id}", :title=>"Add to wish list" , :remote => true, :method => :post) %>
+              <%= link_to(image_tag("add_to_wish_list.png", :title=>"Add to wish List", :alt=>"Add to wish list"), "/wish_list?product_id=#{@review.reviewer.id}", :title=>"Add to wish list" , :remote => true, :method => :post) %>
               <% if  @review.reviewer.categories.root.name.downcase == 'wine' %>
-                  <%= link_to(image_tag("WINE_LIST.jpg", :title=>"Wine list", :title=>"Wine list"), "/site/wine_lists?product_id=#{@review.reviewer.id}", :title=>"wine list", :remote => true, :method => :post, :style => "color:#464646;") %>
+                  <%= link_to(image_tag("WINE_LIST.jpg", :title=>"Wine list", :title=>"Wine list"), "/wine_lists?product_id=#{@review.reviewer.id}", :title=>"wine list", :remote => true, :method => :post, :style => "color:#464646;") %>
               <% end %>
 
               </li>
