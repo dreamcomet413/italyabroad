@@ -154,33 +154,34 @@ ItalyabroadNew::Application.routes.draw do
   get '/landing.html'=> 'site/base#landing_page'
   get '/messages/send_reply'=> 'site/messages#send_reply'
   post '/messages/send_message' => 'site/messages#send_message'
-# ------- write action and view but not call------------------------------------------------
-
-    #     resources :products, :only => [:index, :show, :wine_of_the_week, :food_of_the_week] do
-    #     resources :reviews, :only => [:new, :create]
-    #     resources :wish_list, :only => [:index, :create, :destroy]
-    #     resources :cart, :only => [:create, :update, :destroy] do
-    #       collection do
-    #         get :empty
+#-- TO DO Remove these blocks if url run correctly---------------------------------------
+  # ------- write action and view but not call------------------------------------------------
+    # resources :products, :only => [:index, :show, :wine_of_the_week, :food_of_the_week] do
+    #       resources :reviews, :only => [:new, :create]
+    #       resources :wish_list, :only => [:index, :create, :destroy]
+    #       resources :cart, :only => [:create, :update, :destroy] do
+    #         collection do
+    #           get :empty
+    #         end
     #       end
     #     end
-    #   end
 
-    # resources :forums do
-    #   resources :topics do
-    #     resources :posts
-    #     resource :monitorship 
+    #   resources :forums do
+    #     resources :topics do
+    #       resources :posts
+    #       resource :monitorship
+    #     end
+    #   end
+  #-------------------------------------NOT USED-----------------------------------------
+    # resources :wine_lists 
+    # resources :reviews
+    # resources :messages do
+    #   collection do
     #   end
     # end
-#-------------------------------------NOT USED-----------------------------------------
-  # resources :wine_lists 
-  # resources :reviews
-  # resources :messages do
-  #   collection do
-  #   end
-  # end
 
-  # resources :comments
+    # resources :comments
+  #-------------------------------------------------------------------------------------------
 #----------------------------------------------------------------------------------------
   # match "/search" => "site/search#index", :as => "search_index"
   # match "/search/find_wines" => "site/search#find_wines", :as => "find_wines"

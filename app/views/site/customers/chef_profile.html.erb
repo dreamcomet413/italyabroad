@@ -162,7 +162,7 @@
               </li>
             <%- end -%>
             <% if @user.messages.size > 5 %>
-              <li style="list-style:none;text-align:right;margin-top:20px;"><%= link_to("more",:controller=>'site/messages',:action=>'index',:id=>params[:id]), :title=>"More" %></li>
+              <li style="list-style:none;text-align:right;margin-top:20px;"><%= link_to("more",:controller=>'site/messages',:action=>'index',:id=>params[:id]) %></li>
             <% end %>
           </ol>
         </div>
@@ -201,15 +201,15 @@
   <div class="section-box">
     <div class="green-heading-with-border"><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> Comments</div>
     <div class="section-des">
-      <% if @user.comments.size == 0 %>
+      <% if @user.comments.count == 0 %>
         No comments found
       <% else %>
         <ol>
           <%- @user.comments.all(:order=>' id desc',:limit => 5).each do |comment| -%>
             <li><%= comment.name unless comment.name.blank? %></li>
           <%- end -%>
-          <% if @user.comments.size > 5 %>
-            <li><%= link_to("more",:controller=>'comments',:action=>'index',:id=>params[:id]), :title=>"More" %></li>
+          <% if @user.comments.count > 5 %>
+            <li><%= link_to("more",:controller=>'comments',:action=>'index',:id=>params[:id]) %></li>
           <% end %>
         </ol>
       <% end %>
@@ -219,15 +219,15 @@
   <div class="section-box">
     <div class="green-heading-with-border"><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> Latest Reviews</div>
     <div class="section-des">
-      <% if @user.reviews.size == 0 %>
+      <% if @user.reviews.count == 0 %>
         Reviews not found
       <% else %>
         <ol>
           <%- @user.reviews.all(:order=>' id desc', :limit => 5, :conditions=>['publish = ?',true],:select => 'DISTINCT reviewer_id' ).each do |review| -%>
-            <li><%= link_to    Product.find_by_id(review.reviewer_id).name , product_path(review.reviewer_id) rescue "", :title=>Product.find_by_id(review.reviewer_id).name %></li>
+            <!-- <li>< %= link_to   (Product.find_by_id(review.reviewer_id).name , product_path(review.reviewer_id) rescue ""), :title=>Product.find_by_id(review.reviewer_id).name %></li> -->
           <%- end -%>
           <% if @user.reviews.size > 5 %>
-            <li><%= link_to("more",reviews_path), :title=>"More" %></li>
+            <li><%= link_to("more",reviews_path)  %></li>
           <% end %>
         </ol>
       <% end %>  
@@ -238,15 +238,15 @@
   <div class="section-box">
     <div class="green-heading-with-border"><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> Winelist</div>
     <div class="section-des">
-      <% if @user.wine_lists.size == 0 %>
+      <% if @user.wine_lists.count == 0 %>
         No list found
       <% else %>
         <ol>
           <%- @user.wine_lists.all(:order=>' id desc',:limit => 5).each do |wine_list| -%>
             <li><%= wine_list.product.name %></li>
           <%- end -%>
-          <% if @user.wine_lists.size > 5 %>
-            <li><%= link_to("more",wine_lists_path), :title=>"more" %></li>
+          <% if @user.wine_lists.count > 5 %>
+            <li><%= link_to("more",wine_lists_path) %></li>
           <% end %>
         </ol>
       <% end %>
