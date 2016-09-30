@@ -109,7 +109,7 @@ ItalyabroadNew::Application.routes.draw do
 
   #match '/auth/:provider/callback' => 'authentications#create'
 
-  match 'supplier' => 'site/base#supplier', :as => :meet_us
+  match 'suppliers' => 'site/base#supplier', :as => :meet_us
   match 'contact-us' => 'site/base#contact', :as => :contact_us
   match 'corporate-services' => 'site/base#corporate', :as => :corporate
   match 'wholesale-enquiry' => 'site/base#enquiries', :as => :wholesale_enquiry
@@ -156,22 +156,23 @@ ItalyabroadNew::Application.routes.draw do
   post '/messages/send_message' => 'site/messages#send_message'
 #-- TO DO Remove these blocks if url run correctly---------------------------------------
   # ------- write action and view but not call------------------------------------------------
-    # resources :products, :only => [:index, :show, :wine_of_the_week, :food_of_the_week] do
-    #       resources :reviews, :only => [:new, :create]
-    #       resources :wish_list, :only => [:index, :create, :destroy]
-    #       resources :cart, :only => [:create, :update, :destroy] do
-    #         collection do
-    #           get :empty
-    #         end
-    #       end
-    #     end
+    resources :products, :only => [:index, :show, :wine_of_the_week, :food_of_the_week] do
+          resources :reviews, :only => [:new, :create]
+          resources :wine_list, :only => [:index, :create, :destroy]
+          resources :wish_list, :only => [:index, :create, :destroy]
+          resources :cart, :only => [:create, :update, :destroy] do
+            collection do
+              get :empty
+            end
+          end
+        end
 
-    #   resources :forums do
-    #     resources :topics do
-    #       resources :posts
-    #       resource :monitorship
-    #     end
-    #   end
+      resources :forums do
+        resources :topics do
+          resources :posts
+          resource :monitorship
+        end
+      end
   #-------------------------------------NOT USED-----------------------------------------
     # resources :wine_lists 
     # resources :reviews
@@ -202,6 +203,7 @@ ItalyabroadNew::Application.routes.draw do
      #------------ not_use But genrate for save hand ------------------------------------------
       resources :products, :only => [:index, :show, :wine_of_the_week, :food_of_the_week] do
         resources :reviews, :only => [:new, :create]
+        resources :wine_list, :only => [:index, :create, :destroy]
         resources :wish_list, :only => [:index, :create, :destroy]
         resources :cart, :only => [:create, :update, :destroy] do
           collection do
