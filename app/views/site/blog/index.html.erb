@@ -1,9 +1,9 @@
-<% @title = "Andrea's wine Blog"; @description = "Andrea's Wine Blog, The Italian Wine Blog, A Guide to Italian Wines, Journey Through Italian Wines"; @keys = "Wine Blog,Italian Wine Blog,Italian Red and White Wine,Italian Food, Wine Tasting,Wine Expert"%>
+<% @title = "Andrea's wine Blog"; @description = "Andrea's Wine Blog, the only Italian wine blog, an amazing journey through Italian wines"; @keys = "Wine Blog,Italian Wine Blog,Italian Journey, Italian Food Blog,Italian Wine Expert,Italian Blog"%>
 <%- @breadcrumbs = "#{link_to("Home", root_url, :title=>"Home")}&raquo; #{link_to('Community',wine_community_path, :title=>"Community")} &raquo; #{link_to("Blog", blog_index_path, :title=>"blog")}" -%>
 
 <% @about = AboutU.find(:first, :conditions => {:link_type => "blog"} ) %>
 <div id="blog_home" class="main-banner">
-  <div class="title"><%= @about.title[0..150] if @about %></div>
+  <div class="title"><%= @about.title[0..150] if @about %> </div>
   <% if  @about and !@about.image_id.nil? %>
    <div class="main-banner"><%=  image_tag(image_url(:about_thumb, @about.image, :jpg), :title=>"Blog Banner", :alt=>"Blog Banner") unless @about.blank?  %></div>
   <% else %>
@@ -38,7 +38,13 @@
     </div>
     <div class="col-md-9">
       <% if @posts && @posts.size > 0 %>
-        <div class="blog-listing-wrapper">
+        <div>
+          <div class="blog-listing-wrapper">
+          <% if @about %>
+            <!-- <div class="red-heading"> <%= @about.title  %> </div> -->
+            <div><%= @about.description %></div>
+          <% end %>
+        </div>
           <% for post in @posts %>
             <% next unless post.friendly_identifier %>
             <div class="blog-list">

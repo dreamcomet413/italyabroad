@@ -219,7 +219,7 @@ xml.urlset(:xmlns=>"http://www.sitemaps.org/schemas/sitemap/0.9", "xmlns:xsi" =>
   end
 
   xml.url do
-    xml.loc         "#{url}/supplier"
+    xml.loc         "#{url}/suppliers"
     xml.lastmod     w3c_date(Time.now)
     xml.changefreq  "weekly"
     xml.priority    0.6

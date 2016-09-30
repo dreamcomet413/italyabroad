@@ -1,4 +1,5 @@
-<%- set_title "Community" -%>
+<%- set_title "Community"  -%>
+<%- @description = "Italyabroad.com Community page, get to know our latest members and producers, discover Italy and its regions, Italian wine and grapes and much more"; @keys = 'Community,Members,Wine Lovers,Italian Regions,Italyabroad.com Suppliers,Italian Grapes,ItalianWines,Italian Wine Blog,Italian Blog,Italian Food,Wine Q&A' %>
 <% @breadcrumbs = "#{link_to("Home", root_url, :title=>"Home")} &raquo; #{link_to('Community',wine_community_path, :title=>"Community")}".html_safe() %>
 <% @about = AboutU.find(:first, :conditions => {:link_type => "community"} ) %>
 <div id="wineBanner" class="main-banner">
