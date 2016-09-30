@@ -3,7 +3,6 @@
 
 <% @about = AboutU.find(:first, :conditions => {:link_type => "blog"} ) %>
 <div id="blog_home" class="main-banner">
-  <div class="title"><%= @about.title[0..150] if @about %> </div>
   <% if  @about and !@about.image_id.nil? %>
    <div class="main-banner"><%=  image_tag(image_url(:about_thumb, @about.image, :jpg), :title=>"Blog Banner", :alt=>"Blog Banner") unless @about.blank?  %></div>
   <% else %>
@@ -39,7 +38,7 @@
     <div class="col-md-9">
       <% if @posts && @posts.size > 0 %>
         <div>
-          <div class="blog-listing-wrapper">
+          <div class="blog-listing-wrapper" style="margin-bottom: 50px; margin-top: -5px">
           <% if @about %>
             <div class="red-heading"> <%= @about.title  %> </div>
             <div><%= @about.description %></div>
