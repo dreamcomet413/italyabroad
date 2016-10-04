@@ -50,6 +50,7 @@ class Site::SearchController < ApplicationController
   end
 
   def index
+    params[:id] = params[:id].downcase
     if params[:id] == 'other drinks'
       params[:id] = params[:id].gsub(' ' , '-')
     end
