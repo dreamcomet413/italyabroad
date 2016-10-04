@@ -61,7 +61,7 @@
       </div>
       <div class="col-md-9">
         <div class="product-detail-wrapper">
-          <% if products.size > 1 %>
+          <% if false %>
             <div id="header"><%= select_tag :products, options_from_collection_for_select(products, "id", "name", :selected => @product.id), :nested_url => nested_products_uri(@product) %></div>
           <% else %>
             <div class="green-heading-24">

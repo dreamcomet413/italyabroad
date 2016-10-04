@@ -14,6 +14,7 @@ class Site::CategoriesController < ApplicationController
   end
 
   def show_sub
+
     if params[:category] != "offer"
       if params[:parent].blank? || params[:category].blank?
       
@@ -51,7 +52,7 @@ class Site::CategoriesController < ApplicationController
           @product = Product.find(:first,:conditions=>['friendly_identifier = ? OR mood= ?',params[:category], params[:mood]])
           if !@product.blank?
             logger.info("-------------------------------if#{@product.inspect}---------------------------------")
-            redirect_to product_path(@product)
+            redirect_to nested_products_uri(@product)
           else
             logger.info('-------------------------------else---------------------------------')
 
