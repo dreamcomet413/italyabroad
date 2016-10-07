@@ -361,7 +361,7 @@ ItalyabroadNew::Application.routes.draw do
   match 'food/all_mixedcase_image/:parent' => 'site/categories#all_mixedcase_image'
   match 'food/special_offer/:parent' => 'site/categories#special_offer', :parent => 'food'
   match 'hampers' => 'site/categories#show', :category => 'hampers'
-  match 'hampers/:category/' => 'site/categories#show_sub', :parent => 'hampers'
+  match 'hampers/:id/' => 'site/products#show', :parent => 'hampers'
   match 'hampers/all_mixedcase_image/:parent' => 'site/categories#all_mixedcase_image'
   match 'hampers/special_offer/:parent' => 'site/categories#special_offer', :parent => 'hampers'
   match '/wine-tours' => 'site/categories#show', :category => 'wine-tours'
