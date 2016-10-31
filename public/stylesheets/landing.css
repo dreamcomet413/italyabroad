@@ -80,7 +80,7 @@ img{
 .dark-green-button a:hover{
 	text-decoration: underline;
 	}
-.dark-green-button-big a{
+.dark-green-button-big a, h1.dark-green-button-big a{
 	background: #37a419;
 	text-decoration: none;
 	color: #fff;
