@@ -246,7 +246,7 @@
                               </div>
                             <%- end -%>
                             <%- else -%>
-                              <b>&pound; <%= quantity.price %> is <%= image_tag('out_of_stock.png', :alt=>"Out of stock", :title=>"Out of stock") %></b>
+                              <div style="text-align:right"><%= image_tag('out_of_stock.png', :alt=>"Out of stock", :title=>"Out of stock") %></div>
                             <%- end -%>
                           <% end %>
                       </div>

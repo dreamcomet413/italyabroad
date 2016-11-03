@@ -12,8 +12,10 @@ class Site::ProductsController < ApplicationController
     if @product.present?
       @quantity = @product.get_quantity(params[:actual_price])
       @limited_stock =
-        if @product.product_prices.empty?
+        if @product.product_prices.empty? 
           ""
+        elsif @quantity.to_i == 0
+          "Get in touch if you would like to be informed when back in stock"        elsif @quantity.to_i <= Product::LIMITED_QUANTITY
         elsif @quantity.to_i <= Product::LIMITED_QUANTITY
           "Hurry up, we only have #{@quantity} left."
         end
