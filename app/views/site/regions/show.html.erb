@@ -18,20 +18,20 @@
   </div>
   <div class="two-colum-row clearfix">
     <div class="col-md-12">
-      <div class="green-heading-with-border"><%= @region.name %></div>
+      <div class="green-heading-with-border"><h1><%= @region.name %></h1></div>
       <div class="quotes"><q><%=@region.region_quote %></q></div>
       <div class="produer-detail-text"><%= @region.description.html_safe() || "Have a look at " %></div>
       <% unless @region.producers(:conditions=>['active = ?',true]).blank? %>
-        <div class="green-heading-2">Our producers from <%= @region.name %></div>
+        <h2 class="green-heading-2">Our producers from <%= @region.name %></h2>
       <% end %>
       <%- @region.producers.each do |p| -%>
         <div><%= link_to p.name,producer_path(p), :title=>p.name %></div>
       <%- end -%>
       <div class="prdoucer-products-wrapper">
         <% unless  @region.products.find(:all,:include => 'product_prices', :conditions=>['active = ? and product_prices.quantity > ?',true,0]).blank? %>
-          <div class="producer-products-heading">
+          <h2 class="producer-products-heading">
             Produce from the region <%= @region.name %>
-          </div>
+          </h2>
         <% end %>
         <div class="producer-products-row clearfix">
           <%- @region.products.find(:all,:include => 'product_prices', :conditions=>['active = ? and product_prices.quantity > ?',true,0]).each do |product| %>

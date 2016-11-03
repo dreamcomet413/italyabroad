@@ -55,10 +55,10 @@
         <div class="bottom-50">
           <%= @about.description.html_safe() rescue 'The wine and grape details ...' %> 
         </div>
-        <div class="green-heading-2">Grape list, click for information</div>
+        <div class="green-heading-2"><h1>Grape list, click for information</h1></div>
         <div class="row clearfix grape-list">
           <div class="col-md-3 col-xs-6">
-            <div class="green-heading">A-H</div>
+            <h2 class="green-heading">A-H</h2>
             <%- for grape in @grapes_all -%>
               <% if grape.name.upcase =~ /^[A-H]/  %>
                 <div>
@@ -68,7 +68,7 @@
             <%- end -%>
           </div>
           <div class="col-md-3 col-xs-6">
-            <div class="green-heading">I-P</div>
+            <h2 class="green-heading">I-P</h2>
             <%- for grape in @grapes_all -%>
               <%- if grape.name.upcase =~ /^[I-P]/ -%>
                 <div><%= link_to(grape.name, grape_path(grape), :title => grape.name) %></div>
@@ -76,7 +76,7 @@
             <%- end -%>
           </div>
           <div class="col-md-3 col-xs-6">
-            <div class="green-heading">Q-Z</div>
+            <h2 class="green-heading">Q-Z</h2>
             <%- for grape in @grapes_all -%>
               <% if grape.name.upcase =~ /^[Q-Z]/ %>
                 <div><%= link_to grape.name, grape_path(grape), :title=>grape.name  %></div>

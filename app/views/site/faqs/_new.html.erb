@@ -2,7 +2,7 @@
 <% @title = "Type your question" %>
 <%#- @breadcrumbs = "Home &raquo; #{link_to "Faqs", faqs_path} &raquo; #{@title}" -%>
 <div class="inner_content posts">
-  <div class="green-heading-with-border"><%= @title %></div>
+  <h2 class="green-heading-with-border"><%= @title %></h2>
   <div class="row clearfix">
     <div class="col-md-5 ">
       <%= form_for :faq, :url => faqs_path  do %>

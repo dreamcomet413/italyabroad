@@ -3,7 +3,7 @@
 <% @class = "no-padding" %>
 	<%= render :partial => 'site/shared/box_login' %>
 <div class="full-width bottom-50">
-	<div class="green-heading-with-border">My favourite wines</div>	
+	<div class="green-heading-with-border"><h1>My favourite wines</h1></div>	
 	<% if @wine_lists.size == 0 %>
 		<div class="">
 			You haven’t added any wine yet to your wine list, why not let our other members know your favourite wines?
@@ -21,8 +21,8 @@
 			                </div>
 			            </div>
 			            <div class="col-md-8">
-			                <div class="hamper-heading">
-			                	<%= link_to product.name,nested_products_uri(product), :title=>product.name %></div>
+			                <h2 class="hamper-heading">
+			                	<%= link_to product.name,nested_products_uri(product), :title=>product.name %></h2>
 			                <div class="hamper-text">
 			                    <%= product.description_short.html_safe() %>
 			                </div>

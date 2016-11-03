@@ -8,7 +8,7 @@
   </div>
   <div class="two-colum-row clearfix">
     <div class="col-md-12">
-      <div class="green-heading-with-border"><%= @recipe.name %></div>
+      <div class="green-heading-with-border"><h1><%= @recipe.name %></h1></div>
       <div class="row clearfix ingredients">
         <div class="col-xs-4 center-align">
           <% if !@recipe.image_1.blank? %>
@@ -24,13 +24,13 @@
         </div>
       </div>
       <% unless @recipe.region.nil? %>
-        <div class="green-heading-2">Region :</div>  
+        <h2 class="green-heading-2">Region :</h2>  
         <div class="bottom-50">
           <%= link_to @recipe.region.name, "/regions/#{@recipe.region.name.parameterize}", :title=>@recipe.region.name  %>
         </div>
       <%end%>
       <% if @recipe.correlations.size > 0 %>
-        <div class="green-heading-2">Wine pairing suggestions</div>
+        <h2 class="green-heading-2">Wine pairing suggestions</h2>
         <div class="prdoucer-products-wrapper">
           <div class="producer-products-row clearfix">
             <%- @recipe.correlations.where("").paginate(:page => params[:page], :per_page => 4).each do |product| -%>
@@ -49,23 +49,23 @@
       <% end %>
       <%if @recipe.description != '' %>
         <div class="detail-recipe">
-          <div class="green-heading-2">Description</div>
+          <h2 class="green-heading-2">Description</h2>
           <div class="bottom-50"><%=@recipe.description%></div>
         </div>
       <%end%>
-      <div class="green-heading-2">Preparation</div>
+      <h2 class="green-heading-2">Preparation</h2>
       <div class="bottom-50">
         <%= @recipe.preparation_cleared.html_safe() %> 
       </div>
       <%- if logged_in? -%>
-        <div class="green-heading-2">Leave your review <%= link_to '(Add a comment)',"#",:onclick=>"document.getElementById('recipe_comments_add').style.display='block';return false;", :title=>"Add a Comment" %></div>
+        <h2 class="green-heading-2">Leave your review <%= link_to '(Add a comment)',"#",:onclick=>"document.getElementById('recipe_comments_add').style.display='block';return false;", :title=>"Add a Comment" %></h2>
         <div id="recipe_comments_add" style="display:none;">
           <div class="latest-review-box bottom-50">
             <%= render(:partial => 'site/reviews/new', :locals => {:create_url => reviews_path(@recipe, :return_to => recipe_path(@recipe)),:recipe_id => @recipe.id}) %>
           </div>
         </div>
       <%- else -%>
-        <div class="green-heading-2">Add a comment</div>
+        <h2 class="green-heading-2">Add a comment</h2>
         <div class="bottom-50">
           <p>Comment with your account</p>
           <div><%= link_to("Login", login_path, :title=>"Login") %> || <%= link_to("Register", login_path, :title=>"Register") %></div>

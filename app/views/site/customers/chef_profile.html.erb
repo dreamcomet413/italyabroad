@@ -5,7 +5,7 @@
 <% @class = "no-padding" %>
 <h4 class="account-title"></h4>
 <div class="green-heading-with-border">
-  <%= @title %>&nbsp; <span class="chef-icon"><%= image_tag 'chef_icon.png', :title=>"Chef", :alt=>"chef" if @user.type_id == 4 %> is a chef</span>
+  <h1><%= @title %></h1>&nbsp; <span class="chef-icon"><%= image_tag 'chef_icon.png', :title=>"Chef", :alt=>"chef" if @user.type_id == 4 %> is a chef</span>
 </div>
 <div class="full-width">
   <div class="section-box">
@@ -132,12 +132,12 @@
     </div>
   </div>
   <div class="section-box">
-    <div class="green-heading-with-border">Biography</div>
+    <h2 class="green-heading-with-border">Biography</h2>
     <div class="section-des"><%= @user.chef_bio ? @user.chef_bio : 'Not Added yet' %></div>
   </div>
   <% if !@user.recipes.blank? %>
     <div class="section-box">
-      <div class="green-heading-with-border">Recipes by <%= @user.name %></div>
+      <h2 class="green-heading-with-border">Recipes by <%= @user.name %></h2>
       <div class="section-des">
         <ol>
           <% @recipes = Recipe.find(:all,:conditions=>['user_id = ?',@user.id]).each do |recipe| %>
@@ -150,7 +150,7 @@
   <!-- messages -->
   <% if  @my_profile %>
     <div class="section-box">
-      <div class="green-heading-with-border"><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> Messages</div>
+      <h2 class="green-heading-with-border"><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> Messages</h2>
       <% @messages = @user.messages.all(:order=>' id desc',:limit => 5)
       unless @messages.blank?%>
         <div class="section-des">
@@ -174,9 +174,9 @@
   <% if logged_in? %>
     <% unless @my_profile %>
       <div class="section-box">
-        <div class="green-heading-with-border">
+        <h2 class="green-heading-with-border">
           <%= "#{@my_profile ? "My" : @user.name+"'s"}" %> wall - write a Message:
-        </div>
+        </h2>
         <div class="section-form">
           <%= form_tag 'send_message' do |f| %>
             <div class="row form-row clearfix">
@@ -199,7 +199,7 @@
   <!-- end Messages-->
   <!-- Start Comments-->
   <div class="section-box">
-    <div class="green-heading-with-border"><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> Comments</div>
+    <h2 class="green-heading-with-border"><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> Comments</h2>
     <div class="section-des">
       <% if @user.comments.count == 0 %>
         No comments found
@@ -217,7 +217,7 @@
   </div><!-- End Comments-->
   <!-- Start Reviews-->
   <div class="section-box">
-    <div class="green-heading-with-border"><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> Latest Reviews</div>
+    <h2 class="green-heading-with-border"><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> Latest Reviews</h2>
     <div class="section-des">
       <% if @user.reviews.count == 0 %>
         Reviews not found
@@ -236,7 +236,7 @@
   <!-- End Reviews-->
   <!-- start wine list-->
   <div class="section-box">
-    <div class="green-heading-with-border"><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> Winelist</div>
+    <h2 class="green-heading-with-border"><%= "#{@my_profile ? "My" : @user.name+"'s"}" %> Winelist</h2>
     <div class="section-des">
       <% if @user.wine_lists.count == 0 %>
         No list found
@@ -255,7 +255,7 @@
   <!-- end wine list-->
   <!-- start followers -->
   <div class="section-box-2">
-    <div class="green-heading-with-border">Members I am following:</div>
+    <h2 class="green-heading-with-border">Members I am following:</h2>
     <div class="section-des">
       <% @followers = Follower.find(:all,:conditions=>['follower_id = ?',params[:id]],:limit=>10)%>
       <% if @followers.size == 0 %>

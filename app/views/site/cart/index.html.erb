@@ -2,7 +2,7 @@
 <% cart_total = 0 %>
 <% #debugger %>
 <%- @class = "no-padding"; @breadcrumbs = "#{link_to "Home", root_url, :title=>"Home"} &raquo; Checkout &raquo; Review Order" -%>
-<div class="green-heading-with-border">Your Cart</div>
+<div class="green-heading-with-border"><h1>Your Cart</h1></div>
 <div class="full-width">
   <% if @cart.items.size > 0 %>
     <div class="bottom-50"><%= show_messages(flash[:notice]||@cart.show_errors) %></div>
@@ -175,7 +175,7 @@
   <!-- other productts-->
   <% if @cart.items.length !=0 %>
     <div class="related-prod-box bottom-50">
-      <div class="green-heading-2">Other products you may be interested in</div>
+      <h2 class="green-heading-2">Other products you may be interested in</h2>
       <%- products = @cart.related_products.sample(6) #Product.find(:all, :limit => 5, :conditions=>['active = true'],:order => "RAND()") -%>
       <div class="row clearfix center-align">
         <%- for product in products -%>

@@ -10,20 +10,20 @@
         case category_name
           when "Wine"
             # image_tag("topSellingWine.png")
-            content_tag(:div, "Most Popular", class: ["green-heading-with-border"])
+            content_tag(:h2, "Most Popular", class: ["green-heading-with-border"])
           when "Food"
             #image_tag("topSellingFood.png")
-            content_tag(:div, "Most Popular", class: ["green-heading-with-border"])
+            content_tag(:h2, "Most Popular", class: ["green-heading-with-border"])
           when "Hampers"
             # image_tag("topSellingHampers.png")
             #image_tag("topSellingWine.png")
-            content_tag(:div, "Most Popular", class: ["green-heading-with-border"])
+            content_tag(:h2, "Most Popular", class: ["green-heading-with-border"])
           when "Wine Tours"
           when "Other Drinks"
             #image_tag("most_popular_other_drinks.png")
-            content_tag(:div, "Most Popular", class: ["green-heading-with-border"])
+            content_tag(:h2, "Most Popular", class: ["green-heading-with-border"])
           else
-            content_tag(:div, "Our Recommendations", class: ["green-heading-with-border"])
+            content_tag(:h2, "Our Recommendations", class: ["green-heading-with-border"])
             #"Andrea recommends"
         end
     %>
@@ -48,20 +48,20 @@
       case @category.name
         when "Wine"
           #image_tag("andreasWine.png")
-          content_tag(:div, "Our Recommendations", class: ["green-heading-with-border"])
+          content_tag(:h2, "Our Recommendations", class: ["green-heading-with-border"])
         when "Food"
           #image_tag("deliChoise.png")
-          content_tag(:div, "Our Recommendations", class: ["green-heading-with-border"])
+          content_tag(:h2, "Our Recommendations", class: ["green-heading-with-border"])
         when "Hampers"
           #image_tag("hamperChoice.png")
-          content_tag(:div, "Our Recommendations", class: ["green-heading-with-border"])
+          content_tag(:h2, "Our Recommendations", class: ["green-heading-with-border"])
         when "Wine Tours"
         when "Other Drinks"
           #image_tag("recommendations_other_drinks.png")
-          content_tag(:div, "Our Recommendations", class: ["green-heading-with-border"])
+          content_tag(:h2, "Our Recommendations", class: ["green-heading-with-border"])
         else
           #"Andrea recommends"
-          content_tag(:div, "Our Recommendations", class: ["green-heading-with-border"])
+          content_tag(:h2, "Our Recommendations", class: ["green-heading-with-border"])
       end
     %>
     <div class="product-list bottom-30">

@@ -17,12 +17,12 @@
             <div class="green-heading-with-border"><%= @about.title if @about %></div>
           <% end %>
         <% end %>
-        <div class="green-heading-with-border">Italy and its regions</div>
+        <div class="green-heading-with-border"><h1>Italy and its regions</h1></div>
         <div class="bottom-50"><%= @about.description.html_safe() if @about %></div>
-        <div class="green-heading-2">Regions list, click for information</div>
+        <h2 class="green-heading-2">Regions list, click for information</h2>
         <div class="row clearfix grape-list">
           <div class="col-md-3 col-xs-6">
-            <div class="green-heading">A-G</div>
+            <h2 class="green-heading">A-G</h2>
             <%- for region in @regions_all  -%>
               <% if region.name.upcase =~ /^[A-G]/ %>
                 <div><%= link_to region.name, region_path(region), :title=>region.name %></div>
@@ -30,7 +30,7 @@
             <%- end -%>
           </div>
           <div class="col-md-3 col-xs-6">
-            <div class="green-heading">H-L</div>
+            <h2 class="green-heading">H-L</h2>
             <%- for region in @regions_all -%>
               <% if region.name.upcase =~ /^[H-L]/ %>
                 <div><%= link_to region.name, region_path(region), :title=>region.name %></div>
@@ -38,7 +38,7 @@
             <%- end -%>
           </div>
           <div class="col-md-3 col-xs-6">
-            <div class="green-heading">M-Z</div>
+            <h2 class="green-heading">M-Z</h2>
             <%- for region in @regions_all -%>
               <% if region.name.upcase =~ /^[M-Z]/ %>
                 <div>

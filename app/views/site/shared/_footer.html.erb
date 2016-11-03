@@ -1,6 +1,6 @@
 <footer>
     <div class="footer-col1">
-      <div class="footer-heading"><%= link_to"About Us","/about-us", :title=>"About Us" %></div>     	
+      <h3 class="footer-heading"><%= link_to"About Us","/about-us", :title=>"About Us" %></h3>     	
       	<div class="footer-link"><%= link_to "Our manifesto", our_principles_path, :title=>"Our Manifesto" %></div>
         <div class="footer-link"><%= link_to "Who We Are", about_us_path, :title=>"Who we are" %></div>        
         <div class="footer-link"><%= link_to "Meet Us", meet_us_path, :title=>"Meet Us" %></div>
@@ -10,7 +10,7 @@
         <div class="footer-link"><%= link_to "Suppliers", "/suppliers", :title=>"Supplier" %></div>
     </div>
     <div class="footer-col2">
-        <div class="footer-heading"><%= link_to "Wine","/wine", :title=>"Wine" %></div>
+        <h3 class="footer-heading"><%= link_to "Wine","/wine", :title=>"Wine" %></h3>
         <%- parent_category = Category.find('wine') -%>
         <%- if !parent_category.nil? -%>
             <%- parent_category.children[0..5].each do |category| -%>
@@ -23,7 +23,7 @@
         <div class="footer-link"><%= link_to("more", "/wine", :style => "color:#9b0707;", :title=>"Wine") %></div>
     </div>
     <div class="footer-col3">   
-        <div class="footer-heading"><%= link_to "Other Drinks","/other-drinks", :title=>"Other Dirnks" %></div>
+        <h3 class="footer-heading"><%= link_to "Other Drinks","/other-drinks", :title=>"Other Dirnks" %></h3>
         <%- parent_category = Category.find_by_name('Other Drinks') -%>
             <%- if !parent_category.nil? -%>
                 <%- parent_category.children[0..5].each do |category| -%>
@@ -36,7 +36,7 @@
         <div class="footer-link"><%= link_to("more", "/other-drinks", :style => "color:#9b0707;", :title=>"More") %></div>
     </div>
     <div class="footer-col4">
-        <div class="footer-heading"><%= link_to"Food","/food", :title=>"Food" %></div>
+        <h3 class="footer-heading"><%= link_to"Food","/food", :title=>"Food" %></h3>
         <%- parent_category = Category.find('food') -%>
         <%- if !parent_category.nil? -%>
             <% i = 0 %>
@@ -53,7 +53,7 @@
         <div class="footer-link"><%= link_to("more", "/food", :style => "color:#9b0707;", :title=>"More") %></div>
     </div>
     <div class="footer-col5">
-        <div class="footer-heading"><%= link_to"Hampers","/hampers", :title=>"Hapers" %></div>
+        <h3 class="footer-heading"><%= link_to"Hampers","/hampers", :title=>"Hapers" %></h3>
         <%- parent_category = Category.find('hampers') -%>
         <%- if !parent_category.nil? -%>
             <%- parent_category.children.each do |category| -%>
@@ -88,7 +88,7 @@
         <%#- end -%>-->
     </div>
     <div class="footer-col6">
-        <div class="footer-heading"><%= link_to"Community","/wine-community", :title=>"Community" %></div>
+        <h3 class="footer-heading"><%= link_to"Community","/wine-community", :title=>"Community" %></h3>
         <div class="footer-link"><%= link_to "Andrea's Blog", blog_index_path, :title=>"Andrea's Blog" %></div>
         <!--<li><%#= link_to "Forum", forums_path %></li>-->
         <!--<li><%#= link_to "Latest Entries", posts_path %></li>-->
@@ -101,7 +101,7 @@
         <div class="footer-link"><%= link_to "Testimonials", testimonial_path, :title=>"Testimonials" %></div>
     </div>
     <div class="footer-col7 ">
-        <div class="footer-heading"><%= link_to"Help","/terms-and-conditions", :title=>"Help" %></div>
+        <h3 class="footer-heading"><%= link_to"Help","/terms-and-conditions", :title=>"Help" %></h3>
         <div class="footer-link"><%= link_to "Terms & Conditions", terms_and_conditions_path, :title=>"Terms & Conditions" %></div>
         <div class="footer-link"><%= link_to "Privacy Policy ", privacy_policy_path, :title=>"Privacy Policy" %></div>
         <div class="footer-link"><%= link_to "Delivery Service", delivery_services_path, :title=>"Delivery Service" %></div>

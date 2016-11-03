@@ -27,7 +27,7 @@
   <div class="full-width clearfix">
     <div class="col-md-12">
       <div class="green-heading-with-border">
-        Your questions answered <span><a href="#askQuestion">(ask your question)</a></span>
+        <h1>Your questions answered</h1> <span><a href="#askQuestion">(ask your question)</a></span>
       </div>
       <div class="bottom-50">
         <p>If you have questions about any of our products, ask our experts  .</p>
@@ -76,7 +76,7 @@
           <%= render :partial =>'new'%>
         <% else %>
           <div>
-            <div class="green-heading-with-border">Please login or register to ask questions.</div>
+            <h2 class="green-heading-with-border">Please login or register to ask questions.</h2>
             <div class="login-reg" ><%= link_to("Login", login_path, :title=>"Login") %> ||
               <%= link_to("Register", login_path, :title=>"Register") %> </div>
           </div>

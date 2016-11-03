@@ -57,14 +57,14 @@
           <div class="green-heading-with-border"><%= @about.title %></div>
         <% end %>
       <% end %>
-      <div class="green-heading-with-border">The people behind our products</div>
+      <div class="green-heading-with-border"><h1>The people behind our products</h1></div>
       <div class="bottom-50">
         <%=  @about.description.html_safe() if @about %>
       </div>
-      <div class="green-heading-2">Producers list, click for information</div>
+      <h2 class="green-heading-2">Producers list, click for information</h2>
       <div class="row clearfix grape-list">
         <div class="col-md-3 col-xs-6">
-          <div class="green-heading">A-G</div>
+          <h2 class="green-heading">A-G</h2>
           <%- for producer in @producers_all -%>
             <%- if producer.name.upcase =~ /^[A-G]/ -%>
               <div><%= link_to(producer.name, producer_path(producer.id), :title=>producer.name)  %></div>
@@ -72,7 +72,7 @@
           <%- end -%>
         </div>
         <div class="col-md-3 col-xs-6">
-          <div class="green-heading">H-L</div>
+          <h2 class="green-heading">H-L</h2>
           <%- for producer in @producers_all -%>
             <%- if producer.name.upcase  =~ /^[H-L]/ -%>
               <div><%= link_to(producer.name, producer_path(producer.id), :title=>producer.name)  %></div>
@@ -80,7 +80,7 @@
           <%- end -%>
         </div>
         <div class="col-md-3 col-xs-6">
-          <div class="green-heading">M-Z</div>
+          <h2 class="green-heading">M-Z</h2>
           <%- for producer in @producers_all -%>
             <%- if producer.name.upcase  =~ /^[M-Z]/ -%>
               <div><%= link_to(producer.name, producer_path(producer.id), :title=>producer.name)  %></div>

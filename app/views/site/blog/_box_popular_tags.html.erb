@@ -12,7 +12,7 @@
     vmin = tag.popularity.to_f if (tag.popularity.to_f < vmin)
     vmax = tag.popularity.to_f if (tag.popularity.to_f > vmax)
   end  %>
-  <div class="sidebar-box-heading">Tag Cloud</div>
+  <h2 class="sidebar-box-heading">Tag Cloud</h2>
   <div>
     <% @popular_tags.each do |result| %>
     <%result.popularity%>

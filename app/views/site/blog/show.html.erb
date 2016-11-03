@@ -45,7 +45,7 @@
       <div class="blog-listing-wrapper">
         <div class="blog-list">
           <div class="blog-list-heading">
-            <%= truncate @post.name, :length => 60 %> 
+            <h1><%= truncate @post.name, :length => 60 %></h1> 
           </div>
           <div class="blog-list-date clearfix">
             <span class="list-date"><b><%=@post.created_at.to_date.to_s(:long)%></b></span> <span class="list-tags"><b>Tags: </b>
@@ -64,9 +64,9 @@
           </div>
           <% if logged_in? %>
             <div class="review-wrapper_1">
-              <div class="green-heading-2">
+              <h2 class="green-heading-2">
                 Latest review <%= link_to 'Add Review',"#",:onclick=>"document.getElementById('recipe_comments_add').style.display='block';return false;", :title=>"Add Review" %>
-              </div>
+              </h2>
               <div class="write-review-wrapper" id="recipe_comments_add" style="display:none;">
                 <%= form_tag comment_blog_path(:id => @post.id) do %>
                   <% unless flash[:blog_notice].blank? %>

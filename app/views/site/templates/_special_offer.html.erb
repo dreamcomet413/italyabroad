@@ -19,7 +19,7 @@
       <% if @products && @products.size > 0 %>
         <div class="prdouct-list-wrapper top-12">
           <div class="green-heading-with-border">
-            <%= @category.name.html_safe() %>
+            <h1><%= @category.name.html_safe() %></h1>
             <div class="sort-by-box clearfix">
             <div class="sort-select">
               <%= form_tag nested_categories_path(params[:parent], params[:category]), :method => :get, :id => "sort_by_form" do -%>
@@ -59,7 +59,9 @@
       <% if @products && @products.size > 0 %>
       <% else %>
         <div class="prdouct-list-wrapper hampers-wrapper-2">
-          <div class="green-heading-with-border top-18">No products found</div>
+          <div class="green-heading-with-border top-18">
+            <h1>No products found</h1>
+          </div>
           <div style="">Did you not find what you wanted? <%= mail_to "info@italyabroad.com", "Get in touch" %></div>
         </div>
       <% end %>

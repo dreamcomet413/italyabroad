@@ -65,7 +65,7 @@
             <div id="header"><%= select_tag :products, options_from_collection_for_select(products, "id", "name", :selected => @product.id), :nested_url => nested_products_uri(@product) %></div>
           <% else %>
             <div class="green-heading-24">
-            <%= @product.name %> <%= "(" + @product.size + ")" unless @product.size.blank? %></div>
+            <h1><%= @product.name %> <%= "(" + @product.size + ")" unless @product.size.blank? %></h1></div>
           <% end %>
           <div class="product-rating-row clearfix">
             <div class="star-rating">
@@ -298,12 +298,12 @@
       </div>
       <div class="clearfix">
         <div class="col-md-12">
-          <div class="green-heading-2">Why we love it</div>
+          <h2 class="green-heading-2">Why we love it</h2>
           <div class="product-detail-text">
             <%= (@product.description.html_safe) rescue "Product has no description" %>
           </div>
           <% if @product.root_category != 'Hampers' and !@product.sub_categories.include?('Mixed case') %>
-            <div class="green-heading-2">The artisan who made it</div>
+            <h2 class="green-heading-2">The artisan who made it</h2>
             <% if @product.producer
               if @product.producer.active %>
                 <div class="product-detail-text">
@@ -322,15 +322,15 @@
           <% end %> <!-- end Producers-->
           <div class="review-wrapper_1" id="reviews" name="reviews">
             <% unless logged_in? %>
-              <div class="green-heading-2">
+              <h2 class="green-heading-2">
                 Latest Reviews <%= link_to "(Add Review)", login_path, :title=>"Add Review" %>
-              </div>
+              </h2>
               <div class="latest-review-box"><%= render :partial => 'site/shared/review_view_short', :locals => {:reviewer => @product} %></div>
             <% end %>
             <%- if logged_in? -%>
-              <div class="green-heading-2">
+              <h2 class="green-heading-2">
                 Latest Review <%= link_to '(Add Review)', "#",  :onclick => "document.getElementById('add_review').style.display='block';document.getElementById('hide_this').style.display='none';document.getElementById('no_review').style.display='none';return false;", :title=>"Add Review" %>
-              </div>
+              </h2>
               <div class="latest-review-box" style="margin-bottom: 12px;">
                 <div id="add_review" style="display:none;">
                   <%= render(:partial => 'site/reviews/new', :locals => {:create_url => reviews_path(@product, :return_to => nested_products_uri(@product)), :product_id => @product.id}) %>

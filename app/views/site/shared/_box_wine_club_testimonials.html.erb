@@ -1,6 +1,6 @@
 <%- @testimonials = Testimonial.find(:all,:conditions=>['UPPER(page_to_display) = ?','WINE CLUB'],:order=>'id DESC',:limit=>2) -%>
 <div class="left-small-box hide-on-mobile">
-  <div class="small-swiper-heading">Wine Club Testimonials</div>
+  <h2 class="small-swiper-heading">Wine Club Testimonials</h2>
   <div  class="review-box">
       <div class="review-tex">
         <!-- Swiper -->
