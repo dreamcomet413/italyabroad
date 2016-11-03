@@ -19,7 +19,7 @@
       <% if @products && @products.size > 0 %>
         <div class="prdouct-list-wrapper top-12">
           <div class="green-heading-with-border" style="text-transform: capitalize;">
-            <%= params[:id] ? params[:id] : params[:parent_type] %>
+            <h1><%= params[:id] ? params[:id] : params[:parent_type] %></h1>
             <div class="sort-by-box clearfix">
               <div class="sort-select">
                 <%= form_tag '/search' , :method => :get, :id => "sort_by_form" do -%>

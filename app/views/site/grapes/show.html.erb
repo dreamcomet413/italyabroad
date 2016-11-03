@@ -14,7 +14,7 @@
   </div>
   <div class="two-colum-row clearfix">
     <div class="col-md-12">
-      <div class="green-heading-with-border" id="header"><%= @grape.name %></div>
+      <div class="green-heading-with-border" id="header"><h1><%= @grape.name %></h1></div>
       <div class="produer-detail-text clearfix">
         <% if @grape && @grape.image %>
           <div class="col-xs-3 center-align">
@@ -26,14 +26,14 @@
           </div>
         <% end %>
         <div class="col-xs-9">
-          <div class="green-heading"><%=@grape.grape_quote %></div>
+          <h2 class="green-heading"><%=@grape.grape_quote %></h2>
           <div><%= @grape.description.try(:html_safe) || "No Description" %></div>
         </div>
       </div>
       <%- if @grape.producers.find(:all,:conditions=>['active = ?',true]).size >0 -%>    
-        <div class="green-heading-2">
+        <h2 class="green-heading-2">
           Producers that grow this grape
-        </div>
+        </h2>
       <%-end-%>
       <%- @grape.producers.find(:all,:conditions=>['active = ?',true]).each do |producer| -%>
         <div class="producer-link"><%= link_to producer.name, producer_path(producer), :title=>producer.name %></div>
@@ -44,9 +44,9 @@
             <% if @grape_products.size == 0 %>
               <% @grape_products = Product.find(:all, :include => [:categories] ,:conditions => ['upper(categories.name) LIKE ?  AND products.active = ? AND quantity > ? ','WINE',true,0],:order=>'RAND()',:limit=>5) %>
 
-              <div class="producer-products-heading">No Wines made with this grape, perhaps you might like one of the following wines</div>
+              <h2 class="producer-products-heading">No Wines made with this grape, perhaps you might like one of the following wines</h2>
             <% else %>
-              <div class="producer-products-heading">Wines made with this grape</div>
+              <h2 class="producer-products-heading">Wines made with this grape</h2>
             <% end %>
           <div class="producer-products-row clearfix">
             <%- @grape_products.each do |product| -%>

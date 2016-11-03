@@ -1,17 +1,17 @@
 <% @title = "Italyabroad.com sitemap"; @class = "sitemap no-padding"; @breadcrumbs = "#{link_to("Home", root_url, :title=>"Home")} &raquo; Sitemap" %>
 
-<div id="header" class="green-heading-with-border">Sitemap</div>
+<div id="header" class="green-heading-with-border"><h1>Sitemap</h1></div>
 <div class="full-width">
   <div class="">
     Please use our sitemap to help guide your way around italyabroad.com. If you have any trouble finding a particular product, please don't hesitate to <%= link_to 'Contact us',contact_us_path %>
   </div>
   <div class="section-box">
-    <div class="green-heading-with-border">
+    <h2 class="green-heading-with-border">
       Useful pages and information
-    </div>
+    </h2>
     <div class="row clearfix site-map-box">
       <div class="col-xs-4">
-        <div class="links-heading">About Us</div>  
+        <h2 class="links-heading">About Us</h2>  
         <ul>
           <li><%= link_to "Our manifesto", our_principles_path, :title=>"Our Manifesto" %></li>
           <li><%= link_to "Who We Are", about_us_path, :title=>"Who we are" %></li>
@@ -23,7 +23,7 @@
         </ul>
       </div>
       <div class="col-xs-4">
-        <div class="links-heading">Community</div>
+        <h2 class="links-heading">Community</h2>
         <ul>
           <li><%= link_to "Andrea's Blog", blog_index_path, :title=>"Andrea's Blog" %></li>
           <li><%= link_to "Community", wine_community_path, :title=>"Community" %></li>
@@ -34,7 +34,7 @@
         </ul>
       </div>
       <div class="col-xs-4">
-        <div class="links-heading">Help</div>
+        <h2 class="links-heading">Help</h2>
         <ul>
           <li><%= link_to "Terms & Conditions", terms_and_conditions_path, :title=>"Terms & Conditions" %></li>
           <li><%= link_to "Privacy Policy ", privacy_policy_path, :title=>"Privacy Policy" %></li>
@@ -50,13 +50,13 @@
     </div>
   </div>
   <div class="section-box-2">
-    <div class="green-heading-with-border">
+    <h2 class="green-heading-with-border">
       Browse by categories
-    </div>
+    </h2>
     <div class="row clearfix site-map-box">
       <% for category in Category.find(:all, :conditions => ["parent_id is ? AND show_in_menu = ?", nil, true] ) do %>
         <div class="col-xs-4">
-          <div class="links-heading"><%= link_to category.name, "/#{category.friendly_identifier == "events" ? "wine-events" : category.friendly_identifier}", :title=>category.name %></div>
+          <h2 class="links-heading"><%= link_to category.name, "/#{category.friendly_identifier == "events" ? "wine-events" : category.friendly_identifier}", :title=>category.name %></h2>
           <%- unless category.children.blank? -%>
             <ul>
               <%- for child in category.children -%>

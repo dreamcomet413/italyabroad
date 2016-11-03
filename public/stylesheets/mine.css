@@ -240,6 +240,14 @@ img{
 	font-size: 26px;
 	line-height: 26px; 
 }
+h2.small-box-heading{
+	font-family: JosefinSlab-SemiBold;
+	color: #485626;
+	font-size: 26px;
+	line-height: 26px; 
+	margin: 0px;
+	text-align: left;	
+}
 .small-box-heading a{
 	color: #485626;
 	text-decoration: none;
@@ -559,6 +567,14 @@ footer{
 	width: 135px;
 	min-height: 250px;
 }
+h3.footer-heading{
+	margin-top: 0px;
+}
+.breadcrumbs h1{
+	line-height: 18px;
+	margin: 0px;
+	font-size: 13px;
+}
 .footer-heading{
 	font-size: 14px;
 	font-family: OpenSans-Semibold;
@@ -637,6 +653,10 @@ footer{
 	color: #2e3e09;
 	margin-bottom: 10px;
 }
+h2.small-swiper-heading{
+	text-align: left;
+	margin: 0px 0px 10px 0px;
+}
 .latest-review{
 	font-family: JosefinSlab-Bold;
 	font-size: 22px;
@@ -666,6 +686,20 @@ footer{
 	color: #cb0d2b;
 	margin-bottom: 28px;
 }
+.red-heading h2{
+	font-size: 24px;
+	line-height: 24px;
+	margin: 0px;
+	text-align: left;
+	color: #cb0d2b;
+	font-family: JosefinSlab-Bold;
+}
+.red-heading h1{
+	font-size: 24px;
+	line-height: 24px;
+	padding: 0px;
+	margin: 0px;
+}
 .community-row{
 	margin-top: 30px;
 	margin-bottom: 30px; 
@@ -683,6 +717,14 @@ footer{
 	font-family: JosefinSlab-Bold;
 	color: #5c8018;
 	margin-bottom: 10px;
+}
+h2.green-heading{
+	font-size: 24px;
+	font-family: JosefinSlab-Bold;
+	color: #5c8018;
+	margin-bottom: 10px;
+	text-align: left;
+	margin-top: 0px;
 }
 .upcoming-event-wrapper .red-heading{
 	margin-bottom: 18px;
@@ -722,6 +764,20 @@ margin-right: 5px;}
 .share-row a{
 	margin-right: 5px;
 }
+h1{
+	line-height: 34px;
+}
+h2.green-heading-with-border{
+	text-align: left;
+	line-height: 34px;
+}
+.green-heading-with-border h1{
+	line-height: 24px;
+	font-size: 24px;
+	display: inline-block;
+	margin: 0px;
+	padding: 0px;
+}
 .green-heading-with-border, .terms-text h2{
 	margin: 15px 0px 28px;
 	color: #485626;
@@ -746,6 +802,21 @@ margin-right: 5px;}
 	padding-bottom: 5px;
 	margin-bottom: 12px;
 	border-bottom: solid 1px #ebebeb}
+h2.green-heading-2{
+	color:#485626;
+	font-size: 20px;
+	font-family: OpenSans-Semibold;
+	padding-bottom: 5px;
+	margin-bottom: 12px;
+	border-bottom: solid 1px #ebebeb;
+	text-align:left;
+	margin-top: 0px;}
+.green-heading-2 h1{
+	font-size: 20px;
+	line-height: 22px;
+	font-family: inherit;
+	margin: 0px;
+}
 .prdoucer-products-wrapper{
 	margin: 40px 0px;
 }
@@ -758,6 +829,14 @@ margin-right: 5px;}
 	color: #485626;
 	margin-bottom: 20px;
 	font-family: JosefinSlab-Bold;
+}
+h2.producer-products-heading{
+	font-size: 18px;
+	color: #485626;
+	margin-bottom: 20px;
+	font-family: JosefinSlab-Bold;
+	text-align: left;
+	margin-top: 0px;
 }
 .producer-products-row{	
 }
@@ -855,6 +934,15 @@ margin-right: 5px;}
 	line-height: 22px; 
 	margin-bottom: 12px;
 }
+h2.sidebar-box-heading{
+	font-family: OpenSans-Semibold;
+	color: #485626;
+	font-size: 20px;
+	line-height: 22px; 
+	margin-bottom: 12px;
+	text-align: left;
+	margin-top: 0px;	
+}
 .archives-wrapper .panel-heading{
 	font-family: OpenSans-Semibold;
 	font-size: 18px;
@@ -909,6 +997,21 @@ margin-right: 5px;}
 	/*margin-bottom: 15px;*/
 	color:#5c8018;
 	font-family: JosefinSlab-Bold;
+}
+.blog-list-heading h1{
+	font-size: 20px;
+	line-height: 22px;
+	padding: 0px;
+	margin: 0px;
+	font-family: JosefinSlab-Bold;	
+}
+h2.blog-list-heading{
+	font-size: 20px;
+	/*margin-bottom: 15px;*/
+	color:#5c8018;
+	font-family: JosefinSlab-Bold;
+	text-align: left;
+	margin-top: 0px;
 }
 .blog-list-heading a{
 	text-decoration: none;
@@ -1135,6 +1238,11 @@ header{
 }
 
 /* ==========Hampers==========================*/
+h2.green-heading-16{
+	text-align: left;
+	margin-top: 0px;
+	line-height: 22px;
+}
 .green-heading-16{
 	font-size: 16px;
 	color: #5c8018;
@@ -1158,6 +1266,13 @@ header{
 	color: #5c8018;
 	font-family: OpenSans-Semibold;
 	margin: 0px 0px 12px;
+}
+h2.hamper-heading{
+	font-size: 18px;
+	color: #5c8018;
+	font-family: OpenSans-Semibold;
+	margin: 0px 0px 12px;
+	text-align: left;
 }
 .hamper-heading a{
 	text-decoration: none;
@@ -1342,6 +1457,7 @@ header{
 	font-size: 16px;
 	font-family: OpenSans-Semibold;
 }
+
 .small-box-3{
 	/*border: solid 1px #dcdcdc;
 	padding: 10px 10px;*/
@@ -1586,6 +1702,20 @@ padding: 0px 3px 10px !important;
 	font-size: 24px;
 	color: #5c8018;	
 }
+.green-heading-24 h1{
+	font-size: 24px;
+	line-height: 26px;
+	margin: 0px;
+	padding: 0px;
+	font-family: JosefinSlab-Bold;
+}
+.green-heading-24 h2{
+	font-family: JosefinSlab-Bold;
+	font-size: 24px;
+	color: #5c8018;	
+	text-align: left;
+	margin: 0px;
+}
 .club-detail{
 	padding-bottom: 20px;
 }
@@ -1627,6 +1757,14 @@ padding: 0px 3px 10px !important;
 	font-family:JosefinSlab-Bold;
 	color:#5c8018;
 	padding-bottom: 30px;
+}
+h2.green-heading-18{
+	font-size: 18px;
+	font-family:JosefinSlab-Bold;
+	color:#5c8018;
+	padding-bottom: 30px;
+	text-align: left;
+	margin-top: 0px;
 }
 .two-colum-img span{
 	width: 45%;
@@ -1689,6 +1827,14 @@ padding: 0px 3px 10px !important;
 	font-size: 24px;
 	color: #5c8018;	
 	padding-bottom: 25px;
+}
+h2.green-heading-24-b{
+	font-size: 24px;
+	color: #5c8018;	
+	padding-bottom: 25px;
+	margin: 0px;
+	text-align: left;
+	font-family: JosefinSlab-Bold;
 }
 .or{
 	border-top:solid 1px #dcdcdc;
@@ -2054,6 +2200,12 @@ a.close-btn, .black-strip  a{
 	font-family: openSans-Bold;
 	color: #5c8018;
 }
+h2.section-heading{
+	text-align: left;
+	font-size: 18px;
+	margin: 0px;
+	font-family: openSans-Bold;
+}
 .section-des{
 	padding: 10px 0px 30px;
 }
@@ -2275,6 +2427,14 @@ a.close-btn, .black-strip  a{
 	margin-bottom: 10px;
 	font-family: JosefinSlab-Bold;
 	color: #5c8018;
+}
+h2.links-heading {
+	font-size: 18px;
+	margin-bottom: 10px;
+	font-family: JosefinSlab-Bold;
+	color: #5c8018;
+	text-align: left;
+	margin-top: 0px;
 }
 .links-heading a{
 	color: #5c8018; 
@@ -2670,6 +2830,14 @@ a.close-btn, .black-strip  a{
 	font-family: OpenSans-Bold;
 	margin-bottom: 20px;
 }
+h2.black-heading{
+	font-size: 18px;
+	font-family: OpenSans-Bold;
+	margin-bottom: 20px;
+	text-align: left;
+	margin: 0px;
+	color: #000;
+}
 .address-row .radio-btn input{
 	width: 15px;
 	height: 15px;
@@ -2737,6 +2905,14 @@ a.close-btn, .black-strip  a{
 	font-size: 24px;
 	color: #5c8018;
 	padding-bottom: 10px;
+}
+h2.search-heading{
+	font-family: JosefinSlab-Regular;
+	font-size: 24px;
+	color: #5c8018;
+	padding-bottom: 10px;
+	margin: 0px;
+	text-align: left;
 }
 .search-links{
 	font-size: 13px;

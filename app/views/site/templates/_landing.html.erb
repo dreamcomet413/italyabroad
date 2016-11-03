@@ -1,7 +1,7 @@
 <div class="col-md-9">
   <!-- Start Product list wrapper-->
   <div class="prdouct-list-wrapper hampers-wrapper-2">
-    <div class="green-heading-with-border">
+    <h1 class="green-heading-with-border">
       <%page =  request.url%>
       <%if page.include?('food')%>
         Food
@@ -12,7 +12,7 @@
       <%elsif page.include?('other') %>
         Other Drinks
       <%end%>
-    </div>
+    </h1>
     <% condition = "active" %>
     <% condition += " AND id IN (#{@category.all_products_ids.join(',')})" unless @category.all_products_ids.blank? %>
     <% products = Product.find(:all, :limit => 3, :conditions => condition) %>

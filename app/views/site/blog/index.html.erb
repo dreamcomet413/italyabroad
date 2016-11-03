@@ -40,14 +40,14 @@
         <div>
           <div class="blog-listing-wrapper" style="margin-bottom: 50px; margin-top: -5px">
           <% if @about %>
-            <div class="red-heading"> <%= @about.title  %> </div>
+            <div class="red-heading"><h1> <%= @about.title  %></h1> </div>
             <div><%= @about.description %></div>
           <% end %>
         </div>
           <% for post in @posts %>
             <% next unless post.friendly_identifier %>
             <div class="blog-list">
-              <div class="blog-list-heading"><%=link_to post.name , blog_path(post.friendly_identifier), :title=>post.name %></div>
+              <h2 class="blog-list-heading"><%=link_to post.name , blog_path(post.friendly_identifier), :title=>post.name %></h2>
               <div class="blog-list-date clearfix">
                 <span class="list-date"><b><%=post.created_at.to_date.to_s(:long)%></b></span> <span class="list-tags"><b>Tags: </b>
                   <%

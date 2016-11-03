@@ -23,7 +23,7 @@
 </div><!--div id="wineBanner"-->
 <div class="full-width">
   <div class="community-wrapper">
-    <div class="green-heading-with-border">Our Newest Members</div>
+    <div class="green-heading-with-border"><h1>Our Newest Members</h1></div>
     <!-- Start New Members Row-->
     <div class="new-member-row clearfix">
       <% users = User.find(:all, :order => "created_at DESC", :limit => 12 ) %>
@@ -39,7 +39,7 @@
         <%- grapes = Grape.find(:all, :limit => 1, :order => "RAND()") -%>
         <%- for grape in grapes -%>
           <div class="border-box">
-            <div class="green-heading">Grape Guide</div>
+            <h2 class="green-heading">Grape Guide</h2>
             <div class="box-image">
               <% if grape && grape.image %>
               <%= image_tag(image_url(:recipe, grape.image, :jpg),:alt=>grape.name, :title=>grape.name) if grape && grape.image %>
@@ -65,7 +65,7 @@
         <%- end -%>
         <div class="border-box">
           <%- producers = Producer.find(:all, :limit => 1,:conditions=>['active = ?',true] ,:order => "RAND()") %>
-          <div class="green-heading">Get to Know our producers</div>
+          <h2 class="green-heading">Get to Know our producers</h2>
             <%- for producer in producers -%>
               <div class="box-image">
                 <% if producer.image %>
@@ -94,7 +94,7 @@
       <div class="col-md-4">
         <div class="border-box">
           <div class="clearfix">
-            <div class="green-heading pull-left">Q&A</div>
+            <h2 class="green-heading pull-left">Q&A</h2>
             <div class="heading-link pull-left"><%= link_to '(Ask Our Experts)', faqs_path, :title=>"Ask Our Experts" %></div>
           </div>
           <% @faqs = Faq.find(:all, :limit => 6, :conditions=>['publish = true and answer != ""']) %>
@@ -111,7 +111,7 @@
         <%- regions = Region.find(:all,:conditions=>['active = ?',true], :limit => 1, :order => "RAND()") -%>
         <%- for region in regions -%>
           <div class="border-box">
-            <div class="green-heading">Get to Know Italy</div>
+            <h2 class="green-heading">Get to Know Italy</h2>
             <div class="box-image">
               <% if region && region.image %>
                 <%= image_tag(image_url(:recipe, region.image, :jpg), :alt=>region.name, :title=>region.name) if region && region.image %>
@@ -141,7 +141,7 @@
       <div class="col-md-4">
         <div class="border-box">
           <div class="clearfix">
-            <div class="green-heading pull-left">Latest Reviews</div>
+            <h2 class="green-heading pull-left">Latest Reviews</h2>
             <!-- <div class="heading-link pull-left"><%# link_to 'Added a new review', '#.' %></div> -->
           </div>
           <div class="border-box-swiper">
@@ -219,7 +219,7 @@
         </div>
         <div class="border-box">
           <% blog = Post.last %>
-          <div class="green-heading">Blog</div>
+          <h2 class="green-heading">Blog</h2>
           <% if !blog.nil? %>
           <div class="box-image">
             <%= image_tag(image_url('blog_banner', (blog.image_1 or blog.image_2 or blog.image_3), :jpg),:alt=>blog.name, :title=>blog.name) if blog.image_1 or blog.image_2 or blog.image_3 %>
@@ -238,7 +238,7 @@
     <% unless products.blank? -%>
       <div class="bottom-50">
         <div class="border-box p-20">
-          <div class="green-heading"><%= "Upcoming Events" %></div>
+          <h2 class="green-heading"><%= "Upcoming Events" %></h2>
           <div class="">
             <div class="row clearfix">
               <div class="col-xs-5"><img src="/images/event-image-01.png" alt="Event" title="Event"></div>

@@ -14,19 +14,19 @@
   </div>
   <div class="two-colum-row clearfix">
     <div class="col-md-12">
-      <div class="green-heading-with-border"><%= @title %></div>
+      <div class="green-heading-with-border"><h1><%= @title %></h1></div>
       <div class="produer-detail-text"><%= @producer.description.try(:html_safe) || "No Description" %></div>
       <% if @producer.grapes.count > 0 %>
-        <div class="green-heading-2">
+        <h2 class="green-heading-2">
           Grapes grown by  <%= @producer.name %>
-        </div>
+        </h2>
       <%- end -%>
       <%- @producer.grapes.each do |grape| -%>
         <div class="producer-link"><%= link_to grape.name, grape_path(grape), :title=>grape.name %></div>
       <%- end -%>
       <%- if @producer_products = @producer.products.find(:all, :include => 'product_prices', :conditions=>['active = ? and product_prices.quantity > ?',true,0]) %>    
         <div class="prdoucer-products-wrapper">
-          <div class="producer-products-heading"><%= @producer.producer_text %> </div>
+          <h2 class="producer-products-heading"><%= @producer.producer_text %> </h2>
           <div class="producer-products-row clearfix">
             <% @producer_products.each do |product| %>
               <div class="producer-products-col">

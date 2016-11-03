@@ -23,7 +23,7 @@
     </div>
     <div class="col-md-9">
       <div class="hampers-wrapper-2">
-        <div class="green-heading-with-border">About Italian food</div>
+        <div class="green-heading-with-border"><h1>About Italian food</h1></div>
         <div class="row clearfix recipe-top-box">
           <div class="col-xs-2 box-image"><%= image_tag("italian-food-image-01.png", :alt=>'About Italian Food', :title=>'About Italian Food') %></div>
           <div class="col-xs-10">
@@ -32,7 +32,7 @@
         </div>
         <!-- Start Latest added recipes-->
         <div class="latest-recipe-box">
-          <div class="green-heading-2">Latest Added Recipes</div>
+          <h2 class="green-heading-2">Latest Added Recipes</h2>
           <div class="row clearfix bottom-15">
             <%- Recipe.active.latest.paginate(:page => params[:page], :per_page => 3).each do |recipe| -%>
               <div class="col-md-4">
@@ -72,7 +72,7 @@
         </div><!-- End Latest added recipes-->
         <!-- Start Latest added recipes 2-->
         <div class="latest-recipe-box">
-          <div class="green-heading-2">Most Viewed Recipes</div>
+          <h2 class="green-heading-2">Most Viewed Recipes</h2>
           <div class="row clearfix bottom-15">
             <%   Recipe.most_viewed_recipes.paginate(:page => params[:page], :per_page => 3).each do |recipe| -%>
               <div class="col-md-4">

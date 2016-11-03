@@ -20,15 +20,15 @@
 <div class="block" id="box_wine_search">
   <%# if params[:category] == "wine" || ~ /search/ %>
   <% if params[:parent] == "other-drinks" or params[:parent_type] == 'other-drinks' or params[:category] == "other-drinks" %>
-     <div class="green-heading-16">Other Drink Search</div>
+     <h2 class="green-heading-16">Other Drink Search</h2>
   <% elsif params[:parent] == "foot" or params[:parent_type] == 'food' or params[:category] == 'food' %> 
-     <div class="green-heading-16">Deli Finder</div>
+     <h2 class="green-heading-16">Deli Finder</h2>
   <% elsif params[:parent]=="hampers" or params[:parent_type] == 'hampers' or params[:category]=='hampers'%>
-     <div class="green-heading-16">Gift Finder</div>
+     <h2 class="green-heading-16">Gift Finder</h2>
   <% else %>
-    <div class="green-heading-16">
+    <h2 class="green-heading-16">
       <%= (@product.present? && @product.root_category.present?) ? @product.root_category : "Wine" -%> Search
-    </div>
+    </h2>
   <% end %>
   <%= form_tag search_url, :class=>'search_form'   ,:method => :get do %>
     <%= hidden_field_tag :id,@category.name.downcase if !@category.nil? %>

@@ -43,7 +43,7 @@
     <div class="col-md-9">
       <div class="red-heading">
         <% unless @category.page_heading.blank? %>
-          <%= @category.page_heading %>
+          <h1><%= @category.page_heading %></h1>
         <% else %>
           <%= @category.name %>
         <% end %>
@@ -64,7 +64,9 @@
       <div class="wine-club-option-wrapper">
         <% products = @category.products.where(["active = ?", true]).order("name ASC ").paginate(:page => params[:page], :per_page => 3) %>
         <%- unless products.blank? -%>
-          <div class="red-heading">Wine Club Options</div>
+          <div class="red-heading">
+            <h2>Wine Club Options</h2>
+          </div>
           <%- products.each do |product| -%>
             <div class="wine-club-box">
               <div class="row clearfix">
@@ -73,7 +75,7 @@
                   <div class="box-image"><img src=" <%= image ? image.image_filename.url : '/images/club-img-01.png' %>" class="club image" alt="wine club" title="wine club"></div>
                 </div>
                 <div class="col-md-10">
-                  <div class="green-heading-24"><%= product.name %></div>
+                  <div class="green-heading-24"><h2><%= product.name %></h2></div>
                   <div class="club-detail">
                     <%= product.description_short.html_safe() %><!-- 
                     < % if product.product_prices.present? %>
