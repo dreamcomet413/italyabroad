@@ -2206,6 +2206,9 @@ h2.section-heading{
 	margin: 0px;
 	font-family: openSans-Bold;
 }
+h2.section-heading.bottom-30{
+	margin-bottom: 30px;
+}
 .section-des{
 	padding: 10px 0px 30px;
 }

@@ -1,4 +1,4 @@
-<div class="section-heading bottom-30">
+<h2 class="section-heading bottom-30">
   <%= if (params[:selected_option].present? and params[:selected_option].downcase.strip == "with food")
     @questions[params[:step].to_i + 1]
   elsif params[:step] == "4"
@@ -6,7 +6,7 @@
   else
     @questions[params[:step].to_i]
   end -%>
-</div>
+</h2>
 <div class="row clearfix bottom-50 center-align">
   <% if item_options.present? %>
   
