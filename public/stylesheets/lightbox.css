@@ -208,3 +208,10 @@ body:after {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
   opacity: 1;
 }
+
+
+@media print {
+  .visible-print-inline {
+    display: inline !important;
+  }
+}

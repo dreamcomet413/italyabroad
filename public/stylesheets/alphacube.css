@@ -151,3 +151,10 @@
 	opacity: 0.6;
 }
 
+
+
+@media print {
+  header, footer{
+  	display: none;
+  }
+}

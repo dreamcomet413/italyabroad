@@ -545,3 +545,10 @@ button.swiper-pagination-bullet {
     transform: rotate(360deg);
   }
 }
+
+
+@media print {
+  .visible-print-inline {
+    display: inline !important;
+  }
+}
