@@ -3689,3 +3689,9 @@ width: 72px;
     cursor: pointer;
     z-index: 1000;
 }
+
+@media print {
+  header, footer{
+  	display: none;
+  }
+}

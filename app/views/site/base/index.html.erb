@@ -180,7 +180,7 @@
               </div>
             <%end%>  
             <div class="col-xs-6">
-              <h3><%=@post.name%></h3>
+              <h3><%=truncate(@post.name, length: 40)%></h3>
               <div class="medium-box-text"><p class="truncate_blog_text"><%=truncate(@post.description, length: 200)%></p></div>
               <div class="read-more"><%= link_to "Read More", blog_path(:id => @post.friendly_identifier), :title=>"Read More" %></div>
             </div>
