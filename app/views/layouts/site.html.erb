@@ -2,7 +2,8 @@
   <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="utf-8">
-    <!--[if IE]><meta http-equiv="x-ua-compatible" content="Edge,chrome=1" /><![endif]-->
+    <!-- <meta http-equiv="x-ua-compatible" content="edge" /> -->
+    <!--[if IE]><meta http-equiv="x-ua-compatible" content="edge,chrome=1" /><![endif]-->
   <title><%= h(title) %></title>
   <%= csrf_meta_tag %>
    <%= javascript_include_tag "private_pub" %>
@@ -206,18 +207,18 @@
   </header><!-- End Header main -->
   <div class="clearfix headerSmall">
     <div class="logo-small">
-      <%= link_to image_tag('logo_hi_res.gif', :alt => "Italian wine and food", :title => "Italian wine and food"), root_path, :id => "logo", :title => "Italian wine and food" %>
+      <%= link_to image_tag('logo_hi_res.gif', :alt => "Italian wine and food", :title => "Italian wine and food"), root_path, :id => "logo-small", :title => "Italian wine and food" %>
     </div>
     <div class="main-menu-small col-offset-xs-3">
       <div class="menu-wrapper">
         <div class="">
-          <button class="btn btn-default dropdown-toggle switch" type="button" id="dropdownMenu1" data-toggle="" aria-haspopup="true" aria-expanded="true" t>
+          <button class="btn btn-default dropdown-toggle switch" type="button" id="dropdownMenu1" data-toggle="" aria-haspopup="true" aria-expanded="true">
             <img src="/images/menu-icon.png" alt="Menu" title="Menu">
           </button>
           <ul class="dropdown-menu menu-main" aria-labelledby="dropdownMenu1">
-          <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
-            <% cnt = 1 %>
-            <% for category in ["Wine", "Other Drinks", "Food"] do %>
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
+              <% cnt = 1 %>
+              <% for category in ["Wine", "Other Drinks", "Food"] do %>
               <% category = Category.find_by_name(category)%>
               <% if category.present? %>
                 <div class="panel panel-default">
@@ -231,29 +232,30 @@
                     <div id="collapse-<%=cnt%>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-<%=cnt%>">
                       <div class="panel-body">
                         <ul>
-                          <li id="link-to-<%= category.friendly_identifier %>" class="<%= "active" if active_uri == "/#{category.friendly_identifier}"   %>">
-                              <b><%= link_to category.name, "/#{category.try(:friendly_identifier)}", :title=>category.name %></b></li>
+                          <li id="small-link-to-<%= category.friendly_identifier %>" class="<%= "active" if active_uri == "/#{category.friendly_identifier}"   %>">
+                            <strong><%= link_to category.name, "/#{category.try(:friendly_identifier)}", :title=>category.name %></strong>
+                          </li>
                           <% wine_category = Category.find_by_name("Wine") %>
-                            <% children = Category.find(:all,:conditions=>['parent_id = ? and show_in_menu = ?',category.id,true] ) %>
-                            <%- for child in children -%>
-                              <% if child.products.count > 0 %>
-                                <% if child.name == "Wine Vouchers" %>
-                                  <% temp = child %>
-                                <% elsif child.name == "Wine Tours" %>
-                                <!-- Hiding Wine Tours -->
-                                <% elsif child.name == "Wine accessories" %>
-                                  <li><%= link_to(child.name.html_safe(), nested_categories_url(category, child), :title=>child.name) %></li>
-                                  <li><%= link_to(temp.name.html_safe(), nested_categories_url(category, temp), :title=>temp.name) if temp.present? %></li>
-                                <% else %>
+                          <% children = Category.find(:all,:conditions=>['parent_id = ? and show_in_menu = ?',category.id,true] ) %>
+                          <%- for child in children -%>
+                            <% if child.products.count > 0 %>
+                              <% if child.name == "Wine Vouchers" %>
+                                <% temp = child %>
+                              <% elsif child.name == "Wine Tours" %>
+                              <!-- Hiding Wine Tours -->
+                              <% elsif child.name == "Wine accessories" %>
+                                <li><%= link_to(child.name.html_safe(), nested_categories_url(category, child), :title=>child.name) %></li>
+                                <li><%= link_to(temp.name.html_safe(), nested_categories_url(category, temp), :title=>temp.name) if temp.present? %></li>
+                              <% else %>
                                 <li><%= link_to(child.name.html_safe(), nested_categories_url(category, child),:title=>child.name) %></li>
-                                <%- end -%>
-                              <% end %>
-                            <%-  end -%>
-                            <% if category.products.where(["discount > 0"]).length > 0 %>
-                              <li style="font-weight:bold;">
-                                <%= link_to("Special Offers", nested_categories_url(category, "offer"), :type => "special_offer", :class => "red-text", :title=>"Special Offers") %>
-                              </li>
+                              <%- end -%>
                             <% end %>
+                          <%-  end -%>
+                          <% if category.products.where(["discount > 0"]).length > 0 %>
+                            <li style="font-weight:bold;">
+                              <%= link_to("Special Offers", nested_categories_url(category, "offer"), :type => "special_offer", :class => "red-text", :title=>"Special Offers") %>
+                            </li>
+                          <% end %>
                         </ul>
                       </div>
                     </div>
@@ -262,12 +264,12 @@
               <% end %>
               <% cnt+=1 %>
             <% end %> 
-            <div id="link-to-forum" class ="menu-list" ><%= link_to "Hampers", '/hampers', :title=>"Hampers" %></div>
-            <div id="link-to-forum" class ="menu-list" ><%= link_to "Wine Tours", '/wine-tours', :title=>"Wine Tours" %></div>
-            <div id="link-to-forum" class ="menu-list" ><%= link_to "Wine Club", '/wine-club', :title=>"wine Club" %></div>
-            <div id="link-to-forum" class ="menu-list" ><%= link_to "Events", '/events', :title=>"Events" %></div>
-            <div id="link-to-forum" class ="menu-list" class="<%= "active" if active_uri == "/wine-community" %>"><%= link_to "Community", wine_community_path, :title=>"Wine Community" %></div>
-            <div id="link-to-blog" class="menu-list" class="last<%= " active" if active_uri == "/blog" %>"><%= link_to "Blog", blog_index_path, :title=>"Blog" %></div>
+            <div id="link-to-forum-1" class ="menu-list" ><%= link_to "Hampers", '/hampers', :title=>"Hampers" %></div>
+            <div id="link-to-forum-2" class ="menu-list" ><%= link_to "Wine Tours", '/wine-tours', :title=>"Wine Tours" %></div>
+            <div id="link-to-forum-3" class ="menu-list" ><%= link_to "Wine Club", '/wine-club', :title=>"wine Club" %></div>
+            <div id="link-to-forum-4" class ="menu-list" ><%= link_to "Events", '/events', :title=>"Events" %></div>
+            <div id="link-to-forum-5"  class="menu-list <%= "active" if active_uri == "/wine-community" %>"><%= link_to "Community", wine_community_path, :title=>"Wine Community" %></div>
+            <div id="small-link-to-blog"  class="menu-list last<%= " active" if active_uri == "/blog" %>"><%= link_to "Blog", blog_index_path, :title=>"Blog" %></div>
           </ul>
         </div>
       </div>
