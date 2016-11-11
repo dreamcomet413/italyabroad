@@ -1,6 +1,8 @@
 <!DOCTYPE html>
   <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+  <meta charset="utf-8">
+    <!--[if IE]><meta http-equiv="x-ua-compatible" content="Edge,chrome=1" /><![endif]-->
   <title><%= h(title) %></title>
   <%= csrf_meta_tag %>
    <%= javascript_include_tag "private_pub" %>
@@ -10,8 +12,8 @@
   <meta name="description" content="<%= h(description) %>" />
   <meta name="keywords" content="<%= h(keys) %>" />
   <meta name="copyright" content="italyabroad.com" />
-  <meta http-equiv="content-language" content="EN" />
-  <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+  <!-- <meta http-equiv="content-language" content="EN" /> -->
+  <!-- <meta http-equiv="content-type" content="text/html;charset=utf-8" /> -->
   <meta name="ROBOTS" content="INDEX,FOLLOW" />
   <meta name="creation_Date" content="09/21/2007" />
   <meta name="revisit-after" content="7 days" />
@@ -123,7 +125,7 @@
             <div class="input-group left-bar-search">
               <div style="position:relative;">
                 <%= text_field_tag :text, search_text, :class=> "form-control top-search",  "data-autocomplete"=>"/search/autocomplete_search_name", :placeholder => "Search Italyabroad.com", :style=>"" %>
-                <i class="magnifier"><input src="/images/magnifier.png?1462969008" type="image"></i>
+                <i class="magnifier"><input src="/images/magnifier.png?1462969008" type="image" alt="Search"></i>
               </div>
               <% id = ['wine','Other Drinks', 'food', 'recipe', 'hampers', 'people', 'chef', 'all'].include?(params[:id]) ? params[:id] : 'all' %>
               <%= hidden_field_tag :id, id %>
@@ -134,7 +136,7 @@
                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= option_val || "All site" %> <span class="caret"></span></button>
                 <ul class="dropdown-menu dropdown-menu-right">
                   <% [['Wine', 'wine'], ['Other Drinks', 'Other Drinks'], ['Food', 'food'], ['Recipe', 'recipe'],['Hampers','hampers'], ['People', 'people'],['Chef', 'chef'],['All Site','all']].each do |item| %>
-                      <li><a href="#." title="<%= item[0]%>" ival="<%=item[1]%>"><%= item[0]%></a></li>
+                      <li><a href="#." title="<%= item[0]%>" data-ival="<%=item[1]%>"><%= item[0]%></a></li>
                   <% end %>
                 </ul>
               </div><!-- /btn-group -->
@@ -348,7 +350,7 @@
           <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= option_val || params[:category] || "All site" %> <span class="caret"></span></button>
           <ul class="dropdown-menu dropdown-menu-right">
             <% [['Wine', 'wine'], ['Other Drinks', 'Other Drinks'], ['Food', 'food'], ['Recipe', 'recipe'],['Hampers','hampers'], ['People', 'people'],['Chef', 'chef'],['All Site','all']].each do |item| %>
-            <li><a href="#." title="<%= item[0]%>" ival="<%=item[1]%>"><%= item[0]%></a></li>
+            <li><a href="#." title="<%= item[0]%>" data-ival="<%=item[1]%>"><%= item[0]%></a></li>
             <% end %>
           </ul>
         </div><!-- /btn-group -->
