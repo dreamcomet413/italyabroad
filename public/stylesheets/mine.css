@@ -3269,7 +3269,7 @@ width: 72px;
 	.headerSmall .menu-list{
 		background: #fff;
 	}
-	.headerSmall .menu-list a{
+	.headerSmall .menu-list a, .headerSmall li.menu-list.small-list a{
 		margin: 0px 10px;
 		display: block;
 		text-decoration: none;
@@ -3277,6 +3277,9 @@ width: 72px;
 		font-size: 18px;
 		padding: 10px 0px;
 		border-bottom: solid 1px #ebebeb;
+	}
+	.main-menu-small .panel-group{
+		margin: 0px;
 	}
 	.headerSmall .dropdown-menu{
 		position: absolute;
@@ -3293,7 +3296,7 @@ width: 72px;
 		background: #5c8018;
 	}
 	.headerSmall .dropdown-menu.menu-main{
-		background: transparent;
+		background: #fff;
 	}
 	.headerSmall .panel-default > .panel-heading{
 		background: none;

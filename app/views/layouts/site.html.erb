@@ -82,7 +82,7 @@
         <div class="social-icon">
           <%= link_to image_tag("/images/gplus-icon.png", :title=>"gplus", :alt=>"gplus"), "https://plus.google.com/105030552023597415239/posts", :title=>"gplus", :target=>"_blank" -%></div>
           <div class="social-icon"><%= link_to image_tag("/images/fb-icon.png", :title=> "facebook", :alt=> "facebook"), "https://www.facebook.com/Italyabroadcom-Italian-Wine-Food-250768370057/?fref=ts", :target=>"_blank" -%></div>
-          <div class="social-icon"><%= link_to image_tag("/images/twitter-icon.png", :title=>"twitter", :alt=>"twitter" ), "https://twitter.com/Italyabroad", :id => "b", :title=>"twitter", :target=>"_blank" -%></div>
+          <div class="social-icon"><%= link_to image_tag("/images/twitter-icon.png", :title=>"twitter", :alt=>"twitter" ), "https://twitter.com/Italyabroad", :id => "b-small", :title=>"twitter", :target=>"_blank" -%></div>
           <div class="social-icon"><%= link_to image_tag("/images/instagram-icon.png", :title=>"instagram", :alt=>"instagram"), "https://instagram.com/italyabroad", :title=>"instagram", :target=>"_blank" -%></div>
         </div>
         <div class="pull-right top-bar-links">
@@ -125,11 +125,11 @@
             end %>
             <div class="input-group left-bar-search">
               <div style="position:relative;">
-                <%= text_field_tag :text, search_text, :class=> "form-control top-search",  "data-autocomplete"=>"/search/autocomplete_search_name", :placeholder => "Search Italyabroad.com", :style=>"" %>
+                <%= text_field_tag :text, search_text, :class=> "form-control top-search",  "data-autocomplete"=>"/search/autocomplete_search_name", :placeholder => "Search Italyabroad.com" %>
                 <i class="magnifier"><input src="/images/magnifier.png?1462969008" type="image" alt="Search"></i>
               </div>
-              <% id = ['wine','Other Drinks', 'food', 'recipe', 'hampers', 'people', 'chef', 'all'].include?(params[:id]) ? params[:id] : 'all' %>
-              <%= hidden_field_tag :id, id %>
+              <% id_search = ['wine','Other Drinks', 'food', 'recipe', 'hampers', 'people', 'chef', 'all'].include?(params[:id]) ? params[:id] : 'all' %>
+              <%= hidden_field_tag :id, id_search %>
               <div class="input-group-btn">
                 <% option_val = @search_type%>
                 <% option_val = "All Site" if option_val=='all'%>
@@ -190,7 +190,7 @@
                       <%-  end -%>
                       <% if category.products.where(["discount > 0"]).length > 0 %>
                         <li style="font-weight:bold;">
-                          <%= link_to("Special Offers", nested_categories_url(category, "offer"), :type => "special_offer", :class => "red-text", :title=>"Special Offers") %>
+                          <%= link_to("Special Offers", nested_categories_url(category, "offer"), :class => "red-text", :title=>"Special Offers") %>
                         </li>
                       <% end %>
                     </ul>
@@ -216,7 +216,7 @@
             <img src="/images/menu-icon.png" alt="Menu" title="Menu">
           </button>
           <ul class="dropdown-menu menu-main" aria-labelledby="dropdownMenu1">
-            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
+            <li class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
               <% cnt = 1 %>
               <% for category in ["Wine", "Other Drinks", "Food"] do %>
               <% category = Category.find_by_name(category)%>
@@ -253,7 +253,7 @@
                           <%-  end -%>
                           <% if category.products.where(["discount > 0"]).length > 0 %>
                             <li style="font-weight:bold;">
-                              <%= link_to("Special Offers", nested_categories_url(category, "offer"), :type => "special_offer", :class => "red-text", :title=>"Special Offers") %>
+                              <%= link_to("Special Offers", nested_categories_url(category, "offer"), :class => "red-text", :title=>"Special Offers") %>
                             </li>
                           <% end %>
                         </ul>
@@ -264,12 +264,13 @@
               <% end %>
               <% cnt+=1 %>
             <% end %> 
-            <div id="link-to-forum-1" class ="menu-list" ><%= link_to "Hampers", '/hampers', :title=>"Hampers" %></div>
-            <div id="link-to-forum-2" class ="menu-list" ><%= link_to "Wine Tours", '/wine-tours', :title=>"Wine Tours" %></div>
-            <div id="link-to-forum-3" class ="menu-list" ><%= link_to "Wine Club", '/wine-club', :title=>"wine Club" %></div>
-            <div id="link-to-forum-4" class ="menu-list" ><%= link_to "Events", '/events', :title=>"Events" %></div>
-            <div id="link-to-forum-5"  class="menu-list <%= "active" if active_uri == "/wine-community" %>"><%= link_to "Community", wine_community_path, :title=>"Wine Community" %></div>
-            <div id="small-link-to-blog"  class="menu-list last<%= " active" if active_uri == "/blog" %>"><%= link_to "Blog", blog_index_path, :title=>"Blog" %></div>
+          </li>
+            <li id="link-to-forum-1" class ="menu-list small-list" ><%= link_to "Hampers", '/hampers', :title=>"Hampers" %></li>
+            <li id="link-to-forum-2" class ="menu-list small-list" ><%= link_to "Wine Tours", '/wine-tours', :title=>"Wine Tours" %></li>
+            <li id="link-to-forum-3" class ="menu-list small-list" ><%= link_to "Wine Club", '/wine-club', :title=>"wine Club" %></li>
+            <li id="link-to-forum-4" class ="menu-list small-list" ><%= link_to "Events", '/events', :title=>"Events" %></li>
+            <li id="link-to-forum-5"  class="menu-list small-list <%= "active" if active_uri == "/wine-community" %>"><%= link_to "Community", wine_community_path, :title=>"Wine Community" %></li>
+            <li id="small-link-to-blog"  class="menu-list last<%= " active" if active_uri == "/blog" %>"><%= link_to "Blog", blog_index_path, :title=>"Blog" %></li>
           </ul>
         </div>
       </div>
@@ -313,7 +314,7 @@
           <li role="separator" class="divider"></li>
           <li class="small-icon-row">
             <div class="social-icon">
-              <%= link_to image_tag("/images/gplus-icon.png", :title=>"gplus", :alt=>"gplus"), "https://plus.google.com/105030552023597415239/posts", :title=>"gplus" -%></div>
+              <%= link_to image_tag("/images/gplus-icon.png", :title=>"gplus", :alt=>"gplus"), "https://plus.google.com/105030552023597415239/posts"  -%></div>
             <div class="social-icon"><%= link_to image_tag("/images/fb-icon.png", :title=>"facebook", :alt=>"facebook"), "https://www.facebook.com/pages/Italyabroadcom/144011672282174", :title=>"facebook" -%></div>
             <div class="social-icon"><%= link_to image_tag("/images/twitter-icon.png", :title=>"twitter", :alt=>"twitter"), "https://twitter.com/Italyabroad", :id => "b", :title=>"twitter" -%></div>
             <div class="social-icon"><%= link_to image_tag("/images/instagram-icon.png", :title=>"instagram", :alt=>"instagram"), "https://instagram.com/italyabroad", :title=>"instagram" -%></div>
@@ -328,7 +329,7 @@
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
           <%= render :partial => "/site/shared/cart" %> 
-          <div class="free-delivery"><%= render :partial => "/site/shared/promotion" %></div>      
+          <li class="free-delivery"><%= render :partial => "/site/shared/promotion" %></li>      
         </ul>
       </div>
     </div>
@@ -341,12 +342,12 @@
           search_text = ''
         end %>
         <div class="input-group">
-          <%= text_field_tag :text, search_text, :class=> "form-control top-search",  "data-autocomplete"=>"/search/autocomplete_search_name", :placeholder => "Search Italyabroad.com", :style=>"" %>
-        <% id = ['wine','Other Drinks', 'food', 'recipe', 'hampers', 'people', 'chef', 'all'].include?(params[:id]) ? params[:id] : 'all' %>
+          <%= text_field_tag :text, search_text, :class=> "form-control top-search",  "data-autocomplete"=>"/search/autocomplete_search_name", :placeholder => "Search Italyabroad.com" %>
+        <% id_search_small = ['wine','Other Drinks', 'food', 'recipe', 'hampers', 'people', 'chef', 'all'].include?(params[:id]) ? params[:id] : 'all' %>
 
-        <%= hidden_field_tag :id, id %>
+        <%= hidden_field_tag :id, id_search_small %>
         <div class="input-group-btn">
-          <% option_val = id %>
+          <% option_val = id_search_small %>
           <% option_val = "All Site" if option_val=='all'%>
           <% option_val.capitalize! if !option_val.nil? %>
           <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= option_val || params[:category] || "All site" %> <span class="caret"></span></button>
@@ -443,7 +444,7 @@
   </script>
 
 
-  <a title="Real Time Web Analytics" href="http://clicky.com/100911433"><img alt="Real Time Web Analytics" src="//static.getclicky.com/media/links/badge.gif" border="0" alt="Badge" title="Badge" /></a>
+  <a title="Real Time Web Analytics" href="http://clicky.com/100911433"><img alt="Real Time Web Analytics" src="//static.getclicky.com/media/links/badge.gif" style="border:none"  title="Badge" /></a>
   <script src="//static.getclicky.com/js" type="text/javascript"></script>
   <script type="text/javascript">try{ clicky.init(100911433); }catch(e){}</script>
   <noscript><p><img alt="Clicky" title="Cliky" width="1" height="1" src="//in.getclicky.com/100911433ns.gif" /></p></noscript>
