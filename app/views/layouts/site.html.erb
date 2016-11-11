@@ -128,8 +128,8 @@
                 <%= text_field_tag :text, search_text, :class=> "form-control top-search",  "data-autocomplete"=>"/search/autocomplete_search_name", :placeholder => "Search Italyabroad.com" %>
                 <i class="magnifier"><input src="/images/magnifier.png?1462969008" type="image" alt="Search"></i>
               </div>
-              <% id_search = ['wine','Other Drinks', 'food', 'recipe', 'hampers', 'people', 'chef', 'all'].include?(params[:id]) ? params[:id] : 'all' %>
-              <%= hidden_field_tag :id, id_search %>
+              <% id = ['wine','Other Drinks', 'food', 'recipe', 'hampers', 'people', 'chef', 'all'].include?(params[:id]) ? params[:id] : 'all' %>
+              <%= hidden_field_tag :id, id %>
               <div class="input-group-btn">
                 <% option_val = @search_type%>
                 <% option_val = "All Site" if option_val=='all'%>
@@ -343,11 +343,11 @@
         end %>
         <div class="input-group">
           <%= text_field_tag :text, search_text, :class=> "form-control top-search",  "data-autocomplete"=>"/search/autocomplete_search_name", :placeholder => "Search Italyabroad.com" %>
-        <% id_search_small = ['wine','Other Drinks', 'food', 'recipe', 'hampers', 'people', 'chef', 'all'].include?(params[:id]) ? params[:id] : 'all' %>
+        <% id = ['wine','Other Drinks', 'food', 'recipe', 'hampers', 'people', 'chef', 'all'].include?(params[:id]) ? params[:id] : 'all' %>
 
-        <%= hidden_field_tag :id, id_search_small %>
+        <%= hidden_field_tag :id, id %>
         <div class="input-group-btn">
-          <% option_val = id_search_small %>
+          <% option_val = id %>
           <% option_val = "All Site" if option_val=='all'%>
           <% option_val.capitalize! if !option_val.nil? %>
           <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= option_val || params[:category] || "All site" %> <span class="caret"></span></button>
