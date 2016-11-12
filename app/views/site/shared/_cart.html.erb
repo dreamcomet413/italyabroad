@@ -2,11 +2,11 @@
 	<div class="cart_main"><%= image_tag "cart-icon.png", alt: "Cart", title:"Cart"  %></div>
 	<div class="total">
 	    <div class="">
-	    	<b><%= @cart.items.size.to_i %></b> item(s)   -  Sub Total: 
+	    	<strong><%= @cart.items.size.to_i %></strong> item(s)   -  Sub Total: 
 	    	<%- if @cart.items.size > 0 -%>
-	    		<b class="item-total">
+	    		<strong class="item-total">
 	    			<%= number_to_currency(@cart.sub_total, :unit => "&pound;") %>
-				</b>	
+				</strong>	
 			<%- end -%>
 	    </div>
 	    <div class="checkout"><%= link_to "Checkout", cart_index_path, :title=>"Checkout" %></div>
@@ -16,11 +16,11 @@
 <div class="hide-desktop cart-top">
   <div class="cart"><%= image_tag "cart-icon-small.png", alt: "Cart", title:"cart" %></div>
   <div class="total">
-      <div><b><%= @cart.items.size.to_i %></b> item(s)  -  Sub Total: 
+      <div><strong><%= @cart.items.size.to_i %></strong> item(s)  -  Sub Total: 
       	<% if @cart.items.size > 0 %>
-    		<b class="item-total">
+    		<strong class="item-total">
 	    		<%= number_to_currency(@cart.sub_total, :unit => "&pound;") %>
-			</b>
+			</strong>
       	<% end %>
     	</div>
       <div class="checkout"><%= link_to "Checkout", cart_index_path, :title=>"Checkout" %></div>

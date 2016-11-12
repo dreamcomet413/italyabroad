@@ -14,7 +14,7 @@
                   <span style="padding: 5px 7px;"><%=truncate(review.description , length: 180)%></span>
                   <span class="quotes-after"><img src="/images/quotes-after.png" alt="Quotes" title="Qoutes" /></span>
                 </div>
-                  <div class="date"><%if user%><b><%=user.name%></b>  -<%end%> <%=review.created_at.to_date.to_s(:long)%></div>
+                  <div class="date"><%if user%><strong><%=user.name%></strong>  -<%end%> <%=review.created_at.to_date.to_s(:long)%></div>
               </div>
             <%end%>
           </div>

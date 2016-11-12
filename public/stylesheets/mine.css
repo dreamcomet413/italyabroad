@@ -126,11 +126,11 @@ img{
 	max-width: 75%;
 	color: #686867;
 }
-.total b{
+.total b, .total strong {
 	font-family: OpenSans-Bold;
 	color: #686867;
 }
-.total b.item-total{
+.total b.item-total, .total strong.item-total{
 	font-family: OpenSans-Bold;
 	color: #485626;
 }
@@ -1134,7 +1134,7 @@ h2.blog-list-heading{
 .border-box-swiper{
 	position: relative;
 }
-.reviewer-name b{
+.reviewer-name b, .reviewer-name strong{
 	font-size: 18px;
 }
 #fourthSwiper.swiper-container{
@@ -1485,11 +1485,11 @@ h2.hamper-heading{
 	font-size: 14px;
 	font-family: OpenSans-Regular;
 }
-.hamper-title .red-text b, .item-name .red-text{
+.hamper-title .red-text b, .item-name .red-text, .hamper-title .red-text strong{
 	font-size: 13px;
 	color: #cb0d2b !important;
 }
-.hamper-title .red-text b{
+.hamper-title .red-text b, .hamper-title .red-text strong{
 	font-weight: normal;
 }
 .hamper-price-2{
@@ -1598,7 +1598,7 @@ padding: 0px 3px 10px !important;
 	font-size: 14px;
 	padding-right: 18px;
 }
-.price-now b{
+.price-now b, .price-now strong{
 	font-family: OpenSans-Semibold;
 	font-size: 26px;
 	color: #5c8018;
@@ -1673,7 +1673,7 @@ padding: 0px 3px 10px !important;
 .case-price{
 	margin-bottom: 8px;
 }
-.case-price b{
+.case-price b, .case-price strong{
 	font-size: 18px;
 	color: #5c8018;
 	font-family: OpenSans-Semibold;
@@ -1947,7 +1947,7 @@ a.close-btn, .black-strip  a{
 	float: left;
 	color: #53565a;
 }
-.show-result b{
+.show-result b, .show-result strong{
 	color: #5c8018;
 }
 .pagination-links{
@@ -2109,7 +2109,7 @@ a.close-btn, .black-strip  a{
 	text-align: center;
 	font-size: 14px;
 }
-.item-name .red-text b{
+.item-name .red-text b, .item-name .red-text strong{
 	color:#cb0d2b !important;
 	font-weight: normal !important;
 }
@@ -2287,7 +2287,7 @@ h2.section-heading.bottom-30{
 .form-row .check-box input {
 	width: 20px;
 }
-.section-label b{
+.section-label b, .section-label strong{
 	font-family: OpenSans-Regular;
 }
 .permission-row{
@@ -2448,7 +2448,7 @@ h2.links-heading {
 .site-map-box ul li a:hover{
 	text-decoration: underline;
 }
-.terms-text b{
+.terms-text b, .terms-text strong{
 	color: #5c8018;	
 }
 .terms-text h3{
@@ -2494,7 +2494,7 @@ h2.links-heading {
 .cart-row.sub{
 	font-family: OpenSans-Regular;
 }
-.cart-row.sub b{
+.cart-row.sub b, .cart-row.sub strong{
 	font-family: OpenSans-Semibold;
 }
 .bottom-5{
@@ -2546,7 +2546,7 @@ h2.links-heading {
 	font-family: OpenSans-Bold;
 	color: #53565a;
 }
-.cart-sub-total b{
+.cart-sub-total b, .cart-sub-total strong{
 	color: #5c8018;
 	font-size: 18px;
 	font-family: OpenSans-Semibold;
@@ -2583,7 +2583,7 @@ h2.links-heading {
 	display: inline-block;
 	font-family: OpenSans-Bold;
 }
-.grand-total b{
+.grand-total b, .grand-total strong{
 	font-size: 18px;
 	font-family: OpenSans-Semibold;
 	margin-left: 15px;
@@ -3414,10 +3414,10 @@ width: 72px;
 	}
 	.headerSmall .cart{padding: 0px 10px;
 	}
-	.headerSmall .total, .headerSmall .total b{
+	.headerSmall .total, .headerSmall .total b, .headerSmall .total strong{
 		color: #fff;
 	}
-	.headerSmall .total b.item-total{
+	.headerSmall .total b.item-total, .headerSmall .total strong.item-total{
 		color: #fff;
 	}
 	.headerSmall .checkout a{
