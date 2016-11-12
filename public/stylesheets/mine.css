@@ -193,7 +193,7 @@ img{
 .white-seprator{
 	background: url(../images/white-seprator.png) no-repeat right center;
 }
-.white-seprator i{
+.white-seprator i, .white-seprator span{
 	margin-right: 7px;
 }
 .discount-text{
@@ -3109,13 +3109,13 @@ width: 72px;
 .footer-mobile-container  .panel-title{
  	font-size: 16px;
 }
-.footer-mobile-container .panel-heading a i {
+.footer-mobile-container .panel-heading a i , .footer-mobile-container .panel-heading a span.plus{
     background: url(../images/plus-icon.png) no-repeat;    
     width: 10px;
     height: 10px;
 	display: inline-block;
 }
-.footer-mobile-container .panel.panel-default.pressed i {
+.footer-mobile-container .panel.panel-default.pressed i, .footer-mobile-container .panel.panel-default.pressed span.plus {
     background: url(../images/minus-icon.png) no-repeat;
 	height: 10px;
 	background-position: 50%;
@@ -3333,7 +3333,7 @@ width: 72px;
 		border-top: none ;
 		border-bottom: solid 1px #ebebeb;
 	}
-	.headerSmall .panel-title i{
+	.headerSmall .panel-title i, .headerSmall .panel-title span{
 		display: block;
 	}
 	.headerSmall .panel-body li{
@@ -3349,20 +3349,21 @@ width: 72px;
 	.headerSmall .panel-body li:nth-last-child(1){
 		border:none;
 	}
-	.headerSmall .panel-default.pressed i{
+	.headerSmall .panel-default.pressed i, .headerSmall .panel-default.pressed span{
 	background: url(../images/minus-icon.png) no-repeat;
 	display: inline-block;
 	height: 20px;
 	width: 10px;
 	margin-right: 10px;
 	background-position: right;}
-.headerSmall .panel-default i{
+.headerSmall .panel-default i, .headerSmall .panel-default span{
 	background: url(../images/plus-icon.png) no-repeat;
 	display: inline-block;
 	height: 20px;
 	width: 10px;
 	margin-right: 10px;
-	background-position: right;}
+	background-position: right;
+	float: right;}
 	.headerSmall .panel-body li a.red-text{
 		color: #cb0d2b;
 	}
