@@ -215,13 +215,13 @@
           <button class="btn btn-default dropdown-toggle switch" type="button" id="dropdownMenu1" data-toggle="" aria-haspopup="true" aria-expanded="true">
             <img src="/images/menu-icon.png" alt="Menu" title="Menu">
           </button>
-          <ul class="dropdown-menu menu-main" aria-labelledby="dropdownMenu1">
-            <li class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
+          <div class="dropdown-menu menu-main" aria-labelledby="dropdownMenu1">
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
               <% cnt = 1 %>
               <% for category in ["Wine", "Other Drinks", "Food"] do %>
               <% category = Category.find_by_name(category)%>
               <% if category.present? %>
-                <div class="panel panel-default">
+                <div class="panel panel-default" role="tablist">
                   <div class="panel-heading" role="tab" id="heading-<%=cnt%>">
                     <h4 class="panel-title">
                       <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-<%=cnt%>" aria-expanded="false" aria-controls="collapse-<%=cnt%>" class="collapsed" title="<%= category.name %>"><%= category.name %><i></i>
@@ -264,14 +264,16 @@
               <% end %>
               <% cnt+=1 %>
             <% end %> 
-          </li>
+          </div>
+          <ul>
             <li id="link-to-forum-1" class ="menu-list small-list" ><%= link_to "Hampers", '/hampers', :title=>"Hampers" %></li>
             <li id="link-to-forum-2" class ="menu-list small-list" ><%= link_to "Wine Tours", '/wine-tours', :title=>"Wine Tours" %></li>
             <li id="link-to-forum-3" class ="menu-list small-list" ><%= link_to "Wine Club", '/wine-club', :title=>"wine Club" %></li>
             <li id="link-to-forum-4" class ="menu-list small-list" ><%= link_to "Events", '/events', :title=>"Events" %></li>
             <li id="link-to-forum-5"  class="menu-list small-list <%= "active" if active_uri == "/wine-community" %>"><%= link_to "Community", wine_community_path, :title=>"Wine Community" %></li>
-            <li id="small-link-to-blog"  class="menu-list last<%= " active" if active_uri == "/blog" %>"><%= link_to "Blog", blog_index_path, :title=>"Blog" %></li>
+            <li id="small-link-to-blog"  class="menu-list small-list last<%= " active" if active_uri == "/blog" %>"><%= link_to "Blog", blog_index_path, :title=>"Blog" %></li>
           </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -328,7 +330,7 @@
           <img src="/images/cart-icon-2.png" title="Cart" alt="Cart" ><span class="items_count"><%=@cart.items.size.to_i%></span>
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-          <%= render :partial => "/site/shared/cart" %> 
+          <li class=""><%= render :partial => "/site/shared/cart" %></li> 
           <li class="free-delivery"><%= render :partial => "/site/shared/promotion" %></li>      
         </ul>
       </div>
