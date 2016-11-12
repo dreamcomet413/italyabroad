@@ -13,7 +13,7 @@
         <div class="blog-search-text">Producer Search</div>
         <%= form_tag producers_path, :method => :get do -%>
           <div class="blog-search-field"><%= text_field_tag 'search_by_name',params[:search_by_name], :class=> 'blog-search' %>
-            <i class="magnifier"><%= image_submit_tag ("/images/magnifier.png"), :name => 'search', :value => 'search', :title=>"Search" %></i>
+            <span class="magnifier"><%= image_submit_tag ("/images/magnifier.png"), :name => 'search', :value => 'search', :title=>"Search" %></span>
           </div>
         <% end %>
       </div>

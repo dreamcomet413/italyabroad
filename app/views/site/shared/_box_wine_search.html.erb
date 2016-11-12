@@ -47,7 +47,7 @@
       
       <%= text_field_tag :text, params[:text], :class=> "form-control",  "data-autocomplete"=> path , :placeholder => "Search Here", :style=>"" %>
     
-      <i class="magnifier"><%= image_submit_tag "magnifier.png" %></i>
+      <span class="magnifier"><%= image_submit_tag "magnifier.png" %></span>
     </div>
     <div class="black-strip clearfix selected-filters">
       <% unless params[:mood].blank? %>

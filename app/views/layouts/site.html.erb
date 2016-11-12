@@ -126,7 +126,7 @@
             <div class="input-group left-bar-search">
               <div style="position:relative;">
                 <%= text_field_tag :text, search_text, :class=> "form-control top-search",  "data-autocomplete"=>"/search/autocomplete_search_name", :placeholder => "Search Italyabroad.com" %>
-                <i class="magnifier"><input src="/images/magnifier.png?1462969008" type="image" alt="Search"></i>
+                <span class="magnifier"><input src="/images/magnifier.png?1462969008" type="image" alt="Search"></span>
               </div>
               <% id = ['wine','Other Drinks', 'food', 'recipe', 'hampers', 'people', 'chef', 'all'].include?(params[:id]) ? params[:id] : 'all' %>
               <%= hidden_field_tag :id, id %>

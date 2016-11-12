@@ -28,7 +28,7 @@
             <div class="left-bar-search">
               <%= hidden_field_tag :category , 'search_blog_post' %>
               <%= text_field_tag :text, '', :class=> "form-control",  "data-autocomplete"=> '/search/autocomplete_post_name' , :placeholder => "Search Here", :style=>"" %>
-              <i class="magnifier"><%= image_submit_tag "magnifier.png" %></i>
+              <span class="magnifier"><%= image_submit_tag "magnifier.png" %></span>
             </div>
           <% end %>    
         </div>

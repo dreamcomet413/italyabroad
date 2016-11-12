@@ -5,9 +5,9 @@
     <div class="left-bar-search">
       <%= text_field_tag :text, '', :class=> "form-control",  "data-autocomplete"=> '/search/autocomplete_search_recipes_name' , :placeholder => "Search Here", :style=>"" %>
       <%#= text_field_tag :text, params[:text], :id => "search_text" %>
-      <i class="magnifier"><a href="#." title="Search">
+      <span class="magnifier"><a href="#." title="Search">
         <%= image_submit_tag "magnifier.png", :style => "border:none" %></a>
-      </i>
+      </span>
     </div>
     <div class="sidebar-filter-wrapper">
       <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
