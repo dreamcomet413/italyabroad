@@ -26,13 +26,13 @@ $('.head_search .left-bar-search input').bind('railsAutocomplete.select', functi
 
 //Header serch main
 $(document).on('click','.head_search form ul li a',function(){
-  $('#id').val($(this).attr('data-ival'));
+  $('.id').val($(this).attr('data-ival'));
   $('.head_search form').submit();
 });
 
 //header search small
 $(document).on('click','.head_search_small form ul li a',function(){
-  $('#id').val($(this).attr('data-ival'));
+  $('.id').val($(this).attr('data-ival'));
   $('.head_search form').submit();
 });
 

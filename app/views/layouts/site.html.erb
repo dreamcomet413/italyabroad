@@ -125,11 +125,11 @@
             end %>
             <div class="input-group left-bar-search">
               <div style="position:relative;">
-                <%= text_field_tag :text, search_text, :class=> "form-control top-search",  "data-autocomplete"=>"/search/autocomplete_search_name", :placeholder => "Search Italyabroad.com" %>
+                <%= text_field_tag :text, search_text, :class=> "form-control top-search text",  "data-autocomplete"=>"/search/autocomplete_search_name", :placeholder => "Search Italyabroad.com", :id => "bg_text" %>
                 <span class="magnifier"><input src="/images/magnifier.png?1462969008" type="image" alt="Search"></span>
               </div>
               <% id = ['wine','Other Drinks', 'food', 'recipe', 'hampers', 'people', 'chef', 'all'].include?(params[:id]) ? params[:id] : 'all' %>
-              <%= hidden_field_tag :id, id %>
+              <input class="id" name="id" type="hidden" value="<%= id %>">
               <div class="input-group-btn">
                 <% option_val = @search_type%>
                 <% option_val = "All Site" if option_val=='all'%>
@@ -344,7 +344,7 @@
           search_text = ''
         end %>
         <div class="input-group">
-          <%= text_field_tag :text, search_text, :class=> "form-control top-search",  "data-autocomplete"=>"/search/autocomplete_search_name", :placeholder => "Search Italyabroad.com" %>
+          <%= text_field_tag :text, search_text, :class=> "form-control top-search text",  "data-autocomplete"=>"/search/autocomplete_search_name", :placeholder => "Search Italyabroad.com" ,:id=>'sm_text'%>
         <% id = ['wine','Other Drinks', 'food', 'recipe', 'hampers', 'people', 'chef', 'all'].include?(params[:id]) ? params[:id] : 'all' %>
 
         <%= hidden_field_tag :id, id %>
