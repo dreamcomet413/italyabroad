@@ -128,7 +128,7 @@ ItalyabroadNew::Application.routes.draw do
   match 'testimonial' => 'site/testimonials#index', :as => :testimonial
   match 'popular' => 'site/base#popular', :as => :popular
   match 'signup' => 'site/customers#new', :as => :signup
-  match 'login' => 'site/customers#new', :as => :login
+  match 'login' => 'site/base#login', :as => :login
   match 'guest_login' => 'site/base#guest_login', :as => :guest_login
   match 'logout' => 'site/base#logout', :as => :logout
   match 'subscribe-dali-news' => 'site/base#subscribe', :as => :subscribe_dali_news
