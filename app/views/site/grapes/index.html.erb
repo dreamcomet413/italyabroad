@@ -1,6 +1,10 @@
-<% @title = "Guide to Italian wines and Italian grapes"; @description = "Guide to Italian wines and Italian grapes"; @keys = ", Italian wine information,Italian wine guide,Italian wine,Italian red and white wine,italian grapes,wine grapes,wine expert,guide to Italian wines,aglianico,barbera,montepulciano,nero d'avola,nebbiolo" %>
-<% @breadcrumbs = "#{link_to("Home", root_url, :title=>"Home")}&raquo; #{link_to('Community',wine_community_path, :title=>"Community")} &raquo; Guide to Italian wines and Italian grapes".html_safe() %>
 <% @about = AboutU.find(:first, :conditions => {:link_type => "grape-guide"} ) %>
+<%if @about and  @about.meta_title.blank? and @about.meta_description.blank? %>
+  <% @title = "Guide to Italian wines and Italian grapes"; @description = "Guide to Italian wines and Italian grapes"; @keys = ", Italian wine information,Italian wine guide,Italian wine,Italian red and white wine,italian grapes,wine grapes,wine expert,guide to Italian wines,aglianico,barbera,montepulciano,nero d'avola,nebbiolo" %>
+<%else%>
+  <% @title = @about.meta_title; @description = @about.meta_description %>
+<%end%>
+<% @breadcrumbs = "#{link_to("Home", root_url, :title=>"Home")}&raquo; #{link_to('Community',wine_community_path, :title=>"Community")} &raquo; Guide to Italian wines and Italian grapes".html_safe() %>
 <% if @about.present? and @about.image.present? %>
     <div class="main-banner"><%= link_to image_tag(image_url(:about_thumb, @about.image, :jpg),:alt=>@about.title,:title=>@about.title) , search_index_path(:id => "grapes"), :title=>@about.title unless @about.blank? %></div>
   <% else %>

@@ -3,24 +3,35 @@
   <%= error_messages_for :about_u %>
 <fieldset>
   <%= hidden_field(:about_u, :link_type, :value => params[:type]) %>
+  <%if @meta_type.include? params[:type]%>
     <p>
+        <span style="font:normal 15px Arial;padding-right:60px">Meta Title</span>
+      <%= text_field :about_u, 'meta_title',:size => 70 %>
+    </p>
+    <p>
+      <div style="float:left;height:300px;font:normal 15px Arial;padding:110px 14px 0 0;">Meta Description</div>
+      <div><%= text_area :about_u, 'meta_description', :cols => 80, :rows => 25 %></div>
+    </p>
+    <div style="clear: both"></div>
+  <% end %>
+  <p>
       <span style="font:normal 15px Arial;padding-right:60px">Title</span>
     <%= text_field :about_u, 'title',:size => 70 %>
   </p>
-    <p>
+  <p>
     <div style="float:left;height:300px;font:normal 15px Arial;padding:110px 14px 0 0;">Description</div>
-    <div><%= text_area :about_u, 'description', :cols => 80, :rows => 25 %>
-    </div></p>
-  <p>
-  <p>
-    <span style="font:normal 15px Arial;padding-right:60px">Image</span>
-    <tr>
-      <td><%= file_field_tag :image %></td>
-        <td><%= image_tag(@about_u.image.image_filename.try(:url), :height => '150', :width => '220') if @about_u && @about_u.image && @about_u.image.image_filename.present? %></td>
-        <td style="text-align:center"><% if @about_u && @about_u.image %> <%= link_to "Destroy", edit_admin_about_u_url(@about_u, @about_u.image), :confirm => "Are you sure?", :method => :delete %> <% end %></td>
-    </tr>
+    <div><%= text_area :about_u, 'description', :cols => 80, :rows => 25 %></div>
   </p>
-    <%= submit_tag 'Update' %> or <%= link_to "Cancel", admin_about_us_path(:type => @about_u.link_type) %>
+  <p>
+    <p>
+      <span style="font:normal 15px Arial;padding-right:60px">Image</span>
+      <tr>
+        <td><%= file_field_tag :image %></td>
+          <td><%= image_tag(@about_u.image.image_filename.try(:url), :height => '150', :width => '220') if @about_u && @about_u.image && @about_u.image.image_filename.present? %></td>
+          <td style="text-align:center"><% if @about_u && @about_u.image %> <%= link_to "Destroy", edit_admin_about_u_url(@about_u, @about_u.image), :confirm => "Are you sure?", :method => :delete %> <% end %></td>
+      </tr>
+    </p>
+      <%= submit_tag 'Update' %> or <%= link_to "Cancel", admin_about_us_path(:type => @about_u.link_type) %>
   </p>
   </fieldset>
 <% end %>

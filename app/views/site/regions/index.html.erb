@@ -1,7 +1,12 @@
-<% @title = "Regions"; @description = "Andrea's Wine Blog, The Italian Wine Blog, A Guide to Italian Wines, Journey Through Italian Wines"; @keys = "Wine Blog,Italian Wine Blog,Italian Red and White Wine,Italian Food,Wine Tasting,Wine Expert" %>
+<% @about = AboutU.find(:first, :conditions => {:link_type => "region"} ) %>
+<%if @about and  @about.meta_title.blank? and @about.meta_description.blank? %>
+  <% @title = "Regions"; @description = "Andrea's Wine Blog, The Italian Wine Blog, A Guide to Italian Wines, Journey Through Italian Wines"; @keys = "Wine Blog,Italian Wine Blog,Italian Red and White Wine,Italian Food,Wine Tasting,Wine Expert" %>
+<%else%>
+  <% @title = @about.meta_title; @description = @about.meta_description %>
+<%end%>
+
 <%- @breadcrumbs = "#{link_to("Home", root_url, :title=>"Home")}  &raquo; #{link_to("Community", wine_community_path, :title=>"Community")} &raquo; #{link_to("Regions", regions_path, :title=>"Regions")}" -%>
 
-<% @about = AboutU.find(:first, :conditions => {:link_type => "region"} ) %>
   <% if  @about and !@about.image_id.nil? %>
     <div class="main-banner"><%= link_to image_tag(image_url('region_card', @about.image, :jpg),:alt=>"Regions Banner",:title=>"Regions Banner") , search_index_path(:id => "regions"), :title=>"Regions" unless @about.blank? %></div>
   <% else %>

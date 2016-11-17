@@ -1,6 +1,11 @@
-<% @title = "Producers"; @description = "Andrea's Wine Blog, The Italian Wine Blog, A Guide to Italian Wines, Journey Through Italian Wines"; @keys = "Wine Blog,Italian Wine Blog,Italian Red and White Wine,Italian Food,Wine Tasting,Wine Expert" %>
-<% @breadcrumbs = "#{link_to("Home", root_url, :title=>"Home")}&raquo; #{link_to('Community',wine_community_path, :title=>"Community")} &raquo; #{link_to("Producers", producers_path, :title=>"Producers")}" -%>
 <% @about = AboutU.find(:first, :conditions => {:link_type => "producers"} ) %>
+<%if @about and  @about.meta_title.blank? and @about.meta_description.blank? %>
+  <% @title = "Producers"; @description = "Andrea's Wine Blog, The Italian Wine Blog, A Guide to Italian Wines, Journey Through Italian Wines"; @keys = "Wine Blog,Italian Wine Blog,Italian Red and White Wine,Italian Food,Wine Tasting,Wine Expert" %>
+<%else%>
+  <% @title = @about.meta_title; @description = @about.meta_description %>
+<%end%>
+
+<% @breadcrumbs = "#{link_to("Home", root_url, :title=>"Home")}&raquo; #{link_to('Community',wine_community_path, :title=>"Community")} &raquo; #{link_to("Producers", producers_path, :title=>"Producers")}" -%>
 <% if  @about and !@about.image_id.nil? %>
   <div class="main-banner"><%= link_to image_tag(image_url('region_card', @about.image, :jpg),:alt=>"Producers Banner", :title=>"Producers Banner"), search_index_path(:id => "producers"), :title=>"Producer Banner" unless @about.blank? %></div>
 <% else %>
