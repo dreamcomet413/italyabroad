@@ -91,7 +91,7 @@
 		<div style="text-align:right;font-size:10px;padding-top:10px;">
 			<div style="background-color:#efff9f;padding:5px">
 				Please tick here to confirm that you accept our
-				<%= link_to "Terms and Conditions", {:controller => :base, :action => :terms_conditions}, :popup => ['wtc', 'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=Yes,resizable=No,copyhistory=no, width=450, height=520'] %>
+				<%= link_to "Terms and Conditions",'/terms-and-conditions', :popup => ['wtc', 'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=Yes,resizable=No,copyhistory=no, width=450, height=520'] %>
 				<%#= check_box :agreement, :role %>
 				<%=check_box_tag 'accept' %>
 <br /><br />

@@ -64,7 +64,7 @@ class Admin::XmlController < ApplicationController
 
 
         p_name = (data.name).downcase.split(" ").map{|w| w.gsub(/[^\._\-a-z0-9\@]/i,'')}.join("-") if data.name
-        data[:link] = "http://italyabroad.ejubel.com/#{data.unique_categories.collect {|c|c.name.downcase.split(" ").map{|w| w.gsub(/[^\._\-a-z0-9\@]/i,'')}.join("-")}.join("/")}/#{(p_name)}" if data.unique_categories
+        data[:link] = "http://italyabroad.com/#{data.unique_categories.collect {|c|c.name.downcase.split(" ").map{|w| w.gsub(/[^\._\-a-z0-9\@]/i,'')}.join("-")}.join("/")}/#{(p_name)}" if data.unique_categories
         data[:condition] = "new"
       end
 
