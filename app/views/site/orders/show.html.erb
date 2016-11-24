@@ -28,7 +28,7 @@
           </div>
           <div class="col-xs-6 grey-col clearfix">
             <div class="col-xs-6 "><%= order_item.quantity %></div>
-            <div class="col-xs-6 "><%= number_to_currency order_item.product.price, :unit => "&pound;" %></div>
+            <div class="col-xs-6 "><%= number_to_currency order_item.price, :unit => "&pound;" %></div>
           </div>
         </div>
       <%end%>
