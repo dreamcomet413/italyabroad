@@ -24,12 +24,12 @@
 		<%if @order.different_shipping_address %>
 		<div style="float:left;">
 			<b style="font-size:13px;padding-bottom:5px">SHIP TO:</b>
-			<%= "<br />" + (@order.ship_name).html_safe unless @order.ship_name.blank? %>
-			<%= "<br />" + (@order.ship_address).html_safe unless @order.ship_address.blank? %>
-			<%= "<br />" + (@order.ship)_address_2).html_safe unless @order.ship_address_2.blank?  %>
-			<%= "<br />" + (@order.ship_city.html)_safe unless @order.ship_city.blank? %>
-			<%= "<br />" + (@order.ship_cap).html_safe unless @order.ship_cap.blank? %>
-			<%= "<br />" + (@order.ship_country).html_safe unless @order.ship_country .blank?%>
+			<%= ("<br />" + @order.ship_name).html_safe unless @order.ship_name.blank? %>
+			<%= ("<br />" + @order.ship_address).html_safe unless @order.ship_address.blank? %>
+			<%= ("<br />" + @order.ship_address_2).html_safe unless @order.ship_address_2.blank?  %>
+			<%= ("<br />" + @order.ship_city.html)_safe unless @order.ship_city.blank? %>
+			<%= ("<br />" + @order.ship_cap).html_safe unless @order.ship_cap.blank? %>
+			<%= ("<br />" + @order.ship_country).html_safe unless @order.ship_country .blank?%>
 		</div>
 		<% else %>
 		<div style="float:left;">
