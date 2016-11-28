@@ -56,7 +56,7 @@ class Site::CategoriesController < ApplicationController
           else
             logger.info('-------------------------------else---------------------------------')
 
-            redirect_to root_url and return
+            redirect_to '/404' and return
           end
         end
       end
