@@ -27,19 +27,19 @@
 			<%= ("<br />" + @order.ship_name).html_safe unless @order.ship_name.blank? %>
 			<%= ("<br />" + @order.ship_address).html_safe unless @order.ship_address.blank? %>
 			<%= ("<br />" + @order.ship_address_2).html_safe unless @order.ship_address_2.blank?  %>
-			<%= ("<br />" + @order.ship_city.html)_safe unless @order.ship_city.blank? %>
+			<%= ("<br />" + @order.ship_city).html_safe unless @order.ship_city.blank? %>
 			<%= ("<br />" + @order.ship_cap).html_safe unless @order.ship_cap.blank? %>
 			<%= ("<br />" + @order.ship_country).html_safe unless @order.ship_country .blank?%>
 		</div>
 		<% else %>
 		<div style="float:left;">
 			<b>SHIP TO:</b>
-			<%= "<br />" + (@order.user.name).to_s.html_safe + " " + @order.user.surname.to_s %>
-			<%= "<br />" + (@order.user.address).html_safe unless @order.user.address.blank? %>
-			<%= "<br />" + (@order.user.address_2).html_safe unless @order.user.address_2.blank?  %>
-			<%= "<br />" + (@order.user.city).html_safe unless @order.user.city.blank? %>
-			<%= "<br />" + (@order.user.cap).html_safe unless @order.user.cap.blank? %>
-			<%= "<br />" + (@order.user.country).html_safe unless @order.user.country .blank?%>
+			<%= ("<br />" + @order.user.name).to_s.html_safe + " " + @order.user.surname.to_s %>
+			<%= ("<br />" + @order.user.address).html_safe unless @order.user.address.blank? %>
+			<%= ("<br />" + @order.user.address_2).html_safe unless @order.user.address_2.blank?  %>
+			<%= ("<br />" + @order.user.city).html_safe unless @order.user.city.blank? %>
+			<%= ("<br />" + @order.user.cap).html_safe unless @order.user.cap.blank? %>
+			<%= ("<br />" + @order.user.country).html_safe unless @order.user.country .blank?%>
 		</div>
 		<% end %>
 
