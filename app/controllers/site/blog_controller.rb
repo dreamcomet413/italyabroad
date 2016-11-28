@@ -36,7 +36,7 @@ class Site::BlogController < ApplicationController
     end
     @post = post
     unless @post
-      redirect_to "/blog"
+      redirect_to "/404"
     else
       @post.count_view if @post
       @comments = @post.comments.where(['public=?',true]).paginate(:page => params[:page], :per_page => 5).order("created_at DESC")

@@ -53,7 +53,7 @@ class Site::RecipesController < ApplicationController
       @reviews = @recipe.reviews.where(['publish = ?',true]).
           paginate(:page => params[:page], :per_page => 5).offset(2).order('created_at DESC')
     else
-      redirect_to recipes_path
+      redirect_to '/404'
     end
 
   end

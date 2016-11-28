@@ -31,7 +31,7 @@ class Site::ProductsController < ApplicationController
     end
 
     unless @product
-      render :file => File.join(Rails.root, 'public', '404.html'), :status => 404
+      redirect_to '/404'
       # end
       #unless @product.blank?
     else
