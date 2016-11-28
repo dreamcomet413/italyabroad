@@ -379,7 +379,7 @@ ItalyabroadNew::Application.routes.draw do
   match '/:category/:id' => 'site/products#show', :as => :nested_product
   match '/:parent_category/:sub_category/' => 'site/products#index', :as => :nested_categories
   match '/:controller(/:action(/:id))'
-  match '*path' => 'site/base#index'
+  # match '*path' => 'site/base#index'
   root :to => 'site/base#index'
 
   # The priority is based upon order of creation:
