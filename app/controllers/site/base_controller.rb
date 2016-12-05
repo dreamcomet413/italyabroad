@@ -22,7 +22,7 @@ class Site::BaseController < ApplicationController
     @food_counter = Product.where("categories.id IN (?) AND products.raccomanded = ? AND product_prices.quantity > ? AND products.active = ?", food_category_ids, true, 0,true).includes([:categories, :product_prices]).limit(10).order("RAND()")
 
     @best_sellers = Product.where("products.is_best_seller = ? AND product_prices.quantity > ? AND products.active = ?", true, 0,true)
-    .includes([:product_prices]).limit(4) if Product.attribute_method?("is_best_seller")
+    .includes([:product_prices]) if Product.attribute_method?("is_best_seller")
 
     other_categories = Category.find_by_sql("select * from categories where friendly_identifier LIKE 'other-drinks'")
     @other_drinks = Product.where("categories.id = ? AND products.raccomanded = ? AND product_prices.quantity > ? AND products.active = ?", other_categories.last.try(:id), true, 0,true)
