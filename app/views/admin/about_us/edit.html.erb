@@ -3,17 +3,7 @@
   <%= error_messages_for :about_u %>
 <fieldset>
   <%= hidden_field(:about_u, :link_type, :value => params[:type]) %>
-  <%if @meta_type.include? params[:type]%>
-    <p>
-        <span style="font:normal 15px Arial;padding-right:60px">Meta Title</span>
-      <%= text_field :about_u, 'meta_title',:size => 70 %>
-    </p>
-    <p>
-      <div style="float:left;height:300px;font:normal 15px Arial;padding:110px 14px 0 0;">Meta Description</div>
-      <div><%= text_area :about_u, 'meta_description', :cols => 80, :rows => 25 %></div>
-    </p>
-    <div style="clear: both"></div>
-  <% end %>
+  <%= render 'meta_tag_fields'%>
   <p>
       <span style="font:normal 15px Arial;padding-right:60px">Title</span>
     <%= text_field :about_u, 'title',:size => 70 %>

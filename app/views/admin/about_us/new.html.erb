@@ -9,6 +9,7 @@
 
   <fieldset>
   <%= hidden_field(:about_u, :link_type, :value => params[:type]) %>
+  <%= render 'meta_tag_fields'%>
     <p>
       <span style="font:normal 15px Arial;padding-right:60px">Title</span>
     <%= text_field :about_u, 'title',:size => 70 %>

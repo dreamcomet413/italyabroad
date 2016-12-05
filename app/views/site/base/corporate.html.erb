@@ -1,9 +1,14 @@
 <%# @title = "Corporate services"; @description = "Corporate services, corporate gifts in the UK"; @keys = "corporate services, corporate gifts, corporate hampers" %>
-<% @title = "Corporate services"; @description = "Corporate services, corporate gifts in the UK"; @key = "corporate services, corporate gifts, corporate hampers" %>
+
 <% @class = "about-us no-padding" %>
 <% @breadcrumbs = "#{link_to("Home", root_url, :title=>"Home")} &raquo; About us &raquo; Corporate services" %>
 
   <% @about = AboutU.find(:first, :conditions => {:link_type => "corporate services"} ) %>
+	<%if @about and  @about.meta_title.blank? and @about.meta_description.blank? %>
+	 <% @title = "Corporate services"; @description = "Corporate services, corporate gifts in the UK"; @key = "corporate services, corporate gifts, corporate hampers" %>
+	<%elsif @about %>
+	  <% @title = @about.meta_title; @description = @about.meta_description %>
+	<%end%>
     <div class="help-container">
       <% if @about %>
         <div class="green-heading-with-border"><%= @about.title.html_safe if @about %></div>
