@@ -1,26 +1,88 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="utf-8">
+     <meta http-equiv="x-ua-compatible" content="IE=edge">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--[if IE]><meta http-equiv="x-ua-compatible" content="edge,chrome=1" /><![endif]-->
   <title>The page you were looking for doesn't exist (404)</title>
-  <style type="text/css">
-    body { background-color: #fff; color: #666; text-align: center; font-family: arial, sans-serif; }
-    div.dialog {
-      width: 25em;
-      padding: 0 4em;
-      margin: 4em auto 50px auto;
-      border: 1px solid #ccc;
-      border-right-color: #999;
-      border-bottom-color: #999;
+  <link href="/stylesheets/bootstrap.css?1478845359" media="screen" rel="stylesheet" type="text/css" />
+  <style>
+    header{
+      width:96%;
+      max-width: 1170px;
+      margin: 10px auto;
+      border-bottom: solid 2px #ccc;
+      padding-bottom: 10px;
+    
     }
-    h1 { font-size: 100%; color: #f00; line-height: 1.5em; }
+    img{
+      max-width: 100%;
+    }
+    .container{
+      width: 96%;
+      max-width: 1170px;
+      margin: auto;
+    }
+    .button-row{
+      text-align: center;
+      margin-top: 80px;
+    }
+    .button-col{
+      display: inline-block;
+      margin: 10px 10px;
+    }
+    .button-col a{
+      background: #37a419;
+    text-decoration: none;
+    color: #fff;
+    font-family: sans-serif;
+    font-size: 16px;
+    text-align: center;
+    padding: 8px 10px;
+    display: block;
+    border-radius: 7px;
+    min-width: 200px;
+    }
+    .not-found{
+      text-align: center;
+      margin-top: 80px;
+    }
+    .green-text{
+      color: #5c8018;
+      font-size: 36px;
+      font-family: sans-serif;
+    }
   </style>
-</head>
+  <script>
+function goBack() {
+    window.history.back();
+}
+</script>
+  </head>
+
 
 <body>
-  <!-- This file lives in public/404.html -->
-  <div class="dialog ">
-    <h1>The page you were looking for doesn't exist.</h1>
-    <p>You may have mistyped the address or the page may have moved.</p>
+
+  <header id="topContent ">
+    <div class="clearfix">
+      <div class="logo">
+        <a href="/" id="logo" title="Italian wine and food"><img alt="Italian wine and food" src="/images/logo_hi_res.gif?1460445529" title="Italian wine and food"></a>   
+      
+      </div>
+    </div>
+  </header>
+  <div class="container">
+    <div class="not-found">
+        <div class="image-bix"><img src="images/404-image.jpg" ></div>
+        <div class="green-text">Sorry! That page doesnt't seem to exist!</div>
+
+    </div>
+    <div class="button-row">
+      <div class="button-col"><a href="#." onclick="goBack()">Go Back</a></div>
+      <div class="button-col"><a href="/">Go to Italyabroad.com</a></div>
+    </div>
   </div>
 </body>
 </html>
