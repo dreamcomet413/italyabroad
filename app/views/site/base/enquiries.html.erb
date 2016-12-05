@@ -1,5 +1,5 @@
-<% @title = "Italian food and wine wholesaler"; @description = "Italian wine and food wholesaler, wine and food made by passionate small producers"; @keys = "wholesale, italian wine,fine italian wine,fine,italian red and white wine, italian food, wine tasting, wine expert,deli,blog,italy,food,wine" %>
 <% @class = "about-us no-padding" %>
+
 <% @breadcrumbs = "#{link_to("Home", root_url, :title=>"Home")} &raquo; About us &raquo; Wholesale Enquiry" %>
 
 
@@ -14,6 +14,11 @@
 </div>-->
 
 <% @about = AboutU.find(:first, :conditions => {:link_type => "Wholesale"} ) %>
+  <%if @about and  @about.meta_title.blank? and @about.meta_description.blank? %>
+   <% @title = "Italian food and wine wholesaler"; @description = "Italian wine and food wholesaler, wine and food made by passionate small producers"; @keys = "wholesale, italian wine,fine italian wine,fine,italian red and white wine, italian food, wine tasting, wine expert,deli,blog,italy,food,wine" %>
+  <%elsif @about %>
+    <% @title = @about.meta_title; @description = @about.meta_description %>
+  <%end%>
   <div class="help-container">
     <% if @about %>
       <div class="green-heading-with-border"><%= @about.title.html_safe if @about %></div>
