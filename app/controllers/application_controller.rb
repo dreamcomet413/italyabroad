@@ -1,5 +1,4 @@
 require "juggernaut"
-require 'browser'
 class ApplicationController < ActionController::Base
   include ApplicationHelper
   include AuthenticatedSystem
@@ -100,7 +99,7 @@ class ApplicationController < ActionController::Base
     if !cookies[:existing_user] and params[:controller] == "site/base" and params[:action]="index"
       cookies[:existing_user] = true
       session[:return_path] = request.fullpath
-      redirect_to '/landing.html' #unless browser.bot?
+      redirect_to '/landing.html' if !request.bot? and !request.url.include? 'landing.html'
     end
   end
   def initialize_general_variable
