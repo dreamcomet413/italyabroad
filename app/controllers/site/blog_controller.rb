@@ -3,6 +3,7 @@ class Site::BlogController < ApplicationController
   before_filter :store_comment, :only => :comment, :method => :post
 #  before_filter :site_login_required, :only => :comment
   def index
+
     per_page = params[:show].to_s == "all" ? 9999999 : 4
     if params[:category] == 'search_blog_post'
       posts = Post.where("name like '%#{params[:text]}%' or friendly_identifier like '%#{params[:text]}%'")  
@@ -16,11 +17,13 @@ class Site::BlogController < ApplicationController
     else
       year = params[:year].to_i
       month = params[:month].to_i
-      begin_of_the_month = "#{month}/1/#{year}".to_time.utc
+      begin_of_the_month = "1/#{month}/#{year}".to_time.utc
       end_of_the_month = begin_of_the_month.end_of_month.to_time.utc
      posts = Post.find(:all, :conditions => ["blog_type_id = ? AND created_at >= ? AND created_at <= ?", 1, begin_of_the_month.to_s(:db), end_of_the_month.to_s(:db)])
+    
     end
     @posts = posts
+    
     respond_to do |wants|
       wants.html
       wants.xml { render :layout => false }
