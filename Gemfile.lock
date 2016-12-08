@@ -260,6 +260,8 @@ GEM
       polyglot (>= 0.3.1)
     ttfunk (1.0.3)
     tzinfo (0.3.49)
+    voight_kampff (1.1.1)
+      rack (>= 1.4, < 3.0)
     websocket-driver (0.6.4)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
@@ -312,6 +314,7 @@ DEPENDENCIES
   sshkit
   test-unit
   thin
+  voight_kampff
   whenever
   will_paginate (>= 2.3.12)
   wkhtmltopdf

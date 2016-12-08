@@ -1,5 +1,7 @@
 source 'http://rubygems.org'
 
+#gem 'browser', require: "browser/browser"
+gem 'voight_kampff'
 gem 'rails3-jquery-autocomplete'
 gem 'wkhtmltopdf'
 gem 'prawn', '0.11.1'
