@@ -28,9 +28,9 @@
             <%- if !parent_category.nil? -%>
                 <%- parent_category.children[0..5].each do |category| -%>
                     <% num_products  = find_any_active_product_exists(category.products) %>
-                    <%# if num_products > 0 %>
-                    <div class="footer-link"><%= link_to category.name.html_safe().split(" ").map{|w| w.capitalize}.join(" ").html_safe(), nested_categories_url(parent_category, category), :title=>category.name %></div>
-                <%# end %>
+                    <% if num_products > 0 %>
+                        <div class="footer-link"><%= link_to category.name.html_safe().split(" ").map{|w| w.capitalize}.join(" ").html_safe(), nested_categories_url(parent_category, category), :title=>category.name %></div>
+                    <% end %>
             <%- end -%>
         <%- end -%>
         <div class="footer-link"><%= link_to("more", "/other-drinks", :style => "color:#9b0707;", :title=>"More") %></div>
