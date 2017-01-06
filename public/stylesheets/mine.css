@@ -3146,7 +3146,7 @@ width: 72px;
     border-radius: 16px;
 /*    border: white solid 8px;*/
     text-align: center;
-    line-height: 3px;
+    line-height: 3;
 }
 .veg-wrapper{
 	margin-left: 100px;
