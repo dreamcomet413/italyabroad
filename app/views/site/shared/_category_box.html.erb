@@ -26,9 +26,14 @@
                           <% if  product.vegetarian %>
                             <span class="vegan"><img src="/images/vegan-icon.jpg" alt="Vegan" title="Vegan"></span>
                           <% end %>
-                          <% if  product.organic %>
+                          <% if product.organic %>
                             <span class="organic">
                               <img src="/images/organic-icon.jpg" alt="Organic" title="Organic">
+                            </span>
+                          <% end %>
+                          <% if product.on_offer %>
+                            <span class="on_offer">
+                              OnOffer
                             </span>
                           <% end %>
                         </div>
@@ -103,6 +108,11 @@
                         <span class="organic">
                           <img src="/images/organic-icon.jpg" alt="Organic" title="Organic">
                         </span>
+                      <% end %>
+                      <% if product.on_offer %>
+                            <span class="on_offer">
+                              OnOffer
+                            </span>
                       <% end %>
                     </div>
                   </div>
