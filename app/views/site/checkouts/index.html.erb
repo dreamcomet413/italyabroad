@@ -9,7 +9,8 @@
       <% if current_user.address.blank? or current_user.city.blank? or current_user.cap.blank? %>
         <div class="checkout-des bottom-50 billing_notification">
 
-          <h4>You Billing Address (also your profile address) is missing the following feilds:</h4>
+          <h4>Your Billing Address (also your profile address) is missing the following fields:</h4>
+
           <ul>
             <%= '<li>Address</li>'.html_safe if current_user.address.blank? %>
             <%= '<li>Town</li>'.html_safe if current_user.city.blank? %>
