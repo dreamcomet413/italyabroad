@@ -197,7 +197,7 @@
                           <%- end -%>
                         <% end %>
                       <%-  end -%>
-                      <% if category.products.where(["discount > 0"]).length > 0 %>
+                      <% if category.products.where(["discount > 0 or on_offer = true"]).length > 0 %>
                         <li style="font-weight:bold;">
                           <%= link_to("Special Offers", nested_categories_url(category, "offer"), :class => "red-text", :title=>"Special Offers") %>
                         </li>
@@ -260,7 +260,7 @@
                               <%- end -%>
                             <% end %>
                           <%-  end -%>
-                          <% if category.products.where(["discount > 0"]).length > 0 %>
+                          <% if category.products.where(["discount > 0 or on_offer = true"]).length > 0 %>
                             <li style="font-weight:bold;">
                               <%= link_to("Special Offers", nested_categories_url(category, "offer"), :class => "red-text", :title=>"Special Offers") %>
                             </li>
