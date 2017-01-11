@@ -1,5 +1,17 @@
 <script>
     fields = 0;
+ function removeInput(el) {
+  alert('11111111');
+      if (fields > 0) {
+        alert('qqqqq');
+          jQuery('#warning').html('');
+           parent = jQuery(el).remove();
+          fields -= 1;
+          addInput(); 
+      }
+    return false;
+  }
+(function($){
 
     function addInput() {
 
@@ -7,9 +19,9 @@
 
         var size_field = "mul[" + id + "][size]"
         var price_field = "mul[" + id + "][price]"
-        str = "<div> Size  <input type='text' name='" + size_field + "' />" + "<br />" + "Price <input type='text' name='" + price_field + "' />" + " <a href='javascript:void()' onclick='removeInput(this.parentNode)' >remove</a></div>";
+        str = "<div> Size  <input type='text' name='" + size_field + "' />" + "<br />" + "Price <input type='text' name='" + price_field + "' />" + " <a href='#' onclick='removeInput(jQuery(this).parent())' >remove</a></div>";
 
-        $('text').insert(str);
+        $('#text').append(str);
         // bottom: new Element('img', {src: 'logo.png'})
         // });
         fields += 1;
@@ -23,36 +35,25 @@
 
         var size_field = "mul[" + id + "][size]"
         var price_field = "mul[" + id + "][price]"
-        str = "<div> Size  <input type='text' name='" + size_field + "' value='" + size + "'/>" + "<br />" + "Price <input type='text' name='" + price_field + "' value='" + price + "'/>" + " <a href='javascript:void()' onclick='removeInput(this.parentNode)' >remove</a></div>";
-
-        $('text').insert(str);
-        // alert(str)
+        str = "<div> Size  <input type='text' name='" + size_field + "' value='" + size + "'/>" + "<br />" + "Price <input type='text' name='" + price_field + "' value='" + price + "'/>" + " <a href='#' onclick='removeInput(jQuery(this).parent())' >remove</a></div>";
+        alert(str)
+        $('#text').append(str);
         // bottom: new Element('img', {src: 'logo.png'})
         // });
         fields += 1;
 
     }
 
-
-    function removeInput(el) {
-        if (fields > 0) {
-            document.getElementById('warning').innerHTML = "";
-            var parent = document.getElementById('text');
-            parent.removeChild(el);
-            fields -= 1;
-        }
-    }
-
     function removeInput1() {
-        document.getElementById('text').innerHTML = "";
-        document.getElementById('warning').innerHTML = "";
-        document.getElementById('addmore').hide();
+        $('#text').html("");
+        $('#warning').html("");
+        $('#addmore').hide();
 
     }
     function displayField() {
-        document.getElementById('text').show();
-        document.getElementById('warning').show();
-        document.getElementById('addmore').show();
+        $('#text').show();
+        $('#warning').show();
+        $('#addmore').show();
 
     }
 
@@ -68,18 +69,17 @@
 
     $(document).ready(function(){
     
-      $('product_multiple_true').bind('click', handler1);
-      $('product_multiple_false').bind('click', handler2);
-      $('addmore').bind('click', handler3);
+      $('#product_multiple_true').bind('click', handler1);
+      $('#product_multiple_false').bind('click', handler2);
+      $('#addmore').bind('click', handler3);
       <% if @product.multiple == true %>
         <% @product.product_sizes.each do |gr| %>
-        addInput2(<%= gr.size %>, <%= gr.price %>)
+        addInput2('<%= gr.size %>', '<%= gr.price %>')
         displayField();
         <% end %>
       <% end %>
     });
-
-
+})(jQuery);
 </script>
 
 <fieldset id="general_information">
@@ -131,7 +131,7 @@
 
         <div id="text" style="display:none"></div>
         <div id="warning" style="display:none"></div>
-        <div id="addmore" style="display:none"><a href="javascript:void()">Click to Add Size And Price</a></div>
+        <div id="addmore" style="display:none"><a href="#">Click to Add Size And Price</a></div>
       </td>
 
     </tr>
