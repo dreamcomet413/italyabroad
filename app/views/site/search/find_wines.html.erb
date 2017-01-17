@@ -2,7 +2,7 @@
 <div id="header">Your search result has found the following products:</div>
 
 <% for product in @wines %>
-    <table style="margin:0 0 0 0px; margin-left:10px; margin-right:10px; padding-left:10px; padding-right:10px;width:98%;" cellpadding="0" border="0" cellspacing="0">
+    <table class="wine_events_table" cellpadding="0" border="0" cellspacing="0">
       <tr>
 
         <td style="width:90px;over-flow:hidden;">
@@ -11,8 +11,8 @@
 
 
         <td style="width:440px;">
-          <div style="margin:0 0 0 0px;margin-left:5px;">
-            <%= link_to product.name, nested_products_uri(product), :style => "font-size:17px;color:black;" %><br />
+          <div class="left-5">
+            <%= link_to product.name, nested_products_uri(product), :class => "nested-product-link" %><br />
             <%= show_ratings(product).html_safe() %>
             <%= product.description_short.html_safe() %>
             <br />
@@ -24,22 +24,22 @@
 
         <!-- THIRD COLUMN START (PRICE)-->
         <td>
-          <div class="box_price_product" style="float:left;">
+          <div class="box_price_product fl">
             <ul>
               <li class="price_info">
                 <% if product.product_prices.present? %>
                   <% if product.discounted? && product.discount > 0.0 %>
                     <% product.product_prices.each do |pp| %>
-                    <div style="font-size:14px;color:black;">Was <span style="text-decoration: line-through;">
+                    <div class="nested-product-link-2">Was <span class="strike-text">
                       <%= number_to_currency pp.price, :unit => "&pound;" %></span></div>
                     <% end %>
-                    <span class="price red" style="color:#003300;">Now&nbsp;<span class="red-text">
+                    <span class="price red"><span class="gl-green-text">Now&nbsp;</span><span class="red-text">
                       <% product.price_discounted.each do |price| %>
                         <%= number_to_currency price, :unit => "&pound;" %>
                       <% end %>
                     </span></span>
                   <% else %>
-                    <span class="price" style="color:black;">
+                    <span class="price black">
                       <% product.product_prices.each do |pp| %>
                         <%= number_to_currency pp.price, :unit => "&pound;" %>
                       <% end %>
