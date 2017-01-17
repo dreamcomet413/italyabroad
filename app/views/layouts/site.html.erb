@@ -134,7 +134,7 @@
               search_text = ''
             end %>
             <div class="input-group left-bar-search">
-              <div style="position:relative;">
+              <div class="left-bar-search-inner">
                 <%= text_field_tag :text, search_text, :class=> "form-control top-search text",  "data-autocomplete"=>"/search/autocomplete_search_name", :placeholder => "Search Italyabroad.com", :id => "bg_text" %>
                 <span class="magnifier"><input src="/images/magnifier.png?1462969008" type="image" alt="Search"></span>
               </div>
@@ -199,7 +199,7 @@
                         <% end %>
                       <%-  end -%>
                       <% if category.products.where(["discount > 0 or on_offer = true"]).length > 0 %>
-                        <li style="font-weight:bold;">
+                        <li class="bold-text">
                           <%= link_to("Special Offers", nested_categories_url(category, "offer"), :class => "red-text", :title=>"Special Offers") %>
                         </li>
                       <% end %>
@@ -262,7 +262,7 @@
                             <% end %>
                           <%-  end -%>
                           <% if category.products.where(["discount > 0 or on_offer = true"]).length > 0 %>
-                            <li style="font-weight:bold;">
+                            <li class="bold-text">
                               <%= link_to("Special Offers", nested_categories_url(category, "offer"), :class => "red-text", :title=>"Special Offers") %>
                             </li>
                           <% end %>
