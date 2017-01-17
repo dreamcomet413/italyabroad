@@ -11,7 +11,11 @@ class Grape < ActiveRecord::Base
   end
 
   def meta_description_formatted
-    meta_description.blank? ? description[0..500] : meta_description
+    if meta_description.blank? 
+	description[0..500] if description
+    else
+	meta_description
+    end
   end
 
   def meta_keys_formatted
@@ -21,7 +25,7 @@ class Grape < ActiveRecord::Base
       for key in description.downcase.split
         i += 1
         keys << key.to_s.downcase.gsub(/[^a-z0-9]+/, '-').gsub(/-+$/, '').gsub(/^-+$/, '') unless keys.include?(key) || i > 21 || key.length < 4
-      end
+      end rescue ''
       return keys.join(", ")
     else
       return meta_keys
