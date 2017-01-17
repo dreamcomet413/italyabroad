@@ -1,7 +1,7 @@
 <div id="header">Your search result has found the following events:</div>
 
 <% for product in @wine_events %>
-    <table style="margin:0 0 0 0px; margin-left:10px; margin-right:10px; padding-left:10px; padding-right:10px;width:98%;" cellpadding="0" border="0" cellspacing="0">
+    <table class="wine_events_table" cellpadding="0" border="0" cellspacing="0">
       <tr>
 
 
@@ -9,7 +9,7 @@
 
         <td >
           <div style="margin:0 0 0 0px;margin-left:10px;">
-            <%= link_to product.name, nested_products_uri(product), :style => "font-size:17px;color:black;" %><br />
+            <%= link_to product.name, nested_products_uri(product), :class => "nested-product-link" %><br />
             <%= show_ratings(product).html_safe() %>
             <%= product.description_short.html_safe() %>
           </div>
