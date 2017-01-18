@@ -8,7 +8,7 @@
 
 
         <td >
-          <div style="margin:0 0 0 0px;margin-left:10px;">
+          <div class="left-10 ">
             <%= link_to product.name, nested_products_uri(product), :class => "nested-product-link" %><br />
             <%= show_ratings(product).html_safe() %>
             <%= product.description_short.html_safe() %>
@@ -19,22 +19,22 @@
 
         <!-- THIRD COLUMN START (PRICE)-->
         <td>
-          <div class="box_price_product" style="float:left;">
+          <div class="box_price_product fl">
             <ul>
               <li class="price_info">
                 <% if product.product_prices.present? %>
                   <% if product.discounted? && product.discount > 0.0 %>
                     <% product.product_prices.each do |pp| %>
-                    <div style="font-size:14px;color:black;">Was <span style="text-decoration: line-through;">
+                    <div class="nested-product-link-2">Was <span class="strike-text">
                       <%= number_to_currency pp.price, :unit => "&pound;" %></span></div>
                     <% end %>
-                    <span class="price red" style="color:#003300;">Now&nbsp;<span class="red-text">
+                    <span class="price red"><span class="gl-green-text">Now&nbsp;</span><span class="red-text">
                       <% product.price_discounted.each do |price| %>
                         <%= number_to_currency price, :unit => "&pound;" %>
                       <% end %>
                     </span></span>
                   <% else %>
-                    <span class="price" style="color:black;">
+                    <span class="price black">
                       <% product.product_prices.each do |pp| %>
                         <%= number_to_currency pp.price, :unit => "&pound;" %>
                       <% end %>
@@ -59,7 +59,7 @@
 
                 <% else %>
                     <!--<span style="color:red;">Sorry no places left, see other dates</span>-->
-                    <span style="color:red;">Sold Out</span>
+                    <span class="gl-red">Sold Out</span>
                 <% end %>
               </li>
 
