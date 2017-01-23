@@ -114,7 +114,7 @@ ItalyabroadNew::Application.routes.draw do
   match 'corporate-services' => 'site/base#corporate', :as => :corporate
   match 'wholesale-enquiry' => 'site/base#enquiries', :as => :wholesale_enquiry
   match 'about-us' => 'site/base#about_us', :as => :about_us
-  match 'our-principles' => 'site/base#our_principles', :as => :our_principles
+  match 'our-manifesto' => 'site/base#our_principles', :as => :our_principles
   match 'meet-us' => 'site/base#meet_us', :as => :meet_us
   match 'terms-and-conditions' => 'site/base#conditions', :as => :terms_and_conditions
   match 'privacy-policy' => 'site/base#privacy', :as => :privacy_policy
