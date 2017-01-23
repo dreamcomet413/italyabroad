@@ -5,7 +5,6 @@ class Producer < ActiveRecord::Base
   has_many :products
 
   friendly_identifier :name
-
   def page_title_formatted
     page_title.blank? ? name : page_title
   end

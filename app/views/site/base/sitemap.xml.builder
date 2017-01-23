@@ -177,7 +177,7 @@ xml.urlset(:xmlns=>"http://www.sitemaps.org/schemas/sitemap/0.9", "xmlns:xsi" =>
 
   # About us pages
   xml.url do
-    xml.loc         "#{url}/about-us/our-principles"
+    xml.loc         "#{url}/about-us/our-manifesto"
     xml.lastmod     w3c_date(Time.now)
     xml.changefreq  "weekly"
     xml.priority    0.6

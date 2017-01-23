@@ -24,7 +24,7 @@
       <%- @producer.grapes.each do |grape| -%>
         <div class="producer-link"><%= link_to grape.name, grape_path(grape), :title=>grape.name %></div>
       <%- end -%>
-      <%- if @producer_products = @producer.products.find(:all, :include => 'product_prices', :conditions=>['active = ? and product_prices.quantity > ?',true,0]) %>    
+      <%- if @producer_products = @producer.products.find(:all, :include => 'product_prices', :conditions=>['active = ? ',true]) %>    
         <div class="prdoucer-products-wrapper">
           <h2 class="producer-products-heading"><%= @producer.producer_text %> </h2>
           <div class="producer-products-row clearfix">

@@ -31,7 +31,7 @@
           <% for producer in @producers %>
             <div class="green-heading-with-border">
               <%# link_to producer.name, producer.friendly_identifier.blank? ? "/producers/#{producer.id}" : "/producers/#{producer.friendly_identifier}" %>
-              <%= link_to(producer.name, producer_path(producer.id), :title=>producer.name)  %>
+              <%= link_to(producer.name, producer_path(producer), :title=>producer.name)  %>
             </div>
             <div class="producer-products-heading">
               <%= producer.region.name rescue "No region" %>
@@ -39,7 +39,7 @@
             <% unless producer.description.blank? %>
               <div class="bottom-50">
                 <%= strip_tags(producer.description[0,250]).html_safe()  %>
-                <%= link_to "Read More", producer_path(producer.id), :title=>"Read More" %>
+                <%= link_to "Read More", producer_path(producer), :title=>"Read More" %>
               </div>
             <% end %>
             <% unless producer.grapes.blank? %>
@@ -72,7 +72,7 @@
           <h2 class="green-heading">A-G</h2>
           <%- for producer in @producers_all -%>
             <%- if producer.name.upcase =~ /^[A-G]/ -%>
-              <div><%= link_to(producer.name, producer_path(producer.id), :title=>producer.name)  %></div>
+              <div><%= link_to(producer.name, producer_path(producer), :title=>producer.name)  %></div>
             <%- end -%>
           <%- end -%>
         </div>
@@ -80,7 +80,7 @@
           <h2 class="green-heading">H-L</h2>
           <%- for producer in @producers_all -%>
             <%- if producer.name.upcase  =~ /^[H-L]/ -%>
-              <div><%= link_to(producer.name, producer_path(producer.id), :title=>producer.name)  %></div>
+              <div><%= link_to(producer.name, producer_path(producer), :title=>producer.name)  %></div>
             <%- end -%>
           <%- end -%>
         </div>
@@ -88,7 +88,7 @@
           <h2 class="green-heading">M-Z</h2>
           <%- for producer in @producers_all -%>
             <%- if producer.name.upcase  =~ /^[M-Z]/ -%>
-              <div><%= link_to(producer.name, producer_path(producer.id), :title=>producer.name)  %></div>
+              <div><%= link_to(producer.name, producer_path(producer), :title=>producer.name)  %></div>
             <%- end -%>
           <%- end -%>
         </div>
