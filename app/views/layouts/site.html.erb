@@ -6,8 +6,13 @@
     <!--[if IE]><meta http-equiv="x-ua-compatible" content="edge,chrome=1" /><![endif]-->
   <title><%= h(title) %></title>
   <%= csrf_meta_tag %>
+
+<% if params[:controller] == "chat_messages" %>
    <%= javascript_include_tag "private_pub" %>
-  <link rel="shortcut icon" href="/images/italyabroad.ico" />
+<% end %>
+
+  <!-- <link rel="shortcut icon" href="/images/italyabroad.ico" /> -->
+  <link rel="icon" type="image/x-icon" href="/images/italyabroad.ico" />
   <link rel="alternate" type="application/rss+xml" title="Italyabroad.com Products, Feed RSS 2.0" href="<%= products_url %>" />
   <link rel="alternate" type="application/rss+xml" title="Italyabroad.com Blog, Feed RSS 2.0" href="<%= blog_index_url %>" />
   <meta name="description" content="<%= h(description) %>" />
@@ -74,7 +79,9 @@
 </head>
 
 <body <%= @paypal_redirect %> <%= "id='#{@page_id}'" if @page_id %> class="<%= @current_controller %><%= " #{@class}" if @class %>" <%= "onload='#{@onload}'" if @onload %>>
+<% if params[:controller]=="chat_messages" %>
 <%= subscribe_to "/chat_messages/new/*" %>
+<% end %>
 <% if logged_in? and  current_user.admin? %>
   <div class ="new_message"></div>
 <% end %>
@@ -133,7 +140,7 @@
               search_text = ''
             end %>
             <div class="input-group left-bar-search">
-              <div style="position:relative;">
+              <div class="left-bar-search-inner">
                 <%= text_field_tag :text, search_text, :class=> "form-control top-search text",  "data-autocomplete"=>"/search/autocomplete_search_name", :placeholder => "Search Italyabroad.com", :id => "bg_text" %>
                 <span class="magnifier"><input src="/images/magnifier.png?1462969008" type="image" alt="Search"></span>
               </div>
@@ -198,7 +205,7 @@
                         <% end %>
                       <%-  end -%>
                       <% if category.products.where(["discount > 0 or on_offer = true"]).length > 0 %>
-                        <li style="font-weight:bold;">
+                        <li class="bold-text">
                           <%= link_to("Special Offers", nested_categories_url(category, "offer"), :class => "red-text", :title=>"Special Offers") %>
                         </li>
                       <% end %>
@@ -261,7 +268,7 @@
                             <% end %>
                           <%-  end -%>
                           <% if category.products.where(["discount > 0 or on_offer = true"]).length > 0 %>
-                            <li style="font-weight:bold;">
+                            <li class="bold-text">
                               <%= link_to("Special Offers", nested_categories_url(category, "offer"), :class => "red-text", :title=>"Special Offers") %>
                             </li>
                           <% end %>
@@ -455,7 +462,7 @@
   </script>
 
 
-  <a title="Real Time Web Analytics" href="http://clicky.com/100911433"><img alt="Real Time Web Analytics" src="//static.getclicky.com/media/links/badge.gif" style="border:none"  title="Badge" /></a>
+  <a title="Real Time Web Analytics" href="http://clicky.com/100911433"><img alt="Real Time Web Analytics" src="//static.getclicky.com/media/links/badge.gif"   title="Badge" /></a>
   <script src="//static.getclicky.com/js" type="text/javascript"></script>
   <script type="text/javascript">try{ clicky.init(100911433); }catch(e){}</script>
   <noscript><p><img alt="Clicky" title="Cliky" width="1" height="1" src="//in.getclicky.com/100911433ns.gif" /></p></noscript>
