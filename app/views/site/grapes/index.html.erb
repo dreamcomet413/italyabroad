@@ -61,25 +61,26 @@
         </div>
         <div class="green-heading-2"><h1>Grape list, click for information</h1></div>
           <div class="row clearfix grape_list">
-                  <% [*('A'..'Z')].each do |letter| %>
-                      <% count =  Grape.where("name Like ? or name Like ?", letter.upcase+'%', letter.downcase+'%').count %>
-                      <% if count != 0  %>
-                        <h2 class="green-heading grape_letter", id = 'grape_<%=letter%>'><%= link_to "#{letter}",'#' %></h2>
-                      <%else%>
-                       <h2 class="green-heading grape_letter"> <%= letter%> </h2>
-                      <%end%>
-                  <% end %>
-                  <div class="grape_list">
-                    <%- for grape in @grapes_all -%>
-                        <div class="hide_grape grape_<%= grape.name[0].upcase %>" =>
-                          <%= link_to(grape.name, grape_path(grape), :title => grape.name)%></div>
-                    <%- end -%>
+            <% [*('A'..'Z')].each do |letter| %>
+                <% count =  Grape.where("name Like ? or name Like ?", letter.upcase+'%', letter.downcase+'%').count %>
+                <% if count != 0  %>
+                  <h2 class="green-heading grape_letter", id = 'grape_<%=letter%>'><%= link_to "#{letter}",'#' %></h2>
+                <%else%>
+                 <h2 class="green-heading grape_letter"> <%= letter%> </h2>
+                <%end%>
+            <% end %>
+            <div class="grape_list">
+              <%- for grape in @grapes_all -%>
+                  <div class="hide_grape grape_<%= grape.name[0].upcase %>">
+                    <%= link_to(grape.name, grape_path(grape), :title => grape.name)%>
                   </div>
+              <%- end -%>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
+
   <!-- start 3 colum  boxes-->
   <div class="community-row clearfix row">
     <%= render :partial => '/site/shared/our_community' %>
