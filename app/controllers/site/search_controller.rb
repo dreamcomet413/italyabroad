@@ -12,9 +12,21 @@ class Site::SearchController < ApplicationController
   end
 
   def render_result_data(result )
+
     render :json => result.collect {|p|
       name = p.name.gsub(eval("/#{params[:term]}/i")){|m| "<b>#{m}</b>"}
-      {:label => name, :value => p.name, :id => p.id, :category => p.class == Product ? p.root_category.downcase : '', :slug => p.class==Product ? p.friendly_identifier.downcase : ''}
+      if p.class == Product 
+        slug = p.friendly_identifier
+        category = p.root_category.downcase
+      elsif p.class == Grape
+          slug = p.friendly_identifier
+          category = 'grapes'
+      else
+        slug = ''
+        category = '' 
+      end
+
+      {:label => name, :value => p.name, :id => p.id, :category => category , :slug => slug }
     }.to_json.to_s.html_safe
   end
 
