@@ -61,21 +61,23 @@
         </div>
         <div class="green-heading-2"><h1>Grape list, click for information</h1></div>
         <div class="row clearfix grape-list">
-          <div class="col-md-3 col-xs-6">
-            <h2 class="green-heading">A-H</h2>
-            <%- for grape in @grapes_all -%>
-              <% if grape.name.upcase =~ /^[A-H]/  %>
-                <div>
-                  <%= link_to(grape.name, grape_path(grape), :title => grape.name) if grape.name.upcase =~ /^[A-H]/ %>
-                </div>
-              <% end %>
-            <%- end -%>
-          </div>
-          <div class="col-md-3 col-xs-6">
+          <% [*('A'..'Z')].each do |letter| %>
+            <div class="col-md-2 col-xs-6">
+              <h2 class="green-heading"><%= letter%></h2>
+              <%- for grape in @grapes_all -%>
+                <% if grape.name.upcase =~ /^["#{letter}"]/  %>
+                  <div>
+                    <%= link_to(grape.name, grape_path(grape), :title => grape.name) if grape.name.upcase =~ /^[A-H]/ %>
+                  </div>
+                <% end %>
+              <%- end -%>
+            </div>
+          <% end%>
+         <!--  <div class="col-md-3 col-xs-6">
             <h2 class="green-heading">I-P</h2>
             <%- for grape in @grapes_all -%>
               <%- if grape.name.upcase =~ /^[I-P]/ -%>
-                <div><%= link_to(grape.name, grape_path(grape), :title => grape.name) %></div>
+                <div>< %= link_to(grape.name, grape_path(grape), :title => grape.name) %></div>
               <%- end -%>
             <%- end -%>
           </div>
@@ -83,10 +85,10 @@
             <h2 class="green-heading">Q-Z</h2>
             <%- for grape in @grapes_all -%>
               <% if grape.name.upcase =~ /^[Q-Z]/ %>
-                <div><%= link_to grape.name, grape_path(grape), :title=>grape.name  %></div>
+                <div>< %= link_to grape.name, grape_path(grape), :title=>grape.name  %></div>
               <% end %>
             <%- end -%>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
