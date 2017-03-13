@@ -60,35 +60,21 @@
           <%= @about.description.html_safe() rescue 'The wine and grape details ...' %> 
         </div>
         <div class="green-heading-2"><h1>Grape list, click for information</h1></div>
-        <div class="row clearfix grape-list">
-          <% [*('A'..'Z')].each do |letter| %>
-            <div class="col-md-2 col-xs-6">
-              <h2 class="green-heading"><%= letter%></h2>
-              <%- for grape in @grapes_all -%>
-                <% if grape.name.upcase =~ /^["#{letter}"]/  %>
-                  <div>
-                    <%= link_to(grape.name, grape_path(grape), :title => grape.name) if grape.name.upcase =~ /^[A-H]/ %>
-                  </div>
-                <% end %>
-              <%- end -%>
-            </div>
-          <% end%>
-         <!--  <div class="col-md-3 col-xs-6">
-            <h2 class="green-heading">I-P</h2>
-            <%- for grape in @grapes_all -%>
-              <%- if grape.name.upcase =~ /^[I-P]/ -%>
-                <div>< %= link_to(grape.name, grape_path(grape), :title => grape.name) %></div>
-              <%- end -%>
-            <%- end -%>
+          <div class="row clearfix grape-list grape_list">
+                  <% [*('A'..'Z')].each do |letter| %>
+                      <% count =  Grape.where("name Like ? or name Like ?", letter.upcase+'%', letter.downcase+'%').count %>
+                      <% if count != 0  %>
+                        <h2 class="green-heading grape_letter", id = 'grape_<%=letter%>'><%= link_to "#{letter}",'#' %></h2>
+                      <%else%>
+                       <h2 class="green-heading grape_letter"> <%= letter%> </h2>
+                      <%end%>
+                  <% end %>
+
+                  <%- for grape in @grapes_all -%>
+                      <div class="hide_grape grape_<%= grape.name[0].upcase %>" =>
+                        <%= link_to(grape.name, grape_path(grape), :title => grape.name)%></div>
+                  <%- end -%>
           </div>
-          <div class="col-md-3 col-xs-6">
-            <h2 class="green-heading">Q-Z</h2>
-            <%- for grape in @grapes_all -%>
-              <% if grape.name.upcase =~ /^[Q-Z]/ %>
-                <div>< %= link_to grape.name, grape_path(grape), :title=>grape.name  %></div>
-              <% end %>
-            <%- end -%>
-          </div> -->
         </div>
       </div>
     </div>
@@ -99,3 +85,4 @@
     <%= render :partial => '/site/shared/wine_club' %>
     <%= render :partial => '/site/shared/cercavino' %>
   </div><!-- start 3 colum  boxes-->
+ 

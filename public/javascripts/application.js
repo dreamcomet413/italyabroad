@@ -191,4 +191,12 @@ jQuery.fn.submitWithAjax = function() {
 
 jQuery(document).ready(function($){
   $("#chat_window").submitWithAjax();
-})
+    $('.hide_grape').hide();
+    $('.grape_A').show();
+    $('.grape_letter').click(function(event){
+      event.preventDefault();
+      grape = '.'+$(this).attr('id')
+      $('.hide_grape').hide();
+      $(grape).show();
+    });
+});

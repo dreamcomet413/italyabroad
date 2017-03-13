@@ -3755,7 +3755,20 @@ a.red{
     cursor: pointer;
     z-index: 1000;
 }
+.hide_grape{
+	display: none;
+}
+.grape_letter{
+	display: initial;
+	margin: 8px;
+}
+.grape_letter h2 {
+	display: initial;
 
+}
+.grape_list{
+	padding: 15px;
+}
 @media print {
   header, footer{
   	display: none;
