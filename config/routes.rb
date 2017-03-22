@@ -48,12 +48,18 @@ ItalyabroadNew::Application.routes.draw do
       resources :images, :only => [:destroy]
     end
     resources :recipes do
+      collection do 
+        get 'xml'
+      end
       resources :images, :only => [:destroy]
       resources :resources, :only => [:destroy]
     end
     resources :resources, :only => [:destroy]
     resources :images, :only => [:destroy]
     resources :products do
+       collection do 
+          get 'xml'
+        end
       resources :images, :only => [:destroy]
       resources :resources, :only => [:destroy]
     end
@@ -321,11 +327,9 @@ ItalyabroadNew::Application.routes.draw do
   resources :posts
   match 'admin/products/delete_products_of_the_week' => 'admin/products#delete_products_of_the_week'
   match 'admin/products/products_of_the_week' => 'admin/products#products_of_the_week'
-  match 'admin/products/xml' => 'admin/products#xml'
   match '/show_order_details' => 'site/orders#show_order_details'
   match 'admin/products/products_sortby_quantity' => 'admin/products#products_sortby_quantity'
   match 'orders/review' => 'site/orders#review'
-  match 'admin/recipes/xml' => 'admin/recipes#xml'
   match 'admin/xml' => 'admin/xml#index', :as => :xml
   match 'admin/xml/xml_options' => 'admin/xml#xml_options', :as => :xml_options
   match 'admin/xml/eval_xml' => 'admin/xml#eval_xml', :as => :eval_xml
