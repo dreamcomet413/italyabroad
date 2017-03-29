@@ -133,11 +133,12 @@ class Admin::XmlController < ApplicationController
   end
 
   def eval_xml_g_comptible
+
     if params[:id]
       @root = Category.find(params[:id])
-      @products = (Product.find(:all,:include=>[:categories],:conditions =>["active = ? and categories.id = ?", 1,@root.id]))
+      @products = (Product.find(:all,:include=>[:categories],:conditions =>["active = ? and categories.id = ?", params[:product_active].to_i,@root.id]))
     else
-      @products = Product.find(:all,:conditions =>["active = ?", 1])
+      @products = Product.find(:all,:conditions =>["active = ?", params[:product_active].to_i])
     end
     item_string = ""
     whole_product = ""

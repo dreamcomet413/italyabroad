@@ -1,47 +1,51 @@
 class Admin::ProductsController < ApplicationController
   before_filter :admin_login_required
   before_filter :store_location, :only => [:edit, :meta, :categories, :extra, :ideal_with, :how_to_cook, :correlation, :images, :files,:included_products]
+  before_filter :get_products , :only => [:index , :xml ]
 
   layout "admin"
 
-
-  def index
-    categories = Category.find_by_sql("select * from categories where parent_id is null")
-    @categories_data = Admin::CategoriesController.new
-    @data = @categories_data.get_tree(categories,nil)
+  def get_products
     if !params[:search].blank?
-      @products = Product.where("categories.id = ? AND products.name LIKE ?", "#{params[:search]}", "%#{params[:search_name]}%").includes([:categories]).order("created_at DESC").paginate(:page => params[:page], :per_page => 20)
+      @products = Product.where("categories.id = ? AND products.name LIKE ?", "#{params[:search]}", "%#{params[:search_name]}%").includes([:categories]).order("created_at DESC")
       #@products = Product.find(:all, :include => [:categories],:conditions=>['categories.id = ? AND products.name LIKE ? ',"#{params[:search]}" ,"%#{params[:search_name]}%"], :order => "created_at DESC").paginate(:page => params[:page], :per_page => 20)
       if params[:update] and !params[:discount].blank?
         update_discount(@products,params[:discount])
       end
-      @products = Product.where("categories.id = ? AND products.name LIKE ?", "#{params[:search]}", "%#{params[:search_name]}%").includes([:categories]).order("created_at DESC").paginate(:page => params[:page], :per_page => 20)
+      @products = Product.where("categories.id = ? AND products.name LIKE ?", "#{params[:search]}", "%#{params[:search_name]}%").includes([:categories]).order("created_at DESC")
       #@products = Product.find(:all, :include => [:categories],:conditions=>['categories.id = ? AND     products.name LIKE ? ',"#{params[:search]}" ,"%#{params[:search_name]}%"], :order => "created_at DESC").paginate(:page => params[:page], :per_page => 20)
     elsif params[:search].blank?
-      @products = Product.where("products.name LIKE ?", "%#{params[:search_name]}%").includes([:categories]).order("created_at DESC").paginate(:page => params[:page], :per_page => 20)
+      @products = Product.where("products.name LIKE ?", "%#{params[:search_name]}%").includes([:categories]).order("created_at DESC")
       if params[:update] and !params[:discount].blank?
         update_discount(@products,params[:discount])
       end
-      @products = Product.where("products.name LIKE ?", "%#{params[:search_name]}%").includes([:categories]).order("created_at DESC").paginate(:page => params[:page], :per_page => 20)
+      @products = Product.where("products.name LIKE ?", "%#{params[:search_name]}%").includes([:categories]).order("created_at DESC")
       #@products = Product.find(:all, :include => [:categories],:conditions=>[' products.name LIKE ? ',"%#{params[:search_name]}%"], :order => "created_at DESC").paginate(:page => params[:page], :per_page => 20)
     else
-      @products = Product.where("id is not NULL").includes([:categories]).order("created_at DESC").paginate(:page => params[:page], :per_page => 20)
-      @products = Product.find(:all, :include => [:categories], :order => "created_at DESC").paginate(:page => params[:page], :per_page => 20)
+      @products = Product.where("id is not NULL").includes([:categories]).order("created_at DESC")
+      @products = Product.find(:all, :include => [:categories], :order => "created_at DESC")
       if params[:update] and !params[:discount].blank?
         update_discount(@products,params[:discount])
       end
-      @products = Product.find(:all,:include => [:categories], :order => "created_at DESC").paginate(:page => params[:page], :per_page => 20)
+      @products = Product.find(:all,:include => [:categories], :order => "created_at DESC")
     end
 
     if params[:active]
       if !params[:search].blank?
-        @products = Product.where("categories.id = ? AND products.name LIKE ? AND active = ?", "#{params[:search]}", "%#{params[:search_name]}%", true).includes([:categories]).order("created_at DESC").paginate(:page => params[:page], :per_page => 20)
+        @products = Product.where("categories.id = ? AND products.name LIKE ? AND active = ?", "#{params[:search]}", "%#{params[:search_name]}%", true).includes([:categories]).order("created_at DESC")
         #@products = Product.find(:all, :include => [:categories],:conditions=>['categories.id = ? AND products.name LIKE ? and active = ? ',"#{params[:search]}" ,"%#{params[:search_name]}%",true], :order => "created_at DESC").paginate(:page => params[:page], :per_page => 20)
       elsif params[:search].blank?
-        @products = Product.where("products.name LIKE ? AND active = ?", "%#{params[:search_name]}%", true).includes([:categories]).order("created_at DESC").paginate(:page => params[:page], :per_page => 20)
+        @products = Product.where("products.name LIKE ? AND active = ?", "%#{params[:search_name]}%", true).includes([:categories]).order("created_at DESC")
         #@products = Product.find(:all, :include => [:categories],:conditions=>['products.name LIKE ? and active = ? ',"%#{params[:search_name]}%",true], :order => "created_at DESC").paginate(:page => params[:page], :per_page => 20)
       end
     end
+  end
+  def index
+    categories = Category.find_by_sql("select * from categories where parent_id is null")
+    @categories_data = Admin::CategoriesController.new
+    @data = @categories_data.get_tree(categories,nil)
+    @products = @products.paginate(:page => params[:page], :per_page => 20)
+    
   end
 
   def products_sortby_quantity
@@ -352,7 +356,6 @@ class Admin::ProductsController < ApplicationController
   def xml
     item_string = ""
     whole_product = ""
-    @products = Product.find(:all)
     header_string = '<?xml version="1.0" encoding="UTF-8" ?>'
     header_string += '<rss version ="2.0" xmlns:g="http://base.google.com/ns/1.0">'
     header_string += '<channel>'
@@ -363,7 +366,7 @@ class Admin::ProductsController < ApplicationController
     footer_string +='</rss>'
     #   @xml = @products.to_xml(:only => [:name, :description_short,:price])
     #  File.open("products.xml", 'w') {|f| f.write(@xml) }
-    for product in @products
+     for product in @products
       item_string += '<item>'
       item_string += '<g:id>'+ product.id.to_s + '</g:id>'
       item_string += '<title>Title</title>'
@@ -376,8 +379,8 @@ class Admin::ProductsController < ApplicationController
       item_string += '<g:price>'+ product.price.to_s + '</g:price>'
       item_string += '<rate>'+ product.rate.to_s + '</rate>'
       item_string += '</item>'
+      
     end
-
     whole_product = header_string + item_string + footer_string
     File.open("products.xml", 'w') {|f| f.write(whole_product) }
     send_file File.join(Rails.root,"products.xml" ), :type => "xml"

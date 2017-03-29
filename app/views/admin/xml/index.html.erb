@@ -1,7 +1,7 @@
 <%- @title = "Administration - Recipes"; @page_id = "Other Stuff" -%>
 <%- @breadcrumbs = "Other Stuff &raquo; #{link_to "XML", xml_path}" -%>
-
 <div class="inner_content recipes" id="admin_recipes_index">
+  <h1> active <%= check_box_tag :active,'true',  checked: true %></h1>
   <table>
     <tr><td valign="top">
       <h2>XML</h2>
@@ -42,12 +42,15 @@
               <td width="25%"><br /><%=  p.name %> </td>
               <td>
                 <%= form_tag(:action => :eval_xml_g_comptible,:table=>p.name, :id =>p.id) do %>
+                    <%= hidden_field_tag :product_active,1, class: 'product_active' %>
                     <%= submit_tag "Get XML" %></td>
                 <% end %>
                 </tr>
         <% end %>
         <tr><td><br /><%= 'All Products' %></td>
           <td><%= form_tag(:action => :eval_xml_g_comptible,:table=>'products') do %>
+                    <%= hidden_field_tag :product_active,1, class: 'product_active' %>
+
                 <%= submit_tag "Get XML" %></td>
             <% end %>
             </td></tr>
@@ -60,10 +63,26 @@
     $('.xml_links a').on('click',function(){
       count = $(this).parent().attr('id').replace("table",'')
       $.get( $(this).attr('href'), function( data ) {
+        $(data)
         $('#options'+count).html(data);
+        if($("input#active").is(':checked')){
+          $('#options'+count).find(".product_active").val('1');          
+         }else{
+          $('#options'+count).find(".product_active").val('0');
+         }
       });
 
       return false;
     })
+    $("input#active").on('click',function(){
+      $.each($('.product_active'), function( index, value ) {
+         if($("input#active").is(':checked')){
+          $(this).val('1');          
+         }else{
+          $(this).val('0');
+         }
+      });
+      console.log($('input#active').is(':checked'));  
+    });
   });
 </script>
