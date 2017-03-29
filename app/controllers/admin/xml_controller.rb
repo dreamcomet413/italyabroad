@@ -66,7 +66,7 @@ class Admin::XmlController < ApplicationController
       @new_data = []
 
 
-      @data = eval(params[:table]).find(:all, :conditions =>["active = ?", 1])
+      @data = eval(params[:table]).find(:all, :conditions =>["active = ?", params[:product_active]])
       @data.each do |data|
 
 

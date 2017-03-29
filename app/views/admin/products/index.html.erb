@@ -92,9 +92,7 @@
     </tbody>
     <tfoot>
     <tr>
-      <% if @products.size > 0 %>
       <td colspan="10"><%= (will_paginate(@products)) %></td>
-      <% end %>
       <td align="right"><%= page_entries_info_ @products %></td>
     </tr>
     </tfoot>
