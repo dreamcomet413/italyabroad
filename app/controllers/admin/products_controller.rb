@@ -1,5 +1,5 @@
 class Admin::ProductsController < ApplicationController
-  before_filter :admin_login_required
+  before_filter :admin_login_required , except: [:xml]
   before_filter :store_location, :only => [:edit, :meta, :categories, :extra, :ideal_with, :how_to_cook, :correlation, :images, :files,:included_products]
   before_filter :get_products , :only => [:index , :xml ]
 
