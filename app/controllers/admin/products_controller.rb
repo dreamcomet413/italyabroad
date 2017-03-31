@@ -376,7 +376,7 @@ class Admin::ProductsController < ApplicationController
       item_string += '<description>'+ h(product.description) + '</description>'
 
       item_string += '<link>' + h(url_for(:only_path => false, :controller => "site/products", :action => "show", :id =>"#{product.friendly_identifier}"))  + '</link>'
-      item_string += '<g:price>'+ product.price.to_s + '</g:price>'
+      item_string += '<g:price> £'+  product.price_discounted.first.to_s  + '</g:price>'
       item_string += '<rate>'+ product.rate.to_s + '</rate>'
       item_string += '</item>'
       

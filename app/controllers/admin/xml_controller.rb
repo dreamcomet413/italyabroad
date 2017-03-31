@@ -2,7 +2,7 @@ class Admin::XmlController < ApplicationController
 
   before_filter :admin_login_required
   layout "admin"
-
+  include ActionView::Helpers::NumberHelper
   def index
     @count = 1
     @tables = ["Product","Category",  "Comment",
@@ -161,7 +161,7 @@ class Admin::XmlController < ApplicationController
       item_string += '<description>'+ h(data.description) + '</description>'
 
       item_string += '<link>' + h(url_for(:only_path => false, :controller => "site/products", :action => "show", :id =>"#{data.friendly_identifier}"))  + '</link>'
-      item_string += '<g:price>'+ data.price.to_s + '</g:price>'
+      item_string += '<g:price>'+ number_to_currency(data.price_discounted.first, :unit => "£").to_s + '</g:price>'
       item_string += '<rate>'+ data.rate.to_s + '</rate>'
       item_string += '</item>'
     end
