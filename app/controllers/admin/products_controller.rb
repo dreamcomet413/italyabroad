@@ -371,7 +371,7 @@ class Admin::ProductsController < ApplicationController
       item_string += '<g:id>'+ product.id.to_s + '</g:id>'
       item_string += '<title>Title</title>'
       item_string += '<g:condition>new</g:condition>'
-      item_string += '<g:quantity>'+ product.quantity.to_s + '</g:quantity>'
+      item_string += '<g:quantity>'+ (product.product_prices.map(&:quantity).first).to_s + '</g:quantity>'
       item_string += '<name>'+ h(product.name) + '</name>'
       item_string += '<description>'+ h(product.description) + '</description>'
 
