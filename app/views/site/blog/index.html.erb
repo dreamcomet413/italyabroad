@@ -1,4 +1,10 @@
-<% @title = "Andrea's wine Blog"; @description = "Andrea's Wine Blog, the only Italian wine blog, an amazing journey through Italian wines"; @keys = "Wine Blog,Italian Wine Blog,Italian Journey, Italian Food Blog,Italian Wine Expert,Italian Blog"%>
+<% @about = AboutU.find(:first, :conditions => {:link_type => "blog"} ) %>
+<%if @about and  @about.meta_title.blank? and @about.meta_description.blank? %>
+  <% @title = "Andrea's wine Blog"; @description = "Andrea's Wine Blog, the only Italian wine blog, an amazing journey through Italian wines"; @keys = "Wine Blog,Italian Wine Blog,Italian Journey, Italian Food Blog,Italian Wine Expert,Italian Blog"%>
+<%else%>
+  <% @title = @about.meta_title; @description = @about.meta_description %>
+<%end%>
+
 <%- @breadcrumbs = "#{link_to("Home", root_url, :title=>"Home")}&raquo; #{link_to('Community',wine_community_path, :title=>"Community")} &raquo; #{link_to("Blog", blog_index_path, :title=>"blog")}" -%>
 
 <% @about = AboutU.find(:first, :conditions => {:link_type => "blog"} ) %>

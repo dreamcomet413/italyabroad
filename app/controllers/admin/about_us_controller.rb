@@ -35,7 +35,7 @@ class Admin::AboutUsController < ApplicationController
   # GET /about_us/new.xml
   def new
     @about_u = AboutU.new
-    @meta_type = ['grape-guide','producers','region','corporate services','Wholesale']
+    @meta_type = ['grape-guide','producers','region','corporate services','Wholesale','blog']
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @about_u }
