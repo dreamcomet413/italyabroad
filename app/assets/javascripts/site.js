@@ -1,0 +1,9 @@
+//= require jquery-1.12.2.min
+//= require jquery-ui
+//= require autocomplete-rails.js
+//= require lightbox-2.6.min
+//= require bootstrap
+//= require horizon-swiper
+//= require swiper
+//= require mine
+//= require custom

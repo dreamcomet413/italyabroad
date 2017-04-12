@@ -2,11 +2,17 @@ require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
 
-Bundler.require(:default, Rails.env) if defined?(Bundler)
+if defined?(Bundler)
+  # If you precompile assets before deploying to production, use this line
+  Bundler.require(*Rails.groups(:assets => %w(development test)))
+  # If you want your assets lazily compiled in production, use this line
+  # Bundler.require(:default, :assets, Rails.env)
+end
 
 module ItalyabroadNew
   class Application < Rails::Application
     config.autoload_paths += [config.root.join('lib')]
+    config.assets.precompile += %w( site.js )
     config.encoding = 'utf-8'
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
@@ -63,6 +69,11 @@ module ItalyabroadNew
     # config.action_controller.session = { :httponly => false }
     config.session_store(:httponly => false)
     #config.action_dispatch.ignore_accept_header = true
+     # Enable the asset pipeline
+    config.assets.enabled = true
+
+    # Version of your assets, change this if you want to expire all your assets
+    config.assets.version = '1.0'
   end
 end
 require "custom_country_select"
