@@ -17,7 +17,7 @@ class Site::SearchController < ApplicationController
       name = p.name.gsub(eval("/#{params[:term]}/i")){|m| "<b>#{m}</b>"}
       if p.class == Product 
         slug = p.friendly_identifier
-        category = p.root_category.downcase
+        category = p.root_category.try(:downcase)
       elsif p.class == Grape
           slug = p.friendly_identifier
           category = 'grapes'
@@ -62,7 +62,7 @@ class Site::SearchController < ApplicationController
   end
 
   def index
-    params[:id] = params[:id].try(:downcase)
+    params[:id] = params[:id].present? ?  params[:id].downcase : ''
     if params[:id] == 'other drinks'
       params[:id] = params[:id].gsub(' ' , '-')
     end
