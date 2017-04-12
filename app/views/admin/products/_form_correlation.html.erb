@@ -11,7 +11,7 @@
       <td><%= check_box_tag "correlation_ids[]", product.id, @product.correlation_ids.include?(product.id) %></td>
       <td><%= product.root_category_id.titleize unless product.root_category_id.blank? %></td>
       <td><%= product.name %></td>
-      <td><%= number_to_currency product.price, :unit => "&pound;" %></td>
+      <td><%= number_to_currency product.price, :unit => "£" %></td>
     </tr>
     <%- end -%>
 

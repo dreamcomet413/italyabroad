@@ -16,7 +16,7 @@
       <td><%= product_wine[:product].root_category_id.titleize unless product_wine[:product].root_category_id.blank? %></td>
       <td><%= product_wine[:product].sub_categories.join(" >> ") unless product_wine[:product].sub_categories.blank? %></td>
       <td><%= product_wine[:product].name %></td>
-      <td><%= number_to_currency product_wine[:product].price, :unit => "&pound;" %></td>
+      <td><%= number_to_currency product_wine[:product].price, :unit => "£" %></td>
     </tr>
     <%- end -%>
   </table>

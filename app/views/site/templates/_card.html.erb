@@ -195,31 +195,31 @@
                         <% if p.size > 1 %>
                           <% price = params[:actual_price].present? ? params[:actual_price] : p.first %>
                           <div class="old-price ">
-                            was <%= number_to_currency price, :unit => "&pound;" %> 
+                            was <%= number_to_currency price, :unit => "£" %> 
                           </div>
                           <div class="price-now">
-                            Now <b>&pound; <%= select_tag(:price, options_for_select(@product.discounted_prices, price.to_f), :onchange => "change_price(this); return false;") -%></b>
+                            Now <b>£ <%= select_tag(:price, options_for_select(@product.discounted_prices, price.to_f), :onchange => "change_price(this); return false;") -%></b>
                           </div>
-                          <div class="save-amount">(save <span class="red-text" id="saved_price"><%= number_to_currency (price.to_f * @product.discount.to_f / 100), :unit => "&pound;" %></span>
+                          <div class="save-amount">(save <span class="red-text" id="saved_price"><%= number_to_currency (price.to_f * @product.discount.to_f / 100), :unit => "£" %></span>
                           </div>
                         <% else %>
                           <% if @product.discount.to_i > 0 %>
                             <div class="old-price ">
                               Was 
                               <span style="text-decoration: line-through;">
-                                <%= number_to_currency @product.product_prices.first.price.to_f, :unit => "&pound;" %>
+                                <%= number_to_currency @product.product_prices.first.price.to_f, :unit => "£" %>
                               </span>
                             </div>
                             <div class="price-now">
                               Now 
-                              <%= number_to_currency @product.price_discounted.first, :unit => "&pound;" %>
+                              <%= number_to_currency @product.price_discounted.first, :unit => "£" %>
                             </div>
-                            <div class="save-amount">(save <span class="red-text"><%= number_to_currency (@product.product_prices.first.price.to_f * @product.discount.to_f / 100), :unit => "&pound;" %>
+                            <div class="save-amount">(save <span class="red-text"><%= number_to_currency (@product.product_prices.first.price.to_f * @product.discount.to_f / 100), :unit => "£" %>
                             </span>)
                             </div>
                           <% else %>
                             <div class="price-now">
-                              <b><%= number_to_currency @product.product_prices.first.price.to_f, :unit => "&pound;" %></b>
+                              <b><%= number_to_currency @product.product_prices.first.price.to_f, :unit => "£" %></b>
                             </div>
                           <% end %>
                         <% end %>
@@ -268,10 +268,10 @@
                         <div class="buy-a-case">
                           <div class="case-price">
                             Buy a case of <%= @product.from_quantity %> and save 
-                            <b><%= number_to_currency @product.from_quantity_price.to_f, :unit => "&pound;" %></b>
+                            <b><%= number_to_currency @product.from_quantity_price.to_f, :unit => "£" %></b>
                           </div>
                           <div class="bollte-price">
-                            (price per bottle <%= number_to_currency @product.price_per_bottle, :unit => "&pound;" %> )
+                            (price per bottle <%= number_to_currency @product.price_per_bottle, :unit => "£" %> )
                           </div>
                           <div class="clearfix top-20 bottom-10">
                             <div class="add-whole-case green-button">
@@ -284,7 +284,7 @@
                           <div class="case-price">
                             Buy <%= @product.from_quantity %>
                             and save 
-                            <b><%= number_to_currency @product.from_quantity_price, :unit => "&pound;" %></b>
+                            <b><%= number_to_currency @product.from_quantity_price, :unit => "£" %></b>
                           </div>
                         </div>
                       <% end %>
@@ -400,7 +400,7 @@
                       <div class="item-name">
                         <%= link_to inc_product.name, nested_products_uri(inc_product), :title=>inc_product.name %></div>
                       <div class="seller-price">
-                        <%= number_to_currency inc_product.product_prices.first.price, :unit => "&pound;" %>
+                        <%= number_to_currency inc_product.product_prices.first.price, :unit => "£" %>
                       </div>
                       <div class="add-row clearfix">
                         <%=render partial: 'site/templates/cart_product_show_page_form' , locals: {product: inc_product}  %>
@@ -431,7 +431,7 @@
                 <div class="col-xs-8 slider-box-text">
                   <div class="item-name"><%= link_to related_product.name, nested_products_uri(related_product), :title=>related_product.name %></div>
                   <div class="seller-price">
-                    <%= number_to_currency related_product.product_prices.first.price, :unit => "&pound;" %></div>
+                    <%= number_to_currency related_product.product_prices.first.price, :unit => "£" %></div>
                   <div class="add-row clearfix">
                       <%=render partial: 'site/templates/cart_product_show_page_form' , locals: {product: related_product}  %>
                   </div>

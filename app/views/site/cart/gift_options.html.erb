@@ -28,7 +28,7 @@
 					<div class="option-name">
 						<%= gift_option.name %>
 						<% if gift_option.price > 0  %>
-							(<span style="color:#5c8018"><%= number_to_currency(gift_option.price,:unit => "&pound;") %></span>)
+							(<span style="color:#5c8018"><%= number_to_currency(gift_option.price,:unit => "£") %></span>)
 						<% end %>
 					</div>
 					<%#= hidden_field :gift,:price ,:value=>gift_option.price %>

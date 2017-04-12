@@ -44,13 +44,13 @@
             </div>
           </div>
           <div class="col-md-6 grey-col clearfix">
-            <div class="col-md-3"><span class="show-on-mobile">Price</span> <%= number_to_currency cart_item.price, :unit => "&pound;" %></div>
+            <div class="col-md-3"><span class="show-on-mobile">Price</span> <%= number_to_currency cart_item.price, :unit => "£" %></div>
             <div class="col-md-3">
             <span class="show-on-mobile">Qty</span>
               <%= text_field_tag "cart[][quantity]", nil, :value => cart_item.quantity, :size => 2, :maxlength => 3, :style => "text-align:center", :id => "txt_qty_#{cart_item.product.id }" %>
             </div>
             <div class="col-md-3">
-              <span class="show-on-mobile">Total</span> <%= number_to_currency cart_item.total, :unit => "&pound;" %>
+              <span class="show-on-mobile">Total</span> <%= number_to_currency cart_item.total, :unit => "£" %>
             </div>
             <div class="col-md-3">
               <span class="show-on-mobile">Remove</span>
@@ -93,7 +93,7 @@
       <% if @buy_together_discount > 0 %>
         <div class="top-30 clearfix">
           <div class="pull-right">
-            Buy together and save discount: - <%= number_to_currency(@buy_together_discount, :unit => "&pound;") %>
+            Buy together and save discount: - <%= number_to_currency(@buy_together_discount, :unit => "£") %>
           </div>
         </div>
       <% end %>
@@ -109,9 +109,9 @@
             <div>
               <div>
                 <% if @cupon.cupon_type != "percentage" %>
-                    Promotional Code: - <%= number_to_currency @cupon.price, :unit => "&pound;" %> <%= link_to_function image_tag("icon-cancel.png", :alt => "Delete Cupon", :title=>"Delete Cupon", :style => "vertical-align:bottom"), "$('cupon_code').value = '';$('form_cart').submit()", :title=>"Delete Cupon" %>
+                    Promotional Code: - <%= number_to_currency @cupon.price, :unit => "£" %> <%= link_to_function image_tag("icon-cancel.png", :alt => "Delete Cupon", :title=>"Delete Cupon", :style => "vertical-align:bottom"), "$('cupon_code').value = '';$('form_cart').submit()", :title=>"Delete Cupon" %>
                 <% else %>
-                    Promotional Code: - <%= number_to_currency (cart_total-@cart.sub_total), :unit => "&pound;" %> <%= link_to_function image_tag("icon-cancel.png", :alt => "Delete Cupon", :title => "Delete Cupon", :style => "vertical-align:bottom"), "$('cupon_code').value = '';$('form_cart').submit()", :title => "Delete Cupon" %>
+                    Promotional Code: - <%= number_to_currency (cart_total-@cart.sub_total), :unit => "£" %> <%= link_to_function image_tag("icon-cancel.png", :alt => "Delete Cupon", :title => "Delete Cupon", :style => "vertical-align:bottom"), "$('cupon_code').value = '';$('form_cart').submit()", :title => "Delete Cupon" %>
                 <% end %>
                 <%= hidden_field :cupon, :code %>
               </div>
@@ -119,9 +119,9 @@
         <% end %>
       </div>
       <div class="cart-sub-total">
-        Sub Total: <b><%= number_to_currency(@cart.sub_total, :unit => "&pound;") %></b>
+        Sub Total: <b><%= number_to_currency(@cart.sub_total, :unit => "£") %></b>
       </div>
-      <div class="spend-over">Spend over <%= number_to_currency Setting.order_delivery_amount, :unit => "&pound;" %> and get FREE DELIVERY UK mainland only, for all other destinations we will contact you with a quote.</div>
+      <div class="spend-over">Spend over <%= number_to_currency Setting.order_delivery_amount, :unit => "£" %> and get FREE DELIVERY UK mainland only, for all other destinations we will contact you with a quote.</div>
       <div class="delivery-method">
         <% if @cart.sub_total > Setting.order_delivery_amount and @delivery and @delivery.bulk_order_price == 0 %>
           <% if cart_contains_not_only_events %>
@@ -140,12 +140,12 @@
       </div>
       <% if @setting.discount_suggestion?(number_of_wines) %>
         <div class="spend-over">
-          Buy <%= number_of_wines %> wines and get <%= ((@cart.total*(@setting.wine_discount_amount))/100).round(1) %>discount <%= number_to_currency(@cart.total, :unit => "&pound;") %>
+          Buy <%= number_of_wines %> wines and get <%= ((@cart.total*(@setting.wine_discount_amount))/100).round(1) %>discount <%= number_to_currency(@cart.total, :unit => "£") %>
         </div>
       <% end %>
       <div class="right-align top-30">
         <div class="grand-total">
-          Total: <b><%= number_to_currency(@cart.total, :unit => "&pound;") %></b>
+          Total: <b><%= number_to_currency(@cart.total, :unit => "£") %></b>
         </div>
       </div>
       <div class="top-30 right-align">

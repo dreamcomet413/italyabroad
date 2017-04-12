@@ -27,9 +27,9 @@
           				<!-- ######################################################## -->
           				<!-- THIS HAS BEEN DISABLED BY CLIENT REQUEST   ADDING A false to the condition may require in future -->
 						<% if product.categories.root.name == "Wine" and false %>
-						(Buy a case of <%= product.from_quantity %> and save <%= number_to_currency product.from_quantity_price, :unit => "&pound;" %>)
+						(Buy a case of <%= product.from_quantity %> and save <%= number_to_currency product.from_quantity_price, :unit => "£" %>)
 						<% elsif product.categories.root.name == "Food" and false %>
-						(Buy <%= product.from_quantity %> and save <%= number_to_currency product.from_quantity_price, :unit => "&pound;" %>)
+						(Buy <%= product.from_quantity %> and save <%= number_to_currency product.from_quantity_price, :unit => "£" %>)
 						<% end %>
           				<!-- THIS HAS BEEN DISABLED BY CLIENT REQUEST-->
           				<!-- ######################################################## -->
@@ -38,11 +38,11 @@
 			</div>
 		</div>
 		<div class="col-md-6 grey-col clearfix">
-			<div class="col-md-4"><span class="show-on-mobile">Price</span><%= number_to_currency cart_item.price, :unit => "&pound;" %></div>
+			<div class="col-md-4"><span class="show-on-mobile">Price</span><%= number_to_currency cart_item.price, :unit => "£" %></div>
 			<div class="col-md-4 disable-field">
 				<span class="show-on-mobile">Qty</span> <%= text_field_tag "cart[][quantity]", nil, :value => cart_item.quantity, :size => 2, :maxlength => 2,:disabled=>true %>
 			</div>
-			<div class="col-md-4"><span class="show-on-mobile">Total</span><%= number_to_currency cart_item.total, :unit => "&pound;" %></div>
+			<div class="col-md-4"><span class="show-on-mobile">Total</span><%= number_to_currency cart_item.total, :unit => "£" %></div>
 		</div>
 	</div>
 <% end %>
@@ -52,7 +52,7 @@
 			<div class="col-xs-12 top-bottom-15"><%= @cart.delivery.name %></div>
 		</div>
 		<div class="col-xs-6 grey-col clearfix top-bottom-15">
-			<div class="col-xs-4"><%= number_to_currency @cart.delivery.price, :unit => "&pound;" %></div>
+			<div class="col-xs-4"><%= number_to_currency @cart.delivery.price, :unit => "£" %></div>
 		</div>
 	</div>
 <% end %>
@@ -62,7 +62,7 @@
 		<% if @gift_option.present? and @gift_option.price > 0 %>
 	      	Your Gift Option is <%= @gift_option.name %>
 	      <div>
-		  	<%= number_to_currency(@gift_option.price.to_f,:unit=>"&pound;") %>
+		  	<%= number_to_currency(@gift_option.price.to_f,:unit=>"£") %>
     		</div>
 	<% end end %>
 </div>
@@ -82,7 +82,7 @@
 	<% end %>
 	<div class="right-align top-30">
 		<div class="grand-total">
-	    	Total: <b><%= number_to_currency(@cart.total, :unit => "&pound;") %></b>
+	    	Total: <b><%= number_to_currency(@cart.total, :unit => "£") %></b>
 	    </div>
 	</div>
 <%- end -%>

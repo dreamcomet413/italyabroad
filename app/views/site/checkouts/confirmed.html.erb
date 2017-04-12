@@ -44,8 +44,8 @@ Response Params is <%#= session[:response_params] %>-->
     <% end %>
   </div>
   <div style="display:none;">
-    Payment Method : <%= number_to_currency(@order.total - (@order.points_used * @setting.points_to_pound), :unit => "&pound;") %> Credit Card
- + Points equivalent to : <%= number_to_currency(@order.points_used * @setting.points_to_pound, :unit => "&pound;") %>
+    Payment Method : <%= number_to_currency(@order.total - (@order.points_used * @setting.points_to_pound), :unit => "£") %> Credit Card
+ + Points equivalent to : <%= number_to_currency(@order.points_used * @setting.points_to_pound, :unit => "£") %>
   <br /><br />
   </div>
   <% 

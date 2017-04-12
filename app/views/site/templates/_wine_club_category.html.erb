@@ -81,7 +81,7 @@
                     < % if product.product_prices.present? %>
                       < % product.product_prices.each do |p| %>
                         <div style="margin-bottom:15px;">
-                          < %= number_to_currency p.price, :unit => "&pound;" %><br />
+                          < %= number_to_currency p.price, :unit => "£" %><br />
                         </div>
                       < % end %>
                     < % end %> -->
@@ -93,17 +93,17 @@
                           <% if product.discounted? && product.discount > 0.0 %>
                             <% product.product_prices.each do |pp| %>
                              <div class="line-through" style="text-align: right;">
-                              Was <%= number_to_currency pp.price, :unit => "&pound;" %></div>
+                              Was <%= number_to_currency pp.price, :unit => "£" %></div>
                             <% end %>
                             <div class="current-price" style="text-align: right;">
                               <% product.price_discounted.each do |price| %>
-                                <%= number_to_currency price, :unit => "&pound;" %>
+                                <%= number_to_currency price, :unit => "£" %>
                               <% end %>
                             </div>
                           <% else %>
                             <div class="price" style="text-align: right;">
                               <% product.product_prices.each do |pp| %>
-                                <%= number_to_currency pp.price, :unit => "&pound;" %>
+                                <%= number_to_currency pp.price, :unit => "£" %>
                               <% end %>
                               </div>
                           <% end %>

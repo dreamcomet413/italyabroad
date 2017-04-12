@@ -28,7 +28,7 @@
           </div>
           <div class="col-xs-6 grey-col clearfix">
             <div class="col-xs-6 "><%= order_item.quantity %></div>
-            <div class="col-xs-6 "><%= number_to_currency order_item.price, :unit => "&pound;" %></div>
+            <div class="col-xs-6 "><%= number_to_currency order_item.price, :unit => "£" %></div>
           </div>
         </div>
       <%end%>
@@ -48,7 +48,7 @@
               <div><%= @order.delivery_price %></div>
               <%- if @order.points_used > 0 -%>
                 <div>
-                  <%= number_to_currency(@order.points_used * Setting.find(:first).points_to_pound, :unit => "&pound;" )%>
+                  <%= number_to_currency(@order.points_used * Setting.find(:first).points_to_pound, :unit => "£" )%>
                 </div>
               <%- end -%>
             </div>
@@ -75,7 +75,7 @@
               <div class="col-xs-6 "><%= @setting.wine_discount_amount %>%</div>
           <% end %>
           <div class="col-xs-6"><b>Total</b></div>
-          <div class="col-xs-6"><b><%= number_to_currency(@order.total - (@order.points_used * Setting.find(:first).points_to_pound), :unit => "&pound;") %></b></div>
+          <div class="col-xs-6"><b><%= number_to_currency(@order.total - (@order.points_used * Setting.find(:first).points_to_pound), :unit => "£") %></b></div>
           </div>
         </div>
 </div>  

@@ -35,7 +35,7 @@
         <td><%= gift.id %></td>
         <td><%= gift.name %></td>
         <td><%= gift.description %></td>
-        <td><%= number_to_currency gift.price, :unit => "&pound;" %></td>
+        <td><%= number_to_currency gift.price, :unit => "£" %></td>
         <td><%= gift.is_default %></td>
         <td><%= link_to "Edit", edit_admin_gift_option_path(gift) %> | <%= link_to "Delete", admin_gift_option_path(gift), :method => :delete, :confirm => "Are you sure want to delete this gift?" %></td>
       </tr>

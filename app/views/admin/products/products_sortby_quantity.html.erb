@@ -50,7 +50,7 @@
         <td><%= product.sub_categories.join(" &raquo; ") unless product.sub_categories.blank? %></td>
         <td><%= link_to product.name, nested_products_uri(product) %></td>
         <td><%= product.discount %>%</td>
-        <td><%= number_to_currency product.price, :unit => "&pound;" %></td>
+        <td><%= number_to_currency product.price, :unit => "£" %></td>
         <td><%= product.quantity %></td>
         <td><%= product.quantity == 0 %></td>
         <td><%= product.active %></td>

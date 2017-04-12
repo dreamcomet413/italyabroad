@@ -64,40 +64,40 @@
 						<td style="padding-top:5px;text-align:left"><%= order_item.product_code %></td>
 						<td style="padding-top:5px;text-align:center"><%= order_item.quantity %></td>
 						<td style="padding-top:5px;text-align:left"><%= order_item.name %></td>
-						<td style="padding-top:5px;text-align:center"><%= number_to_currency order_item.vat, :unit => "&pound;" %></td>
+						<td style="padding-top:5px;text-align:center"><%= number_to_currency order_item.vat, :unit => "£" %></td>
 						<td style="padding-top:5px;text-align:center"><%= order_item.rate %></td>
-						<td style="padding-top:5px;text-align:center"><%= number_to_currency order_item.price, :unit => "&pound;" %></td>
-						<td style="padding-top:5px;text-align:right"><%= number_to_currency order_item.total, :unit => "&pound;" %></td>
+						<td style="padding-top:5px;text-align:center"><%= number_to_currency order_item.price, :unit => "£" %></td>
+						<td style="padding-top:5px;text-align:right"><%= number_to_currency order_item.total, :unit => "£" %></td>
 					</tr>
 				<% end %>
 			<% end %>
 			<tr>
 				<td colspan="7" style="text-align:right;padding:5px 0 0 0">
 					<table id="table" border="0" cellpadding="0" cellspacing="5" style="margin-top:20px;float:right;text-align:right;border-top:1px solid black">
-						<tr><td style="text-align:right">Sub Total:</td><td style="width:120px"><%= number_to_currency(@order.sub_total, :unit => "&pound;") %></td></tr>
+						<tr><td style="text-align:right">Sub Total:</td><td style="width:120px"><%= number_to_currency(@order.sub_total, :unit => "£") %></td></tr>
 						<!-- Removed the following condition according to his need to add free delivery with charge = 0 mailed dtd 9 oct 2012 -->
 						<%# if @order.sub_total < Setting.order_delivery_amount %>
-						<tr><td style="text-align:right"><%= @order.delivery_name %>:</td><td><%= number_to_currency @order.delivery_price, :unit => "&pound;" %></td></tr>
+						<tr><td style="text-align:right"><%= @order.delivery_name %>:</td><td><%= number_to_currency @order.delivery_price, :unit => "£" %></td></tr>
 						<%# end %>
 						<% unless @order.cupon_code.blank? %>
 						<% @cupon = Cupon.find_by_code(@order.cupon_code) %>
 						<%unless @cupon.nil? %>
-						<tr><td style="text-align:right">Coupon:</td><td style="color:red">- <%= number_to_currency @order.cupon_price, :unit => "&pound;" %></em></td></tr>
+						<tr><td style="text-align:right">Coupon:</td><td style="color:red">- <%= number_to_currency @order.cupon_price, :unit => "£" %></em></td></tr>
 						<% end %>
 						<% end %>
 						<% if @order.gift_option && @order.gift_option.price > 0 %>
-						<tr><td style="text-align:right">Wrapping option (<%= @order.gift_option.name %>):</td><td><%= number_to_currency @order.gift_option.price, :unit => "&pound;" %></td></tr>
+						<tr><td style="text-align:right">Wrapping option (<%= @order.gift_option.name %>):</td><td><%= number_to_currency @order.gift_option.price, :unit => "£" %></td></tr>
 						<% end %>
 
 
             <%- if @order.points_used > 0 -%>
             <tr><td style="text-align:right">Points Used(<%= @order.points_used %>):</td><td>
-				    -<%= number_to_currency(@order.points_used * Setting.find(:first).points_to_pound, :unit => "&pound;") %>
+				    -<%= number_to_currency(@order.points_used * Setting.find(:first).points_to_pound, :unit => "£") %>
             <%- end -%>
 
 						<tr><td style="text-align:right"><b>Total:</b></td><td><b>
-						<%#= number_to_currency(@order.total, :unit => "&pound;") %>
-						<%= number_to_currency @order.total - (@order.points_used * Setting.find(:first).points_to_pound), :unit => "&pound;" %>
+						<%#= number_to_currency(@order.total, :unit => "£") %>
+						<%= number_to_currency @order.total - (@order.points_used * Setting.find(:first).points_to_pound), :unit => "£" %>
 
 						</b></td></tr>
 					</table>
@@ -107,7 +107,7 @@
 		<br style="clear:both"/>
 		<div style="font-size:11px;height:20px;margin-top:80px">
 			Don't forget to write your review for the products purchased.
-			Let our users know what you think about our produces and if you are the first to write the review you will also receive <%= number_to_currency(10,{:unit => "&pound;", :precision => 0}) -%> discount on your next purchase.
+			Let our users know what you think about our produces and if you are the first to write the review you will also receive <%= number_to_currency(10,{:unit => "£", :precision => 0}) -%> discount on your next purchase.
 		</div>
 	</div>
 </div>

@@ -16,17 +16,17 @@
                 <% if product.discounted? && product.discount > 0.0 %>
                   <% product.product_prices.each do |pp| %>
                   <div style="font-size:14px;color:black;">Was <span style="text-decoration: line-through;">
-                    <%= number_to_currency pp.price, :unit => "&pound;" %></span></div>
+                    <%= number_to_currency pp.price, :unit => "£" %></span></div>
                   <% end %>
                   <span class="price red-text" style="color:#003300;">Now&nbsp;<span style="color:#cb0d2b;">
                     <% product.price_discounted.each do |price| %>
-                      <%= number_to_currency price, :unit => "&pound;" %>
+                      <%= number_to_currency price, :unit => "£" %>
                     <% end %>
                   </span></span>
                 <% else %>
                   <span class="price" style="color:black;">
                     <% product.product_prices.each do |pp| %>
-                      <%= number_to_currency pp.price, :unit => "&pound;" %>
+                      <%= number_to_currency pp.price, :unit => "£" %>
                     <% end %>
                     </span>
                 <% end %>

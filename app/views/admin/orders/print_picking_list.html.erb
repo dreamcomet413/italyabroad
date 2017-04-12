@@ -82,7 +82,7 @@
         <% if @order.gift_option.present? %>
             <tr>
               <td style="width:150px;height:20px">
-                Wrapping option (<%= @order.gift_option.name %>)</td><td style="width:200px;"><%= number_to_currency @order.gift_option.price, :unit => "&pound;" %>
+                Wrapping option (<%= @order.gift_option.name %>)</td><td style="width:200px;"><%= number_to_currency @order.gift_option.price, :unit => "£" %>
               </td>
             </tr>
         <% end %>

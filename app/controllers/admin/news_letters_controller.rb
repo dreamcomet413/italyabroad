@@ -144,7 +144,7 @@ class Admin::NewsLettersController < ApplicationController
     return_data = Hash.new()      
     return_data[:Total] = Product.count      
     return_data[:Products] = products.collect{|u| { :id=>u.id,
-                                                    :price => number_to_currency(u.price, :unit => "&pound;"),
+                                                    :price => number_to_currency(u.price, :unit => "£"),
                                                     :category => u.root_category,
                                                     :name=>u.name,
                                                     :selected => news_letter.products.include?(u) } }
@@ -158,7 +158,7 @@ class Admin::NewsLettersController < ApplicationController
     return_data = Hash.new()      
     return_data[:Total] = Product.count      
     return_data[:Products] = products.collect{|u| { :id=>u.id,
-                                                    :price => number_to_currency(u.price, :unit => "&pound;"),
+                                                    :price => number_to_currency(u.price, :unit => "£"),
                                                     :category => u.root_category,
                                                     :name=>u.name,
                                                     :selected => news_letter.hamper == u } }

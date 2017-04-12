@@ -30,7 +30,7 @@
       <tr>
         <td><%= delivery.id %></td>
         <td><%= delivery.name %></td>
-        <td><%= number_to_currency(delivery.price, :unit => "&pound;") %></td>
+        <td><%= number_to_currency(delivery.price, :unit => "£") %></td>
         <td>
           <% if delivery.name != "Collection at our warehouse" and delivery.name != "For ticket events" and delivery.name != "Free delivery (3/4 days, UK mainland only)"%>
             <%= link_to "Edit", edit_admin_delivery_path(delivery) %> | <%= link_to "Delete", admin_delivery_path(delivery), :method => :delete, :confirm => "Are you sure want to delete this item?" %>

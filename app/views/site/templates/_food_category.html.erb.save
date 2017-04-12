@@ -43,7 +43,7 @@ end
           <% if product.product_prices.present? %>
             <% product.product_prices.each do |p| %>
             <div style="margin-bottom:15px;">
-              <%= number_to_currency p.price, :unit => "&pound;" %><br />
+              <%= number_to_currency p.price, :unit => "£" %><br />
             </div>
             <% end %>
           <% end %>

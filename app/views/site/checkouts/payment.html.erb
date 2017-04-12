@@ -29,7 +29,7 @@
       <% if total_points - total_points_used > 0 %>
         <div class="points-box">
           <div class="section-heading">
-            You have <span id="highlight"><%= (total_points - total_points_used).to_f.round %></span> points in your credit.  This is equivalent to <span id="highlight"><%= number_to_currency((total_points - total_points_used)* Setting.find(:first).points_to_pound.to_f, :unit => "&pound;") %></span> 
+            You have <span id="highlight"><%= (total_points - total_points_used).to_f.round %></span> points in your credit.  This is equivalent to <span id="highlight"><%= number_to_currency((total_points - total_points_used)* Setting.find(:first).points_to_pound.to_f, :unit => "£") %></span> 
           </div>
           <div class="section-des">Would you like to use these points for the purchase?</div>
           <div class="enter-points">

@@ -35,7 +35,7 @@
       <tr>
         <td><%= cupon.id %></td>
         <td><%= cupon.code %></td>
-        <td><%= cupon.cupon_type == "percentage" ?(number_to_percentage cupon.price, :precision => 0):(number_to_currency cupon.price, :unit => "&pound;") %></td>
+        <td><%= cupon.cupon_type == "percentage" ?(number_to_percentage cupon.price, :precision => 0):(number_to_currency cupon.price, :unit => "£") %></td>
         <td><%= cupon.min_order %></td>
         <td><% (cupon.product_ids).each do |p| %>
         <%= Product.find(p).name %><br/><% end %></td>

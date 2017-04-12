@@ -31,7 +31,7 @@
 			                <div class="add-hamper">
 			                    <%if product and product.product_prices.count > 0%>
 				                    <div class="hamper-price">
-				                    	<%= number_to_currency(product.product_prices.first.price,{:unit => "&pound;"}) %>
+				                    	<%= number_to_currency(product.product_prices.first.price,{:unit => "£"}) %>
 				                    </div>
 			                    <%end%>
 			                    <div class="hamper-quantity-row clearfix">

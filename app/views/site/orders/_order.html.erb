@@ -1,9 +1,9 @@
 <%unless order.order_items.blank? %>
 <tr class="list order-table <%= cycle("odd", "even") %>">
 	<td><%= order.id %></td>
-	<td><%#= number_to_currency order.sub_total, :unit => "&pound;" %>
-	<%#= number_to_currency order.sub_total - (order.points_used * Setting.find(:first).points_to_pound), :unit => "&pound;" %>
-	<%= number_to_currency order.sub_total, :unit => "&pound;" %>
+	<td><%#= number_to_currency order.sub_total, :unit => "£" %>
+	<%#= number_to_currency order.sub_total - (order.points_used * Setting.find(:first).points_to_pound), :unit => "£" %>
+	<%= number_to_currency order.sub_total, :unit => "£" %>
 	</td>
 	<td><%= order.created_at.strftime("%d/%m/%y %H:%M") %></td>
 	<td><%= order.status_order.name %></td>

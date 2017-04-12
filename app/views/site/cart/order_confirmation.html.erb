@@ -83,7 +83,7 @@
         <td colspan="6" align="right">
           <span style="font-size:14px;">Buy <%= number_of_wines %> wines and get <%= ((@cart.total*(@setting.wine_discount_amount))/100).round(1) %>discount </td>
           <td><%= ((@cart.total*(@setting.wine_discount_amount))/100).round(1) %></td>
-           <%#= number_to_currency(@cart.total, :unit => "&pound;") %></span>
+           <%#= number_to_currency(@cart.total, :unit => "£") %></span>
         </td>
       </tr>
       <% end %>
