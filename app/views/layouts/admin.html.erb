@@ -3,11 +3,7 @@
   <title>Italyabroad.com - Admin <%= " - #{@title}" if @title %></title>
   <%= stylesheet_link_tag "admin" %>
   <%= csrf_meta_tag %>
-  <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-  <%= javascript_include_tag "private_pub" %>
-  <%= javascript_include_tag "jquery_ujs" %>
-  <%= javascript_include_tag :defaults, "jquery.tablesorter.min.js","chrome.js","prototype.js", "effects.js", "controls.js", "fastinit.js" %>
-  <%= javascript_include_tag :defaults, "jquery-ui" %>   
+  <%= javascript_include_tag "admin" %>
 </head>
 <body>
 <div id="container">
