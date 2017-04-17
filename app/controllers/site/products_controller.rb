@@ -5,6 +5,10 @@ class Site::ProductsController < ApplicationController
   def index
     @products = Product.find(:all)
 
+    request.format=:xml
+    respond_to do |format|
+      format.xml
+    end
   end
 
   def show

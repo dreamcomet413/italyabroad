@@ -49,7 +49,7 @@
                   <div class="col-xs-5 box-image">
                     <% if !recipe.image_1.blank? %>
                     <%#= link_to image_tag(image_url('recipe_thumb', recipe.image_1, :jpg),:alt=>recipe.name), recipe_path(recipe) %>
-                    <%= link_to image_tag("/resources/images/#{recipe.image_1.id}.jpg", :height => "75", :width => "100", :alt => recipe.name,, :title=>recipe.name), recipe_path(recipe), :title=>recipe.name %>
+                    <%= link_to image_tag("/resources/images/#{recipe.image_1.id}.jpg", :height => "75", :width => "100", :alt => recipe.name, :title=>recipe.name), recipe_path(recipe), :title=> recipe.name %>
                     <% else %>
                       <%= link_to image_tag("no_images/PastaRecipe.jpg",:size => "100x75",:alt=>recipe.name, :title=>recipe.name), recipe_path(recipe), :title=>recipe.name %>
                     <% end %>
