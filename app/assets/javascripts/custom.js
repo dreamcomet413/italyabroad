@@ -156,8 +156,8 @@ $('.panel-title').on('click', function(e) {
 
 function get_range_price(){
   var price = $('#amount').val().replace(/\s+/g, '').replace(/\£+/g, '');
-  var start_price =  price.split('-')[0];
-  var end_price = price.split('-')[1];
+  var start_price =  price.split('-')[0].replace('£','');
+  var end_price = price.split('-')[1].replace('£','');
   $('#start_price').attr('value', start_price);
   $('#end_price').attr('value' , end_price);
 }
