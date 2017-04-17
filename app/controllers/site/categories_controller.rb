@@ -14,7 +14,6 @@ class Site::CategoriesController < ApplicationController
   end
 
   def show_sub
-
     if params[:category] != "offer"
       if params[:parent].blank? || params[:category].blank?
       
@@ -36,9 +35,11 @@ class Site::CategoriesController < ApplicationController
             else
               search_conditions = @search.conditions
               if params[:start_price] and params[:start_price] != ''
+                params[:start_price] = params[:start_price].gsub('£','')
                 search_conditions += " AND product_prices.price >= #{params[:start_price]}"
               end  
               if params[:end_price] and params[:end_price] != ''
+                 params[:end_price] = params[:end_price].gsub('£','')
                 search_conditions += " AND product_prices.price <= #{params[:end_price]}"
               end  
               products = @category.products.where(search_conditions).includes([:categories, :grapes, :moods, :product_prices]).order(@sort_by).uniq.paginate(:page => (params[:page] ||=1), :per_page => 12)

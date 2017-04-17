@@ -14,7 +14,6 @@ class Site::SommelierController < ApplicationController
   end
 
   def create
-
     session[:selected_search_options] ||= {}
 
     @questions = [
@@ -54,22 +53,21 @@ class Site::SommelierController < ApplicationController
       ["under £10", "between £10 and £20", "more than £20"] if ["red meat", "white meat", "pasta", "fish", "cheeses", "desserts"].include?(params[:selected_option])
     end
     respond_to do |format|
-      format.html {}
-      format.js {
-        render :update do |page|
-          if search_options.present?
-            sleep(2)
-            session[:selected_search_options][:wine_type] = params[:selected_option] if ["Red Wine", "Rose Wine", "White Wine", "Sparkling Wine", "Surprise Me"].include?(params[:selected_option])
-            session[:selected_search_options][:body_type] = params[:selected_option] if ["Light", "Medium", "Full Body"].include?(params[:selected_option])
-            session[:selected_search_options][:price_type] = params[:selected_option].to_s.gsub("£", "") if ["under £10", "between £10 and £20", "more than £20"].include?(params[:selected_option])
-            session[:selected_search_options][:food_type] = params[:selected_option] if ["red meat", "white meat", "pasta", "fish", "cheeses", "desserts"].include?(params[:selected_option])
-            page[".items"].html("")
-            page[".items"].html(render :partial => "search_options", :locals => {:item_options => search_options, :step => (params[:step].to_i + 1).to_s})
-          else
-            page.redirect_to search_index_path(price_type: session[:selected_search_options][:price_type] , wine_type: cookies[:selected_wine] , parent_type: 'wine')
+        format.js {
+          render :update do |page|
+            if search_options.present?
+              sleep(2)
+              session[:selected_search_options][:wine_type] = params[:selected_option] if ["Red Wine", "Rose Wine", "White Wine", "Sparkling Wine", "Surprise Me"].include?(params[:selected_option])
+              session[:selected_search_options][:body_type] = params[:selected_option] if ["Light", "Medium", "Full Body"].include?(params[:selected_option])
+              session[:selected_search_options][:price_type] = params[:selected_option].to_s.gsub("£", "") if ["under £10", "between £10 and £20", "more than £20"].include?(params[:selected_option])
+              session[:selected_search_options][:food_type] = params[:selected_option] if ["red meat", "white meat", "pasta", "fish", "cheeses", "desserts"].include?(params[:selected_option])
+              page[".items"].html("")
+              page[".items"].html(render :partial => "search_options", :locals => {:item_options => search_options, :step => (params[:step].to_i + 1).to_s})
+            else
+              page.redirect_to search_index_path(price_type: session[:selected_search_options][:price_type] , wine_type: cookies[:selected_wine] , parent_type: 'wine')
+            end
           end
-        end
-      }
+        }
     end
   end
 end 
