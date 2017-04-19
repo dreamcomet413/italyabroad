@@ -1,7 +1,13 @@
 $( document ).ready(function() {
 // swiper best seller
 // toggle class main menu
-      
+ $('.grape_A').show();
+  $('.grape_letter').click(function(event){
+    event.preventDefault();
+    grape = '.'+$(this).attr('id')
+    $('.hide_grape').hide();
+    $(grape).show();
+  });
 $(".slideshow_images").find("li a").click(function(){
 //    var toggleBanner = function(elem){
         var element_id = $(this).parent().attr("id").split("_")[$(this).parent().attr("id").split("_").length - 1];
