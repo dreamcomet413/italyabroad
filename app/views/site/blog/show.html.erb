@@ -44,9 +44,9 @@
     <div class="col-md-9">
       <div class="blog-listing-wrapper">
         <div class="blog-list">
-          <div class="blog-list-heading">
-            <h1><%=  @post.name %></h1> 
-          </div>
+            <div class="blog-list-heading">
+              <h1><%=  @post.name %></h1> 
+            </div>
           <div class="blog-list-date clearfix">
             <span class="list-date"><b><%=@post.created_at.to_date.to_s(:long)%></b></span> <span class="list-tags"><b>Tags: </b>
               <% @tag_list ="" %>
@@ -64,6 +64,7 @@
           </div>
           <% if logged_in? %>
             <div class="review-wrapper_1">
+                  <div class="pull-right"><%= render :partial => '/site/shared/social_bookmarks' %></div>
               <h2 class="green-heading-2">
                 Latest review <%= link_to 'Add Review',"#",:onclick=>"document.getElementById('recipe_comments_add').style.display='block';return false;", :title=>"Add Review" %>
               </h2>
