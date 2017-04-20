@@ -3,7 +3,7 @@ class Site::SommelierController < ApplicationController
   layout "site"
 
   def index
-    session[:selected_search_options] = {} unless (params[:st].present? || params[:rt].present?)
+    session[:selected_search_options] = {} unless (params[:st].present? || params[:rt].present? and session[:selected_search_options].present?)
     @questions = [
         "Which wine would you like to drink?",
         "Light, medium or full bodied?",
