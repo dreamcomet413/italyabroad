@@ -62,9 +62,9 @@
           <div class="blog-list-text bottom-50">
             <%= @post.description_cleared.html_safe %>
           </div>
+            <div class="pull-right"><%= render :partial => '/site/shared/social_bookmarks' %></div>
           <% if logged_in? %>
             <div class="review-wrapper_1">
-                  <div class="pull-right"><%= render :partial => '/site/shared/social_bookmarks' %></div>
               <h2 class="green-heading-2">
                 Latest review <%= link_to 'Add Review',"#",:onclick=>"document.getElementById('recipe_comments_add').style.display='block';return false;", :title=>"Add Review" %>
               </h2>
