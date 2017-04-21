@@ -17,7 +17,8 @@ class Admin::ReviewsController < ApplicationController
             cupon_code = ((1..9).to_a + ('a'..'z').to_a + ('A'..'Z').to_a).shuffle.join[1..10]
             #coupon_code << rand(1000).to_s
             Cupon.create(:code=>cupon_code,:price=>10,:min_order=>80,:active=>1,:cupon_type=>'price')
-            Notifier.coupon_notification_for_first_review(Product.find(@review.reviewer_id),@review.user,cupon_code).deliver
+            byebug
+            Notifier.coupon_notification_for_first_review(Product.find(@review.reviewer_id),@review.user,cupon_code).deliver unless @review.user.blank?
             @review.update_attribute('cupon_send',true)
           end
         end
