@@ -9,6 +9,7 @@
 			<table id="table" border="0" cellspacing="5" cellpadding="5" style="width:99%">
 				<tr><td style="text-align:right">Name:</td><td><%= text_field :review, :name %></td></tr>
 				<tr><td style="text-align:right">Description:</td><td><%= text_area :review, :description, :rows => 5, :style => "width:99%" %></td></tr>
+				<tr><td style="text-align:right">Name:</td><td><%= select :review, :score, [5,4,3,2,1] %></td></tr>
 			</table>
 			<%= hidden_field :review, :user_id %>
 		</div>

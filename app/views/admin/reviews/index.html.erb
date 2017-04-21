@@ -15,6 +15,7 @@
     <tr>
       <th>User</th>
       <th>Review</th>
+      <th>Rate</th>
       <th>Product</th>
       <th>Publish</th>
       <th></th>
@@ -35,6 +36,8 @@
 
                   <td><%= review.user.name rescue "Anonymous" %></td>
                   <td><%= review.name %></td>
+                  <td><span class="rating"> <%= review.score %> </span>
+                   </td>
                   <td><%= link_to Product.find_by_id(review.reviewer_id).name, edit_admin_review_path(review.id) %>&nbsp;[<%= review.reviewer_type %>]</td>
                   <td><%= check_box_tag 'publish[]',review.id,review.publish %></td>
 
