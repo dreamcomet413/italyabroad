@@ -8,9 +8,9 @@
   <title><%= h(title) %></title>
   <%= csrf_meta_tag %>
 
-<% if params[:controller] == "chat_messages" %>
+<!-- < % if params[:controller] == "chat_messages" %> -->
    <%= javascript_include_tag "private_pub" %>
-<% end %>
+<!-- < % end %> -->
 
   <!-- <link rel="shortcut icon" href="/images/italyabroad.ico" /> -->
   <link rel="alternate" type="application/rss+xml" title="Italyabroad.com Products, Feed RSS 2.0" href="<%= products_url %>" />
@@ -68,12 +68,10 @@
 </head>
 
 <body <%= @paypal_redirect %> <%= "id='#{@page_id}'" if @page_id %> class="<%= @current_controller %><%= " #{@class}" if @class %>" <%= "onload='#{@onload}'" if @onload %>>
-<% if params[:controller]=="chat_messages" %>
-<%= subscribe_to "/chat_messages/new/*" %>
-<% end %>
-<% if logged_in? and  current_user.admin? %>
-  <div class ="new_message"></div>
-<% end %>
+  <% if logged_in? and  current_user.admin? %>
+    <%= subscribe_to "/chat_messages/new/*" %>
+    <div class ="new_message"></div>
+  <% end %>
 <% # "session[:keys]: #{session.keys} " %>
 
 <%= render :partial => "/site/shared/help_button_overlay" %>

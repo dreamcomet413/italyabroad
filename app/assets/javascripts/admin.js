@@ -1,5 +1,4 @@
 //= require jquery
-//= require private_pub
 //= require jquery_ujs
 //= require jquery.tablesorter.min
 //= require chrome
