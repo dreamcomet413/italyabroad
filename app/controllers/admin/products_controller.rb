@@ -165,7 +165,7 @@ class Admin::ProductsController < ApplicationController
 
   def correlation
     @product = Product.find(params[:id])
-    @products = Product.find(:all, :conditions => ["products.id NOT IN (?)", @product.id])
+    @products = Product.find(:all, :conditions => ["products.id NOT IN (?) AND active = ?", @product.id , true])
 
     respond_to do |format|
       format.html
