@@ -1,6 +1,13 @@
 $( document ).ready(function() {
 // swiper best seller
 // toggle class main menu
+
+  $('.view-review .reply_to').click(function(event){
+    id = $(this).attr('id');
+    $('#comment_reply_to').val(id);
+    $('#recipe_comments_add').show();
+    event.preventDefault();
+  })
  $('.grape_A').show();
   $('.grape_letter').click(function(event){
     event.preventDefault();

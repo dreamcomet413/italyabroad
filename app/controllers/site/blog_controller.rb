@@ -82,6 +82,7 @@ class Site::BlogController < ApplicationController
       session[:captcha] = params[:comment][:captcha]
       session[:captcha_key] = params[:comment][:captcha_key]
       session[:mail_check] = params[:comment][:mail_check]
+      session[:reply_to] = params[:comment][:reply_to]
     end
   end
 
@@ -92,7 +93,8 @@ class Site::BlogController < ApplicationController
       return true
     else
       p no_of_comment
-      @comments = (@post.comments).find(:all, :conditions =>{:mail_check => 1})
+
+      @comments = (@post.comments).find(:all, :conditions =>[' mail_check = ? || id = ?',true, session[:reply_to]])
       p "********tyty***************************"
       p @comments.count
       p "**********ytyy**************************"

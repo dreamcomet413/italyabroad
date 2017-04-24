@@ -85,6 +85,14 @@
                       <%= text_area :comment, :description %>
                     </div>
                   </div>
+                  <% if  current_user.admin? %>
+                     <div class="clearfix bottom-15">
+                      <div class="col-xs-3 col-md-2">Reply:</div>
+                      <div class="col-xs-9 col-md-5">
+                        <%= select :comment , :reply_to ,@post.comments.collect{ |c| [ c.name , c.id] }, :include_blank => true %>
+                      </div>
+                    </div>
+                  <%end%>
                   <div class="bottom-15 clearfix">
                     <div class="col-md-7 col-md-offset-2 col-xs-offset-3 col-xs-9 clearfix row">
                       <span style="width: 15px;display: inline-block;vertical-align: top; margin: -9px 5px;">
@@ -139,6 +147,9 @@
                   <div class="col-xs-2 box-image"><div class="user_photo_small" id="user_photo"><%= avatar_for_user(comment.user, "small") %></div></div>
                   <div class="col-xs-10">
                     <div class="reviewer-name"><b><%= comment.name.upcase %></b> <%= comment.created_at.strftime("%m/%d/%Y %H:%M %p") %>
+                      <% if  current_user.admin? %>
+                        <%= link_to 'Reply','#',class: 'reply_to' , id: comment.id %>
+                      <% end%>
                     </div>
                     <div>
                       <p><%= comment.description.gsub("\n","<br />") rescue "No description" %></p>
