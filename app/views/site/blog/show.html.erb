@@ -85,14 +85,6 @@
                       <%= text_area :comment, :description %>
                     </div>
                   </div>
-                  <% if  logged_in?  and current_user.admin? %>
-                     <div class="clearfix bottom-15">
-                      <div class="col-xs-3 col-md-2">Reply:</div>
-                      <div class="col-xs-9 col-md-5">
-                        <%= select :comment , :reply_id ,@post.comments.collect{ |c| [ c.name , c.id] }, :include_blank => true %>
-                      </div>
-                    </div>
-                  <%end%>
                   <div class="bottom-15 clearfix">
                     <div class="col-md-7 col-md-offset-2 col-xs-offset-3 col-xs-9 clearfix row">
                       <span style="width: 15px;display: inline-block;vertical-align: top; margin: -9px 5px;">
