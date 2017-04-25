@@ -54,12 +54,14 @@ class Site::BlogController < ApplicationController
       :description => session[:description],
       :captcha => session[:captcha],
       :captcha_key => session[:captcha_key],
-      :mail_check => session[:mail_check]
+      :mail_check => session[:mail_check],
+      :reply_id => session[:reply_id],
+      :public => current_user.admin?
     )
-    @comment.post = @post
+    @comment.post = @post unless session[:reply_id].present?
     @comment.email = current_user.email
     @comment.user_id = current_user.id
-    if verify_recaptcha(model: @comment) and @comment.save
+    if (verify_recaptcha(model: @comment) or session[:reply_id].present?) and @comment.save
       Notifier.comment(@comment,current_user).deliver
       check_mail_list(@post, current_user)
       flash[:notice] = "comment is successfully posted"
@@ -82,19 +84,19 @@ class Site::BlogController < ApplicationController
       session[:captcha] = params[:comment][:captcha]
       session[:captcha_key] = params[:comment][:captcha_key]
       session[:mail_check] = params[:comment][:mail_check]
-      session[:reply_to] = params[:comment][:reply_to]
+      session[:reply_id] = params[:comment][:reply_id]
     end
   end
 
   def check_mail_list(post, user)
     @post = Post.find(post)
     no_of_comment = @post.comments.count
-    if no_of_comment == 1
+    if no_of_comment == 1 and !session[:reply_id].present?
       return true
     else
       p no_of_comment
 
-      @comments = (@post.comments).find(:all, :conditions =>[' mail_check = ? || id = ?',true, session[:reply_to]])
+      @comments = (@post.comments).find(:all, :conditions =>[' mail_check = ? || id = ?',true, session[:reply_id]])
       p "********tyty***************************"
       p @comments.count
       p "**********ytyy**************************"

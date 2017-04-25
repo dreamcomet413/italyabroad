@@ -89,7 +89,7 @@
                      <div class="clearfix bottom-15">
                       <div class="col-xs-3 col-md-2">Reply:</div>
                       <div class="col-xs-9 col-md-5">
-                        <%= select :comment , :reply_to ,@post.comments.collect{ |c| [ c.name , c.id] }, :include_blank => true %>
+                        <%= select :comment , :reply_id ,@post.comments.collect{ |c| [ c.name , c.id] }, :include_blank => true %>
                       </div>
                     </div>
                   <%end%>
@@ -144,15 +144,55 @@
             <div class="latest-review-box view-review">
               <div class="row clearfix">
                 <% @comments.each_with_index do |comment, i| %>
-                  <div class="col-xs-2 box-image"><div class="user_photo_small" id="user_photo"><%= avatar_for_user(comment.user, "small") %></div></div>
+                  <% replies_count = comment.replies.count %>
+                  <div class="col-xs-2 box-image " style="clear: both">
+                    <div class="user_photo_small" id="user_photo">
+                      <%= avatar_for_user(comment.user, "small") %>
+                    </div>
+                  </div>
                   <div class="col-xs-10">
                     <div class="reviewer-name"><b><%= comment.name.upcase %></b> <%= comment.created_at.strftime("%m/%d/%Y %H:%M %p") %>
-                      <% if logged_in?  and current_user.admin?%>
-                        <%= link_to 'Reply','#',class: 'reply_to' , id: comment.id %>
-                      <% end%>
+                    <% if replies_count > 0 or ( logged_in? and  current_user.admin?)  %>
+                        <%= link_to "Reply #{replies_count > 0 ? replies_count : ''}",'#',class: 'reply_to' , id: comment.id %>
+                    <% end %>
                     </div>
                     <div>
                       <p><%= comment.description.gsub("\n","<br />") rescue "No description" %></p>
+                    </div>
+                    <div class="reply-comment" style="display: none;">
+                      <%comment.replies.each do |reply| %>
+                        <div class=" clearfix">
+                          <span class="col-xs-1 box-image">
+                            <div class="user_photo_small" id="user_photo">
+                              <%= avatar_for_user(reply.user, "small") %>
+                            </div>
+                          </span>
+                          <span class="col-xs-10">
+                            <div class="reviewer-name"><b><%= reply.name.upcase %></b> <%= reply.created_at.strftime("%m/%d/%Y %H:%M %p") %>
+                            </div>
+                            <div>
+                              <p><%= reply.description.gsub("\n","<br />") rescue "No description" %></p>
+                            </div>
+                          </span>
+                        </div>
+                      <%end%>
+                       <% if logged_in?  and current_user.admin?%>
+                          <%= form_tag comment_blog_path(:id => @post.id) do %>
+                              <div class="clearfix bottom-15">
+                                <div class="col-xs-1">Reply:</div>
+                                <div class="col-xs-10 col-md-10">
+                                  <%= hidden_field :comment , :name , value: current_user.name  %>
+                                  <%= text_field :comment, :description, style: "width: 100%;height: 31px;" %>
+                                  <%= hidden_field :comment , :reply_id , value: comment.id  %>
+                                </div>
+                                 <div class="col-xs-9 col-md-5 col-xs-offset-3 col-md-offset-2 green-button">
+                                  <div class="submit-btn">
+                                   <%= submit_tag "Send" , style: "display: none;" %>
+                                  </div>
+                                </div>
+                              </div>    
+                          <% end%>
+                        <%end%>
                     </div>
                   </div>
                 <% end %>

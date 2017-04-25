@@ -3,11 +3,9 @@ $( document ).ready(function() {
 // toggle class main menu
 
   $('.view-review .reply_to').click(function(event){
-    id = $(this).attr('id');
-    $('#comment_reply_to').val(id);
-    $('#recipe_comments_add').show();
     event.preventDefault();
-  })
+    id = $(this).parent().parent().find(".reply-comment").show();
+  });
  $('.grape_A').show();
   $('.grape_letter').click(function(event){
     event.preventDefault();
