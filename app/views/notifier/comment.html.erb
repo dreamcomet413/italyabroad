@@ -1,9 +1,19 @@
-Hello <%= @comment.user.name if @comment.user %>,
+Hello <%= @user.name if @user %>,
+	<br><br>
+    <% if @comment.user == @user %>
 
-      <%= @user.name %> has posted comments on <%= @comment.post.name if @comment.post %>
+        <% if @comment.public == false  %>
+    	  	You have posted a comment on Blog Post: <%= link_to @comment.post.name , blog_url(@comment.post) %>
+            <br><br>
+          	One of our team members will now review your comment and publish it
+        <% else %>
+             Thanks For Your comment it has been approved for Blog Post: <%= link_to @comment.post.name , blog_url(@comment.post) %>
+        <%end %>
+    <% else %>
+    	<%= @comment.user.name %> has posted a comment on Blog Post: <%= link_to @comment.post.name , blog_url(@comment.post) %> 
+    <% end %> 
 
-      One of our team will now review your comment and publish it
-
-Details are below:
-	<%= @comment.description %>
+    <br></br>
+Details are below:<br>
+	<b><%= @comment.description %></b>
 

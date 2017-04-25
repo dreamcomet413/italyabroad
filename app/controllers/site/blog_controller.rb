@@ -42,13 +42,14 @@ class Site::BlogController < ApplicationController
       redirect_to "/404"
     else
       @post.count_view if @post
-      @comments = @post.comments.where(['public=?',true]).paginate(:page => params[:page], :per_page => 5).order("created_at DESC")
+      @comments = @post.comments.where(reply_id: nil,public: true).paginate(:page => params[:page], :per_page => 5).order("created_at DESC")
     end
 
   end
 
   def comment
     @post = Post.find(params[:id])
+    comment_public = current_user ? current_user.admin? : false  
     @comment = Comment.new(
       :name => session[:name],
       :description => session[:description],
@@ -56,21 +57,22 @@ class Site::BlogController < ApplicationController
       :captcha_key => session[:captcha_key],
       :mail_check => session[:mail_check],
       :reply_id => session[:reply_id],
-      :public => current_user.admin?
+      :public => comment_public
     )
-    @comment.post = @post unless session[:reply_id].present?
+    @comment.post = @post if !session[:reply_id].present?
     @comment.email = current_user.email
     @comment.user_id = current_user.id
     if (verify_recaptcha(model: @comment) or session[:reply_id].present?) and @comment.save
       Notifier.comment(@comment,current_user).deliver
-      check_mail_list(@post, current_user)
       flash[:notice] = "comment is successfully posted"
-      redirect_to blog_path(:id => @post.id)
+    elsif session[:reply_id].present?  and @comment.save
+      Notifier.reply_comment(@comment,@comment.comment.user).deliver
+      flash[:notice] = "comment is successfully posted"      
     else
       flash[:notice] = @comment.show_errors
-       redirect_to blog_path(:id => @post.id)
      # render :action => :show
     end
+      redirect_to blog_path(:id => @post.id)
   end
 
 
@@ -91,12 +93,12 @@ class Site::BlogController < ApplicationController
   def check_mail_list(post, user)
     @post = Post.find(post)
     no_of_comment = @post.comments.count
-    if no_of_comment == 1 and !session[:reply_id].present?
+    if no_of_comment == 1 
       return true
     else
       p no_of_comment
 
-      @comments = (@post.comments).find(:all, :conditions =>[' mail_check = ? || id = ?',true, session[:reply_id]])
+      @comments = (@post.comments).find(:all, :conditions =>[' mail_check = ?',true])
       p "********tyty***************************"
       p @comments.count
       p "**********ytyy**************************"

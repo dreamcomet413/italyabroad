@@ -113,7 +113,13 @@ class Notifier < ActionMailer::Base
   def comment(comment,user)
     @comment = comment
     @user = user
-    mail(:to => comment.email , :bcc=> 'info@italyabroad.com' , :from => "Italyabroad.com <info@italyabroad.com>" , :subject => "[Italyabroad.com] Comment from Site") 
+    mail(:to => user.email , :bcc=> 'info@italyabroad.com' , :from => "Italyabroad.com <info@italyabroad.com>" , :subject => "[Italyabroad.com] Comment from Site") 
+
+  end
+  def reply_comment(comment,user)
+    @comment = comment
+    @user = user
+    mail(:to => user.email , :bcc=> 'info@italyabroad.com' , :from => "Italyabroad.com <info@italyabroad.com>" , :subject => "[Italyabroad.com] Reply from Admin") 
 
   end
 

@@ -1,0 +1,8 @@
+Hello <%= @user.name %>,
+	<br><br>
+	 <%= @comment.user.name %> has  Replied to Yor Comment: <b> <%= @comment.comment.description %> </b> on blog Post: <%= link_to @comment.comment.post.name , blog_url(@comment.comment.post)%>
+<br><br>
+Details are below:
+<br>
+	<b><%= @comment.description %></b>
+

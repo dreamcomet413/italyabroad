@@ -149,7 +149,7 @@
                     <% end %>
                     </div>
                     <div>
-                      <p><%= comment.description.gsub("\n","<br />") rescue "No description" %></p>
+                      <p><%= comment.description.gsub("\n","<br />").html_safe rescue "No description" %></p>
                     </div>
                     <div class="reply-comment" style="display: none;">
                       <%comment.replies.each do |reply| %>
@@ -163,27 +163,31 @@
                             <div class="reviewer-name"><b><%= reply.name.upcase %></b> <%= reply.created_at.strftime("%m/%d/%Y %H:%M %p") %>
                             </div>
                             <div>
-                              <p><%= reply.description.gsub("\n","<br />") rescue "No description" %></p>
+                              <p><%= reply.description.gsub("\n","<br/>") rescue "No description" %></p>
                             </div>
                           </span>
                         </div>
                       <%end%>
                        <% if logged_in?  and current_user.admin?%>
-                          <%= form_tag comment_blog_path(:id => @post.id) do %>
+                       <div class="write-review-wrapper">
+                            <%= form_tag comment_blog_path(:id => @post.id) do %>
                               <div class="clearfix bottom-15">
-                                <div class="col-xs-1">Reply:</div>
-                                <div class="col-xs-10 col-md-10">
-                                  <%= hidden_field :comment , :name , value: current_user.name  %>
-                                  <%= text_field :comment, :description, style: "width: 100%;height: 31px;" %>
-                                  <%= hidden_field :comment , :reply_id , value: comment.id  %>
+                                <div class="col-xs-3 col-md-2"> Reply:</div>
+                                <div class="col-xs-9 col-md-5">
+                                   <%= hidden_field :comment , :name , value: current_user.name  %>
+                                    <%= text_area :comment, :description %>
+                                    <%= hidden_field :comment , :reply_id , value: comment.id  %>
                                 </div>
-                                 <div class="col-xs-9 col-md-5 col-xs-offset-3 col-md-offset-2 green-button">
+                              </div>
+                               <div class="bottom-15 clearfix">
+                                <div class="col-xs-9 col-md-5 col-xs-offset-3 col-md-offset-2 green-button">
                                   <div class="submit-btn">
-                                   <%= submit_tag "Send" , style: "display: none;" %>
+                                  <%= submit_tag "Send"%>
                                   </div>
                                 </div>
                               </div>    
                           <% end%>
+                        </div>
                         <%end%>
                     </div>
                   </div>
