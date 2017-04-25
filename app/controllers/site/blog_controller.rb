@@ -62,7 +62,7 @@ class Site::BlogController < ApplicationController
     @comment.post = @post if !session[:reply_id].present?
     @comment.email = current_user.email
     @comment.user_id = current_user.id
-    if (verify_recaptcha(model: @comment) or session[:reply_id].present?) and @comment.save
+    if verify_recaptcha(model: @comment)  and @comment.save
       Notifier.comment(@comment,current_user).deliver
       flash[:notice] = "comment is successfully posted"
     elsif session[:reply_id].present?  and @comment.save
