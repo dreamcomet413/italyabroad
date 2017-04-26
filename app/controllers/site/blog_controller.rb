@@ -72,7 +72,7 @@ class Site::BlogController < ApplicationController
       flash[:notice] = @comment.show_errors
      # render :action => :show
     end
-      redirect_to blog_path(:id => @post.id)
+      redirect_to blog_path(@post.friendly_identifier)
   end
 
 
