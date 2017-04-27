@@ -1,8 +1,8 @@
 <%
  if (@chat_message.message_to == "admin")
-   publish_to = "/chat_messages/new/#{@chat_message.message_from}"
+   publish_to1 = "/chat_messages/new/#{@chat_message.message_from}"
  else
-   publish_to = "/chat_messages/new/#{@chat_message.message_to}"
+   publish_to1 = "/chat_messages/new/#{@chat_message.message_to}"
  end
 
  if @chat_message.message_from != "admin"
@@ -20,7 +20,7 @@
 
 %>
 
-<% publish_to publish_to do %>
+<% publish_to publish_to1 do %>
   $("#chat").append("<li><span class='created_at'><%= @chat_message.created_at.strftime("%H:%M") %>: <i class='auto'><%= message_from_user %></i> to  <i class='auto'><%= message_to_user %></i> </span> :=>  <strong><%= @chat_message.content %></strong></li>");
   $('#chat').scrollTop($('ul li').last().position().top + $('ul li').last().height());
 
