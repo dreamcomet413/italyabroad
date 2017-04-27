@@ -263,6 +263,33 @@
                         <% end %>
                       </div>
                     </div>
+                    <% if (@product.from_quantity.to_f > 0.0) && (@product.from_quantity_price.to_f > 0.0) %>
+                      <% if @product.categories.root.present? && @product.categories.root.name == "Wine" %>
+                        <div class="buy-a-case">
+                          <div class="case-price">
+                            Buy a case of <%= @product.from_quantity %> and save 
+                            <b><%= number_to_currency @product.from_quantity_price.to_f, :unit => "£" %></b>
+                          </div>
+                          <div class="bollte-price">
+                            (price per bottle <%= number_to_currency @product.price_per_bottle, :unit => "£" %> )
+                          </div>
+                          <div class="clearfix top-20 bottom-10">
+                            <div class="add-whole-case green-button">
+                              <a href="#." title="Add the whole case">Add the whole case</a>
+                            </div>
+                          </div>
+                        </div>
+                      <% elsif @product.categories.root.present? && @product.categories.root.name == "Food" %>
+                        <div class="buy-a-case">
+                          <div class="case-price">
+                            Buy <%= @product.from_quantity %>
+                            and save 
+                            <b><%= number_to_currency @product.from_quantity_price, :unit => "£" %></b>
+                          </div>
+                        </div>
+                      <% end %>
+                    <% end %>
+                    <!-- start product image for mobile -->
                     <div class="col-md-3 show-on-mobile top-20 left-side-bar center-align">
                       <div class="product-detail-img">
                         <% if !(@product.image_1).blank? %>
@@ -312,33 +339,7 @@
                       <% end %>
                       </div>
                       <div class="earn-reward">Earn <%= (@product.product_prices.first.price * Setting.find(:first).points_per_pound).to_i  rescue 0 %> reward points on this produce</div>
-                    </div>
-                    <% if (@product.from_quantity.to_f > 0.0) && (@product.from_quantity_price.to_f > 0.0) %>
-                      <% if @product.categories.root.present? && @product.categories.root.name == "Wine" %>
-                        <div class="buy-a-case">
-                          <div class="case-price">
-                            Buy a case of <%= @product.from_quantity %> and save 
-                            <b><%= number_to_currency @product.from_quantity_price.to_f, :unit => "£" %></b>
-                          </div>
-                          <div class="bollte-price">
-                            (price per bottle <%= number_to_currency @product.price_per_bottle, :unit => "£" %> )
-                          </div>
-                          <div class="clearfix top-20 bottom-10">
-                            <div class="add-whole-case green-button">
-                              <a href="#." title="Add the whole case">Add the whole case</a>
-                            </div>
-                          </div>
-                        </div>
-                      <% elsif @product.categories.root.present? && @product.categories.root.name == "Food" %>
-                        <div class="buy-a-case">
-                          <div class="case-price">
-                            Buy <%= @product.from_quantity %>
-                            and save 
-                            <b><%= number_to_currency @product.from_quantity_price, :unit => "£" %></b>
-                          </div>
-                        </div>
-                      <% end %>
-                    <% end %>
+                    </div> <!-- end prodcut image for mobile-->
                   </div>
                 <% end %>
               </div>
