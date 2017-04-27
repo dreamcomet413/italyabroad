@@ -8,7 +8,7 @@
 <% products = Product.find_by_sql("select * from products where name like '%#{@product.name.gsub(/\(([^)]*)\)/, "").gsub("'", "").strip}%' and active = 1") %>
   <div class="row">
     <div class="two-colum-row clearfix product-detail-row">
-      <div class="col-md-3 left-side-bar center-align">
+      <div class="col-md-3 left-side-bar center-align hide-on-mobile">
         <div class="product-detail-img">
           <% if !(@product.image_1).blank? %>
             <% path = thumb_image(@product) %>
@@ -289,6 +289,57 @@
                         </div>
                       <% end %>
                     <% end %>
+                    <!-- start product image for mobile -->
+                    <div class="col-md-3 show-on-mobile top-20 left-side-bar center-align">
+                      <div class="product-detail-img">
+                        <% if !(@product.image_1).blank? %>
+                          <% path = thumb_image(@product) %>
+                          <% if @product.categories.first.name == ("Wine" || "wine") %>
+                            <%#= show_image_tag(:wine, @product.image_1, :jpg) %>
+                            <% if params[:category] == "mixed-case" %>
+                              <%= link_to image_tag(path, alt:@product.name, title:@product.name), (@product.image_1.image_filename.present? ? @product.image_1.image_filename.try(:url) : "/resources/images/#{@product.image_1.id}.jpg"), {:rel => "lightbox", :title => @product.name} %>
+                            <% else %>
+                              <%= link_to image_tag(path, title:@product.name, alt:@product.name), (@product.image_1.image_filename.present? ? @product.image_1.image_filename.try(:url) : "/resources/images/#{@product.image_1.id}.jpg"), {:rel => "lightbox", :title => @product.name} %>
+                            <% end %>
+                          <% else %>
+                            <% if params[:root_category] == "food" %>
+                              <%= link_to image_tag(path, alt:@product.name, title:@product.name), (@product.image_1.image_filename.present? ? @product.image_1.image_filename.try(:url) : "/resources/images/#{@product.image_1.id}.jpg"), {:rel => "lightbox", :title => @product.name} %>
+                              <%#= link_to image_tag(path), (@product.image_1.image_filename.present? ? @product.image_1.image_filename.try(:url) : "/resources/images/#{@product.image_1.id}.jpg"), {:rel => "lightbox", :title => @product.name} %>
+                            <% else %>
+                              <%= link_to image_tag(path, alt:@product.name, title:@product.name ), (@product.image_1.image_filename.present? ? @product.image_1.image_filename.try(:url) : "/resources/images/#{@product.image_1.id}.jpg"), {:rel => "lightbox", :title => @product.name} %>
+                            <% end %>
+                              <%#= show_image_tag('product', @product.image_1, :jpg) %>
+                          <% end %>
+                        <% else %>
+                            <% if params[:root_category] == "wine" %>
+                              <%#= image_tag("no_images/product_wine.jpg",:size => "230x250") %>
+                              <%#= image_tag("no_images/product_wine.jpg",:size => "80x150") %>
+                              <%= image_tag("no_images/product_wine.jpg", :alt=>"no image", :title=>"No iamge", :height => "254") %>
+                            <% elsif params[:root_category] == "food" %>
+                              <%#= image_tag("no_images/product_food.jpg",:size => "230x250") %>
+                              <%#= image_tag("no_images/product_food.jpg",:size => "120x150") %>
+                              <%= image_tag("no_images/product_food.jpg", :alt=>"food", :title=>"food", :size => "120") %>
+                            <% elsif params[:root_category] == "hampers" %>
+                              <%#= image_tag("no_images/product_hamper.jpg",:size => "230x250") %>
+                              <%#= image_tag("no_images/product_hamper.jpg",:size => "120x150") %>
+                              <%= image_tag("no_images/product_hamper.jpg", :alt=>"hamper", :title=>"hamper", :size => "120") %>
+                            <% else %>
+                              <%#= image_tag("no_images/product_wine.jpg",:size => "230x250") %>
+                              <%#= image_tag("no_images/product_wine.jpg",:size => "120x150") %>
+                              <%= image_tag("no_images/product_wine.jpg", :alt=>"wine", :title=>"wine", :size => "120") %>
+                            <% end %>
+                          <% end %>        
+                      </div>
+                      <div class="click-here"><a href="#." title="Click here to enlarge the image">Click here to enlarge the image</a></div>
+                      <div class="item-left">
+                        <% if @limited_stock.present? %>                
+                          <b><%= @limited_stock %></b>
+                        <% else %>
+                            <% @quantity %>
+                      <% end %>
+                      </div>
+                      <div class="earn-reward">Earn <%= (@product.product_prices.first.price * Setting.find(:first).points_per_pound).to_i  rescue 0 %> reward points on this produce</div>
+                    </div> <!-- end prodcut image for mobile-->
                   </div>
                 <% end %>
               </div>
@@ -296,6 +347,7 @@
           <% end %>
         </div>
       </div>
+    </div>
       <div class="clearfix">
         <div class="col-md-12">
           <h2 class="green-heading-2">Why we love it</h2>
@@ -343,7 +395,6 @@
           </div>
         </div>
       </div>
-    </div>
     <!-- Start include in hamper box -->
     <% if @product.root_category == 'Hampers' || @product.sub_categories.include?('Mixed case') %>
       <% @includes = @product.product_includeds %>
@@ -442,6 +493,9 @@
         </div>
       </div>
     <% end %><!-- End Similar products box-->
+    <div class="show-on-mobile text-center top-20 clearfix">
+      <div class="col-xs-12 green-button bottom-50"><a href="#." onclick="goBack()" title="Back">Go back to previous page</a></div>
+    </div>
   </div>
   <!-- start 3 colum  boxes-->
   <div class="community-row clearfix row">

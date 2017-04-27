@@ -3220,7 +3220,9 @@ a.red{
 .pad5-7{
 	padding:5px 7px;
 }
-
+.top-20{
+	margin-top:20px;
+}
 /*=============== Media quires=================*/
 @media only screen and (max-width: 1200px) {
 	.landscape img{
@@ -3245,7 +3247,34 @@ a.red{
 	.show-on-tablet{
 		display: block;
 	}
-	
+	.add-to-cart-box{
+		padding-right: 0px;
+		padding-left: 0px;
+	}
+	.green-button input[type=submit]{
+		font-size: 16px;
+	}
+	.wine-list{
+		padding: 5px 5px 5px 25px;
+	}
+	.medium-box{
+		min-height: 265px;
+	}
+	.tab-fix img{
+		height: 175px;
+	}
+	.review-box{
+		margin:10px 0px 0px;
+	}
+	.small-box-2{
+		min-height: auto;
+		padding: 8px 5px 5px 8px;
+
+	}
+	h2.small-box-heading{
+		font-size: 24px;
+		line-height: 20px;
+	}
 }
 
 @media only screen and (max-width: 990px){
@@ -3497,6 +3526,9 @@ a.red{
 	.login-wrapper{
 		padding-left: 0px;
 	}
+	.green-button input[type=submit]{
+		font-size: 18px;
+	}
 }
 @media only screen and (max-width: 890px){
 	.star-rating, .product-review-count{
@@ -3670,10 +3702,19 @@ a.red{
 	.mobile-top-15{
 		padding-top: 15px;
 	}
+	.hide-on-mobile{
+		display: none;
+	}
+	.show-on-mobile{
+		display: block;
+	}
+	.click-here{
+		display: inline-block;
+	}
 
 }
 
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 480px) {	
 	/*.blog-search-text{ 
 		width: 100%;}*/
 	.green-button a{
