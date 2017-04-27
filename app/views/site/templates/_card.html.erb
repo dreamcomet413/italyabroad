@@ -347,6 +347,7 @@
           <% end %>
         </div>
       </div>
+    </div>
       <div class="clearfix">
         <div class="col-md-12">
           <h2 class="green-heading-2">Why we love it</h2>
@@ -394,7 +395,6 @@
           </div>
         </div>
       </div>
-    </div>
     <!-- Start include in hamper box -->
     <% if @product.root_category == 'Hampers' || @product.sub_categories.include?('Mixed case') %>
       <% @includes = @product.product_includeds %>
