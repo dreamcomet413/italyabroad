@@ -58,7 +58,7 @@
 <script type="text/javascript">
   $(document).ready(function(){
     $('.xml_links a').on('click',function(){
-      count = $(this).parent().attr('id').substr(-1)
+      count = $(this).parent().attr('id').replace("table",'')
       $.get( $(this).attr('href'), function( data ) {
         $('#options'+count).html(data);
       });
