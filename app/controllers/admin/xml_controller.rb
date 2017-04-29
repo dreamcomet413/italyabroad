@@ -21,24 +21,31 @@ class Admin::XmlController < ApplicationController
       @columns = eval(params[:table]).column_names
     end
 
-    respond_to do |format|
-      format.js{
-        render :update do |page|
-          if params[:type] == 'Newsletters subscribers'
-            page["options#{params[:count]}"].html("")
-            page["options#{params[:count]}"].html(render :partial => "xml_options",
-                                                         :locals => {:columns => @columns, :table => params[:table], :id => params[:id], :xml_type => params[:xml_type]}
-            )
-          else
-            page["options#{params[:count]}"].html("")
-            page["options#{params[:count]}"].html(render :partial => "xml_options",
-                                                         :locals => {:columns => @columns, :table => params[:table], :id => params[:id]}
-            )
-
-          end
-        end
-      }
+    if params[:type] == 'Newsletters subscribers'
+      render :partial => "xml_options", :locals => {:columns => @columns, :table => params[:table], :id => params[:id], :xml_type => params[:xml_type]}
+    else
+      render :partial => "xml_options", :locals => {:columns => @columns, :table => params[:table], :id => params[:id]}        
     end
+
+
+    # respond_to do |format|
+    #   format.js{
+    #     # render :update do |page|
+    #     #   if params[:type] == 'Newsletters subscribers'
+    #     #     page["options#{params[:count]}"].html("")
+    #     #     page["options#{params[:count]}"].html(render :partial => "xml_options",
+    #     #                                                  :locals => {:columns => @columns, :table => params[:table], :id => params[:id], :xml_type => params[:xml_type]}
+    #     #     )
+    #     #   else
+    #     #     page["options#{params[:count]}"].html("")
+    #     #     page["options#{params[:count]}"].html(render :partial => "xml_options",
+    #     #                                                  :locals => {:columns => @columns, :table => params[:table], :id => params[:id]}
+    #     #     )
+
+    #     #   end
+    #     # end
+    #   }
+    # end
   end
 
   def eval_xml
@@ -64,7 +71,11 @@ class Admin::XmlController < ApplicationController
 
 
         p_name = (data.name).downcase.split(" ").map{|w| w.gsub(/[^\._\-a-z0-9\@]/i,'')}.join("-") if data.name
-        data[:link] = "http://italyabroad.com/#{data.unique_categories.collect {|c|c.name.downcase.split(" ").map{|w| w.gsub(/[^\._\-a-z0-9\@]/i,'')}.join("-")}.join("/")}/#{(p_name)}" if data.unique_categories
+        if data.unique_categories
+          data[:link] = "http://italyabroad.com/#{data.unique_categories.collect {|c|c.name.downcase.split(" ").map{|w| w.gsub(/[^\._\-a-z0-9\@]/i,'')}.join("-")}.join("/")}/#{(p_name)}" 
+        else
+          data[:link] = ""
+        end 
         data[:condition] = "new"
       end
 
@@ -81,14 +92,13 @@ class Admin::XmlController < ApplicationController
 
 # already commented block before making any change ends here--------------------------
 
-
       p"*********************"
       p @data
       p YAML::dump(@data.length)
+      
       @xml = @data.to_xml(:skip_types => true, :camelize => true, :skip_instruct => true,
                           :only => params[:names]).gsub('nil="true"',"").gsub("\n","")
-
-
+      
 
       # already commented before making any change by legreens
       #      render :text => '<pre>'+@xml.to_yaml and return

@@ -12,20 +12,20 @@
           <% if table == "Category" %>
               <% @category.each do |p| %>
                   <% table = p.name %>
-                  <%="<div id=table#{@count}>".html_safe() %>
+                  <%="<div id=table#{@count} class='xml_links' >".html_safe() %>
                   <%= link_to table, xml_options_path(:count => @count, :table => p.class, :id => p.id), :remote => true %><br />
                 </div><div style="font-size:15px;padding: 5px 0px 8px 0px"><%="<div id=options#{@count}>".html_safe() %></div>
                 <% @count = @count + 1 %>
             <% end %>
 
         <% elsif table == "Newsletters subscribers" %>
-            <%="<div id=table#{@count}>".html_safe()%>
+            <%="<div id=table#{@count} class = 'xml_links'>".html_safe()%>
             <%= link_to table, xml_options_path(:count => @count, :table => 'User', :type => 'Newsletters subscribers'), :remote => true %><br />
             </div><div style="font-size:15px;padding: 5px 0px 8px 0px"><%="<div id=options#{@count}>".html_safe()%></div>
             <% @count = @count + 1 %>
 
         <% else %>
-            <%="<div id=table#{@count}>".html_safe()%>
+            <%="<div id=table#{@count} class = 'xml_links' >".html_safe()%>
             <%= link_to eval(table), xml_options_path(:count => @count, :table => table) %><br />
             </div><div style="font-size:15px;padding: 5px 0px 8px 0px"><%="<div id=options#{@count}>".html_safe() %></div>
             <% @count = @count + 1 %>
@@ -55,3 +55,15 @@
         </tr></table>
       </div>
 
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.xml_links a').on('click',function(){
+      count = $(this).parent().attr('id').substr(-1)
+      $.get( $(this).attr('href'), function( data ) {
+        $('#options'+count).html(data);
+      });
+
+      return false;
+    })
+  });
+</script>

@@ -95,7 +95,12 @@ class Product < ActiveRecord::Base
   def multiple?
     return self.product_prices.size > 1
   end
-
+  def link
+    self[:link]
+  end
+  def condition
+    self[:condition]
+  end
   def self.grapes(category, search=nil)
     grapes = [[" Any",""]]
     for i in (1..6)
