@@ -75,10 +75,8 @@
           <div class="right-align bottom-50">
           <% if params.include?("tag_id") %>
            <b><%= will_paginate(@posts , :container => false) %></b>-
-          <% else %>
-           <b><%= link_to "VIEW ALL", blog_index_path(:show => "all"), :title=>"View All" %></b>
           <% end %>
-
+           <b><%= link_to "VIEW ALL", blog_index_path(:show => "all"), :title=>"View All" %></b>
           </div>
         </div>
       <% end %>
