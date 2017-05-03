@@ -1,10 +1,10 @@
-class Site::BlogController < ApplicationController
+ class Site::BlogController < ApplicationController
   layout "site"
   before_filter :store_comment, :only => :comment, :method => :post
 #  before_filter :site_login_required, :only => :comment
   def index
 
-    per_page = params[:show].to_s == "all" ? 9999999 : 4
+    per_page = 25
     if params[:category] == 'search_blog_post'
       posts = Post.where("name like '%#{params[:text]}%' or friendly_identifier like '%#{params[:text]}%'")  
     elsif params[:tag_id]

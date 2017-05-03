@@ -38,7 +38,7 @@ module ApplicationHelper
 
   def title
     return  @title + "" unless @title.blank?
-    return "Italian wine and food from small producers"
+    return "Italian wine and food. Award winning wine merchant"
   end
 
   def description
