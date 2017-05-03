@@ -72,7 +72,7 @@
             <div class="blog-list">
               <h2 class="blog-list-heading"><%=link_to post.name , blog_path(post.friendly_identifier), :title=>post.name %></h2>
               <div class="blog-list-date clearfix">
-                <span class="list-date"><b><%=post.created_at.to_date.to_s(:long)%></b></span> <span class="list-tags"><b>Tags: </b>
+                <span class="list-date <%= @year and post.created_at.year == @year ? 'tag_selected' : ''%>"><b><%=post.created_at.to_date.to_s(:long)%></b></span> <span class="list-tags"><b>Tags: </b>
                   <%
                     @tag_list = "" %>
                     <% post.tags.each do |p| %>
