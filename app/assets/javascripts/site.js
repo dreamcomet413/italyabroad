@@ -1,4 +1,4 @@
-//= require jquery
+//= require jquery-1.12.2.min
 //= require jquery_ujs
 //= require jquery-ui
 //= require autocomplete-rails.js

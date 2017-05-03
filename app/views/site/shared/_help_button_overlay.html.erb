@@ -20,8 +20,12 @@
 			vertical-align: middle;
 		}
 	</style>
+	<% if logged_in? and  current_user.admin? %>
+		<div class="new_message new_alert">
+		  <iframe src="http://<%=Rails.env == 'production' ? 'www.italyabroad.com' : 'localhost:3000'%>/chat_messages/show_alert" height="30" width="400" style="border: none;"></iframe>		
+		</div>
+	<%end %>
 	<div class="help-button" onclick="popupwindow('http://<%=Rails.env == 'production' ? 'www.italyabroad.com' : 'localhost:3000'%>/chat_messages', 700, 650)">
-	  
 	  <span class="chat-txt">Live Chat</span>
 	</div>
 <%end%>

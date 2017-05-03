@@ -4,7 +4,6 @@ class Admin::BaseController < ApplicationController
 
   def index
   end
-
   def login
     (redirect_to siteadmin_path and return) if logged_in? and current_user.admin?
     if request.post?

@@ -1,0 +1,9 @@
+<% if logged_in? and  current_user.admin? %>
+	<%= javascript_include_tag "site" %>
+	<%= javascript_include_tag "/javascripts/private_pub.js" %>
+	<%= subscribe_to "/chat_messages/new/*" %>
+	<div class ="new_message">Waiting for New Message !</div>
+	<ul id="chat" style="display: none;">
+      <li></li>
+	</ul>
+<% end %>
