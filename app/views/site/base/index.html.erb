@@ -179,7 +179,7 @@
                 <%= link_to image_tag(blog_home.image.image_filename.try(:url), :title => @post.friendly_identifier, :alt => @post.friendly_identifier), blog_path(:id => @post.friendly_identifier), :title => @post.friendly_identifier -%>
               </div>
             <%end%>  
-            <div class="col-xs-6">
+            <div class="col-xs-6 blog-title">
               <h3><%=truncate(@post.name, length: 40)%></h3>
               <div class="medium-box-text"><p class="truncate_blog_text"><%=truncate(@post.description, length: 200).html_safe %></p></div>
               <div class="read-more"><%= link_to "Read More", blog_path(:id => @post.friendly_identifier), :title=>"Read More" %></div>
