@@ -278,9 +278,26 @@ a:hover{
 	color: #485626;
 	font-family: OpenSans-Regular;
 }
+.blog-title h3{
+
+    margin: 15px 0 13px;
+    height: 50px;
+    line-height: 25px;
+    overflow: hidden;
+}
+
+.read-more{
+	position: absolute;
+	bottom: 0;
+}
+.truncate_wine_text div{
+	height: 50px;
+	overflow: hidden;
+}
 /* Swiper css*/
 .swiper-wrapper{
 	height: 307px;
+	padding-bottom: 10px;
 }
 .swiper-button-prev, .swiper-button-next{
 	margin:10px 5px 0px;
@@ -378,7 +395,7 @@ h2{
 	min-height: 232px;
 }
 .medium-box p{
-	height: 108px;
+	height: 98px;
 	overflow: hidden;
 }
 h3{
@@ -390,7 +407,7 @@ h3{
 	color: #2e3e09;
 }
 .medium-box-text{
-	min-height: 112px;
+	min-height: 135px;
 	padding-bottom: 10px;
 }
 .red-text{
