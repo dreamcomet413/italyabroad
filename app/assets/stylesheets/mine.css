@@ -281,6 +281,7 @@ a:hover{
 /* Swiper css*/
 .swiper-wrapper{
 	height: 307px;
+	padding-bottom: 10px;
 }
 .swiper-button-prev, .swiper-button-next{
 	margin:10px 5px 0px;
