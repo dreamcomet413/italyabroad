@@ -19,7 +19,7 @@
       month = params[:month].to_i
       begin_of_the_month = "1/#{month}/#{year}".to_time.utc
       end_of_the_month = begin_of_the_month.end_of_month.to_time.utc
-     posts = Post.find(:all, :conditions => ["blog_type_id = ? AND created_at >= ? AND created_at <= ?", 1, begin_of_the_month.to_s(:db), end_of_the_month.to_s(:db)])
+     posts = Post.where("blog_type_id = ? AND created_at >= ? AND created_at <= ?", 1, begin_of_the_month.to_s(:db), end_of_the_month.to_s(:db)).paginate(:page => params[:page], :per_page => per_page)
     
     end
     @posts = posts

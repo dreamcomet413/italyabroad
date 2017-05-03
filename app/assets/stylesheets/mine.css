@@ -3815,3 +3815,6 @@ a.red{
   	display: none;
   }
 }
+.tag_selected{
+	background: yellow;
+}
