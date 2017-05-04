@@ -95,6 +95,7 @@ ItalyabroadNew::Application.routes.draw do
 
   resources :chat_messages do
     collection do
+      get "show_alert"
       get "take_username" => "chat_messages#take_username"
     end
   end
@@ -146,7 +147,6 @@ ItalyabroadNew::Application.routes.draw do
   match 'siteadmin' => 'admin/base#index', :as => :siteadmin
   match 'admin/login' => 'admin/base#login', :as => :admin_login
   get '/site/blog/:friendly_identifier' => 'site/blog#show'
-  
   match 'blog/:year/:month' => 'site/blog#index', :as => :blog_by_month_page, :year => /\d{4}/, :month => /\d{1,2}/
   match 'orders/:id/invoice' => 'site/orders#invoice', :as => :print_invoice
   match 'my-account' => 'site/customers#account', :as => :account
