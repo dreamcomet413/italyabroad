@@ -70,7 +70,7 @@
 <body <%= @paypal_redirect %> <%= "id='#{@page_id}'" if @page_id %> class="<%= @current_controller %><%= " #{@class}" if @class %>" <%= "onload='#{@onload}'" if @onload %>>
   <% if logged_in? and  current_user.admin? and params[:controller] == "chat_messages" %>
     < %= subscribe_to "/chat_messages/new/*" %>
-    <div class ="new_message"></div>
+    <div class ="new_message">Not show</div>
   <% end %>
 <% # "session[:keys]: #{session.keys} " %>
 
@@ -439,13 +439,6 @@
       });
       return false;
     });
-
-    function popupwindow(url, w, h) {
-      title = "Live Chat"
-      var left = (screen.width/2)-(w/2);
-      var top = (screen.height/2)-(h/2);
-      return window.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
-    } 
   </script>
 
 
