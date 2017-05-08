@@ -1,6 +1,17 @@
 <h1 style="font-size:18px">Please enter your name to start chatting </h1>
 <%= form_for '', :url => chat_messages_url, :html => {:method => :get} do |f| %>
     <input type="text" name="with" class="fil form-control" id="with" placeholder="Nickname" value="">
-    <input type="submit" value="Start Chatting">
+    <input type="submit" value="Start Chatting" id = 'add_seession_id'>
 <% end %>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#add_seession_id').on('click',function(e){
+           newval = $('#with').val()+'<%= j '--'+request.session_options[:id].to_s%>';
+			$('#with').val(newval);
+			// e.preventDefault();
+		});
+	});
+</script>
+
+
 

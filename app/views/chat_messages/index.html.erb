@@ -3,21 +3,19 @@
 <ul id="chat" style="border: 1px solid #000000; background: #DEDEDE;min-height: 300px;height: 300px;overflow: auto ">
 
   <% @chat_messages.each do |chat_message| %>
-
       <%
          if chat_message.message_from != "admin"
-           message_from_user = chat_message.message_from
+           message_from_user = chat_message.message_from.split("-")[0]
          else
            message_from_user = "Support"
          end
 
          if chat_message.message_to != "admin"
-           message_to_user = chat_message.message_to
+           message_to_user = chat_message.message_to.split("-")[0]
          else
            message_to_user = "Support"
          end
       %>
-
       <li><span class='created_at'><%= chat_message.created_at.strftime("%H:%M") %>
         : <i class='auto'><%= message_from_user %></i> to  <i class='auto'><%= message_to_user %></i> </span> :=>
         <strong><%= chat_message.content %></strong></li>
