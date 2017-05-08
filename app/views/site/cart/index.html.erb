@@ -72,14 +72,15 @@
         cart_contains_not_only_events = false
         cart_contains_events_only = false
         for cart_item in @cart.items
-          if product.categories.root.name != "Events" and  product.categories.root.name != "Wine Tours"
+          product = Product.find(cart_item.product.id)
+          if product.categories.root.name != "Events" and  product.categories.root.name != "Wine Tours" and  product.categories.root.name != "Wine Club"
             cart_contains_not_only_events = true
             break
           end
         end
         for cart_item in @cart.items
           product = Product.find(cart_item.product.id)
-          if product.categories.root.name == "Events" or product.categories.root.name == "Wine Tours"
+          if product.categories.root.name == "Events" or product.categories.root.name == "Wine Tours" and  product.categories.root.name != "Wine Club"
             cart_contains_events_only = true
           else
             cart_contains_events_only = false
@@ -87,6 +88,7 @@
         end
         #and cart_contains_not_only_events == false
       %>
+     
       <div class="green-button top-20 clearfix right-align">
         <div class="sumbit-btn cart-update-btn "><%= submit_tag "Update" %></div>
       </div>
@@ -133,7 +135,7 @@
           <% else %>
             <% if cart_contains_not_only_events  %>
               <div class="">
-                Select delivery method: <%= collection_select :delivery, :id, Delivery.find(:all,:conditions=>['name != ? and id != ?','For ticket events',12]), :id, :name_with_price %>
+                Select delivery method: <%= collection_select :delivery, :id, Delivery.find(:all,:conditions=>['name != ? and price > ?','For ticket events',0.0]), :id, :name_with_price %>
               </div>
             <% end %>
           <% end %>
