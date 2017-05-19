@@ -74,7 +74,7 @@ class Site::CategoriesController < ApplicationController
       @search = Search.new(params || Hash.new)
       #@products = @category.blank? ? [] : @category.products.find(:all, :order => @sort_by, :include => [:categories, :grapes], :conditions => @search.conditions).paginate(:page => (params[:page] ||=1), :per_page => 10)
       #@products = @category.blank? ? [] : @category.products.find(:all, :order => 'products.id desc', :include => [:categories, :grapes], :conditions => [@search.conditions << " and discount != 0"]).paginate(:page => (params[:page] ||=1), :per_page => 10)
-      @products = @category.blank? ? [] : @category.products.where([@search.conditions << " and discount != 0 or on_offer=true"]).includes([:categories, :grapes]).
+      @products = @category.blank? ? [] : @category.products.where(@search.conditions << " and discount != 0 or on_offer=true").includes([:categories, :grapes]).
           order('products.id ASC').paginate(:page => (params[:page] ||=1), :per_page => 12)
       SearchQuery.create(:query => @search.text) unless @search.text.blank?
     end
