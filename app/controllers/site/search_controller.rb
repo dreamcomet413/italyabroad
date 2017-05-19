@@ -173,6 +173,8 @@ class Site::SearchController < ApplicationController
     end
   end
   def products_search(params)
+    params[:page]=params[:page].to_i
+    
     @sort_by = available_sorting.include?(params[:sort_by]) ? params[:sort_by] : "product_prices.price asc"
     if @sort_by.to_s.upcase == 'NAME'
       @sort_by = 'products.name'
