@@ -59,7 +59,7 @@
 
       <% unless params[:region_id].blank? %>
         <div class="black-strip clearfix">
-        <span><%= Region.find(params[:region_id]).name %></span>
+        <span><%= Region.find(params[:region_id]).name rescue '' %></span>
         <span class="pull-right"><a href="#." target="region_id" class="close-btn" title="Close">X</a></span>
         </div>
       <% end %>
