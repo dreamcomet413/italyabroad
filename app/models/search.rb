@@ -18,6 +18,8 @@ class Search
     @category         = params[:category].nil? ? nil : Category.find(params[:category])
     @user_id          = params[:chef] ||= ""
     @mood             = params[:mood] ||= ""
+  
+    @grape = @grape.to_i
   end
 
   def conditions(products=true)
@@ -49,7 +51,6 @@ class Search
   end
   
   def conditions_for_recipes
-
     text = @text.gsub("'", "''")
     text.strip!
     conditions = []
