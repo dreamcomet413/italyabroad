@@ -4,7 +4,7 @@ class Site::SearchController < ApplicationController
 
   def autocomplete_search_name
     params[:term]=params[:term].gsub("'",'') if params[:term]
-    
+
     @products = Product.where("name like '%#{params[:term]}%'").where(:active=>true).limit(10)
     @recipes = Recipe.where("name like '%#{params[:term]}%'").limit(10)
     @users = User.where("name like '%#{params[:term]}%'").limit(10)
@@ -175,7 +175,7 @@ class Site::SearchController < ApplicationController
     end
   end
   def products_search(params)
-    params[:page]=params[:page].to_i
+    params[:page]=params[:page].to_i if params[:page]
 
     @sort_by = available_sorting.include?(params[:sort_by]) ? params[:sort_by] : "product_prices.price asc"
     if @sort_by.to_s.upcase == 'NAME'

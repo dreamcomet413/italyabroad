@@ -15,7 +15,8 @@ class Site::CategoriesController < ApplicationController
 
   def show_sub
     params[:text]=params[:text].gsub("'",'') if params[:text]
-
+    params[:page]=params[:page].to_i if params[:page]
+    
     if params[:category] != "offer"
       if params[:parent].blank? || params[:category].blank?
       
