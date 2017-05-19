@@ -12,6 +12,11 @@ class Site::ProductsController < ApplicationController
   end
 
   def show
+    if params[:root_category]=="resources"
+      redirect_to '/404.html'
+      return
+    end
+
     @product = Product.find(params[:id]) || Product.find_by_id(params[:id])
     if @product.present?
       @quantity = @product.get_quantity(params[:actual_price])
