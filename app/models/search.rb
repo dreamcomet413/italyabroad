@@ -20,6 +20,9 @@ class Search
     @mood             = params[:mood] ||= ""
   
     @grape = @grape.to_i
+    @producer = @producer.to_i
+    @occasion=@occasion.to_i
+    @region=@region.to_i
   end
 
   def conditions(products=true)
