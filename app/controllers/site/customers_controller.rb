@@ -11,7 +11,6 @@ class Site::CustomersController < ApplicationController
   end
 
   def show
-    byebug
     store_location
     @user = User.find(params[:id])
     @my_profile = (@user == current_user)
