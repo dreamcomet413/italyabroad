@@ -11,9 +11,10 @@ class Site::CustomersController < ApplicationController
   end
 
   def show
+    byebug
     store_location
     @user = User.find(params[:id])
-    @my_profile = @user == current_user
+    @my_profile = (@user == current_user)
     #to show link You have new message in my profile page if there is unread msg
     @unread_msg = false
     if @my_profile and Message.find(:all,:conditions=>['user_id =? and read_or_not = ?',@user.id,false]).size > 0
