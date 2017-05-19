@@ -14,6 +14,8 @@ class Site::CategoriesController < ApplicationController
   end
 
   def show_sub
+    params[:text]=params[:text].gsub("'",'') if params[:text]
+
     if params[:category] != "offer"
       if params[:parent].blank? || params[:category].blank?
       
@@ -46,7 +48,6 @@ class Site::CategoriesController < ApplicationController
             end
             
             @products = products
-            
           SearchQuery.create(:query => @search.text) unless @search.text.blank?
         else
       

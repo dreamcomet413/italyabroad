@@ -19,10 +19,10 @@ class Search
     @user_id          = params[:chef] ||= ""
     @mood             = params[:mood] ||= ""
   
-    @grape = @grape.to_i
-    @producer = @producer.to_i
-    @occasion=@occasion.to_i
-    @region=@region.to_i
+    @grape = @grape.to_i if !@grape.blank?
+    @producer = @producer.to_i if !@producer.blank?
+    @occasion=@occasion.to_i if !@occasion.blank?
+    @region=@region.to_i if !@region.blank?
   end
 
   def conditions(products=true)

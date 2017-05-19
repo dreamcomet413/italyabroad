@@ -3,7 +3,8 @@ class Site::SearchController < ApplicationController
   autocomplete :search, :name
 
   def autocomplete_search_name
-    params[:term]=params[:term].gsub("'",'')
+    params[:term]=params[:term].gsub("'",'') if params[:term]
+    
     @products = Product.where("name like '%#{params[:term]}%'").where(:active=>true).limit(10)
     @recipes = Recipe.where("name like '%#{params[:term]}%'").limit(10)
     @users = User.where("name like '%#{params[:term]}%'").limit(10)
