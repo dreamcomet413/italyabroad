@@ -232,6 +232,13 @@
             <div class="right-link"><%= link_to("View all", blog_index_path,:title=>"View All") %></div>
           <% end %>
         </div>
+        <div class="border-box">
+          <% @about = AboutU.find(:first, :conditions => {:link_type => "page"} ) %>
+          <h2 class="green-heading"><%= @about.title.html_safe if @about %></h2>
+          <div class="box-image">
+            <%= link_to image_tag(image_url('region_card', @about.image, :jpg),:alt=>"Extra virgin Olive Oil Banner",:title=>"Olive Oil") , olive_oil_guide_path, :title=>"Olive Oil" unless @about.blank? %>
+          </div>
+        </div>
       </div>
     </div>
     <% products = Product.find(:all, :limit => 5, :include => {:categorizations => :category}, :conditions => ["categories.name LIKE ? AND DATE(date) > ? AND active" ,'Events',Date.today],:order =>'date') %>

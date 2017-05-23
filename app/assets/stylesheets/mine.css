@@ -735,6 +735,10 @@ h2.small-swiper-heading{
 	color: #5c8018;
 	margin-bottom: 10px;
 }
+.green-heading a{
+	color: #5c8018;
+	text-decoration: none;
+}
 h2.green-heading{
 	font-size: 24px;
 	font-family: JosefinSlab-Bold;

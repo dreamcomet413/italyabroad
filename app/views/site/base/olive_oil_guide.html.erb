@@ -20,7 +20,7 @@
     <% @title = @about.meta_title; @description = @about.meta_description %>
   <%end%>
   <% if  @about and !@about.image_id.nil? %>
-    <div class="main-banner"><%= link_to image_tag(image_url('region_card', @about.image, :jpg),:alt=>"Regions Banner",:title=>"Regions Banner") , search_index_path(:id => "regions"), :title=>"Regions" unless @about.blank? %></div>
+    <div class="main-banner"><%= link_to image_tag(image_url('region_card', @about.image, :jpg),:alt=>"Extra virgin Olive Oil Banner",:title=>"Olive Oil") , olive_oil_guide_path, :title=>"Olive Oil Guide" unless @about.blank? %></div>
   <% else %>
     <div class="main-banner">
       <%= link_to image_tag("blog_home.jpg",:alt=>'Regions',:title=>'Regions'),search_index_path(:id => "regions"), :title=>"Regions" %>

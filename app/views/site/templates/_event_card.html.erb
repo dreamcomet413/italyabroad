@@ -20,15 +20,9 @@
       <div class="red-heading"><%= @product.name %></div>
       <div class="bottom-50">
         <%= @product.description.html_safe rescue "Product has no description" %>
+        
         <ul style="list-style:none;margin:0;padding:0;float:right;font-size:14px;">
           <li style="margin-bottom:10px;text-align:right;">
-            <% if @product.discount > 0 %>
-              Was <span style="text-decoration: line-through;"><%= number_to_currency @product.price, :unit => "£" %></span><br />
-              Now <span class="red"><%= number_to_currency (@product.price - (@product.price * @product.discount.to_f / 100)), :unit => "£" %></span>
-              (save <span class="red"><%= number_to_currency (@product.price * @product.discount.to_f / 100), :unit => "£" %></span>)
-            <% else %>
-              <!--Price:--> <span style="font-size:18px;color:#9b0707;text-align:right;" class="red"><%= number_to_currency @product.price, :unit => "£" %></span>
-            <% end %>
           </li>
         </ul>
       </div>
@@ -38,7 +32,31 @@
         <%= form_for :cart, :url => "/cart?product_id=#{@product.id}", :html => {:method => :post}, :remote => true do  -%>
           <div class="bottom-50">
             <div class="row form-row clearfix">
-              <div class="col-md-2 section-label">Ticket qty: </div>
+              <div class="col-md-2 section-label">Price:  </div>
+              <div class="col-md-3 top-8"><% product = @product 
+                if product.product_prices.present? %>
+                  <% if product.discounted? && product.discount > 0.0 %>
+                    <% product.product_prices.each do |pp| %>
+                     <div class="line-through">
+                      Was <%= number_to_currency pp.price, :unit => "£" %></div>
+                    <% end %>
+                    <div class="current-price">
+                      <% product.price_discounted.each do |price| %>
+                        <%= number_to_currency price, :unit => "£" %>
+                      <% end %>
+                    </div>
+                  <% else %>
+                    <div class="">
+                      <% product.product_prices.each do |pp| %>
+                        <strong><%= number_to_currency pp.price, :unit => "£" %></strong>
+                      <% end %>
+                      </div>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+            <div class="row form-row clearfix">
+              <div class="col-md-2 section-label">Ticket qty:  </div>
               <div class="col-md-3"><%= text_field :cart, :quantity, :value => 1 %></div>
             </div>
             <div class="form-row row clearfix">
