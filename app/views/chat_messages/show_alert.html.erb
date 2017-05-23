@@ -1,0 +1,18 @@
+<style type="text/css">
+	.new_alert{
+		background: #ff6600;
+		padding: 10px 20px;
+		border-radius: 999rem;
+		color: white;
+		fill: white;
+	}
+</style>
+<% if logged_in? and  current_user.admin? %>
+	<%= javascript_include_tag "site" %>
+	<%= javascript_include_tag "/javascripts/private_pub.js" %>
+	<%= subscribe_to "/chat_messages/new/*" %>
+	<div class ="new_message "></div>
+	<ul id="chat" style="display: none;">
+      <li></li>
+	</ul>
+<% end %>

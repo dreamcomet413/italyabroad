@@ -14,7 +14,9 @@ class ChatMessagesController < ApplicationController
     end
   end
 
-
+  def show_alert
+   render :layout => false
+  end
   def take_username
 
   end

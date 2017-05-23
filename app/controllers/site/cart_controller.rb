@@ -48,7 +48,7 @@ class Site::CartController < ApplicationController
           page[".items_count"].html(@cart.items.size.to_i)
           page[".cart-top"].html(render :partial => '/site/shared/cart')
           page[".free-delivery"].html(render :partial => '/site/shared/promotion')
-          page << "alert('#{status}')"
+          page << "alert('#{j  status}')"
         end
       end
     end

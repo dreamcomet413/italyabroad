@@ -21,7 +21,7 @@
 %>
 
 <% publish_to publish_to1 do %>
-  $("#chat").append("<li><span class='created_at'><%= @chat_message.created_at.strftime("%H:%M") %>: <i class='auto'><%= message_from_user %></i> to  <i class='auto'><%= message_to_user %></i> </span> :=>  <strong><%= @chat_message.content %></strong></li>");
+  $("#chat").append("<li><span class='created_at'><%= @chat_message.created_at.strftime("%H:%M") %>: <i class='auto'><%= message_from_user.split('-')[0] %></i> to  <i class='auto'><%= message_to_user.split('-')[0] %></i> </span> :=>  <strong><%= @chat_message.content %></strong></li>");
   $('#chat').scrollTop($('ul li').last().position().top + $('ul li').last().height());
 
 

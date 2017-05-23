@@ -18,6 +18,12 @@ class Search
     @category         = params[:category].nil? ? nil : Category.find(params[:category])
     @user_id          = params[:chef] ||= ""
     @mood             = params[:mood] ||= ""
+  
+    @grape = @grape.to_i if !@grape.blank?
+    @producer = @producer.to_i if !@producer.blank?
+    @occasion=@occasion.to_i if !@occasion.blank?
+    @region=@region.to_i if !@region.blank?
+    @price = "" if @price.include?("'")
   end
 
   def conditions(products=true)
@@ -37,7 +43,7 @@ class Search
     conditions << "upper(color) LIKE '%#{color}%'" unless color.blank?
     conditions << "region_id = #{@region}" unless @region.blank?
     conditions << "producer_id = #{@producer}" unless @producer.blank?
-    conditions << "product_prices.price #{price}" unless price.blank?
+    conditions << "product_prices.price = #{price}" unless price.blank?
     conditions << "grapes.id = #{@grape}" unless grape.blank?
     conditions << "occasion_id = #{@occasion}" unless @occasion.blank?
     conditions << "moods.id = #{@mood}" unless @mood.blank?
@@ -49,13 +55,12 @@ class Search
   end
   
   def conditions_for_recipes
-
     text = @text.gsub("'", "''")
     text.strip!
     conditions = []
     conditions << "recipes.name LIKE '%#{text}%'" unless text.blank?
     conditions << "active = #{true}"
-    conditions << "preparation_time #{@preparation_time}" unless @preparation_time.blank?
+    conditions << "preparation_time = #{@preparation_time}" unless @preparation_time.blank?
     conditions << "recipe_type_id = #{@recipe_type}" unless @recipe_type.blank?
     conditions << "recipe_level_id = #{@difficulty}" unless @difficulty.blank?
     conditions << "user_id = #{@user_id}" unless @user_id.blank?
