@@ -56,7 +56,7 @@
     <div class="pagi-arrow">
       <div class="swiper-button-prev"></div>
       <div class="swiper-button-next"></div>
-    </div>
+      </div>
     <div class="swiper-container best-seller-swiper" id="firstSwiper">
       <div class="swiper-wrapper">
         <% if !@best_sellers.blank? %>
@@ -196,7 +196,7 @@
           <% if wine_club and wine_club.image %>
             <div class="col-xs-6">
               <%= link_to image_tag(wine_club.image.image_filename.try(:url), :title=>"Wine Club", :alt=> "Wine Club"), "/wine-club", :title=>"Wine Club" -%>
-            </div>
+            </div>  
           <%end%>
           <div class="col-xs-6">
             <div class="truncate_wine_text"><%=wine_club.description.html_safe rescue 'Discover the best Italian wines sat on the confort of your home'%></div>

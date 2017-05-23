@@ -45,7 +45,7 @@ class Admin::AboutUsController < ApplicationController
   # GET /about_us/1/edit
   def edit
     @about_u = AboutU.find(params[:id])
-    @meta_type = ['grape-guide','producers','region','corporate services','Wholesale','blog']
+    @meta_type = ['grape-guide','producers','region','corporate services','Wholesale','blog','page']
   end
 
   # POST /about_us

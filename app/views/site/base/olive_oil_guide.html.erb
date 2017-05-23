@@ -1,0 +1,38 @@
+<% @class = "about-us no-padding" %>
+
+<% @breadcrumbs = "#{link_to("Home", root_url, :title=>"Home")} &raquo; About us &raquo; Olive Oil Guide" %>
+
+
+<!--<div style="margin:20px;">
+  <h2>Wholesale Enquiry</h2>
+  <p>
+    Italyabroad.com is the Italian wine and food specialist and our wholesale division has been helping hotel, restaurants and retailer around the UK in offering their customers the finest Italian food and wine since 2003.
+  </p>
+  <p>
+    Italyabroad.com is the exclusive importer for the UK of the producers featured on this site and many more specifically dedicated to the trade. For wholesale enquiries please get in touch either by calling us on 0845 0526886 or emailing us at <%= mail_to "wholesale@italyabroad.com" %>.
+  </p>
+</div>-->
+
+<% @about = AboutU.find(:first, :conditions => {:link_type => "page"} ) %>
+  <%if @about and  @about.meta_title.blank? and @about.meta_description.blank? %>
+   <% @title = "Italian food and wine wholesaler"; @description = "Italian wine and food wholesaler, wine and food made by passionate small producers"; @keys = "wholesale, italian wine,fine italian wine,fine,italian red and white wine, italian food, wine tasting, wine expert,deli,blog,italy,food,wine" %>
+  <%elsif @about %>
+    <% @title = @about.meta_title; @description = @about.meta_description %>
+  <%end%>
+  <% if  @about and !@about.image_id.nil? %>
+    <div class="main-banner"><%= link_to image_tag(image_url('region_card', @about.image, :jpg),:alt=>"Regions Banner",:title=>"Regions Banner") , search_index_path(:id => "regions"), :title=>"Regions" unless @about.blank? %></div>
+  <% else %>
+    <div class="main-banner">
+      <%= link_to image_tag("blog_home.jpg",:alt=>'Regions',:title=>'Regions'),search_index_path(:id => "regions"), :title=>"Regions" %>
+    </div>
+  <% end %>
+  <div class="help-container">
+    <% if @about %>
+      <div class="green-heading-with-border"><%= @about.title.html_safe if @about %></div>
+      <div class="terms-text bottom-50"><%= @about.description.html_safe if @about %></div>
+    <% else %>
+      <div class="terms-text bottom-50">Coming soon...</div>
+    <% end %>
+</div>
+  
+
