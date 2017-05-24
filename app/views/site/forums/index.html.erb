@@ -250,7 +250,7 @@
               <div class="col-xs-7">
                 <%- products.each do |product| -%>
                   <div class="upcoming-event-box">
-                    <div class="green-heading-20"><%= product.name %></div>
+                    <div class="green-heading-20"><%= link_to product.name , "/wine-events/#{product.friendly_identifier}" %></div>
                     <div class="upcoming-location-row">
                       <div class="date-n-time"><%= product.date.strftime("%d %B %Y at %H:%M") if product.date %></div>
                       <%if product.location%>

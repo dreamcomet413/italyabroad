@@ -1135,6 +1135,10 @@ h2.blog-list-heading{
 	color:#2e3e09;
 	line-height: 22px;
 	margin-bottom: 5px;}
+.green-heading-20 a{
+	text-decoration: none;
+	color:#2e3e09;
+}
 .right-link{
 	text-align: right;
 	padding-top: 25px;}
