@@ -120,6 +120,7 @@ ItalyabroadNew::Application.routes.draw do
   match 'contact-us' => 'site/base#contact', :as => :contact_us
   match 'corporate-services' => 'site/base#corporate', :as => :corporate
   match 'wholesale-enquiry' => 'site/base#enquiries', :as => :wholesale_enquiry
+  match 'olive-oil-guide' => 'site/base#olive_oil_guide', :as => :olive_oil_guide
   match 'about-us' => 'site/base#about_us', :as => :about_us
   match 'our-manifesto' => 'site/base#our_principles', :as => :our_principles
   match 'meet-us' => 'site/base#meet_us', :as => :meet_us
