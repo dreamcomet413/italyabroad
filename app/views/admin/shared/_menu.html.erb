@@ -303,7 +303,7 @@
       <%= link_to "Grape Guides", admin_about_us_path(:type=> "grape-guide"), :class => ('active' if @current_controller == "about_us") %>
       </span>
       <span <%= "class='active'" if @current_controller == "about_us" %>>
-      <%= link_to "Olive Oil Guide", admin_about_us_path(:type=> "page.first"), :class => ('active' if @current_controller == "about_us") %>
+      <%= link_to "Olive Oil Guide", admin_about_us_path(:type=> "page"), :class => ('active' if @current_controller == "about_us") %>
       </span>
       <%#= link_to "Wine Events", admin_about_us_path(:type => "events"), :class => ('active' if @current_controller == "about_us") %>
     </span>
