@@ -141,15 +141,15 @@
       <div class="col-md-4">
         <div class="border-box">
           <div class="clearfix">
-            <h2 class="green-heading pull-left">Latest Reviews</h2>
+            <h2 class="green-heading pull-left">Latest Reviews </h2>
             <!-- <div class="heading-link pull-left"><%# link_to 'Added a new review', '#.' %></div> -->
           </div>
           <div class="border-box-swiper">
             <!-- Swiper -->
             <div class="swiper-container" id="fourthSwiper">
               <div class="swiper-wrapper">
-                <%if @reviews.count > 0%>         
-                  <%@reviews.each do |review|%>
+                <%if @reviews.count > 0 %>         
+                  <%@reviews.each do |review| %>
                     <div class="swiper-slide">
                       <div class="slide-text">
                         <div class="row clearfix">
