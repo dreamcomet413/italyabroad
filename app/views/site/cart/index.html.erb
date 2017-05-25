@@ -18,7 +18,16 @@
       </div>
       <% for cart_item in @cart.items %>
         <% product = Product.find(cart_item.product.id) %>
-        <%path =  thumb_image(product) %>
+        <%
+            if product.categories.root.friendly_identifier == "events"
+              path = 'wine-event-ticket.jpg'
+            elsif product.categories.root.friendly_identifier == 'wine-tours'
+              path = 'wine-tour-ticket.jpg'
+            else
+              path =  thumb_image(product) 
+            end
+
+          %>
         <% cart_total += cart_item.total %>
         <div class="cart-row  clearfix">
           <div class="col-md-6 clearfix white-col">
