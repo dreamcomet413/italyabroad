@@ -23,6 +23,8 @@
               path = 'wine-event-ticket.png'
             elsif product.categories.root.friendly_identifier == 'wine-tours'
               path = 'wine-tour-ticket.png'
+            elsif product.categories.root.friendly_identifier == 'wine-club'
+              path = 'club-img-01.png'
             else
               path =  thumb_image(product) 
             end
