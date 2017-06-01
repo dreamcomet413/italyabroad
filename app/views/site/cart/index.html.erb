@@ -20,9 +20,11 @@
         <% product = Product.find(cart_item.product.id) %>
         <%
             if product.categories.root.friendly_identifier == "events"
-              path = 'wine-event-ticket.jpg'
+              path = 'wine-event-ticket.png'
             elsif product.categories.root.friendly_identifier == 'wine-tours'
-              path = 'wine-tour-ticket.jpg'
+              path = 'wine-tour-ticket.png'
+            elsif product.categories.root.friendly_identifier == 'wine-club'
+              path = 'club-img-01.png'
             else
               path =  thumb_image(product) 
             end
@@ -31,10 +33,10 @@
         <% cart_total += cart_item.total %>
         <div class="cart-row  clearfix">
           <div class="col-md-6 clearfix white-col">
-            <div class="col-xs-4 col-md-4 mobile-top-15 center-align">
+            <div class="col-xs-4 col-md-2 mobile-top-15 center-align">
               <%= image_tag(path, :title=>"Product", :alt=>"Product" ) %>
             </div>
-            <div class="col-xs-8 col-md-10 top-20">
+            <div class="col-xs-8 col-md-10 top-20 gl-prod">
               <%= hidden_field_tag "cart[][id]", nil, :value => cart_item.product.id %>
               <%= cart_item.product.name %>
               <% if product.categories.root.name == "Events" or product.categories.root.name == "Wine Tours" %>

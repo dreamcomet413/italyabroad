@@ -480,6 +480,14 @@ h3{
 	font-family: OpenSans-Regular;
 	font-size: 14px;
 	color: #000;}
+.community-wrapper .slide-text{
+	height: 145px;
+	padding-bottom: 5px;
+	margin-top: 0px;
+	overflow: hidden;
+	font-family: OpenSans-Regular;
+	font-size: 14px;
+	color: #000;}
 .slide-text a{
 	text-decoration: none;
 	color: #333;
@@ -1154,7 +1162,7 @@ h2.blog-list-heading{
 	margin-bottom: 10px;
 }
 .border-box p{
-	line-height: 22px;
+	/*line-height: 22px;*/
 }
 .border-box-swiper{
 	position: relative;
@@ -3245,8 +3253,8 @@ a.red{
 .pad5-7{
 	padding:5px 7px;
 }
-.top-20{
-	margin-top:20px;
+.gl-prod{
+	min-height: 70px;
 }
 /*=============== Media quires=================*/
 @media only screen and (max-width: 1200px) {
