@@ -55,7 +55,6 @@ class Site::CartController < ApplicationController
   end
 
   def update
-
       same_delivery = @cart.delivery.id == params[:delivery][:id].to_i rescue false
       # render :text => same_delivery
       # return 

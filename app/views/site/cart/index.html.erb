@@ -109,7 +109,7 @@
         </div>
       <% end %>
       <div class="top-30 right-align">
-        <% if @cupon.nil? || !@cupon.active || (@cupon.created_at + 30.days) < Date.today || !@cart.valid? %>
+        <% if @cupon.nil? || !@cupon.active || !@cart.valid? %>
           <div class="code-text">
             If you have a promotional code please enter it here: <%= text_field :cupon, :code %>
           </div>
@@ -132,7 +132,6 @@
       <div class="cart-sub-total">
         Sub Total: <b><%= number_to_currency(@cart.sub_total, :unit => "£") %></b>
       </div>
-      <div class="spend-over">Spend over <%= number_to_currency Setting.order_delivery_amount, :unit => "£" %> and get FREE DELIVERY UK mainland only, for all other destinations we will contact you with a quote.</div>
       <div class="delivery-method">
         <% if @cart.sub_total > Setting.order_delivery_amount and @delivery and @delivery.bulk_order_price == 0 %>
           <% if cart_contains_not_only_events %>
@@ -143,6 +142,8 @@
           <% end %>
           <% else %>
             <% if cart_contains_not_only_events  %>
+                <div class="spend-over">Spend over <%= number_to_currency Setting.order_delivery_amount, :unit => "£" %> and get FREE DELIVERY UK mainland only, for all other destinations we will contact you with a quote.</div>
+
               <div class="">
                 Select delivery method: <%= collection_select :delivery, :id, Delivery.find(:all,:conditions=>['name != ? and price > ?','For ticket events',0.0]), :id, :name_with_price %>
               </div>

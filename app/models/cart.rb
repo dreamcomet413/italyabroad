@@ -112,8 +112,10 @@ class Cart
 
     if sub_total < limit
       if @cupon
+        # @cupon = nil;
         @show_errors = "Sorry, but to be able to use the voucher there is a minimum order of £#{limit}"
       else
+        # @cupon = nil;
         @show_errors = "Sorry, but there is a miminum order of £#{limit}"
       end
 
