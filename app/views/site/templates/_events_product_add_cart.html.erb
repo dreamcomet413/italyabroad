@@ -1,0 +1,73 @@
+<%= form_for :cart, :url => "/cart?product_id=#{@product.id}", :html => {:method => :post}, :remote => true do  -%>
+  <% if ticket %>
+  <div class="bottom-50">
+    <div class="row form-row clearfix">
+      <div class="col-md-2 section-label">Price:  </div>
+     
+      <div class="col-md-3 top-8"><% product = @product 
+        if product.product_prices.present? %>
+          <% if product.discounted? && product.discount > 0.0 %>
+            <% product.product_prices.each do |pp| %>
+             <div class="line-through">
+              Was <%= number_to_currency pp.price, :unit => "£" %></div>
+            <% end %>
+            <div class="current-price">
+              <% product.price_discounted.each do |price| %>
+                <%= number_to_currency price, :unit => "£" %>
+              <% end %>
+            </div>
+          <% else %>
+            <div class="">
+              <% product.product_prices.each do |pp| %>
+                <strong><%= number_to_currency pp.price, :unit => "£" %></strong>
+              <% end %>
+              </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    <div class="row form-row clearfix">
+      <div class="col-md-2 section-label">Ticket qty:  </div>
+      <div class="col-md-3"><%= text_field :cart, :quantity, :value => 1 %></div>
+    </div>
+    <div class="form-row row clearfix">
+      <div class="col-md-2 section-label"></div>
+      <div class="col-md-3 green-button">
+        <div class="submit-btn">
+          <%= submit_tag("Buy", :style=>"vertical-align:bottom; border:none") %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%else%>
+    <div class="row form-row clearfix" style="text-align: right; ">
+        <div class="detail_price"><% product = @product 
+        if product.product_prices.present? %>
+          <% if product.discounted? && product.discount > 0.0 %>
+            <% product.product_prices.each do |pp| %>
+             <div class="line-through">
+              Was <%= number_to_currency pp.price, :unit => "£" %></div>
+            <% end %>
+            <div class="current-price">
+              <% product.price_discounted.each do |price| %>
+                <%= number_to_currency price, :unit => "£" %>
+              <% end %>
+            </div>
+          <% else %>
+            <div class="">
+              <% product.product_prices.each do |pp| %>
+                <strong><%= number_to_currency pp.price, :unit => "£" %></strong>
+              <% end %>
+              </div>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="seller-field"><%= text_field :cart, :quantity, :value => 1 %></div>
+       <div class="seller-btn green-button" style="max-width: 182px;">
+        <div class="submit-btn">
+          <%= submit_tag("Add To Cart", :style=>"vertical-align:bottom; border:none") %>
+        </div>
+      </div>
+    </div>
+  <% end%>
+<% end %>

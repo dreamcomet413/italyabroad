@@ -1,0 +1,33 @@
+<h2 class="green-heading-with-border">
+  Invite a Friend
+</h2>
+<div class="invite-friend-box bottom-50">
+  <%= form_tag 'invite_a_friend' do -%>
+    <div class="row clearfix bottom-15">
+      <div class="col-md-4">
+        <div class="form-label">Your name</div>
+        <div class="form-field"><%= text_field_tag  'your_name','' %></div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-label">Your friends name</div>
+        <div class="form-field"><%= text_field_tag  'your_friend_name', '' %></div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-label">Your friends email</div>
+        <div class="form-field"><%= text_field_tag  'your_friend_email', '' %></div>
+      </div>
+    </div>
+    <div class="row clearfix bottom-15">
+      <div class="col-md-12">
+        <div class="form-label">Your message</div>
+        <div class="form-field">
+          <%= text_field_tag  'your_message','', :value => "I thought you might be interested in this..." %>
+          <%= hidden_field_tag 'h_product_id',request.url %>
+        </div>
+      </div>
+    </div>
+    <div class="row clearfix">
+      <div class="green-button col-xs-2"><%= submit_tag("Send") %></div>
+    </div>
+  <% end %>
+</div>

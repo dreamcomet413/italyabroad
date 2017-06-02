@@ -111,26 +111,28 @@
         </div>
       <% end %>
       <div class="top-30 right-align">
-        <% if @cupon.nil? || !@cupon.active || !@cart.valid? %>
           <div class="code-text">
             If you have a promotional code please enter it here: <%= text_field :cupon, :code %>
           </div>
           <div class="cart-add green-button">
             <div class="submit-btn"><%= submit_tag "Add" %></div>
           </div>
-        <% else%>
+        <% if !@cupon.nil? and @cupon.active and @cupon.expiry_date >= Time.now.to_date and @cart.valid? %>
             <div>
               <div>
                 <% if @cupon.cupon_type != "percentage" %>
-                    Promotional Code: - <%= number_to_currency @cupon.price, :unit => "£" %> <%= link_to_function image_tag("icon-cancel.png", :alt => "Delete Cupon", :title=>"Delete Cupon", :style => "vertical-align:bottom"), "$('cupon_code').value = '';$('form_cart').submit()", :title=>"Delete Cupon" %>
+                    Promotional Code: - <%= number_to_currency @cupon.price, :unit => "£" %> <%= link_to_function image_tag("icon-cancel.png", :alt => "Delete Cupon", :title=>"Delete Cupon", :style => "vertical-align:bottom"), "$('#cupon_code').val('');$('#form_cart').submit()", :title=>"Delete Cupon" %>
                 <% else %>
-                    Promotional Code: - <%= number_to_currency (cart_total-@cart.sub_total), :unit => "£" %> <%= link_to_function image_tag("icon-cancel.png", :alt => "Delete Cupon", :title => "Delete Cupon", :style => "vertical-align:bottom"), "$('cupon_code').value = '';$('form_cart').submit()", :title => "Delete Cupon" %>
+                    Promotional Code: - <%= number_to_currency (cart_total-@cart.sub_total), :unit => "£" %> <%= link_to_function image_tag("icon-cancel.png", :alt => "Delete Cupon", :title => "Delete Cupon", :style => "vertical-align:bottom"), "$('#cupon_code').val('');$('#form_cart').submit()", :title => "Delete Cupon" %>
                 <% end %>
-                <%= hidden_field :cupon, :code %>
+        
               </div>
             </div>
         <% end %>
+
       </div>
+         <div class="red-text" style="float: right;"><%= flash[:cupon_notice]||@cart.show_cupon_errors  %></div>
+
       <div class="cart-sub-total">
         Sub Total: <b><%= number_to_currency(@cart.sub_total, :unit => "£") %></b>
       </div>

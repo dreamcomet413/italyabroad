@@ -75,7 +75,7 @@
                   <div class="box-image"><img src=" <%= image ? image.image_filename.url : '/images/club-img-01.png' %>" class="club image" alt="wine club" title="wine club"></div>
                 </div>
                 <div class="col-md-10">
-                  <div class="green-heading-24"><h2><%= product.name %></h2></div>
+                  <div class="green-heading"><%= link_to product.name ,  nested_products_uri(product) %></div>
                   <div class="club-detail">
                     <%= product.description_short.html_safe() %><!-- 
                     < % if product.product_prices.present? %>
@@ -88,7 +88,7 @@
                     <div><%= link_to "Discover More", nested_products_uri(product), :title=>"Discover More"  %></div>
                   </div>
                   <div class="row clearfix">
-                    <div class="col-xs-10 price-col" style="margin-top: -0.5em;">
+                   <!--  <div class="col-xs-10 price-col" style="margin-top: -0.5em;">
                         <% if product.product_prices.present? %>
                           <% if product.discounted? && product.discount > 0.0 %>
                             <% product.product_prices.each do |pp| %>
@@ -108,10 +108,10 @@
                               </div>
                           <% end %>
                         <% end %>
-                    </div>
+                    </div> -->
                     <div class="club-btn">
-                      <div class="green-button"> 
-                        <%= link_to "Add to cart", "/cart?product_id=#{product.id}", :remote => true, :method => :post, :title=>"Add to cart" %>
+                      <div class="add-row clearfix">
+                          <%= render :partial => 'site/templates/events_product_add_cart' ,locals: { ticket: false , :'@product' =>  product} %>
                       </div>
                     </div>
                   </div>

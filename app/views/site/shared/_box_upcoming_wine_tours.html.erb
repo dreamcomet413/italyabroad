@@ -4,7 +4,10 @@
       <div class="upcoming-event-box">
         <div class="red-heading"><%= "Upcoming Tours" %></div>
         <%- products.each do |product| -%>
-          <div class="green-heading"><%= link_to product.name, nested_products_uri(product) %></div>
+          <div class="green-heading">
+            <%= link_to product.name, nested_products_uri(product) %>
+              
+            </div>
           <div class="location-row">
             <div class="date-n-time"><%= product.date.strftime("%d %B %Y") if product.date %></div>
             <%if product.location%>  
@@ -14,6 +17,7 @@
           <div class="event-detail">
             <p><%= product.description_short[0..400].html_safe() %>  <%= link_to "Discover more", nested_products_uri(product), :title=>"Discover More" %></p>
           </div>
+          <%= render :partial => 'site/templates/events_product_add_cart' ,locals: { ticket: false , :'@product' =>  product} %>
         <%- end -%>
       </div>
     </div>

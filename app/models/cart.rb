@@ -1,6 +1,6 @@
 class Cart
   attr_reader :items
-  attr_accessor :show_errors, :show_warnings, :cupon, :delivery, :gift, :quantity
+  attr_accessor :show_errors, :show_warnings, :cupon, :delivery, :gift, :quantity , :show_cupon_errors , :show_cupon_warnings
 
   def initialize
     @items = []
@@ -102,6 +102,7 @@ class Cart
   def valid?
 
     @show_errors = ""
+    @show_cupon_errors = ""
 
     limit = Setting.order_amount
     limit = order_cupon_amount if @cupon
@@ -112,10 +113,8 @@ class Cart
 
     if sub_total < limit
       if @cupon
-        # @cupon = nil;
-        @show_errors = "Sorry, but to be able to use the voucher there is a minimum order of £#{limit}"
+        @show_cupon_errors = "Sorry, but to be able to use the voucher there is a minimum order of £#{limit}"
       else
-        # @cupon = nil;
         @show_errors = "Sorry, but there is a miminum order of £#{limit}"
       end
 
@@ -126,12 +125,14 @@ class Cart
         coupon_product_ids = @cupon.products.map {|i| i.id }
         coupon_products_subtotal = 0
         items.each {|item| coupon_products_subtotal += item.total if coupon_product_ids.include? item.product.id }
-        @show_errors = "Sorry, this voucher only gives discount on certain products with a minimum order of £#{limit}" if coupon_products_subtotal < limit
-        @show_warnings = "Sorry, this voucher only gives discount on certain products with a minimum order of £#{limit}" if coupon_products_subtotal < limit
+        @show_cupon_errors = "Sorry, this voucher only gives discount on certain products with a minimum order of £#{limit}" if coupon_products_subtotal < limit
+        @show_cupon_warnings = "Sorry, this voucher only gives discount on certain products with a minimum order of £#{limit}" if coupon_products_subtotal < limit
       end
     end
-
-    return @show_errors.blank? ? true : false
+    if !@show_cupon_errors.blank?
+      @cupon = nil
+    end
+    return (@show_errors.blank? and @show_cupon_errors.blank?) ? true : false 
   end
 
   def sub_total
@@ -148,7 +149,7 @@ class Cart
       cupon_is_active = true
     end
     if @cupon and cupon_is_active == false
-      @show_warnings = "Voucher expired, Please enter a valid one."
+      @show_cupon_warnings = "Voucher expired, Please enter a valid one."
     end
 
 

@@ -82,16 +82,17 @@ class Site::CartController < ApplicationController
           @cart.delivery  = @delivery
 
         end
-
         flash[:notice] = @cart.show_warnings
+        flash[:cupon_notice] = @cart.show_cupon_warnings
       else
         flash[:notice] = @cart.show_errors
+        flash[:cupon_notice] = @cart.show_cupon_errors
       end
       @cupon = Cupon.find_by_code( params[:cupon][:code])
 
       unless  params[:cupon][:code].blank?
         if @cupon.nil? or @cupon.blank?
-          flash[:notice] = "The promotional code is not valid,please enter a valid one."
+          flash[:cupon_notice] = "The promotional code is not valid,please enter a valid one."
         end
       end
       # debugger
