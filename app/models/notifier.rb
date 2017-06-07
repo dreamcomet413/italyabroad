@@ -1,6 +1,6 @@
 class Notifier < ActionMailer::Base
   default :from => AppConfig.admin_email
-
+  layout 'mailer'
   def topic_replied_notification(post)
     begin
 

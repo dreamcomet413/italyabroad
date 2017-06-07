@@ -215,7 +215,7 @@ class Cart
       #  product = Product.find(cart_item.product.id)
       # current_item = @items.find { |t| t.product.id == item[:id].to_i }
       current_item = Product.find(item.product.id)
-      if current_item.categories.root.name != "Events" and current_item.categories.root.name != "Wine Tours"
+      if current_item.categories.root.name != "Events" and current_item.categories.root.name != "Wine Tours" and current_item.categories.root.name != "Wine Club"
         cart_contains_not_only_events = true
         break
       end
@@ -233,9 +233,10 @@ class Cart
 
       
     else
+
       #@delivery.price = 0
       #total += @delivery.price
-      total += (total < Setting.order_delivery_amount && @delivery) ? @delivery.price : 0
+      # total += (total < Setting.order_delivery_amount && @delivery) ? @delivery.price : 0
     end
     puts "----after delivery------total: #{total}"
     # if total > Setting.find(:first).order_delivery_amount and @delivery.bulk_order_price == 0
