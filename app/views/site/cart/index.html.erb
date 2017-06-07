@@ -138,20 +138,31 @@
       </div>
       <div class="delivery-method">
         <% if @cart.sub_total > Setting.order_delivery_amount and @delivery and @delivery.bulk_order_price == 0 %>
-          <% if cart_contains_not_only_events %>
-            <div class="red-text">Your order qualifies for free delivery *</div>
-            <div class="top-30">
-              Select delivery method: <%= collection_select :delivery, :id, Delivery.find(:all,:conditions=>['name != ? and id in (?)','For ticket events',[12,4,8,11]]), :id, :name_with_price %>
-            </div>      
-          <% end %>
+              <% if cart_contains_not_only_events %>if
+          
+                <div class="red-text">Your order qualifies for free delivery *</div>
+                <div class="top-30">
+                  Select delivery method: <%= collection_select :delivery, :id, Delivery.find(:all,:conditions=>['name != ? and id in (?)','For ticket events',[12,4,8,11]]), :id, :name_with_price %>
+                </div>      
+          
+              <% else%>
+          
+                  <%= hidden_field :delivery , :id %>
+          
+              <% end %>
+
           <% else %>
+
             <% if cart_contains_not_only_events  %>
                 <div class="spend-over">Spend over <%= number_to_currency Setting.order_delivery_amount, :unit => "£" %> and get FREE DELIVERY UK mainland only, for all other destinations we will contact you with a quote.</div>
 
               <div class="">
                 Select delivery method: <%= collection_select :delivery, :id, Delivery.find(:all,:conditions=>['name != ? and price > ?','For ticket events',0.0]), :id, :name_with_price %>
               </div>
+            <% else%>
+               <%= hidden_field :delivery , :id %>
             <% end %>
+          
           <% end %>
       </div>
       <% if @setting.discount_suggestion?(number_of_wines) %>

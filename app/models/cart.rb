@@ -149,6 +149,7 @@ class Cart
       cupon_is_active = true
     end
     if @cupon and cupon_is_active == false
+      @coupon = nil
       @show_cupon_warnings = "Voucher expired, Please enter a valid one."
     end
 

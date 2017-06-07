@@ -482,7 +482,29 @@
                 <div class="col-xs-8 slider-box-text">
                   <div class="item-name"><%= link_to related_product.name, nested_products_uri(related_product), :title=>related_product.name %></div>
                   <div class="seller-price">
-                    <%= number_to_currency related_product.product_prices.first.price, :unit => "£" %></div>
+                   <div class="price">
+                        <% 
+                          if related_product.product_prices.present? %>
+                              <% if related_product.discounted? && related_product.discount > 0.0 %>
+                                <% related_product.product_prices.each do |pp| %>
+                                 <div class="line-through">
+                                  Was <%= number_to_currency pp.price, :unit => "£" %></div>
+                                <% end %>
+                                <div class="current-price">
+                                  <% related_product.price_discounted.each do |price| %>
+                                    <%= number_to_currency price, :unit => "£" %>
+                                  <% end %>
+                                </div>
+                              <% else %>
+                                <div class="price">
+                                  <% related_product.product_prices.each do |pp| %>
+                                    <%= number_to_currency pp.price, :unit => "£" %>
+                                  <% end %>
+                                  </div>
+                              <% end %>
+                            <% end %>
+                      </div>
+                  </div>
                   <div class="add-row clearfix">
                       <%=render partial: 'site/templates/cart_product_show_page_form' , locals: {product: related_product}  %>
                   </div>
