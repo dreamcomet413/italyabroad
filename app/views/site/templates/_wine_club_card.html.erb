@@ -33,6 +33,7 @@
             <div class="latest-review-box bottom-50">
               <%= render(:partial => 'site/reviews/new', :locals => {:product_id=>@product.id  ,:create_url => reviews_path(@product, :return_to => nested_products_uri(@product))}) %>
           </div>
+        </div>
           <div class="latest-review-box bottom-50">
               <%= render :partial => 'site/shared/review_view_short', :locals => {:reviewer => @product} %>
             </div>
