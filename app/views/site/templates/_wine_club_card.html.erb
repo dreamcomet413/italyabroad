@@ -20,19 +20,21 @@
          <%= render :partial => 'site/templates/events_product_add_cart',locals: { ticket: false} %>
       
              <%= render :partial => 'site/templates/invite_a_friend'%>
-        <% unless logged_in? %>
-          <div class="green-heading-with-border">
+        <!-- < % unless logged_in? %> -->
+          <!-- <div class="green-heading-with-border">
             Reviews <%= link_to("(Add Review)", login_path, :title=>"Add Review") %>
-          </div>
-          <div class="latest-review-box bottom-50">
-            <%= render :partial => 'site/shared/review_view_short', :locals => {:reviewer => @product} %>
-          </div>
-        <% end %>
+          </div> -->
+        <!-- < % end %> -->
+          
+        
         <%- if logged_in? -%>
           <div class="green-heading-with-border">Leave your review <%= link_to '(Add Review)',"#",:onclick=>"document.getElementById('add_review').style.display='block';return false;", :title=>"Add Review" %></div>
           <div id="add_review" style="display:none;">
             <div class="latest-review-box bottom-50">
               <%= render(:partial => 'site/reviews/new', :locals => {:product_id=>@product.id  ,:create_url => reviews_path(@product, :return_to => nested_products_uri(@product))}) %>
+              <div class="latest-review-box bottom-50">
+              <%= render :partial => 'site/shared/review_view_short', :locals => {:reviewer => @product} %>
+          </div>
             </div>
         <%- end -%>
       </div><!-- end wine detail wrapper-->
