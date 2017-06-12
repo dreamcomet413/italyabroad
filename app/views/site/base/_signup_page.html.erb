@@ -159,9 +159,9 @@
               <div class="col-xs-offset-3 col-xs-9">
                 <div class="checkbox">
                   <% if @user.new_record? %>
-                      <label class="red-text">
+                      <label >
                         <%= check_box_tag 'conditions' %> 
-                        <%= link_to 'I agree to the italyabroad.com terms and conditions.' , '/terms-and-conditions', :title=>"Terms and conditions"  %>
+                        I agree to the italyabroad.com <%= link_to ' terms and conditions.' , '/terms-and-conditions', :title=>"Terms and conditions",class: "red-text"  %>
                       </label>  
                   <% end %>
                 </div>
