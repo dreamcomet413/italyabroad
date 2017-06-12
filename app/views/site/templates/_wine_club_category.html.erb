@@ -62,7 +62,7 @@
         </p>
       </div>
       <div class="wine-club-option-wrapper">
-        <% products = @category.products.where(["active = ?", true]).order("name ASC ").paginate(:page => params[:page], :per_page => 3) %>
+        <% products = @category.products.includes(:product_prices).where(["active = ?", true]).order("product_prices.price asc ").paginate(:page => params[:page], :per_page => 6) %>
         <%- unless products.blank? -%>
           <div class="red-heading">
             <h2>Wine Club Options</h2>
