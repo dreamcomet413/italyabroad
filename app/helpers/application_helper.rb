@@ -130,7 +130,7 @@ module ApplicationHelper
   end
 
   def thumb_image(product)
-    path = '/image/missing.png'
+    path = '/images/missing.png'
     if product and product.image_1_id
       image= Image.find_by_id(product.image_1_id)
       if image
@@ -141,7 +141,9 @@ module ApplicationHelper
           path = image.image_filename.potrait.url
         end
       end
-    
+    end
+    if product.root_category.downcase == "Wine Club".downcase
+      path = "/assets/club-img-01.png"
     end
     return path
   end
