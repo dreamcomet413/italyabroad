@@ -161,7 +161,7 @@
                   <% if @user.new_record? %>
                       <label >
                         <%= check_box_tag 'conditions' %> 
-                        I agree to the italyabroad.com <%= link_to ' terms and conditions.' , '/terms-and-conditions', :title=>"Terms and conditions",class: "red-text"  %>
+                        I agree to the italyabroad.com <%= link_to ' terms and conditions.' , '/terms-and-conditions', :target => "_blank", :title=>"Terms and conditions",class: "red-text"  %>
                       </label>  
                   <% end %>
                 </div>
