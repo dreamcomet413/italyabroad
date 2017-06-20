@@ -28,7 +28,7 @@
                     <%= number_to_currency pp.price, :unit => "£" %></span></div>
                           <% end %>
                           <span class="price red" style="color:#003300;">Now&nbsp;<span class="red-text">
-                    <% product.price_discounted.each do |price| %>
+                    Now <% product.price_discounted.each do |price| %>
                       <%= number_to_currency price, :unit => "£" %>
                     <% end %>
                   </span></span>

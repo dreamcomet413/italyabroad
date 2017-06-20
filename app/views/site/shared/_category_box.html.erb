@@ -50,7 +50,7 @@
                             Was <%= number_to_currency pp.price, :unit => "£" %></div>
                           <% end %>
                           <div class="current-price">
-                            <% product.price_discounted.each do |price| %>
+                            Now <% product.price_discounted.each do |price| %>
                               <%= number_to_currency price, :unit => "£" %>
                             <% end %>
                           </div>
@@ -126,7 +126,7 @@
                                   Was <%= number_to_currency pp.price, :unit => "£" %></div>
                                 <% end %>
                                 <div class="current-price">
-                                  <% product.price_discounted.each do |price| %>
+                                  Now <% product.price_discounted.each do |price| %>
                                     <%= number_to_currency price, :unit => "£" %>
                                   <% end %>
                                 </div>

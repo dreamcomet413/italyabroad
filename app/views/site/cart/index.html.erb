@@ -206,6 +206,7 @@
       <%- products = @cart.related_products.sample(6) #Product.find(:all, :limit => 5, :conditions=>['active = true'],:order => "RAND()") -%>
       <div class="row clearfix center-align">
         <%- for product in products -%>
+          <% next if product.root_category == "Events" and product.date < Time.now %>
           <%path =  thumb_image(product)%>
           <div class="col-md-2 col-xs-4">
             <div><%= link_to image_tag(path, :title=>product.name, :alt=>product.name), nested_products_uri(product), :title=>product.name %></div>

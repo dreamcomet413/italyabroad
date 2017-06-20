@@ -6,6 +6,9 @@
     <div class="col-md-3 left-side-bar">
       <% if @category.parent.name == 'Food' %>
         <%= render :partial => '/site/shared/box_food_search' %>  
+        <br/>
+        <%= render :partial => "site/shared/extra_virgin_oil_box" %>
+
       <% else %>
         <%= render :partial => '/site/shared/box_wine_search' %>
       <% end %>

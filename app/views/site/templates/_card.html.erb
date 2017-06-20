@@ -195,7 +195,7 @@
                         <% if p.size > 1 %>
                           <% price = params[:actual_price].present? ? params[:actual_price] : p.first %>
                           <div class="old-price ">
-                            was <%= number_to_currency price, :unit => "£" %> 
+                            Was <%= number_to_currency price, :unit => "£" %> 
                           </div>
                           <div class="price-now">
                             Now <b>£ <%= select_tag(:price, options_for_select(@product.discounted_prices, price.to_f), :onchange => "change_price(this); return false;") -%></b>
@@ -491,7 +491,7 @@
                                   Was <%= number_to_currency pp.price, :unit => "£" %></div>
                                 <% end %>
                                 <div class="current-price">
-                                  <% related_product.price_discounted.each do |price| %>
+                                  Now <% related_product.price_discounted.each do |price| %>
                                     <%= number_to_currency price, :unit => "£" %>
                                   <% end %>
                                 </div>
