@@ -23,7 +23,9 @@
     <fieldset id="correlation_information">
       <table class="list">
         <tr>
-          <th>&nbsp;</th>
+          <th>Included Product</th>
+          <th>Variant Product</th>
+
           <th>Category</th>
           <th>Name</th>
           <th>Price</th>
@@ -31,6 +33,7 @@
         <%- for product in @products -%>
           <tr class="<%= cycle("even", "odd") %>">
             <td><%= check_box_tag "included_product_ids[]", product.id, @product.included_product_ids.include?(product.id) %></td>
+            <td><%= check_box_tag "variant_ids[]", product.id, @product.variant_ids.include?(product.id) %></td>
             <td><%= product.root_category_id.titleize unless product.root_category_id.blank? %></td>
             <td><%= product.name %></td>
             <td><%= number_to_currency product.price, :unit => "£" %></td>

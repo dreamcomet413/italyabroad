@@ -53,7 +53,8 @@ class Product < ActiveRecord::Base
   has_and_belongs_to_many :wine_sizes
 
   has_many :reviews, :as => :reviewer, :dependent => :destroy
-
+  has_many :product_variants
+  has_many :variants, :through => :product_variants
   friendly_identifier :name
 
   after_create :make_product_prices

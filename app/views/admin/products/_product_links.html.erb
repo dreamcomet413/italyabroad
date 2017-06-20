@@ -28,7 +28,7 @@
     <%= @product.new_record? ? link_to("Files") : link_to("Files", product_files_path(@product), :class => "#{'active' if active == "files"}") %>
   </li>
   <li class="<%= 'active' if active == "included_products" %>">
-    <%= @product.new_record? ? link_to("Included Products") : link_to("Included Products", included_products_path(@product), :class => "#{'active' if active == "included_products"}") %>
+    <%= @product.new_record? ? link_to("Included Products") : link_to("Included And Variant Products", included_products_path(@product), :class => "#{'active' if active == "included_products"}") %>
   </li>
 </ul>
 <div style="clear:both;"></div>

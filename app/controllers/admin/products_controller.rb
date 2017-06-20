@@ -264,6 +264,7 @@ class Admin::ProductsController < ApplicationController
 
     # this is not restful. if params[:h_inc_products] condition added to avoid deletion of correlation_ids while updating included products or any other attribute of product throught his interface
     params[:product][:included_product_ids] = params[:included_product_ids] if params[:h_inc_products]
+    params[:product][:variant_ids] = params[:variant_ids] if params[:h_inc_products]
 
     @product.image_1.destroy if @product.image_1 && !params[:image_1].blank?
     @product.build_image_1(:image_filename => params[:image_1]) unless params[:image_1].blank?
