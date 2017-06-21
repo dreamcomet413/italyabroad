@@ -10,4 +10,5 @@ class ProductVariant < ActiveRecord::Base
   		ProductVariant.create(product_id: self.variant_id, variant_id: self.product_id) 
   	end
   end
+
 end

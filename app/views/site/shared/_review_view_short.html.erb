@@ -1,4 +1,10 @@
+<%if reviewer.class.to_s == 'Product'%>
+<% @reviews = Review.where(' reviewer_id IN(?)',[reviewer.id] + reviewer.variant_ids ).order('created_at Desc').all(:conditions=>['publish = ?',true]) %>
+
+<%else%>
 <% @reviews = reviewer.reviews.order('created_at Desc').all(:conditions=>['publish = ?',true]) %>
+
+<%end%>
 <% if @reviews.size > 0 %>
   <% for review in @reviews %>
     <div class="latest-review-box view-review">
