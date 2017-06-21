@@ -84,7 +84,7 @@
                 </div>
               <%end%>
             </div>
-            <%reviews = @product.reviews.find(:all,:conditions=>['publish = true  && score is not null '])%>
+            <%reviews = @product.shared_reviews.find(:all,:conditions=>['publish = true  && score is not null '])%>
             <div class="product-review-count">
               <a href="#reviews" title="Reviews"><%=reviews.count%> Reviews</a> / 
               <%= link_to ' Write a review', "#reviews", :style => "font-size:12px;", :onclick => "document.getElementById('add_review').style.display='block';document.getElementById('hide_this').style.display='none';document.getElementById('no_review').style.display='none';return false;", :title=>"Write a review" %>
