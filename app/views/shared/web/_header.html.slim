@@ -1,0 +1,30 @@
+.landing-header
+  .main-banner-landing
+    .top-content
+      .enter-site-row
+        .enter-button1.dark-green-button
+          /! <a href="/"><img src="landing-img/enter-main-site.png" alt="enter main site"></a
+          a href="/" title=("Enter Main Site")  Enter main site
+        .enter-button2.dark-green-button
+          /! <a href="/login"><img src="landing-img/login-btn.png" alt="login button" /></a
+          a href="/login" title="Login" 
+            span.lock
+              img alt="lock" src="landing-img/lock.png" title="lock" /
+            | Login
+      .welcome-board
+        .row.clearfix
+          .col-md-5.col-md-offset-2.col-xs-offset-1.col-xs-10.clearfix
+            .col-md-10.col-md-offset-2
+              .welcome-bg
+                /! <div class="green-heading">Welcome to Italy...abroad</div
+                .welcome-text
+                  - t(:hello)
+                  p At Italyabroad.com we only work with small and passionate wine makers and artisans, we only sell the wine and food we love
+                  p We don’t tell fairy tales to justify huge discounts and ridiculous prices, the only stories we tell are the ones of our producers and ours and why we love them.
+                .welcome-btn
+                  h1.dark-green-button-big
+                    /! <a href="<haml_loud>session[:return_path]</haml_loud>"><img src="landing-img/welcome-btn.png" alt="get excited" /></a
+                    a href="#{session[:return_path]}" title=("Welcome to Italy abroad")  Welcome to italy...abroad
+                .welcome-logo
+                  a href="/" title=("Italy Abroad") 
+                    img alt="logo" src="landing-img/logo_hi_res.gif" title="Logo" /

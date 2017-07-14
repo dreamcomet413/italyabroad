@@ -2,7 +2,7 @@ class Site::BaseController < ApplicationController
   layout "site", :except => :landing_page
   
   def landing_page
-    render :layout => false
+    render :layout => 'landing'
   end
 
   def index

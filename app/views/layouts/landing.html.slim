@@ -1,0 +1,38 @@
+doctype html
+html lang="en" 
+  head
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+    /! Basic Page Needs ==================================================
+    meta charset="utf-8" /
+    /![if IE]
+      | <meta http-equiv="x-ua-compatible" content="Edge,chrome=1" /
+    link href="/images/italyabroad.ico" rel="icon" type="image/x-icon" /
+    title= h(title)
+    meta content="#{h(description)}" name="description" /
+    meta content="#{h(keys)}" name="keywords" /
+    meta content="italyabroad.com" name="copyright" /
+    meta content="Goodlogics" name=("Fahad Akhtar") /
+    meta content="yes" name="apple-mobile-web-app-capable" /
+    meta content="yes" name="mobile-web-app-capable" /
+    meta content="INDEX,FOLLOW" name="ROBOTS" /
+    meta content="width=device-width, initial-scale=1" name="viewport" /
+    /! css Files
+    /! <link type="text/css" rel="stylesheet" href="css/bootstrap-theme.css" /
+    = stylesheet_link_tag    "landing", :media => "all"
+    = javascript_include_tag "site"
+  body
+    .container
+      = render partial: "shared/web/header"
+      = yield
+    - if Rails.env == "production"
+      = javascript_include_tag "urchin"
+      = javascript_include_tag "uacct"
+    = javascript_include_tag "landing"
+    a href="http://clicky.com/100911433" title=("Real Time Web Analytics") 
+      img alt=("Real Time Web Analytics") src="//static.getclicky.com/media/links/badge.gif" title="Badge" /
+    = javascript_include_tag "static.getclicky"
+    = javascript_include_tag "clicky_landing"
+    noscript
+      p
+        img alt="Clicky" height="1" src="//in.getclicky.com/100911433ns.gif" title="Cliky" width="1" /
+    = javascript_include_tag "landing_secondary"
