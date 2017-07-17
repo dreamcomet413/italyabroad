@@ -20,19 +20,13 @@ html lang="en"
     /! <link type="text/css" rel="stylesheet" href="css/bootstrap-theme.css" /
     = stylesheet_link_tag    "landing", :media => "all"
     = javascript_include_tag "site"
+    = javascript_include_tag "landing_layout"
   body
     .container
       = render partial: "shared/web/header"
       = yield
-    - if Rails.env == "production"
-      = javascript_include_tag "urchin"
-      = javascript_include_tag "uacct"
-    = javascript_include_tag "landing"
     a href="http://clicky.com/100911433" title=("Real Time Web Analytics") 
       img alt=("Real Time Web Analytics") src="//static.getclicky.com/media/links/badge.gif" title="Badge" /
-    = javascript_include_tag "static.getclicky"
-    = javascript_include_tag "clicky_landing"
     noscript
       p
         img alt="Clicky" height="1" src="//in.getclicky.com/100911433ns.gif" title="Cliky" width="1" /
-    = javascript_include_tag "landing_secondary"
