@@ -19,7 +19,7 @@ html lang="en"
     /! css Files
     /! <link type="text/css" rel="stylesheet" href="css/bootstrap-theme.css" /
     = stylesheet_link_tag    "landing", :media => "all"
-    = javascript_include_tag "landing_layout"
+    = javascript_include_tag "landing_layout", async: "async"
   body
     .container
       = render partial: "shared/web/header"
