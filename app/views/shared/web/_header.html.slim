@@ -9,7 +9,7 @@
           /! <a href="/login"><img src="landing-img/login-btn.png" alt="login button" /></a
           a href="/login" title="Login" 
             span.lock
-              img alt="lock" src="landing-img/lock.png" title="lock" /
+              =image_tag "landing-img/lock.png", alt: "lock",  title: "lock" 
             | Login
       .welcome-board
         .row.clearfix
@@ -27,4 +27,4 @@
                     a href="#{session[:return_path]}" title=("Welcome to Italy abroad")  Welcome to italy...abroad
                 .welcome-logo
                   a href="/" title=("Italy Abroad") 
-                    img alt="logo" src="landing-img/logo_hi_res.gif" title="Logo" /
+                    =image_tag "landing-img/logo_hi_res.gif", alt: "logo", title: "Logo" 

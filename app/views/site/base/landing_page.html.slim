@@ -9,10 +9,10 @@
         p
           strong This is where my and our story started
       .col-md-5.image-box
-        img alt="image" src="landing-img/image-01.png" title="image" /
+        = image_tag "landing-img/image-01.png"
     .border-box.clearfix
       .col-md-5.image-box
-        img alt="image" src="landing-img/image-02.png" title="image" /
+        = image_tag "landing-img/image-02.png"
       .col-md-7.text-box
         p Then I came along, and along came the tractors; the donkey was retired; but still, almost every morning for a few more years, my grandparents continued their work on the vineyards with the same commitment and the same pride that went into making their own wine and freely sharing their enthusiasm and knowledge of winemaking with their grandsons.
         p In our family food and wine were not considered commodities, for us, they are one of life’s real pleasures to be savoured and remembered.
@@ -62,7 +62,7 @@
   .three-column.clearfix
     .col-md-4
       .col-icon
-        img alt="cutomer" src="landing-img/customer-icon.png" title="cutomer" /
+        = image_tag "landing-img/customer-icon.png", alt: "cutomer" , title: "cutomer" 
       .col-title Outstanding Customer Service
       .col-des
         | We know
@@ -70,7 +70,7 @@
         | there is to know about our produce and are happy to help you find what you looking for.
     .col-md-4
       .col-icon
-        img alt="Delivery" src="landing-img/delivery-icon.png" title="Delivery" /
+        = image_tag "landing-img/delivery-icon.png", alt: "Delivery" , title: "Delivery" 
       .col-title Delivered To Your Doorstep
       .col-des
         | Free
@@ -78,7 +78,7 @@
         | delivery when you spend £100 or more.
     .col-md-4
       .col-icon
-        img alt="Wine" src="landing-img/wine-icon.png" title="Wine" /
+        = image_tag "landing-img/wine-icon.png", alt: "Wine",  title: "Wine" 
       .col-title The Italyabroad.com Promise
       .col-des
         | If you dont like the wine or you think it is faulty, we will
@@ -88,4 +88,4 @@
         | it with  no questions asked.
   .get-start
     a href="#{session[:return_path]}" title=("Get Started") 
-      img alt=("Get started") src="landing-img/get-started-btn.png" title=("Get Started") /
+      = image_tag "landing-img/get-started-btn.png", alt: "Get started", title: "Get Started"
