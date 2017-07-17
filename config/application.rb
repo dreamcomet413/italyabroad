@@ -12,11 +12,9 @@ end
 module ItalyabroadNew
   class Application < Rails::Application
     config.autoload_paths += [config.root.join('lib')]
-    config.assets.precompile += %w( site.js , chat.js)
+    config.assets.precompile += %w( site.js , chat.js, landing_layout.js)
     config.assets.precompile += %w( admin.js , admin.css , landing.css ,  private_pub.js, jquery_ujs.js )
     config.encoding = 'utf-8'
-
-    config.assets.paths << Rails.root.join("app", "assets")
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
@@ -33,6 +31,16 @@ module ItalyabroadNew
     # config.gem "rmagick"
    #  config.gem "xml-simple", :version => '1.0.12'
     # config.gem " mime-types"
+
+    config.cache_classes = true
+    config.consider_all_requests_local       = false
+    config.action_controller.perform_caching = true
+    config.serve_static_assets = true
+    config.static_cache_control = "public, max-age=3600"
+    config.assets.compress = false
+    config.assets.compile = false
+    config.assets.digest = true
+
 
     config.gem 'prawn'
     config.gem "activemerchant", :version => ">= 1.5.1", :lib => "active_merchant"
