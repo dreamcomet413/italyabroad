@@ -18,8 +18,10 @@ html lang="en"
     meta content="width=device-width, initial-scale=1" name="viewport" /
     /! css Files
     /! <link type="text/css" rel="stylesheet" href="css/bootstrap-theme.css" /
-    = stylesheet_link_tag    "landing", :media => "all"
+    /!= stylesheet_link_tag    "landing", :media => "all"
+    = render partial: 'layouts/css'
     = javascript_include_tag "landing_layout", async: "async"
+
   body
     .container
       = render partial: "shared/web/header"
