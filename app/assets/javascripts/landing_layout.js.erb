@@ -2,19 +2,6 @@
 //= require jquery_ujs
 //= require jquery-ui
 
-console.log("loadDeferredStyles Start");
-
-var loadDeferredStyles = function() {
-  var addStylesNode = document.getElementById("deferred-styles");
-  var replacement = document.createElement("div");
-  replacement.innerHTML = addStylesNode.textContent;
-  document.body.appendChild(replacement)
-  addStylesNode.parentElement.removeChild(addStylesNode);
-};
-var raf = requestAnimationFrame || mozRequestAnimationFrame ||
-    webkitRequestAnimationFrame || msRequestAnimationFrame;
-if (raf) raf(function() { window.setTimeout(loadDeferredStyles, 0); });
-else window.addEventListener('load', loadDeferredStyles);
 
 function popupwindow(url, w, h) {
   title = "Live Chat"
@@ -22,8 +9,6 @@ function popupwindow(url, w, h) {
   var top = (screen.height/2)-(h/2);
   return window.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
 } 
-
-console.log("loadDeferredStyles End");
 
 console.log("landing_layout.js.erb Start");
 
