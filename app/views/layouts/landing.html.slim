@@ -19,7 +19,8 @@ html lang="en"
     /! css Files
     /! <link type="text/css" rel="stylesheet" href="css/bootstrap-theme.css" /
     /!= stylesheet_link_tag    "landing", :media => "all"
-    = render partial: 'layouts/css'
+    - unless params[:css_debug]
+      = render partial: 'layouts/css'
     = javascript_include_tag "landing_layout", async: "async"
 
   body
