@@ -2,7 +2,6 @@ doctype html
 html lang="en" 
   head
     meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
-    /! Basic Page Needs ==================================================
     meta charset="utf-8" /
     /![if IE]
       | <meta http-equiv="x-ua-compatible" content="Edge,chrome=1" /
@@ -15,14 +14,10 @@ html lang="en"
     meta content="yes" name="apple-mobile-web-app-capable" /
     meta content="yes" name="mobile-web-app-capable" /
     meta content="INDEX,FOLLOW" name="ROBOTS" /
-    meta content="width=device-width, initial-scale=1" name="viewport" /
-    /! css Files
-    /! <link type="text/css" rel="stylesheet" href="css/bootstrap-theme.css" /
-    /!= stylesheet_link_tag    "landing", :media => "all"
-    - unless params[:css_debug]
-      = render partial: 'layouts/css'
+    meta content="width=device-width, initial-scale=1" name="viewport" /    
+    noscript id="deferred-styles"
+      = stylesheet_link_tag    "landing", :media => "all"
     = javascript_include_tag "landing_layout", async: "async"
-
   body
     .container
       = render partial: "shared/web/header"
