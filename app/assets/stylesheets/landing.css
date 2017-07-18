@@ -6,7 +6,7 @@
 @charset "utf-8";
 /* CSS Document */
 
-@font-face{
+/*@font-face{
 	font-family:BerlinSans;
 	src:url(../fonts/Berlin-Sans-FB-Regular.ttf);
 }
@@ -42,7 +42,7 @@ body{
 	font-family: CenturyGothic;
 	color: #3b3b3b;
 	font-size: 14px;
-}
+}*/
 .container{
 	width: 100%;
 	padding:0px;
@@ -55,7 +55,7 @@ img{
 }
 .main-banner-landing{
 	text-align: center;
-	background: url(../landing-img/landing-banner.jpg) no-repeat;
+	/*background: url(../landing-img/landing-banner.jpg) no-repeat;*/
 	background-size: cover;
 }
 .enter-site-row{
