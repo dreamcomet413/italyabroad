@@ -27,7 +27,9 @@
   <meta name="msvalidate.01" content="18C4C4F5FBD1413AA93AEAD1738CD7F5" />
   <meta name="blogcatalog" content="9BC8939820" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <%= stylesheet_link_tag    "application", :media => "all" %>
+   <%#= stylesheet_link_tag    "application", :media => "all" %>
+   <%= stylesheet_link_tag "application", :media => "all" %>
+
    <%= javascript_include_tag "site" %>
   <!-- Place this tag in your head or just before your close body tag -->
   <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
@@ -463,8 +465,11 @@
 
       $('#sm_text').bind('railsAutocomplete.select', function(event, data){
         /* Do something here */
-        console.log(data.item)
-        $('#mobile_search_form').submit();
+         console.log(data);
+        if (data.item.slug!='') {
+          window.location = '/'+data.item.category+'/'+data.item.slug;
+        }
+        
       });
     </script>
 </body>
