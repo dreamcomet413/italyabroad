@@ -1,11 +1,94 @@
-Dear <%= @reservation.user.name %> <%= @reservation.user.surname %>,
+<!-- Dear <%= @reservation.user.name %> <%= @reservation.user.surname %>,
 
-	Thank you for booking a table with us, you will soon receive a confirmation that your table is available.
 	
-	Your Reservation:
+<p>	Thank you for booking a table with us, you will soon receive a confirmation that your table is available.
+	</p>
+	<p>Your Reservation:</p>
 	________________
-	Restaurant: <%= @reservation.restaurant.name %>
-	Time: <%= @reservation.date.strftime("%d %B %Y at %H:%M") %> 
+	<p>Restaurant: <%= @reservation.restaurant.name %>
+	Time: <%= @reservation.date.strftime("%d %B %Y at %H:%M") %> </p>
 	
 ---------------------------------------------------
 The Italyabroad.com Team
+ -->
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta name="viewport" content="width=device-width" /><!-- IMPORTANT -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+	
+<!-- <link rel="stylesheet" type="text/css" href="stylesheets/email.css" /> -->
+
+
+</head>
+ 
+<body bgcolor="#FFFFFF">
+
+<!-- HEADER -->
+<table class="head-wrap" bgcolor="#5c8018">
+	<tr>
+		<td></td>
+		<td class="header container">
+			
+				<div class="content">
+					<table bgcolor="#5c8018">
+						<tr>
+							<td>
+								<a href="#account" />
+								<%#=image_tag "logo.png", style: "width:70px;height:auto;" %>
+								<img src="https://www.italyabroad.com/assets/xlogo_hi_res-72655d267a58597692c2d87c20945929.gif.pagespeed.ic.Q7438Z1QqK.png" style="width:70px;height:auto;" /></a>
+							</td>
+							<td align="right">
+								<h6 class="collapse"></h6>	
+							</td>
+						</tr>
+					</table>
+				</div>
+				
+		</td>
+		<td></td>
+	</tr>
+</table><!-- /HEADER -->
+
+
+<!-- BODY -->
+<table class="body-wrap">
+	<tr>
+		<td></td>
+		<td class="container" bgcolor="#FFFFFF">
+
+			<div class="content">
+			<table>
+				<tr>
+					<td>
+						<br/>
+						<h3>Dear <%= @reservation.user.name %> <%= @reservation.user.surname %>,</h3>
+						
+					<p>	Thank you for booking a table with us, you will soon receive a confirmation that your table is available.
+						</p>
+						<p>Your Reservation:</p>
+						________________
+						<p>Restaurant: <%= @reservation.restaurant.name %>
+						Time: <%= @reservation.date.strftime("%d %B %Y at %H:%M") %> </p>
+					<!-- </td> -->
+				</tr>
+			</table>
+			</div>
+									
+		</td>
+		<td></td>
+	</tr>
+</table>
+
+
+<!-- /BODY -->
+
+
+
+</body>
+</html>

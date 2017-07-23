@@ -1,4 +1,4 @@
-Dear <%= @order.user.name %> <%= @order.user.surname %>,
+<!-- Dear <%= @order.user.name %> <%= @order.user.surname %>,
 
 	According to our system your order has been dispatched and no problems have been reported. Please do not hesitate to contact us if this is not the case. We hope you enjoy your purchase. 
 	
@@ -6,4 +6,89 @@ Dear <%= @order.user.name %> <%= @order.user.surname %>,
 	
 Thank you for shopping with Italyabroad.com,
 
-The Italyabroad.com Team
+The Italyabroad.com Team -->
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta name="viewport" content="width=device-width" /><!-- IMPORTANT -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+	
+<!-- <link rel="stylesheet" type="text/css" href="stylesheets/email.css" /> -->
+
+
+</head>
+ 
+<body bgcolor="#FFFFFF">
+
+<!-- HEADER -->
+<table class="head-wrap" bgcolor="#5c8018">
+	<tr>
+		<td></td>
+		<td class="header container">
+			
+				<div class="content">
+					<table bgcolor="#5c8018">
+						<tr>
+							<td>
+								<a href="#account" />
+								<%#=image_tag "logo.png", style: "width:70px;height:auto;" %>
+								<img src="https://www.italyabroad.com/assets/xlogo_hi_res-72655d267a58597692c2d87c20945929.gif.pagespeed.ic.Q7438Z1QqK.png" style="width:70px;height:auto;" /></a>
+							</td>
+							<td align="right">
+								<h6 class="collapse"></h6>	
+							</td>
+						</tr>
+					</table>
+				</div>
+				
+		</td>
+		<td></td>
+	</tr>
+</table><!-- /HEADER -->
+
+
+<!-- BODY -->
+<table class="body-wrap">
+	<tr>
+		<td></td>
+		<td class="container" bgcolor="#FFFFFF">
+
+			<div class="content">
+			<table>
+				<tr>
+					<td>
+						<br/>
+						<h3>Dear <%= @order.user.name %> <%= @order.user.surname %>,</h3>
+						
+						
+
+						<p>According to our system your order has been dispatched and no problems have been reported. Please do not hesitate to contact us if this is not the case. We hope you enjoy your purchase. </p>
+					
+						<p>Don't forget to write your review for the produces purchased. Let our users know what you think about our produces and if you are the first to write the review you will also receive <%= number_to_currency(10,{:unit => "£", :precision => 0}) -%> discount on your next purchase.
+					</p>
+
+					<p>Thank you for shopping with Italyabroad.com,</p>
+
+
+
+					<!-- </td> -->
+				</tr>
+			</table>
+			</div>
+									
+		</td>
+		<td></td>
+	</tr>
+</table>
+
+
+<!-- /BODY -->
+
+
+
+</body>
+</html>

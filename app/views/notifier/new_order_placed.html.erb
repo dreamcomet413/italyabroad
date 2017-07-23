@@ -1,4 +1,4 @@
-Hi,
+<!-- Hi,
 
 A new order has been placed by <%=@user.name.titleize %> <%= @user.surname.titleize if @user.surname %>
 
@@ -10,5 +10,94 @@ Product Details -
 <% end %>
 
 ---------------------------------------------------
-The Italyabroad.com Team
+The Italyabroad.com Team -->
 
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta name="viewport" content="width=device-width" /><!-- IMPORTANT -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<!-- <link rel="stylesheet" type="text/css" href="stylesheets/email.css" /> -->
+
+
+</head>
+ 
+<body bgcolor="#FFFFFF">
+
+<!-- HEADER -->
+<table class="head-wrap" bgcolor="#5c8018">
+	<tr>
+		<td></td>
+		<td class="header container">
+			
+				<div class="content">
+					<table bgcolor="#5c8018">
+						<tr>
+							<td>
+								<a href="#account" />
+								<%#=image_tag "logo.png", style: "width:70px;height:auto;" %>
+								<img src="https://www.italyabroad.com/assets/xlogo_hi_res-72655d267a58597692c2d87c20945929.gif.pagespeed.ic.Q7438Z1QqK.png" style="width:70px;height:auto;" /></a>
+							</td>
+							<td align="right">
+								<h6 class="collapse"></h6>	
+							</td>
+						</tr>
+					</table>
+				</div>
+				
+		</td>
+		<td></td>
+	</tr>
+</table><!-- /HEADER -->
+
+
+<!-- BODY -->
+<table class="body-wrap">
+	<tr>
+		<td></td>
+		<td class="container" bgcolor="#FFFFFF">
+
+			<div class="content">
+			<table>
+				<tr>
+					<td>
+						<br/>
+						<h3>Hi,</h3>
+						
+						<!-- You may like to include a Hero Image -->
+						<!-- <p><img src="http://placekitten.com/g/600/300" alt="" /></p> -->
+						<!-- /Hero Image -->
+						
+						<br/>
+
+						<p>A new order has been placed by <%=@user.name.titleize %> <%= @user.surname.titleize if @user.surname %></p>
+						<p>Product Details -</p>
+						
+						<% for order_item in @order.order_items %>
+						 <p>Item :<%= order_item.name %></p> 
+						 <p> Quantity : <%= order_item.quantity %></p>
+						  <p>Total:<%= number_to_currency order_item.total, :unit => "£" %></p>
+						<% end %>
+
+
+
+					<!-- </td> -->
+				</tr>
+			</table>
+			</div>
+									
+		</td>
+		<td></td>
+	</tr>
+</table>
+
+
+<!-- /BODY -->
+
+
+
+</body>
+</html>
