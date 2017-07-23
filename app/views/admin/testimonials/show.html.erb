@@ -3,7 +3,9 @@
 
 <div class="inner_content regions" id="admin_regions_index">
   <h2>Testimonials</h2><div align="right"><%= link_to "New Testimonial", new_admin_testimonial_path %></div>
-  <h1><%= @testimonial.title %> </h1><br />
+  <!-- <h1><%#= @testimonial.title %> </h1> -->
+  <h1>Italian wine and food |Award winning wine merchant</h1>
+  <br />
   <%= @testimonial.description %><br />
 <%= link_to 'Edit', edit_admin_testimonial_path(@testimonial) %> |
 <%= link_to 'Cancel', admin_testimonials_path %>
