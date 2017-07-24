@@ -42,7 +42,7 @@ end
     <div class="col-md-9">
       <div class="red-heading">
         <% unless @category.page_heading.blank? %>
-          <h1>Italian wine and food Online | Award winning wine merchant<%#= @category.page_heading %></h1>
+          <h1><!-- Italian wine and food Online | Award winning wine merchant --><%= @category.page_heading %></h1>
         <% else %>
           <%= @category.name %>
         <% end %>

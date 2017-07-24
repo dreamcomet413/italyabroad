@@ -59,7 +59,8 @@
         <div class="bottom-50">
           <%= @about.description.html_safe() rescue 'The wine and grape details ...' %> 
         </div>
-        <div class="green-heading-2"><h1>Italian wine and food Online | Award winning wine merchant<!-- Grape list, click for information --></h1></div>
+        <div class="green-heading-2"><h1><!-- Italian wine and food Online | Award winning wine merchant -->
+        Grape list, click for information</h1></div>
           <div class="row clearfix grape_list">
             <% [*('A'..'Z')].each do |letter| %>
                 <% count =  Grape.where("name Like ? or name Like ?", letter.upcase+'%', letter.downcase+'%').count %>

@@ -63,7 +63,8 @@
               </div>
             <% end%>
           <% if @about %>
-            <div class="red-heading"><h1>Italian wine and food Online | Award winning wine merchant <%#= @about.title  %></h1> </div>
+            <div class="red-heading"><h1><!-- Italian wine and food Online | Award winning wine merchant --> 
+            <%= @about.title  %></h1> </div>
             <div><%= @about.description %></div>
           <% end %>
         </div>
