@@ -1,7 +1,8 @@
 <%- comments = Comment.latest-%>
 <% if comments.size > 0 %>
   <div class="block" id="box_latest_blog_comments">
-    <h1 style="text-align:center;">Italian wine and food Online | Award winning wine merchant<!-- Latest blog comments --></h1>
+    <h1 style="text-align:center;"><!-- Italian wine and food Online | Award winning wine merchant -->
+    Latest blog comments</h1>
     <ul>
       <%- comments.each do |comment| -%>
       <li>
