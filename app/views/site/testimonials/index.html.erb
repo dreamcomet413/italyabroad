@@ -4,8 +4,8 @@
 <div id="featured_wine_tours" class="full-width">
   <% @testimonials.each do |testimonial| %>
     <div class="bottom-30">
-      <h2 class="green-heading-2"><%= testimonial.title.html_safe %></h2>
-      <div><%= testimonial.description.html_safe %></div>
+      <h2 class="green-heading-2"><%= testimonial.description.html_safe %></h2>
+      <div><%= testimonial.title.html_safe %></div>
     </div>
   <% end %>
   
