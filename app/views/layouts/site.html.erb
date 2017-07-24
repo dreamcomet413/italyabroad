@@ -63,6 +63,12 @@
 <script type="text/javascript">
     window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":null,"theme":"dark-bottom"};
 </script>
+<script>
+  window.cookieconsent.initialise({
+    // ... your options ...
+    cookie: {expiryDays: -1},
+  });
+</script>
 
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.10/cookieconsent.min.js"></script>
 <!-- End Cookie Consent plugin -->
@@ -171,7 +177,7 @@
           <%- active_uri = request.url -%>
           <ul class="nav1 nav navbar-nav">
             <% for category in ["Wine", "Other Drinks", "Food", "Hampers", "Wine Tours", "Wine Club", "Events"] do %>
-              <%= cache "category-#{Category.find_by_name(category).id}" do %>
+              
                 <% category = Category.find_by_name(category)%>
                 <% if category.present? %>
                   <li id="link-to-<%= category.friendly_identifier %>" class="<%= "active" if active_uri == "/#{category.friendly_identifier}"   %>">
@@ -203,7 +209,7 @@
                     <%- end -%>
                   </li>
                 <% end %>
-              <% end %>  
+               
             <%- end -%>
             <li id="link-to-forum" class="<%= "active" if active_uri == "/wine-community" %>"><%= link_to "Community", wine_community_path, :title=>"Community" %></li>
             <li id="link-to-blog" class="last<%= " active" if active_uri == "/blog" %>"><%= link_to "Blog", blog_index_path, :title=>"Blog" %></li>
@@ -226,7 +232,7 @@
             <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
               <% cnt = 1 %>
               <% for category in ["Wine", "Other Drinks", "Food"] do %>
-              <%= cache "category-#{Category.find_by_name(category).id}" do %>
+              
                 <% category = Category.find_by_name(category)%>
                 <% if category.present? %>
                   <div class="panel panel-default" role="tablist">
@@ -270,7 +276,7 @@
                     <% end %>
                   </div>
                 <% end %>
-              <% end %>
+              
               <% cnt+=1 %>
             <% end %> 
           </div>
