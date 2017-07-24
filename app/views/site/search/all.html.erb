@@ -1,7 +1,7 @@
 <% @title = "Search #{params[:text]}"; %>
 <%- @breadcrumbs = "#{link_to "Home", root_url, :title=>"Home"} &raquo; Search &raquo; All Site" -%>
 <% if @users.blank? and  @producers.blank? and @wines.blank? and @recipes.blank? and @wine_events.blank? and @foods.blank? and @grapes.blank? and @hampers.blank? and @other_drinks.blank?%>
-    <div id="header" class="green-heading-with-border"><h1>Italian wine and food |Award winning wine merchant<!-- Your search returned no results --></h1></div><br />
+    <div id="header" class="green-heading-with-border"><h1>Italian wine and food Online | Award winning wine merchant<!-- Your search returned no results --></h1></div><br />
     <div class="fRight" style="margin-right: 12px; padding: 5px;"><%= link_to "Go Back", :back, :title=>"Back" -%></div>
     <br />
     

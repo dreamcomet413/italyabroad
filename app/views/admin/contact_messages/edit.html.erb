@@ -1,7 +1,7 @@
 <%= stylesheet_link_tag 'widgEditor' %>
 <%= javascript_include_tag "widgEditor" %>
 <!-- <h1>Edit Contact Us</h1> -->
-<h1>Italian wine and food |Award winning wine merchant</h1>
+<h1>Italian wine and food Online | Award winning wine merchant</h1>
 <%= form_tag admin_contact_message_path(@contact_message), :action => "update", :method => 'put' ,:multipart=>true do  %>
   <div><%= flash[:notice] %></div>
     <p>
