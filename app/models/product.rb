@@ -59,6 +59,12 @@ class Product < ActiveRecord::Base
 
   after_create :make_product_prices
 
+  scope :product_raccomanded, -> {where(raccomanded: true)}
+  scope :active_product, -> {where(active: true)}
+  scope :product_prices_quantity , -> { where('product_prices.quantity > ?', 0)}
+
+  # scope :product_categories,   { where() }
+
   scope :featured, :conditions => {:featured => true}, :limit => 5
   scope :on_offer, :conditions => ["active = ? AND discount > ?", true, 0], :limit => 5, :order => "RAND()"
   scope :other_events, lambda { |product|

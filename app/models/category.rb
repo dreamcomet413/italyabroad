@@ -8,6 +8,8 @@ class Category < ActiveRecord::Base
   belongs_to :parent, :class_name => "Category", :foreign_key => :parent_id
 
   has_many :categorizations, :dependent => :destroy
+  scope :friendly_identifier_wines, -> {where(friendly_identifier: %w{white-wines red-wine rose-wine})}
+
   has_many :products, :through => :categorizations do
     def on_offer
       find(:all, :conditions => ["products.discount > ? AND active = ?", 0, true], :limit => 5, :order => "RAND()")

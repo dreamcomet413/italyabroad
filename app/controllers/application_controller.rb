@@ -103,6 +103,8 @@ class ApplicationController < ActionController::Base
     end
   end
   def initialize_general_variable
-    @setting = Setting.first
+    if !request.url.include? 'landing.html'
+      @setting = Setting.first
+    end
   end
 end
