@@ -40,9 +40,13 @@ class Site::BaseController < ApplicationController
     @post = Post.last
     if @post
       @image = Image.find_by_id(@post.image_1_id)
+      @blog_home = SmallBoxSetting.find_by_box_title("blog_home")
     end
+    
+    @wine_club = SmallBoxSetting.find_by_box_title("wine_club_home")
     @wine_club_products = Product.where("friendly_identifier Like '%wine-club-%'" ).limit(3)
     @reviews = Review.where("").order("created_at DESC").limit(5)
+  
   end
 
   def google_sitemap

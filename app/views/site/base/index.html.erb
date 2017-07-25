@@ -15,31 +15,7 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
       <% if !@setting.nil? %>
-        <% if @setting.home_image_1 %>
-          <div class="item active">
-            <%= link_to((image_tag(@setting.home_image_1.image_filename.url, :title=>@setting.home_image_1_title, :alt=>@setting.home_image_1_title  ) || @setting.home_image_1_title), (@setting.home_image_1_url || root_url), :title=>@setting.home_image_1_title) %>
-          </div>
-        <% end %>
-        <% if @setting.home_image_2 %>
-        <div class="item">
-          <%= link_to((image_tag(@setting.home_image_2.image_filename.url, :title=>@setting.home_image_2_title, :alt=>@setting.home_image_2_title) || @setting.home_image_2_title), (@setting.home_image_2_url || root_url), :title=>@setting.home_image_2_title) %>
-        </div>
-        <% end %>
-        <% if @setting.home_image_3 %>
-        <div class="item">
-          <%= link_to((image_tag(@setting.home_image_3.image_filename.url, :title=>@setting.home_image_3_title, :alt=>@setting.home_image_3_title) || @setting.home_image_3_title), (@setting.home_image_3_url || root_url), :title=>@setting.home_image_3_title) %>
-        </div>
-        <% end %>
-        <% if @setting.home_image_4 %>
-        <div class="item">
-          <%= link_to((image_tag(@setting.home_image_4.image_filename.url, :title=>@setting.home_image_4_title, :alt=>@setting.home_image_4_title) || @setting.home_image_4_title), (@setting.home_image_4_url || root_url), :title=>@setting.home_image_4_title) %>
-        </div>
-        <% end %>
-        <% if @setting.home_image_5 %>
-        <div class="item">
-          <%= link_to((image_tag(@setting.home_image_5.image_filename.url, :title=>@setting.home_image_5_title, :alt=>@setting.home_image_5_title) || @setting.home_image_5_title), (@setting.home_image_5_url || root_url), :title=>@setting.home_image_5_title) %>
-        </div>
-        <% end %>
+        <%= render :partial => 'slider', locals: { setting: @setting}  %>
       <% end %>
     </div>
   </div><!-- End Carousel-->
@@ -62,105 +38,7 @@
       <div class="swiper-wrapper">
         <% if !@best_sellers.blank? %>
           <% @best_sellers.each do |food| %>
-            <%path = thumb_image(food)%>
-            <%unless food.is_landscape%>
-              <div class="swiper-slide portrait">
-                <div class="slider-box clearfix ">
-                  <div class="col-xs-4">
-                    <%= link_to image_tag(path, :title=> food.name, :alt=> food.name), nested_products_uri(food),{:title => food.name} %>
-                  </div>
-                  <div class="col-xs-8 slider-box-text">
-                    <div class="item-name"><%= link_to truncate(food.name, length:60), nested_products_uri(food), :title=> food.name -%></div>
-                  </div>
-                  <div class="clr"></div>
-                  <div class="celarfix">
-                    <div class="col-xs-4 price-col">
-                      <div class="price">
-                        <% product = food
-                          if product.product_prices.present? %>
-                              <% if product.discounted? && product.discount > 0.0 %>
-                                <% product.product_prices.each do |pp| %>
-                                 <div class="line-through">
-                                  Was <%= number_to_currency pp.price, :unit => "£" %></div>
-                                <% end %>
-                                <div class="current-price">
-                                  Now <% product.price_discounted.each do |price| %>
-                                    <%= number_to_currency price, :unit => "£" %>
-                                  <% end %>
-                                </div>
-                              <% else %>
-                                <div class="price">
-                                  <% product.product_prices.each do |pp| %>
-                                    <%= number_to_currency pp.price, :unit => "£" %>
-                                  <% end %>
-                                  </div>
-                              <% end %>
-                            <% end %>
-                      </div>
-                    </div>
-                    <div class="col-xs-8">
-                      <div class="seller-price">
-                        <% if food.present? && food.product_prices.present? %>
-                          <% food.product_prices.each do |best_food| %>
-                            <div class="add-row clearfix">
-                              <%=render partial: 'site/templates/product_cart_form' ,  locals: {product: food} %>
-                            </div>
-                        <% end %>
-                        <% else %>
-                          <p class="red-text">Not Available</p>
-                        <% end %>
-                      </div>
-                    </div>
-                  </div>  
-                </div>
-              </div>
-            <%else%>  
-              <div class="swiper-slide landscape">
-                <div class="slider-box2 clearfix ">
-                  <div class="">
-                    <div class="box-image"><%= link_to image_tag(path, :title=> food.name, :alt=> food.name), nested_products_uri(food),{:title => food.name} %></div>
-                    <div class="item-name"><%= link_to truncate(food.name, length:65), nested_products_uri(food), :title => food.name  -%></div>
-                    <div class="row clearfix">
-                      <div class="col-xs-4 price-col">
-                        <% product = food 
-                           if product.product_prices.present? %>
-                              <% if product.discounted? && product.discount > 0.0 %>
-                                <% product.product_prices.each do |pp| %>
-                                 <div class="line-through">
-                                  Was <%= number_to_currency pp.price, :unit => "£" %></div>
-                                <% end %>
-                                <div class="current-price">
-                                  Now <% product.price_discounted.each do |price| %>
-                                    <%= number_to_currency price, :unit => "£" %>
-                                  <% end %>
-                                </div>
-                              <% else %>
-                                <div class="price">
-                                  <% product.product_prices.each do |pp| %>
-                                    <%= number_to_currency pp.price, :unit => "£" %>
-                                  <% end %>
-                                  </div>
-                              <% end %>
-                            <% end %>
-                      </div>
-                      <div class="col-xs-8">
-                        <div class="seller-price">
-                          <% if food.present? && food.product_prices.present? %>
-                            <% food.product_prices.each do |best_food| %>
-                              <div class="add-row clearfix">
-                                <%=render partial: 'site/templates/product_cart_form' ,  locals: {product: food} %>
-                              </div>
-                          <% end %>
-                          <% else %>
-                            <p class="red-text">Not Available</p>
-                          <% end %>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            <%end%>
+            <%= render partial: 'best_seller', locals: { food: food} %>
           <% end %>
         <% end %>
       </div>
@@ -171,40 +49,12 @@
     <div class="col-md-6 blog-row sm-bottom-60">
       <h2>BLOG</h2>
       <%if @post%>
-        <div class="medium-box">
-          <div class="row clearfix">
-            <%blog_home = SmallBoxSetting.find_by_box_title("blog_home")%>
-            <%if blog_home and blog_home.image%>
-
-              <div class="col-xs-6">
-                <%= link_to image_tag(blog_home.image.image_filename.try(:url), :title => @post.friendly_identifier, :alt => @post.friendly_identifier), blog_path(:id => @post.friendly_identifier), :title => @post.friendly_identifier -%>
-              </div>
-            <%end%>  
-            <div class="col-xs-6 blog-title">
-              <h3><%=truncate(@post.name, length: 40)%></h3>
-              <div class="medium-box-text"><p class="truncate_blog_text"><%=truncate(@post.description, length: 200).html_safe %></p></div>
-              <div class="read-more"><%= link_to "Read More", blog_path(:id => @post.friendly_identifier), :title=>"Read More" %></div>
-            </div>
-          </div>
-        </div>
+        <%= render partial: 'blog', locals: { post: @post, blog_home: @blog_home}%>
       <%end%>
     </div>
     <div class="col-md-6 blog-row">
       <h2>WINE CLUB</h2>
-      <div class="medium-box">
-        <div class="row clearfix">
-          <%wine_club = SmallBoxSetting.find_by_box_title("wine_club_home")%>
-          <% if wine_club and wine_club.image %>
-            <div class="col-xs-6">
-              <%= link_to image_tag(wine_club.image.image_filename.try(:url), :title=>"Wine Club", :alt=> "Wine Club"), "/wine-club", :title=>"Wine Club" -%>
-            </div>  
-          <%end%>
-          <div class="col-xs-6">
-            <div class="truncate_wine_text"><%=wine_club.description.html_safe rescue 'Discover the best Italian wines sat on the confort of your home'%></div>
-            <div class="read-more"><%= link_to "Read More", "/wine-club", :title=>"Read More" %></div>
-          </div>
-        </div>
-      </div>
+        <%= render partial: 'wine_club', locals: { wine_club: @wine_club}%>
     </div>
   </div><!-- End Blog and wine club-->
   <!-- Start food counter-->
@@ -219,103 +69,7 @@
     <div class="swiper-container food-counter-swiper" id="secondSwiper">
       <div class="swiper-wrapper">
         <% @food_counter.each do |food| %>
-          <%path = thumb_image(food)%>
-          <%unless food.is_landscape%>
-            <div class="swiper-slide portrait">
-              <div class="slider-box clearfix ">
-                <div class="col-xs-4">
-                  <div class="counter-image"><%= link_to image_tag(path, :title => food.name, :alt => food.name), nested_products_uri(food), {:title => food.name} %></div>
-                </div>
-                <div class="col-xs-8 slider-box-text">
-                  <div class="item-name"><%=link_to truncate(food.name, length:60), nested_products_uri(food), :title => food.name -%></div>
-                </div>
-                <div class="clr"></div>
-                <div class="clearfix">
-                  <div class="col-xs-4 price-col">
-                    <% product = food 
-                       if product.product_prices.present? %>
-                              <% if product.discounted? && product.discount > 0.0 %>
-                                <% product.product_prices.each do |pp| %>
-                                 <div class="line-through">
-                                  Was <%= number_to_currency pp.price, :unit => "£" %></div>
-                                <% end %>
-                                <div class="current-price">
-                                  Now <% product.price_discounted.each do |price| %>
-                                    <%= number_to_currency price, :unit => "£" %>
-                                  <% end %>
-                                </div>
-                              <% else %>
-                                <div class="price">
-                                  <% product.product_prices.each do |pp| %>
-                                    <%= number_to_currency pp.price, :unit => "£" %>
-                                  <% end %>
-                                  </div>
-                              <% end %>
-                            <% end %>
-                  </div>
-                  <div class="col-xs-8">
-                    <div class="seller-price ">
-                      <% if food.present? && food.product_prices.present? %>
-                        <% food.product_prices.each do |f| %>
-                        <% end %>
-                        <div class="add-row clearfix">
-                          <%=render partial: 'site/templates/product_cart_form' ,  locals: {product: food} %> 
-                        </div>
-                      <% else %>
-                        <div class="add-row clearfix">Not Available</div>
-                      <% end %>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          <%else%>  
-            <div class="swiper-slide landscape">
-              <div class="slider-box2 clearfix ">
-                <div class="">
-                  <div class="box-image"><%= link_to image_tag(path, :title => food.name), nested_products_uri(food), {:title => food.name} %></div>
-                  <div class="item-name"><%= link_to  truncate(food.name, length:65), nested_products_uri(food), :title => food.name -%></div>
-                  <div class="row clearfix">
-                    <div class="col-xs-4 price-col">
-                      <% product=food 
-                         if product.product_prices.present? %>
-                              <% if product.discounted? && product.discount > 0.0 %>
-                                <% product.product_prices.each do |pp| %>
-                                 <div class="line-through">
-                                  Was <%= number_to_currency pp.price, :unit => "£" %></div>
-                                <% end %>
-                                <div class="current-price">
-                                  Now <% product.price_discounted.each do |price| %>
-                                    <%= number_to_currency price, :unit => "£" %>
-                                  <% end %>
-                                </div>
-                              <% else %>
-                                <div class="price">
-                                  <% product.product_prices.each do |pp| %>
-                                    <%= number_to_currency pp.price, :unit => "£" %>
-                                  <% end %>
-                                  </div>
-                              <% end %>
-                            <% end %>
-                    </div>
-                    <div class="col-xs-8">
-                      <div class="seller-price">
-                        <% if food.present? && food.product_prices.present? %>
-                          <% food.product_prices.each do |f| %>
-                          <div class="add-row clearfix">
-                            <%=render partial: 'site/templates/product_cart_form' ,  locals: {product: food} %>
-                          </div>
-                          <% end %>
-                        <% else %>
-                          <div class="add-row clearfix">Not Available</div>
-                        <% end %>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          <%end%>
+          <%= render partial: 'food_counter', locals: { food: food} %>
         <% end %>
       </div>
     </div><!-- End Slider-->

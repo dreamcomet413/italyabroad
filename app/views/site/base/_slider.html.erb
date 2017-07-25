@@ -1,0 +1,25 @@
+<% if setting.home_image_1 %>
+    <div class="item active">
+      <%= link_to((image_tag(setting.home_image_1.image_filename.url, :title=>setting.home_image_1_title, :alt=>setting.home_image_1_title  ) || setting.home_image_1_title), (setting.home_image_1_url || root_url), :title=>setting.home_image_1_title) %>
+    </div>
+  <% end %>
+  <% if setting.home_image_2 %>
+  <div class="item">
+    <%= link_to((image_tag(setting.home_image_2.image_filename.url, :title=>setting.home_image_2_title, :alt=>setting.home_image_2_title) || setting.home_image_2_title), (setting.home_image_2_url || root_url), :title=>setting.home_image_2_title) %>
+  </div>
+  <% end %>
+  <% if setting.home_image_3 %>
+  <div class="item">
+    <%= link_to((image_tag(setting.home_image_3.image_filename.url, :title=>setting.home_image_3_title, :alt=>setting.home_image_3_title) || setting.home_image_3_title), (setting.home_image_3_url || root_url), :title=>setting.home_image_3_title) %>
+  </div>
+  <% end %>
+  <% if setting.home_image_4 %>
+  <div class="item">
+    <%= link_to((image_tag(setting.home_image_4.image_filename.url, :title=>setting.home_image_4_title, :alt=>setting.home_image_4_title) || setting.home_image_4_title), (setting.home_image_4_url || root_url), :title=>setting.home_image_4_title) %>
+  </div>
+  <% end %>
+  <% if setting.home_image_5 %>
+  <div class="item">
+    <%= link_to((image_tag(setting.home_image_5.image_filename.url, :title=>setting.home_image_5_title, :alt=>setting.home_image_5_title) || setting.home_image_5_title), (setting.home_image_5_url || root_url), :title=>setting.home_image_5_title) %>
+  </div>
+<% end %>
