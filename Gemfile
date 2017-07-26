@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-#gem 'browser', require: "browser/browser"
+# gem 'browser', require: "browser/browser"
 gem 'voight_kampff'
 gem 'rails3-jquery-autocomplete'
 gem 'wkhtmltopdf'
@@ -10,7 +10,7 @@ gem 'pdfkit'
 gem 'rails', '3.2.22'
 gem 'capistrano', '2.12.0',:require => false
 gem 'mime-types', '1.23'
-gem 'mysql', '2.8.1'
+# gem 'mysql', '2.8.1'
 gem 'mysql2', '~> 0.3.20'
 gem 'rdoc'
 gem "activemerchant"
@@ -61,3 +61,5 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 gem 'slim'
+gem 'image_optim'
+gem 'image_optim_pack'
