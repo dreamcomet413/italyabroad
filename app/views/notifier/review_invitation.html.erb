@@ -1,21 +1,86 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-        "http://www.w3.org/TR/html4/loose.dtd">
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width" /><!-- IMPORTANT -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  
+<!-- <link rel="stylesheet" type="text/css" href="stylesheets/email.css" /> -->
+
 
 </head>
-<body>
-Dear <%= @user.name -%>
+ 
+<body bgcolor="#FFFFFF">
+
+<!-- HEADER -->
+<table class="head-wrap" bgcolor="">
+  <tr>
+    <td></td>
+    <td class="header container">
+      
+        <div class="content">
+          <table bgcolor="">
+            <tr>
+              <td>
+                <a href="#account" />
+                <%#=image_tag "logo.png", style: "width:70px;height:auto;" %>
+                <img src="https://www.italyabroad.com/assets/xlogo_hi_res-72655d267a58597692c2d87c20945929.gif.pagespeed.ic.Q7438Z1QqK.png" style="width:70px;height:auto;" /></a>
+              </td>
+              <td align="right">
+                <h6 class="collapse"></h6>  
+              </td>
+            </tr>
+          </table>
+        </div>
+        
+    </td>
+    <td></td>
+  </tr>
+</table><!-- /HEADER -->
+
+<!-- Dear <%= @user.name -%>
 <p>Thank you for your recent purchase from Italyabroad.</p>
 <p>We are really interested to hear why you take the supplements you’ve ordered from us, and any benefits you’ve felt from taking them and so we have recently launched a product review system to help us learn more. We are aware you probably haven’t received your parcel but it should be with you shortly. (By the way - When leaving a review you can remain entirely anonymous if you wish!)
   If you have previously taken some of these supplements we’d really like you to leave us a review and to save you time, the product(s) you’ve recently purchased are listed below, with direct links to the product review page.
   However, if you’re new to Italyabroad, or new to taking supplements, perhaps you’d like to come back to us when you are ready.</p>
 <p>Please remember if you would like to contact us with a nutrition query don’t forget our friendly experts are just an email away on <a href="mail-to:info@italyabroad.com">info@italyabroad.com</a> for any other query you can reach us on info@italyabroad.com.
   Many thanks for taking the time to read this email and we look forward to hearing from you soon.</p>
-<p>Best wishes from all of us at Italyabroad.com.</p>
+<p>Best wishes from all of us at Italyabroad.com.</p> -->
 
-<table>
+
+<table class="body-wrap">
+  <tr>
+    <td></td>
+    <td class="container" bgcolor="#FFFFFF">
+
+      <div class="content">
+      <table>
+        <tr>
+          <td>
+            <br/>
+            <h6>Dear <%= @user.name -%>,</h6>    
+            <br>
+            <p>Thank you for your recent purchase from Italyabroad.</p>
+            <p>We are really interested to hear why you take the supplements you’ve ordered from us, and any benefits you’ve felt from taking them and so we have recently launched a product review system to help us learn more. We are aware you probably haven’t received your parcel but it should be with you shortly. (By the way - When leaving a review you can remain entirely anonymous if you wish!)
+              If you have previously taken some of these supplements we’d really like you to leave us a review and to save you time, the product(s) you’ve recently purchased are listed below, with direct links to the product review page.
+              However, if you’re new to Italyabroad, or new to taking supplements, perhaps you’d like to come back to us when you are ready.</p>
+            <p>Please remember if you would like to contact us with a nutrition query don’t forget our friendly experts are just an email away on <a href="mail-to:info@italyabroad.com">info@italyabroad.com</a> for any other query you can reach us on info@italyabroad.com.
+              Many thanks for taking the time to read this email and we look forward to hearing from you soon.</p>
+            <p>Best wishes from all of us at Italyabroad.com.</p>
+
+          <!-- </td> -->
+        </tr>
+      </table>
+      </div>
+                  
+    </td>
+    <td></td>
+  </tr>
+</table>
+
+
+<table class="body-wrap">
   <thead>
   <td>Item</td>
   <td>Code</td>
@@ -31,10 +96,6 @@ Dear <%= @user.name -%>
       </tr>
   <% end %>
 </table>
-
-Thanks and regards,
-
-Italyabroad.com
 </body>
 </html>
 
