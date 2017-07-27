@@ -21,7 +21,7 @@ html lang="en"
     /!= stylesheet_link_tag    "landing", :media => "all"
     
     = javascript_include_tag "landing_layout", async: "async"
-    /!= render 'layouts/google_tracking'
+    = render 'layouts/google_tracking'
   body
     .container
       = render partial: "shared/web/header"

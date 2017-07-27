@@ -52,22 +52,23 @@ ItalyabroadNew::Application.configure do
   # config.action_mailer.perform_deliveries = true # need to change
   config.action_mailer.default_url_options = { host: 'https://www.italyabroad.com'}
   config.action_mailer.delivery_method = :smtp 
+  config.action_mailer.asset_host = 'https://www.italyabroad.com'
 
   config.action_mailer.smtp_settings = {
     address:              'smtp.sendgrid.net',
     port:                 25,
     domain:               'italyabroad.com',
-    user_name:            'italyabroad',
-    password:             'andrea75',
+    user_name:            'fahadx',
+    password:             'glogix123',
     authentication:       :plain,
     enable_starttls_auto: true  
   }
 
 end
 
-# Rails.application.config.middleware.use ExceptionNotification::Rack,
-#   :email => {
-#   :email_prefix => "[Error: Italyabroad.com] ",
-#   :sender_address => %{"notifier" <notifier@italyabroad.com>},
-#   :exception_recipients => %w{fahad@goodlogics.com}
-# }
+Rails.application.config.middleware.use ExceptionNotification::Rack,
+  :email => {
+  :email_prefix => "[Error: Italyabroad.com] ",
+  :sender_address => %{"notifier" <notifier@italyabroad.com>},
+  :exception_recipients => %w{andrea@italyabroad.com }
+}
