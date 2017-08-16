@@ -15,6 +15,11 @@ every 3.hours do
   runner "Setting.take_database_backup"
   # rake "some:great:rake:task"
 end
+
+every 1.weak do 
+	system("echo "" >  log/production.log")
+	runner "Session.destroy_expire"
+end 
 #
 # every 4.days do
 #   runner "AnotherModel.prune_old_records"

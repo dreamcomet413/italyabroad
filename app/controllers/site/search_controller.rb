@@ -1,6 +1,7 @@
 class Site::SearchController < ApplicationController
   layout 'site'
   autocomplete :search, :name
+  before_filter :params_senetize 
 
   def autocomplete_search_name
     params[:term]=params[:term].gsub("'",'') if params[:term]
@@ -257,6 +258,14 @@ class Site::SearchController < ApplicationController
 
   def available_sorting
     ["product_prices.price asc", "product_prices.price desc", "name", "region_id"]
+  end
+
+  def params_senetize
+        difficulty = ['any','medium','difficult','simple']
+     if  params[:difficulty].present? and !difficulty.include?(params[:difficulty].downcase)
+        params[:difficulty] = ''
+     end 
+    
   end
 end
 

@@ -144,7 +144,8 @@
                     <div class="col-xs-3 product-des-title">Tasting video:</div>
                     <div class="col-xs-9">
                       <% if @product.tasting_video %>
-                        <%= link_to @product.tasting_video, @product.tasting_video, :title=>@product.tasting_video, :target => 'blank' %>
+                        <%#= link_to @product.tasting_video, @product.tasting_video, :title=>@product.tasting_video, :target => 'blank' %>
+                        <%= link_to “Watch Andrea’s video” , @product.tasting_video, :title=>@product.tasting_video, :target => ‘blank’ %>
                       <% end %>
                     </div>
                   </div>
