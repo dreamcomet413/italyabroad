@@ -233,7 +233,13 @@ class Site::SearchController < ApplicationController
 
   def find_recipes
     @search = Search.new(params || Hash.new)
-    @recipes = Recipe.where(@search.conditions_for_recipes).order(params[:sort_by]).paginate(:page => params[:page], :per_page => 10)
+    begin
+      @recipes = Recipe.where(@search.conditions_for_recipes).order(params[:sort_by]).paginate(:page => params[:page], :per_page => 10)
+      @recipes.blank?
+    rescue Exception => e
+      @recipes = Recipe.where(:id => "0")
+    end
+
   end
 
   def find_wine_events
